@@ -1,0 +1,23 @@
+RiskSet <-
+function (data.rdu, kdebug1= F, JustEvent = T) 
+{
+    time.column <- attr(data.rdu, "time.column")
+    event.column <- attr(data.rdu, "event.column")
+    WindowInfo <- attr(data.rdu, "WindowInfo")
+    event <- data.rdu[, event.column]
+    Times <- data.rdu[, time.column]
+    EndPoints <- is.element(casefold(event), c("end", "mend"))
+    StartPoints <- is.element(casefold(event), c("start", "mstart"))
+    Cevent <- !(EndPoints | StartPoints)
+    if (JustEvent) 
+        tuniq <- unique(sort(Times[Cevent]))
+    else tuniq <- unique(sort(c(0, Times[Cevent], WindowInfo$WindowL, 
+        WindowInfo$WindowU)))
+    zout <- .Fortran("riskset", muniqrecurr = as.integer(length(tuniq)), 
+        tuniq = as.double(tuniq), nwindows = as.integer(length(WindowInfo$WindowU)), 
+        twindowsl = as.double(WindowInfo$WindowL), twindowsu = as.double(WindowInfo$WindowU), 
+        wcounts = as.integer(WindowInfo$WindowCounts), iordl = integer(length(WindowInfo$WindowL)), 
+        iordu = integer(length(WindowInfo$WindowL)), delta = integer(length(tuniq)), 
+        kdebug1= as.integer(kdebug1), iscrat = integer(length(WindowInfo$WindowL)))
+    return(list(Times = zout$tuniq, Counts = zout$delta, NumberUnits = length(unique(get.UnitID(data.rdu)))))
+}

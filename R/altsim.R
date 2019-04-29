@@ -1,0 +1,204 @@
+altsim <-
+function (accel.var.mat, nsamsz, centim, theta, distribution,
+    number.sim, kctype = 1, escale = 10000, e = rep(1e-04, number.parameters),
+    parameter.fixed = rep(F, number.parameters), intercept = T,
+    kprint = 0, maxit = 500,debug1= F, randomize = T)
+{
+    number.cases <- sum(nsamsz + 1)
+    plan <- list(accel.var.mat = accel.var.mat, nsamsz = nsamsz,
+        centim = centim)
+    nty <- 0
+    if (intercept)
+        int <- 1
+    else int <- 0
+    theta.hat <- theta
+    distribution.number <- numdist(distribution)
+    if (is.null(accel.var.mat)) {
+        accel.var.mat <- 0
+        if (int != 1)
+            stop("must have int=1 if no x matrix")
+        param.names <- c("mu", "sigma")
+        nter <- 1
+        nsubex <- 1
+        nacvar <- 0
+  } else {
+        nsubex <- nrow(accel.var.mat)
+        nacvar <- ncol(accel.var.mat)
+        param.names <- c(paste("beta", 0:ncol(accel.var.mat),
+            sep = ""), "sigma")
+        nter <- ncol(accel.var.mat) + int
+    }
+    number.parameters <- nter + 1
+    if (generic.distribution(distribution) == "exponential") {
+        distribution.number <- 2
+        parameter.fixed[number.parameters] <- T
+        number.parametersx <- number.parameters - 1
+    }
+    number.things.returned <- number.parameters + ((number.parameters) *
+        (number.parameters + 1))/2 + 2
+    y <- matrix(rep(0, number.cases), ncol = 1)
+    case.weights <- rep(0, number.cases)
+    censor.codes <- rep(0, number.cases)
+    ny <- ncol(y)
+    xmat <- matrix(1, nrow = number.cases, ncol = nter)
+    ndscrat <- 4 * (number.parameters * number.cases + 5 * number.parameters *
+        number.parameters + 12 * number.parameters + 1)
+    niscrat <- 2 * (number.parameters + 1)
+    if (debug1)
+        browser()
+    zout <- .Fortran("altsim", xmat = as.single(xmat), y = as.single(y),
+        censor.codes = as.single(censor.codes), case.weights = as.single(case.weights),
+        number.cases = as.integer(number.cases), nter = as.integer(nter),
+        ny = as.integer(ny), nty = as.integer(nty), ty = single(number.cases),
+        tc = single(number.cases), distribution.number = as.integer(distribution.number),
+        gamthr = single(number.cases), parameter.fixed = as.logical(parameter.fixed),
+        number.parameters = as.integer(number.parameters), int = as.integer(int),
+        escale = as.single(escale), e = as.single(e), maxit = as.integer(maxit),
+        kprint = as.integer(kprint), dscrat = double(ndscrat),
+        iscrat = integer(niscrat), devian = single(number.cases *
+            3), thetah = as.single(theta.hat), first.derivative = single(number.parameters),
+        vcv.matrix = single(number.parameters * number.parameters),
+        correlation.matrix = single(number.parameters * number.parameters),
+        residuals = single(ny * number.cases), fitted.values = single(ny *
+            number.cases), theta.real = as.single(theta), new.xmat = single(number.cases *
+            nter), new.y = single(number.cases * ny), centim = as.single(centim),
+        accel.var.mat = as.single(accel.var.mat), nsubex = as.integer(nsubex),
+        nacvar = as.integer(nacvar), nsamsz = as.integer(nsamsz),
+        kctype = as.integer(kctype), return.matrix = single(number.sim *
+            (number.things.returned)), number.things.returned = as.integer(number.things.returned),
+        number.sim = as.integer(number.sim), iersim = integer(1))
+    if (zout$iersim > 0 || debug1) {
+        browser()
+        if (zout$iersim > 0)
+            stop("Need more space for observations")
+    }
+    if (nter <= 1)
+        param.names <- c("mu", "sigma")
+    else param.names <- c("b0", paste("b", 1:(nter - 1), sep = ""),
+        "sigma")
+    return.matrix <- t(matrix(zout$return.matrix, nrow = number.things.returned))
+    theta.hat.star <- return.matrix[, 2:(number.parameters +
+        1), drop = F]
+    dimnames(theta.hat.star) <- list(NULL, param.names)
+    ierstuff <- floor(return.matrix[, 1] + 0.1)
+    vcv <- return.matrix[, (number.parameters + 3):(number.parameters +
+        ((number.parameters) * (number.parameters + 1))/2 + 2),
+        drop = F]
+    dimnames(vcv) <- list(NULL, get.vcv.names(param.names))
+    return(list(plan = plan, theta = theta, theta.hat = theta.hat.star,
+        vcv = vcv, ierstuff = ierstuff, likelihood = return.matrix[,
+            number.parameters + 2]))
+}
+
+#'
+#'
+
+ALTsim <-
+  function (ALT.test.plan, ALT.plan.values, number.sim, show.detail.on = 0,
+            xlim = c(NA, NA), ylim = c(NA, NA), sim.data.title = NULL,
+            use.conditions = NULL)
+  {
+    AT.levels <-
+      function (ADDT.test.plan)
+      {
+        levels.columns <- attr(ADDT.test.plan, "levels.columns")
+        levels <- ADDT.test.plan[, levels.columns, drop = F]
+        col.names <- dimnames(ADDT.test.plan)[[2]]
+        names(col.names) <- col.names
+        dimnames(levels) <- list(as.character(1:nrow(levels)), col.names[levels.columns])
+        oldClass(levels) <- "data.frame"
+        return(levels)
+      }
+    
+    if (is.null(attr(ALT.test.plan, "plan.string")))
+      plan.string <- deparse(substitute(ALT.test.plan))
+    if (is.null(attr(ALT.plan.values, "plan.values.string")))
+      plan.values.string <- deparse(substitute(ALT.plan.values))
+    distribution <- ALT.plan.values$distribution
+    orig.relationship <- ALT.plan.values$relationship
+    relationship <- fix.inverse.relationship(orig.relationship)
+    number.parameters <- 2 + length(relationship)
+    theta.hat.star <- matrix(NA, nrow = number.sim, ncol = number.parameters)
+    vcv <- matrix(NA, nrow = number.sim, ncol = ((number.parameters) *
+                                                   (number.parameters + 1))/2)
+    likelihood <- rep(NA, length = number.sim)
+    ierstuff <- rep(NA, length = number.sim)
+    number.of.units <- ALT.test.plan$number.units
+    time.units <- ALT.plan.values$time.units
+    levels <- as.matrix(AT.levels(ALT.test.plan))
+    number.accelerators <- ncol(levels)
+    the.allocations <- allocation(ALT.test.plan)[, 1]
+    for (j in 1:number.accelerators) {
+      levels[, j] <- multiple.f.relationship(levels[, j], subscript.relationship(orig.relationship,
+                                                                                  j))
+    }
+    input.title <- paste(plan.string, plan.values.string)
+    if (is.null(sim.data.title))
+      sim.data.title <- paste("Simulated data from", input.title)
+    theta <- ALT.plan.values$theta.vec
+    censor.times <- ALT.test.plan$censor.times
+    number.good <- 0
+    if (as.numeric(show.detail.on) > 0)
+      for (i in 1:as.numeric(show.detail.on)) {
+        data.ld <- altsimReturnFrame(accel.var.mat = levels,
+                                     nsamsz = number.of.units, centim = censor.times,
+                                     theta = theta, distribution = distribution, relationship = orig.relationship,
+                                     time.units = time.units, my.title = sim.data.title)
+        if (map.SMRDDebugLevel() >= 2)
+          print(data.ld)
+        vcv[i, ] <- attr(data.ld, "vcv")
+        likelihood[i] <- attr(data.ld, "likelihood")
+        theta.hat.star[i, ] <- attr(data.ld, "theta.hat")
+        ierstuff[i] <- attr(data.ld, "ierstuff")
+        groupm.results <- groupm.mleprobplot(data.ld, distribution = distribution,
+                                             relationship = orig.relationship, new.data = string.to.frame(paste(use.conditions,
+                                                                                                                collapse = ";")))
+        print(groupm.results)
+      }
+    if (as.numeric(show.detail.on) > 0) {
+      assign(envir = .frame0,  inherits = TRUE,"last.sim.ALT.ld", data.ld)
+      cat("The last simulated ALT data set has been saved in last.sim.ALT.ld\n")
+    }
+    number.sim.remaining <- number.sim - as.numeric(show.detail.on)
+    if (number.sim.remaining > 0) {
+      altsim.out <- altsim(accel.var.mat = levels, nsamsz = number.of.units,
+                           centim = censor.times, theta = theta, distribution = distribution,
+                           number.sim = number.sim.remaining,debug1= F, kprint = 0)
+      indices.of.new <- (show.detail.on + 1):number.sim
+      ierstuff[indices.of.new] <- altsim.out$ierstuff
+      vcv[indices.of.new, ] <- altsim.out$vcv
+      likelihood[indices.of.new] <- altsim.out$likelihood
+      theta.hat.star[indices.of.new, ] <- altsim.out$theta.hat
+    }
+    good.ones <- ierstuff == 0
+    number.good <- sum(as.numeric(good.ones))
+    vcv <- vcv[good.ones, , drop = F]
+    theta.hat.star <- theta.hat.star[good.ones, , drop = F]
+    if (number.good < number.sim)
+      warning(paste("******There were", number.sim - number.good,
+                    "bad simulations"))
+    if (number.good == 0)
+      stop("No good simulation results returned")
+    param.names <- c("beta0", paste("beta", 1:(length(relationship)),
+                                    sep = ""), "sigma")
+    dimnames(theta.hat.star) <- list(NULL, param.names)
+    dimnames(vcv) <- list(NULL, get.vcv.names(param.names))
+    return.list <- cbind(theta.hat.star, vcv)
+    attr(return.list, "plan.values") <- ALT.plan.values
+    attr(return.list, "plan") <- ALT.test.plan
+    attr(return.list, "theta") <- theta
+    attr(return.list, "ierstuff") <- ierstuff
+    attr(return.list, "likelihood") <- likelihood
+    attr(return.list, "plan.string") <- plan.string
+    attr(return.list, "plan.values.string") <- plan.values.string
+    attr(return.list, "title") <- paste("ALT Simulation Results",
+                                        "\nfrom", input.title)
+    model <- list(distribution = ALT.plan.values$distribution,
+                  relationships = ALT.plan.values$relationship, explan.vars = attr(ALT.test.plan,
+                                                                                   "accelvar.names"), accelvar.units = ALT.plan.values$accelvar.units,
+                  param.names = param.names)
+    attr(return.list, "model") <- model
+    oldClass(return.list) <- c("simulate.alt.out", "matrix")
+    MysetOldClass(attr(return.list, "class"))
+    return(return.list)
+  }

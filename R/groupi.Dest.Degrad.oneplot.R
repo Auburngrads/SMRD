@@ -1,0 +1,94 @@
+groupi.Dest.Degrad.oneplot <-
+function (data.ddd, distribution, transformation.response, transformation.time,
+    ylim = c(NA, NA), xlim = c(NA, NA), my.title = NULL,
+    ylab = NULL, xlab = NULL, cex = 1.2, cex.labs = 1.5, cex.points = 1,
+    add = F, grids = F, title.option = GetSMRDDefault("SMRD.TitleOption"), pch.point = NULL,
+    response.on.yaxis = T, subset = T, do.legend = "On plot",
+    fail.level = NULL, group.var = 1:ncol(xmat(data.ddd)), plot.lines = T,
+    lty = NULL, ...)
+{
+`do.list<-` <- function (data.ld, value) { attr(data.ld, "do.list") <- value
+
+  return(data.ld)   }
+
+CheckString <- function (pat, str) { return(regexpr(pat, str) > 0) }
+
+
+    tran.data.ddd <- plot(x = data.ddd,
+        transformation.response = transformation.response, transformation.time = transformation.time,
+        ylim = ylim, xlim = xlim, my.title = "",
+        ylab = ylab, xlab = xlab, cex = cex, cex.labs = cex.labs,
+        cex.points = cex.points, grids = grids, title.option = title.option,
+        pch.point = pch.point, response.on.yaxis = response.on.yaxis,
+        subset = subset, group.var = group.var, do.legend = "Suppress")
+    do.list <- do.list(tran.data.ddd)
+    if (is.null(lty)) {
+        if (GetSMRDDefault("SMRD.solid.lines"))
+            lty <- rep(1, length(do.list))
+        else lty <- (1:(length(do.list) + 1))[-2]
+    }
+    if (is.null(pch.point))
+        pch.point <- (1:(length(do.list) + 4))[-c(2, 6, 17, 19)]
+    if (length(pch.point) == 1)
+        pch.point <- rep(pch.point, length(do.list))
+    two.stage.out <- two.stage.dest.degrad(tran.data.ddd, distribution = distribution,
+        double.count.zeros = F)
+    ok.values <- attr(two.stage.out, "ok.values")
+    slope <- attr(two.stage.out, "slope")
+    intercept <- attr(two.stage.out, "intercept")
+    the.slope.computed.list <- slope.computed.list(two.stage.out)
+    the.done.list <- done.list(two.stage.out)
+    plot.index <- match(the.slope.computed.list, do.list)
+    for (i in 1:length(the.slope.computed.list)) {
+        if (map.SMRDDebugLevel() >= 4) {
+            cat(the.slope.computed.list[i], "Intercept=", intercept[i],
+                "slope=", slope[i], "in groupi.Dest.Degrad.oneplot\n")
+        }
+        abline(intercept[i], slope[i], col = plot.index[i], lty = lty[plot.index[i]])
+        if (!is.null(fail.level))
+            abline(h = f.relationship(fail.level, transformation.response),
+                lwd = 3, lty = lty[i])
+    }
+    model.string <- paste("Resp:", transformation.response, ",Time:",
+        transformation.time, ", Dist:", distribution, sep = "")
+    if (is.null(my.title)) {
+        my.title <- paste(get.data.title(tran.data.ddd), "\nDestructive Degradation",
+            " Individual Regression Analyses\n", model.string,
+            sep = "")
+    }
+
+    if (CheckString("full", title.option))
+        mtext(text = my.title, side = 3, cex = 1.2, line = 0.5)
+    if (mean(slope) > 0) {
+        legend.x <- x.loc(0.05)
+        legend.y <- y.loc(0.99)
+}   else {
+        legend.x <- x.loc(0.01)
+        legend.y <- y.loc(0.3)
+    }
+
+        if (length(do.list) > 1) {
+            if (do.legend == "On plot")
+                legend(legend.x, legend.y, do.list, cex = 1.1,
+                  bty = "n", col = 1:length(do.list), pch = pch.point,
+                  lty = lty, y.intersp = 0.675)
+            if (do.legend == "New page" || do.legend == "New file") {
+                if (do.legend == "New file")
+                  postscript(file = "Save_legend.ps", horizontal = T)
+                plot(c(0, 0), c(1, 1), xlab = "", ylab = "",
+                  type = "n", xaxt = "n", yaxt = "n")
+                legend(x.loc(0.003), y.loc(0.997), do.list, cex = 1.1,
+                  bty = "n", col = 1:length(do.list), pch = pch.point,
+                  lty = lty, y.intersp = 0.675)
+                if (do.legend == "New file")
+                  dev.off()
+            }
+        }
+
+    attr(two.stage.out, "data.ddd") <- data.ddd
+    attr(two.stage.out, "distribution") <- distribution
+    attr(two.stage.out, "transformation Response") <- transformation.response
+    attr(two.stage.out, "transformation.time") <- transformation.time
+    oldClass(two.stage.out) <- "groupi.Dest.Degrad.out"
+    invisible(two.stage.out)
+}
