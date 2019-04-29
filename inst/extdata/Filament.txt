@@ -1,0 +1,7 @@
+celsius	Volts	Weeks1	Weeks2	Weeks5	Weeks10	Weeks20
+40		5		0	0	6	6	6
+50		5		0	6	6	6	0
+60		5		6	6	6	0	0
+40		10		0	0	6	6	6
+50		10		0	6	6	6	0
+60		10		6	6	6	0	0

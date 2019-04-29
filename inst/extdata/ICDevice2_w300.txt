@@ -1,0 +1,9 @@
+Lower	Upper	Event	Count	Celsius
+1536	1536	Right	50	150
+1536	1536	Right	50	175
+96	96	Right	50	200
+384	788	Interval	1	250
+788	1536	Interval	3	250
+1536	2304	Interval	5	250
+2304	2304	Right	41	250
+

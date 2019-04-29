@@ -1,0 +1,26 @@
+#ifndef smrd_proex1_H
+#define smrd_proex1_H
+void proex1(Rcpp::IntegerVector &nxd,
+            Rcpp::IntegerVector &intd,
+            Rcpp::List &ipxcd,
+            Rcpp::IntegerVector &irelad,
+            Rcpp::IntegerVector &igtyd,
+            Rcpp::IntegerVector &imarkd,
+            int &npard,
+            int &nregr,
+            Rcpp::IntegerVector &nxg,
+            Rcpp::IntegerVector &nterg,
+            Rcpp::IntegerVector &intg,
+            Rcpp::List &ipxcg,
+            Rcpp::IntegerVector &irelag,
+            Rcpp::IntegerVector &igtyg,
+            int &kscloc,
+            int &kprloc,
+            int &kpwloc,
+            Rcpp::IntegerVector &ipthet,
+            int &ngamd,
+            int &ngame,
+            int &nparm,
+            Rcpp::IntegerVector &kodet,
+            Rcpp::IntegerVector &ifix);
+#endif

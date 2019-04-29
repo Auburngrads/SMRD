@@ -1,0 +1,17 @@
+Lower	Upper	Event	Trun_Lower	Trun_Upper	Trun_Event	
+     101	     101	   exact	       0	       0	   exact
+     110	     111	interval	       0	       0	   exact
+     113	     113	   right	       0	       0	   exact
+      91	      91	    left	       0	       0	   exact
+     101	     101	   exact	     100	     100	    left
+     110	     111	interval	     100	     100	    left
+     113	     113	   right	     100	     100	    left
+      91	      91	    left	      90	      90	    left
+     101	     101	   exact	     102	     102	   right
+     110	     111	interval	     112	     112	   right
+     113	     113	   right	     114	     114	   right
+      91	      91	    left	      92	      92	   right
+     101	     101	   exact	     100	     102	interval
+     110	     111	interval	     100	     112	interval
+     113	     113	   right	     100	     114	interval
+      91	      91	    left	      90	      92	interval

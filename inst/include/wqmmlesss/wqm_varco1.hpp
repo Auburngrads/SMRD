@@ -1,0 +1,27 @@
+#ifndef SMRD_wqm_varco1_H
+#define SMRD_wqm_varco1_H
+void wqm_varco1(Rcpp::NumericMatrix &xnew,
+                Rcpp::NumericMatrix &y,
+                Rcpp::IntegerVector &cen,
+                Rcpp::IntegerVector &wt,
+                int &nty,
+                Rcpp::NumericMatrix &ty,
+                Rcpp::IntegerVector &tcodes,
+                int &nrow,
+                int &nter,
+                int &ny,
+                int &kdist,
+                Rcpp::NumericVector &thetg,
+                Rcpp::NumericVector &fsderd,
+                Rcpp::LogicalVector &lfix,
+                int &nparm,
+                double &upcen,
+                Rcpp::NumericMatrix &vcvg,
+                Rcpp::NumericVector &thetad,
+                Rcpp::NumericMatrix &vcvd,
+                Rcpp::NumericMatrix &vcvdd,
+                Rcpp::IntegerVector &ir,
+                Rcpp::IntegerVector &jc,
+                int &nparmp,
+                int &ier);
+#endif

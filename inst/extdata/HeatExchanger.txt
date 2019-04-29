@@ -1,0 +1,10 @@
+Lower Upper Event Count Plant
+1 1 Left 1 Plant1
+1 2 Interval 2 Plant1
+2 3 Interval 2 Plant1
+3 3 Right 95 Plant1
+1 1 Left 2 Plant2
+1 2 Interval 3 Plant2
+2 2 Right 95 Plant2
+1 1 Left 1 Plant3
+1 1 Right 99 Plant3

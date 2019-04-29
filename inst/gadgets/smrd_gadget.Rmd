@@ -1,0 +1,66 @@
+---
+title: "Reliability Analysis Using SMRD"
+author: "Jason Freels"
+date: "April 4, 2017"
+output: 
+  pdf_document:
+    df_print: kable
+---
+
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE, fig.pos='h', fig.height=5, fig.width=7}
+library(SMRD)
+library(shiny)
+library(shinythemes)
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+Data <- shockabsorber 
+result <- SMRD:::gadget_ld(data = Data)
+```
+
+## Overview
+
+This document contains an automatically generated reliability analysis using the R package `SMRD`. The data under evaluation contains `r nrow(Data)` rows and `r ncol(Data)` columns and is the shown below:
+
+```{r, echo=FALSE}
+knitr::kable(Data, caption = 'Data set under evaluation')
+```
+
+## CDF Results
+
+The CDF plots below show information about the CDF
+
+```{r, fig.cap='Nonparametric probability plot for the data'}
+plot(result$obj)
+```
+
+```{r, fig.cap='Probability plot for the data using the chosen distribution'}
+plot(result$obj, distribution = result$dist)
+```
+
+```{r, fig.cap='ML Probability plot for the data using the chosen distribution'}
+mleprobplot(result$obj, distribution = result$dist)
+```
+
+```{r, fig.width=8, fig.height=6}
+simple.contour(result$obj, 
+               distribution = result$dist, 
+               threeD = T, 
+               zoom.level = 2)
+```
+
+Additionally, the table below presents values for $F(t)$. 
+
+```{r}
+knitr::kable(result$mlest$fail)
+```
+
+## Hazard Function Results
+
+The following results
+
+```{r}
+mlehazplot(result$obj, distribution = result$dist)
+```
+
+```{r}
+knitr::kable(result$mlest$mle)
+```

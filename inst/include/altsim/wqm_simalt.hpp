@@ -1,0 +1,27 @@
+#ifndef SMRD_wqm_simalt_H
+#define SMRD_wqm_simalt_H
+Rcpp::List wqm_simalt(Rcpp::NumericVector &theta,
+                      int &nparm,
+                      int &intcpt,
+                      Rcpp::IntegerVector &nsamsz,
+                      Rcpp::IntegerVector &krfail,
+                      int &kctype,
+                      Rcpp::NumericVector &centim,
+                      Rcpp::NumericMatrix &acvar,
+                      int &nsubex,
+                      int &nacvar,
+                      int &kdist,
+                      Rcpp::NumericMatrix &x,
+                      Rcpp::NumericMatrix &y,
+                      Rcpp::IntegerVector &cen,
+                      Rcpp::IntegerVector &wt,
+                      int &nrow,
+                      int &nter,
+                      int &ny,
+                      int &nty,
+                      Rcpp::NumericMatrix &ty,
+                      Rcpp::IntegerVector &tcodes,
+                      int &nrownw,
+                      int &iersim,
+                      int &kprint);
+#endif

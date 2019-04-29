@@ -1,0 +1,25 @@
+#ifndef smrd_stset_H
+#define smrd_stset_H
+void stset(int kdist,
+           int llog,
+           int kmod,
+           Rcpp::IntegerVector ipkode,
+           int nparm,
+           int ngame,
+           Rcpp::NumericVector ipxbar,
+           Rcpp::NumericVector ipxbru,
+           Rcpp::NumericVector ipsd,
+           Rcpp::NumericMatrix ipy,
+           int ncoly,
+           int nrownw,
+           Rcpp::NumericMatrix ipx,
+           int ncolx,
+           Rcpp::IntegerVector ipcode,
+           Rcpp::IntegerVector ipweig,
+           Rcpp::NumericMatrix ipty,
+           int ncolty,
+           Rcpp::IntegerVector ipinow,
+           Rcpp::IntegerVector ipiscd,
+           Rcpp::IntegerVector ipplab,
+           Rcpp::IntegerVector iptc);
+#endif

@@ -1,0 +1,25 @@
+ui = fluidPage(theme = teachingApps::add_theme(getShinyOption("theme")), 
+               teachingApps::add_css(),
+
+sidebarLayout(
+  sidebarPanel(width = 3,
+    sliderInput("n"  , 
+                label = "Sample Size",
+                min = 5, 
+                max = 200, 
+                value = 5, 
+                step = 20, 
+                animate = TRUE),
+    sliderInput("sim", 
+                label = "Number Simulations",
+                min = 5, 
+                max = 50, 
+                value = 5, 
+                step = 5, 
+                animate = TRUE),
+    selectInput("dis", 
+                label = "Distribution",
+                choices = c("Weibull","Lognormal"), 
+                selected = "Weibull")),
+  
+  mainPanel(plotOutput('simulate'), width = 9)))
