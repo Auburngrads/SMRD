@@ -1,0 +1,149 @@
+---
+title: "`r SMRD:::info('book')`"
+subtitle: "`r SMRD:::info('chapter9')`"
+author: "`r SMRD:::info('authors')`"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    css: my-vignette.css
+    fig_caption: yes
+vignette: >
+  %\VignetteIndexEntry{echapter9}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo=FALSE}
+SMRD:::vinny()
+library(SMRD)
+```
+
+# In This Vignette...
+
+
+#note that especially the nonparametric boot output structures can be quite large.
+
+#
+#the following is a test example that uses only a small number of simulations
+#in order to test the routines. The compute time and memory requiremetns are
+#too large for the routine tests that I do.
+#
+#
+
+#ShockAbsorber example
+
+#parametric bootstrap
+
+ShockAbsorber.boot.p <- parametric.bootstrap(ShockAbsorber.ld,distribution="Weibull",number.sim=2000)
+
+plot(ShockAbsorber.boot.p)
+plot(ShockAbsorber.boot.p, simulate.parameters = TRUE, parameter.sims = 500)
+
+
+summary(ShockAbsorber.boot.p,inference.on = "parameter", which = 1)
+summary(ShockAbsorber.boot.p,inference.on = "parameter", which = 2,do.compare=T)
+summary(ShockAbsorber.boot.p,inference.on = "parameter", which = 2)
+summary(ShockAbsorber.boot.p,inference.on = "quantile", which =.1)
+summary(ShockAbsorber.boot.p,inference.on = "probability", which =1000)
+
+
+compare.summary.boot.npar.par.out(ShockAbsorber.boot.p,inference.on = "parameter", which = 2)
+
+focus.boot.npar.par.out(ShockAbsorber.boot.p,inference.on = "parameter", which = 2)
+
+#nonparametric bootstrap
+
+ShockAbsorber.boot.np<- nonparametric.bootstrap(ShockAbsorber.ld,number.sim=20)
+
+plot(ShockAbsorber.boot.np)
+summary(ShockAbsorber.boot.np, compare = T)
+compare.summary.boot.npar.npar.out(ShockAbsorber.boot.np)
+
+
+if(F){
+
+#ShockAbsorber example
+
+#parametric bootstrap
+
+ShockAbsorber.boot.p2 <- parametric.bootstrap(ShockAbsorber.ld,number.sim=2000,distribution="Weibull")
+
+plot(ShockAbsorber.boot.p2)
+plot(ShockAbsorber.boot.p2, simulate.parameters = TRUE, parameter.sims = 500)
+summary(ShockAbsorber.boot.p2,inference.on = "parameter", which = 1)
+summary(ShockAbsorber.boot.p2,inference.on = "parameter", which = 2)
+summary(ShockAbsorber.boot.p2,inference.on = "quantile", which =.1)
+summary(ShockAbsorber.boot.p2,inference.on = "probability", which =1000)
+
+compare.summary.boot.npar.par.out(ShockAbsorber.boot.p2,inference.on = "parameter", which = 2)
+
+#nonparametric bootstrap
+
+ShockAbsorber.boot.np2 <- nonparametric.bootstrap(ShockAbsorber.ld,number.sim=2000)
+
+
+plot(ShockAbsorber.boot.np2)
+summary(ShockAbsorber.boot.np2)
+compare.summary.boot.npar.npar.out(ShockAbsorber.boot.np2)
+
+
+
+
+#bearing cage example
+
+#parametric bootstrap
+
+BearingCage.boot.p <- parametric.bootstrap(BearingCage.ld,distribution="Weibull",number.sim=2000)
+
+plot(BearingCage.boot.p)
+
+summary(BearingCage.boot.p,inference.on = "parameter", which = 1)
+summary(BearingCage.boot.p,inference.on = "parameter", which = 2)
+summary(BearingCage.boot.p,inference.on = "quantile", which =.1)
+summary(BearingCage.boot.p,inference.on = "probability", which =1000)
+
+#nonparametric bootstrap
+
+BearingCage.boot.np <- nonparametric.bootstrap(BearingCage.ld,number.sim=2000)
+
+plot(BearingCage.boot.np)
+summary(BearingCage.boot.np)
+compare.summary.boot.npar.npar.out(BearingCage.boot.np)
+
+
+
+#bulb example
+
+summary(bulb.ld)
+
+bulb.boot.p <- parametric.bootstrap(bulb.ld,distribution="normal",number.sim=2000)
+
+plot(bulb.boot.p)
+
+summary(bulb.boot.p,inference.on = "parameter", which = 1)
+summary(bulb.boot.p,inference.on = "parameter", which = 2)
+summary(bulb.boot.p,inference.on = "quantile", which =.1)
+summary(bulb.boot.p,inference.on = "probability", which =1000)
+
+
+#nonparametric bootstrap
+
+bulb.boot.np <- nonparametric.bootstrap(bulb.ld,number.sim=2000)
+
+plot(bulb.boot.np)
+summary(bulb.boot.np,time.index=200)
+compare.summary.boot.npar.npar.out(bulb.boot.np,time.index=200)
+
+}
+
+
+
+#single distribution simulations
+
+SingleDistSim(number.sim=10,distribution="Weibull",theta = c(mu=0., sigma=1.),sample.size=10, censor.type = "None")
+
+
+SingleDistSim(number.sim=10,distribution="Weibull",theta = c(mu=0., sigma=1.),sample.size=10,censor.type = "Type 1", fail.fraction=.5)
+
+
+SingleDistSim(number.sim=10,distribution="Weibull",theta = c(mu=0., sigma=1.),sample.size=10, censor.type = "Type 2", fail.number = 5)

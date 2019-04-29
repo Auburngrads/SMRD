@@ -1,0 +1,96 @@
+---
+title: "`r SMRD:::info('book')`"
+subtitle: "`r SMRD:::info('chapter1')`"
+author: "`r SMRD:::info('authors')`"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    css: my-vignette.css
+    fig_caption: yes
+vignette: >
+  %\VignetteIndexEntry{echapter1}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo=FALSE}
+SMRD:::vinny()
+library(SMRD)
+```
+
+# In This Vignette...
+
+An overview of `life.data` objects
+
+- Creating `life.data` objects with `frame.to.ld()`
+
+- Viewing and subsetting elements
+
+- Plotting `life.data` objects
+
+# Leiblien-Zelen Data Set `lzbearing`
+
+Overview of the data set 
+
+- Complete data set 23 observations 
+Most basic
+
+```{r}
+DT::datatable(lzbearing, options = list(pageLength = 8))
+```
+
+
+
+- Many functions in the SMRD package require a `life.data` object.  `life.data` objects are created using the function `frame.to.ld`.
+
+```{r}
+lzbearing.ld <- frame.to.ld(lzbearing, 
+                            response.column = 1,
+                            time.units = "Megacycles")
+```
+
+- Once the `life.data` has been created, several plots and values can be produced
+
+```{r}
+event.plot(lzbearing.ld)
+
+summary(lzbearing.ld)
+
+print(lzbearing.ld)
+
+plot(lzbearing.ld,
+     band.type = "none")
+```
+
+## Nelson's Super-Alloy Data Set `superalloy`
+
+```{r}
+superalloy.ld <- frame.to.ld(superalloy,
+                             response.column = 1, 
+                             censor.column = 2,
+                             x.columns = c(5,6,4),
+                             time.units = "Kilocycles")
+
+
+
+summary(superalloy.ld)
+
+censored.data.plot(superalloy.ld, 
+                   explan.var = 3)
+
+censored.data.plot(superalloy.ld, 
+                   explan.var = 3,
+                   response.on.yaxis = F)
+
+
+censored.data.plot(superalloy.ld, 
+                   explan.var = 3, 
+                   x.axis = "log", 
+                   y.axis = "log")
+
+censored.data.plot(superalloy.ld, 
+                   explan.var = 3,
+                   response.on.yaxis = F, 
+                   x.axis = "log", 
+                   y.axis = "log")
+```

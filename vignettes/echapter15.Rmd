@@ -1,0 +1,182 @@
+---
+title: "`r SMRD:::info('book')`"
+subtitle: "`r SMRD:::info('chapter15')`"
+author: "`r SMRD:::info('authors')`"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    css: my-vignette.css
+    fig_caption: yes
+vignette: >
+  %\VignetteIndexEntry{echapter15}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo=FALSE}
+SMRD:::vinny()
+library(SMRD)
+```
+
+# In This Vignette...
+
+component.effect(parallel = TRUE)
+
+parallel.effect()
+
+parallel.dep.effect()
+
+series.dep.effect()
+
+Create the `life.data` object and print the data summary
+
+```{r}
+DeviceG.ld <- frame.to.ld(deviceg,
+                          response.column = 1, 
+                          failure.mode.column =  2)
+
+summary(DeviceG.ld)
+```
+
+Provide basic plots
+
+```{r}
+event.plot(DeviceG.ld)
+```
+
+```{r}
+par(mfrow = c(1,2))
+plot(DeviceG.ld, distribution = "weibull")
+plot(DeviceG.ld, distribution = "lognormal")
+par(mfrow = c(1,1))
+```
+
+summary(ld.to.mfld(DeviceG.ld))
+
+# Plots the individual failure modes separately
+
+```{r}
+par(mfrow = c(1,2))
+mfmi.mleprobplot(DeviceG.ld, distribution = "weibull") 
+mfmi.mleprobplot(DeviceG.ld, distribution = "lognormal") 
+par(mfrow = c(1,1))
+```
+
+# Plots both modes in one plot
+
+```{r}
+mfmc.mleprobplot(DeviceG.ld, 
+                 distribution = "Weibull") 
+
+mfmc.mleprobplot(DeviceG.ld, 
+                 distribution = "Weibull", 
+                 band.type = "none")
+
+tmp <- mfmc.mleprobplot(DeviceG.ld, 
+                       distribution = "Weibull", 
+                       band.type = "none", 
+                       show.individual = F, 
+                       ylim = c(0.1, .99))
+failure.probabilities(tmp)
+quantiles(tmp)
+```
+
+# different distributions for the different failure modes
+
+```{r}
+tmpx <- mfmc.mleprobplot(DeviceG.ld, 
+                         distribution = "Weibull", 
+                         distribution.vec = c("Weibull","Lognormal"))
+
+failure.probabilities(tmpx)
+quantiles(tmpx)
+```
+
+mfm.to.ld(DeviceG.ld)
+
+#	Shock Absorber Data
+
+```{r}
+ShockAbsorber.ld <- frame.to.ld(shockabsorber,
+                                response.column = 1,
+                                failure.mode.column = 2,
+                                censor.column = 3, 
+                                time.units = "Kilometers")
+summary(ShockAbsorber.ld)
+event.plot(ShockAbsorber.ld)
+```
+
+## Split out by failure mode
+
+```{r}
+mleprobplot(ShockAbsorber.ld, 
+            distribution = "Weibull")
+
+mfmi.mleprobplot(ShockAbsorber.ld, 
+                 distribution = "Weibull")
+
+tmpx <- mfmc.mleprobplot(ShockAbsorber.ld, 
+                         distribution = "Weibull")
+
+failure.probabilities(tmpx)
+quantiles(tmpx)
+```
+
+```{r}
+
+ShockAbsorber.mfld <- mfm.to.ld(ShockAbsorber.ld)
+
+multiple.mleprobplot(ShockAbsorber.mfld,
+                     data.ld.name="xx",
+                     xlab="yy",
+                     distribution="Weibull")
+
+mleprobplot(ShockAbsorber.Mode1.ld, 
+            distribution = "Weibull")
+
+mleprobplot(ShockAbsorber.Mode2.ld,
+            distribution = "Weibull")
+
+get.time.vector(ShockAbsorber.Mode2.ld)
+```
+
+#	connection strength data
+
+```{r}
+ConnectionStrength.ld <- 
+  frame.to.ld(connectionstrength,
+              response.column = 1,
+              failure.mode.column = 2,
+              case.weight.column = 3)
+
+summary(ConnectionStrength.ld )
+event.plot(ConnectionStrength.ld)
+
+mfm.to.ld(ConnectionStrength.ld)
+
+mleprobplot(ConnectionStrength.Bond.ld , 
+            distribution = "normal")
+
+mlest(ConnectionStrength.Bond.ld , 
+      distribution = "normal")
+```
+
+
+# the following causes R to crash---using genmax
+
+```{r, eval=FALSE}
+gmlest(ConnectionStrength.Bond.ld , 
+       distribution = "normal")
+```
+
+```{r}
+mfmi.mleprobplot(ConnectionStrength.ld,
+                 distribution = "Normal")
+
+tpmx <- mfmc.mleprobplot(ConnectionStrength.ld,
+                         distribution = "Normal")
+
+failure.probabilities(tmpx)
+quantiles(tmpx)
+```
+

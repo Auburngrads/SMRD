@@ -1,0 +1,25 @@
+---
+title: "`r SMRD:::info('book')`"
+subtitle: "`r SMRD:::info('chapter2')`"
+author: "`r SMRD:::info('authors')`"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    css: my-vignette.css
+    fig_caption: yes
+vignette: >
+  %\VignetteIndexEntry{echapter2}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo=FALSE}
+SMRD:::vinny()
+library(SMRD)
+```
+
+```{r, fig.width=7, fig.height=5}
+distribution.plot("Weibull",
+                  shape = c(1.7),
+                  prob.range = c(.000001,.99))
+```

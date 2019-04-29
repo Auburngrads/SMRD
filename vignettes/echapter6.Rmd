@@ -1,0 +1,193 @@
+---
+title: "`r SMRD:::info('book')`"
+subtitle: "`r SMRD:::info('chapter6')`"
+author: "`r SMRD:::info('authors')`"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    css: my-vignette.css
+    fig_caption: yes
+vignette: >
+  %\VignetteIndexEntry{echapter6}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo=FALSE}
+SMRD:::vinny()
+library(SMRD)
+```
+
+# Shockabsorber Data Set `shockabsorber`
+
+```{r}
+ShockAbsorber.ld <- frame.to.ld(shockabsorber,
+                                response.column = 1,
+                                censor.column = 3,
+                                time.units = "Kilometers")
+
+plot(ShockAbsorber.ld,
+     distribution = "Weibull")
+
+plot(ShockAbsorber.ld,
+     distribution = "Lognormal")
+```
+
+```{r, fig.width=7, fig.height=5}
+plot(ShockAbsorber.ld, 
+     distribution = c('weibull', 'sev', 'lognormal', 'normal'))
+```
+
+```{r, fig.width=8}
+plot(ShockAbsorber.ld, 
+     distribution = c('weibull', 'sev'))
+```
+
+
+# at7987 Data Set `at7987`
+
+```{r}
+at7987.ld <- frame.to.ld(at7987,
+                         response.column = 1, 
+                         censor.column = 2, 
+                         case.weight.column = 3,
+                         time.units = "Thousand Cycles")
+
+plot(at7987.ld,
+     distribution = "Weibull")
+
+plot(at7987.ld,
+     distribution = "Lognormal")
+
+plot(at7987.ld, 
+     distribution = "Weibull",
+     plot.censored.ticks = "top")
+
+plot(at7987.ld,
+     distribution="Exponential",
+     draw.line = .031,
+     grid = T, 
+     linear.axes = T)
+
+plot(at7987.ld,
+     distribution = "Lognormal")
+
+plot(at7987.ld,
+     distribution = "Lognormal",
+     draw.line = .95,
+     grid = T,
+     linear.axes = T)
+```
+
+# Titanium System Data Set `titanium01`
+
+```{r}
+titanium.ld <- frame.to.ld(titanium2,
+                           response.column = 1, 
+                           censor.column = 2,
+                           case.weight.column = 3,
+                           time.units = "Hours")
+
+plot(titanium.ld,
+     distribution = "Lognormal")
+```
+
+# Bleed System Data Set `Bleed`
+
+```{r}
+Bleed.ld <- frame.to.ld(bleed,
+                        response.column = 1, 
+                        censor.column = 2, 
+                        case.weight.column = 3,
+                        x.columns = 4,
+                        time.units = "Hours")
+
+ld.split(Bleed.ld,stress.var="D")
+ld.split(Bleed.ld,stress.var="Other")
+```
+
+```{r, fig.height=9}
+event.plot(Bleed.ld)
+summary(Bleed.ld)
+```
+
+```{r, fig.height=6}
+event.plot(Bleed.Dbase.ld)
+summary(Bleed.Dbase.ld)
+
+event.plot(Bleed.Otherbase.ld)
+summary(Bleed.Otherbase.ld)
+```
+
+```{r}
+plot(Bleed.ld,my.title="All Bases")
+
+plot(Bleed.ld,
+     distribution = "Weibull",
+     my.title = "Bleed System Failures\nAll Bases")
+
+plot(Bleed.Dbase.ld,
+     distribution = "Weibull",
+     my.title = "Bleed System Failures\nOnly Base D")
+
+plot(Bleed.Otherbase.ld,
+     distribution = "Weibull",
+     my.title = "Bleed System Failures\nOmitting Base D")
+```
+
+# Some commands to generate probability paper
+
+```{r}
+probpaper("Weibull",
+          xlim = c(1, 10), 
+          grid = TRUE, 
+          ylim = c(0.011,0.981))
+
+probpaper("Weibull",
+          xlim = c(1, 100),
+          grid = TRUE,
+          ylim = c(0.011,0.981))
+
+probpaper("Weibull",
+          xlim = c(1, 1000),
+          grid = TRUE,
+          ylim = c(0.011,0.981))
+
+probpaper("Weibull",
+          xlim = c(1, 1000),
+          grid = TRUE, 
+          ylim = c(0.0011,0.9981))
+
+probpaper("Lognormal",
+          xlim = c(1, 10),
+          grid = TRUE,
+          ylim = c(0.011,0.981))
+
+probpaper("Lognormal",
+          xlim = c(1, 100),
+          grid = TRUE,
+          ylim = c(0.011,0.981))
+
+probpaper("Lognormal",
+          xlim = c(1, 1000),
+          grid = TRUE,
+          ylim = c(0.011,0.981))
+```
+
+# Some Additional Functions
+
+```{r, eval=FALSE}
+plot(lzbearing.ld,
+     distribution = "gng",
+     shape = .1,
+     my.title = "gamma = .1",
+     linear.axes = "q")
+
+plot(lzbearing.ld,
+     distribution = "gng",
+     shape = .1)
+
+multiple.probplot.sim()
+
+multiple.probplot.sim(dist="exponential")
+```

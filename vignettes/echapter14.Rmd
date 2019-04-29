@@ -1,0 +1,355 @@
+---
+title: "`r SMRD:::info('book')`"
+subtitle: "`r SMRD:::info('chapter14')`"
+author: "`r SMRD:::info('authors')`"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    css: my-vignette.css
+    fig_caption: yes
+vignette: >
+  %\VignetteIndexEntry{echapter14}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo = FALSE}
+SMRD:::vinny()
+library(SMRD)
+```
+
+# In This Vignette...
+
+Specify prior distribution characteristics for the bearing cage data using a diffuse quantile and a diffuse sigma
+
+```{r}
+BearingCage.ld <- frame.to.ld(bearingcage,
+                              response.column = 1, 
+                              censor.column = 2,
+                              case.weight.column = 3)
+DT::datatable(BearingCage.ld)
+```
+
+```{r}
+bcage.prior.weibull.spec1 <-
+  specify.simple.prior(p = .01,
+                       qdist = "loguniform",
+                       qlower = 100,
+                       qupper = 5000,
+                       sigma.dist =  "lognormal",
+                       sigma.lower = 0.2,
+                       sigma.upper =  0.5,
+                       distribution = "Weibull")
+```
+
+Specify prior distribution characteristics for the bearing cage data using a diffuse quantile and an informative sigma
+
+```{r}
+bcage.prior.weibull.spec2 <-
+  specify.simple.prior(p = .01,
+                       qdist = "loguniform",
+                       qlower = 1000,
+                       qupper = 1400,
+                       sigma.dist = "lognormal",
+                       sigma.lower = 1.5,
+                       sigma.upper = 2.5, 
+                       distribution  = "Weibull")
+```
+
+Specify prior distribution characteristics for the bearing cage data using an informative quantile and an informative sigma
+
+```{r}
+bcage.prior.weibull.spec3 <-
+  specify.simple.prior(p = .01,
+                       qdist = "lognormal",
+                       qlower = 1000,
+                       qupper = 1400,
+                       sigma.dist = "lognormal",
+                       sigma.lower = 1.5,
+                       sigma.upper = 2.5,
+                       distribution  = "Weibull")
+```
+
+## Lognormal distribution
+
+Specify prior distribution characteristics for the bearing cage data using a diffuse quantile and a diffuse sigma
+
+```{r}
+bcage.prior.lognormal.spec1 <-
+  specify.simple.prior( p  = .04,
+                        qdist = "loguniform",
+                        qlower = 100,
+                        qupper = 5000,
+                        sigma.dist = "lognormal",
+                        sigma.lower = 0.2,
+                        sigma.upper = 5,
+                        distribution  = "Lognormal")
+```
+
+Specify prior distribution characteristics for the bearing cage data using a diffuse quantile and a informative sigma
+
+```{r}
+bcage.prior.lognormal.spec2 <-
+  specify.simple.prior(p = .01,
+                       qdist = "loguniform",
+                       qlower = 1000,
+                       qupper = 1400,
+                       sigma.dist = "lognormal",
+                       sigma.lower = 1,
+                       sigma.upper =  1.5,
+                       distribution = "Lognormal")
+```
+
+Specify prior distribution characteristics for the bearing cage data using a informative quantile and a informative sigma
+
+```{r}
+bcage.prior.lognormal.spec3 <-
+  specify.simple.prior(p = .01,
+                       qdist = "loguniform",
+                       qlower = 1000,
+                       qupper = 1400,
+                       sigma.dist = "lognormal",
+                       sigma.lower = 1.,
+                       sigma.upper = 1.5,
+                       distribution  = "Lognormal")
+```
+
+# Create the prior distributions
+
+```{r}
+prior2.bcage <- 
+  make.prior(spec = bcage.prior.lognormal.spec1, 
+             number.in.prior = 3000)
+
+
+prior.and.post2.bcage <-
+  get.big.posterior(bcage.prior.lognormal.spec1,
+                    BearingCage.ld)
+
+prior.and.post2.bcage$post[1:10,]
+
+prior.and.post3.bcage <- 
+  make.small.posterior.object(prior.and.post2.bcage)
+```
+
+Marginal distribution of the parameters
+
+```{r}
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "post",
+                             task = "Marginals only",
+                             marginal.on.sigma = T,
+                             marginal.on.pos = F,
+                             type.position = "Parameter",
+                             newdata = "mu",
+                             include.likelihood = T)
+
+#quantle marginal
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "post",
+                             task = "Marginals only",
+                             marginal.on.sigma = F,
+                             marginal.on.pos = T,
+                             type.position = "Quantile",
+                             newdata = .1,
+                             include.likelihood = T)
+
+#sigma marginal
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "post",
+                             task = "Marginals only",
+                             marginal.on.sigma = T,
+                             marginal.on.pos = F,
+                             type.position = "Quantile",
+                             newdata = .1,
+                             include.likelihood = T)
+
+#prob
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "post",
+                             task = "Marginals only",
+                             marginal.on.sigma = F,
+                             marginal.on.pos = T,
+                             type.position = "Failure probability",
+                             newdata = 1000,
+                             include.likelihood = T)
+
+#Joint only axes.range.default.post = T 
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "post",
+                             task = "Joint only",
+                             axes.range.default.post = T,
+                             marginal.on.sigma = F,
+                             marginal.on.pos = F,
+                             type.position = "Failure probability",
+                             newdata = 1000,
+                             include.likelihood = T)
+
+#Joint only 
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "prior",
+                             task = "Joint only",
+                             marginal.on.sigma = F,
+                             marginal.on.pos = F,
+                             type.position = "Parameter",
+                             newdata = "mu",
+                             include.likelihood = T)
+
+#Joint only 
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "prior",
+                             task = "Joint only",
+                             marginal.on.sigma = F,
+                             marginal.on.pos = F,
+                             type.position = "Quantile",
+                             newdata = .1,
+                             include.likelihood = T)
+
+#Joint only axes.range.default.post = F 
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "post",
+                             task = "Joint only",
+                             axes.range.default.post = F,
+                             marginal.on.sigma = F,
+                             marginal.on.pos = F,
+                             type.position = "Failure probability",
+                             newdata = 1000,
+                             include.likelihood = F)
+
+#Joint only axes.range.default.post = F 
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "prior",
+                             task = "Joint only",
+                             axes.range.default.post = F, 
+                             marginal.on.sigma = F,
+                             marginal.on.pos = F,
+                             type.position = "Failure probability",
+                             newdata = 1000,
+                             include.likelihood = F)
+
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "prior",
+                             task = "Joint and Marginal",
+                             marginal.on.sigma = F,
+                             marginal.on.pos = F,
+                             type.position = "Parameter",
+                             newdata = "mu")
+
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "post",
+                             task = "Joint only",
+                             marginal.on.sigma = F,
+                             marginal.on.pos = F,
+                             type.position = "Parameter",
+                             newdata = "mu",
+                             include.likelihood = T)
+
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "prior",
+                             task = "Joint only",
+                             marginal.on.sigma = F,
+                             marginal.on.pos = F,
+                             type.position = "Parameter",
+                             newdata = "mu",
+                             include.likelihood = T)
+
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "prior",
+                             task = "Joint and Marginal",
+                             marginal.on.sigma = F,
+                             marginal.on.pos = F,
+                             type.position = "Quantile",
+                             newdata = .1)
+
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "prior",
+                             task = "Joint and Marginal",
+                             marginal.on.sigma = F,
+                             marginal.on.pos = F,
+                             type.position = "Failure probability",
+                             newdata = 1000)
+
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "prior",
+                             task = "Joint and Marginal",
+                             marginal.on.sigma = F,
+                             marginal.on.pos = F,
+                             type.position = "Failure probability",
+                             newdata = 6000)
+
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "post",
+                             task = "Joint only",
+                             marginal.on.sigma = F,
+                             marginal.on.pos = F,
+                             type.position = "Parameter",
+                             newdata = "mu",
+                             include.likelihood = T)
+
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "post",
+                             task = "Joint and Marginal",
+                             marginal.on.sigma = F,
+                             marginal.on.pos = T,
+                             type.position = "Parameter",
+                             newdata = "mu")
+
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "post",
+                             task = "Joint and Marginal",
+                             marginal.on.sigma = F,
+                             marginal.on.pos = F,
+                             type.position = "Quantile",
+                             newdata = .1)
+
+summarize.posterior.or.prior(prior.and.post2.bcage,post.or.prior = "post",
+                             task = "Joint and Marginal",
+                             marginal.on.sigma = F,
+                             marginal.on.pos = F,
+                             type.position = "Failure probability",
+                             newdata = 1000)
+
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "prior",
+                             task = "Joint and Marginal",
+                             marginal.on.sigma = F,
+                             marginal.on.pos = F,
+                             type.position = "Failure probability",
+                             newdata = 1000)
+
+summarize.posterior.or.prior(prior.and.post2.bcage,
+                             post.or.prior = "post",
+                             task = "Joint and Marginal",
+                             marginal.on.sigma = F,
+                             marginal.on.pos = F,
+                             type.position = "Failure probability",
+                             newdata = 6000)
+
+
+prior.and.post3.bcage <- make.small.posterior.object(prior.and.post2.bcage)
+```
+
+
+plot.prediction(prior.and.post2.bcage, 
+                time.range = log(c(500,100000)),
+                xlab = "Hours")
+
+
+The plotting functions below can take a long time
+
+```{r}
+SMRD:::plot.prediction.order(x = 1,
+                             nsamsize = 3,
+                             prior.and.post2.bcage,
+                             time.range = log(c(50,10000)),
+                             xlab = "Hours")
+```
+
+```{r}
+SMRD:::plot.prediction.order(x = 1,
+                             nsamsize = 50,
+                             prior.and.post2.bcage,
+                             time.range = log(c(10,10000)),
+                             xlab = "Hours")
+```
+

@@ -1,0 +1,89 @@
+---
+title: "`r SMRD:::info('book')`"
+subtitle: "`r SMRD:::info('chapter13')`"
+author: "`r SMRD:::info('authors')`"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    css: my-vignette.css
+    fig_caption: yes
+    df_print: 'paged'
+vignette: >
+  %\VignetteIndexEntry{echapter13}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo=FALSE}
+SMRD:::vinny()
+library(SMRD)
+```
+
+# In This Vignette...
+
+Analyze the `gaaslaser` dataset
+
+```{r}
+DT::datatable(gaaslaser, 
+              options = list(pageLength=17),
+              rownames = FALSE)
+```
+
+```{r}
+GaAsLaser.rmd <- 
+  frame.to.rmd(gaaslaser, 
+               response.column = 1, 
+               unit.column = 2, 
+               time.column = 3, 
+               response.units = "Increase in Operating Current (%)")
+
+summary(GaAsLaser.rmd)
+plot(GaAsLaser.rmd)
+```
+
+## Trellis Plots
+
+```{r}
+trellis.plot(GaAsLaser.rmd, order.groups = T)
+
+trellis.plot(GaAsLaser.rmd, order.groups = F)
+```
+
+## Convert to `life.data` objects
+
+```{r}
+GaAsLaser.ld <- rmd.to.ld(GaAsLaser.rmd, 
+                          fail.level = 10, 
+                          x.axis = "sqrt")
+
+SMRD:::plot.rmd.residual(GaAsLaser.ld)
+
+GaAsLaser.ld <- rmd.to.ld(GaAsLaser.rmd,
+                          fail.level = 10)
+
+SMRD:::plot.rmd.residual(GaAsLaser.ld)
+
+summary(GaAsLaser.ld)
+```
+
+## ML Probability plots
+
+```{r}
+mleprobplot(GaAsLaser.ld, dist = "Weibull")
+mleprobplot(GaAsLaser.ld, dist = "Lognormal")
+mleprobplot(GaAsLaser.ld, dist = "normal")
+```
+
+## Model with censoring times
+
+```{r, error=TRUE}
+GaAsLaser.censor.ld <- rmd.to.ld(GaAsLaser.rmd,
+                                 fail.level = 8,
+                                 censor.time = 3000)
+
+summary(GaAsLaser.censor.ld)
+
+mleprobplot(GaAsLaser.censor.ld, dist = "Weibull")
+mleprobplot(GaAsLaser.censor.ld, dist = "Lognormal")
+mleprobplot(GaAsLaser.censor.ld, dist = "normal")
+```

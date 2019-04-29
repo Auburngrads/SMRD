@@ -1,0 +1,76 @@
+---
+title: "`r SMRD:::info('book')`"
+subtitle: "`r SMRD:::info('chapter7')`"
+author: "`r SMRD:::info('authors')`"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    css: my-vignette.css
+    fig_caption: yes
+vignette: >
+  %\VignetteIndexEntry{echapter7}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo=FALSE}
+SMRD:::vinny()
+library(SMRD)
+```
+
+```{r}
+berkson200.ld <- frame.to.ld(berkson200,
+                             response.column = c(1,2),
+                             censor.column = 3,
+                             case.weight.column = 4,
+                             time.units = "1/5000 Seconds")
+
+summary(berkson200.ld)
+
+plot(berkson200.ld)
+plot(berkson200.ld, dist = "Exponential")
+```
+
+
+```{r}
+cdfest(berkson200.ld)
+
+print(cdfest(berkson200.ld))
+```
+
+
+```{r}
+berkson200.mle.exp <- mlest(berkson200.ld, distribution = "Exponential")
+
+print(berkson200.mle.exp)$ll.text
+print(berkson200.mle.exp)$ll.value
+print(berkson200.mle.exp)$mttf.text
+print(berkson200.mle.exp)$mttf.value
+print(berkson200.mle.exp)$mle.table
+print(berkson200.mle.exp)$vcv.matrix
+print(berkson200.mle.exp)$param.corr.matrix
+print(berkson200.mle.exp)$failure.probabilities
+print(berkson200.mle.exp)$quantiles
+print(berkson200.mle.exp)$hazard.table
+```
+
+```{r}
+mleprobplot(berkson200.ld, 
+            distribution = "Exponential", 
+            param.loc = "bottomright") 
+```
+
+
+berkson200.mle.exp <- expon.mle(berkson200.ld)
+
+berkson200.mle.gam <- Gamma.mle(berkson200.ld)
+
+```{r}
+simple.contour(berkson200.ld, 
+               distribution = 'exponential', 
+               xlim = c(500,800))
+```
+
+compare.many.exponential.profiles(theta=5,sample.size=3,number.simulation=10)
+
+compare.many.exponential.profiles(theta=5,sample.size=1000,number.simulation=10)
