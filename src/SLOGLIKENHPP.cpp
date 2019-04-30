@@ -5,7 +5,7 @@
 //' corresponding to a thetav matrix
 //' @name sloglikenhpp
 // [[Rcpp::export]]
-Rcpp::NumericVector sloglikenhpp(Rcpp::NumericVector time, 
+Rcpp::NumericVector SLOGLIKENHPP(Rcpp::NumericVector time, 
                                  int ntimes, 
                                  Rcpp::NumericVector recurrcosts,
                                  Rcpp::NumericVector timel, 
