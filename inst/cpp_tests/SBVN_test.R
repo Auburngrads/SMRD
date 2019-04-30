@@ -29,13 +29,13 @@ ak = 1
                      answer = double(number),
                      as.integer(number))
     
-    new <- wqmevlike::sbvn(as.double(the.frame$ah), 
-                       as.double(the.frame$ak), 
-                       as.double(the.frame$mu1), 
-                       as.double(the.frame$mu2), 
-                       as.double(the.frame$v1),
-                       as.double(the.frame$v2), 
-                       as.double(the.frame$c12), 
-                       double(number),
-                       as.integer(number),
-                       kprint = 0)
+    new <- SBVN(as.double(the.frame$ah), 
+                as.double(the.frame$ak), 
+                as.double(the.frame$mu1), 
+                as.double(the.frame$mu2), 
+                as.double(the.frame$v1),
+                as.double(the.frame$v2), 
+                as.double(the.frame$c12), 
+                double(number),
+                as.integer(number),
+                kprint = 0)
