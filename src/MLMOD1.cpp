@@ -8,7 +8,7 @@
 //'              to Meeker-LuValle Model 1 different 
 //'              rate parameter at each time interval
 // [[Rcpp::export]]
-Rcpp::NumericVector mlmod1(Rcpp::NumericVector times, 
+Rcpp::List MLMOD1(Rcpp::NumericVector times, 
                            int number_times,
                            double a2_init, 
                            double a2_limit, 
@@ -34,24 +34,6 @@ for(int itime = 1; itime < number_times; itime++){
     
 }
 
-      return a2;
+return Rcpp::List::create(Named("a2") = a2);
 
 }
-
-/***R
-library(SMRD)
-times = rexp(10, 0.02)
-a2.init = 1
-a2.limit = 200
-rate = 0.5
-rate.factor = 2
-number.times <- length(times)
-rate.factor <- SMRD:::expand.vec(rate.factor, number.times)
-old <- .Fortran("mlmod1", as.double(times), as.integer(number.times), 
-                 as.double(a2.init), as.double(a2.limit), as.double(rate), 
-                 as.double(rate.factor), a2 = double(number.times))
-
-new <- smrdcpp:::mlmod1(as.double(times), as.integer(number.times), 
-                        as.double(a2.init), as.double(a2.limit), as.double(rate), 
-                        as.double(rate.factor), a2 = double(number.times))
-*/
