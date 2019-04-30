@@ -55,62 +55,70 @@ function (data.ld,
     
     if (debug1) browser()
     
-    zout <- .Fortran("wqmcdfest", 
-                     as.single(y), 
-                     as.integer(ny),
-                     as.single(the.censor.codes), 
-                     as.single(the.case.weights),
-                     as.single(ty), 
-                     as.integer(nty), 
-                     as.single(the.truncation.codes),
-                     as.integer(number.cases), 
-                     as.integer(nstart), 
-                     double(ndscrat),
-                     single(nrscrat), 
-                     integer(niscrat), 
-                     as.integer(kprint),
-                     as.integer(maxit), 
-                     as.single(tol), 
-                     as.integer(maxmsd),
-                     p = single(number.cases + 1), 
-                     q = single(number.cases + 1), 
-                     prob = single(number.cases + 1), 
-                     sd = single(number.cases + 1), 
-                     m = integer(1), 
-                     pchmax = single(1), 
-                     lsd = integer(1),
-                     ier = integer(1))
+    zout <- WQMCDFEST(y,
+                      as.integer(ny),
+                      as.integer(the.censor.codes),
+                      as.integer(the.case.weights),
+                      ty,
+                      as.integer(nty),
+                      as.integer(the.truncation.codes),
+                      as.integer(number.cases),
+                      as.integer(nstart),
+                      double(ndscrat),
+                      double(nrscrat),
+                      integer(niscrat),
+                      as.integer(kprint),
+                      as.integer(maxit),
+                      as.double(tol),
+                      as.integer(maxmsd),
+                      p = double(number.cases + 1),
+                      q = double(number.cases + 1),
+                      prob = double(number.cases + 1),
+                      sd = double(number.cases + 1),
+                      m = integer(1),
+                      pchmax = double(1),
+                      lsd = integer(1),
+                      ier = integer(1))
     
-    lsd <- as.logical(zout$lsd)
-    m <- zout$m
+    lsd <- as.logical(zout$others$lsd)
+    m <- zout$others$m
     
-    if (zout$ier > 0) {
+    if (zout$others$ier > 0) {
       
-        if (zout$ier != 21 || map.SMRDDebugLevel() >= 4)
-            warning(paste("Cdfest error message", zout$ier,
+        if (zout$others$ier != 21 || map.SMRDDebugLevel() >= 4)
+            warning(paste("Cdfest error message", zout$others$ier,
                 collapse = " "))
     }
     
-    q <- zout$q
-    p <- zout$p
-    prob <- zout$prob
+    q <- zout$numvec$q
+    p <- zout$numvec$p
+    prob <- zout$numvec$prob
     length(q) <- m
     length(p) <- m
     length(prob) <- m
     
     if (lsd) {
       
-        sd <- zout$sd
+        sd <- zout$numvec$sd
         length(sd) <- m
-        rlist <- list(data.ld = data.ld, p = p, q = q, prob = prob,
-            sd = sd, number.observations = number.observations,
-            left.trun.cond = left.trun.cond, right.trun.cond = right.trun.cond)
+        rlist <- list(data.ld = data.ld, 
+                      p = p, 
+                      q = q, 
+                      prob = prob,
+                      sd = sd, 
+                      number.observations = number.observations,
+                      left.trun.cond = left.trun.cond, 
+                      right.trun.cond = right.trun.cond)
   
-        } else {
+     } else {
           
-        rlist <- list(data.ld = data.ld, p = p, q = q, prob = prob,
-            number.observations = number.observations, left.trun.cond = left.trun.cond,
-            right.trun.cond = right.trun.cond)
+        rlist <- list(data.ld = data.ld,
+                      p = p, 
+                      q = q, 
+                      prob = prob,
+                      number.observations = number.observations, 
+                      left.trun.cond = left.trun.cond,
+                      right.trun.cond = right.trun.cond)
         
         }
     
