@@ -1,22 +1,50 @@
 bvn <-
-function (mu1, mu2, sd1, sd2, rho, ah, ak) 
+function (mu1, 
+          mu2, 
+          sd1, 
+          sd2, 
+          rho, 
+          ah, 
+          ak,
+          kprint = 0) 
 {
-    number <- max(length(ah), length(ak), length(sd1), length(sd2), 
-        length(mu1), length(mu2), length(rho))
-    ah <- expand.vec(ah, number)
-    ak <- expand.vec(ak, number)
+    number <- max(length(ah), 
+                  length(ak), 
+                  length(sd1), 
+                  length(sd2), 
+                  length(mu1), 
+                  length(mu2), 
+                  length(rho))
+    
+    ah  <- expand.vec(ah, number)
+    ak  <- expand.vec(ak, number)
     mu1 <- expand.vec(mu1, number)
     mu2 <- expand.vec(mu2, number)
-    v1 <- expand.vec(sd1 * sd1, number)
-    v2 <- expand.vec(sd2 * sd2, number)
+    v1  <- expand.vec(sd1 * sd1, number)
+    v2  <- expand.vec(sd2 * sd2, number)
     c12 <- expand.vec(rho * sd1 * sd2, number)
-    the.frame <- data.frame(ah = ah, ak = ak, mu1 = mu1, mu2 = mu2, 
-        v1 = v1, v2 = v2, c12 = c12)
-    prob <- .Fortran("sbvn", as.double(the.frame$ah), as.double(the.frame$ak), 
-        as.double(the.frame$mu1), as.double(the.frame$mu2), as.double(the.frame$v1), 
-        as.double(the.frame$v2), as.double(the.frame$c12), answer = double(number), 
-        as.integer(number))
-    return(prob$answer)
+    
+    the.frame <- data.frame(ah = ah, 
+                            ak = ak, 
+                            mu1 = mu1, 
+                            mu2 = mu2,
+                            v1 = v1, 
+                            v2 = v2, 
+                            c12 = c12)
+    
+    zout <- SBVN(as.double(the.frame$ah), 
+                 as.double(the.frame$ak), 
+                 as.double(the.frame$mu1), 
+                 as.double(the.frame$mu2), 
+                 as.double(the.frame$v1),
+                 as.double(the.frame$v2), 
+                 as.double(the.frame$c12), 
+                 double(number),
+                 as.integer(number),
+                 as.integer(kprint))
+    
+    return(zout$prob)
+    
 }
 
 #'
