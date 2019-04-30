@@ -3,7 +3,7 @@
 
 //' Vector version of urlike for Splus calling
 // [[Rcpp::export]]
-Rcpp::List surlike(Rcpp::NumericVector t, 
+Rcpp::List SURLIKE(Rcpp::NumericVector t, 
                    int nt,
                    double mut1,
                    double sigmat1,
