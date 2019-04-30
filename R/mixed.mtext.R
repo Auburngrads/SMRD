@@ -9,13 +9,6 @@ function (side = 3, line = 0, outer. = F, at, texts, esc = "~",
     old.axt <- par(xaxt = "s", yaxt = "s")
     on.exit(par(old.axt))
     old.cex <- par("cex")
-    if (outer.) {
-        on.exit({
-            .Fortran("spomoz", F)
-            par(old.axt)
-        })
-        .Fortran("spomoz", T)
-    }
     xside <- side == 3 || side == 1
     if (missing(at)) {
         at <- ifelse(xside, mean(par("usr")[1:2]), mean(par("usr")[3:4]))
