@@ -20,9 +20,13 @@ function (distribution, n, r, k, dvec = seq(d.range[1], d.range[2],
     } else {
         zmax <- theta.hat[, -1]
     }
-    zout <- .Fortran("prcs", zmax = as.single(zmax), z1 = as.single(theta.hat[,
-        1]), nsim = as.integer(nrow(theta.hat)), dvec = as.single(dvec),
-        answer = single(length(dvec)), as.integer(length(dvec)))
+    zout <- PRCS(zmax, 
+                 z1 = theta.hat[,1], 
+                 nsim = nrow(theta.hat),
+                 dvec = dvec, 
+                 answer = double(length(dvec)),
+                 nd = length(dvec))
+    
     the.return <- list(dvec = zout$dvec, prob = zout$answer)
     return(the.return)
 }
