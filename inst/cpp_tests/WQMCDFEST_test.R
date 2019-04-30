@@ -104,7 +104,7 @@ niscrat <- 6 * number.cases + 7
                      lsd = integer(1),
                      ier = integer(1))
 
-new = wqmmlesss::wqmcdfest(y,
+new = WQMCDFEST(y,
                    as.integer(ny),
                    as.integer(the.censor.codes),
                    as.integer(the.case.weights),
