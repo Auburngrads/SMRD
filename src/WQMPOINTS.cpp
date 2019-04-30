@@ -3,7 +3,7 @@
 
 //' Wrapper for wqm_points
 // [[Rcpp::export]]
-Rcpp::List wqmpoints(Rcpp::NumericVector &q,
+Rcpp::List WQMPOINTS(Rcpp::NumericVector &q,
                      Rcpp::NumericVector &p,
                      Rcpp::NumericVector &prob,
                      Rcpp::NumericVector &sd,
