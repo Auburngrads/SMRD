@@ -2,11 +2,12 @@
 #include <slsinf/lsinf.hpp>
 
 // [[Rcpp::export]]
-Rcpp::NumericVector vavar(int idist,
-                          int nrows,
-                          Rcpp::NumericVector zc,
-                          Rcpp::NumericVector ze,
-                          Rcpp::NumericVector avar){
+Rcpp::List VAVAR(int idist,
+                 int nrows,
+                 Rcpp::NumericVector zc,
+                 Rcpp::NumericVector ze,
+                 Rcpp::NumericVector avar){
+  
 double two = 2.0e00;
 NumericVector F11(nrows,0.0);
 NumericVector F12(nrows,0.0);
@@ -34,6 +35,6 @@ f22 = Rcpp::as<double>(Rcpp::as<Rcpp::List>(LSINF)["f22"]);
       
 }
 
-      return avar;
+return Rcpp::List::create(Named("avar") = avar);
 
 }
