@@ -9,4 +9,4 @@ theta = as.double(theta)
 ntimes = as.integer(length(times))
 answer = double(length(times))
 
-new <- wqmmlesss ::sfmcf(time, kform, theta,ntimes,answer)
+new <- SMRD2::SFMCF(time, kform, theta,ntimes,answer)
