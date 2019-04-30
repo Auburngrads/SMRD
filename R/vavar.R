@@ -12,10 +12,20 @@ function (mu, sigma, tc, pe, distribution)
     pe <- expand.vec(pe, vlength)
     ze <- quant(pe, distribution)
     zc <- (logb(tc) - mu)/sigma
-    switch(generic.distribution(distribution), sev = idist <- 1, 
-        lev = idist <- 2, normal = idist <- 3, logistic = idist <- 4, 
-        stop("Distribution must be sev, lev, normal, or logistic"))
-    zout <- .Fortran("vavar", as.integer(idist), as.integer(vlength), 
-        as.double(zc), as.double(ze), ans = double(vlength))
-    return(zout$ans)
+    
+    switch(generic.distribution(distribution), 
+           sev = idist <- 1, 
+           lev = idist <- 2,
+           normal = idist <- 3, 
+           logistic = idist <- 4, 
+           stop("Distribution must be sev, lev, normal, or logistic"))
+    
+    zout <- VAVAR(as.integer(idist),
+                  as.integer(vlength),
+                  as.double(zc),
+                  as.double(ze),
+                  double(vlength))
+    
+    return(zout$avar)
+    
 }
