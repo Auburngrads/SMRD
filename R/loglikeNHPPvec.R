@@ -12,11 +12,18 @@ function (data.rdu, theta.mat, form)
     StartPoints <- is.element(casefold(event), c("start", "mstart"))
     Cevent <- !(EndPoints | StartPoints)
     Cevent.times <- Times[Cevent]
-    zout <- .Fortran("sloglikenhpp", time = as.double(Cevent.times),
-        ntimes = as.integer(length(Cevent.times)), timeL = as.double(WindowInfo$WindowL),
-        timeU = as.double(WindowInfo$WindowU), kwcount = as.integer(WindowInfo$WindowCounts),
-        nwindows = as.integer(length(WindowInfo$WindowU)), kform = as.integer(num.nhpp.form(generic.nhpp.form(form)[[1]])),
-        thetav = as.double(t(theta.mat)), nparm = as.integer(nrow(theta.mat)),
-        ntheta = as.integer(ncol(theta.mat)), answer = double(ncol(theta.mat)))
+    
+    zout <- SLOGLIKENHPP(time = as.double(Cevent.times),
+                         ntimes = as.integer(length(Cevent.times)), 
+                         timel = as.double(WindowInfo$WindowL),
+                         timeu = as.double(WindowInfo$WindowU), 
+                         kwcount = as.integer(WindowInfo$WindowCounts),
+                         nwindows = as.integer(length(WindowInfo$WindowU)), 
+                         kform = as.integer(num.nhpp.form(generic.nhpp.form(form)[[1]])),
+                         thetav = as.double(t(theta.mat)), 
+                         nparm = as.integer(nrow(theta.mat)),
+                         ntheta = as.integer(ncol(theta.mat)), 
+                         answer = double(ncol(theta.mat)))
+    
     return(zout$answer)
 }
