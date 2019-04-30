@@ -98,7 +98,7 @@ using namespace explan_g;
 //'              }
 //'          }
 // [[Rcpp::export]]
-Rcpp::List gensiz(int &kmod,
+Rcpp::List GENSIZ(int &kmod,
                   int &kdist,
                   Rcpp::IntegerVector &kparv,
                   Rcpp::IntegerVector &nrvar,
@@ -173,16 +173,9 @@ List vecs = Rcpp::List::create(Named("kparv") = kparv,
                                Named("ilabp") = ilabp,
                                Named("ilabd") = ilabd);
 
-// List globals = Rcpp::List::create(Named("mu_rel") = explan_g::mu_cols,
-//                                   Named("si_rel") = explan_g::si_cols,
-//                                   Named("p1_rel") = explan_g::p1_cols,
-//                                   Named("p2_rel") = explan_g::p2_cols,
-//                                   Named("p3_rel") = explan_g::p3_cols);
-
  return Rcpp::List::create(Named("ints1")   = ints1,
                            Named("ints2")   = ints2,
                            Named("vecs" )   = vecs,
-                           //Named("globals") = globals,
                            Named("ipxcd")   = ipxcd);
  
 }
