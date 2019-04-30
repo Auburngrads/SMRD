@@ -5,10 +5,10 @@
 //' 
 //' @name sgquan
 // [[Rcpp::export]]
-Rcpp::NumericVector sgquan(Rcpp::NumericVector pvec,
-                           Rcpp::NumericMatrix gamme,
-                           int maxlen,
-                           Rcpp::NumericVector answer){
+Rcpp::List SGQUAN(Rcpp::NumericVector pvec,
+                  Rcpp::NumericMatrix gamme,
+                  int maxlen,
+                  Rcpp::NumericVector answer){
 
 for(int i = 0; i < maxlen; i++){
 
@@ -16,7 +16,7 @@ for(int i = 0; i < maxlen; i++){
 
 }
 
-return answer;
+return Rcpp::List::create(Named("answer") = answer);
   
 }
 
