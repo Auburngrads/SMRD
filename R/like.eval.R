@@ -92,17 +92,35 @@ function (data.ld,
     if (ncol(theta) != nparm)
         stop("Wrong number of theta columns")
     
-    zout <- .Fortran("wqmevlike", as.single(the.xmat), as.single(y),
-        as.single(the.censor.codes), as.single(the.case.weights),
-        as.single(ty), as.single(the.truncation.codes), as.single(mathsoft.gamthr),
-        nrow = as.integer(number.cases), as.integer(ny), as.integer(nty),
-        nparm = as.integer(nparm), as.integer(int), as.integer(nter),
-        theta = as.double(t(theta)), as.logical(parameter.fixed),
-        as.integer(ntheta), kdist = as.integer(distribution.number),
-        thetb = double(nparm), thetg = double(nparm), xnew = double(ncol(the.xmat) *
-            nrow(the.xmat)), diag = double(nparm), tmat = double(nparm^2),
-        rv1 = double(nparm), vcvg = double(nparm^2), as.integer(kprint),
-        xlike = double(ntheta), ierr = integer(1))
+    zout <- WQMEVLIKE(as.matrix(the.xmat), 
+                     y,
+                     as.integer(the.censor.codes), 
+                     as.integer(the.case.weights),
+                     as.matrix(ty), 
+                     as.integer(the.truncation.codes),
+                     mathsoft.gamthr,
+                     nrow = as.integer(number.cases), 
+                     as.integer(ny), 
+                     as.integer(nty),
+                     nparm = as.integer(nparm), 
+                     as.integer(int), 
+                     as.integer(nter),
+                     theta = t(theta), 
+                     as.logical(parameter.fixed),
+                     as.integer(ntheta), 
+                     fpfxxx = double(1),
+                     upcen = double(1),
+                     kdist = as.integer(distribution.number),
+                     thetb = double(nparm), 
+                     thetg = double(nparm), 
+                     xnew = matrix(0,ncol = ncol(the.xmat),nrow = nrow(the.xmat)), 
+                     diag = double(nparm), 
+                     tmat = matrix(0,nparm,nparm),
+                     rv1 = double(nparm), 
+                     vcvg = matrix(0,nparm,nparm), 
+                     as.integer(kprint),
+                     xlike = double(ntheta), 
+                     ier = integer(1))
     
     return(zout$xlike)
 }
