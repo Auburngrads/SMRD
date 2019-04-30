@@ -3,7 +3,7 @@
 
 //' Compute the probability that a bivariate normal with mean vectorc
 // [[Rcpp::export]]
-Rcpp::List sbvn(Rcpp::NumericVector ah,
+Rcpp::List SBVN(Rcpp::NumericVector ah,
                 Rcpp::NumericVector ak,
                 Rcpp::NumericVector xmu1,
                 Rcpp::NumericVector xmu2,
