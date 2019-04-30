@@ -89,30 +89,34 @@ function (data.ld,
             }
     
         }
-    zsize <- .Fortran("gensiz", 
-                      as.integer(model), 
-                      as.integer(distribution.number),
-                      as.integer(get.rmodel.info.out$kparv), 
-                      as.integer(get.rmodel.info.out$nrvar),
-                      as.integer(get.rmodel.info.out$mrelat), 
-                      as.integer(get.rmodel.info.out$nrelat),
-                      as.integer(max(get.rmodel.info.out$nrvar)), 
-                      as.integer(ncol.orig.x),
-                      as.integer(kprint), 
-                      nparm = integer(1), 
-                      npard = integer(1),
-                      ier = integer(1),
-                      nxd = integer(5),
-                      intd = integer(5),
-                      ipxcd = integer(5),
-                      irelad = integer(5),
-                      index = integer(1),
-                      nterd = integer(1),
-                      itry = integer(1),
-                      ipb = integer(1),
-                      ips = integer(1),
-                      ipe = integer(1),
-                      iis = integer(200))
+    zsize <- GENSIZ(as.integer(model),
+                    as.integer(distribution.number),
+                    as.integer(get.rmodel.info.out$kparv),
+                    as.integer(get.rmodel.info.out$nrvar),
+                    get.rmodel.info.out$mrelat,
+                    as.integer(get.rmodel.info.out$nrelat),
+                    as.integer(max(get.rmodel.info.out$nrvar)),
+                    as.integer(ncol.orig.x),
+                    as.integer(kprint),
+                    nparm = integer(1),
+                    npard = integer(1),
+                    ier = integer(1),
+                    nxd = as.integer(rep(0,5)),
+                    intd = as.integer(rep(1000,5)),
+                    ipxcd = vector(mode = "list", length = 5),
+                    irelad = as.integer(rep(1,5)),
+                    ilabp = as.integer(rep(0,80)),
+                    ilabd = as.integer(rep(0,40)),
+                    nregr = as.integer(0),
+                    kgtall = as.integer(1),
+                    llog = as.integer(0),
+                    kmodp = as.integer(0),
+                    npardm = as.integer(5),
+                    nnum = as.integer(0),
+                    kparm = as.integer(0),
+                    iup = as.integer(0),
+                    nterd = as.integer(0),
+                    maxpd = as.integer(20))
     
     nparm <- zsize$nparm
     npard <- zsize$npard
@@ -147,78 +151,125 @@ function (data.ld,
     
     if (debug1) browser()
     
-    zout <- .Fortran("genmax", 
-                     as.integer(model), 
-                     as.integer(distribution.number),
-                     as.double(theta), 
-                     double(nparm),
-                     kodet = integer(nparm), 
-                     as.integer(parameter.fixed),
-                     as.integer(nparm), 
-                     as.integer(npard), 
-                     as.single(as.matrix(y)), 
-                     as.integer(ncoly),
-                     as.integer(number.cases), 
-                     as.single(as.matrix(the.xmat)),
-                     as.integer(ncol.orig.x), 
-                     as.single(the.censor.codes),
-                     as.single(the.case.weights), 
-                     as.single(ty), 
-                     as.integer(ncolty),
-                     as.single(the.truncation.codes), 
-                     as.integer(kprint),
-                     as.integer(kparv), 
-                     as.integer(nrvar), 
-                     as.integer(mrelat),
-                     as.integer(nrelat), 
-                     as.integer(mnrvar), 
-                     xlogl = double(1),
-                     yhat = single(length(y)), 
-                     resid = single(length(y)),
-                     vcvs = double(nparm * nparm), 
-                     vcv = double(nparm * nparm), 
-                     r = double(nparm * nparm),
-                     as.double(theta.start), 
-                     as.integer(lstart), 
-                     as.double(conlev),
-                     ilabp = integer(8 * nparm), 
-                     ilabd = integer(8 * nparm),
-                     ier = integer(1))
-    if (zout$ier > 0)
-        warning(paste("Genmax error messages estimation/vcv",
-            zout$ier))
-    log.likelihood <- zout$log.likelihood
-    thetas.hat <- zout$thetas.hat
-    theta.hat <- zout$theta.hat
-    kodet <- zout$kodet
+    zout <-  GENMAX(as.integer(model), 
+                    as.integer(distribution.number),
+                    as.double(rep(0,nparm)), 
+                    double(nparm),
+                    kodet = integer(nparm), 
+                    as.integer(parameter.fixed),
+                    as.integer(nparm), 
+                    as.integer(npard), 
+                    as.matrix(y), 
+                    as.integer(ncoly),
+                    as.integer(number.cases), 
+                    as.matrix(the.xmat),
+                    as.integer(ncol.orig.x), 
+                    as.integer(the.censor.codes),
+                    as.integer(the.case.weights), 
+                    as.matrix(ty), 
+                    as.integer(ncolty),
+                    as.integer(the.truncation.codes), 
+                    as.integer(kprint),
+                    as.integer(kparv), 
+                    as.integer(nrvar), 
+                    as.matrix(mrelat),
+                    as.integer(nrelat), 
+                    as.integer(mnrvar), 
+                    xlogl = double(1),
+                    yhat = matrix(0,dim(y)), 
+                    resid = matrix(0,dim(y)),
+                    vcvs = matrix(0,nparm, nparm), 
+                    vcv = matrix(0,nparm, nparm), 
+                    r = matrix(0,nparm, nparm),
+                    as.double(theta.start), 
+                    as.integer(lstart), 
+                    as.double(conlev),
+                    ilabp = integer(8 * nparm), 
+                    ilabd = integer(8 * nparm),
+                    ier = integer(1),
+                    nxd = as.integer(rep(0,5)),
+                    intd = as.integer(rep(1000,5)),
+                    ipxcd = vector(mode = "list", length = 5),
+                    irelad = as.integer(rep(1,5)),
+                    fstder = double(12),
+                    nregr = as.integer(0), 
+                    kcentr = as.integer(1), 
+                    kpoint = as.integer(0), 
+                    ifit   = as.integer(2),
+                    kgtall = as.integer(1), 
+                    llog   = as.integer(0), 
+                    kmodp  = as.integer(0),
+                    maxit  = as.integer(50),
+                    pest = as.double(1.0), 
+                    epsx = as.double(1.0e-10),
+                    npardm = as.integer(5),
+                    nnum = as.integer(0),
+                    kparm = as.integer(0),
+                    iup = as.integer(0),
+                    nterd = as.integer(0),
+                    maxpd = as.integer(20),
+                    pfail = as.double(0),
+                    kmccde = as.integer(0),
+                    nstart = as.integer(0),
+                    maxmsd = as.integer(1),
+                    tol    = as.double(1.0e-2),
+                    lsd = as.integer(1),
+                    pchmax = as.double(0))
+    
+    if(zout$ier > 0) warning(paste("Genmax error messages estimation/vcv",zout$ier))
+    
+    log.likelihood <- zout$doubs$xlogl
+    thetas.hat <- zout$numvec$thetas
+    theta.hat <- zout$numvec$theta.hat
+    kodet <- zout$intvec$kodet
     names(theta.hat) <- get.rmodel.info.out$model.pnames
-    first.derivative <- zout$first.derivative
+    first.derivative <- zout$numvec$fsder
     names(parameter.fixed) <- get.rmodel.info.out$model.pnames
-    correlation.matrix <- matrix(zout$correlation.vector, ncol = nparm)
+    correlation.matrix <- matrix(zout$nummat$r, ncol = nparm)
     matnames <- list(get.rmodel.info.out$model.pnames, get.rmodel.info.out$model.pnames)
-    vcv.matrix <- matrix(zout$vcv.vector, ncol = nparm)
-    vcvs.vector <- zout$vcvs.vector
+    vcv.matrix <- matrix(zout$nummat$vcv, ncol = nparm)
+    vcvs.vector <- zout$nummat$vcvs
     dimnames(correlation.matrix) <- matnames
     dimnames(vcv.matrix) <- matnames
     time.units<-attr(data.ld, "time.units")
     if (regression) {
-        fitted.values <- zout$fitted.values
-        residuals <- matrix(zout$residuals, ncol = ncoly)
-        the.list <- list(data.ld = data.ld, model = model, distribution = distribution,
-            parameter.fixed = parameter.fixed, explan.vars = explan.vars,
-            log.likelihood = log.likelihood, theta.hat = theta.hat,
-            thetas.hat = thetas.hat, correlation.matrix = correlation.matrix,
-            vcv.matrix = vcv.matrix, vcvs.vector = vcvs.vector,
-            kodet = kodet, residuals = residuals, fitted.values = fitted.values,
-            get.rmodel.info.out = get.rmodel.info.out, time.units = time.units)
-  } else {
-        the.list <- list(data.ld = data.ld, model = model, distribution = distribution,
-            parameter.fixed = parameter.fixed, explan.vars = explan.vars,
-            log.likelihood = log.likelihood, theta.hat = theta.hat,
-            thetas.hat = thetas.hat, correlation.matrix = correlation.matrix,
-            vcv.matrix = vcv.matrix, vcvs.vector = vcvs.vector,
-            kodet = kodet, time.units = time.units)
-    }
+        fitted.values <- zout$nummat$yhat
+        residuals <- matrix(zout$nummat$residuals, ncol = ncoly)
+        the.list <- list(data.ld = data.ld, 
+                         model = model, 
+                         distribution = distribution,
+                         parameter.fixed = parameter.fixed,
+                         explan.vars = explan.vars,   
+                         log.likelihood = log.likelihood, 
+                         theta.hat = theta.hat,
+                         thetas.hat = thetas.hat, 
+                         correlation.matrix = correlation.matrix, 
+                         vcv.matrix = vcv.matrix, 
+                         vcvs.vector = vcvs.vector,
+                         kodet = kodet, 
+                         residuals = residuals, 
+                         fitted.values = fitted.values,
+                         get.rmodel.info.out = get.rmodel.info.out, 
+                         time.units = time.units)
+      } else {
+        
+        the.list <- list(data.ld = data.ld, 
+                         model = model, 
+                         distribution = distribution,
+                         parameter.fixed = parameter.fixed, 
+                         explan.vars = explan.vars,
+                         log.likelihood = log.likelihood, 
+                         theta.hat = theta.hat,
+                         thetas.hat = thetas.hat, 
+                         correlation.matrix = correlation.matrix,
+                         vcv.matrix = vcv.matrix, 
+                         vcvs.vector = vcvs.vector,
+                         kodet = kodet, 
+                         time.units = time.units)
+        
+      }
+    
     oldClass(the.list) <- "mlest"
     return(the.list)
+    
 }
