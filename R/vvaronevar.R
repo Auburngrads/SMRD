@@ -1,6 +1,16 @@
 vvaronevar <-
-function (distribution, a, b1, b2 = 0, theta.in = 1, theta.known = T,
-    quad.model = F, perc, xi.in, zd = 0, pi.in, kprint = 0)
+function (distribution, 
+          a, 
+          b1, 
+          b2 = 0,
+          theta.in = 1, 
+          theta.known = T,
+          quad.model = F, 
+          perc, 
+          xi.in, 
+          zd = 0, 
+          pi.in, 
+          kprint = 0)
 {
     det.matrix <- function (a) { return(prod(eigen(a)$values)) }
     nplan <- length(as.vector(pi.in))
@@ -37,23 +47,44 @@ function (distribution, a, b1, b2 = 0, theta.in = 1, theta.known = T,
             known <- 1
         }
     }
-    if (kprint > 2)
-        browser()
-    zout <- .Fortran("vvar1", as.double(parameter), as.double(xi),
-        as.double(pi), as.double(zd), as.integer(dim), as.integer(nplan),
-        as.integer(nrow(pi)), as.double(perc), as.integer(idistp),
-        as.integer(known), fisher = double(dim * dim), varret = double(nplan),
-        as.integer(kprint))
+    if (kprint > 2) browser()
+    
+    zout <- VVAR1(as.double(parameter), 
+                  as.double(xi),
+                  as.double(pi),
+                  as.double(zd), 
+                  as.integer(dim), 
+                  as.integer(nplan),
+                  as.integer(nrow(pi)), 
+                  as.double(perc), 
+                  as.integer(idistp),
+                  as.integer(known), 
+                  fret = matrix(0, nrow = dim, ncol = dim), 
+                  varret = double(nplan),
+                  as.integer(kprint))
+    
     if (nplan == 1) {
-        fisher <- matrix(zout$fisher, nrow = dim)
+      
+        fisher <- matrix(zout$fret, nrow = dim)
         vcv <- my.solve(fisher, tol = 1e-12)
         dimnames(fisher) <- list(par.names, par.names)
         dimnames(vcv) <- list(par.names, par.names)
-        return(list(type = type, distribution = distribution,
-            parameter = parameter, perc = perc, xi = xi, pi = pi,
-            fisher = fisher, vcv = vcv, det.fisher = det.matrix(fisher),
-            det.vcv = det.matrix(vcv), variance = zout$varret))
-  } else {
+        return(list(type = type, 
+                    distribution = distribution,
+                    parameter = parameter, 
+                    perc = perc, 
+                    xi = xi, 
+                    pi = pi,
+                    fisher = fisher, 
+                    vcv = vcv, 
+                    det.fisher = det.matrix(fisher),
+                    det.vcv = det.matrix(vcv), 
+                    variance = zout$varret))
+        
+      } else {
+        
         return(zout$varret)
-    }
+        
+      }
+    
 }
