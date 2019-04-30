@@ -2,7 +2,7 @@
 #include <sxpdf3/xpdf3.hpp>
 
 // [[Rcpp::export]]
-Rcpp::List sxpdf3(int ndist1,
+Rcpp::List SXPDF3(int ndist1,
                   int ndist2,
                   Rcpp::NumericVector beta0,
                   Rcpp::NumericVector beta1,
