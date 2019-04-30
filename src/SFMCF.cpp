@@ -4,11 +4,11 @@
 //' compute the vector of nhpp mcf values
 //' @name sfmcf
 // [[Rcpp::export]]
-Rcpp::NumericVector sfmcf(Rcpp::NumericVector time,
-                          int kform,
-                          Rcpp::NumericVector theta,
-                          int ntimes,
-                          Rcpp::NumericVector answer){
+Rcpp::List SFMCF(Rcpp::NumericVector time,
+                 int kform,
+                 Rcpp::NumericVector theta,
+                 int ntimes,
+                 Rcpp::NumericVector answer){
 
 for(int i = 0; i < ntimes; i++){
   
@@ -16,7 +16,7 @@ for(int i = 0; i < ntimes; i++){
   
 }
 
-return answer;
+return Rcpp::List::create(Named("answer") = answer);
 
 }
 
