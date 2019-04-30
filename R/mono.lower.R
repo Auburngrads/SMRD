@@ -1,6 +1,8 @@
 mono.lower <-
 function (lower) 
 {
-    zout <- .Fortran("bfixl", lower = as.single(lower), length(lower))
+    zout <- BFIXL(as.double(lower))
+    
     return(zout$lower)
+    
 }
