@@ -9,8 +9,8 @@
 #' @param height \code{character} Height of the gadget (in valid css units)
 #' @param css \code{character} Path to a custom css file
 #' 
-#' @importFrom shinythemes shinytheme
-#' @importFrom shinygadgets runGadget browserViewer
+#' @importFrom shinythemes shinytheme 
+#' @importFrom shiny runGadget browserViewer
 #' @importFrom shiny fluidPage tags includeCSS sidebarLayout sidebarPanel
 #' @importFrom shiny uiOutput selectizeInput actionButton reactive h4
 #' @importFrom shiny stopApp observeEvent mainPanel
