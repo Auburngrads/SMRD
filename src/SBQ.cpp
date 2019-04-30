@@ -3,7 +3,7 @@
 
 //' Wrapper for mapping beta to a quantile??? not clear why needed
 // [[Rcpp::export]]
-Rcpp::List sbq(int ndist1,
+Rcpp::List SBQ(int ndist1,
                int ndist2,
                double stress,
                double alpha,
