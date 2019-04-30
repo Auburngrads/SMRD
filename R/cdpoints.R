@@ -1,8 +1,11 @@
 cdpoints <-
-function (cdfest.out, kprint = 0, debug1 = F) 
+function (cdfest.out, 
+          kprint = 0, 
+          debug1 = F) 
 {
     q <- cdfest.out$q
     sd <- cdfest.out$sd
+    
     if (is.null(sd)) {
       
           sd <- rep(1, length(q))
@@ -18,25 +21,20 @@ function (cdfest.out, kprint = 0, debug1 = F)
         return(NULL)
     }
     m <- length(q)
-    if (debug1) 
-        browser()
-    zout <- .Fortran("wqmpoints", 
-                     as.single(q), 
-                     as.single(cdfest.out$p), 
-                     as.single(cdfest.out$prob), 
-                     as.single(sd), 
-                     as.integer(lsd),
-                     as.integer(m), 
-                     yplot = single(m + 1), 
-                     pplot = single(m + 1), 
-                     sdplot = single(m + 1), 
-                     mplot = integer(1))
-      # wqmpoints(q = as.double(q),
-      #                 p = as.double(cdfest.out$p),
-      #                 prob = as.double(cdfest.out$prob),
-      #                 sd = as.double(sd),
-      #                 lsd = as.integer(lsd),
-      #                 m = as.integer(m))
+    
+    if(debug1) browser()
+    
+    zout <- WQMPOINTS(as.double(q), 
+                      as.double(cdfest.out$p), 
+                      as.double(cdfest.out$prob), 
+                      as.double(sd), 
+                      as.integer(lsd),
+                      as.integer(m), 
+                      yplot  = double(m + 1), 
+                      pplot  = double(m + 1), 
+                      sdplot = double(m + 1), 
+                      mplot  = integer(1))
+    
     yplot <- zout$yplot
     pplot <- zout$pplot
     mplot <- zout$mplot
