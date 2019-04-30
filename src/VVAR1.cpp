@@ -7,7 +7,7 @@
 //' (usually set to zero for design stress)
 //' this a wrap for a call from splus
 // [[Rcpp::export]]
-Rcpp::List vvar1(Rcpp::NumericVector param,
+Rcpp::List VVAR1(Rcpp::NumericVector param,
                  Rcpp::NumericVector z,
                  Rcpp::NumericVector pi,
                  double zivar,
