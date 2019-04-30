@@ -33,13 +33,24 @@ dlegengl <-
     sqrtxk <- sqrt(xk)
     logxk <- logb(xk)
     lgamxk <- lgamma(xk)
-    gammemat <- rbind(xmu, sigma, logsigma, delta, xk, sqrtxk, 
-                      logxk, lgamxk)
-    zout <- .Fortran("sgpdfl", as.double(x), as.double(gammemat), 
-                     as.integer(maxlen), answer = double(maxlen))
+    gammemat <- rbind(xmu, 
+                      sigma, 
+                      logsigma, 
+                      delta, 
+                      xk, 
+                      sqrtxk, 
+                      logxk, 
+                      lgamxk)
+    
+    zout <- SGPDFL(as.double(x), 
+                   as.double(gammemat), 
+                   as.integer(maxlen), 
+                   answer = double(maxlen))
+    
     answer <- zout$answer
     answer[lognormal] <- frac * answer[lognormal] + (1 - frac) * 
       logb(dnorm(x[lognormal], xmu[lognormal], sigma[lognormal]))
+    
     return(answer)
   }
 
@@ -77,10 +88,20 @@ pegengl <-
     sqrtxk <- sqrt(xk)
     logxk <- logb(xk)
     lgamxk <- lgamma(xk)
-    gammemat <- rbind(mu, sigma, logsigma, delta, xk, sqrtxk, 
-                      logxk, lgamxk)
-    zout <- .Fortran("spgeng", as.double(q), as.double(gammemat), 
-                     as.integer(maxlen), answer = double(maxlen))
+    gammemat <- rbind(mu, 
+                      sigma, 
+                      logsigma, 
+                      delta, 
+                      xk, 
+                      sqrtxk, 
+                      logxk, 
+                      lgamxk)
+    
+    zout <- SPGENG(as.double(q), 
+                   as.double(gammemat), 
+                   as.integer(maxlen), 
+                   answer = double(maxlen))
+    
     answer <- zout$answer
     answer[lognormal] <- frac * answer[lognormal] + (1 - frac) * 
       pnorm(q[lognormal], mu[lognormal], sigma[lognormal])
@@ -122,15 +143,27 @@ qegengl <-
     lgamxk <- rep(0, maxlen)
     lognormal <- abs(delta) <= smalldelta
     delta[lognormal] <- 0
-    xk[!lognormal] <- 1/delta[!lognormal]^2
+    xk[!lognormal] <- 1 / delta[!lognormal] ^ 2
     sqrtxk[!lognormal] <- sqrt(xk[!lognormal])
     logxk[!lognormal] <- logb(xk[!lognormal])
     lgamxk[!lognormal] <- lgamma(xk[!lognormal])
-    gammemat <- rbind(mu, sigma, logsigma, delta, xk, sqrtxk, 
-                      logxk, lgamxk)
-    zout <- .Fortran("sgquan", as.double(p), as.double(gammemat), 
-                     as.integer(maxlen), answer = double(maxlen))
+    
+    gammemat <- rbind(mu, 
+                      sigma, 
+                      logsigma, 
+                      delta, 
+                      xk, 
+                      sqrtxk,
+                      logxk, 
+                      lgamxk)
+    
+    zout <- SGQUAN(as.double(p),
+                   as.double(gammemat),
+                   as.integer(maxlen), 
+                   answer = double(maxlen))
+    
     return(zout$answer)
+    
   }
 
 #'
@@ -157,12 +190,24 @@ segengl <-
     sqrtxk <- sqrt(xk)
     logxk <- logb(xk)
     lgamxk <- lgamma(xk)
-    gammemat <- rbind(mu, sigma, logsigma, delta, xk, sqrtxk, 
-                      logxk, lgamxk)
-    zout <- .Fortran("spmlgeng", as.double(x), as.double(gammemat), 
-                     as.integer(maxlen), answer = double(maxlen))
+    gammemat <- rbind(mu, 
+                      sigma, 
+                      logsigma, 
+                      delta, 
+                      xk, 
+                      sqrtxk, 
+                      logxk, 
+                      lgamxk)
+    
+    zout <- SPMLGENG(as.double(x),
+                     as.double(gammemat), 
+                     as.integer(maxlen), 
+                     answer = double(maxlen))
+    
     answer <- zout$answer
     answer[lognormal] <- frac * answer[lognormal] + (1 - frac) * 
       logb(pnorm(-x[lognormal], -mu[lognormal], sigma[lognormal]))
+    
     return(answer)
+    
   }
