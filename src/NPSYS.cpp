@@ -29,7 +29,7 @@
 //'         xmuhat(nfailt)   estimate of mu at each failure time
 //'         varxmu(nfailt)   estimate of var(muhat) at each failure time
 // [[Rcpp::export]]
-Rcpp::List npsys(Rcpp::IntegerVector itime,
+Rcpp::List NPSYS(Rcpp::IntegerVector itime,
                  Rcpp::IntegerVector isys,
                  Rcpp::IntegerVector icodes,
                  Rcpp::IntegerVector weight,
