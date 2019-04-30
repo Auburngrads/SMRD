@@ -6,7 +6,7 @@
 //' variance. Created by Huaiqing Wu & William Q. 
 //' Meeker, Iowa State University
 // [[Rcpp::export]]
-Rcpp::List xxmcf(int numrecurr, 
+Rcpp::List XXMCF(int numrecurr, 
                  Rcpp::NumericVector timeofrecurr, 
                  Rcpp::IntegerVector krecurrid,
                  Rcpp::NumericVector dcost, 
@@ -62,76 +62,6 @@ Rcpp::List xxmcf(int numrecurr,
                             Named("nwindows")    = nwindows,
                             Named("wcounts")     = wcounts);
 }
-
-/***R
-library(smrdfortran)
-data.rdu <- frame.to.rdu(r4490,
-                         time.column = 2,
-                         cost.count.column = 4,
-                         ID.column = 1,
-                         event.column = 3)
-debug1 = F 
-
-  event <- smrdfortran:::events(data.rdu)
-  EndPoints <- is.element(casefold(event), c("end", "mend", 
-                                   "removed"))
-  StartPoints <- is.element(casefold(event), c("start", "mstart"))
-  CriticalEvent <- !(EndPoints | StartPoints)
-  Times <- smrdfortran:::times(data.rdu)
-  UnitID <- as.factor(smrdfortran:::get.UnitID(data.rdu))
-  WindowInfo <- attr(data.rdu, "WindowInfo")
-  WindowPoint <- WindowInfo$WindowPoint
-  WindowU <- WindowInfo$WindowU
-  WindowL <- WindowInfo$WindowL
-  EndPoints <- is.element(casefold(event), c("end", "mend"))
-  StartPoints <- is.element(casefold(event), c("start", "mstart"))
-  CriticalEvent <- !(EndPoints | StartPoints)
-  RecurrTimes <- Times[CriticalEvent, ]
-  
-#  RecurrUnitID <- UnitID[CriticalEvent]
-  RecurrUnitID <- as.numeric(attr(RecurrTimes, "names"))
-  RecurrCosts <- smrdfortran:::get.Costs(data.rdu)[CriticalEvent]
-  numRecurr <- length(RecurrTimes)
-  
-old <-  .Fortran("xxmcf", numRecurr = as.integer(numRecurr),
-        RecurrTimes = as.double(RecurrTimes), KRecurrID = as.integer(RecurrUnitID),
-        dCost = as.double(RecurrCosts), muniqrecurr = integer(1),
-        tuniq = double(numRecurr), Apoint = integer(numRecurr),
-        LnumRecurr = integer(1), delta = integer(numRecurr),
-        nunitsgroups = as.integer(length(WindowInfo$WindowPoint)),
-        wpoint = as.integer(WindowInfo$WindowPoint), nwindows = as.integer(length(WindowInfo$WindowL)),
-        twindowsl = as.double(WindowInfo$WindowL), twindowsu = as.double(WindowInfo$WindowU),
-        wcounts = as.integer(WindowInfo$WindowCounts), inwindow = integer(length(WindowInfo$WindowPoint)),
-        muhat = double(numRecurr), varhat = double(numRecurr),
-        dbar = double(numRecurr), iordl = integer(length(WindowInfo$WindowL)),
-        iordu = integer(length(WindowInfo$WindowL)), iorder = integer(numRecurr),
-        iorder2 = integer(numRecurr))
-
-new <- wqmmlesss::xxmcf(numrecurr = as.integer(numRecurr),
-                       timeofrecurr = as.double(RecurrTimes), 
-                       krecurrid = as.integer(RecurrUnitID), 
-                       dcost = as.double(RecurrCosts), 
-                       muniqrecurr = integer(1), 
-                       tuniq = double(numRecurr), 
-                       apoint = integer(numRecurr), 
-                       lnumrecurr = integer(1), 
-                       delta = integer(numRecurr), 
-                       nunitsgroups = as.integer(length(WindowInfo$WindowPoint)), 
-                       wpoint = as.integer(WindowInfo$WindowPoint - 1L), 
-                       nwindows = as.integer(length(WindowInfo$WindowL)), 
-                       twindowsl = as.double(WindowInfo$WindowL), 
-                       twindowsu = as.double(WindowInfo$WindowU), 
-                       wcounts = as.integer(WindowInfo$WindowCounts), 
-                       inwindowj = integer(length(WindowInfo$WindowPoint)),
-                       muhat = double(numRecurr), 
-                       varhat = double(numRecurr), 
-                       dbar = double(numRecurr), 
-                       iordl = integer(length(WindowInfo$WindowL)), 
-                       iordu = integer(length(WindowInfo$WindowL)), 
-                       iorder = integer(numRecurr), 
-                       iscrat = integer(numRecurr))
-
-*/
 
 #include <base/base.hpp>
 #include <riskset/wqm_riskset.hpp>
