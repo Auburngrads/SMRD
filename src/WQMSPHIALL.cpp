@@ -4,7 +4,7 @@
 using namespace lstd;
 
 // [[Rcpp::export]]
-Rcpp::List wqmsphiall(Rcpp::NumericVector &phib,
+Rcpp::List WQMSPHIALL(Rcpp::NumericVector &phib,
                       Rcpp::NumericVector &phibm,
                       Rcpp::NumericVector &phis,
                       Rcpp::NumericVector &phip,
