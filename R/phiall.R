@@ -11,14 +11,13 @@ function (z, distribution)
     
     length.z <- length(z)
     
-    zout <- .Fortran("wqmsphiall", 
-                     phib = double(length.z), 
-                     phibm = double(length.z), 
-                     phis = double(length.z), 
-                     phip = double(length.z), 
-                     n = as.integer(length.z),
-                     as.double(z), 
-                     as.integer(idist))
+    zout <- WQMSPHIALL(double(length.z), 
+                       double(length.z), 
+                       double(length.z), 
+                       double(length.z), 
+                       as.double(z), 
+                       n = length.z,
+                       as.integer(idist))
     
     answer <- cbind(z = z, 
                     phib = zout$phib, 
