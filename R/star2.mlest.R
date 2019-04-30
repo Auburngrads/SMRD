@@ -175,32 +175,51 @@ function (data.ld,
               iervcv = 0)
     
     rvec <- c(0, escale = escale, log.likelihood = 0)
-    zout <- .Fortran("wqmmlesss", 
-                     ivec = as.integer(ivec), 
-                     rvec = as.single(rvec),
-                     number.cases = as.integer(number.cases), 
-                     nparm = as.integer(nparm),
-                     xmat = as.single(the.xmat), 
-                     yresp = as.single(yresp),
-                     as.single(c(the.censor.codes, the.case.weights, mathsoft.gamthr)),
-                     tyresp = as.single(tyresp), 
-                     truncation.codes = as.single(truncation.codes),
-                     parameter.fixed = as.logical(parameter.fixed), 
-                     e = as.single(e),
-                     ndscrat = double(ndscrat), 
-                     niscrat = integer(niscrat),
-                     theta.hat = as.single(theta.start), 
-                     first.derivative = single(nparm),
-                     vcv.matrix = single(nparm * nparm), 
-                     correlation.matrix = single(nparm * nparm), 
-                     residuals = single(nyresp * number.cases),
-                     fitted.values.and.deviance = single(4 * number.cases))
+    zout <- WQMMLESSS( ivec = as.integer(ivec), 
+                      rvec = as.double(rvec),
+                      nrow = as.integer(number.cases), 
+                      nparm = as.integer(nparm),
+                      x = the.xmat, 
+                      y = yresp,
+                      cen = as.double(the.censor.codes), 
+                      wt =  as.double(the.case.weights), 
+                      msftgm = as.double(mathsoft.gamthr),
+                      ty = as.matrix(tyresp), 
+                      tcodes = as.double(truncation.codes),
+                      lfix = as.logical(parameter.fixed), 
+                      e = as.double(e),
+                      dscrat = double(ndscrat), 
+                      iscrat = integer(niscrat),
+                      theta = as.double(theta.start), 
+                      fsder = double(nparm),
+                      vcv = matrix(0, nrow = nparm, ncol = nparm), 
+                      r = matrix(0, nrow = nparm, ncol = nparm), 
+                      res = matrix(0, nrow = number.cases, ncol = nyresp),
+                      fv = double(number.cases),
+                      dev = matrix(0, nrow = number.cases, ncol = 3),
+                      ipxnew = matrix(0, nrow = number.cases, ncol = nter),
+                      iprv1 = double(nparm),
+                      ipdiag = double(nparm),
+                      iptmat = matrix(0, nrow = nparm, ncol = nparm),
+                      ipthb = double(nparm),
+                      ipthg = double(nparm),
+                      ipfsd = double(nparm),
+                      ipvcvb = matrix(0, nrow = nparm, ncol = nparm),
+                      ipvcvg = matrix(0, nrow = nparm, ncol = nparm),
+                      ipnext = double(nparm),
+                      itd = double(nparm),
+                      itf = double(nparm),
+                      ied = double(nparm),
+                      iw = double(nparm * nparm + 3 * nparm),
+                      ivd = double(nparm),
+                      ivcvd = matrix(0, nrow = nparm, ncol = nparm),
+                      ivcvdd = matrix(0, nrow = nparm + 1, ncol = nparm + 1),
+                      iir = double(nparm + 1),
+                      ijc = double(nparm + 1))
     
-    deviances <- 
-      matrix(zout$fitted.values.and.deviance[(number.cases + 1) : 
-                                               (4 * number.cases)], ncol = 3)
-    ivec <- zout$ivec
-    rvec <- zout$rvec
+    deviances <- zout$nummat$dev
+    ivec <- zout$intvec$ivec
+    rvec <- zout$numvec$rvec
     log.likelihood <- rvec[3]
     ierfit <- ivec[11]
     iervcv <- ivec[12]
@@ -211,10 +230,9 @@ function (data.ld,
                       \nCheck for extreme outlier or other mismatch between model and data"))
       
         if (T || map.SMRDDebugLevel() >= 4) {
-            cat("First derivatives of the loglikelihood=", paste(zout$first.derivative,
+            cat("First derivatives of the loglikelihood = ", paste(zout$numvec$fsder,
                 collapse = ","), "\n")
-            file.name <- paste("ProblemData", floor(runif(1) *
-                1e+07), ".ld", sep = "")
+            file.name <- paste("ProblemData", floor(runif(1) * 1e+07), ".ld", sep = "")
             if (map.SMRDDebugLevel() >= 4) {
                 assign(envir = .frame0,  inherits = TRUE,file.name, data.ld)
                 cat("\nCheck stored data in", file.name, "\n")
@@ -229,21 +247,22 @@ function (data.ld,
         print(theta.start)
         print(theta.start.comp)
     }
-    if (regression && any(is.eyring)) {
-        eyring.param.index <- nparm - 1
-        theta.hat <- zout$theta.hat[-eyring.param.index]
-        first.derivative <- zout$first.derivative[-eyring.param.index]
-        parameter.fixed <- parameter.fixed[-eyring.param.index]
-        vcv.matrix <- matrix(zout$vcv.matrix, ncol = nparm)[-eyring.param.index,
-            -eyring.param.index]
-        correlation.matrix <- matrix(zout$correlation.matrix,
-            ncol = nparm)[-eyring.param.index, -eyring.param.index]
-}   else {
-        theta.hat <- zout$theta.hat
-        first.derivative <- zout$first.derivative
-        vcv.matrix <- matrix(zout$vcv.matrix, ncol = nparm)
-        correlation.matrix <- matrix(zout$correlation.matrix,
-            ncol = nparm)
+    if(regression && any(is.eyring)) {
+      
+       eyring.param.index <- nparm - 1
+       theta.hat <- zout$numvec$theta[-eyring.param.index]
+       first.derivative <- zout$numvec$fsder[-eyring.param.index]
+       parameter.fixed <- parameter.fixed[-eyring.param.index]
+       vcv.matrix <- matrix(zout$nummat$vcv, ncol = nparm)[-eyring.param.index,-eyring.param.index]
+       correlation.matrix <- matrix(zout$nummat$r,ncol = nparm)[-eyring.param.index, -eyring.param.index]
+        
+     } else {
+    
+       theta.hat <- zout$theta
+       first.derivative <- zout$fsder
+       vcv.matrix <- zout$vcv
+       correlation.matrix <- zout$r
+       
     }
     names(theta.hat) <- param.names
     names(first.derivative) <- param.names
@@ -253,24 +272,48 @@ function (data.ld,
     dimnames(vcv.matrix) <- matnames
     kodet <- c(rep(1, length(theta.hat) - 1), 2)
     time.units<-attr(data.ld, "time.units")
-    if (regression) {
-        fitted.values <- zout$fitted.values.and.deviance[1:number.cases]
-        residuals <- matrix(zout$residuals, ncol = nyresp)
-        the.list <- list(data.ld = data.ld, distribution = distribution,
-            parameter.fixed = parameter.fixed, explan.vars = explan.vars,
-            log.likelihood = log.likelihood, theta.hat = theta.hat,
-            first.derivative = first.derivative, correlation.matrix = correlation.matrix,
-            vcv.matrix = vcv.matrix, residuals = residuals, deviances = deviances,
-            fitted.values = fitted.values, kodet = kodet, ierfit = ierfit,
-            iervcv = iervcv, time.units = time.units)
-}   else {
-        the.list <- list(data.ld = data.ld, distribution = distribution,
-            parameter.fixed = parameter.fixed, explan.vars = explan.vars,
-            log.likelihood = log.likelihood, theta.hat = theta.hat,
-            first.derivative = first.derivative, correlation.matrix = correlation.matrix,
-            vcv.matrix = vcv.matrix, deviances = deviances, kodet = kodet,
-            ierfit = ierfit, iervcv = iervcv, time.units = time.units)
+    
+    if(regression) {
+      
+       fitted.values <- zout$fv
+       residuals <- zout$res
+       the.list <- list(data.ld = data.ld, 
+                        distribution = distribution,
+                        parameter.fixed = parameter.fixed, 
+                        explan.vars = explan.vars,
+                        log.likelihood = log.likelihood, 
+                        theta.hat = theta.hat,
+                        first.derivative = first.derivative, 
+                        correlation.matrix = correlation.matrix,
+                        vcv.matrix = vcv.matrix, 
+                        residuals = residuals, 
+                        deviances = deviances,
+                        fitted.values = fitted.values, 
+                        kodet = kodet, 
+                        ierfit = ierfit,
+                        iervcv = iervcv, 
+                        time.units = time.units)
+        
+    } else {
+      
+        the.list <- list(data.ld = data.ld, 
+                         distribution = distribution,
+                         parameter.fixed = parameter.fixed, 
+                         explan.vars = explan.vars,
+                         log.likelihood = log.likelihood, 
+                         theta.hat = theta.hat,
+                         first.derivative = first.derivative, 
+                         correlation.matrix = correlation.matrix,
+                         vcv.matrix = vcv.matrix, 
+                         deviances = deviances, 
+                         kodet = kodet,
+                         ierfit = ierfit, 
+                         iervcv = iervcv, 
+                         time.units = time.units)
+        
     }
+    
     class(the.list) <- c("mlest")
     return(the.list)
+    
 }
