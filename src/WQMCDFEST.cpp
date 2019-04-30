@@ -85,7 +85,7 @@
 //'  \code{iprint = 0} for no debug output, if > 0 dump setup and every iprint iteration,
 //'  \code{iprint = 1} gives the maximum amount of output, \code{iprint = 10} is a good choice to debug
 // [[Rcpp::export]]
-Rcpp::List wqmcdfest(NumericMatrix &y,
+Rcpp::List WQMCDFEST(NumericMatrix &y,
                       int &ny,
                       IntegerVector &codes,
                       IntegerVector &weight,
