@@ -4,7 +4,7 @@
 //' Does good stuff
 //' @name slsinf
 // [[Rcpp::export]]
-Rcpp::List slsinf(int idist,
+Rcpp::List SLSINF(int idist,
                   int itype,
                   Rcpp::NumericVector zlv,
                   Rcpp::NumericVector zrv,
