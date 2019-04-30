@@ -4,7 +4,7 @@
 //' Compute the risk set for a recurrence process within 
 //' observation windows.
 //' 
-//' @name riskset
+//' @name RISKSET
 //' 
 //' @description We want the number of units at risk 
 //'              just before each event time it is 
@@ -28,7 +28,7 @@
 //'         
 //' @details Wrapper for wqm_riskset        
 // [[Rcpp::export]]
-Rcpp::List riskset(int muniqrecurr,
+Rcpp::List RISKSET(int muniqrecurr,
                    Rcpp::NumericVector tuniq,
                    int nwindows,
                    Rcpp::NumericVector twindowsl,
