@@ -18,7 +18,7 @@ kprint = 1
         as.double(beta1), as.double(sigma), as.double(mugamma), 
         as.double(sdgamma), as.double(bd1), as.double(bd2), quan = double(1))
 
-    new <- wqmmlesss::sbq(as.integer(ndist1), as.integer(ndist2), 
+    new <- SMRD2::SBQ(as.integer(ndist1), as.integer(ndist2), 
         as.double(stress), as.double(alpha), as.double(beta0), 
         as.double(beta1), as.double(sigma), as.double(mugamma), 
         as.double(sdgamma), as.double(bd1), as.double(bd2), 
