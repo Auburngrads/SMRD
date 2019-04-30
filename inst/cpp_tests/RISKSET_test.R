@@ -31,7 +31,7 @@ oldrs <- .Fortran("riskset", muniqrecurr = as.integer(length(tuniq)),
                  iordu = integer(length(WindowInfo$WindowL)), delta = integer(length(tuniq)),
                  kdebug1= as.integer(kdebug1), iscrat = integer(length(WindowInfo$WindowL)))
 
-newrs <- wqmmlesss::riskset(muniqrecurr = as.integer(length(tuniq)),
+newrs <- SMRD2::RISKSET(muniqrecurr = as.integer(length(tuniq)),
                              tuniq = as.double(tuniq), 
                              nwindows = as.integer(length(WindowInfo$WindowU)),
                              twindowsl = as.double(WindowInfo$WindowL), 
