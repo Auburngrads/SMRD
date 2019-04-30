@@ -223,7 +223,7 @@ likelihood.method = GetSMRDDefault("SMRD.likelihood.method")
                      xlike = double(ntheta), 
                      ierr = integer(1))
   
-    new <- wqmevlike:::wqmevlike( 
+    new <- SMRD2::WQMEVLIKE( 
                      as.matrix(the.xmat), 
                      y,
                      as.integer(the.censor.codes), 
