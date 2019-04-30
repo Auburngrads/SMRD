@@ -3,7 +3,7 @@
 
 //' Vector version of urlike for R calling
 // [[Rcpp::export]]
-Rcpp::List ssft2gr1(Rcpp::NumericVector t,
+Rcpp::List SSFT2GR1(Rcpp::NumericVector t,
                     int nt,
                     double r1log,
                     double mut2,
