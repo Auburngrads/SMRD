@@ -1,6 +1,8 @@
 mono.upper <-
 function (upper) 
 {
-    zout <- .Fortran("bfixu", upper = as.single(upper), length(upper))
+    zout <- bfixu(as.double(upper))
+    
     return(zout$upper)
+    
 }
