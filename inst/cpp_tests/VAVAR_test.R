@@ -22,9 +22,7 @@ distribution = 'lev'
   zout <- .Fortran("vavar", as.integer(idist), as.integer(vlength),
                    as.double(zc), as.double(ze), ans = double(vlength))
 
-  zout
-  
-wqmmlesss::vavar(as.integer(idist),
+  zout <- SMRD2::VAVAR(as.integer(idist),
             as.integer(vlength),
             as.double(zc),
             as.double(ze),
