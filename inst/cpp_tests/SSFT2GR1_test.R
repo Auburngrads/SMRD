@@ -25,7 +25,7 @@ kprint = 0
                      ier = integer(1),
                      kprint = kprint)
 
-    new <- wqmmlesss::ssft2gr1(t = as.double(tvec), 
+    new <- SSFT2GR1(t = as.double(tvec), 
                      nt = as.integer(length(tvec)), 
                      as.double(r1log), 
                      mut2 = as.double(mut2), 
