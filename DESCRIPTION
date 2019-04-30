@@ -12,3 +12,5 @@ Imports: Rcpp (>= 1.0.1)
 LinkingTo: Rcpp
 Suggests: 
     testthat
+RoxygenNote: 6.1.1
+Encoding: UTF-8
