@@ -11,7 +11,7 @@ using namespace lstd;
 //' Wrap for wqm_flike to vectorize the 
 //' computation of the likelihood
 // [[Rcpp::export]]
-Rcpp::List wqmevlike(Rcpp::NumericMatrix xold,
+Rcpp::List WQMEVLIKE(Rcpp::NumericMatrix xold,
                      Rcpp::NumericMatrix y,
                      Rcpp::IntegerVector cen,
                      Rcpp::IntegerVector wt,
