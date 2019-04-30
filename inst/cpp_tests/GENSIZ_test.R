@@ -142,7 +142,7 @@ old   <- .Fortran("gensiz",
                       ipe = integer(1),
                       iis = integer(200))
 
-new <- smrdcpp.test::gensiz(as.integer(model),
+new <- GENSIZ(as.integer(model),
                   as.integer(distribution.number),
                   as.integer(get.rmodel.info.out$kparv),
                   as.integer(get.rmodel.info.out$nrvar),
