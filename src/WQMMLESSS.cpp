@@ -2,7 +2,7 @@
 #include <wqmmlesss/wqm_mlboth.hpp>
 
 // [[Rcpp::export]]
-Rcpp::List wqmmlesss(Rcpp::IntegerVector ivec,
+Rcpp::List WQMMLESSS(Rcpp::IntegerVector ivec,
                      Rcpp::NumericVector rvec,
                      int nrow,
                      int nparm,
