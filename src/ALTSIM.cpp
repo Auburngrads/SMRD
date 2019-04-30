@@ -49,7 +49,7 @@
 // #;
 // #need to send down data space big enough to cover all data situations;
 // [[Rcpp::export]]
-Rcpp::List altsim(Rcpp::NumericMatrix x,
+Rcpp::List ALTSIM(Rcpp::NumericMatrix x,
                   Rcpp::NumericMatrix y,
                   Rcpp::IntegerVector cen,
                   Rcpp::IntegerVector wt,
