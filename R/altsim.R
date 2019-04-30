@@ -1,8 +1,19 @@
 altsim <-
-function (accel.var.mat, nsamsz, centim, theta, distribution,
-    number.sim, kctype = 1, escale = 10000, e = rep(1e-04, number.parameters),
-    parameter.fixed = rep(F, number.parameters), intercept = T,
-    kprint = 0, maxit = 500,debug1= F, randomize = T)
+function (accel.var.mat, 
+          nsamsz, 
+          centim, 
+          theta, 
+          distribution,
+          number.sim, 
+          kctype = 1, 
+          escale = 10000, 
+          e = rep(1e-04, number.parameters),
+          parameter.fixed = rep(F, number.parameters),
+          intercept = T,
+          kprint = 0, 
+          maxit = 500,
+          debug1 = F, 
+          randomize = T)
 {
     number.cases <- sum(nsamsz + 1)
     plan <- list(accel.var.mat = accel.var.mat, nsamsz = nsamsz,
@@ -44,50 +55,76 @@ function (accel.var.mat, nsamsz, centim, theta, distribution,
     ndscrat <- 4 * (number.parameters * number.cases + 5 * number.parameters *
         number.parameters + 12 * number.parameters + 1)
     niscrat <- 2 * (number.parameters + 1)
-    if (debug1)
+    if(debug1) browser()
+    
+    zout <- ALTSIM(x = xmat, 
+                   y = y,
+                   cen = as.integer(censor.codes),
+                   wt = as.integer(case.weights),
+                   nrow = as.integer(number.cases), 
+                   nter = as.integer(nter),
+                   ny = as.integer(ny), 
+                   nty = as.integer(nty), 
+                   ty = matrix(0, nrow = number.cases, ncol = 1),
+                   tc = integer(number.cases), 
+                   kdist = as.integer(distribution.number),
+                   gamthr = double(number.cases), 
+                   lfix = as.logical(parameter.fixed),
+                   nparm = as.integer(number.parameters), 
+                   intcpt = as.integer(int),
+                   escale = as.double(escale), 
+                   e = as.double(e), 
+                   maxit = as.integer(maxit),
+                   kprint = as.integer(kprint), 
+                   dscrat = double(ndscrat),
+                   iscrat = integer(niscrat), 
+                   dev = matrix(0,nrow = number.cases, ncol = 3), 
+                   thetah = as.double(theta.hat), 
+                   fsder = double(number.parameters),
+                   vcv = matrix(0,nrow = number.parameters, ncol = number.parameters),
+                   r = matrix(0,nrow = number.parameters, ncol = number.parameters),
+                   res = matrix(0, ncol = ny, nrow = number.cases), 
+                   fv = matrix(0,ncol = ny, nrow = number.cases), 
+                   theta = as.double(theta), 
+                   xnew = matrix(0, nrow = number.cases, ncol = nter),
+                   ynew = matrix(0, nrow = number.cases, ncol = ny), 
+                   centim = as.double(centim),
+                   acvar = accel.var.mat, 
+                   nsubex = as.integer(nsubex),
+                   nacvar = as.integer(nacvar), 
+                   nsamsz = as.integer(nsamsz),
+                   krfail = integer(nsubex),
+                   kctype = as.integer(kctype), 
+                   retmat = matrix(0, ncol = number.sim, nrow = number.things.returned), 
+                   numret = as.integer(number.things.returned),
+                   numsim = as.integer(number.sim), 
+                   iersim = integer(1))
+    
+    if (zout$ints$iersim > 0 || debug1) {
+      
         browser()
-    zout <- .Fortran("altsim", xmat = as.single(xmat), y = as.single(y),
-        censor.codes = as.single(censor.codes), case.weights = as.single(case.weights),
-        number.cases = as.integer(number.cases), nter = as.integer(nter),
-        ny = as.integer(ny), nty = as.integer(nty), ty = single(number.cases),
-        tc = single(number.cases), distribution.number = as.integer(distribution.number),
-        gamthr = single(number.cases), parameter.fixed = as.logical(parameter.fixed),
-        number.parameters = as.integer(number.parameters), int = as.integer(int),
-        escale = as.single(escale), e = as.single(e), maxit = as.integer(maxit),
-        kprint = as.integer(kprint), dscrat = double(ndscrat),
-        iscrat = integer(niscrat), devian = single(number.cases *
-            3), thetah = as.single(theta.hat), first.derivative = single(number.parameters),
-        vcv.matrix = single(number.parameters * number.parameters),
-        correlation.matrix = single(number.parameters * number.parameters),
-        residuals = single(ny * number.cases), fitted.values = single(ny *
-            number.cases), theta.real = as.single(theta), new.xmat = single(number.cases *
-            nter), new.y = single(number.cases * ny), centim = as.single(centim),
-        accel.var.mat = as.single(accel.var.mat), nsubex = as.integer(nsubex),
-        nacvar = as.integer(nacvar), nsamsz = as.integer(nsamsz),
-        kctype = as.integer(kctype), return.matrix = single(number.sim *
-            (number.things.returned)), number.things.returned = as.integer(number.things.returned),
-        number.sim = as.integer(number.sim), iersim = integer(1))
-    if (zout$iersim > 0 || debug1) {
-        browser()
-        if (zout$iersim > 0)
-            stop("Need more space for observations")
+        if (zout$ints$iersim > 0) stop("Need more space for observations")
+      
     }
-    if (nter <= 1)
-        param.names <- c("mu", "sigma")
-    else param.names <- c("b0", paste("b", 1:(nter - 1), sep = ""),
-        "sigma")
-    return.matrix <- t(matrix(zout$return.matrix, nrow = number.things.returned))
-    theta.hat.star <- return.matrix[, 2:(number.parameters +
-        1), drop = F]
+    
+    `if`(nter <= 1,
+         param.names <- c("mu", "sigma"),
+         param.names <- c("b0", paste("b", 1:(nter - 1), sep = ""), "sigma"))
+    
+    return.matrix <- t(matrix(zout$nummat$retmat, nrow = number.things.returned))
+    theta.hat.star <- return.matrix[, 2:(number.parameters + 1), drop = F]
     dimnames(theta.hat.star) <- list(NULL, param.names)
     ierstuff <- floor(return.matrix[, 1] + 0.1)
     vcv <- return.matrix[, (number.parameters + 3):(number.parameters +
         ((number.parameters) * (number.parameters + 1))/2 + 2),
         drop = F]
     dimnames(vcv) <- list(NULL, get.vcv.names(param.names))
-    return(list(plan = plan, theta = theta, theta.hat = theta.hat.star,
-        vcv = vcv, ierstuff = ierstuff, likelihood = return.matrix[,
-            number.parameters + 2]))
+    return(list(plan = plan, 
+                theta = theta, 
+                theta.hat = theta.hat.star,
+                vcv = vcv, 
+                ierstuff = ierstuff, 
+                likelihood = return.matrix[, number.parameters + 2]))
 }
 
 #'
