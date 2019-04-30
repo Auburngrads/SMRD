@@ -4,10 +4,10 @@
 //' R interface for GENG cdf;
 //' @name sgpdfl
 // [[Rcpp::export]]
-Rcpp::NumericVector sgpdfl(Rcpp::NumericVector tvec,
-                           Rcpp::NumericMatrix gamme,
-                           int maxlen,
-                           Rcpp::NumericVector answer){
+Rcpp::List SGPDFL(Rcpp::NumericVector tvec,
+                  Rcpp::NumericMatrix gamme,
+                  int maxlen,
+                  Rcpp::NumericVector answer){
 
 for(int i = 0; i < maxlen; i++){
 
@@ -15,7 +15,7 @@ for(int i = 0; i < maxlen; i++){
 
 }
 
-return answer;
+return Rcpp::List::create(Named("answer") = answer);
   
 }
 
