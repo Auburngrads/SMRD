@@ -57,53 +57,56 @@ parametric.bootstrap <-
     
     if (debug1) browser()
     
-    zout <- .Fortran("mlsim2", 
-                     as.single(the.xmat), 
-                     as.single(y), 
-                     as.single(the.censor.codes), 
-                     as.single(the.case.weights), 
-                     as.integer(number.cases), 
-                     as.integer(nter), 
-                     as.integer(ny), 
-                     as.integer(nty), 
-                     ty = single(number.cases), 
-                     tc = single(number.cases), 
-                     distribution.number = as.integer(distribution.number), 
-                     gamthr = single(number.cases), 
-                     parameter.fixed = as.logical(parameter.fixed), 
-                     number.parameters = as.integer(number.parameters), int = as.integer(int), 
-                     escale = as.single(escale), 
-                     e = as.single(e), 
-                     maxit = as.integer(maxit), 
-                     kprint = as.integer(kprint), 
-                     dscrat = double(ndscrat), 
-                     iscrat = integer(niscrat), 
-                     devian = single(number.cases * 3), 
-                     thetah = as.single(theta.start), 
-                     first.derivative = single(number.parameters), 
-                     vcv.matrix = single(number.parameters * number.parameters), 
-                     correlation.matrix = single(number.parameters * number.parameters), 
-                     residuals = single(ny * number.cases), 
-                     fitted.values = single(ny * number.cases), 
-                     theta = single(number.parameters), 
-                     iarray = integer(sim.scratch.space), 
-                     marray = as.integer(sim.scratch.space), 
-                     wtnew = single(number.cases), 
-                     xnew = single(number.cases * nter), 
-                     ynew = single(number.cases * ny), 
-                     iret = as.integer(iret), 
-                     return.matrix = single(number.sim * number.things.returned), 
-                     number.sim = as.integer(number.sim), 
-                     numret = as.integer(number.things.returned), 
-                     tspass = as.single(tspass), 
-                     lrand = as.logical(randomize), 
-                     iersim = integer(1))
+    zout <- MLSIM2(x = as.matrix(the.xmat), 
+                   y = as.matrix(y), 
+                   cen = as.integer(the.censor.codes), 
+                   wt = as.integer(the.case.weights), 
+                   nrow = as.integer(number.cases), 
+                   nter = as.integer(nter), 
+                   ny = as.integer(ny), 
+                   nty = as.integer(nty), 
+                   ty = matrix(0,nrow = number.cases, ncol = 1), 
+                   tcodes = integer(number.cases), 
+                   kdist = as.integer(distribution.number), 
+                   gamthr = double(number.cases), 
+                   lfix = as.logical(parameter.fixed), 
+                   nparm = as.integer(number.parameters), 
+                   intcpt = as.integer(int), 
+                   escale = as.double(escale), 
+                   e = as.double(e), 
+                   maxit = as.integer(maxit), 
+                   kprint = as.integer(kprint), 
+                   dscrat = double(ndscrat), 
+                   iscrat = integer(niscrat), 
+                   devian = matrix(0, nrow = number.cases, ncol = 3), 
+                   thetah = as.double(theta.start), 
+                   fsder = double(number.parameters), 
+                   vcv = matrix(0, nrow = number.parameters, ncol = number.parameters), 
+                   r = matrix(0, nrow = number.parameters, ncol = number.parameters), 
+                   res = matrix(0, ncol = ny, nrow = number.cases), 
+                   fv = matrix(0, ncol = ny, nrow = number.cases), 
+                   theta = double(number.parameters), 
+                   iarray = integer(sim.scratch.space), 
+                   marray = as.integer(sim.scratch.space), 
+                   wtnew = integer(number.cases), 
+                   xnew = matrix(0, nrow = number.cases, ncol = nter), 
+                   ynew = matrix(0, nrow = number.cases, ncol = ny), 
+                   iret = as.integer(iret), 
+                   retmat = matrix(4, ncol = number.sim, nrow = number.things.returned), 
+                   numsim = as.integer(number.sim), 
+                   numret = as.integer(number.things.returned), 
+                   tspass = as.double(tspass), 
+                   lrand = as.logical(randomize), 
+                   iersim = integer(1))
+
     
-    if (zout$iersim > 0 || debug1) {
-      browser()
-      if (zout$iersim > 0) stop("Need more space for observations")
+    if (zout$ints$iersim > 0 || debug1) {
+      
+        browser()
+        if (zout$ints$iersim > 0) stop("Need more space for observations")
+      
     }
-    return.matrix <- t(matrix(zout$return.matrix, nrow = number.things.returned))
+    return.matrix <- t(matrix(zout$nummat$retmat, nrow = number.things.returned))
     theta.hat.star <- return.matrix[, 2:(number.parameters + 
                                            1)]
     ierstuff <- as.integer(return.matrix[, 1] + 0.1)
@@ -113,8 +116,7 @@ parametric.bootstrap <-
       theta.hat.star[, 1] <- exp(theta.hat.star[, 1])
       theta.hat[1] <- exp(theta.hat[1])
       mlest.out$theta.hat <- theta.hat
-      mlest.out$vcv.matrix[1, 1] <- mlest.out$vcv.matrix[1, 
-                                                         1] * theta.hat[1]^2
+      mlest.out$vcv.matrix[1, 1] <- mlest.out$vcv.matrix[1,1] * theta.hat[1]^2
       vcv[, 1] <- vcv[, 1] * ((theta.hat.star[, 1])^2)
       names(mlest.out$theta.hat)[1] <- "Theta"
     }
@@ -134,51 +136,78 @@ parametric.bootstrap <-
 #'
 
 nonparametric.bootstrap <-
-  function (data.ld, number.sim = 10, kprint = 0, maxit = 500, 
-            max.sim.scratch.space = 1000, maxmsd = 100,debug1= F, randomize = T) 
+  function (data.ld, 
+            number.sim = 10, 
+            kprint = 0, 
+            maxit = 500, 
+            max.sim.scratch.space = 1000, 
+            maxmsd = 100,
+            debug1 = F, 
+            randomize = T) 
   {
-    if (randomize) {
-      tspass <- runif(33)
-    }
-    else {
-      tspass <- seq(0.1, 0.4, length = 33)
-    }
+    
+    `if`(randomize,
+         tspass <- runif(33),
+         tspass <- seq(0.1, 0.4, length = 33))
+    
     nty <- 0
     the.censor.codes <- censor.codes(data.ld)
     the.case.weights <- case.weights(data.ld)
-    y <-Response(data.ld)
+    y <- Response(data.ld)
     ny <- ncol(y)
     number.cases <- length(the.case.weights)
     ndscrat <- 3 * number.cases + 4
     niscrat <- 6 * number.cases + 7
-    nrscrat <- max(7 * (number.cases + 1), (maxmsd * (maxmsd - 
-                                                        1))/2 + 1)
-    sim.scratch.space <- min(sum(the.case.weights), max(max.sim.scratch.space, 
-                                                        number.cases))
+    nrscrat <- max(7 * (number.cases + 1), (maxmsd * (maxmsd - 1)) / 2 + 1)
+    sim.scratch.space <- min(sum(the.case.weights), 
+                             max(max.sim.scratch.space, number.cases))
+    
     cdfest.out <- cdfest(data.ld)
     m <- length(cdfest.out$p)
     number.things.returned <- 2 * m + 1
-    if (debug1) 
-      browser()
-    zout <- .Fortran("mlsim3", as.single(y), as.single(the.censor.codes), 
-                     as.single(the.case.weights), as.integer(number.cases), 
-                     as.integer(ny), as.integer(nty), ty = single(number.cases), 
-                     tc = single(number.cases), gamthr = single(number.cases), 
-                     as.integer(maxit), as.integer(kprint), double(ndscrat), 
-                     integer(niscrat), single(nrscrat), as.single(cdfest.out$p), 
-                     as.single(cdfest.out$q), single(m), single(m), as.integer(m), 
-                     single(m), single(m), single(m), single(m), integer(sim.scratch.space), 
-                     as.integer(sim.scratch.space), wtnew = single(number.cases), 
-                     ynew = single(number.cases * ny), return.matrix = single(number.sim * 
-                                                                                number.things.returned), as.integer(number.sim), 
-                     as.integer(number.things.returned), as.single(tspass), 
-                     as.logical(randomize), iersim = integer(1))
-    if (zout$iersim > 0 || debug1) {
-      browser()
-      if (zout$iersim > 0) 
-        stop("Need more space for observations")
+    if(debug1) browser()
+    
+    zout <- MLSIM3(y, 
+                   the.censor.codes, 
+                   the.case.weights,
+                   number.cases, 
+                   ny, 
+                   nty, 
+                   matrix(0, nrow = number.cases, ncol = 1), 
+                   integer(number.cases), 
+                   gamthr = single(number.cases), 
+                   as.integer(maxit), 
+                   as.integer(kprint), 
+                   double(ndscrat), 
+                   integer(niscrat), 
+                   double(nrscrat), 
+                   as.double(cdfest.out$p), 
+                   as.double(cdfest.out$q), 
+                   double(m + 1), 
+                   double(m + 1), 
+                   as.integer(m), 
+                   double(m + 1), 
+                   double(m + 1), 
+                   double(m + 1), 
+                   double(m + 1), 
+                   integer(sim.scratch.space), 
+                   as.integer(sim.scratch.space),
+                   wtnew = double(number.cases), 
+                   ynew  = matrix(3,nrow = number.cases, ncol = ny), 
+                   retmat = matrix(4, ncol = number.sim, nrow =  number.things.returned), 
+                   as.integer(number.sim), 
+                   as.integer(number.things.returned), 
+                   as.double(tspass), 
+                   as.logical(randomize), 
+                   iersim = integer(1))
+    
+    if (zout$ints$iersim > 0 || debug1) {
+      
+        browser()
+        if(zout$ints$iersim > 0) stop("Need more space for observations")
+      
     }
-    return.matrix <- t(matrix(zout$return.matrix, nrow = number.things.returned))
+    return.matrix <- t(matrix(zout$nummat$retmat, nrow = number.things.returned))
     f.hat.star <- return.matrix[, 2:(m + 1)]
     standard.errors <- return.matrix[, (m + 2):(2 * m + 1)]
     ierstuff <- as.integer(return.matrix[, 1] + 0.1)
@@ -194,19 +223,24 @@ nonparametric.bootstrap <-
 #'
 
 boot.npar.npar <-
-  function (data.ld, number.sim = 10, kprint = 0, maxit = 500, 
-            max.sim.scratch.space = 1000, maxmsd = 100,debug1= F, randomize = T) 
+  function (data.ld, 
+            number.sim = 10, 
+            kprint = 0, 
+            maxit = 500, 
+            max.sim.scratch.space = 1000, 
+            maxmsd = 100,
+            debug1 = F, 
+            randomize = T) 
   {
-    if (randomize) {
-      tspass <- runif(33)
-    }
-    else {
-      tspass <- seq(0.1, 0.4, length = 33)
-    }
+    
+    `if`(randomize,
+         tspass <- runif(33),
+         tspass <- seq(0.1, 0.4, length = 33))
+
     nty <- 0
     the.censor.codes <- censor.codes(data.ld)
     the.case.weights <- case.weights(data.ld)
-    y <-Response(data.ld)
+    y <- Response(data.ld)
     ny <- ncol(y)
     number.cases <- length(the.case.weights)
     ndscrat <- 3 * number.cases + 4
@@ -218,27 +252,49 @@ boot.npar.npar <-
     cdfest.out <- cdfest(data.ld)
     m <- length(cdfest.out$p)
     number.things.returned <- 2 * m + 1
-    if (debug1) 
-      browser()
-    zout <- .Fortran("mlsim3", as.single(y), as.single(the.censor.codes), 
-                     as.single(the.case.weights), as.integer(number.cases), 
-                     as.integer(ny), as.integer(nty), ty = single(number.cases), 
-                     tc = single(number.cases), gamthr = single(number.cases), 
-                     as.integer(maxit), as.integer(kprint), double(ndscrat), 
-                     integer(niscrat), single(nrscrat), as.single(cdfest.out$p), 
-                     as.single(cdfest.out$q), single(m), single(m), as.integer(m), 
-                     single(m), single(m), single(m), single(m), integer(sim.scratch.space), 
-                     as.integer(sim.scratch.space), wtnew = single(number.cases), 
-                     ynew = single(number.cases * ny), return.matrix = single(number.sim * 
-                                                                                number.things.returned), as.integer(number.sim), 
-                     as.integer(number.things.returned), as.single(tspass), 
-                     as.logical(randomize), iersim = integer(1))
-    if (zout$iersim > 0 || debug1) {
-      browser()
-      if (zout$iersim > 0) 
-        stop("Need more space for observations")
+    if (debug1) browser()
+    
+    zout <- MLSIM3(y, 
+                   the.censor.codes, 
+                   the.case.weights,
+                   number.cases, 
+                   ny, 
+                   nty, 
+                   matrix(0, nrow = number.cases, ncol = 1), 
+                   integer(number.cases), 
+                   gamthr = single(number.cases), 
+                   as.integer(maxit), 
+                   as.integer(kprint), 
+                   double(ndscrat), 
+                   integer(niscrat), 
+                   double(nrscrat), 
+                   as.double(cdfest.out$p), 
+                   as.double(cdfest.out$q), 
+                   double(m + 1), 
+                   double(m + 1), 
+                   as.integer(m), 
+                   double(m + 1), 
+                   double(m + 1), 
+                   double(m + 1), 
+                   double(m + 1), 
+                   integer(sim.scratch.space), 
+                   as.integer(sim.scratch.space),
+                   wtnew = double(number.cases), 
+                   ynew  = matrix(3,nrow = number.cases, ncol = ny), 
+                   retmat = matrix(4, ncol = number.sim, nrow =  number.things.returned), 
+                   as.integer(number.sim), 
+                   as.integer(number.things.returned), 
+                   as.double(tspass), 
+                   as.logical(randomize), 
+                   iersim = integer(1))
+    
+    if (zout$ints$iersim > 0 || debug1) {
+      
+        browser()
+        if (zout$ints$iersim > 0) stop("Need more space for observations")
+      
     }
-    return.matrix <- t(matrix(zout$return.matrix, nrow = number.things.returned))
+    return.matrix <- t(matrix(zout$nummat$retmat, nrow = number.things.returned))
     f.hat.star <- return.matrix[, 2:(m + 1)]
     standard.errors <- return.matrix[, (m + 2):(2 * m + 1)]
     ierstuff <- as.integer(return.matrix[, 1] + 0.1)
@@ -254,22 +310,31 @@ boot.npar.npar <-
 #'
 
 boot.npar.par <-
-  function (data.ld, distribution, number.sim, escale = 10000, 
-            e = rep(1e-04, number.parameters), parameter.fixed = rep(F, 
-                                                                     number.parameters), intercept = T, kprint = 0, maxit = 500, 
-            max.sim.scratch.space = 1000,debug1= F, randomize = T) 
+  function (data.ld, 
+            distribution, 
+            number.sim, 
+            escale = 10000,
+            e = rep(1e-04, number.parameters), 
+            parameter.fixed = rep(F, number.parameters),
+            intercept = T,
+            kprint = 0, 
+            maxit = 500, 
+            max.sim.scratch.space = 1000,
+            debug1 = F, 
+            randomize = T) 
   {
-    if (randomize) {
-      tspass <- runif(33)
-    } else {
-      tspass <- seq(0.1, 0.4, length = 33)
-    }
+    
+    `if`(randomize,
+         tspass <- runif(33),
+         tspass <- seq(0.1, 0.4, length = 33))
+
     the.censor.codes <- censor.codes(data.ld)
     the.case.weights <- case.weights(data.ld)
     nty <- 0
     nter <- 1
     int <- 1
-    mlest.out <- mlest(data.ld, distribution = distribution, 
+    mlest.out <- mlest(data.ld, 
+                       distribution = distribution, 
                        kprint = kprint)
     theta.start <- mlest.out$theta.hat
     theta.hat <- theta.start
@@ -284,7 +349,7 @@ boot.npar.par <-
     iret <- 3
     number.things.returned <- number.parameters + ((number.parameters) * 
                                                      (number.parameters + 1))/2 + 2
-    y <-Response(data.ld)
+    y <- Response(data.ld)
     ny <- ncol(y)
     number.cases <- length(the.case.weights)
     the.xmat <- matrix(1, nrow = number.cases, ncol = 1)
@@ -293,38 +358,58 @@ boot.npar.par <-
     niscrat <- 2 * (number.parameters + 1)
     sim.scratch.space <- min(sum(the.case.weights), max(max.sim.scratch.space, 
                                                         number.cases))
-    if (debug1) 
-      browser()
-    zout <- .Fortran("mlsim2", as.single(the.xmat), as.single(y), 
-                     as.single(the.censor.codes), as.single(the.case.weights), 
-                     as.integer(number.cases), as.integer(nter), as.integer(ny), 
-                     as.integer(nty), ty = single(number.cases), tc = single(number.cases), 
-                     distribution.number = as.integer(distribution.number), 
-                     gamthr = single(number.cases), parameter.fixed = as.logical(parameter.fixed), 
-                     number.parameters = as.integer(number.parameters), int = as.integer(int), 
-                     escale = as.single(escale), e = as.single(e), maxit = as.integer(maxit), 
-                     kprint = as.integer(kprint), dscrat = double(ndscrat), 
-                     iscrat = integer(niscrat), devian = single(number.cases * 
-                                                                  3), thetah = as.single(theta.start), first.derivative = single(number.parameters), 
-                     vcv.matrix = single(number.parameters * number.parameters), 
-                     correlation.matrix = single(number.parameters * number.parameters), 
-                     residuals = single(ny * number.cases), fitted.values = single(ny * 
-                                                                                     number.cases), theta = single(number.parameters), 
-                     iarray = integer(sim.scratch.space), marray = as.integer(sim.scratch.space), 
-                     wtnew = single(number.cases), xnew = single(number.cases * 
-                                                                   nter), ynew = single(number.cases * ny), iret = as.integer(iret), 
-                     return.matrix = single(number.sim * number.things.returned), 
-                     number.sim = as.integer(number.sim), numret = as.integer(number.things.returned), 
-                     tspass = as.single(tspass), lrand = as.logical(randomize), 
-                     iersim = integer(1))
-    if (zout$iersim > 0 || debug1) {
-      browser()
-      if (zout$iersim > 0) 
-        stop("Need more space for observations")
+    if(debug1) browser()
+    
+    zout <- MLSIM2(x = as.matrix(the.xmat), 
+                   y = as.matrix(y), 
+                   cen = as.integer(the.censor.codes), 
+                   wt = as.integer(the.case.weights), 
+                   nrow = as.integer(number.cases), 
+                   nter = as.integer(nter), 
+                   ny = as.integer(ny), 
+                   nty = as.integer(nty), 
+                   ty = matrix(0,nrow = number.cases, ncol = 1), 
+                   tcodes = integer(number.cases), 
+                   kdist = as.integer(distribution.number), 
+                   gamthr = double(number.cases), 
+                   lfix = as.logical(parameter.fixed), 
+                   nparm = as.integer(number.parameters), 
+                   intcpt = as.integer(int), 
+                   escale = as.double(escale), 
+                   e = as.double(e), 
+                   maxit = as.integer(maxit), 
+                   kprint = as.integer(kprint), 
+                   dscrat = double(ndscrat), 
+                   iscrat = integer(niscrat), 
+                   devian = matrix(0, nrow = number.cases, ncol = 3), 
+                   thetah = as.double(theta.start), 
+                   fsder = double(number.parameters), 
+                   vcv = matrix(0, nrow = number.parameters, ncol = number.parameters), 
+                   r = matrix(0, nrow = number.parameters, ncol = number.parameters), 
+                   res = matrix(0, ncol = ny, nrow = number.cases), 
+                   fv = matrix(0, ncol = ny, nrow = number.cases), 
+                   theta = double(number.parameters), 
+                   iarray = integer(sim.scratch.space), 
+                   marray = as.integer(sim.scratch.space), 
+                   wtnew = integer(number.cases), 
+                   xnew = matrix(0, nrow = number.cases, ncol = nter), 
+                   ynew = matrix(0, nrow = number.cases, ncol = ny), 
+                   iret = as.integer(iret), 
+                   retmat = matrix(4, ncol = number.sim, nrow = number.things.returned), 
+                   numsim = as.integer(number.sim), 
+                   numret = as.integer(number.things.returned), 
+                   tspass = as.double(tspass), 
+                   lrand = as.logical(randomize), 
+                   iersim = integer(1))
+    
+    if (zout$ints$iersim > 0 || debug1) {
+      
+        browser()
+        if (zout$ints$iersim > 0)  stop("Need more space for observations")
+      
     }
-    return.matrix <- t(matrix(zout$return.matrix, nrow = number.things.returned))
-    theta.hat.star <- return.matrix[, 2:(number.parameters + 
-                                           1)]
+    return.matrix <- t(matrix(zout$nummat$retmat, nrow = number.things.returned))
+    theta.hat.star <- return.matrix[, 2:(number.parameters + 1)]
     ierstuff <- as.integer(return.matrix[, 1] + 0.1)
     vcv <- return.matrix[, (number.parameters + 3):(number.parameters + 
                                                       ((number.parameters) * (number.parameters + 1))/2 + 2)]
@@ -332,8 +417,7 @@ boot.npar.par <-
       theta.hat.star[, 1] <- exp(theta.hat.star[, 1])
       theta.hat[1] <- exp(theta.hat[1])
       mlest.out$theta.hat <- theta.hat
-      mlest.out$vcv.matrix[1, 1] <- mlest.out$vcv.matrix[1, 
-                                                         1] * theta.hat[1]^2
+      mlest.out$vcv.matrix[1, 1] <- mlest.out$vcv.matrix[1, 1] * theta.hat[1]^2
       vcv[, 1] <- vcv[, 1] * ((theta.hat.star[, 1])^2)
       names(mlest.out$theta.hat)[1] <- "Theta"
     }
