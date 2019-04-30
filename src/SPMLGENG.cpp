@@ -3,10 +3,10 @@
 
 //' R interface for gng log(1-cdf)
 // [[Rcpp::export]]
-Rcpp::NumericVector spmlgeng(Rcpp::NumericVector tvec,
-                             Rcpp::NumericMatrix gamme,
-                             int maxlen,
-                             Rcpp::NumericVector answer){
+Rcpp::List SPMLGENG(Rcpp::NumericVector tvec,
+                    Rcpp::NumericMatrix gamme,
+                    int maxlen,
+                    Rcpp::NumericVector answer){
   
 for(int i = 0; i < maxlen; i++){
    
@@ -14,7 +14,7 @@ for(int i = 0; i < maxlen; i++){
    
 }
 
-return answer;
+return Rcpp::List::create(Named("answer") = answer);
   
 }
 
