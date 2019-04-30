@@ -15,7 +15,7 @@
 //' @param sigma The sigma* values from the posterior sample
 //' @param nsim The value M*
 // [[Rcpp::export]]
-Rcpp::List postkp(int kord,
+Rcpp::List POSTKP(int kord,
                   int nsamsz,
                   Rcpp::NumericVector xltime,
                   int ntvec,
