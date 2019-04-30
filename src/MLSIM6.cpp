@@ -39,7 +39,7 @@
 // #;
 // # need to send down data space big enough to cover all data situations;
 // [[Rcpp::export]]
-Rcpp::List mlsim6(Rcpp::NumericMatrix x,
+Rcpp::List MLSIM6(Rcpp::NumericMatrix x,
                   Rcpp::NumericMatrix y,
                   Rcpp::IntegerVector cen,
                   Rcpp::IntegerVector wt,
