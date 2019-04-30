@@ -1,7 +1,16 @@
 altplan <-
-function (alt.plan.values, plan.type, use.condition, highest.condition,
-    censor.time, quantile = 0.1, xihold = 0.5, pifix = 0.2, pmlim = 0.2,
-    kprint = 0, method = NULL, sample.size = 100)
+function (alt.plan.values, 
+          plan.type, 
+          use.condition, 
+          highest.condition,
+          censor.time, 
+          quantile = 0.1, 
+          xihold = 0.5, 
+          pifix = 0.2, 
+          pmlim = 0.2,
+          kprint = 0, 
+          method = NULL, 
+          sample.size = 100)
 {
     number.levels <- 3
     eta <- logb(censor.time)
@@ -47,21 +56,37 @@ function (alt.plan.values, plan.type, use.condition, highest.condition,
     idist.single <- floor((idist + 1)/2)
     relationship <- alt.plan.values$relationship
     maxstress <- 3
-    if (kprint > 0)
-        browser()
-    zout <- .Fortran("aplan", a = as.double(a), b1 = as.double(b1),
-        b2 = as.double(b2), theta = as.double(theta), quantile = as.double(quantile),
-        known = as.integer(known), idist.single = as.integer(idist.single),
-        iopts = as.integer(iopts), iopta = as.integer(iopta),
-        ioptm = as.integer(ioptm), pifix = as.double(pifix),
-        xihold = as.double(xihold), pmlim = as.double(pmlim),
-        xi = double(maxstress), pi = double(maxstress), fp = double(maxstress),
-        pq = double(maxstress), var = double(1), kprint)
-    allocation <- floor(zout$pi * sample.size)
+    if (kprint > 0) browser()
+    
+    zout <- APLAN(as.double(a), 
+                  as.double(b1),
+                  as.double(b2), 
+                  as.double(theta), 
+                  as.double(quantile),
+                  as.integer(known), 
+                  as.integer(idist.single),
+                  as.integer(iopts), 
+                  as.integer(iopta),
+                  as.integer(ioptm), 
+                  as.double(pifix),
+                  as.double(xihold), 
+                  as.double(pmlim),
+                  double(maxstress), 
+                  double(maxstress), 
+                  double(maxstress),
+                  double(maxstress), 
+                  double(1), 
+                  as.integer(kprint))
+    
+    allocation <- floor(zout$numvec$pip * sample.size)
     allocation[1] <- sample.size - sum(allocation[-1])
-    the.plan <- get.alt.test.plan.direct(accel.variable.levels = f.relationshipinv(xu +
-        zout$xi * (xh - xu), relationship), number.of.units = allocation,
-        censor.times = rep(censor.time, number.levels), accelvar.names = .InsertPeriods(alt.plan.values$accelvar.units),
-        describe.string = describe.string)
+    
+    the.plan <- get.alt.test.plan.direct(accel.variable.levels = f.relationshipinv(xu + zout$numvec$fpp * (xh - xu), relationship), 
+                                         number.of.units = allocation,
+                                         censor.times = rep(censor.time, number.levels), 
+                                         accelvar.names = .InsertPeriods(alt.plan.values$accelvar.units),
+                                         describe.string = describe.string)
+    
     return(the.plan)
+    
 }
