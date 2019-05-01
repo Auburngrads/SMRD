@@ -36,8 +36,8 @@ xmat <- function (data.ld, allow = T)
     return(the.xmat)
 }
 
-#'
-#'
+#
+#
 
 `xmat<-` <-
   function (data.ld, value = NULL) 
