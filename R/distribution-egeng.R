@@ -9,8 +9,8 @@ function (x, mu, sigma, delta)
     return(exp(dlegengl(x, mu, sigma, delta)))
 }
 
-#'
-#'
+#
+#
 
 dlegengl <-
   function (x, xmu, sigma, delta, smalldelta = 0.001) 
@@ -63,8 +63,8 @@ pegeng <-
     return(pegengl(logb(q), mu, sigma, delta))
   }
 
-#'
-#'
+#
+#
 
 pegengl <-
   function (q, mu, sigma, delta, distribution = "dummy", smalldelta = 1e-04) 
@@ -108,8 +108,8 @@ pegengl <-
     return(answer)
   }
 
-#'
-#'
+#
+#
 
 pdlegeng <-
   function (z, mu, sigma, delta) 
@@ -166,8 +166,8 @@ qegengl <-
     
   }
 
-#'
-#'
+#
+#
 
 segengl <-
   function (x, mu, sigma, delta, smalldelta = 1e-04) 
