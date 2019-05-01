@@ -24,6 +24,8 @@ void funint(Rcpp::List (*func)(Rcpp::List),
 // Get function estimate and estimate of variance
    gfun(func,thetas,vcvs,kodet,nparm,igsd,fest,vest,epsx);
    
+   Rcpp::Rcout << "\nfunint after gfun\n" << std::endl;
+   
 // Compute the confidence interval
    intgen(fest,vest,ifkode,conlev,s,xl,xu);
    
