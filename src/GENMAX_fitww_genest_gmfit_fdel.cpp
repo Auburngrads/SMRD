@@ -51,9 +51,9 @@ for(int i = 1; i <= n; i++){
               Rcpp::Rcout << "i = " << i - 1 << std::endl;
               Rcpp::Rcout << "k = " << k - 1 << std::endl;
               Rcpp::Rcout << "lsmall = " << lsmall << std::endl;
-              Rcpp::Rcout << "kodet(i) = " << kodet(i - 1) << std::endl;
+              Rcpp::Rcout << "kodet(i) = " << kodet.at(i - 1) << std::endl;
               Rcpp::Rcout << "thetai = " << thetai << std::endl;
-              Rcpp::Rcout << "theta(i) = " << theta(i - 1) << std::endl;
+              Rcpp::Rcout << "theta(i) = " << theta.at(i - 1) << std::endl;
               Rcpp::Rcout << "deltai = " << deltai << std::endl;
               Rcpp::Rcout << "funtu = " << funtu << std::endl;
               Rcpp::Rcout << "fval = " << fval << std::endl;
@@ -77,9 +77,9 @@ for(int i = 1; i <= n; i++){
         Rcpp::Rcout << "i = " << i - 1 << std::endl;
         Rcpp::Rcout << "k = " << k - 1 << std::endl;
         Rcpp::Rcout << "lsmall = " << lsmall << std::endl;
-        Rcpp::Rcout << "kodet(i) = " << kodet(i - 1) << std::endl;
+        Rcpp::Rcout << "kodet(i) = " << kodet.at(i - 1) << std::endl;
         Rcpp::Rcout << "thetai = " << thetai << std::endl;
-        Rcpp::Rcout << "theta(i) = " << theta(i - 1) << std::endl;
+        Rcpp::Rcout << "theta(i) = " << theta.at(i - 1) << std::endl;
         Rcpp::Rcout << "deltai = " << deltai << std::endl;
         Rcpp::Rcout << "funtl = " << funtl << std::endl;
         Rcpp::Rcout << "fval = " << fval << std::endl;
