@@ -38,7 +38,7 @@
 #' 
 #' @seealso \code{\link{frame.to.rmd}}, \code{\link{frame.to.ddd}}, \code{\link{surv.to.ld}}, \code{\link{SMRDOptionsDefaults}}
 #' 
-#' @example
+#' @examples
 #' \dontrun{
 #' # lzbearing data set
 #' lzbearing.ld <- frame.to.ld(lzbearing, 
