@@ -1,5 +1,26 @@
-altsim <-
-function (accel.var.mat, 
+#' Simulate Accelerated Life Test Data
+#' 
+#' @description Simulates data from an accelerated life test
+#' @name altsim
+#' @param accel.var.mat 
+#' @param nsamsz 
+#' @param centim 
+#' @param theta 
+#' @param distribution 
+#' @param number.sim 
+#' @param kctype 
+#' @param escale 
+#' @param e 
+#' @param parameter.fixed 
+#' @param intercept 
+#' @param kprint 
+#' @param maxit 
+#' @param debug1 
+#' @param randomize 
+#'
+#' @return List of plan values and simulated data
+#' @export
+altsim <- function (accel.var.mat, 
           nsamsz, 
           centim, 
           theta, 
@@ -127,8 +148,8 @@ function (accel.var.mat,
                 likelihood = return.matrix[, number.parameters + 2]))
 }
 
-#'
-#'
+#
+#
 
 ALTsim <-
   function (ALT.test.plan, ALT.plan.values, number.sim, show.detail.on = 0,
