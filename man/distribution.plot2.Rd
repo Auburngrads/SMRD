@@ -28,6 +28,8 @@ probability range}
 
 \item{shape2}{A numeric value of the second shape parameter (see Details)}
 
+\item{exponential2}{Is this 2-param exponential}
+
 \item{cex}{A positive numeric value giving the amount by which the
 plot text should be magnified relative to the default.}
 
