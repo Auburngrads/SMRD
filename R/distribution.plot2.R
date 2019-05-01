@@ -11,7 +11,7 @@
 #' @param scale A numeric value of the scale parameter (see Details)
 #' @param location A numeric value of the location parameter (see Details)
 #' @param shape2 A numeric value of the second shape parameter (see Details)
-#' @param exponential2
+#' @param exponential2 Is this 2-param exponential
 #' @param cex A positive numeric value giving the amount by which the
 #'            plot text should be magnified relative to the default.
 #' @param lwd A positive numeric value giving the amount by which the
@@ -25,7 +25,6 @@
 #' @importFrom stats qweibull dweibull pweibull
 #' @importFrom stats qexp dexp pexp
 #' @importFrom stats qgamma dgamma pgamma
-#' @return
 #' @export
 #'
 #' @examples
