@@ -9,8 +9,8 @@ function (x, shape, scale = 1)
     return((1/(x)) * dlbisa(logb(x/scale), shape))
 }
 
-#'
-#'
+#
+#
 
 dlbisa <-
   function (z, shape) 
@@ -28,8 +28,8 @@ pbisa <-
     return(plbisa(logb(q/scale), shape))
   }
 
-#'
-#'
+#
+#
 
 plbisa <-
   function (z, shape) 
@@ -48,7 +48,7 @@ qbisa <-
                                                        qnorm(p))^2))/2)^2)
   }
 
-#'
-#'
+#
+#
 
 sbisa <- function (x, shape) { 1 - pbisa(x, shape) }
