@@ -55,11 +55,11 @@ function (data.ld,
     
     if (debug1) browser()
     
-    zout <- WQMCDFEST(y,
+    zout <- WQMCDFEST(as.matrix(y),
                       as.integer(ny),
                       as.integer(the.censor.codes),
                       as.integer(the.case.weights),
-                      ty,
+                      as.matrix(ty),
                       as.integer(nty),
                       as.integer(the.truncation.codes),
                       as.integer(number.cases),
