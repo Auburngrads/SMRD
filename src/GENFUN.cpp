@@ -67,7 +67,7 @@
 //'  #
 //'  #xup(nargv)    (O)  upper confidence bound
 // [[Rcpp::export]]
-Rcpp::List genfun(int kmod,
+Rcpp::List GENFUN(int kmod,
                   int kdist,
                   Rcpp::IntegerVector ilabp,
                   Rcpp::IntegerVector ilabd,
@@ -206,6 +206,16 @@ Rcpp::List ints,doubs,intvec,numvec,nummat;
          iptc,kcentr,iplabp,kmodp,pfail,kmccde,llog,
          nregr,ier);
    
+   if(debug::kprint >= 4) {
+      
+      Rcpp::Rcout << "\nGENFUN AFTER SETUP\n" << std::endl;
+      Rcpp::Rcout << "ier = " << ier << std::endl;
+      Rcpp::Rcout << "theta = " << theta << std::endl;
+      Rcpp::Rcout << "thetas = " << thetas << std::endl;
+      Rcpp::Rcout << "nargv = " << nargv << std::endl;
+      
+   }
+   
    if(ier > 0) goto exit;
    
 // cxxx      epsx=eps
@@ -253,5 +263,5 @@ Rcpp::List ints,doubs,intvec,numvec,nummat;
                                 Named("doubs") = doubs,
                                 Named("intvec") = intvec,
                                 Named("numvec") = numvec,
-                                Named("numvec") = nummat);
+                                Named("nummat") = nummat);
 }
