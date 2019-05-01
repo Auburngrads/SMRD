@@ -17,6 +17,7 @@ Rcpp::List functg(Rcpp::List args){
 Rcpp::NumericVector thetas;
 
 thetas = Rcpp::as<NumericVector>(Rcpp::as<List>(args)["lt"]);
+   Rcpp::Rcout << "\nthetas in functg\n" << thetas << std::endl;
    
 double fun_ctg;
   
@@ -25,10 +26,12 @@ double fun_ctg;
   
 // Set save stuff in gamms since we are not within a loop
    ptgame(thetas);
+   Rcpp::Rcout << "\nfunctg after ptgamme\n" << std::endl;
    
 // Recover the gamma vector
    rgamme(genx08::g_kpoint,thetas,ipgame);
-   
+   Rcpp::Rcout << "\nfunctg after rgamme\n" << std::endl;
+
 // Go to compute the function
    fun_ctg = funcg(ipgame,
                    genx03::g_ngame,
