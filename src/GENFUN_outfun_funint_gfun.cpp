@@ -71,13 +71,23 @@ Rcpp::List fargs,flist;
 // Turn of ltp so that we do not use zgtran on the gamma vector
    genx04::g_ltp = 0;
    
-   fargs = Rcpp::List::create(Named("thetas") = thetas,
-                              Named("nparm") = nparm);
+   if(debug::kprint >= 4){
+      
+      Rcpp::Rcout << "\nGFUN1 check \n" << std::endl;
+      Rcpp::Rcout << "ltp = " << genx04::g_ltp << std::endl;
+      Rcpp::Rcout << "ngame = " << genx03::g_ngame << std::endl;
+      Rcpp::Rcout << "nparm = " << nparm << std::endl;
+      Rcpp::Rcout << "thetas = " << thetas << std::endl;
+      
+   }
+   
+   fargs = Rcpp::List::create(Named("lt") = thetas);
    flist = func(fargs);
-   fout = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
+   fout = Rcpp::as<double>(Rcpp::as<Rcpp::List>(flist)["val"]);
    
    fest = fout;
    
+   Rcpp::Rcout << "fest = " << fest << std::endl;
 // If we do not need a standatrd error, we are done
    if(igsd == 0) return;
    
