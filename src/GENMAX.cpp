@@ -167,7 +167,7 @@ using namespace fdnprd_g;
 //'  #      except that double precision is used except when data is to
 //'  #      be taken from the worksheet.
 // [[Rcpp::export]]
-Rcpp::List genmax(int &kmod,
+Rcpp::List GENMAX(int &kmod,
                   int &kdist,
                   Rcpp::NumericVector &theta,
                   Rcpp::NumericVector &thetas,
