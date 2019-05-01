@@ -4,8 +4,8 @@ function (data.d)
     return(attr(data.d, "done.list"))
 }
 
-#'
-#'
+#
+#
 
 `done.list<-` <-
   function (data.ld, value)
