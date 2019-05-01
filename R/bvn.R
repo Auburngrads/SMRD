@@ -47,8 +47,8 @@ function (mu1,
     
 }
 
-#'
-#'
+#
+#
 
 bvn.fail.contrib.delta <-
   function (yresp, theta, eps = 1.00000000000001e-05) 
@@ -76,8 +76,8 @@ bvn.fail.contrib.delta <-
   }
 
 
-#'
-#'
+#
+#
 
 bvn.fail.contrib.density <-
   function (yresp, theta, eps = 1.00000000000001e-05) 
@@ -88,8 +88,8 @@ bvn.fail.contrib.density <-
     return(logprob)
   }
 
-#'
-#'
+#
+#
 
 bvn.fail.contrib <-
   function (yresp, failure.mode, theta, eps = 0.005, like.method = NULL) 
@@ -110,8 +110,8 @@ bvn.fail.contrib <-
     return(the.contribution)
   }
 
-#'
-#'
+#
+#
 
 bvn.log.like <-
   function (thetain)
@@ -158,8 +158,8 @@ bvn.log.like <-
     return(.Uminus((the.log.like)))
   }
 
-#'
-#'
+#
+#
 
 bvn.mle <-
   function (data.ld, distribution = "bvn",debug1= F, like.method = "density", 
@@ -222,8 +222,8 @@ bvn.mle <-
     return(gmle.out)
   }
 
-#'
-#'
+#
+#
 
 bvn.rcen.contrib.lognormal <-
   function (yresp, theta) 
@@ -233,8 +233,8 @@ bvn.rcen.contrib.lognormal <-
                                                                                                                1], ak = yresp[, 2]))
   }
 
-#'
-#'
+#
+#
 
 bvnRectangle <-
   function (xlow, xhigh, ylow, yhigh, mu1 = 0, mu2 = 0, sd1 = 1, 
@@ -253,8 +253,8 @@ bvnRectangle <-
     return((strip.long - strip.short))
   }
 
-#'
-#'
+#
+#
 
 bvnsw <-
   function (mu1, mu2, sd1, sd2, rho, ah, ak, numsig = 10) 
