@@ -51,8 +51,8 @@ function (data.d, fill.in = T, warn.all.ones = F)
     return(the.censor.codes)
 }
 
-#'
-#'
+#
+#
 
 `censor.codes<-` <-
   function (data.ld, value) 
