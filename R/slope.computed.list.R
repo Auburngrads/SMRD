@@ -4,8 +4,8 @@ function (data.d)
     return(attr(data.d, "slope.computed.list"))
 }
 
-#'
-#'
+#
+#
 
 `slope.computed.list<-` <-
   function (data.ld, value) 
