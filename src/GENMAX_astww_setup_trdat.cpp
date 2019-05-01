@@ -67,6 +67,12 @@ for(int j = 1; j <= ncolxp; j++){
       
    }
 
+   if(debug::kprint >= 3) {
+      
+      Rcpp::Rcout << "\nLEAVING TRDAT\n" << std::endl;
+      
+   }
+   
 return;
 
 }
