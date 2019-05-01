@@ -24,6 +24,8 @@ double funcg(Rcpp::NumericVector gamme,
              int kfuncf,
              int llog,
              double funarg){
+
+Rcpp::Rcout << "\nfuncg\n" << std::endl;
   
 int kmodp, ier = 0;
 double fun_cg = 0.0e00;
