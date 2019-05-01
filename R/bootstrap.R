@@ -132,8 +132,8 @@ parametric.bootstrap <-
     
   }
 
-#'
-#'
+#
+#
 
 nonparametric.bootstrap <-
   function (data.ld, 
@@ -219,8 +219,8 @@ nonparametric.bootstrap <-
     return(the.results)
   }
 
-#'
-#'
+#
+#
 
 boot.npar.npar <-
   function (data.ld, 
@@ -306,8 +306,8 @@ boot.npar.npar <-
     return(the.results)
   }
 
-#'
-#'
+#
+#
 
 boot.npar.par <-
   function (data.ld, 
@@ -428,8 +428,8 @@ boot.npar.par <-
     return(the.results)
   }
 
-#'
-#'
+#
+#
 
 compare.summary.boot.npar.npar.out <-
   function (mlesim.out, time.index = last.one, my.title = NULL,
@@ -468,8 +468,8 @@ compare.summary.boot.npar.npar.out <-
     return(return.list)
   }
 
-#'
-#'
+#
+#
 
 compare.summary.boot.npar.par.out <-
   function (boot.par.out, inference.on = "parameter", which = 1,
@@ -528,8 +528,8 @@ compare.summary.boot.npar.par.out <-
     invisible(return.list)
   }
 
-#'
-#'
+#
+#
 
 focus.boot.npar.par.out <-
   function (boot.par.out, inference.on = "parameter", which = 1,
@@ -729,8 +729,8 @@ focus.boot.npar.par.out <-
                    upper.bound = upper.bound))
   }
 
-#'
-#'
+#
+#
 
 plot.boot.cdf <-
   function (x, my.xlab, my.title, trim, lower.quantile, lower.perc,
@@ -760,8 +760,8 @@ plot.boot.cdf <-
     title(xlab = parse(text = my.xlab), ylab = "Bootstrap cdf", cex.lab = 1.1)
   }
 
-#'
-#'
+#
+#
 
 plot.boot.npar.npar.out <-
   function (x, xlog = F, xlab = get.time.units(data.ld),
@@ -816,8 +816,8 @@ plot.boot.npar.npar.out <-
     invisible(cdfest.out)
   }
 
-#'
-#'
+#
+#
 
 plot.boot.npar.par.out <-
   function (x, xlim = c(NA, NA), ylim = c(NA,
@@ -939,8 +939,8 @@ plot.boot.npar.par.out <-
     
   }
 
-#'
-#'
+#
+#
 
 summary.boot.npar.npar.out <-
   function (object, time.index = last.one, method = "boott.logit",
@@ -1105,8 +1105,8 @@ summary.boot.npar.npar.out <-
                 upper.perc = upper.perc, lower.bound = lower.bound, upper.bound = upper.bound))
   }
 
-#'
-#'
+#
+#
 
 summary.boot.npar.par.out <-
   function (object, inference.on = "parameter", which = 1,
@@ -1124,8 +1124,8 @@ summary.boot.npar.par.out <-
     invisible(return.stuff)
   }
 
-#'
-#'
+#
+#
 
 which.boot.method.to.use <-
   function (inference.on, which, mlest.out)
@@ -1149,8 +1149,8 @@ which.boot.method.to.use <-
     return(method)
   }
 
-#'
-#'
+#
+#
 
 boot.filter <-
   function (boot.results) 
