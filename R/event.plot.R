@@ -1,13 +1,13 @@
-#'
-#'
-#'
+#
+#
+#
 
 event.plot <-
 function (x,...)
 UseMethod("event.plot")
 
-#'
-#'
+#
+#
 
 event.plot.life.data <-
   function (x, my.title = NULL, xlab = paste(get.time.units(x)),
@@ -181,8 +181,8 @@ event.plot.life.data <-
     invisible()
   }
 
-#'
-#'
+#
+#
 
 event.plot.recurrence.data <-
   function (x, my.title = NULL, xlab = paste("Time in",
