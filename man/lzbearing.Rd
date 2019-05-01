@@ -11,6 +11,9 @@
 \source{
 Lawless, J. F. (1982), Statistical Models and Methods for Lifetime Data, New York, NY; Wiley & Sons
 }
+\usage{
+lzbearing
+}
 \description{
 The ball bearings came from four different major bearing companies. There was disagreement in the industry on the appropriate parameter values to use to describe the relationship between fatigue life and stress loading. The main objective of the study was to estimate values of the parameters in the equation relating bearing life to load.
 }
@@ -36,3 +39,4 @@ Other data-done: \code{\link{alloya}},
   \code{\link{valveseat}}, \code{\link{zelencap}}
 }
 \concept{data-done}
+\keyword{datasets}
