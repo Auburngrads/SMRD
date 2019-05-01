@@ -27,8 +27,8 @@ function (f, start.value, ...)
     }
 }
 
-#'
-#'
+#
+#
 
 bound.roots2 <-
   function (f, start.value, ...) 
@@ -56,5 +56,3 @@ bound.roots2 <-
       }
     }
   }
-
-
