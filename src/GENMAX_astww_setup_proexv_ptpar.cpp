@@ -46,6 +46,15 @@ void ptpar(int &kdnow,
       Rcpp::Rcout << "igsave = " << igsave << std::endl;
       Rcpp::Rcout << "igkode = " << igkode << std::endl;
       Rcpp::Rcout << "iglab = " << iglab << std::endl;
+      Rcpp::Rcout << "ignext = " << ignext << std::endl;
+      Rcpp::Rcout << "itnext = " << itnext << std::endl;
+      Rcpp::Rcout << "nxg = " << nxg << std::endl;
+      Rcpp::Rcout << "nxd = " << nxd << std::endl;
+      Rcpp::Rcout << "nterg = " << nterg << std::endl;
+      Rcpp::Rcout << "kodet = " << kodet << std::endl;
+      Rcpp::Rcout << "intg = " << intg << std::endl;
+      Rcpp::Rcout << "ipthet = " << ipthet << std::endl;
+      Rcpp::Rcout << "irelag = " << irelag << std::endl;
       
    }
 // copy over nx so that we know what to do in gtgame
