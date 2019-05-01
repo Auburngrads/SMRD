@@ -49,6 +49,14 @@ In practice, several different labels are used to refer to differnt types of cen
 \description{
 Create a \code{life.data} object from a \code{data.frame}
 }
+\examples{
+\dontrun{
+# lzbearing data set
+lzbearing.ld <- frame.to.ld(lzbearing, 
+                            response.column = 1,
+                            time.units = "Megacycles")
+}
+}
 \seealso{
 \code{\link{frame.to.rmd}}, \code{\link{frame.to.ddd}}, \code{\link{surv.to.ld}}, \code{\link{SMRDOptionsDefaults}}
 }
