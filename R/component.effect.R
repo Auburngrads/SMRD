@@ -33,8 +33,8 @@ component.effect <-
     }
 }
 
-#'
-#'
+#
+#
 
 parallel.effect <-
   function (xrange = c(0.5, 1), 
@@ -95,8 +95,8 @@ parallel.effect <-
            xpd = T)
   }
 
-#'
-#'
+#
+#
 
 parallel.dep.effect <-
   function (xrange = c(0.5, 0.999), 
@@ -163,8 +163,8 @@ parallel.dep.effect <-
            xpd = T)
   }
 
-#'
-#'
+#
+#
 
 series.effect <-
   function (xrange = c(0.98, 1), 
@@ -225,8 +225,8 @@ series.effect <-
            xpd = T)
   }
 
-#'
-#'
+#
+#
 
 series.dep.effect <-
   function (xrange = c(0.8, 0.999), 
