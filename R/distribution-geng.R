@@ -9,8 +9,8 @@ function (x, theta, delta, varrho)
     return(exp(dlgeng(x, theta, delta, varrho)))
 }
 
-#'
-#'
+#
+#
 
 dlgeng <-
   function (x, theta, delta, varrho) 
@@ -18,8 +18,8 @@ dlgeng <-
     return(dlgengl(logb(x), theta, delta, varrho) - logb(x))
   }
 
-#'
-#'
+#
+#
 
 dgengl <-
   function (y, theta, delta, varrho, smalldelta) 
@@ -27,8 +27,8 @@ dgengl <-
     return(exp(dlgengl(y, theta, delta, varrho)))
   }
 
-#'
-#'
+#
+#
 
 dlgengl <-
   function (y, theta, delta, varrho) 
@@ -55,7 +55,6 @@ dlgengl <-
     return(answer)
   }
 
-#'
 #' @export
 #' @rdname Generalized-Gamma
 
@@ -65,8 +64,8 @@ pgeng <-
     return(pgengl(logb(q), theta, delta, varrho))
   }
 
-#'
-#'
+#
+#
 
 pgengl <-
   function (y, theta, delta, varrho) 
@@ -104,8 +103,8 @@ qgeng <-
     return(exp(qgengl(p, theta, delta, varrho, smalldelta)))
   }
 
-#'
-#'
+#
+#
 
 qgengl <-
   function (p, theta, delta, varrho, smalldelta = 1e-05) 
@@ -135,8 +134,8 @@ rgeng <-
     qgeng(runif(n), theta, delta, varrho)
   }
 
-#'
-#'
+#
+#
 
 sgeng <-
   function (x, theta, delta, varrho, smalldelta = 1e-05) 
@@ -144,8 +143,8 @@ sgeng <-
     return(sgengl(logb(x), theta, delta, varrho, smalldelta))
   }
 
-#'
-#'
+#
+#
 
 sgengl <-
   function (y, theta, delta, varrho, smalldelta = 1e-05) 
