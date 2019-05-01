@@ -37,8 +37,8 @@ rsev <-
     location + qsev(runif(n)) * scale
   }
 
-#'
-#'
+#
+#
 
 ssev <-
   function (x, location = 0, scale = 1) 
