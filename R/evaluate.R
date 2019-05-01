@@ -1,13 +1,13 @@
-#'
-#'
-#'
+#
+#
+#
 
 evaluate <-
 function (x,...)
 UseMethod("evaluate")
 
-#'
-#'
+#
+#
 
 evaluate.ADDT.test.plan <-
   function (x, ADDT.plan.values, use.condition, FailLevel,
@@ -127,8 +127,8 @@ evaluate.ADDT.test.plan <-
     invisible(return.table)
   }
 
-#'
-#'
+#
+#
 
 evaluate.alt.test.plan <-
   function (x, ALT.plan.values, use.conditions, quantile.of.interest,
