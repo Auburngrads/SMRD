@@ -29,6 +29,10 @@
 }
 }
 
+.onUnload <- function (libpath) {
+  library.dynam.unload("SMRD2", libpath)
+}
+
 buildData <- function(name = NULL,Rd = TRUE,...) {
   
   path <- paste(c(getwd(),"/inst/extdata/"), collapse = '')
