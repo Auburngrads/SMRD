@@ -137,8 +137,8 @@ BFIXU <- function(vec) {
 #'  #xlow(nargv)   (O)  lower confidence bounds
 #'  #
 #'  #xup(nargv)    (O)  upper confidence bound
-genfun <- function(kmod, kdist, ilabp, ilabd, theta, thetas, kodet, ifix, nparm, npard, y, ncoly, nrownw, x, ncolx, codes, weight, ty, ncolty, tcodes, kprint, kparv, nrvar, mrelat, nrelat, mnrvar, conlev, kodef, fargv, nargv, kfuncp, kpopu, kpoint, vcvs, fest, std_err, xlow, xup, nxd, intd, ipxcd, irelad, ier, llog, kmodp, maxpd, nregr, kmccde, pfail, npardm, nnum, kparm, iup, nterd) {
-    .Call(`_SMRD2_genfun`, kmod, kdist, ilabp, ilabd, theta, thetas, kodet, ifix, nparm, npard, y, ncoly, nrownw, x, ncolx, codes, weight, ty, ncolty, tcodes, kprint, kparv, nrvar, mrelat, nrelat, mnrvar, conlev, kodef, fargv, nargv, kfuncp, kpopu, kpoint, vcvs, fest, std_err, xlow, xup, nxd, intd, ipxcd, irelad, ier, llog, kmodp, maxpd, nregr, kmccde, pfail, npardm, nnum, kparm, iup, nterd)
+GENFUN <- function(kmod, kdist, ilabp, ilabd, theta, thetas, kodet, ifix, nparm, npard, y, ncoly, nrownw, x, ncolx, codes, weight, ty, ncolty, tcodes, kprint, kparv, nrvar, mrelat, nrelat, mnrvar, conlev, kodef, fargv, nargv, kfuncp, kpopu, kpoint, vcvs, fest, std_err, xlow, xup, nxd, intd, ipxcd, irelad, ier, llog, kmodp, maxpd, nregr, kmccde, pfail, npardm, nnum, kparm, iup, nterd) {
+    .Call(`_SMRD2_GENFUN`, kmod, kdist, ilabp, ilabd, theta, thetas, kodet, ifix, nparm, npard, y, ncoly, nrownw, x, ncolx, codes, weight, ty, ncolty, tcodes, kprint, kparv, nrvar, mrelat, nrelat, mnrvar, conlev, kodef, fargv, nargv, kfuncp, kpopu, kpoint, vcvs, fest, std_err, xlow, xup, nxd, intd, ipxcd, irelad, ier, llog, kmodp, maxpd, nregr, kmccde, pfail, npardm, nnum, kparm, iup, nterd)
 }
 
 #' New version that sends down arrays instead of pointers!!
@@ -299,8 +299,8 @@ genfun <- function(kmod, kdist, ilabp, ilabd, theta, thetas, kodet, ifix, nparm,
 #'  #      fortran typing conventions are generally followed for typing
 #'  #      except that double precision is used except when data is to
 #'  #      be taken from the worksheet.
-genmax <- function(kmod, kdist, theta, thetas, kodet, ifix, nparm, npard, y, ncoly, nrownw, x, ncolx, codes, weight, ty, ncolty, tcodes, kprint, kparv, nrvar, mrelat, nrelat, mnrvar, xlogl, yhat, resid, vcvs, vcv, r, start, lstar, conlev, ilabp, ilabd, ier, nxd, intd, ipxcd, irelad, fstder, nregr, kcentr, kpoint, ifit, kgtall, llog, kmodp, maxit, pest, epsx, npardm, nnum, kparm, iup, nterd, maxpd, pfail, kmccde, nstart, maxmsd, tol, lsd, pchmax) {
-    .Call(`_SMRD2_genmax`, kmod, kdist, theta, thetas, kodet, ifix, nparm, npard, y, ncoly, nrownw, x, ncolx, codes, weight, ty, ncolty, tcodes, kprint, kparv, nrvar, mrelat, nrelat, mnrvar, xlogl, yhat, resid, vcvs, vcv, r, start, lstar, conlev, ilabp, ilabd, ier, nxd, intd, ipxcd, irelad, fstder, nregr, kcentr, kpoint, ifit, kgtall, llog, kmodp, maxit, pest, epsx, npardm, nnum, kparm, iup, nterd, maxpd, pfail, kmccde, nstart, maxmsd, tol, lsd, pchmax)
+GENMAX <- function(kmod, kdist, theta, thetas, kodet, ifix, nparm, npard, y, ncoly, nrownw, x, ncolx, codes, weight, ty, ncolty, tcodes, kprint, kparv, nrvar, mrelat, nrelat, mnrvar, xlogl, yhat, resid, vcvs, vcv, r, start, lstar, conlev, ilabp, ilabd, ier, nxd, intd, ipxcd, irelad, fstder, nregr, kcentr, kpoint, ifit, kgtall, llog, kmodp, maxit, pest, epsx, npardm, nnum, kparm, iup, nterd, maxpd, pfail, kmccde, nstart, maxmsd, tol, lsd, pchmax) {
+    .Call(`_SMRD2_GENMAX`, kmod, kdist, theta, thetas, kodet, ifix, nparm, npard, y, ncoly, nrownw, x, ncolx, codes, weight, ty, ncolty, tcodes, kprint, kparv, nrvar, mrelat, nrelat, mnrvar, xlogl, yhat, resid, vcvs, vcv, r, start, lstar, conlev, ilabp, ilabd, ier, nxd, intd, ipxcd, irelad, fstder, nregr, kcentr, kpoint, ifit, kgtall, llog, kmodp, maxit, pest, epsx, npardm, nnum, kparm, iup, nterd, maxpd, pfail, kmccde, nstart, maxmsd, tol, lsd, pchmax)
 }
 
 #' Compute the sizes of parameter vectors
@@ -509,84 +509,10 @@ NPSYS <- function(itime, isys, icodes, weight, nobs, nfailt, nsys, utime, iusys,
     .Call(`_SMRD2_NPSYS`, itime, isys, icodes, weight, nobs, nfailt, nsys, utime, iusys, ctime, dead, idelta, dsum, idlsum, dbar, varsum, xmuhat, varxmu, kprint)
 }
 
-#' Return log factorials through a table lookup
-#' 
-#' Set the dimension of d to nmax+1 where nmax
-#' is the largest argument to be used in flnf.
-NULL
-
-#' Calculate the log(gamma) function for a real argument
-#' 
-#' Computation is based on an algorithm outlined in 
-#' references 1 and 2.  The program uses rational 
-#' functions that approximate log(gamma) to at least 
-#' 18 significant decimal digits.  The approximation 
-#' for x >= 12 is from reference 3.  Approximations
-#' for x < 12.0 are unpublished.  Lower order 
-#' approximations can be substituted on machines with 
-#' less precise arithmetic.
-#'
-#'
-#' Explanation of machine-dependent constants
-#'
-#' xbig   - the largest argument for which ln(gamma(x)) is representable
-#'          in the machine, i.e., the solution to the equation
-#'                  ln(gamma(xbig)) = xinf.
-#' xinf   - the largest machine representable floating-point number.
-#' eps    - the smallest positive floating-point number such that
-#'          1.0+eps .gt. 1.0
-#' frtbig - rough estimate of the fourth root of xbig
-#'
-#'     approximate values for some important machines are:
-#'
-#'          ibm/370   cdc/7600   univac/110x      vax 11/780
-#'           (d.p.)  (s.p.,rndg)    (d.p.)      (s.p.)     (d.p.)
-#'
-#' xbig    4.293d+73  1.716e+319  1.280d+305  2.057e+36  2.057d+36
-#' xinf    7.230d+75  1.260e+322  8.980d+307  1.701e+38  1.701d+38
-#' eps     2.220d-16  3.550e-015  1.735d-018  5.960e-08  1.388d-17
-#' frtbig  2.500d+18  6.400e+079  1.800d+076  1.100e+09  1.100d+09
-#'
-#'
-#' error returns
-#'
-#'  the program returns the value xinf for singularities or
-#'     when overflow would occur.  the computation is believed
-#'     to be free of underflow and overflow.
-#'
-#'
-#' other subprograms required (single precision version)
-#'
-#'      alog,exp,float,ifix,sin
-#'
-#' other subprograms required (double precision version)
-#'
-#'     dble,dexp,dlog,dsin,float,ifix,sngl
-#'
-#'
-#' References:
-#'
-#'  1) w. j. cody and k. e. hillstrom, 'chebyshev approximations for
-#'     the natural logarithm of the gamma function,' math. comp. 21,
-#'     1967, pp. 198-203.
-#'
-#'  2) k. e. hillstrom, anl/amd program anlc366s, dgamma/dlgama, may,
-#'     1969.
-#'
-#'  3) hart, et. al., computer approximations, wiley and sons, new
-#'     york, 1968.
-#'
-#'
-#'  author: w. j. cody
-#'          argonne national  laboratory
-#'
-#'  latest modification: july 14, 1983
-NULL
-
 #'  Compute empirical the predictive distributions 
 #'  (pdf, cdf) for the kth order statistic in a 
 #'  future sample.
-#'  @name postkp
+#'  @name POSTKP
 #'  
 #' @param nsamsz The size of the future sample
 #' @param kord The order statistic
@@ -651,65 +577,10 @@ RISKSET <- function(muniqrecurr, tuniq, nwindows, twindowsl, twindowsu, wcounts,
     .Call(`_SMRD2_RISKSET`, muniqrecurr, tuniq, nwindows, twindowsl, twindowsu, wcounts, iordl, iordu, delta, kdebug, iscrat)
 }
 
-#' Compute a quantile given the values of beta0, beta1, sigma, ugamma, sdgamma
-#'
-#' @param ndist1 Integer codes for distribution (1=sev, 2=normal, 3=logistic)
-#' @param ndist2 Same as \code{ndist1}  
-#' @param beta0       intercept of mean log(time) model eqn
-#' @param beta1       slope of mean log(time) model eqn
-#' @param xstr        stress level
-#' @param sigma       std devn of log(time)
-#' @param ugamma      mean of the fatigue limits
-#' @param sdgamma     std devn of the fatigue limits
-#' @param stress      stress level
-#' @param alpha       proportion corresponding to quantile
-#' @param b1 lower bound for beta0
-#' @param b2 upper bound for beta0
-#' @param quan output quantile value
-#' 
-#' @return Quantile value \code{quan}
-NULL
-
-#' Function to compute difference between cdf and alpha
-NULL
-
-#' A zero of the function  f(x)  is computed in the interval ax,bx .
-#' @param ax     left endpoint of initial interval
-#' @param bx     right endpoint of initial interval
-#' @param f      function subprogram which evaluates f(x) for any x in the interval  ax,bx
-#' @param tol    desired length of the interval of uncertainty of the final result (> 0)
-#' @return zeroin abscissa approximating a zero of  f  in the interval ax,bx
-#'
-#' @detail It is assumed  that   f(ax)   and   f(bx)   have  opposite  signs
-#'         this is checked, and an error message is printed if this is not
-#'         satisfied.   zeroin  returns a zero  x  in the given interval
-#'         ax,bx  to within a tolerance  4*macheps*abs(x)+tol, where macheps  is
-#'         the  relative machine precision defined as the smallest representable
-#'         number such that  1.+macheps .gt. 1.
-#'         
-#'         This function subprogram is a slightly  modified  translation  of
-#'         the algol 60 procedure  zero  given in  richard brent, algorithms for
-#'         minimization without derivatives, prentice-hall, inc. (1973).
-#'         Modified 29 sept to return 0 in the error condition to avoid compile warn
-NULL
-
 #' Wrapper for mapping beta to a quantile??? not clear why needed
 SBQ <- function(ndist1, ndist2, stress, alpha, beta0, beta1, sigma, ugamma, sdgamma, bd1, bd2, quan, kprint) {
     .Call(`_SMRD2_SBQ`, ndist1, ndist2, stress, alpha, beta0, beta1, sigma, ugamma, sdgamma, bd1, bd2, quan, kprint)
 }
-
-#' @description Compute the probability that a bivariate 
-#'              normal with mean \code{vectorc(xmu1,xmu2)}, 
-#'              variances \code{v1} and \code{v2} and 
-#'              covariance \code{c12} has \code{x1 > ah}
-#'              and \code{x2 > ak}.
-#'              
-#' @source Daniel F. Heitjan 17 March 1991
-NULL
-
-#' Compute the error function
-#' @source W. J. Cody - January 8, 1985
-NULL
 
 #' Compute the error function
 #' @source W. J. Cody - January 8, 1985
@@ -719,16 +590,6 @@ NULL
 SBVN <- function(ah, ak, xmu1, xmu2, v1, v2, c12, prob, n, kprint) {
     .Call(`_SMRD2_SBVN`, ah, ak, xmu1, xmu2, v1, v2, c12, prob, n, kprint)
 }
-
-#' Compute the nhpp mcf for a given
-#' form of the rate function
-NULL
-
-#' Function to compute the loglin nhpp mcf
-NULL
-
-#' Compute the power law NHPP mcf
-NULL
 
 #' compute the vector of nhpp mcf values
 #' @name sfmcf
@@ -742,37 +603,11 @@ SFTEVAL <- function(kdmod, xmu2, sig2, xmu3, sig3, rho, df, d0, sfact, tf, numbe
     .Call(`_SMRD2_SFTEVAL`, kdmod, xmu2, sig2, xmu3, sig3, rho, df, d0, sfact, tf, number, answer, ier, kprint)
 }
 
-#'  PDF of specified general distribution
-#'  
-#'  gamme(i) for user-specified distributions
-#'  
-#'  dist      i:   1    2    3    4    5    6    7    8    9    10    11
-#'----------------------------------------------------------------------
-#'  sev            m    s    ls
-#'  normal         m    s    ls
-#'  logistic       m    s    ls
-#'  log-exponent   m
-#'  log-gengamma   m    s    ls   q    k    sk   lk  lgk
-#'  log-gamma      m    q    k    sk   lk   gk
-NULL
-
-#' Compute pdf
-NULL
-
-#' PDF(z) for the generalized gamma with shape xk
-NULL
-
-#' User specified pdf
-NULL
-
 #' R interface for GENG cdf;
 #' @name sgpdfl
 SGPDFL <- function(tvec, gamme, maxlen, answer) {
     .Call(`_SMRD2_SGPDFL`, tvec, gamme, maxlen, answer)
 }
-
-#' Quantile of gamma distribution with shape at probability p
-NULL
 
 #' R interface for GENG cdf
 #' 
@@ -781,22 +616,6 @@ SGQUAN <- function(pvec, gamme, maxlen, answer) {
     .Call(`_SMRD2_SGQUAN`, pvec, gamme, maxlen, answer)
 }
 
-#' Compute the NHPP log likelihood
-NULL
-
-#' Compute the log nhpp recurrence rate
-#' for a given form of the rate function.
-NULL
-
-#' Compute the log loglin NHPP recurrence rate
-NULL
-
-#' Compute the log power law nhpp recurrence rate
-NULL
-
-#' Compute the NHPP mcf difference
-NULL
-
 #' Compute a vector of NHPP log likelihood values 
 #' corresponding to a thetav matrix
 #' @name sloglikenhpp
@@ -804,170 +623,11 @@ SLOGLIKENHPP <- function(time, ntimes, recurrcosts, timel, timeu, kwcount, nwind
     .Call(`_SMRD2_SLOGLIKENHPP`, time, ntimes, recurrcosts, timel, timeu, kwcount, nwindows, kform, thetav, nparm, ntheta, answer)
 }
 
-#'    computes:  fisher information matrix elements for time (type i)
-#'               or failure (type ii) censored units from the smallest
-#'               extreme value (sev), largest extreme value (lev),
-#'               normal, or logistic distribution
-#'
-#'   parameters:
-#'
-#'    idist - integer - input:  idist=1 if the distribution is sev
-#'                                   =2 if the distribution is lev
-#'                                   =3 if the distribution is normal
-#'                                   =4 if the distribution is logistic
-#'
-#'    itype - integer - input:  itype=1 for no censoring
-#'                                   =2 right censoring
-#'                                   =3 left censoring
-#'                                   =4 interval censoring
-#'
-#'       zl - real -    input:  standardized left censoring point. zl is
-#'                              defined by zl=q(pl), where pl is the
-#'                              (expected) proportion of left censored
-#'                              units and q(p) is the pth quantile of
-#'                              the standardized distribution specified
-#'                              by idist.  zl is not referenced when
-#'                              itype=2
-#'
-#'       zr - real -    input:  standardized right censoring point.
-#'                              zr=q(1-pr), where pr is the (expected)
-#'                              proportion of right censored units.
-#'                              zr is not referenced when itype=3
-#'
-#'      f11 - real -    output: c*(entry(1,1) of the fisher matrix)
-#'      f12 - real -    output: c*(entry(1,2) of the fisher matrix)
-#'      f22 - real -    output: c*(entry(2,2) of the fisher matrix)
-#'                              where c=sigma*sigma/n
-#'
-#'   ifault - integer - output: ifault=0 indicates successful completion
-#'                                    =1 indicates idist is other than
-#'                                       1, 2, 3, 4
-#'                                    =2 indicates itype is other than
-#'                                       1, 2, 3, or 4
-#'                                    =3 indicates itype=4 and zr.lt.zl
-#'                                    =4 indicates that the series
-#'                                       expansions in sevint failed to
-#'                                       converge
-#'                                    =5 indicates the euler's transfor-
-#'                                       mation in logint failed to
-#'                                       converge
-NULL
-
-#' @details Routes the computation of theta0,
-#'          theta1, theta2, and eta to sevint,
-#'          levint, norint, or logint according
-#'          to the value of \code{idist}.
-NULL
-
-#' computes: quantities needed to obtain the elements of the fisher;
-#' information matrix from a largest extreme value;
-#' distribution and censored data;
-#' theta0, theta1, and theta2 are up to an additive constant the;
-#' integrals over (-infinity,z) of the functions:;
-#' g0(x)=h(x)*h(x)*g(x), g1(x)=(1+x*h(x))*g(x),;
-#' and g2(x)=g(x)*(1+x*h(x))**2, where h(x)=1. g(x) and bg(x) are;
-#' pdf and the cdf for a largest extreme value distribution;
-#' theta0, theta1, theta2, and eta all are computed using;
-#' sevint and the relationship between a largest and a smallest;
-#' extreme value distribution;
-NULL
-
-#' logistic pdf
-NULL
-
-#' logistic cdf
-NULL
-
-#' computes: quantities needed to obtain the elements of the fisher;
-#' information matrix from a logistic distribution and;
-#' censored data;
-#' theta0, theta1, and theta2 are the integrals over (-infinity,z);
-#' of the following functions: g0(x)=h(x)*h(x)*g(x), g1(x)=(one+;
-#' x*h(x))*g(x), and g2(x)=g(x)*(one+x*h(x))**2, where;
-#' h(x)=1-bg(x). g(x) and bg(x) are the pdf and cdf for a standard;
-#' logistic;
-#' theta0 and theta1 have closed form formulas. theta2 is computed;
-#' using euler's transformation on a powers series expansion of the;
-#' integral over (-infinity,z) of log(1+exp(x));
-#' eta=g(x)*g(x)/((1-bg(x))*bg(x));
-#' ifault= 5 if the euler's transformation used to accelerate the;
-#' convergence of s3 does not converge within tol of the;
-#' true value after including jmax terms in the expansion.;
-#' tol and jmax are set to 40 and 10**(-11) in the data;
-#' statements;
-NULL
-
-#' normal pdf
-NULL
-
-#' normal cdf
-NULL
-
-#' computes: quantities needed to obtain the elements of the fisher;
-#' information matrix from a normal distribution and;
-#' censored data;
-#' theta0, theta1, and theta2 are the integrals over (-infinity,z);
-#' of the following functions: g0(x)=h(x)*h(x)*g(x), g1(x)=(one+;
-#' x*h(x))*g(x), and g2(x)=g(x)*(one+x*h(x))**2, where h(x)=psi(x);
-#' +g(x)/(one-bg(x)) and psi(x)=-x. g(x) and bg(x) are the pdf and;
-#' cdf for a standard normal;
-#' theta0, theta1, theta2, and eta depend all on bg(z) and they;
-#' are obtained using the complementary error function;
-#' eta=g(x)*g(x)/((1-bg(x))*bg(x));
-NULL
-
-#' smallest extreme value pdf
-NULL
-
-#' smallest extreme value cdf
-NULL
-
-#' function needed in the gaussian quadrature
-NULL
-
-#' computes: quantities needed to obtain the elements of the fisher;
-#' information matrix from a smallest extreme value;
-#' distribution and censored data;
-#' theta0, theta1, and theta2 are the integrals over (-infinity,z);
-#' of the functions: g0(x)=h(x)*h(x)*g(x), g1(x)=(1+x*h(x))*g(x),;
-#' g2(x)=g(x)*(1+x*h(x))**2, where h(x)=1. g(x) and bg(x) are;
-#' pdf and the cdf for a smallest extreme value distribution;
-#' theta0 has a closed form formula. g1(x) and g2(x) are integrated;
-#' by using power series expansions when z <= 1, and by power;
-#' series expansions through z=1 plus a gaussian quadrature from;
-#' 1 to z when z > 1;
-#' eta=g(x)*g(x)/((1-bg(x))*bg(x));
-#' ifault= 4 if the series expansions to compute s1 and s2 do not;
-#' converge within tol of the true values after including;
-#' jmax terms in the expansion. tol and jmax are set to 25;
-#' and 10**(-11) in the data statements;
-NULL
-
 #' Does good stuff
 #' @name slsinf
 SLSINF <- function(idist, itype, zlv, zrv, f11, f12, f22, nrows, ifault, irow) {
     .Call(`_SMRD2_SLSINF`, idist, itype, zlv, zrv, f11, f12, f22, nrows, ifault, irow)
 }
-
-#'  CDF of specified general distribution
-#'  
-#'  gamme(i) for user-specified distributions
-#'  
-#'  dist      i:   1    2    3    4    5    6    7    8    9    10    11
-#'----------------------------------------------------------------------
-#'  sev            m    s    ls
-#'  normal         m    s    ls
-#'  logistic       m    s    ls
-#'  log-exponent   m
-#'  log-gengamma   m    s    ls   q    k    sk   lk  lgk
-#'  log-gamma      m    q    k    sk   lk   gk
-NULL
-
-#' CDF(z) for the generalized gamma with shape xk
-NULL
-
-#' user-specified cdf
-NULL
 
 #' R interface for GENG cdf;
 #' @name spgeng
@@ -975,79 +635,15 @@ SPGENG <- function(tvec, gamme, maxlen, answer) {
     .Call(`_SMRD2_SPGENG`, tvec, gamme, maxlen, answer)
 }
 
-#' Compute log cdf
-NULL
-
-#' Compute log(one-cdf)
-NULL
-
-#' Log of 1-cdf for the generalized gamma with shape xk
-NULL
-
-#' log cdf(z) for the generalized gamma with shape xk
-NULL
-
-#' 1-cdf(z) for the generalized gamma with shape xk
-NULL
-
 #' R interface for gng log(1-cdf)
 SPMLGENG <- function(tvec, gamme, maxlen, answer) {
     .Call(`_SMRD2_SPMLGENG`, tvec, gamme, maxlen, answer)
 }
 
-#' Subroutine to compute the sf of t2 given r1 (rate 1)
-#' obtained by averaging over the conditional distribution of r2
-#'
-#' @param tlog        log of point at which sf is computed
-#' @param r1          given value of r1
-#' @param mut2        mean of log(t2) when r2=1
-#' @param sigmat2     standard deviation of log(t2) when r2=1
-#' @param mur1        mean of log(r1)
-#' @param sigmar1     standard deviation of log(r1)
-#' @param mur2        mean of log(r2)
-#' @param sigmar2     standard deviation of log(r2)
-#' @param rho         correlation between log(r1) and log(r2)
-#' @param ier         return condition indicator (ier = 0 if no errors were detected in dqags. See dqags documentation for meaning of values of ier>0.)
-NULL
-
 #' Vector version of urlike for R calling
 SSFT2GR1 <- function(t, nt, r1log, mut2, sigmat2, mur1, sigmar1, mur2, sigmar2, rho, answer, kprint, ier) {
     .Call(`_SMRD2_SSFT2GR1`, t, nt, r1log, mut2, sigmat2, mur1, sigmar1, mur2, sigmar2, rho, answer, kprint, ier)
 }
-
-#' Function to compute log likelihood for an exact failure of mode 1
-#'
-#' @param t           point at which sf is computed
-#' @param mut1        mean of log(t1) when r1=1
-#' @param sigmat1     standard deviation of log(t1) when r1=1
-#' @param mut2        mean of log(t2) when r2=1
-#' @param sigmat2     standard deviation of log(t2) when r2=1
-#' @param mur1        mean of log(r1)
-#' @param sigmar1     standard deviation of log(r1)
-#' @param mur2        mean of log(r2)
-#' @param sigmar2     standard deviation of log(r2)
-#' @param rho         correlation between log(r1) and log(r2)
-#' @param ier         Return condition indicator (ier = 0 if no errors were detected in dqags. 
-#'                    See dqags documentation for meaning of values of ier > 0)
-NULL
-
-#' Function to compute integrand for computing  the sf of t2 given r1
-#'
-#' @details The following variables are communicated through common
-#'
-#' \document{
-#'   \item{tlogp}{log of time point for evaluation of the conditional sf}
-#'   \item{mut1p}{mean of log(t1) when r1=1}
-#'   \item{sigmat1p}{standard deviation of log(t1) when r1=1}
-#'   \item{mut2p}{mean of log(t2) when r2=1}
-#'   \item{sigmat2p}{standard deviation of log(t2) when r2=1}
-#'   \item{mur1p}{mean of log(r1)}
-#'   \item{sigmar1p}{standard deviation of log(r1)}
-#'   \item{mur2p}{mean of log(r2)}
-#'   \item{sigmar2p}{standard deviation of log(r2)}
-#'   \item{rhop}{correlation between log(r1) and log(r2)}
-#' }
-NULL
 
 #' Vector version of urlike for Splus calling
 SURLIKE <- function(t, nt, mut1, sigmat1, mut2, sigmat2, mur1, sigmar1, mur2, sigmar2, rho, answer, kprint) {
@@ -1058,19 +654,6 @@ SXCDF <- function(ndist1, ndist2, beta0, beta1, xstr, sigma, ugamma, sgamma, w, 
     .Call(`_SMRD2_SXCDF`, ndist1, ndist2, beta0, beta1, xstr, sigma, ugamma, sgamma, w, num, answer, ier)
 }
 
-#' Function to compute integrand for computing probability involving the compound distribution
-#'
-#' @details The following variables are communicated through 
-#'          the global namespace \code{passer3}
-#'          
-#' \document{
-#'   \item{beta11p}{slope of the mean log(time)}
-#'   \item{ugamma1p}{mean of fatigue limit}
-#'   \item{sdgammap}{std devn of fatigue limit}
-#'   \item{w1p}{log(time)}
-#'   }
-NULL
-
 SXPDF3 <- function(ndist1, ndist2, beta0, beta1, xstr, sigma, ugamma, sgamma, w, num, answer, ier, kprint) {
     .Call(`_SMRD2_SXPDF3`, ndist1, ndist2, beta0, beta1, xstr, sigma, ugamma, sgamma, w, num, answer, ier, kprint)
 }
@@ -1078,13 +661,6 @@ SXPDF3 <- function(ndist1, ndist2, beta0, beta1, xstr, sigma, ugamma, sgamma, w,
 VAVAR <- function(idist, nrows, zc, ze, avar) {
     .Call(`_SMRD2_VAVAR`, idist, nrows, zc, ze, avar)
 }
-
-#' compute the large sample variance for 
-#' testing all units at the design stress
-NULL
-
-#' smallest extreme value distribution cdf
-NULL
 
 #' Vectorized version ov svar1
 #' Calculate variance of percentile at some stress level
@@ -1182,106 +758,6 @@ WQMCDFEST <- function(y, ny, codes, weight, ty, nty, tcodes, n, nstart, dscrat, 
     .Call(`_SMRD2_WQMCDFEST`, y, ny, codes, weight, ty, nty, tcodes, n, nstart, dscrat, scrat, iscrat, kprint, maxit, tol, maxmsd, p, q, prob, sd, m, pchmax, lsd, ier)
 }
 
-#' Call cdfest and points
-#'
-#' subroutine to compute the nonparametric maximum likelihood
-#' estimate of the cumulative distribution function
-#' and map to plotting points
-#' if possible, this is done with a generalized version of the
-#' kaplan-meier estimate, and otherwise, by using
-#' turnbull's e-m algorithm
-#' this shell routine sets up scratch array pointers and
-#' calls the basic routine
-#' inputs:
-#'   y(n,ny)      for simple data this is just a vector of length n (ny=1)
-#'                   more generally, first (second) col
-#'                   contains lower (upper) limits
-#'                   for type 4 (group censored) observations.
-#'                   if ny=2, for all other types set y(i,1)=y(i,2)
-#'   ny          number of cols in y (1 or 2)   ny = 1 for simple data
-#'   codes(n)    vector of censor codes
-#'                   0       dummy observation
-#'                   1       exact failure time
-#'                   2       right censored observation
-#'                   3       left censored observation
-#'                   4       interval or group censored obser.
-#'                   5       exact failure time recoded as a small interval
-#'   weight(n)   vector of observation weight or multiplicities
-#'   ty(n,nty)     first (second) col contains lower (upper) truncation limits
-#'                   for type 4 (interval truncated) observations.
-#'                   if nty=2, for all other types set ty(i,1)=ty(i,2)
-#'   nty          number of cols in ty (0, 1 or 2)
-#'                if nty=0, there is no truncation and ty is not accessed
-#'   tcodes(n)    vector of truncation codes
-#'                   1       no truncation
-#'                   2       right truncated observation
-#'                   3       left truncated observation
-#'                   4       interval truncated obser.
-#'   n           number of rows in y
-#'   dscrat(1)   double precision scratch array length (3n+2)
-#'   scrat(1)    real scratch array of
-#'                   length max((7*n),maxmsd*(maxmsd-1)/2)
-#'   iscrat(1)   integer scratch array of length (6*n+4)
-#'   iprint       print level for debug dump
-#'                   iprint=0 for no debug output
-#'                    if>0 dump setup and every iprint iteration
-#'                 iprint=1 gives the maximum amount of output
-#'                 iprint=10 is a good choice to debug
-#'   maxit       maximum number of iterations for s-c algorithm
-#'   tol         desired estimation accuracy (0<tol<.1)
-#'   maxmsd          maximum m for which the full information matrix
-#'                   estimates of the standard errors can be computed
-#'   nstart      =0 for automatic start values
-#'                  otherwise send down nstart values in prob
-#'                  (for restart)
-#' outputs:
-#'   x(n+1)      point on data scale x(i)=y(i) for simple data
-#'   q(n+1)      scratch space
-#'   prob(n+1)   prob(i) is an estimate of probability less than x(i)
-#'   m           return actual length of p, q, and prob (depends on data)
-#'   pchmax      returns max change in last iter if it was more than tol
-#'                   (0.0 if kaplan-meier was used)
-#'   ier         error code return
-#'               0     no error
-#'               1     n.le.0 on input
-#'               2     ny not equal to 1 or 2
-#'               3     nty not between 0 and 2
-#'               4     tol outside range (0, 0.1)
-#'               6     censor code out of range 0 to 4
-#'               7     y(i,1).ne.y(i,2) in a type 1, 2, or 3 observation
-#'               8     y(i,1).lt.y(i,2) in type 4 obs
-#'               9     ny=1 but type 4 obs found
-#'              10     tcode outside range 1 to 4
-#'              11     tcode=1, 2, or 3 but tyl.ne.tyu
-#'              12     backwards truncation interval
-#'              12     ty(i,1).lt.ty(i,2) in type 4 obs
-#'              13     only 1 col of truncation values, code 4 found
-#'              14     not enough data to estimate distribution
-#'                        (e.g., all right censored observations)
-#'              15     nstart>0 does not agree with computed m
-#'              16     observation not within the truncation interval
-#'             *21     product-limit estimate could not be computed
-#'                     directly and maxmsd was too small to allow the
-#'                     full information matrix to be computed
-#'                     an approximation was computed under the assumption
-#'                     that the individual hazard
-#'                     estimates are uncorrelated
-#'             *22     information matrix not positive definite
-#'             *23     only one non-zero s probability
-#' 
-#'          * signifies warning message only
-#' 
-#' ***************************************************************
-#' ****************************************************
-#' *                                                   *
-#' *   copyright c  1975-2008                          *
-#' *                     by william q. meeker, jr.     *
-#' *                        5697 arrasmith trail       *
-#' *                        ames, iowa     50010       *
-#' *                                                   *
-#' ****************************************************
-NULL
-
 #' Wrapper for wqm_cpoints
 #' @details Need wrapper to be able to call from 
 #'          debugging mail program
@@ -1308,145 +784,9 @@ WQMPOINTS <- function(q, p, prob, sd, lsd, m, yplot, pplot, sdplot, mplot) {
     .Call(`_SMRD2_WQMPOINTS`, q, p, prob, sd, lsd, m, yplot, pplot, sdplot, mplot)
 }
 
-#' Compute the cdf, pdf, and the derivative of the pdf
-#' @name wqm_phiall
-NULL
-
-#' Transform standardized observations to avoid 
-#' overflow and underflow problems. Follows the 
-#' approach of Nelson (1982), page 394.
-#'
-#' Modified 5 March 2004 to allow sev and to use 
-#' better code structure.
-NULL
-
 WQMSPHIALL <- function(phib, phibm, phis, phip, n, z, idist) {
     .Call(`_SMRD2_WQMSPHIALL`, phib, phibm, phis, phip, n, z, idist)
 }
-
-#' subroutine to compute the sample mcf and its robust sample variance;
-#' based on methodology given in nelson (1988, 1995),;
-#' and lawless and nadeau (1995) and extended by wu and meeker (2004);
-#' this algorithm is designed specifically for large populations;
-#' involving a large number of observed units;
-#' (up tp 100s of thousands or more), and with a large number;
-#' of reports (thousands to 100s of thousands or more);
-#' huaiqing wu;
-#' william q. meeker;
-#' iowa state university;
-#' inputs;
-#' muniqrecurr number of unique recurrence times;
-#' tuniq(muniqrecurr) unique recurrence times (in increasing order);
-#' # j=1,...,muniqrecurr;
-#' apoint(muniqrecurr) pointers to the jth recurrence time;
-#' # group in krecurrid and dcost;
-#' # apoint(j-1)+1 to apoint(j) are indices for;
-#' # the recurrences at unique time j;
-#' lnumrecurr total number of recurrences (including ties);
-#' krecurrid(lnumrecurr) ids of the recurrences at time tuniq(j);
-#' # these records must be ordered by time,;
-#' # and unit within time;
-#' dcost(lnumrecurr) dcost(j) is the costs of the recurrence;
-#' # corresponding to id at krecurrid(j);
-#' nunitsgroups the number of unique units and groups;
-#' # in the data set;
-#' wpoint(nunitsgroups) pointers into twindowsl and twindowsu;
-#' # wpoint(i-1)+1 to wpoint(i) are indices for;
-#' # the windows for unit/group i;
-#' # these pointers allow us to identify windows;
-#' # with units/groups;
-#' inwindowj(nunitsgroups) element i indicates whether the current;
-#' # recurrence time is in an observation window;
-#' # for unit i;
-#' nwindows the length of twindowsl and twindowsu;
-#' twindowsl(nwindows) vector giving observation window start points;
-#' # for individual windows or groups;
-#' twindowsu(nwindows) end points corresponding to twindowsl;
-#' wcounts(nwindows) counts for the windows mapped and replicated;
-#' # from units/groups;
-#' outputs;
-#' muhat(muniqrecurr) sample mcf at time tuniq(j);
-#' varhat(muniqrecurr) robust estimate of variance of the mcf estimate;
-#' delta(muniqrecurr) size of the risk set just before time tuniq(j);
-#' scratch space;
-#' dbar(muniqrecurr) sample mean (mcf jump-height) at tuniq(j);
-#' iordl(nwindows) windows ordering vector;
-#' iordu(nwindows) windows ordering vector;
-#' iscrat(nwindows) scratch needed for sorting;
-#' important local variables;
-#' ij, istartj, iendj indices taken from pointer for time tuniq(j);
-#' ik, istartk, iendk indices taken from pointer for time tuniq(k);
-#' vardbar estimate of the variance of dbar(j);
-#' dbarjk the average value of all units at time t_j,;
-#' # computed over only those units that are alive;
-#' # at both times tj and tk;
-#' covdjdk estimate of the covariance;
-#' # between dbar(j) and dbar(k);
-#' covterms sum of column j of the covdjdk upper-diagonal;
-#' # covariance matrix;
-NULL
-
-#' Check to see if tuniq is in one of the 
-#' windows corresponding to the unit/group index
-NULL
-
-#' Compute the size of the pairwise risk set for a
-#' recurrence process with window observation.
-#' 
-#' output;
-#' pairrisk the number of units under observation;
-#' at both just before time tuniq(j);
-#' and just before time tuniq(k), k = 1, ..., j;
-NULL
-
-#'       subroutine to setup for mcf computation:
-#'
-#'     1. Order the recurrences by time and id within time
-#'     2. Find the unique, ordered recurrence times
-#'     3. Collapse ties (same unit, same time)
-#'     #        into one recurrence with total cost
-#'     4. Make the apoint pointers
-#'
-#'  inputs:
-#'
-#'     numrecurr               number of recurrences, including ties
-#'     timeofrecurr(numrecurr) recurrence times
-#'     krecurrid(numrecurr)    unit id of the recurrence
-#'     dcost(numrecurr)        cost of the recurrence
-#'
-#'        the above must be ordered by time, with id within time
-#'
-#' outputs:
-#'
-#'     muniqrecurr             number of unique recurrence times
-#'     tuniq(numrecurr)      unique recurrence times (in increasing order)
-#'     lnumrecurr              number of recurrences after within-unit
-#'                                 ties (if any) are combined
-#'
-#'     apoint(numrecurr)     pointers to the jth recurrence time-alike
-#'                               group in krecurrid and dcost
-#'                               apoint(j-1)+1 to apoint(j) are indices for
-#'                               the reports at time tuniq(j)
-#'
-#' scratch:
-#'     iscrat(numrecurr)
-#'     iorder(numrecurr)    vector to indicate the order of the recurrences
-NULL
-
-#' @usage uniqd(dvec, n, duniq, nuniq, iorder, iscrat)
-#' @param y A double precision vector to be uniqed
-#' 
-#' @return \code{yuniq} Vector of the unique values
-#'         \code{nuniq} Number of unique values found
-#' 
-#' @details \code{iorder} is a scratch vector that 
-#'          should be the same length as the vector 
-#'          to be uniqued.
-#'          
-#'          \code{iscrat} is a scratch vector that 
-#'          should be the same length as the vector 
-#'          to be uniqued
-NULL
 
 #' Computes the sample MCF and its robust sample 
 #' variance. Created by Huaiqing Wu & William Q. 
