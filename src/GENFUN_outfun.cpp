@@ -86,7 +86,7 @@ void outfun(int &kmod,
             int &nregr,
             int &ier){
 
-int kfuncf,i = 1;
+int kfuncf,i;
 double epsx,funarg;
     
 // Call setup to center and standardize data
@@ -100,6 +100,17 @@ double epsx,funarg;
          nrownw,ipx,ncolx,ipcode,ipweig,ipty,ncolty,
          iptc,kcentr,ipplab,kmodp,pfail,kmccde,llog,
          nregr,ier);
+   
+   if(debug::kprint >= 4) {
+      
+      Rcpp::Rcout << "\nOUTFUN AFTER SETUP\n" << std::endl;
+      Rcpp::Rcout << "ier = " << ier << std::endl;
+      Rcpp::Rcout << "kpoint = " << kpoint << std::endl;
+      Rcpp::Rcout << "kpopu = " << kpopu << std::endl;
+      Rcpp::Rcout << "kfuncp = " << kfuncp << std::endl;
+      Rcpp::Rcout << "nargv = " << 4 << std::endl;
+      
+   }
   
    if(ier > 0) return;
      
@@ -127,6 +138,7 @@ double epsx,funarg;
       // Loop over the function argument values
          for(i = 1; i <= nargv; i++){
            
+                     Rcpp::Rcout << "\nHere\n" << std::endl;
              // Reset kprint to the original value for subsequent arguments
                 //if((i > 1) and (kprh >= 1)) debug::kprint = 2;
                 
@@ -137,6 +149,7 @@ double epsx,funarg;
                 genx08::g_kpoint = kpoint;
 
              // Compute the function estimate, se, and conf bounds
+                Rcpp::Rcout << "\nHere\n" << std::endl;
                 funint(functg,kodef,conlev,thetas,vcvs,kodet,
                        nparm,epsx,fest.at(i - 1),std_err.at(i - 1),
                        xlow.at(i - 1),xup.at(i - 1));
