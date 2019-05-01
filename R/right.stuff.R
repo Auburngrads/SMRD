@@ -4,8 +4,8 @@ function (data.ld)
     return(attr(data.ld, "right.stuff"))
 }
 
-#'
-#'
+#
+#
 
 `.right.stuff<-` <-
   function (data.ld, value)
