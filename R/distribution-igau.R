@@ -9,8 +9,8 @@ function (x, shape, scale = 1)
     return((1/(x)) * dligau(logb(x/scale), shape))
 }
 
-#'
-#'
+#
+#
 
 dligau <-
   function (z, shape) 
@@ -29,8 +29,8 @@ pigau <-
     return(tmp)
   }
 
-#'
-#'
+#
+#
 
 pligau <-
   function (z, shape) 
@@ -67,8 +67,8 @@ qigau <-
     return(quant.vec)
   }
 
-#'
-#'
+#
+#
 
 sigau <-
   function (x, shape) 
