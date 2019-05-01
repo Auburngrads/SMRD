@@ -218,11 +218,11 @@ function (data.ld,
                       ijc = double(nparm + 1))
     
     deviances <- zout$nummat$dev
-    ivec <- zout$intvec$ivec
-    rvec <- zout$numvec$rvec
-    log.likelihood <- rvec[3]
-    ierfit <- ivec[11]
-    iervcv <- ivec[12]
+    #ivec <- zout$intvec$ivec
+    #rvec <- zout$numvec$rvec
+    log.likelihood <- zout$doubs$xlike
+    ierfit <- zout$ints$ierfit
+    iervcv <- zout$ints$iervcv
     if (ierfit + iervcv > 0 && options("warn")[[1]] >= 0) {
         warning(paste("MLest warning messages estimation/vcv",
                       ierfit, 
@@ -258,10 +258,10 @@ function (data.ld,
         
      } else {
     
-       theta.hat <- zout$theta
-       first.derivative <- zout$fsder
-       vcv.matrix <- zout$vcv
-       correlation.matrix <- zout$r
+       theta.hat <- zout$numvec$theta
+       first.derivative <- zout$numvec$fsder
+       vcv.matrix <- zout$nummat$vcv
+       correlation.matrix <- zout$nummat$r
        
     }
     names(theta.hat) <- param.names
