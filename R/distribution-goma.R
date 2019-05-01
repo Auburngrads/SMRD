@@ -10,8 +10,8 @@ function (x, shape, shape2, scale = 1)
     return((1/(x)) * dlgoma(logb(x/scale), shape, shape2))
 }
 
-#'
-#'
+#
+#
 
 dlgoma <-
   function (z, shape, shape2) 
@@ -28,8 +28,8 @@ pgoma <-
     return(plgoma(logb(q/scale), shape, shape2))
   }
 
-#'
-#'
+#
+#
 
 plgoma <-
   function (z, shape, shape2) 
@@ -68,8 +68,8 @@ qgoma <-
     return(quant.vec)
   }
 
-#'
-#'
+#
+#
 
 sgoma <-
   function (x, shape, shape2) 
@@ -77,8 +77,8 @@ sgoma <-
     1 - pgoma(x, shape, shape2)
   }
 
-#'
-#'
+#
+#
 
 slgoma <-
   function (z, shape, shape2) 
