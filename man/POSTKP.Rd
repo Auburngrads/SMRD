@@ -5,7 +5,7 @@
 \title{Compute empirical the predictive distributions 
  (pdf, cdf) for the kth order statistic in a 
  future sample.
- @name postkp}
+ @name POSTKP}
 \usage{
 POSTKP(kord, nsamsz, xltime, ntvec, xmu, sigma, nsim, kdist, pdf, cdf)
 }
@@ -28,5 +28,5 @@ POSTKP(kord, nsamsz, xltime, ntvec, xmu, sigma, nsim, kdist, pdf, cdf)
 Compute empirical the predictive distributions 
  (pdf, cdf) for the kth order statistic in a 
  future sample.
- @name postkp
+ @name POSTKP
 }
