@@ -1,4 +1,4 @@
-library(smrdfortran)
+library(SMRD)
 lz.ld <- frame.to.ld(superalloy,
                      response.column = 1,
                      censor.column = 2,
@@ -7,7 +7,8 @@ lz.ld <- frame.to.ld(superalloy,
 data.ld <- lz.ld
 distribution = "Weibull"
 theta.start = NULL
-explan.vars = list(mu.relat = c(2,3))
+explan.vars = list(mu.relat = c(2,3),
+                   sigma.relat = c(2))
 mu.relat = NULL
 sigma.relat = NULL
 prob.relat = NULL
@@ -223,7 +224,7 @@ if(F) {
                      pchmax = as.double(0))
 }
 
-new <- GENMAX(as.integer(model), 
+new <- SMRD2:::GENMAX(as.integer(model), 
              as.integer(distribution.number),
              as.double(rep(0,nparm)), 
              double(nparm),
@@ -261,7 +262,7 @@ new <- GENMAX(as.integer(model),
              ier = integer(1),
              nxd = as.integer(rep(0,5)),
              intd = as.integer(rep(1000,5)),
-             ipxcd = vector(mode = "list", length = 5),
+             ipxcd = list(0,0,0,0,0),
              irelad = as.integer(rep(1,5)),
              fstder = double(12),
              nregr = as.integer(0), 
