@@ -106,6 +106,8 @@ exit: return Rcpp::List::create(Named("a") = a,
    
 }
 
+
+
 #include <base/base.hpp>
 #include <slsinf/lsinf.hpp>
 #include <genmax/dinvx.hpp>
@@ -424,13 +426,15 @@ return VAR1;
 
 }
 
+
+
 #include <base/base.hpp>
 #include <utility/wqm_quant.hpp>
 #include <slsinf/lsinf.hpp>
-
-//' compute the large sample variance for 
-//' testing all units at the design stress
-
+//
+// compute the large sample variance for 
+// testing all units at the design stress
+//
 double fvrdes(double zz,
               double pval,
               int idist){
@@ -458,10 +462,12 @@ return (f22 - tup * f12 + upsq * f11) / det;
 
 }
 
+
+
 #include <base/base.hpp>
-
-//' smallest extreme value distribution cdf
-
+//
+// smallest extreme value distribution cdf
+//
 double zfcdf(double z,
              int idist){
 
