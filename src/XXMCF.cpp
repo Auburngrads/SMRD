@@ -63,71 +63,74 @@ Rcpp::List XXMCF(int numrecurr,
                             Named("wcounts")     = wcounts);
 }
 
+
+
+
 #include <base/base.hpp>
 #include <riskset/wqm_riskset.hpp>
 #include <xxmcf/icheckwin.hpp>
 #include <xxmcf/pairrisk.hpp>
 
-//' subroutine to compute the sample mcf and its robust sample variance;
-//' based on methodology given in nelson (1988, 1995),;
-//' and lawless and nadeau (1995) and extended by wu and meeker (2004);
-//' this algorithm is designed specifically for large populations;
-//' involving a large number of observed units;
-//' (up tp 100s of thousands or more), and with a large number;
-//' of reports (thousands to 100s of thousands or more);
-//' huaiqing wu;
-//' william q. meeker;
-//' iowa state university;
-//' inputs;
-//' muniqrecurr number of unique recurrence times;
-//' tuniq(muniqrecurr) unique recurrence times (in increasing order);
-//' # j=1,...,muniqrecurr;
-//' apoint(muniqrecurr) pointers to the jth recurrence time;
-//' # group in krecurrid and dcost;
-//' # apoint(j-1)+1 to apoint(j) are indices for;
-//' # the recurrences at unique time j;
-//' lnumrecurr total number of recurrences (including ties);
-//' krecurrid(lnumrecurr) ids of the recurrences at time tuniq(j);
-//' # these records must be ordered by time,;
-//' # and unit within time;
-//' dcost(lnumrecurr) dcost(j) is the costs of the recurrence;
-//' # corresponding to id at krecurrid(j);
-//' nunitsgroups the number of unique units and groups;
-//' # in the data set;
-//' wpoint(nunitsgroups) pointers into twindowsl and twindowsu;
-//' # wpoint(i-1)+1 to wpoint(i) are indices for;
-//' # the windows for unit/group i;
-//' # these pointers allow us to identify windows;
-//' # with units/groups;
-//' inwindowj(nunitsgroups) element i indicates whether the current;
-//' # recurrence time is in an observation window;
-//' # for unit i;
-//' nwindows the length of twindowsl and twindowsu;
-//' twindowsl(nwindows) vector giving observation window start points;
-//' # for individual windows or groups;
-//' twindowsu(nwindows) end points corresponding to twindowsl;
-//' wcounts(nwindows) counts for the windows mapped and replicated;
-//' # from units/groups;
-//' outputs;
-//' muhat(muniqrecurr) sample mcf at time tuniq(j);
-//' varhat(muniqrecurr) robust estimate of variance of the mcf estimate;
-//' delta(muniqrecurr) size of the risk set just before time tuniq(j);
-//' scratch space;
-//' dbar(muniqrecurr) sample mean (mcf jump-height) at tuniq(j);
-//' iordl(nwindows) windows ordering vector;
-//' iordu(nwindows) windows ordering vector;
-//' iscrat(nwindows) scratch needed for sorting;
-//' important local variables;
-//' ij, istartj, iendj indices taken from pointer for time tuniq(j);
-//' ik, istartk, iendk indices taken from pointer for time tuniq(k);
-//' vardbar estimate of the variance of dbar(j);
-//' dbarjk the average value of all units at time t_j,;
-//' # computed over only those units that are alive;
-//' # at both times tj and tk;
-//' covdjdk estimate of the covariance;
-//' # between dbar(j) and dbar(k);
-//' covterms sum of column j of the covdjdk upper-diagonal;
-//' # covariance matrix;
+// subroutine to compute the sample mcf and its robust sample variance;
+// based on methodology given in nelson (1988, 1995),;
+// and lawless and nadeau (1995) and extended by wu and meeker (2004);
+// this algorithm is designed specifically for large populations;
+// involving a large number of observed units;
+// (up tp 100s of thousands or more), and with a large number;
+// of reports (thousands to 100s of thousands or more);
+// huaiqing wu;
+// william q. meeker;
+// iowa state university;
+// inputs;
+// muniqrecurr number of unique recurrence times;
+// tuniq(muniqrecurr) unique recurrence times (in increasing order);
+// # j=1,...,muniqrecurr;
+// apoint(muniqrecurr) pointers to the jth recurrence time;
+// # group in krecurrid and dcost;
+// # apoint(j-1)+1 to apoint(j) are indices for;
+// # the recurrences at unique time j;
+// lnumrecurr total number of recurrences (including ties);
+// krecurrid(lnumrecurr) ids of the recurrences at time tuniq(j);
+// # these records must be ordered by time,;
+// # and unit within time;
+// dcost(lnumrecurr) dcost(j) is the costs of the recurrence;
+// # corresponding to id at krecurrid(j);
+// nunitsgroups the number of unique units and groups;
+// # in the data set;
+// wpoint(nunitsgroups) pointers into twindowsl and twindowsu;
+// # wpoint(i-1)+1 to wpoint(i) are indices for;
+// # the windows for unit/group i;
+// # these pointers allow us to identify windows;
+// # with units/groups;
+// inwindowj(nunitsgroups) element i indicates whether the current;
+// # recurrence time is in an observation window;
+// # for unit i;
+// nwindows the length of twindowsl and twindowsu;
+// twindowsl(nwindows) vector giving observation window start points;
+// # for individual windows or groups;
+// twindowsu(nwindows) end points corresponding to twindowsl;
+// wcounts(nwindows) counts for the windows mapped and replicated;
+// # from units/groups;
+// outputs;
+// muhat(muniqrecurr) sample mcf at time tuniq(j);
+// varhat(muniqrecurr) robust estimate of variance of the mcf estimate;
+// delta(muniqrecurr) size of the risk set just before time tuniq(j);
+// scratch space;
+// dbar(muniqrecurr) sample mean (mcf jump-height) at tuniq(j);
+// iordl(nwindows) windows ordering vector;
+// iordu(nwindows) windows ordering vector;
+// iscrat(nwindows) scratch needed for sorting;
+// important local variables;
+// ij, istartj, iendj indices taken from pointer for time tuniq(j);
+// ik, istartk, iendk indices taken from pointer for time tuniq(k);
+// vardbar estimate of the variance of dbar(j);
+// dbarjk the average value of all units at time t_j,;
+// # computed over only those units that are alive;
+// # at both times tj and tk;
+// covdjdk estimate of the covariance;
+// # between dbar(j) and dbar(k);
+// covterms sum of column j of the covdjdk upper-diagonal;
+// # covariance matrix;
 void compute_winmcf(int &muniqrecurr, 
                     Rcpp::NumericVector &tuniq, 
                     Rcpp::IntegerVector &delta, 
@@ -315,10 +318,12 @@ return;
 
 }
 
+
+
 #include <base/base.hpp>
 
-//' Check to see if tuniq is in one of the 
-//' windows corresponding to the unit/group index
+// Check to see if tuniq is in one of the 
+// windows corresponding to the unit/group index
 int icheckwin(double tuniq, 
               int index, 
               int nunitsgroups,
@@ -358,16 +363,18 @@ for(int i = istart; i < iend; i++){
  
 }
 
+
+
 #include <base/base.hpp>
 #include <xxmcf/icheckwin.hpp>
 
-//' Compute the size of the pairwise risk set for a
-//' recurrence process with window observation.
-//' 
-//' output;
-//' pairrisk the number of units under observation;
-//' at both just before time tuniq(j);
-//' and just before time tuniq(k), k = 1, ..., j;
+// Compute the size of the pairwise risk set for a
+// recurrence process with window observation.
+// 
+// output;
+// pairrisk the number of units under observation;
+// at both just before time tuniq(j);
+// and just before time tuniq(k), k = 1, ..., j;
 int pairrisk(int k, 
              Rcpp::IntegerVector inwindowj, 
              Rcpp::NumericVector tuniq, 
@@ -411,6 +418,8 @@ return pairrisk;
 
 }
 
+
+
 #include <base/base.hpp>
 #include <utility/merge_sortd.hpp>
 #include <utility/merge_sorti.hpp>
@@ -418,38 +427,38 @@ return pairrisk;
 #include <xxmcf/reorderi.hpp>
 #include <xxmcf/wqm_uniqued.hpp>
 
-//'       subroutine to setup for mcf computation:
-//'
-//'     1. Order the recurrences by time and id within time
-//'     2. Find the unique, ordered recurrence times
-//'     3. Collapse ties (same unit, same time)
-//'     #        into one recurrence with total cost
-//'     4. Make the apoint pointers
-//'
-//'  inputs:
-//'
-//'     numrecurr               number of recurrences, including ties
-//'     timeofrecurr(numrecurr) recurrence times
-//'     krecurrid(numrecurr)    unit id of the recurrence
-//'     dcost(numrecurr)        cost of the recurrence
-//'
-//'        the above must be ordered by time, with id within time
-//'
-//' outputs:
-//'
-//'     muniqrecurr             number of unique recurrence times
-//'     tuniq(numrecurr)      unique recurrence times (in increasing order)
-//'     lnumrecurr              number of recurrences after within-unit
-//'                                 ties (if any) are combined
-//'
-//'     apoint(numrecurr)     pointers to the jth recurrence time-alike
-//'                               group in krecurrid and dcost
-//'                               apoint(j-1)+1 to apoint(j) are indices for
-//'                               the reports at time tuniq(j)
-//'
-//' scratch:
-//'     iscrat(numrecurr)
-//'     iorder(numrecurr)    vector to indicate the order of the recurrences
+//       subroutine to setup for mcf computation:
+//
+//     1. Order the recurrences by time and id within time
+//     2. Find the unique, ordered recurrence times
+//     3. Collapse ties (same unit, same time)
+//     #        into one recurrence with total cost
+//     4. Make the apoint pointers
+//
+//  inputs:
+//
+//     numrecurr               number of recurrences, including ties
+//     timeofrecurr(numrecurr) recurrence times
+//     krecurrid(numrecurr)    unit id of the recurrence
+//     dcost(numrecurr)        cost of the recurrence
+//
+//        the above must be ordered by time, with id within time
+//
+// outputs:
+//
+//     muniqrecurr             number of unique recurrence times
+//     tuniq(numrecurr)      unique recurrence times (in increasing order)
+//     lnumrecurr              number of recurrences after within-unit
+//                                 ties (if any) are combined
+//
+//     apoint(numrecurr)     pointers to the jth recurrence time-alike
+//                               group in krecurrid and dcost
+//                               apoint(j-1)+1 to apoint(j) are indices for
+//                               the reports at time tuniq(j)
+//
+// scratch:
+//     iscrat(numrecurr)
+//     iorder(numrecurr)    vector to indicate the order of the recurrences
 void setup_winmcfdata(int &numrecurr, 
                       Rcpp::NumericVector &timeofrecurr,
                       Rcpp::IntegerVector &krecurrid, 
@@ -535,6 +544,8 @@ for(i = 1; i < numrecurr; i++){
 	
 }
 
+
+
 #include <base/base.hpp>
 #include <utility/wqm_copyd.hpp>
 
@@ -558,6 +569,8 @@ wqm_copyd(dscrat, dinvec, n);
 return;
 
 }
+
+
 
 #include <base/base.hpp>
 #include <utility/wqm_copyi.hpp>
@@ -583,23 +596,25 @@ return;
    
 }
 
+
+
 #include <base/base.hpp>
 #include <utility/merge_sortd.hpp>
 
-//' @usage uniqd(dvec, n, duniq, nuniq, iorder, iscrat)
-//' @param y A double precision vector to be uniqed
-//' 
-//' @return \code{yuniq} Vector of the unique values
-//'         \code{nuniq} Number of unique values found
-//' 
-//' @details \code{iorder} is a scratch vector that 
-//'          should be the same length as the vector 
-//'          to be uniqued.
-//'          
-//'          \code{iscrat} is a scratch vector that 
-//'          should be the same length as the vector 
-//'          to be uniqued
-
+// @usage uniqd(dvec, n, duniq, nuniq, iorder, iscrat)
+// @param y A double precision vector to be uniqed
+// 
+// @return \code{yuniq} Vector of the unique values
+//         \code{nuniq} Number of unique values found
+// 
+// @details \code{iorder} is a scratch vector that 
+//          should be the same length as the vector 
+//          to be uniqued.
+//          
+//          \code{iscrat} is a scratch vector that 
+//          should be the same length as the vector 
+//          to be uniqued
+//
 void wqm_uniqued(Rcpp::NumericVector &y,
                  int &n,
                  Rcpp::NumericVector &yuniq,
