@@ -45,55 +45,53 @@ exit: return Rcpp::List::create(Named("f11") = f11,
 
 #include <base/base.hpp>
 #include <slsinf/lsint.hpp>
-
-//'    computes:  fisher information matrix elements for time (type i)
-//'               or failure (type ii) censored units from the smallest
-//'               extreme value (sev), largest extreme value (lev),
-//'               normal, or logistic distribution
-//'
-//'   parameters:
-//'
-//'    idist - integer - input:  idist=1 if the distribution is sev
-//'                                   =2 if the distribution is lev
-//'                                   =3 if the distribution is normal
-//'                                   =4 if the distribution is logistic
-//'
-//'    itype - integer - input:  itype=1 for no censoring
-//'                                   =2 right censoring
-//'                                   =3 left censoring
-//'                                   =4 interval censoring
-//'
-//'       zl - real -    input:  standardized left censoring point. zl is
-//'                              defined by zl=q(pl), where pl is the
-//'                              (expected) proportion of left censored
-//'                              units and q(p) is the pth quantile of
-//'                              the standardized distribution specified
-//'                              by idist.  zl is not referenced when
-//'                              itype=2
-//'
-//'       zr - real -    input:  standardized right censoring point.
-//'                              zr=q(1-pr), where pr is the (expected)
-//'                              proportion of right censored units.
-//'                              zr is not referenced when itype=3
-//'
-//'      f11 - real -    output: c*(entry(1,1) of the fisher matrix)
-//'      f12 - real -    output: c*(entry(1,2) of the fisher matrix)
-//'      f22 - real -    output: c*(entry(2,2) of the fisher matrix)
-//'                              where c=sigma*sigma/n
-//'
-//'   ifault - integer - output: ifault=0 indicates successful completion
-//'                                    =1 indicates idist is other than
-//'                                       1, 2, 3, 4
-//'                                    =2 indicates itype is other than
-//'                                       1, 2, 3, or 4
-//'                                    =3 indicates itype=4 and zr.lt.zl
-//'                                    =4 indicates that the series
-//'                                       expansions in sevint failed to
-//'                                       converge
-//'                                    =5 indicates the euler's transfor-
-//'                                       mation in logint failed to
-//'                                       converge
-
+//    computes:  fisher information matrix elements for time (type i)
+//               or failure (type ii) censored units from the smallest
+//               extreme value (sev), largest extreme value (lev),
+//               normal, or logistic distribution
+//
+//   parameters:
+//
+//    idist - integer - input:  idist=1 if the distribution is sev
+//                                   =2 if the distribution is lev
+//                                   =3 if the distribution is normal
+//                                   =4 if the distribution is logistic
+//
+//    itype - integer - input:  itype=1 for no censoring
+//                                   =2 right censoring
+//                                   =3 left censoring
+//                                   =4 interval censoring
+//
+//       zl - real -    input:  standardized left censoring point. zl is
+//                              defined by zl=q(pl), where pl is the
+//                              (expected) proportion of left censored
+//                              units and q(p) is the pth quantile of
+//                              the standardized distribution specified
+//                              by idist.  zl is not referenced when
+//                              itype=2
+//
+//       zr - real -    input:  standardized right censoring point.
+//                              zr=q(1-pr), where pr is the (expected)
+//                              proportion of right censored units.
+//                              zr is not referenced when itype=3
+//
+//      f11 - real -    output: c*(entry(1,1) of the fisher matrix)
+//      f12 - real -    output: c*(entry(1,2) of the fisher matrix)
+//      f22 - real -    output: c*(entry(2,2) of the fisher matrix)
+//                              where c=sigma*sigma/n
+//
+//   ifault - integer - output: ifault=0 indicates successful completion
+//                                    =1 indicates idist is other than
+//                                       1, 2, 3, 4
+//                                    =2 indicates itype is other than
+//                                       1, 2, 3, or 4
+//                                    =3 indicates itype=4 and zr.lt.zl
+//                                    =4 indicates that the series
+//                                       expansions in sevint failed to
+//                                       converge
+//                                    =5 indicates the euler's transfor-
+//                                       mation in logint failed to
+//                                       converge
 Rcpp::List lsinf(int idist,
                  int itype,
                  double zl,
@@ -192,17 +190,16 @@ exit: return Rcpp::List::create(Named("f11") = f11,
 
 }
 
+
 #include <base/base.hpp>
 #include <slsinf/sevint.hpp>
 #include <slsinf/levint.hpp>
 #include <slsinf/logint.hpp>
 #include <slsinf/norint.hpp>
-
-//' @details Routes the computation of theta0,
-//'          theta1, theta2, and eta to sevint,
-//'          levint, norint, or logint according
-//'          to the value of \code{idist}.
-
+// @details Routes the computation of theta0,
+//          theta1, theta2, and eta to sevint,
+//          levint, norint, or logint according
+//          to the value of \code{idist}.
 void lsint(int &idist,
            double &z,
            double &theta0,
@@ -239,21 +236,21 @@ return;
 
 }
 
+
+
 #include <base/base.hpp>
 #include <slsinf/sevint.hpp>
-
-//' computes: quantities needed to obtain the elements of the fisher;
-//' information matrix from a largest extreme value;
-//' distribution and censored data;
-//' theta0, theta1, and theta2 are up to an additive constant the;
-//' integrals over (-infinity,z) of the functions:;
-//' g0(x)=h(x)*h(x)*g(x), g1(x)=(1+x*h(x))*g(x),;
-//' and g2(x)=g(x)*(1+x*h(x))**2, where h(x)=1. g(x) and bg(x) are;
-//' pdf and the cdf for a largest extreme value distribution;
-//' theta0, theta1, theta2, and eta all are computed using;
-//' sevint and the relationship between a largest and a smallest;
-//' extreme value distribution;
-
+// computes: quantities needed to obtain the elements of the fisher;
+// information matrix from a largest extreme value;
+// distribution and censored data;
+// theta0, theta1, and theta2 are up to an additive constant the;
+// integrals over (-infinity,z) of the functions:;
+// g0(x)=h(x)*h(x)*g(x), g1(x)=(1+x*h(x))*g(x),;
+// and g2(x)=g(x)*(1+x*h(x))**2, where h(x)=1. g(x) and bg(x) are;
+// pdf and the cdf for a largest extreme value distribution;
+// theta0, theta1, theta2, and eta all are computed using;
+// sevint and the relationship between a largest and a smallest;
+// extreme value distribution;
 void levint(double &z,
             double &theta0,
             double &theta1,
@@ -288,15 +285,17 @@ return;
 
 }
 
-#include <base/base.hpp>
 
-//' logistic pdf
+
+#include <base/base.hpp>
+// logistic pdf
 double pdflog(double x){
 
   double one = 1.0e0;
   return one / (std::exp(x) * std::pow(one + std::exp(-x),2));
 }
-//' logistic cdf
+
+// logistic cdf
 double cdflog(double x){
 
   double one = 1.0e0;
@@ -304,24 +303,25 @@ double cdflog(double x){
 
 }
 
-//' computes: quantities needed to obtain the elements of the fisher;
-//' information matrix from a logistic distribution and;
-//' censored data;
-//' theta0, theta1, and theta2 are the integrals over (-infinity,z);
-//' of the following functions: g0(x)=h(x)*h(x)*g(x), g1(x)=(one+;
-//' x*h(x))*g(x), and g2(x)=g(x)*(one+x*h(x))**2, where;
-//' h(x)=1-bg(x). g(x) and bg(x) are the pdf and cdf for a standard;
-//' logistic;
-//' theta0 and theta1 have closed form formulas. theta2 is computed;
-//' using euler's transformation on a powers series expansion of the;
-//' integral over (-infinity,z) of log(1+exp(x));
-//' eta=g(x)*g(x)/((1-bg(x))*bg(x));
-//' ifault= 5 if the euler's transformation used to accelerate the;
-//' convergence of s3 does not converge within tol of the;
-//' true value after including jmax terms in the expansion.;
-//' tol and jmax are set to 40 and 10**(-11) in the data;
-//' statements;
 
+
+// computes: quantities needed to obtain the elements of the fisher;
+// information matrix from a logistic distribution and;
+// censored data;
+// theta0, theta1, and theta2 are the integrals over (-infinity,z);
+// of the following functions: g0(x)=h(x)*h(x)*g(x), g1(x)=(one+;
+// x*h(x))*g(x), and g2(x)=g(x)*(one+x*h(x))**2, where;
+// h(x)=1-bg(x). g(x) and bg(x) are the pdf and cdf for a standard;
+// logistic;
+// theta0 and theta1 have closed form formulas. theta2 is computed;
+// using euler's transformation on a powers series expansion of the;
+// integral over (-infinity,z) of log(1+exp(x));
+// eta=g(x)*g(x)/((1-bg(x))*bg(x));
+// ifault= 5 if the euler's transformation used to accelerate the;
+// convergence of s3 does not converge within tol of the;
+// true value after including jmax terms in the expansion.;
+// tol and jmax are set to 40 and 10**(-11) in the data;
+// statements;
 void logint(double &z,
             double &theta0,
             double &theta1,
@@ -456,10 +456,11 @@ return;
 
 }
 
+
+
 #include <base/base.hpp>
 #include <utility/wqm_dxerc.hpp>
-
-//' normal pdf
+// normal pdf
 double pdfnor(double x){
 
   // cval = 1 / sqrt(2 * pi) where pi=3.14159....
@@ -469,7 +470,8 @@ double pdfnor(double x){
 
 }
 
-//' normal cdf
+
+// normal cdf
 double cdfnor(double x){
 
   // root = 1 / sqrt(2)
@@ -480,18 +482,17 @@ double cdfnor(double x){
 
 }
 
-//' computes: quantities needed to obtain the elements of the fisher;
-//' information matrix from a normal distribution and;
-//' censored data;
-//' theta0, theta1, and theta2 are the integrals over (-infinity,z);
-//' of the following functions: g0(x)=h(x)*h(x)*g(x), g1(x)=(one+;
-//' x*h(x))*g(x), and g2(x)=g(x)*(one+x*h(x))**2, where h(x)=psi(x);
-//' +g(x)/(one-bg(x)) and psi(x)=-x. g(x) and bg(x) are the pdf and;
-//' cdf for a standard normal;
-//' theta0, theta1, theta2, and eta depend all on bg(z) and they;
-//' are obtained using the complementary error function;
-//' eta=g(x)*g(x)/((1-bg(x))*bg(x));
-
+// computes: quantities needed to obtain the elements of the fisher;
+// information matrix from a normal distribution and;
+// censored data;
+// theta0, theta1, and theta2 are the integrals over (-infinity,z);
+// of the following functions: g0(x)=h(x)*h(x)*g(x), g1(x)=(one+;
+// x*h(x))*g(x), and g2(x)=g(x)*(one+x*h(x))**2, where h(x)=psi(x);
+// +g(x)/(one-bg(x)) and psi(x)=-x. g(x) and bg(x) are the pdf and;
+// cdf for a standard normal;
+// theta0, theta1, theta2, and eta depend all on bg(z) and they;
+// are obtained using the complementary error function;
+// eta=g(x)*g(x)/((1-bg(x))*bg(x));
 void norint(double &z,
             double &theta0,
             double &theta1,
@@ -554,35 +555,36 @@ return;
 
 }
 
-#include <base/base.hpp>
 
-//' smallest extreme value pdf
+
+#include <base/base.hpp>
+// smallest extreme value pdf
 double pdfsev(double x){ return std::exp(x - std::exp(x)); }
 
-//' smallest extreme value cdf
+
+// smallest extreme value cdf
 double cdfsev(double x){ double one = 1.0e0; return one - std::exp(-1 * std::exp(x)); }
 
-//' function needed in the gaussian quadrature
+// function needed in the gaussian quadrature
 double g1(double x) { double one = 1.0e0; return (one + x) * std::exp(x - std::exp(x));}
 
 
-//' computes: quantities needed to obtain the elements of the fisher;
-//' information matrix from a smallest extreme value;
-//' distribution and censored data;
-//' theta0, theta1, and theta2 are the integrals over (-infinity,z);
-//' of the functions: g0(x)=h(x)*h(x)*g(x), g1(x)=(1+x*h(x))*g(x),;
-//' g2(x)=g(x)*(1+x*h(x))**2, where h(x)=1. g(x) and bg(x) are;
-//' pdf and the cdf for a smallest extreme value distribution;
-//' theta0 has a closed form formula. g1(x) and g2(x) are integrated;
-//' by using power series expansions when z <= 1, and by power;
-//' series expansions through z=1 plus a gaussian quadrature from;
-//' 1 to z when z > 1;
-//' eta=g(x)*g(x)/((1-bg(x))*bg(x));
-//' ifault= 4 if the series expansions to compute s1 and s2 do not;
-//' converge within tol of the true values after including;
-//' jmax terms in the expansion. tol and jmax are set to 25;
-//' and 10**(-11) in the data statements;
-
+// computes: quantities needed to obtain the elements of the fisher;
+// information matrix from a smallest extreme value;
+// distribution and censored data;
+// theta0, theta1, and theta2 are the integrals over (-infinity,z);
+// of the functions: g0(x)=h(x)*h(x)*g(x), g1(x)=(1+x*h(x))*g(x),;
+// g2(x)=g(x)*(1+x*h(x))**2, where h(x)=1. g(x) and bg(x) are;
+// pdf and the cdf for a smallest extreme value distribution;
+// theta0 has a closed form formula. g1(x) and g2(x) are integrated;
+// by using power series expansions when z <= 1, and by power;
+// series expansions through z=1 plus a gaussian quadrature from;
+// 1 to z when z > 1;
+// eta=g(x)*g(x)/((1-bg(x))*bg(x));
+// ifault= 4 if the series expansions to compute s1 and s2 do not;
+// converge within tol of the true values after including;
+// jmax terms in the expansion. tol and jmax are set to 25;
+// and 10**(-11) in the data statements;
 void sevint(double &z,
             double &theta0,
             double &theta1,
