@@ -18,13 +18,13 @@ return Rcpp::List::create(Named("answer") = answer);
   
 }
 
+
+
 #include <base/base.hpp>
 #include <genmax/zgtran.hpp>
 #include <spmlgeng/pblgg.hpp>
 #include <spgeng/gcdf.hpp>
-
-//' Compute log cdf
-
+// Compute log cdf
 double gcdfl(double y,
              Rcpp::NumericVector gamme,
              int kdist){
@@ -71,6 +71,8 @@ return g_cdfl;
 
 }
 
+
+
 #include <base/base.hpp>
 #include <spmlgeng/gcdfml.hpp>
 #include <spgeng/zgtran.hpp>
@@ -78,9 +80,7 @@ return g_cdfl;
 #include <utility/dexpc.hpp>
 #include <utility/wqm_dxerc.hpp>
 #include <spmlgeng/pbmlgg.hpp>
-
-//' Compute log(one-cdf)
-
+// Compute log(one-cdf)
 double gcdfml(double y,
               Rcpp::NumericVector gamme,
               int kdist) {
@@ -148,13 +148,15 @@ return 0.0e00;
   
 }
 
+
+
 #include <base/base.hpp>
 #include <utility/dexpc.hpp>
 #include <utility/wqm_dxerc.hpp>
 #include <spgeng/gaminc.hpp>
-
-//' Log of 1-cdf for the generalized gamma with shape xk
-
+//
+// Log of 1-cdf for the generalized gamma with shape xk
+//
 double pbmlgg(double z,
               double qq,
               double sqrtxk,
@@ -181,13 +183,15 @@ if(qq > 0) {
   
 }
 
+
+
 #include <base/base.hpp>
 #include <utility/dexpc.hpp>
 #include <sbvn/derfc.hpp>
 #include <spgeng/gaminc.hpp>
-
-//' log cdf(z) for the generalized gamma with shape xk
-
+//
+// log cdf(z) for the generalized gamma with shape xk
+//
 double pblgg(double z,
               double qq,
               double sqrtxk,
@@ -215,13 +219,14 @@ if(qq > 0) {
 }
 
 
+
 #include <base/base.hpp>
 #include <utility/dexpc.hpp>
 #include <sbvn/derfc.hpp>
 #include <spgeng/gaminc.hpp>
-
-//' 1-cdf(z) for the generalized gamma with shape xk
-
+//
+// 1-cdf(z) for the generalized gamma with shape xk
+//
 double pbmgg(double z,
              double qq,
              double sqrtxk,
@@ -242,6 +247,6 @@ if(qq > 0) {
   
 }
 
-  return half * derfc(z * root);
+return half * derfc(z * root);
   
 }
