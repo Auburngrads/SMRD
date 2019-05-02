@@ -59,7 +59,8 @@ int kfunca,ier = 0;
      
       if((funarg <= zero) or (funarg >= one)) {
         
-          Rcpp::stop("\nFUNARG ERROR IN FUNC2\n");
+          Rcpp::Rcout << "\nfunarg = \n" << funarg << std::endl;
+          Rcpp::warning("\nFUNARG ERROR IN FUNC2\n");
         
       }
       
