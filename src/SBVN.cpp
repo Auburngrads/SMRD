@@ -51,13 +51,13 @@ return Rcpp::List::create(Named("ah") = ah,
 #include <base/base.hpp>
 #include <sbvn/bivnor.hpp>
 
-//' @description Compute the probability that a bivariate 
-//'              normal with mean \code{vectorc(xmu1,xmu2)}, 
-//'              variances \code{v1} and \code{v2} and 
-//'              covariance \code{c12} has \code{x1 > ah}
-//'              and \code{x2 > ak}.
-//'              
-//' @source Daniel F. Heitjan 17 March 1991
+// @description Compute the probability that a bivariate 
+//              normal with mean \code{vectorc(xmu1,xmu2)}, 
+//              variances \code{v1} and \code{v2} and 
+//              covariance \code{c12} has \code{x1 > ah}
+//              and \code{x2 > ak}.
+//              
+// @source Daniel F. Heitjan 17 March 1991
 void bvnprb(int &i,
             Rcpp::NumericVector &ah,
             Rcpp::NumericVector &ak,
@@ -277,9 +277,8 @@ line390: biv_nor = b;
 #include <base/base.hpp>
 #include <sbvn/wqm_calerf.hpp>
 
-//' Compute the error function
-//' @source W. J. Cody - January 8, 1985
-
+// Compute the error function
+// @source W. J. Cody - January 8, 1985
 double derf(double x){
   
 int jint = 0;
@@ -371,7 +370,6 @@ return result;
 // argonne national laboratory;
 // argonne, il 60439;
 // latest modification: january 8, 1985;
-
 void wqm_calerf(double &arg,
                 double &result,
                 int &jint){
