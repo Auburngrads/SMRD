@@ -273,7 +273,7 @@ if(debug::kprint > 3) {
  
    Rcpp::Rcout << "\nGENMAX BEFORE ASTWW\n" << std::endl;
    
-   for(int ik = 0; ik < 4; ik++){
+   for(int ik = 0; ik < 5; ik++){
      
        if(ipxcd[ik] != R_NilValue) {
       
@@ -281,7 +281,7 @@ if(debug::kprint > 3) {
           Rcpp::Rcout << "i = " << ik << std::endl;
           Rcpp::Rcout << "ipxcd(i) = " << y << std::endl;
      
-   }
+       }
    }
 
    Rcpp::Rcout << "intd = "     << intd      << std::endl;
@@ -314,13 +314,13 @@ if(debug::kprint > 3) {
    iptynw = clone(ty);
 
 // Fit via maximum likelihood
-   // fitww(kmod,kdist,intd,nxd,ipxcd,irelad,
-   //       npard,theta,thetas,kodet,ifix,nparm,
-   //       ipynew,ncoly,nrownw,ipxnew,ncolx,
-   //       ipcode,ipweig,iptynw,ncolty,iptc,
-   //       kcentr,iplabp,ifit,pest,maxit,
-   //       epsx,fstder,xlogl,iyhat,iresid,vcvs,vcv,
-   //       r,start,lstar,maxpp,conlev,ilabp,ilabd,ier);
+   fitww(kmod,kdist,intd,nxd,ipxcd,irelad,
+         npard,theta,thetas,kodet,ifix,nparm,
+         ipynew,ncoly,nrownw,ipxnew,ncolx,
+         ipcode,ipweig,iptynw,ncolty,iptc,
+         kcentr,iplabp,ifit,pest,maxit,
+         epsx,fstder,xlogl,iyhat,iresid,vcvs,vcv,
+         r,start,lstar,maxpp,conlev,ilabp,ilabd,ier);
 
 // Return the fitted values and residuals
    resid = clone(iresid);
