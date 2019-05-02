@@ -30,12 +30,11 @@ return answer;
   
 }
 
+
 #include <base/base.hpp>
 #include <sloglikenhpp/flogrecurrate.hpp>
 #include <sloglikenhpp/fmcfdiff.hpp>
-
-//' Compute the NHPP log likelihood
-
+// Compute the NHPP log likelihood
 double floglikenhpp(Rcpp::NumericVector time, 
                     int ntimes, 
                     Rcpp::NumericVector recurrcosts,
@@ -66,13 +65,12 @@ return floglike_nhpp;
 
 }
 
+
 #include <base/base.hpp>
 #include <sloglikenhpp/flogrecurratepower.hpp>
 #include <sloglikenhpp/flogrecurrateloglin.hpp>
-
-//' Compute the log nhpp recurrence rate
-//' for a given form of the rate function.
-
+// Compute the log nhpp recurrence rate
+// for a given form of the rate function.
 double flogrecurrate(double time, 
                      int kform, 
                      Rcpp::NumericVector theta){
@@ -95,10 +93,9 @@ return flog_recurrate;
 
 }
 
+
 #include <base/base.hpp>
-
-//' Compute the log loglin NHPP recurrence rate
-
+// Compute the log loglin NHPP recurrence rate
 double flogrecurrateloglin(double time, 
                            Rcpp::NumericVector theta){
 
@@ -106,10 +103,9 @@ double flogrecurrateloglin(double time,
   
 }
 
+
 #include <base/base.hpp>
-
-//' Compute the log power law nhpp recurrence rate
-
+// Compute the log power law nhpp recurrence rate
 double flogrecurratepower(double time, 
                           Rcpp::NumericVector theta){
   
@@ -120,11 +116,10 @@ return std::log(beta / eta) + (beta - 1.0e00) * std::log(time / eta);
 
 }
 
+
 #include <base/base.hpp>
 #include <sfmcf/fmcf.hpp>
-
-//' Compute the NHPP mcf difference
-
+// Compute the NHPP mcf difference
 double fmcfdiff(double timel, 
                 double timeu, 
                 int kform,
