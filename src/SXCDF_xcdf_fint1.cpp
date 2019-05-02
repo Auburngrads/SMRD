@@ -7,7 +7,8 @@ using namespace passer2;
 
 //' Function to compute integrand for computing probability involving the compound distribution
 //'
-//' @detail The following variables are communicated through namespace \code{passer1}
+//' @name fint1
+//' @details The following variables are communicated through namespace \code{passer1}
 //' 
 //' \document{
 //'   \item{beta0p}{intercept of the mean log(time)}
@@ -19,7 +20,6 @@ using namespace passer2;
 //'   \item{wp}{log(time)}
 //'   \item{xlogtp}{log of time for which pr(T<tp) computed}
 //'   }
-
 double fint1(double x){
 
 double y,z,fint_1;
