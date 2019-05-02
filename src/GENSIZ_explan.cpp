@@ -41,14 +41,20 @@ if(debug::kprint >= 4){
    Rcpp::Rcout << "nnum = "  << nnum << std::endl;
    Rcpp::Rcout << "iup = "   << iup << std::endl;
    Rcpp::Rcout << "kparm = " << kparm << std::endl;
+   Rcpp::Rcout << "kparv = " << kparv << std::endl;
    Rcpp::Rcout << "nxd = "   << nxd << std::endl;
    Rcpp::Rcout << "intd = "  << intd << std::endl;
    Rcpp::Rcout << "irel = "  << irelad << std::endl;
+   Rcpp::Rcout << "nrvar = "  << nrvar << std::endl;
+   Rcpp::Rcout << "ncolx = "  << ncolx << std::endl;
+   Rcpp::Rcout << "nrelat = "  << nrelat << std::endl;
   
 }
 
+Rcpp::Rcout << "\nHERE\n" << std::endl;
 if(ncolx == 0) goto exit;
 if(nrelat == 0) goto exit;
+Rcpp::Rcout << "\nHERE\n" << std::endl;
 
 for(int irnow = 0; irnow < nrelat; irnow++){
 
@@ -89,10 +95,23 @@ for(int irnow = 0; irnow < nrelat; irnow++){
     nterd = nxd.at(kparm - 1) + intd.at(kparm - 1);
     //ipxcd.at(kparm - 1) = nterd;
 
+    if(debug::kprint >= 4){
+      
+       Rcpp::Rcout << "\nEXPLAN: check\n" << std::endl;
+       Rcpp::Rcout << "nnum = "  << nnum << std::endl;
+       Rcpp::Rcout << "iup = "   << iup << std::endl;
+       Rcpp::Rcout << "kparm = " << kparm << std::endl;
+       Rcpp::Rcout << "kparv = " << kparv << std::endl;
+       Rcpp::Rcout << "nxd = "   << nxd << std::endl;
+       Rcpp::Rcout << "intd = "  << intd << std::endl;
+       Rcpp::Rcout << "irel = "  << irelad << std::endl;
+       
+    }
     // #if nxd(j)=0, we will use the default x pointer from above;
     if(nxd.at(kparm - 1) == 0) {
      
-       ipxcd[irnow] = IntegerVector(1,0);
+       my_vec = IntegerVector(1);
+       ipxcd[irnow] = my_vec;
        
      // if(irnow == 0) explan_g::mu_cols = IntegerVector(1,0);
      // if(irnow == 1) explan_g::si_cols = IntegerVector(1,0);
@@ -174,11 +193,27 @@ if(debug::kprint >= 4){
 
 }
 
-exit: for(int j = 0; j < npardm; j++){
+exit:  if(debug::kprint >= 4){
+  
+          Rcpp::Rcout << "\nEXPLAN: EXIT\n" << std::endl;
+          Rcpp::Rcout << "nnum = "  << nnum << std::endl;
+          Rcpp::Rcout << "iup = "   << iup << std::endl;
+          Rcpp::Rcout << "kparm = " << kparm << std::endl;
+          Rcpp::Rcout << "kparv = " << kparv << std::endl;
+          Rcpp::Rcout << "nxd = "   << nxd << std::endl;
+          Rcpp::Rcout << "intd = "  << intd << std::endl;
+          Rcpp::Rcout << "irel = "  << irelad << std::endl;
+          Rcpp::Rcout << "nrvar = "  << nrvar << std::endl;
+          Rcpp::Rcout << "ncolx = "  << ncolx << std::endl;
+          Rcpp::Rcout << "nrelat = "  << nrelat << std::endl;
+         
+       }
 
-          if(intd.at(j) == 1000) intd.at(j) = 1;
+for(int j = 0; j < npardm; j++){
 
-      }
+    if(intd.at(j) == 1000) intd.at(j) = 1;
+
+}
 
 return;
 }
