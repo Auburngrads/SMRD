@@ -44,27 +44,28 @@ return Rcpp::List::create(Named("t")       = t,
   
 }
 
+
+
 #include <base/base.hpp>
 #include <ssft2gr1/wqm_dqags.hpp>
 #include <surlike/urlikeint.hpp>
 
 using namespace passerurlike;
 
-//' Function to compute log likelihood for an exact failure of mode 1
-//'
-//' @param t           point at which sf is computed
-//' @param mut1        mean of log(t1) when r1=1
-//' @param sigmat1     standard deviation of log(t1) when r1=1
-//' @param mut2        mean of log(t2) when r2=1
-//' @param sigmat2     standard deviation of log(t2) when r2=1
-//' @param mur1        mean of log(r1)
-//' @param sigmar1     standard deviation of log(r1)
-//' @param mur2        mean of log(r2)
-//' @param sigmar2     standard deviation of log(r2)
-//' @param rho         correlation between log(r1) and log(r2)
-//' @param ier         Return condition indicator (ier = 0 if no errors were detected in dqags. 
-//'                    See dqags documentation for meaning of values of ier > 0)
-
+// Function to compute log likelihood for an exact failure of mode 1
+//
+// @param t           point at which sf is computed
+// @param mut1        mean of log(t1) when r1=1
+// @param sigmat1     standard deviation of log(t1) when r1=1
+// @param mut2        mean of log(t2) when r2=1
+// @param sigmat2     standard deviation of log(t2) when r2=1
+// @param mur1        mean of log(r1)
+// @param sigmar1     standard deviation of log(r1)
+// @param mur2        mean of log(r2)
+// @param sigmar2     standard deviation of log(r2)
+// @param rho         correlation between log(r1) and log(r2)
+// @param ier         Return condition indicator (ier = 0 if no errors were detected in dqags. 
+//                    See dqags documentation for meaning of values of ier > 0)
 double urlike(double t,
               double mut1,
               double sigmat1,
@@ -133,28 +134,30 @@ return ur_like;
 
 }
 
+
+
 #include <base/base.hpp>
 #include <ssft2gr1/sft2gr1.hpp>
 
 using namespace passerurlike;
 
-//' Function to compute integrand for computing  the sf of t2 given r1
-//'
-//' @details The following variables are communicated through common
-//'
-//' \document{
-//'   \item{tlogp}{log of time point for evaluation of the conditional sf}
-//'   \item{mut1p}{mean of log(t1) when r1=1}
-//'   \item{sigmat1p}{standard deviation of log(t1) when r1=1}
-//'   \item{mut2p}{mean of log(t2) when r2=1}
-//'   \item{sigmat2p}{standard deviation of log(t2) when r2=1}
-//'   \item{mur1p}{mean of log(r1)}
-//'   \item{sigmar1p}{standard deviation of log(r1)}
-//'   \item{mur2p}{mean of log(r2)}
-//'   \item{sigmar2p}{standard deviation of log(r2)}
-//'   \item{rhop}{correlation between log(r1) and log(r2)}
-//' }
-
+// Function to compute integrand for computing  the sf of t2 given r1
+//
+// @details The following variables are communicated through common
+//
+// \document{
+//   \item{tlogp}{log of time point for evaluation of the conditional sf}
+//   \item{mut1p}{mean of log(t1) when r1=1}
+//   \item{sigmat1p}{standard deviation of log(t1) when r1=1}
+//   \item{mut2p}{mean of log(t2) when r2=1}
+//   \item{sigmat2p}{standard deviation of log(t2) when r2=1}
+//   \item{mur1p}{mean of log(r1)}
+//   \item{sigmar1p}{standard deviation of log(r1)}
+//   \item{mur2p}{mean of log(r2)}
+//   \item{sigmar2p}{standard deviation of log(r2)}
+//   \item{rhop}{correlation between log(r1) and log(r2)}
+// }
+//
 double urlikeint(double r1log){
 
 double mut1gr1,ztigr1,zr1,tmp1,tmp2,tmp3;
