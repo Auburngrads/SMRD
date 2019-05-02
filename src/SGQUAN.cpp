@@ -94,8 +94,7 @@ return res;
 #include <postkp/dlgama.hpp>
 #include <utility/dexpc.hpp>
 
-//' Quantile of gamma distribution with shape at probability p
-
+// Quantile of gamma distribution with shape at probability p
 double qugamm(double p,
               double shape){
   
