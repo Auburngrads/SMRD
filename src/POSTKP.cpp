@@ -5,7 +5,7 @@
 //'  Compute empirical the predictive distributions 
 //'  (pdf, cdf) for the kth order statistic in a 
 //'  future sample.
-//'  @name postkp
+//'  @name POSTKP
 //'  
 //' @param nsamsz The size of the future sample
 //' @param kord The order statistic
@@ -83,11 +83,12 @@ cdf.at(i) = cdf.at(i) / float(nsim);
 #include <base/base.hpp>
 #include <postkp/dlgama.hpp>
 
-//' Return log factorials through a table lookup
-//' 
-//' Set the dimension of d to nmax+1 where nmax
-//' is the largest argument to be used in flnf.
-
+// Return log factorials through a table lookup
+// 
+// Set the dimension of d to nmax+1 where nmax
+// is the largest argument to be used in flnf.
+// @name flnf
+// @noRd
 double flnf(int j) {
   
   return dlgama(float(j + 1));
@@ -96,73 +97,74 @@ double flnf(int j) {
 
 #include <base/base.hpp>
 
-//' Calculate the log(gamma) function for a real argument
-//' 
-//' Computation is based on an algorithm outlined in 
-//' references 1 and 2.  The program uses rational 
-//' functions that approximate log(gamma) to at least 
-//' 18 significant decimal digits.  The approximation 
-//' for x >= 12 is from reference 3.  Approximations
-//' for x < 12.0 are unpublished.  Lower order 
-//' approximations can be substituted on machines with 
-//' less precise arithmetic.
-//'
-//'
-//' Explanation of machine-dependent constants
-//'
-//' xbig   - the largest argument for which ln(gamma(x)) is representable
-//'          in the machine, i.e., the solution to the equation
-//'                  ln(gamma(xbig)) = xinf.
-//' xinf   - the largest machine representable floating-point number.
-//' eps    - the smallest positive floating-point number such that
-//'          1.0+eps .gt. 1.0
-//' frtbig - rough estimate of the fourth root of xbig
-//'
-//'     approximate values for some important machines are:
-//'
-//'          ibm/370   cdc/7600   univac/110x      vax 11/780
-//'           (d.p.)  (s.p.,rndg)    (d.p.)      (s.p.)     (d.p.)
-//'
-//' xbig    4.293d+73  1.716e+319  1.280d+305  2.057e+36  2.057d+36
-//' xinf    7.230d+75  1.260e+322  8.980d+307  1.701e+38  1.701d+38
-//' eps     2.220d-16  3.550e-015  1.735d-018  5.960e-08  1.388d-17
-//' frtbig  2.500d+18  6.400e+079  1.800d+076  1.100e+09  1.100d+09
-//'
-//'
-//' error returns
-//'
-//'  the program returns the value xinf for singularities or
-//'     when overflow would occur.  the computation is believed
-//'     to be free of underflow and overflow.
-//'
-//'
-//' other subprograms required (single precision version)
-//'
-//'      alog,exp,float,ifix,sin
-//'
-//' other subprograms required (double precision version)
-//'
-//'     dble,dexp,dlog,dsin,float,ifix,sngl
-//'
-//'
-//' References:
-//'
-//'  1) w. j. cody and k. e. hillstrom, 'chebyshev approximations for
-//'     the natural logarithm of the gamma function,' math. comp. 21,
-//'     1967, pp. 198-203.
-//'
-//'  2) k. e. hillstrom, anl/amd program anlc366s, dgamma/dlgama, may,
-//'     1969.
-//'
-//'  3) hart, et. al., computer approximations, wiley and sons, new
-//'     york, 1968.
-//'
-//'
-//'  author: w. j. cody
-//'          argonne national  laboratory
-//'
-//'  latest modification: july 14, 1983
-
+// Calculate the log(gamma) function for a real argument
+// 
+// Computation is based on an algorithm outlined in 
+// references 1 and 2.  The program uses rational 
+// functions that approximate log(gamma) to at least 
+// 18 significant decimal digits.  The approximation 
+// for x >= 12 is from reference 3.  Approximations
+// for x < 12.0 are unpublished.  Lower order 
+// approximations can be substituted on machines with 
+// less precise arithmetic.
+//
+//
+// Explanation of machine-dependent constants
+//
+// xbig   - the largest argument for which ln(gamma(x)) is representable
+//          in the machine, i.e., the solution to the equation
+//                  ln(gamma(xbig)) = xinf.
+// xinf   - the largest machine representable floating-point number.
+// eps    - the smallest positive floating-point number such that
+//          1.0+eps .gt. 1.0
+// frtbig - rough estimate of the fourth root of xbig
+//
+//     approximate values for some important machines are:
+//
+//          ibm/370   cdc/7600   univac/110x      vax 11/780
+//           (d.p.)  (s.p.,rndg)    (d.p.)      (s.p.)     (d.p.)
+//
+// xbig    4.293d+73  1.716e+319  1.280d+305  2.057e+36  2.057d+36
+// xinf    7.230d+75  1.260e+322  8.980d+307  1.701e+38  1.701d+38
+// eps     2.220d-16  3.550e-015  1.735d-018  5.960e-08  1.388d-17
+// frtbig  2.500d+18  6.400e+079  1.800d+076  1.100e+09  1.100d+09
+//
+//
+// error returns
+//
+//  the program returns the value xinf for singularities or
+//     when overflow would occur.  the computation is believed
+//     to be free of underflow and overflow.
+//
+//
+// other subprograms required (single precision version)
+//
+//      alog,exp,float,ifix,sin
+//
+// other subprograms required (double precision version)
+//
+//     dble,dexp,dlog,dsin,float,ifix,sngl
+//
+//
+// References:
+//
+//  1) w. j. cody and k. e. hillstrom, 'chebyshev approximations for
+//     the natural logarithm of the gamma function,' math. comp. 21,
+//     1967, pp. 198-203.
+//
+//  2) k. e. hillstrom, anl/amd program anlc366s, dgamma/dlgama, may,
+//     1969.
+//
+//  3) hart, et. al., computer approximations, wiley and sons, new
+//     york, 1968.
+//
+//
+//  author: w. j. cody
+//          argonne national  laboratory
+//
+//  latest modification: july 14, 1983
+//  @name dlgama
+//  @noRd
 double dlgama(double x){
 
 double corr,eps = 1.388e-17,frtbig = 1.1e9,pnt68 = 0.6796875e0;
