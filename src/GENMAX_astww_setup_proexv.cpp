@@ -156,7 +156,7 @@ for(int j = 1; j <= nparm; j++){
 
 }
 
-   for(int ik = 0; ik < 4; ik++){
+   for(int ik = 0; ik < 5; ik++){
      
        if(ipxcd[ik] != R_NilValue) {
       
@@ -167,7 +167,7 @@ for(int j = 1; j <= nparm; j++){
    }
    }
    
-      for(int ik = 0; ik < 4; ik++){
+      for(int ik = 0; ik < 5; ik++){
      
        if(ipxcd[ik] != R_NilValue) {
       
