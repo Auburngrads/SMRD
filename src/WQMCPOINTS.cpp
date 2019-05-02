@@ -112,105 +112,105 @@ return Rcpp::List::create(Named("ints") = ints,
 #include <wqmpoints/wqm_points.hpp>
 #include <wqm_cdfest/wqm_cdfest.hpp>
 
-//' Call cdfest and points
-//'
-//' subroutine to compute the nonparametric maximum likelihood
-//' estimate of the cumulative distribution function
-//' and map to plotting points
-//' if possible, this is done with a generalized version of the
-//' kaplan-meier estimate, and otherwise, by using
-//' turnbull's e-m algorithm
-//' this shell routine sets up scratch array pointers and
-//' calls the basic routine
-//' inputs:
-//'   y(n,ny)      for simple data this is just a vector of length n (ny=1)
-//'                   more generally, first (second) col
-//'                   contains lower (upper) limits
-//'                   for type 4 (group censored) observations.
-//'                   if ny=2, for all other types set y(i,1)=y(i,2)
-//'   ny          number of cols in y (1 or 2)   ny = 1 for simple data
-//'   codes(n)    vector of censor codes
-//'                   0       dummy observation
-//'                   1       exact failure time
-//'                   2       right censored observation
-//'                   3       left censored observation
-//'                   4       interval or group censored obser.
-//'                   5       exact failure time recoded as a small interval
-//'   weight(n)   vector of observation weight or multiplicities
-//'   ty(n,nty)     first (second) col contains lower (upper) truncation limits
-//'                   for type 4 (interval truncated) observations.
-//'                   if nty=2, for all other types set ty(i,1)=ty(i,2)
-//'   nty          number of cols in ty (0, 1 or 2)
-//'                if nty=0, there is no truncation and ty is not accessed
-//'   tcodes(n)    vector of truncation codes
-//'                   1       no truncation
-//'                   2       right truncated observation
-//'                   3       left truncated observation
-//'                   4       interval truncated obser.
-//'   n           number of rows in y
-//'   dscrat(1)   double precision scratch array length (3n+2)
-//'   scrat(1)    real scratch array of
-//'                   length max((7*n),maxmsd*(maxmsd-1)/2)
-//'   iscrat(1)   integer scratch array of length (6*n+4)
-//'   iprint       print level for debug dump
-//'                   iprint=0 for no debug output
-//'                    if>0 dump setup and every iprint iteration
-//'                 iprint=1 gives the maximum amount of output
-//'                 iprint=10 is a good choice to debug
-//'   maxit       maximum number of iterations for s-c algorithm
-//'   tol         desired estimation accuracy (0<tol<.1)
-//'   maxmsd          maximum m for which the full information matrix
-//'                   estimates of the standard errors can be computed
-//'   nstart      =0 for automatic start values
-//'                  otherwise send down nstart values in prob
-//'                  (for restart)
-//' outputs:
-//'   x(n+1)      point on data scale x(i)=y(i) for simple data
-//'   q(n+1)      scratch space
-//'   prob(n+1)   prob(i) is an estimate of probability less than x(i)
-//'   m           return actual length of p, q, and prob (depends on data)
-//'   pchmax      returns max change in last iter if it was more than tol
-//'                   (0.0 if kaplan-meier was used)
-//'   ier         error code return
-//'               0     no error
-//'               1     n.le.0 on input
-//'               2     ny not equal to 1 or 2
-//'               3     nty not between 0 and 2
-//'               4     tol outside range (0, 0.1)
-//'               6     censor code out of range 0 to 4
-//'               7     y(i,1).ne.y(i,2) in a type 1, 2, or 3 observation
-//'               8     y(i,1).lt.y(i,2) in type 4 obs
-//'               9     ny=1 but type 4 obs found
-//'              10     tcode outside range 1 to 4
-//'              11     tcode=1, 2, or 3 but tyl.ne.tyu
-//'              12     backwards truncation interval
-//'              12     ty(i,1).lt.ty(i,2) in type 4 obs
-//'              13     only 1 col of truncation values, code 4 found
-//'              14     not enough data to estimate distribution
-//'                        (e.g., all right censored observations)
-//'              15     nstart>0 does not agree with computed m
-//'              16     observation not within the truncation interval
-//'             *21     product-limit estimate could not be computed
-//'                     directly and maxmsd was too small to allow the
-//'                     full information matrix to be computed
-//'                     an approximation was computed under the assumption
-//'                     that the individual hazard
-//'                     estimates are uncorrelated
-//'             *22     information matrix not positive definite
-//'             *23     only one non-zero s probability
-//' 
-//'          * signifies warning message only
-//' 
-//' ***************************************************************
-//' ****************************************************
-//' *                                                   *
-//' *   copyright c  1975-2008                          *
-//' *                     by william q. meeker, jr.     *
-//' *                        5697 arrasmith trail       *
-//' *                        ames, iowa     50010       *
-//' *                                                   *
-//' ****************************************************
-
+// Call cdfest and points
+//
+// subroutine to compute the nonparametric maximum likelihood
+// estimate of the cumulative distribution function
+// and map to plotting points
+// if possible, this is done with a generalized version of the
+// kaplan-meier estimate, and otherwise, by using
+// turnbull's e-m algorithm
+// this shell routine sets up scratch array pointers and
+// calls the basic routine
+// inputs:
+//   y(n,ny)      for simple data this is just a vector of length n (ny=1)
+//                   more generally, first (second) col
+//                   contains lower (upper) limits
+//                   for type 4 (group censored) observations.
+//                   if ny=2, for all other types set y(i,1)=y(i,2)
+//   ny          number of cols in y (1 or 2)   ny = 1 for simple data
+//   codes(n)    vector of censor codes
+//                   0       dummy observation
+//                   1       exact failure time
+//                   2       right censored observation
+//                   3       left censored observation
+//                   4       interval or group censored obser.
+//                   5       exact failure time recoded as a small interval
+//   weight(n)   vector of observation weight or multiplicities
+//   ty(n,nty)     first (second) col contains lower (upper) truncation limits
+//                   for type 4 (interval truncated) observations.
+//                   if nty=2, for all other types set ty(i,1)=ty(i,2)
+//   nty          number of cols in ty (0, 1 or 2)
+//                if nty=0, there is no truncation and ty is not accessed
+//   tcodes(n)    vector of truncation codes
+//                   1       no truncation
+//                   2       right truncated observation
+//                   3       left truncated observation
+//                   4       interval truncated obser.
+//   n           number of rows in y
+//   dscrat(1)   double precision scratch array length (3n+2)
+//   scrat(1)    real scratch array of
+//                   length max((7*n),maxmsd*(maxmsd-1)/2)
+//   iscrat(1)   integer scratch array of length (6*n+4)
+//   iprint       print level for debug dump
+//                   iprint=0 for no debug output
+//                    if>0 dump setup and every iprint iteration
+//                 iprint=1 gives the maximum amount of output
+//                 iprint=10 is a good choice to debug
+//   maxit       maximum number of iterations for s-c algorithm
+//   tol         desired estimation accuracy (0<tol<.1)
+//   maxmsd          maximum m for which the full information matrix
+//                   estimates of the standard errors can be computed
+//   nstart      =0 for automatic start values
+//                  otherwise send down nstart values in prob
+//                  (for restart)
+// outputs:
+//   x(n+1)      point on data scale x(i)=y(i) for simple data
+//   q(n+1)      scratch space
+//   prob(n+1)   prob(i) is an estimate of probability less than x(i)
+//   m           return actual length of p, q, and prob (depends on data)
+//   pchmax      returns max change in last iter if it was more than tol
+//                   (0.0 if kaplan-meier was used)
+//   ier         error code return
+//               0     no error
+//               1     n.le.0 on input
+//               2     ny not equal to 1 or 2
+//               3     nty not between 0 and 2
+//               4     tol outside range (0, 0.1)
+//               6     censor code out of range 0 to 4
+//               7     y(i,1).ne.y(i,2) in a type 1, 2, or 3 observation
+//               8     y(i,1).lt.y(i,2) in type 4 obs
+//               9     ny=1 but type 4 obs found
+//              10     tcode outside range 1 to 4
+//              11     tcode=1, 2, or 3 but tyl.ne.tyu
+//              12     backwards truncation interval
+//              12     ty(i,1).lt.ty(i,2) in type 4 obs
+//              13     only 1 col of truncation values, code 4 found
+//              14     not enough data to estimate distribution
+//                        (e.g., all right censored observations)
+//              15     nstart>0 does not agree with computed m
+//              16     observation not within the truncation interval
+//             *21     product-limit estimate could not be computed
+//                     directly and maxmsd was too small to allow the
+//                     full information matrix to be computed
+//                     an approximation was computed under the assumption
+//                     that the individual hazard
+//                     estimates are uncorrelated
+//             *22     information matrix not positive definite
+//             *23     only one non-zero s probability
+// 
+//          * signifies warning message only
+// 
+// ***************************************************************
+// ****************************************************
+// *                                                   *
+// *   copyright c  1975-2008                          *
+// *                     by william q. meeker, jr.     *
+// *                        5697 arrasmith trail       *
+// *                        ames, iowa     50010       *
+// *                                                   *
+// ****************************************************
+//
 void wqm_cpoints(Rcpp::NumericMatrix &y,
                  int &ny,
                  Rcpp::IntegerVector &codes,
