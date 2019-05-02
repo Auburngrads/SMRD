@@ -44,26 +44,28 @@ return Rcpp::List::create(Named("ier") = ier,
 
 }
 
+
+
 #include <base/base.hpp>
 #include <ssft2gr1/wqm_dqags.hpp>
 #include <ssft2gr1/sft2gr1int.hpp>
 
 using namespace passersft2gr1;
-
-//' Subroutine to compute the sf of t2 given r1 (rate 1)
-//' obtained by averaging over the conditional distribution of r2
-//'
-//' @param tlog        log of point at which sf is computed
-//' @param r1          given value of r1
-//' @param mut2        mean of log(t2) when r2=1
-//' @param sigmat2     standard deviation of log(t2) when r2=1
-//' @param mur1        mean of log(r1)
-//' @param sigmar1     standard deviation of log(r1)
-//' @param mur2        mean of log(r2)
-//' @param sigmar2     standard deviation of log(r2)
-//' @param rho         correlation between log(r1) and log(r2)
-//' @param ier         return condition indicator (ier = 0 if no errors were detected in dqags. See dqags documentation for meaning of values of ier>0.)
-
+//
+// Subroutine to compute the sf of t2 given r1 (rate 1)
+// obtained by averaging over the conditional distribution of r2
+//
+// @param tlog        log of point at which sf is computed
+// @param r1          given value of r1
+// @param mut2        mean of log(t2) when r2=1
+// @param sigmat2     standard deviation of log(t2) when r2=1
+// @param mur1        mean of log(r1)
+// @param sigmar1     standard deviation of log(r1)
+// @param mur2        mean of log(r2)
+// @param sigmar2     standard deviation of log(r2)
+// @param rho         correlation between log(r1) and log(r2)
+// @param ier         return condition indicator (ier = 0 if no errors were detected in dqags. See dqags documentation for meaning of values of ier>0.)
+//
 double sft2gr1(double tlog, 
                double r1log, 
                double mut2, 
