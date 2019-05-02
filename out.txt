@@ -1,0 +1,664 @@
+
+GENFUN**1**
+
+kmod = 0
+kdist = 2
+theta = 0 0
+thetas = 0 0
+kodet = 0 0
+ifix = 0 0
+nparm = 2
+npard = 2
+y = 17.8800
+28.9200
+33.0000
+41.5200
+42.1200
+45.6000
+48.4000
+51.8400
+51.9600
+54.1200
+55.5600
+67.8000
+68.6400
+68.6400
+68.8800
+84.1200
+93.1200
+98.6400
+105.120
+105.840
+127.920
+128.040
+173.400
+
+ncoly = 1
+nrownw = 23
+x = 1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+1.00000
+
+ncolx = 0
+codes = 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+weight = 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ty = 1.00000
+
+ncolty = 0
+tcodes = 1
+kparv = 1
+nrvar = 1
+mrelat = 1
+
+nrelat = 1
+mnrvar = 1
+conlev = 0.95
+kodef = 2
+fargv = 0.001 0.005 0.01 0.05 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 0.95 0.99
+nargv = 15
+kfuncp = 2
+kpoint = 0
+vcvs = 0.0110355 -0.00257045
+-0.00257045 0.00553455
+
+epsx = 1e-008
+
+EXPLAN START
+
+nnum = 0
+iup = 0
+kparm = 0
+kparv = 1
+nxd = 0 0 0 0 0
+intd = 1000 1000 1000 1000 1000
+irel = 1 1 1 1 1
+nrvar = 1
+ncolx = 0
+nrelat = 1
+
+HERE
+
+
+EXPLAN: EXIT
+
+nnum = 0
+iup = 0
+kparm = 0
+kparv = 1
+nxd = 0 0 0 0 0
+intd = 1000 1000 1000 1000 1000
+irel = 1 1 1 1 1
+nrvar = 1
+ncolx = 0
+nrelat = 1
+
+DISTXX iter = 0
+kdist = 2
+kmod = 0
+kmodp = 1
+npard = 2
+igtyd(i) = 111
+ipmark(i) = 1
+maxpn = 20
+
+DISTXX iter = 1
+kdist = 2
+kmod = 0
+kmodp = 1
+npard = 2
+igtyd(i) = 222
+ipmark(i) = 2
+maxpn = 20
+
+PXMAT
+
+i = 0
+xmat(i,0) = 1
+
+PXMAT
+
+i = 1
+xmat(i,0) = 1
+
+PXMAT
+
+i = 2
+xmat(i,0) = 1
+
+PXMAT
+
+i = 3
+xmat(i,0) = 1
+
+PXMAT
+
+i = 4
+xmat(i,0) = 1
+
+PXMAT
+
+i = 5
+xmat(i,0) = 1
+
+PXMAT
+
+i = 6
+xmat(i,0) = 1
+
+PXMAT
+
+i = 7
+xmat(i,0) = 1
+
+PXMAT
+
+i = 8
+xmat(i,0) = 1
+
+PXMAT
+
+i = 9
+xmat(i,0) = 1
+
+PXMAT
+
+i = 10
+xmat(i,0) = 1
+
+PXMAT
+
+i = 11
+xmat(i,0) = 1
+
+PXMAT
+
+i = 12
+xmat(i,0) = 1
+
+PXMAT
+
+i = 13
+xmat(i,0) = 1
+
+PXMAT
+
+i = 14
+xmat(i,0) = 1
+
+PXMAT
+
+i = 15
+xmat(i,0) = 1
+
+PXMAT
+
+i = 16
+xmat(i,0) = 1
+
+PXMAT
+
+i = 17
+xmat(i,0) = 1
+
+PXMAT
+
+i = 18
+xmat(i,0) = 1
+
+PXMAT
+
+i = 19
+xmat(i,0) = 1
+
+PXMAT
+
+i = 20
+xmat(i,0) = 1
+
+PXMAT
+
+i = 21
+xmat(i,0) = 1
+
+PXMAT
+
+i = 22
+xmat(i,0) = 1
+
+DISTXX iter = 0
+kdist = 2
+kmod = 0
+kmodp = 1
+npard = 2
+igtyd(i) = 111
+ipmark(i) = 1
+maxpn = 2
+
+DISTXX iter = 1
+kdist = 2
+kmod = 0
+kmodp = 1
+npard = 2
+igtyd(i) = 222
+ipmark(i) = 2
+maxpn = 2
+
+PTPAR AFTER GSPLIT
+
+igsave = 1
+igkode = 1
+iglab = 1
+
+PTPAR AFTER GSPLIT
+
+igsave = 2
+igkode = 2
+iglab = 2
+
+PROEX1 **4**
+
+j = 0
+nxd(j) = 0
+intd(j) = 1
+nterd = 1
+igtyd(j) = 111
+irelad(j) = 1
+j = 1
+nxd(j) = 0
+intd(j) = 1
+nterd = 1
+igtyd(j) = 222
+irelad(j) = 1
+
+PROEX1 **4** j = 0
+nxg(j) = 0
+intg(j) = 1
+nterg(j) = 1
+igtyg(j) = 1
+irelag(j) = 1
+ipthet(j) = 1
+
+PROEX1 **4** j = 1
+nxg(j) = 0
+intg(j) = 1
+nterg(j) = 1
+igtyg(j) = 2
+irelag(j) = 1
+ipthet(j) = 2
+
+PROEX1 **4** j = 2
+nxg(j) = 0
+intg(j) = 0
+nterg(j) = 0
+igtyg(j) = 0
+irelag(j) = 0
+ipthet(j) = 0
+
+PROEX1 **4** j = 0
+ifix(j) = 0
+kodet(j) = 1
+
+PROEX1 **4** j = 1
+ifix(j) = 0
+kodet(j) = 2
+
+SETUP AFTER STSET
+
+kmccde = 0
+
+fdiscd**4**
+iscd = 0
+
+TRDAT**4** j = 0
+iscd(j) = 0
+xbar(j) = 1
+xbaru(j) = 0
+sd(j) = 1
+
+LEAVING TRDAT
+
+
+SCPX START
+
+ipthet = 1 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ngame = 3
+nterg = 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+nxg = 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+nparm = 2
+thetas = 0 0
+theta = 0 0
+
+scpx**4**
+
+igame = 0
+ipthet = 1
+intg = 1
+nxg = 0
+nterg = 1
+theta = 0 0
+thetas = 0 0
+
+scpx**4**
+
+igame = 1
+ipthet = 2
+intg = 1
+nxg = 0
+nterg = 1
+theta = 0 0
+thetas = 0 0
+
+scpx**4**
+
+igame = 2
+ipthet = 0
+intg = 0
+nxg = 0
+nterg = 0
+theta = 0 0
+thetas = 0 0
+
+scpx**END**
+
+i = 0
+theta(i) = 0
+thetas(i) = 0
+
+scpx**END**
+
+i = 1
+theta(i) = 0
+thetas(i) = 0
+
+GENFUN AFTER SETUP
+
+ier = 0
+theta = 0 0
+thetas = 0 0
+
+PXMAT
+
+i = 0
+xmat(i,0) = 1
+
+PXMAT
+
+i = 1
+xmat(i,0) = 1
+
+PXMAT
+
+i = 2
+xmat(i,0) = 1
+
+PXMAT
+
+i = 3
+xmat(i,0) = 1
+
+PXMAT
+
+i = 4
+xmat(i,0) = 1
+
+PXMAT
+
+i = 5
+xmat(i,0) = 1
+
+PXMAT
+
+i = 6
+xmat(i,0) = 1
+
+PXMAT
+
+i = 7
+xmat(i,0) = 1
+
+PXMAT
+
+i = 8
+xmat(i,0) = 1
+
+PXMAT
+
+i = 9
+xmat(i,0) = 1
+
+PXMAT
+
+i = 10
+xmat(i,0) = 1
+
+PXMAT
+
+i = 11
+xmat(i,0) = 1
+
+PXMAT
+
+i = 12
+xmat(i,0) = 1
+
+PXMAT
+
+i = 13
+xmat(i,0) = 1
+
+PXMAT
+
+i = 14
+xmat(i,0) = 1
+
+PXMAT
+
+i = 15
+xmat(i,0) = 1
+
+PXMAT
+
+i = 16
+xmat(i,0) = 1
+
+PXMAT
+
+i = 17
+xmat(i,0) = 1
+
+PXMAT
+
+i = 18
+xmat(i,0) = 1
+
+PXMAT
+
+i = 19
+xmat(i,0) = 1
+
+PXMAT
+
+i = 20
+xmat(i,0) = 1
+
+PXMAT
+
+i = 21
+xmat(i,0) = 1
+
+PXMAT
+
+i = 22
+xmat(i,0) = 1
+
+DISTXX iter = 0
+kdist = 2
+kmod = 0
+kmodp = 1
+npard = 2
+igtyd(i) = 111
+ipmark(i) = 1
+maxpn = 2
+
+DISTXX iter = 1
+kdist = 2
+kmod = 0
+kmodp = 1
+npard = 2
+igtyd(i) = 222
+ipmark(i) = 2
+maxpn = 2
+
+PTPAR AFTER GSPLIT
+
+igsave = 1
+igkode = 1
+iglab = 1
+
+PTPAR AFTER GSPLIT
+
+igsave = 2
+igkode = 2
+iglab = 2
+
+PROEX1 **4**
+
+j = 0
+nxd(j) = 0
+intd(j) = 1
+nterd = 1
+igtyd(j) = 111
+irelad(j) = 1
+j = 1
+nxd(j) = 0
+intd(j) = 1
+nterd = 1
+igtyd(j) = 222
+irelad(j) = 1
+
+PROEX1 **4** j = 0
+nxg(j) = 0
+intg(j) = 1
+nterg(j) = 1
+igtyg(j) = 1
+irelag(j) = 1
+ipthet(j) = 1
+
+PROEX1 **4** j = 1
+nxg(j) = 0
+intg(j) = 1
+nterg(j) = 1
+igtyg(j) = 2
+irelag(j) = 1
+ipthet(j) = 2
+
+PROEX1 **4** j = 2
+nxg(j) = 0
+intg(j) = 0
+nterg(j) = 0
+igtyg(j) = 0
+irelag(j) = 0
+ipthet(j) = 0
+
+PROEX1 **4** j = 0
+ifix(j) = 0
+kodet(j) = 1
+
+PROEX1 **4** j = 1
+ifix(j) = 0
+kodet(j) = 2
+
+SETUP AFTER STSET
+
+kmccde = 0
+
+fdiscd**4**
+iscd = 0
+
+TRDAT**4** j = 0
+iscd(j) = 0
+xbar(j) = 1
+xbaru(j) = 0
+sd(j) = 1
+
+LEAVING TRDAT
+
+
+SCPX START
+
+ipthet = 1 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ngame = 3
+nterg = 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+nxg = 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+nparm = 2
+thetas = 0 0
+theta = 0 0
+
+scpx**4**
+
+igame = 0
+ipthet = 1
+intg = 1
+nxg = 0
+nterg = 1
+theta = 0 0
+thetas = 0 0
+
+scpx**4**
+
+igame = 1
+ipthet = 2
+intg = 1
+nxg = 0
+nterg = 1
+theta = 0 0
+thetas = 0 0
+
+scpx**4**
+
+igame = 2
+ipthet = 0
+intg = 0
+nxg = 0
+nterg = 0
+theta = 0 0
+thetas = 0 0
+
+scpx**END**
+
+i = 0
+theta(i) = 0
+thetas(i) = 0
+
+scpx**END**
+
+i = 1
+theta(i) = 0
+thetas(i) = 0
+
+OUTFUN AFTER SETUP
+
+ier = 0
+kpoint = 0
+kpopu = 0
+kfuncp = 2
