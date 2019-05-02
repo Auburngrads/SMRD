@@ -41,6 +41,8 @@ for(int i = 0; i < num; i++){
   
 }
 
+
+
 #include <base/base.hpp>
 #include <sxpdf3/fint.hpp>
 #include <sbq/zeroin.hpp>
@@ -85,7 +87,6 @@ using namespace passer4;
 // detected in dqags.;
 // see dqags documentation for meaning of;
 // values of ier>0;
-
 void xpdf3(int &ndist1,
            int &ndist2,
            double &beta0,
@@ -289,24 +290,26 @@ return;
 
 }
 
+
+
 #include <base/base.hpp>
 #include <sxcdf/rflpdf.hpp>
 
 using namespace passer3;
 using namespace passer4;
 
-//' Function to compute integrand for computing probability involving the compound distribution
-//'
-//' @details The following variables are communicated through 
-//'          the global namespace \code{passer3}
-//'          
-//' \document{
-//'   \item{beta11p}{slope of the mean log(time)}
-//'   \item{ugamma1p}{mean of fatigue limit}
-//'   \item{sdgammap}{std devn of fatigue limit}
-//'   \item{w1p}{log(time)}
-//'   }
-
+// Function to compute integrand for computing probability involving the compound distribution
+//
+// @details The following variables are communicated through 
+//          the global namespace \code{passer3}
+//          
+// \document{
+//   \item{beta11p}{slope of the mean log(time)}
+//   \item{ugamma1p}{mean of fatigue limit}
+//   \item{sdgammap}{std devn of fatigue limit}
+//   \item{w1p}{log(time)}
+//   }
+//
 double fint(double x){
 
   double f_int,y,z;
