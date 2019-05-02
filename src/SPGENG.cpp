@@ -19,6 +19,8 @@ return Rcpp::List::create(Named("answer") = answer);
   
 }
 
+
+
 #include <base/base.hpp>
 #include <spgeng/usrcdf.hpp>
 #include <genmax/zgtran.hpp>
@@ -26,20 +28,18 @@ return Rcpp::List::create(Named("answer") = answer);
 #include <spgeng/pbgg.hpp>
 #include <spgeng/usrcdf.hpp>
 #include <utility/wqm_dxerc.hpp>
-
-//'  CDF of specified general distribution
-//'  
-//'  gamme(i) for user-specified distributions
-//'  
-//'  dist      i:   1    2    3    4    5    6    7    8    9    10    11
-//'----------------------------------------------------------------------
-//'  sev            m    s    ls
-//'  normal         m    s    ls
-//'  logistic       m    s    ls
-//'  log-exponent   m
-//'  log-gengamma   m    s    ls   q    k    sk   lk  lgk
-//'  log-gamma      m    q    k    sk   lk   gk
-
+//  CDF of specified general distribution
+//  
+//  gamme(i) for user-specified distributions
+//  
+//  dist      i:   1    2    3    4    5    6    7    8    9    10    11
+//  ---------------------------------------------------------------
+//  sev            m    s    ls
+//  normal         m    s    ls
+//  logistic       m    s    ls
+//  log-exponent   m
+//  log-gengamma   m    s    ls   q    k    sk   lk  lgk
+//  log-gamma      m    q    k    sk   lk   gk
 double gcdf(double y,
             Rcpp::NumericVector gamme,
             int kdist){
@@ -99,13 +99,13 @@ return res;
       
 }
 
+
+
 #include <base/base.hpp>
 #include <utility/dexpc.hpp>
 #include <utility/wqm_dxerc.hpp>
 #include <spgeng/gaminc.hpp>
-
-//' CDF(z) for the generalized gamma with shape xk
-
+// CDF(z) for the generalized gamma with shape xk
 double pbgg(double z,
             double qq,
             double sqrtxk,
@@ -130,6 +130,8 @@ if(qq > 0) {
   return half * wqm_dxerc(-z * root);
   
 }
+
+
 
 #include <base/base.hpp>
 #include <postkp/dlgama.hpp>
@@ -233,10 +235,10 @@ exit: prob = one - prob * fact;
       return prob;
 }
 
+
+
 #include <base/base.hpp>
-
-//' user-specified cdf
-
+// user-specified cdf
 double usrcdf(double y,
               Rcpp::NumericVector gamme,
               int kdist){ 
