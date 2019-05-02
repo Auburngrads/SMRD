@@ -32,15 +32,17 @@ Rcpp::List WQMSPHIALL(Rcpp::NumericVector &phib,
                             Named("idist") = idist);
 }
 
+
+
 #include <base/base.hpp>
 #include <wqmsphiall/wqm_ztran.hpp>
 #include <utility/wqm_dxerc.hpp>
 
 using namespace lstd;
 
-//' Compute the cdf, pdf, and the derivative of the pdf
-//' @name wqm_phiall
-
+// Compute the cdf, pdf, and the derivative of the pdf
+// @name wqm_phiall
+//
 void wqm_phiall(double &phib,
                 double &phibm,
                 double &phis,
@@ -94,17 +96,18 @@ return;
 
 }
 
+
 #include <base/base.hpp>
 
 using namespace lstd;
 
-//' Transform standardized observations to avoid 
-//' overflow and underflow problems. Follows the 
-//' approach of Nelson (1982), page 394.
-//'
-//' Modified 5 March 2004 to allow sev and to use 
-//' better code structure.
-
+// Transform standardized observations to avoid 
+// overflow and underflow problems. Follows the 
+// approach of Nelson (1982), page 394.
+//
+// Modified 5 March 2004 to allow sev and to use 
+// better code structure.
+//
 double wqm_ztran(double z, int kdist){
 
 // constants tuned to ieee floating point 64 bit 
@@ -165,6 +168,6 @@ if(z < xkm.at(kdist - 1)){
 
  }
  
-  return wqmztran;
+return wqmztran;
  
 }
