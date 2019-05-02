@@ -45,24 +45,24 @@ debug::kprint = kprint;
 
 using namespace passer5;
 
-//' Compute a quantile given the values of beta0, beta1, sigma, ugamma, sdgamma
-//'
-//' @param ndist1 Integer codes for distribution (1=sev, 2=normal, 3=logistic)
-//' @param ndist2 Same as \code{ndist1}  
-//' @param beta0       intercept of mean log(time) model eqn
-//' @param beta1       slope of mean log(time) model eqn
-//' @param xstr        stress level
-//' @param sigma       std devn of log(time)
-//' @param ugamma      mean of the fatigue limits
-//' @param sdgamma     std devn of the fatigue limits
-//' @param stress      stress level
-//' @param alpha       proportion corresponding to quantile
-//' @param b1 lower bound for beta0
-//' @param b2 upper bound for beta0
-//' @param quan output quantile value
-//' 
-//' @return Quantile value \code{quan}
-
+// Compute a quantile given the values of beta0, beta1, sigma, ugamma, sdgamma
+// 
+// @param ndist1 Integer codes for distribution (1=sev, 2=normal, 3=logistic)
+// @param ndist2 Same as \code{ndist1}  
+// @param beta0       intercept of mean log(time) model eqn
+// @param beta1       slope of mean log(time) model eqn
+// @param xstr        stress level
+// @param sigma       std devn of log(time)
+// @param ugamma      mean of the fatigue limits
+// @param sdgamma     std devn of the fatigue limits
+// @param stress      stress level
+// @param alpha       proportion corresponding to quantile
+// @param b1 lower bound for beta0
+// @param b2 upper bound for beta0
+// @param quan output quantile value
+// @name beta2quan
+// @return Quantile value \code{quan}
+// @noRd
 void beta2quan(int &ndist1,
                int &ndist2,
                double &stress,
@@ -159,8 +159,7 @@ line201: bd2 = bd2 + 2.e00;
 
 using namespace passer5;
 
-//' Function to compute difference between cdf and alpha
-
+// Function to compute difference between cdf and alpha
 double diff(double x){
 
   double DIFF,answer = 0.0e00;
@@ -181,25 +180,25 @@ double diff(double x){
 #include <base/base.hpp>
 #include <utility/dmachine.hpp>
 
-//' A zero of the function  f(x)  is computed in the interval ax,bx .
-//' @param ax     left endpoint of initial interval
-//' @param bx     right endpoint of initial interval
-//' @param f      function subprogram which evaluates f(x) for any x in the interval  ax,bx
-//' @param tol    desired length of the interval of uncertainty of the final result (> 0)
-//' @return zeroin abscissa approximating a zero of  f  in the interval ax,bx
-//'
-//' @detail It is assumed  that   f(ax)   and   f(bx)   have  opposite  signs
-//'         this is checked, and an error message is printed if this is not
-//'         satisfied.   zeroin  returns a zero  x  in the given interval
-//'         ax,bx  to within a tolerance  4*macheps*abs(x)+tol, where macheps  is
-//'         the  relative machine precision defined as the smallest representable
-//'         number such that  1.+macheps .gt. 1.
-//'         
-//'         This function subprogram is a slightly  modified  translation  of
-//'         the algol 60 procedure  zero  given in  richard brent, algorithms for
-//'         minimization without derivatives, prentice-hall, inc. (1973).
-//'         Modified 29 sept to return 0 in the error condition to avoid compile warn
-
+// A zero of the function \code{f(x)} is computed in the interval \code{ax,bx}.
+// 
+// @param ax     left endpoint of initial interval
+// @param bx     right endpoint of initial interval
+// @param f      function subprogram which evaluates \code{f(x)} for any x in the interval  ax,bx
+// @param tol    desired length of the interval of uncertainty of the final result (> 0)
+// @return zeroin abscissa approximating a zero of  f  in the interval ax,bx
+// @name zeroin
+// @details It is assumed that \code{f(ax)} and \code{f(bx)} have opposite signs
+//          this is checked, and an error message is printed if this is not
+//          satisfied. \code{zeroin}  returns a zero x in the given interval
+//          ax,bx to within a tolerance \code{4 * macheps * abs(x) + tol}, where 
+//          \code{macheps} is the relative machine precision defined as the smallest representable
+//          number such that \code{1.0 + macheps > 1}.
+//         
+//         This function subprogram is a slightly  modified  translation  of
+//         the algol 60 procedure  zero  given in  richard brent, algorithms for
+//         minimization without derivatives, prentice-hall, inc. (1973).
+//         Modified 29 sept to return 0 in the error condition to avoid compile warn
 double zeroin(double ax,
               double bx,
               double (*f)(double),
