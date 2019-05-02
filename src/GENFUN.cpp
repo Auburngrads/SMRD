@@ -248,7 +248,9 @@ Rcpp::List ints,doubs,intvec,numvec,nummat;
          numvec = Rcpp::List::create(Named("fest") = fest,
                                      Named("stderr") = std_err,
                                      Named("xlow") = xlow,
-                                     Named("xup")  = xup);
+                                     Named("xup")  = xup,
+                                     Named("theta.hat") = theta,
+                                     Named("thetas.hat") = thetas);
          
          nummat = Rcpp::List::create(Named("vcvs") = vcvs,
                                      Named("y") = y,
