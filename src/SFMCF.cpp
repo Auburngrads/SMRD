@@ -24,9 +24,8 @@ return Rcpp::List::create(Named("answer") = answer);
 #include <sfmcf/fmcfpower.hpp>
 #include <sfmcf/fmcfloglin.hpp>
 
-//' Compute the nhpp mcf for a given
-//' form of the rate function
-
+// Compute the nhpp mcf for a given
+// form of the rate function
 double fmcf(double time,
             int kform,
             Rcpp::NumericVector theta){
@@ -49,8 +48,7 @@ if(kform == 6) { return 0.0e00; }
 
 #include <base/base.hpp>
 
-//' Function to compute the loglin nhpp mcf
-
+// Function to compute the loglin nhpp mcf
 double fmcfloglin(double time,
                   Rcpp::NumericVector theta){
 
@@ -63,8 +61,7 @@ double fmcfloglin(double time,
 
 #include <base/base.hpp>
 
-//' Compute the power law NHPP mcf
-
+// Compute the power law NHPP mcf
 double fmcfpower(double time,
                  Rcpp::NumericVector theta){
 
