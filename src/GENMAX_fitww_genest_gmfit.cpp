@@ -273,7 +273,7 @@ line102: if(debug::kprint >= 3){
    if(irank != nparmm){
       
       ierv = 1;
-      Rcpp::stop("\nGMFIT1: irank != nparmm (error code: -8080)");
+      Rcpp::warning("\nGMFIT1: irank != nparmm (error code: -8080)");
       
    }
    
