@@ -25,19 +25,18 @@ return Rcpp::List::create(Named("answer") = answer);
 #include <utility/dexpc.hpp>
 #include <sgpdfl/pdfggl.hpp>
 
-//'  PDF of specified general distribution
-//'  
-//'  gamme(i) for user-specified distributions
-//'  
-//'  dist      i:   1    2    3    4    5    6    7    8    9    10    11
-//'----------------------------------------------------------------------
-//'  sev            m    s    ls
-//'  normal         m    s    ls
-//'  logistic       m    s    ls
-//'  log-exponent   m
-//'  log-gengamma   m    s    ls   q    k    sk   lk  lgk
-//'  log-gamma      m    q    k    sk   lk   gk
-
+//  PDF of specified general distribution
+//  
+//  gamme(i) for user-specified distributions
+//  
+//  dist      i:   1    2    3    4    5    6    7    8    9    10    11
+//  --------------------------------------------------------------
+//  sev            m    s    ls
+//  normal         m    s    ls
+//  logistic       m    s    ls
+//  log-exponent   m
+//  log-gengamma   m    s    ls   q    k    sk   lk  lgk
+//  log-gamma      m    q    k    sk   lk   gk
 double gpdfl(double y,
              Rcpp::NumericVector gamme,
              int kdist){
@@ -109,8 +108,7 @@ return smpdfl;
 #include <sgpdfl/gpdfl.hpp>
 #include <sgpdfl/usrpdf.hpp>
 
-//' Compute pdf
-
+// Compute pdf
 double gpdf(double y,
             Rcpp::NumericVector gamme,
             int kdist){
@@ -125,8 +123,7 @@ double gpdf(double y,
 #include <base/base.hpp>
 #include <utility/dexpc.hpp>
 
-//' PDF(z) for the generalized gamma with shape xk
-
+// PDF(z) for the generalized gamma with shape xk
 double pdfggl(double z,
               double sigmal,
               double qq,
@@ -167,8 +164,7 @@ if(qq > 0) {
 
 #include <base/base.hpp>
 
-//' User specified pdf
-
+// User specified pdf
 double usrpdf(double y,
               Rcpp::NumericVector gamme,
               int kdist){
