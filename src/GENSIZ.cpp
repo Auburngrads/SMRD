@@ -2,8 +2,6 @@
 #include <gensiz/explan.hpp>
 #include <gensiz/fdnprd.hpp>
 
-using namespace explan_g;
-
 //' Compute the sizes of parameter vectors
 //' 
 //' @description Given model information compute nparm and 
