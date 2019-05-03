@@ -201,7 +201,7 @@ line102: if(debug::kprint >= 3){
 
 // Compute and print the first derivatives
 // In finding the derivatives, use the thetas routine with unfix conv in gett
-   wqm_filld(zero,fstder,1,nparm);
+   fstder = Rcpp::NumericVector(nparm);
    gvec(flkt,nrownw,thetat,delta,nparm,ktrcde,kodet,fstder);
    
 // Get the maximum of the absolute values of the first derivatives
@@ -213,7 +213,7 @@ line102: if(debug::kprint >= 3){
        
    }
    
-   wqm_filld(zero,vcvs,1,nparm * nparm);
+   vcvs = Rcpp::NumericMatrix(nparm,nparm);
    
 // Check the size of the first derivatives
    if(dermx <= dersm) {
@@ -274,6 +274,8 @@ line102: if(debug::kprint >= 3){
       
       ierv = 1;
       Rcpp::warning("\nGMFIT1: irank != nparmm (error code: -8080)");
+      Rcpp::Rcout << "irank = " << irank << std::endl;
+      Rcpp::Rcout << "nparmm = " << nparmm << std::endl;
       
    }
    
