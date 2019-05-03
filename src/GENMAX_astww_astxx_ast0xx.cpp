@@ -2,8 +2,6 @@
 #include <genmax/ast0x1.hpp>
 // #include <genmax/outpar.hpp>
 
-using namespace ast0xx_g;
-
 // Start values for the aft model
 void ast0xx(int &kmod,
             int &kdist,
@@ -41,51 +39,41 @@ void ast0xx(int &kmod,
             double &pchmax){
   
 // Grab space for modified data sets, residuals, etc.
-   ast0xx_g::iresid = Rcpp::NumericMatrix(nrownw, ncoly); // created in GENMAX, create again?
-   ast0xx_g::iyhat  = Rcpp::NumericMatrix(nrownw, ncoly);  // created in GENMAX, create again?
-   ast0xx_g::itimes = Rcpp::NumericMatrix(nrownw, ncoly);
-   ast0xx_g::ip     = Rcpp::NumericVector(nrownw + 3);
-   ast0xx_g::iq     = Rcpp::NumericVector(nrownw + 3);
-   ast0xx_g::iprob  = Rcpp::NumericVector(nrownw + 3);
-   ast0xx_g::ithtmp = Rcpp::NumericVector(nparm);
-   ast0xx_g::iypoin = Rcpp::NumericVector(nrownw + 3);
-   ast0xx_g::ippoin = Rcpp::NumericVector(nrownw + 3);
-   ast0xx_g::ipsd   = Rcpp::NumericVector(nrownw + 3);
-   ast0xx_g::ippsd  = Rcpp::NumericVector(nrownw + 3);
+   Rcpp::NumericMatrix iresid = Rcpp::NumericMatrix(nrownw, ncoly); // created in GENMAX, create again?
+   Rcpp::NumericMatrix iyhat  = Rcpp::NumericMatrix(nrownw, ncoly);  // created in GENMAX, create again?
+   Rcpp::NumericMatrix itimes = Rcpp::NumericMatrix(nrownw, ncoly);
+   Rcpp::NumericVector ip     = Rcpp::NumericVector(nrownw + 3);
+   Rcpp::NumericVector iq     = Rcpp::NumericVector(nrownw + 3);
+   Rcpp::NumericVector iprob  = Rcpp::NumericVector(nrownw + 3);
+   Rcpp::NumericVector ithtmp = Rcpp::NumericVector(nparm);
+   Rcpp::NumericVector iypoin = Rcpp::NumericVector(nrownw + 3);
+   Rcpp::NumericVector ippoin = Rcpp::NumericVector(nrownw + 3);
+   Rcpp::NumericVector ipsd   = Rcpp::NumericVector(nrownw + 3);
+   Rcpp::NumericVector ippsd  = Rcpp::NumericVector(nrownw + 3);
    
    if(debug::kprint >= 2){
       
-      Rcpp::Rcout << "\nAST0XX**3**\n"                 << std::endl;
-      Rcpp::Rcout << "iresid = \n" << ast0xx_g::iresid << std::endl;
-      Rcpp::Rcout << "iyhat = \n"  << ast0xx_g::iyhat  << std::endl;
-      Rcpp::Rcout << "itimes = \n" << ast0xx_g::itimes << std::endl;
-      Rcpp::Rcout << "ip = "     << ast0xx_g::ip     << std::endl;
-      Rcpp::Rcout << "iq = "     << ast0xx_g::iq     << std::endl;
-      Rcpp::Rcout << "iprob = "  << ast0xx_g::iprob  << std::endl;
-      Rcpp::Rcout << "ithtmp = " << ast0xx_g::ithtmp << std::endl;
-      Rcpp::Rcout << "iypoin = " << ast0xx_g::iypoin << std::endl;
-      Rcpp::Rcout << "ippoin = " << ast0xx_g::ippoin << std::endl;
-      Rcpp::Rcout << "ipsd = "   << ast0xx_g::ipsd   << std::endl;
-      Rcpp::Rcout << "ippsd = "  << ast0xx_g::ippsd  << std::endl;
+      Rcpp::Rcout << "\nAST0XX**3**\n"       << std::endl;
+      Rcpp::Rcout << "iresid = \n" << iresid << std::endl;
+      Rcpp::Rcout << "iyhat = \n"  << iyhat  << std::endl;
+      Rcpp::Rcout << "itimes = \n" << itimes << std::endl;
+      Rcpp::Rcout << "ip = "       << ip     << std::endl;
+      Rcpp::Rcout << "iq = "       << iq     << std::endl;
+      Rcpp::Rcout << "iprob = "    << iprob  << std::endl;
+      Rcpp::Rcout << "ithtmp = "   << ithtmp << std::endl;
+      Rcpp::Rcout << "iypoin = "   << iypoin << std::endl;
+      Rcpp::Rcout << "ippoin = "   << ippoin << std::endl;
+      Rcpp::Rcout << "ipsd = "     << ipsd   << std::endl;
+      Rcpp::Rcout << "ippsd = "    << ippsd  << std::endl;
       
    }
 
    ast0x1(kmod,kdist,intd,nxd,ipxcd,irelad,npard,
           theta,thetas,kodet,ifix,nparm,y,ncoly,nrownw,
           x,ncolx,codes,weight,ty,ncolty,tc,kcentr,iplab,
-          maxit,vcvs,vcv,r,ier,
-          ast0xx_g::iresid,
-          ast0xx_g::iyhat,
-          ast0xx_g::itimes,
-          ast0xx_g::iq,
-          ast0xx_g::ip,
-          ast0xx_g::iprob,
-          ast0xx_g::ipsd,
-          ast0xx_g::ithtmp,
-          ast0xx_g::iypoin,
-          ast0xx_g::ippoin,
-          ast0xx_g::ippsd,
-          nstart,maxmsd,tol,lsd,pchmax);
+          maxit,vcvs,vcv,r,ier,iresid,iyhat,itimes,iq,ip,
+          iprob,ipsd,ithtmp,iypoin,ippoin,ippsd,nstart,
+          maxmsd,tol,lsd,pchmax);
  
 if(debug::kprint >= 3){
    
