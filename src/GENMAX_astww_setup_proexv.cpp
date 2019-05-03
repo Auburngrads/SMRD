@@ -23,17 +23,26 @@ void proexv(Rcpp::IntegerVector &nxd,
             Rcpp::IntegerVector &kodet,
             Rcpp::IntegerVector &ifix){
 
- genx09::kprloc = 0;
- genx09::kscloc = 0;
- genx09::kpwloc = 0;
+ Rcpp::IntegerVector NXG    = Rcpp::IntegerVector(nxd.size());
+ Rcpp::IntegerVector INTG   = Rcpp::IntegerVector(nxd.size());
+ Rcpp::IntegerVector NTERG  = Rcpp::IntegerVector(nxd.size());
+ Rcpp::IntegerVector IRELAG = Rcpp::IntegerVector(nxd.size());
+ Rcpp::IntegerVector IPTHET = Rcpp::IntegerVector(nxd.size());
+ Rcpp::IntegerVector IGTYG  = Rcpp::IntegerVector(nxd.size());
+ Rcpp::List IPXCG = Rcpp::List(5);
         
  proex1(nxd,intd,ipxcd,irelad,igtyd,imarkd,npard,
-        nregr,
-        genx20::nxg,  genx20::nterg, genx20::intg,
-        genx20::ipxcg,genx21::irelag,genx21::igtyg,
+        nregr,NXG,NTERG,INTG,IPXCG,IRELAG,IGTYG,
         genx09::kscloc,genx09::kprloc,genx09::kpwloc,
-        genx21::ipthet,ngamd,ngame,
-        nparm,kodet,ifix);
+        IPTHET,ngamd,ngame,nparm,kodet,ifix);
+ 
+ genx21::igtyg  = clone(IGTYG);
+ genx21::ipthet = clone(IPTHET);
+ genx20::nxg = clone(NXG);
+ genx20::intg = clone(INTG);
+ genx21::irelag = clone(IRELAG);
+ genx20::nterg = clone(NTERG);
+ genx20::ipxcg = clone(IPXCG);
  
 return;
 
@@ -107,10 +116,18 @@ void proex1(Rcpp::IntegerVector &nxd,
    }
 
 // when done, back off 1 
-// (Feb 2019: testing if this should not be done to account for 
-// differences in indexing between FORTRAN and C++ 
    nparm = itnext - 1;
    ngame = ignext - 1;
+   
+   if(debug::kprint >= 5){
+     
+      Rcpp::Rcout << "\nPROEX1 AFTER PTPAR\n" << std::endl;
+      Rcpp::Rcout << "ngame = " << ngame << std::endl;
+      Rcpp::Rcout << "nparm = " << nparm << std::endl;
+      Rcpp::Rcout << "ifix = " << ifix << std::endl;
+     
+   }
+   
 
 // Set kodet = 0 for ifix = 1 to fix parameter
    for(int iparm = 1; iparm <= nparm; iparm++){
@@ -156,23 +173,23 @@ for(int j = 1; j <= nparm; j++){
 
 }
 
-   for(int ik = 0; ik < 5; ik++){
+   for(int ik = 1; ik <= npard; ik++){
      
-       if(ipxcd[ik] != R_NilValue) {
+       if(ipxcd[ik - 1] != R_NilValue) {
       
-          SEXP l = ipxcd[ik]; Rcpp::IntegerVector y(l);
-          Rcpp::Rcout << "i = " << ik << std::endl;
+          SEXP l = ipxcd[ik - 1]; Rcpp::IntegerVector y(l);
+          Rcpp::Rcout << "i = " << ik - 1 << std::endl;
           Rcpp::Rcout << "ipxcd(i) = " << y << std::endl;
      
    }
    }
    
-      for(int ik = 0; ik < 5; ik++){
+      for(int ik = 1; ik <= ngame; ik++){
      
-       if(ipxcd[ik] != R_NilValue) {
+       if(ipxcg[ik - 1] != R_NilValue) {
       
-          SEXP l = ipxcg[ik]; Rcpp::IntegerVector y(l);
-          Rcpp::Rcout << "i = " << ik << std::endl;
+          SEXP l = ipxcg[ik - 1]; Rcpp::IntegerVector y(l);
+          Rcpp::Rcout << "i = " << ik - 1 << std::endl;
           Rcpp::Rcout << "ipxcg(i) = " << y << std::endl;
      
    }
