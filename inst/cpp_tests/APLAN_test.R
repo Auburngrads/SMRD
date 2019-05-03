@@ -75,7 +75,7 @@ zout <- .Fortran("aplan", a = as.double(a), b1 = as.double(b1),
                  xi = double(maxstress), pi = double(maxstress), fp = double(maxstress),
                  pq = double(maxstress), var = double(1), kprint)
 
-new = wqmevlike::aplan(as.double(a), 
+new = SMRD2:::APLAN(as.double(a), 
                   as.double(b1),
                   as.double(b2), 
                   as.double(theta), 
@@ -93,4 +93,5 @@ new = wqmevlike::aplan(as.double(a),
                   double(maxstress),
                   double(maxstress), 
                   double(1), 
-                  kprint)
+                  iprinp = as.integer(kprint),
+                  ier = integer(1))
