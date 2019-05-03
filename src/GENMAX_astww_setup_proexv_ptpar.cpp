@@ -43,6 +43,8 @@ void ptpar(int &kdnow,
    if(debug::kprint >= 5){
       
       Rcpp::Rcout << "\nPTPAR AFTER GSPLIT\n" << std::endl;
+      Rcpp::Rcout << "kdnow = " << kdnow - 1 << std::endl;
+      Rcpp::Rcout << "igtyd(kdnow) = " << igtyd.at(kdnow - 1) << std::endl;
       Rcpp::Rcout << "igsave = " << igsave << std::endl;
       Rcpp::Rcout << "igkode = " << igkode << std::endl;
       Rcpp::Rcout << "iglab = " << iglab << std::endl;
@@ -55,8 +57,10 @@ void ptpar(int &kdnow,
       Rcpp::Rcout << "intg = " << intg << std::endl;
       Rcpp::Rcout << "ipthet = " << ipthet << std::endl;
       Rcpp::Rcout << "irelag = " << irelag << std::endl;
+      Rcpp::Rcout << "kodet = " << kodet << std::endl;
       
    }
+   
 // copy over nx so that we know what to do in gtgame
    filli(nxd.at(kdnow - 1),nxg,ignext,igsave);
 
@@ -99,7 +103,7 @@ void ptpar(int &kdnow,
 
 // Increment parameter counters
    itnext = itnext + nterg.at(ignext - 1);
-// if(igsave == 0) igsave = 1
+   //if(igsave == 0) igsave = 1;
    ignext = ignext + igsave;
 
 return;
