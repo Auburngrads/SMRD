@@ -39,10 +39,22 @@ for(int igame = 1; igame <= genx03::g_ngame; igame++){
                       
                    }
                    
-                   unsclp(ipoint,thetas,genx20::nxg.at(igame - 1),
-                          genx20::intg.at(igame - 1),ipoinx,
-                          genx05::g_ipxbru,genx05::g_ipsd,
-                          theta,genx05::g_ipiscd);
+                   Rcpp::IntegerVector NXG = clone(genx20::nxg);
+                   Rcpp::IntegerVector INTG = clone(genx20::intg);
+                   Rcpp::NumericVector IPXBRU = clone(genx05::g_ipxbru);
+                   Rcpp::NumericVector IPSD = clone(genx05::g_ipsd);
+                   Rcpp::IntegerVector IPISCD = clone(genx05::g_ipiscd);
+                   
+                   unsclp(ipoint,thetas,NXG.at(igame - 1),
+                          INTG.at(igame - 1),ipoinx,
+                          IPXBRU,IPSD,theta,IPISCD);
+                   
+                   genx20::nxg = clone(NXG);
+                   genx20::intg = clone(INTG);
+                   genx05::g_ipxbru = clone(IPXBRU);
+                   genx05::g_ipsd = clone(IPSD);
+                   genx05::g_ipiscd = clone(IPISCD);
+
                    
                    goto line21;
             
