@@ -45,9 +45,9 @@ int iopt = 0,ioptmp,iplan,k;
    if(pass3::g_iopts == 4){
      
       iopt = iopt + 1;
-      pass1::g_z.at(1) = optfi(delta.at(iopt - 1),pass2::g_dliml.at(iopt - 1),pass2::g_dlimu.at(iopt - 1));
+      pass1::g_z.at(0) = optfi(delta.at(iopt - 1),pass2::g_dliml.at(iopt - 1),pass2::g_dlimu.at(iopt - 1));
       iopt = iopt + 1;
-      pass1::g_z.at(2) = optfi(delta.at(iopt - 1),pass2::g_dliml.at(iopt - 1),pass2::g_dlimu.at(iopt - 1));
+      pass1::g_z.at(1) = optfi(delta.at(iopt - 1),pass2::g_dliml.at(iopt - 1),pass2::g_dlimu.at(iopt - 1));
      
    }
 
@@ -79,7 +79,7 @@ if(ioptmp == 3){
    pass1::g_z.at(1) = (pass1::g_z.at(0) + pass1::g_z.at(2)) / two;
    pass1::g_fp.at(1) = zfcdf((pass2::g_a - pass2::g_b1 * pass1::g_z.at(1) - pass2::g_b2 * (std::pow(pass1::g_z.at(1), 2))) / (std::pow(pass2::g_thet1, pass1::g_z.at(1))),pass3::g_idist);
    
-   if(pass1::g_fp.at(1) <=  pass2::g_pmlim){
+   if(pass1::g_fp.at(1) <= pass2::g_pmlim){
      
       pass1::g_fp.at(1) = pass2::g_pmlim;
       //call xerr(3000+ioptm)
@@ -91,7 +91,7 @@ if(ioptmp == 3){
 
 if(ioptmp == 4){
    
-   pass1::g_fp.at(1) = zfcdf((pass2::g_a - pass2::g_b1 * pass1::g_z.at(1) - pass2::g_b2 * (std::pow(pass1::g_z.at(2), 2))) / (std::pow(pass2::g_thet1, pass1::g_z.at(1))),pass3::g_idist);
+   pass1::g_fp.at(1) = zfcdf((pass2::g_a - pass2::g_b1 * pass1::g_z.at(1) - pass2::g_b2 * (std::pow(pass1::g_z.at(1), 2))) / (std::pow(pass2::g_thet1, pass1::g_z.at(1))),pass3::g_idist);
   
 }
 
@@ -131,8 +131,8 @@ if(pass3::g_iopta == 2){
 if(pass3::g_iopta == 3){
   
    iopt = iopt + 1;
-   pass1::g_pi.at(1) = optfi(delta.at(iopt - 1),pass2::g_dliml.at(iopt - 1),pass2::g_dlimu.at(iopt - 1));
-   pass1::g_pi.at(2) = pass2::g_pifix;
+   pass1::g_pi.at(0) = optfi(delta.at(iopt - 1),pass2::g_dliml.at(iopt - 1),pass2::g_dlimu.at(iopt - 1));
+   pass1::g_pi.at(1) = pass2::g_pifix;
   
 }
 
