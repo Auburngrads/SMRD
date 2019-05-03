@@ -1,7 +1,8 @@
+library(smrdfortran)
 testnum = 2
 
 if(testnum == 1) {
-library(smrdfortran)
+
 lz.ld <- frame.to.ld(superalloy,
                      response.column = 1,
                      censor.column = 2,
@@ -19,7 +20,6 @@ model = 0
 
 if(testnum == 2) {
   
-library(smrdfortran)
 lz.ld <- frame.to.ld(superalloy,
                      response.column = 1,
                      censor.column = 2,
