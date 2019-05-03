@@ -1,7 +1,5 @@
 #include <base/base.hpp>
 
-using namespace explan_g;
-
 //' Set up explanatory variable relationships for parameters.
 //' Non local stack pointers are picked up for ipxcd.
 
@@ -113,12 +111,6 @@ for(int irnow = 0; irnow < nrelat; irnow++){
        my_vec = IntegerVector(1);
        ipxcd[irnow] = my_vec;
        
-     // if(irnow == 0) explan_g::mu_cols = IntegerVector(1,0);
-     // if(irnow == 1) explan_g::si_cols = IntegerVector(1,0);
-     // if(irnow == 2) explan_g::p1_cols = IntegerVector(1,0);
-     // if(irnow == 3) explan_g::p2_cols = IntegerVector(1,0);
-     // if(irnow == 4) explan_g::p3_cols = IntegerVector(1,0);
-      
     } else {
 
        // #otherwise we need a new pointer to a longer vector;
@@ -159,21 +151,16 @@ for(int irnow = 0; irnow < nrelat; irnow++){
 
        // Then copy over the others;
           ipxcd[irnow] = my_vec;
-       // if(irnow == 0) explan_g::mu_cols = my_vec;
-       // if(irnow == 1) explan_g::si_cols = my_vec;
-       // if(irnow == 2) explan_g::p1_cols = my_vec;
-       // if(irnow == 3) explan_g::p2_cols = my_vec;
-       // if(irnow == 4) explan_g::p3_cols = my_vec;
 
     }
 
 if(debug::kprint >= 4){
   
-   for(int ik = 0; ik < 4; ik++){
+   for(int ik = 1; ik <= 5; ik++){
      
-       if(ipxcd[ik] != R_NilValue) {
+       if(ipxcd[ik - 1] != R_NilValue) {
       
-          SEXP l = ipxcd[ik]; Rcpp::IntegerVector y(l);
+          SEXP l = ipxcd[ik - 1]; Rcpp::IntegerVector y(l);
           Rcpp::Rcout << "i = " << ik << std::endl;
           Rcpp::Rcout << "ipxcd(i) = " << y << std::endl;
      
