@@ -1,8 +1,6 @@
 #include <base/base.hpp>
 #include <gensiz/distxx.hpp>
 
-using namespace fdnprd_g;
-
 //'  Return npard (number of distribution parameters
 //'  as a function of kdist and kmod). call just before
 //'  fit to get sizes.  If interactive, can call after
@@ -27,11 +25,11 @@ void fdnprd(int &kmod,
             int &ier,
             int &maxpd){
 
-fdnprd_g::ipgty  = IntegerVector(maxpd,0);
-fdnprd_g::ipmark = IntegerVector(maxpd,0);
+Rcpp::IntegerVector ipgty  = Rcpp::IntegerVector(maxpd);
+Rcpp::IntegerVector ipmark = Rcpp::IntegerVector(maxpd);
 
-distxx(kmod,kdist,llog,maxpd,fdnprd_g::ipgty,
-       fdnprd_g::ipmark,npard,kmodp,ier);
+distxx(kmod,kdist,llog,maxpd,ipgty,
+       ipmark,npard,kmodp,ier);
 
 if(ier > 0) return; // goto exit;
 
@@ -50,6 +48,6 @@ if(kgtall == 1){
         
 }
 
-   return;
+return;
 
 }
