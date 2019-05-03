@@ -18,10 +18,25 @@ void unscvx(Rcpp::NumericMatrix &vcvs,
       Rcpp::NumericVector ig2 = Rcpp::NumericVector(genx07::g_nparm);
       Rcpp::NumericMatrix ivcvn = Rcpp::NumericMatrix(idim,idim);
       
-      unscv1(vcvs,vcv,ivcvn,idim,genx07::g_nparm,genx20::nxg,
-             genx20::nterg,genx20::intg,genx20::ipxcg,
-             genx21::ipthet,genx03::g_ngame,
-             genx05::g_ipxbru,genx05::g_ipsd,ig1,ig2);
+      Rcpp::IntegerVector NXG = clone(genx20::nxg);
+      Rcpp::IntegerVector INTG = clone(genx20::intg);
+      Rcpp::IntegerVector NTERG = clone(genx20::nterg);
+      Rcpp::List IPXCG = clone(genx20::ipxcg);
+      Rcpp::IntegerVector IPTHET = clone(genx21::ipthet);
+      Rcpp::NumericVector IPXBRU = clone(genx05::g_ipxbru);
+      Rcpp::NumericVector IPSD = clone(genx05::g_ipsd);
+      
+      unscv1(vcvs,vcv,ivcvn,idim,genx07::g_nparm,NXG,
+             NTERG,INTG,IPXCG,IPTHET,genx03::g_ngame,
+             IPXBRU,IPSD,ig1,ig2);
+      
+      genx20::nxg = clone(NXG);
+      genx20::intg = clone(INTG);
+      genx20::ipxcg = clone(IPXCG);
+      genx05::g_ipxbru = clone(IPXBRU);
+      genx05::g_ipsd = clone(IPSD);
+      genx21::ipthet = clone(IPTHET);
+      genx20::nterg = clone(NTERG);
       
 return;
 
@@ -60,11 +75,19 @@ Rcpp::IntegerVector ipoinx, ipcol1, ipcol2;
           SEXP l = ipxcg[igame - 1];
           Rcpp::IntegerVector ipoinx(l); 
           
+          if(debug::kprint >= 6){
+             
+             Rcpp::Rcout << "\nUNSCV1 BEFORE PKGVS\n" << std::endl;
+             Rcpp::Rcout << "igame = " << igame - 1 << std::endl;
+             Rcpp::Rcout << "ipxcg[igame] = " << ipoinx << std::endl;
+             
+          }
+          
        // Get scale factors from sd
           pkgvs(g1,nparm,ipthet.at(igame - 1),
                 nterg.at(igame - 1),ipoinx,sd);
          
-         Rcpp::Rcout << "\nHERE\n" << std::endl;
+         
    }
    
 if(debug::kprint >= 4){
