@@ -92,7 +92,7 @@ function (data.ld,
     intercept.increment <- as.numeric(intercept || col.of.ones)
     startna <- is.na(theta.start)
     
-    if (any(startna)) theta.start[startna] <- theta.start.comp[startna]
+    if (any(startna)) theta.start[which(startna)] <- theta.start.comp[which(startna)]
     if (map.SMRDDebugLevel() >= 6) {
       
         cat("\ntheta.start.comp", 
@@ -105,9 +105,8 @@ function (data.ld,
     
     if (length(theta.start) != nparm) {
         
-      print(theta.start)
-        cat("Wrong number of start values. Should have", 
-            nparm, "\n")
+        print(theta.start)
+        cat("Wrong number of start values. Should have", nparm, "\n")
         stop("Wrong number of starting values")
         
     }
@@ -175,7 +174,7 @@ function (data.ld,
               iervcv = 0)
     
     rvec <- c(0, escale = escale, log.likelihood = 0)
-    zout <- WQMMLESSS( ivec = as.integer(ivec), 
+    zout <- SMRD2:::WQMMLESSS( ivec = as.integer(ivec), 
                       rvec = as.double(rvec),
                       nrow = as.integer(number.cases), 
                       nparm = as.integer(nparm),
@@ -275,8 +274,8 @@ function (data.ld,
     
     if(regression) {
       
-       fitted.values <- zout$fv
-       residuals <- zout$res
+       fitted.values <- zout$numvec$fv
+       residuals <- zout$nummat$res
        the.list <- list(data.ld = data.ld, 
                         distribution = distribution,
                         parameter.fixed = parameter.fixed, 
