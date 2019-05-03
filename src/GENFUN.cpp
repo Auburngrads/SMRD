@@ -195,6 +195,13 @@ Rcpp::List ints,doubs,intvec,numvec,nummat;
           kgtall,nparm,ilabp,ilabd,llog,kmodp,
           ier,maxpd);
    
+   if(debug::kprint >= 1) {
+      
+      Rcpp::Rcout << "\nGENFUN AFTER FDNPRD\n" << std::endl;
+      Rcpp::Rcout << "nparm = " << nparm << std::endl;
+      
+   }
+   
    iplabp = clone(ilabp);
    
 // Call setup to center and standardize data
