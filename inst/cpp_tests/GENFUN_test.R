@@ -1,7 +1,26 @@
 library(SMRD)
+testnum = 2
+if(testnum == 1){
 ld <- SMRD::frame.to.ld(lzbearing, response.column = 1)
 
 gmlest.out <- SMRD::mlest(ld, distribution = "weibull")
+gmlest.out$model = 0
+
+}
+if(testnum == 2){
+    
+ld <- frame.to.ld(superalloy,
+                     response.column = 1,
+                     censor.column = 2,
+                     case.weight.column = 3,
+                     x.columns = c(4,5,6))
+gmlest.out <- SMRD2:::mlest(ld, distribution = "weibull",
+                          explan.vars = c(2,3))
+distribution = "Weibull"
+
+gmlest.out$model = 0
+    
+}
 kfunc = 2
 fargv = NULL
 kpopu = 0
@@ -120,43 +139,43 @@ debug1 = F
     if (debug1) browser()
     
     zout <- .Fortran("genfun", 
-                     as.integer(model), 
+                     as.integer(model),
                      as.integer(distribution.number),
-                     ilabp = integer(8 * nparm), 
+                     ilabp = integer(8 * nparm),
                      ilabd = integer(8 * nparm),
-                     theta.hat = as.double(gmlest.out$theta.hat), 
+                     theta.hat = as.double(gmlest.out$theta.hat),
                      thetas.hat = as.double(gmlest.out$thetas.hat),
-                     kodet = integer(nparm), 
+                     kodet = integer(nparm),
                      as.integer(gmlest.out$parameter.fixed),
-                     as.integer(nparm), 
-                     as.integer(npard), 
-                     as.single(y), 
+                     as.integer(nparm),
+                     as.integer(npard),
+                     as.single(y),
                      as.integer(ncoly),
-                     as.integer(number.cases), 
-                     as.single(the.xmat), 
+                     as.integer(number.cases),
+                     as.single(as.matrix(the.xmat)),
                      as.integer(ncol.orig.x),
-                     as.single(the.censor.codes), 
+                     as.single(the.censor.codes),
                      as.single(the.case.weights),
-                     as.single(ty), 
-                     as.integer(ncolty), 
+                     as.single(ty),
+                     as.integer(ncolty),
                      as.single(the.truncation.codes),
-                     as.integer(kprint), 
-                     as.integer(kparv), 
+                     as.integer(kprint),
+                     as.integer(kparv),
                      as.integer(nrvar),
-                     as.integer(mrelat), 
-                     as.integer(nrelat), 
+                     as.integer(mrelat),
+                     as.integer(nrelat),
                      as.integer(mnrvar),
-                     as.double(conf.level), 
-                     as.integer(kodef), 
+                     as.double(conf.level),
+                     as.integer(kodef),
                      as.double(fargv),
-                     as.integer(length(fargv)), 
-                     as.integer(kfuncp), 
+                     as.integer(length(fargv)),
+                     as.integer(kfuncp),
                      as.integer(kpopu),
-                     as.integer(kpoint), 
+                     as.integer(kpoint),
                      as.double(gmlest.out$vcv),
-                     fest = double(length(fargv)), 
+                     fest = double(length(fargv)),
                      stderr = double(length(fargv)),
-                     xlow = double(length(fargv)), 
+                     xlow = double(length(fargv)),
                      xup = double(length(fargv)))
 
     new <- SMRD2:::GENFUN(as.integer(model), 
