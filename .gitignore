@@ -30,4 +30,9 @@
 *.exe
 *.out
 *.app
+
+# R Files
+.Rhistory
 .Rproj.user
+
+
