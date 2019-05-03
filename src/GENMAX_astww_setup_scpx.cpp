@@ -51,10 +51,24 @@ for(int igame = 1; igame <= genx03::g_ngame; igame++){
           Rcpp::Rcout << "\nENTERING SCLP\n" << std::endl;
           
        }
-       sclp(ipoint,igame,theta,genx20::nxg.at(igame - 1),
-            genx20::intg.at(igame - 1),genx20::ipxcg,
-            genx05::g_ipxbru,genx05::g_ipsd,thetas,
-            genx05::g_ipiscd);
+       
+       Rcpp::IntegerVector NXG = clone(genx20::nxg);
+       Rcpp::IntegerVector INTG = clone(genx20::intg);
+       Rcpp::List IPXCG = clone(genx20::ipxcg);
+       Rcpp::NumericVector IPXBRU = clone(genx05::g_ipxbru);
+       Rcpp::NumericVector IPSD = clone(genx05::g_ipsd);
+       Rcpp::IntegerVector IPISCD = clone(genx05::g_ipiscd);
+       
+       sclp(ipoint,igame,theta,NXG.at(igame - 1),
+            INTG.at(igame - 1),IPXCG,IPXBRU,
+            IPSD,thetas,IPISCD);
+       
+       genx20::nxg = clone(NXG);
+       genx20::intg = clone(INTG);
+       genx20::ipxcg = clone(IPXCG);
+       genx05::g_ipxbru = clone(IPXBRU);
+       genx05::g_ipsd = clone(IPSD);
+       genx05::g_ipiscd = clone(IPISCD);
 
       goto line21;
 

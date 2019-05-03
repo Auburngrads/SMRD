@@ -1,8 +1,6 @@
 #include <base/base.hpp>
 #include <utility/icheck.hpp>
 
-using namespace fdnprd_g;
-
 //' Set parameter types for specified model/data combination
 //' 
 //' @param kmod 
