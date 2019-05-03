@@ -33,9 +33,16 @@ double df_bx;
       
    }
    
-   df_bx = dfbx1(kpnow,genx05::g_ipx,genx05::g_ipxbru,
-                 genx05::g_ipsd,ipxcg,genx00::g_nrownw,
+   Rcpp::NumericVector IPXBRU = clone(genx05::g_ipxbru);
+   Rcpp::NumericVector IPSD = clone(genx05::g_ipsd);
+   Rcpp::NumericMatrix IPX = clone(genx05::g_ipx);
+   
+   df_bx = dfbx1(kpnow,IPX,IPXBRU,IPSD,ipxcg,genx00::g_nrownw,
                  irelag,nterg,intg,thetas,ipthta,ixsave);
+   
+   genx05::g_ipxbru = clone(IPXBRU);
+   genx05::g_ipsd = clone(IPSD);
+   genx05::g_ipx = clone(IPX);
    
 return df_bx;
       
@@ -60,7 +67,7 @@ double dfbx1(int kpnow,
              int ipthta,
              Rcpp::NumericVector xsave){
    
-int jj,j = 0;
+int jj,j = 1;
 double df_bx1 = 0.0e00;
 
 if(debug::kprint >= 4){
@@ -135,7 +142,7 @@ if(debug::kprint >= 9){
    Rcpp::Rcout << "xsave = " << xsave << std::endl;
    Rcpp::Rcout << "thetas = " << thetas << std::endl;
    Rcpp::Rcout << "j = " << j - 1 << std::endl;
-   Rcpp::Rcout << "x(kpnow,j) = " << x.at(kpnow - 1,j - 1) << std::endl;
+   //Rcpp::Rcout << "x(kpnow,j) = " << x.at(kpnow - 1,j - 1) << std::endl;
    
 }
    
