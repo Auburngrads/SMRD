@@ -40,11 +40,29 @@ int now;
              
           }
  
+          Rcpp::IntegerVector NXG = clone(genx20::nxg);
+          Rcpp::IntegerVector INTG = clone(genx20::intg);
+          Rcpp::IntegerVector NTERG = clone(genx20::nterg);
+          Rcpp::IntegerVector IGTYG = clone(genx21::igtyg);
+          Rcpp::IntegerVector IPTHET = clone(genx21::ipthet);
+          Rcpp::NumericVector IPSD = clone(genx05::g_ipsd);
+          Rcpp::IntegerVector IRELAG = clone(genx21::irelag);
+          Rcpp::NumericVector GAMMS = clone(genx21::gamms);
+ 
           now = 1;
-          rgami(now,igam,genx20::nxg.at(igam - 1),genx20::nterg.at(igam - 1),
-                genx20::intg.at(igam - 1),xpoint,
-                genx21::ipthet.at(igam - 1),genx21::igtyg.at(igam - 1),
-                genx21::irelag.at(igam - 1),thetas,genx21::gamms);
+          rgami(now,igam,NXG.at(igam - 1),NTERG.at(igam - 1),
+                INTG.at(igam - 1),xpoint,IPTHET.at(igam - 1),
+                IGTYG.at(igam - 1),IRELAG.at(igam - 1),thetas,GAMMS);
+          
+          genx20::nxg = clone(NXG);
+          genx20::intg = clone(INTG);
+          genx20::nterg = clone(NTERG);
+          genx21::igtyg = clone(IGTYG);
+          genx21::ipthet = clone(IPTHET);
+          genx05::g_ipsd = clone(IPSD);
+          genx21::irelag = clone(IRELAG);
+          genx21::gamms = clone(GAMMS);
+
          
    }
    
