@@ -1,6 +1,6 @@
 #include <base/base.hpp>
 #include <genmax/cdfggg.hpp>
-// #include <genmax/stardt.hpp>
+#include <genmax/stardt.hpp>
 #include <genmax/ilsxx.hpp>
 #include <wqmpoints/wqm_points.hpp>
 
@@ -113,7 +113,7 @@ int m = q.size(), mplot = 0;
 // compute location (ignored in regression) and scale estimate using
 // nonparametric estimate and simple location-scale distribution
 // and do other distribution-specific stuff
-   // stardt(yplot,pplot,mplot,kdist,thetas,nparm,intd,nxd);
+   stardt(yplot,pplot,mplot,kdist,thetas,nparm,intd,nxd);
  
  return;
  
