@@ -5,9 +5,6 @@
 #include <genmax/astww.hpp>
 #include <genmax/fitww.hpp>
 
-using namespace explan_g;
-using namespace fdnprd_g; 
-
 //' New version that sends down arrays instead of pointers!!
 //'
 //'  #  kmod           (I)  model code (usual list 1-5)
