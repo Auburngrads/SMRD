@@ -33,7 +33,7 @@ double func_4 = zero,scale,tfarg;
 int kfunca;
 
 // Get power location
-   power = gamme.at(genx09::kpwloc - 1);
+   power = gamme.at(genx09::g_kpwloc - 1);
    kfunca = std::abs(kfuncf);
    
 // Population failure probability as a function of time
