@@ -157,7 +157,7 @@ cases  <- which(colnames(data)%in%input$caseweight)
 xcols  <- which(colnames(data)%in%input$xvars)
 fails  <- which(colnames(data)%in%input$failmodes)
 
-  SMRD::frame.to.ld(frame = data,
+  SMRD2::frame.to.ld(frame = data,
                     response.column = `if`(length(resps)<1, NULL,resps),
                     censor.column = `if`(length(status)<1, NULL,status),
                     case.weight.column = `if`(length(cases)<1, NULL,cases),
@@ -259,8 +259,8 @@ observeEvent(input$stop, {
 
     stopApp(list(obj = life.data(),
                  dist = input$dist[1],
-                 cdfest = print(SMRD::cdfest(data.ld = life.data())),
-                 mlest = print(SMRD::mlest(data.ld = life.data(), distribution = input$dist[1]))))
+                 cdfest = print(SMRD2::cdfest(data.ld = life.data())),
+                 mlest = print(SMRD2::mlest(data.ld = life.data(), distribution = input$dist[1]))))
 
 })
 
