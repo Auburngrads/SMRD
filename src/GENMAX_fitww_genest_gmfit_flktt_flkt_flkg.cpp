@@ -116,10 +116,10 @@ double flkg1(int kcodep,
 double epslik = 1.0e-3,flkg_1 = 0.0e00,p,plog,ygl,ygu;
 int kccode;
 
-p = gamme.at(genx09::kprloc - 1);
+p = gamme.at(genx09::g_kprloc - 1);
 
 // And get log p in next position
-   plog = gamme.at(genx09::kprloc);
+   plog = gamme.at(genx09::g_kprloc);
    kccode = std::abs(kcodep);
    
 // if kcodep<0 here, we want to compute the conditioning
@@ -185,10 +185,10 @@ double epslik = 1.0e-3,flkg_2 = 0.0e00,p,plog,ygl,ygu;
 int kccode;
 
 // Pick up the location of the p parameter in gamme
-   p = one - gamme.at(genx09::kprloc - 1);
+   p = one - gamme.at(genx09::g_kprloc - 1);
    
 // And get log p in next position
-   plog = gamme.at(genx09::kprloc);
+   plog = gamme.at(genx09::g_kprloc);
    kccode = std::abs(kcodep);
    
 // If kcodep<0 here, we want to compute the conditioning
@@ -277,15 +277,15 @@ int kccode;
    }
     
 // Exact failure time
-line1: flkg_3 = std::log((gpdf(yl,gamme,kdist) / (gcdfm(yl,gamme,kdist)) + gpdf(yl,gamme.at(genx09::kpwloc - 1),7) / (gcdfm(yl,gamme.at(genx09::kpwloc - 1),7))) * gcdfm(yl,gamme,kdist) * gcdfm(yl,gamme.at(genx09::kpwloc - 1),7));
+line1: flkg_3 = std::log((gpdf(yl,gamme,kdist) / (gcdfm(yl,gamme,kdist)) + gpdf(yl,gamme.at(genx09::g_kpwloc - 1),7) / (gcdfm(yl,gamme.at(genx09::g_kpwloc - 1),7))) * gcdfm(yl,gamme,kdist) * gcdfm(yl,gamme.at(genx09::g_kpwloc - 1),7));
        goto line199;
        
 // Right censored observation
-line2: flkg_3 = gcdfml(yl,gamme,kdist) + gcdfml(yl,gamme.at(genx09::kpwloc - 1),7);
+line2: flkg_3 = gcdfml(yl,gamme,kdist) + gcdfml(yl,gamme.at(genx09::g_kpwloc - 1),7);
        goto line199;
        
 // Left censored observation
-line3: flkg_3 = std::log(std::max(1.0e00 - gcdfm(yl,gamme,kdist) * gcdfm(yl,gamme.at(genx09::kpwloc - 1),7), 1.0e-30));
+line3: flkg_3 = std::log(std::max(1.0e00 - gcdfm(yl,gamme,kdist) * gcdfm(yl,gamme.at(genx09::g_kpwloc - 1),7), 1.0e-30));
        goto line199;
        
 // Use a small interval for the 'true likelihood'
@@ -296,7 +296,7 @@ line5: ygl = yl - epslik;
 line4: ygl = yl;
        ygu = yu;
        
-line45: flkg_3 = std::log(std::max(gcdfm(ygl,gamme,kdist) * gcdfm(ygl,gamme.at(genx09::kpwloc),7) - gcdfm(ygu,gamme,kdist) * gcdfm(ygu,gamme.at(genx09::kpwloc - 1),7),1.0e-30));
+line45: flkg_3 = std::log(std::max(gcdfm(ygl,gamme,kdist) * gcdfm(ygl,gamme.at(genx09::g_kpwloc),7) - gcdfm(ygu,gamme,kdist) * gcdfm(ygu,gamme.at(genx09::g_kpwloc - 1),7),1.0e-30));
 
 line199: return flkg_3;
 
@@ -320,7 +320,7 @@ double flkg4(int kcodep,
 double epslik = 1.0e-3,flkg_4 = 0.0e00,ygl,ygu,power;
 int kccode;
 
-power = gamme.at(genx09::kpwloc - 1);
+power = gamme.at(genx09::g_kpwloc - 1);
 kccode = std::abs(kcodep);
 
 // if kcodep<0 here, we want to compute the conditioning
