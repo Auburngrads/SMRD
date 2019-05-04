@@ -41,7 +41,7 @@ function (data.ld,
     
     }
 
-    if (!is.null(gamthr)) SMRD:::Response(data.ld) <- Response(data.ld) - gamthr
+    if (!is.null(gamthr)) Response(data.ld) <- Response(data.ld) - gamthr
     
     number.group.var <- length(group.var)
     
@@ -52,13 +52,13 @@ function (data.ld,
          lty <- (1:(length(stresses) + 1))[-2])
     }
     
-    if (is.null(my.title)) my.title <- paste(SMRD:::get.data.title(data.ld), 
+    if (is.null(my.title)) my.title <- paste(get.data.title(data.ld), 
                                              "\n", 
                                              "With Individual",
                                              distribution, 
                                              "Distribution ML Estimates")
     
-    multiple.ld <- SMRD:::factor.ld.to.multiple.ld(data.ld, 
+    multiple.ld <- factor.ld.to.multiple.ld(data.ld, 
                                             group.var = group.var,
                                             stresses = stresses)
     plot.frame <- T
@@ -82,7 +82,7 @@ function (data.ld,
     }
     
 parametric.list <- 
-  SMRD:::multiple.mleprobplot(multiple.ld, 
+  multiple.mleprobplot(multiple.ld, 
                        data.ld.name = deparse(substitute(data.ld)),
                        distribution = distribution, 
                        xlab = xlab, 
