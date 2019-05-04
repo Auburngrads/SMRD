@@ -50,12 +50,12 @@ double fl_kt;
                  IPINOW,
                  genx03::g_ngame);
    
-                 genx01::g_ipy = clone(IPY);
-                 genx01::g_ipcode = clone(IPCODE);
-                 genx01::g_ipweig = clone(IPWEIG);
-                 genx01::g_ipty = clone(IPTY);
-                 genx01::g_iptc = clone(IPTC);
-                 genx01::g_ipinow = clone(IPINOW);
+   genx01::g_ipy = clone(IPY);
+   genx01::g_ipcode = clone(IPCODE);
+   genx01::g_ipweig = clone(IPWEIG);
+   genx01::g_ipty = clone(IPTY);
+   genx01::g_iptc = clone(IPTC);
+   genx01::g_ipinow = clone(IPINOW);
    
    return Rcpp::List::create(Named("val") = fl_kt,
                              Named("weight") = genx01::g_ipweig.at(kpnow - 1));
