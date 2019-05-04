@@ -79,10 +79,10 @@ int    genx08::g_kparm;
 int    genx08::g_klmode;
 int    genx08::g_kpoint;
 
-int genx09::kscloc;
-int genx09::kprloc;
-int genx09::kpwloc;
-int genx09::kthloc;
+int genx09::g_kscloc;
+int genx09::g_kprloc;
+int genx09::g_kpwloc;
+int genx09::g_kthloc;
 
 double genx14::g_funarg;
 int    genx14::g_kfuncf;
@@ -97,15 +97,15 @@ double genx16::g_xlogmh;
 double genx16::g_thetah;
 double genx16::g_sigmah;
 
-Rcpp::IntegerVector genx20::nxg(20);
-Rcpp::IntegerVector genx20::nterg(20);
-Rcpp::IntegerVector genx20::intg(20);
-Rcpp::List genx20::ipxcg(5);
+Rcpp::IntegerVector genx20::g_nxg(20);
+Rcpp::IntegerVector genx20::g_nterg(20);
+Rcpp::IntegerVector genx20::g_intg(20);
+Rcpp::List genx20::g_ipxcg(5);
 
-Rcpp::NumericVector genx21::gamms(20);
-Rcpp::IntegerVector genx21::ipthet(20);
-Rcpp::IntegerVector genx21::irelag(20);
-Rcpp::IntegerVector genx21::igtyg(20);
+Rcpp::NumericVector genx21::g_gamms(20);
+Rcpp::IntegerVector genx21::g_ipthet(20);
+Rcpp::IntegerVector genx21::g_irelag(20);
+Rcpp::IntegerVector genx21::g_igtyg(20);
 
 int gdump::g_kprint;
 Rcpp::IntegerVector gdump::g_ihead(76);
