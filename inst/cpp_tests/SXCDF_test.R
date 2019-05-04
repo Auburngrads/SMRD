@@ -1,4 +1,4 @@
-library(smrdfortran)
+library(SMRD)
 ndist1 = 2
 ndist2 = 2
 beta0 = 30.27241
@@ -12,13 +12,13 @@ debug1= F
     
       max.length <- max(length(beta0), length(beta1), length(sigma),
                         length(ugamma), length(sgamma), length(stress), length(w))
-      beta0  <- smrdfortran:::expand.vec(beta0, max.length)
-      beta1  <- smrdfortran:::expand.vec(beta1, max.length)
-      sigma  <- smrdfortran:::expand.vec(sigma, max.length)
-      ugamma <- smrdfortran:::expand.vec(ugamma, max.length)
-      sgamma <- smrdfortran:::expand.vec(sgamma, max.length)
-      stress <- smrdfortran:::expand.vec(stress, max.length)
-      w      <- smrdfortran:::expand.vec(w, max.length)
+      beta0  <- SMRD:::expand.vec(beta0, max.length)
+      beta1  <- SMRD:::expand.vec(beta1, max.length)
+      sigma  <- SMRD:::expand.vec(sigma, max.length)
+      ugamma <- SMRD:::expand.vec(ugamma, max.length)
+      sgamma <- SMRD:::expand.vec(sgamma, max.length)
+      stress <- SMRD:::expand.vec(stress, max.length)
+      w      <- SMRD:::expand.vec(w, max.length)
       if (debug1) browser()
       zout <- .Fortran("sxcdf", as.integer(ndist1), as.integer(ndist2),
                        as.double(beta0), as.double(beta1), as.double(stress),
