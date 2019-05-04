@@ -1,4 +1,4 @@
-library(smrdfortran)
+library(SMRD)
 z = seq(0.1,0.9,0.1)
 distribution = 'sev' 
 
@@ -10,7 +10,7 @@ old <- .Fortran("wqm_phiall", phib = double(length.z), phibm = double(length.z),
                  phis = double(length.z), phip = double(length.z), 
                  as.double(z), as.integer(idist))
 
-new <- wqmmlesss:::wqmsphiall(double(length.z), 
+new <- SMRD2:::wqmsphiall(double(length.z), 
                                  double(length.z), 
                                  double(length.z), 
                                  double(length.z), 
