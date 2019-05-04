@@ -1,4 +1,4 @@
-library(smrdfortran)
+library(SMRD)
 mu1 = 2/3
 mu2 = 0
 sd1 = sqrt(2/9)
@@ -9,13 +9,13 @@ ak = 1
 
     number <- max(length(ah), length(ak), length(sd1), length(sd2), 
         length(mu1), length(mu2), length(rho))
-    ah <-  smrdfortran:::expand.vec(ah, number)
-    ak <-  smrdfortran:::expand.vec(ak, number)
-    mu1 <- smrdfortran:::expand.vec(mu1, number)
-    mu2 <- smrdfortran:::expand.vec(mu2, number)
-    v1 <-  smrdfortran:::expand.vec(sd1 * sd1, number)
-    v2 <-  smrdfortran:::expand.vec(sd2 * sd2, number)
-    c12 <- smrdfortran:::expand.vec(rho * sd1 * sd2, number)
+    ah <-  SMRD:::expand.vec(ah, number)
+    ak <-  SMRD:::expand.vec(ak, number)
+    mu1 <- SMRD:::expand.vec(mu1, number)
+    mu2 <- SMRD:::expand.vec(mu2, number)
+    v1 <-  SMRD:::expand.vec(sd1 * sd1, number)
+    v2 <-  SMRD:::expand.vec(sd2 * sd2, number)
+    c12 <- SMRD:::expand.vec(rho * sd1 * sd2, number)
     the.frame <- data.frame(ah = ah, ak = ak, mu1 = mu1, mu2 = mu2, 
         v1 = v1, v2 = v2, c12 = c12)
     prob <- .Fortran("sbvn", 
