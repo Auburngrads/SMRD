@@ -4,7 +4,7 @@ function (mlest.out, time.vec)
     distribution <- mlest.out$distribution
     theta.hat <- mlest.out$theta.hat
     
-    if (SMRD:::is.logdist(distribution)) {
+    if (is.logdist(distribution)) {
       
         ltimes <- logb(time.vec)
         
