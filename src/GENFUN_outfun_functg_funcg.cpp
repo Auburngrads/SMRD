@@ -25,8 +25,6 @@ double funcg(Rcpp::NumericVector gamme,
              int llog,
              double funarg){
 
-Rcpp::Rcout << "\nfuncg\n" << std::endl;
-  
 int kmodp, ier = 0;
 double fun_cg = 0.0e00;
   
@@ -46,6 +44,20 @@ if(kmodp == 4)  fun_cg = func3(gamme,ngame,kdist,kfuncf,llog,funarg);
 if(kmodp == 5)  fun_cg = func4(gamme,ngame,kdist,kfuncf,llog,funarg);
 
 if(kmodp == 6)  fun_cg = func0(gamme,ngame,kdist,kfuncf,llog,funarg);
+
+if(debug::kprint >= 7) {
+  
+   Rcpp::Rcout << "\nEND OF FUNCG\n" << std::endl;
+   Rcpp::Rcout << "gamme = " << gamme << std::endl;
+   Rcpp::Rcout << "ngame = " << ngame << std::endl;
+   Rcpp::Rcout << "kmod = " << kmod << std::endl;
+   Rcpp::Rcout << "kdist = " << kdist << std::endl;
+   Rcpp::Rcout << "kfuncf = " << kfuncf << std::endl;
+   Rcpp::Rcout << "llog = " << llog << std::endl;
+   Rcpp::Rcout << "funarg = " << funarg << std::endl;
+   Rcpp::Rcout << "fun_cg = " << fun_cg << std::endl;
+  
+} 
 
 return fun_cg;
 
