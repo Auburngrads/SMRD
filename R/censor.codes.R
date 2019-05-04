@@ -1,11 +1,11 @@
 censor.codes <-
 function (data.d, fill.in = T, warn.all.ones = F)
 {
-    frame.type <- SMRD:::data.object.type(data.d)
+    frame.type <- data.object.type(data.d)
     
     switch(frame.type[1], frame.centered = {
       
-        the.censor.status <- SMRD:::censor.status(data.d)
+        the.censor.status <- censor.status(data.d)
         
         if (is.null(the.censor.status)) {
           
@@ -16,12 +16,12 @@ function (data.d, fill.in = T, warn.all.ones = F)
           } else { 
           
             the.censor.codes <- 
-              SMRD:::ConvertToCensorCodes(the.censor.status,
-                                   failure.censor.names = SMRD:::get.failure.censor.names(data.d),
-                                   right.censor.names = SMRD:::get.right.censor.names(data.d),
-                                   left.censor.names = SMRD:::get.left.censor.names(data.d),
-                                   interval.censor.names = SMRD:::get.interval.censor.names(data.d),
-                                   sinterval.censor.names = SMRD:::get.sinterval.censor.names(data.d),
+              ConvertToCensorCodes(the.censor.status,
+                                   failure.censor.names = get.failure.censor.names(data.d),
+                                   right.censor.names = get.right.censor.names(data.d),
+                                   left.censor.names = get.left.censor.names(data.d),
+                                   interval.censor.names = get.interval.censor.names(data.d),
+                                   sinterval.censor.names = get.sinterval.censor.names(data.d),
                                    warn.all.ones = warn.all.ones)
           
           }
