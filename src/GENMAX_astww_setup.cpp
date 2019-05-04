@@ -163,14 +163,12 @@ kmccde = 0;
 
    
 // Figure out which observations are to be used
-   fdin(genx01::g_ipcode,genx01::g_ipweig,
-        genx01::g_ipinow,genx00::g_nrownw);
+   fdin(ipcode,ipweig,ipinow,nrownw);
 
 // if(debug::kprint >= 6)call getdum(1);
 
 // Figure out which explanatory variables are to be centered
-   fdiscd(genx05::g_ipiscd,
-          genx05::g_ncolx,
+   fdiscd(ipiscd,genx05::g_ncolx,
           intd,ipxcd,irelad,nxd,
           npard,kcentr,kmod,ier);
 
@@ -184,19 +182,19 @@ kmccde = 0;
 //
 //    }
 //
-   trdat(genx01::g_ipy,
+   trdat(ipy,
          genx00::g_ncoly,
          genx00::g_nrownw,
-         genx05::g_ipx,
+         ipx,
          genx05::g_ncolx,
-         genx01::g_ipweig,
-         genx01::g_ipty,
+         ipweig,
+         ipty,
          genx00::g_ncolty,
          genx07::g_llog,
-         genx05::g_ipiscd,
-         genx05::g_ipxbar,
-         genx05::g_ipxbru,
-         genx05::g_ipsd,
+         ipiscd,
+         ipxbar,
+         ipxbru,
+         ipsd,
          ier);
 
 //if(debug::kprint >= 4)call getdum(1);
@@ -205,7 +203,19 @@ kmccde = 0;
    scpx(theta,thetas);
 
 // Copy kodet back for return;
-   wqm_copyi(genx03::g_ipkode,kodet,genx07::g_nparm);
+   wqm_copyi(ipkode,kodet,genx07::g_nparm);
+   
+   genx01::g_ipcode = clone(ipcode);
+   genx01::g_ipweig = clone(ipweig);
+   genx01::g_ipinow = clone(ipinow);
+   genx03::g_ipkode = clone(ipkode);
+   genx05::g_ipiscd = clone(ipiscd);
+   genx01::g_ipy = clone(ipy);
+   genx05::g_ipx = clone(ipx);
+   genx01::g_ipty = clone(ipty);
+   genx05::g_ipxbar = clone(ipxbar);
+   genx05::g_ipxbru = clone(ipxbru);
+   genx05::g_ipsd = clone(ipsd);
 
 // // Need to figure out a way to update this
 // if(debug::kprint >= 4) {
