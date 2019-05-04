@@ -1,4 +1,4 @@
-library(smrdfortran)
+library(SMRD)
 test = 1
 if(test == 1) {
 data.ld <- frame.to.ld(heatexchanger,
@@ -17,7 +17,7 @@ if(test == 3) {
 }
 if(test == 4) {
   
-data.ld <- frame.to.ld(smrdfortran::doatrun,
+data.ld <- frame.to.ld(SMRD::doatrun,
                        response.column = c(1,2),
                        censor.column = 3,
                        case.weight.column = 4,
@@ -34,12 +34,12 @@ start.values = NULL # is this needed
 debug1 = F
 
   y <- Response(data.ld)
-  the.case.weights <- smrdfortran:::case.weights(data.ld)
+  the.case.weights <- SMRD:::case.weights(data.ld)
 
   if (is.null(start.values)) nstart <- 0 # what if not null?
   number.cases <- nrow(y)
     ny <- ncol(y)
-    the.censor.codes <- smrdfortran:::censor.codes(data.ld)
+    the.censor.codes <- SMRD:::censor.codes(data.ld)
 
     if (length(gamthr) == 1)
       gamthr <- rep(gamthr, number.cases)
@@ -55,7 +55,7 @@ debug1 = F
           number.observations <- sum(the.case.weights[the.censor.codes > 0])
           left.trun.cond <- NULL
         right.trun.cond <- NULL
-        the.truncation.codes <- smrdfortran:::truncation.codes(data.ld)
+        the.truncation.codes <- SMRD:::truncation.codes(data.ld)
 
           if (is.null(the.truncation.codes)) {
 
@@ -65,7 +65,7 @@ debug1 = F
 
           } else {
 
-            ty <- smrdfortran:::truncation.response(data.ld)
+            ty <- SMRD:::truncation.response(data.ld)
             nty <- ncol(ty)
             if (all(the.truncation.codes == 3))
               left.trun.cond <- min(ty[the.truncation.codes == 3, 1])
