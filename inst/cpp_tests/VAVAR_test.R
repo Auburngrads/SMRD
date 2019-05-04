@@ -1,4 +1,4 @@
-library(smrdfortran)
+library(SMRD)
 mu = 0
 sigma = 1
 tc = 0.5
@@ -10,13 +10,13 @@ distribution = 'lev'
   lt <- length(tc)
   lp <- length(pe)
   vlength <- max(lm, ls, lt, lp)
-  mu    <- smrdfortran:::expand.vec(mu, vlength)
-  sigma <- smrdfortran:::expand.vec(sigma, vlength)
-  tc    <- smrdfortran:::expand.vec(tc, vlength)
-  pe    <- smrdfortran:::expand.vec(pe, vlength)
-  ze    <- smrdfortran:::quant(pe, distribution)
+  mu    <- SMRD:::expand.vec(mu, vlength)
+  sigma <- SMRD:::expand.vec(sigma, vlength)
+  tc    <- SMRD:::expand.vec(tc, vlength)
+  pe    <- SMRD:::expand.vec(pe, vlength)
+  ze    <- SMRD:::quant(pe, distribution)
   zc    <- (logb(tc) - mu)/sigma
-  switch(smrdfortran:::generic.distribution(distribution), sev = idist <- 1,
+  switch(SMRD:::generic.distribution(distribution), sev = idist <- 1,
          lev = idist <- 2, normal = idist <- 3, logistic = idist <- 4,
                                                                   stop("Distribution must be sev, lev, normal, or logistic"))
   zout <- .Fortran("vavar", as.integer(idist), as.integer(vlength),
