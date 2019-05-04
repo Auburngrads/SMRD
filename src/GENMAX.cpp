@@ -420,10 +420,10 @@ List AST0XX_G = Rcpp::List::create(Named("iresid") = ast0xx_g::iresid,
                                    Named("ippoin") = ast0xx_g::ippoin,
                                    Named("ippsd") = ast0xx_g::ippsd);
 
-List GENX20 = Rcpp::List::create(Named("nxg")   = genx20::nxg,
-                                 Named("nterg") = genx20::nterg,
-                                 Named("intg")  = genx20::intg,
-                                 Named("ipxcg") = genx20::ipxcg);
+List GENX20 = Rcpp::List::create(Named("nxg")   = genx20::g_nxg,
+                                 Named("nterg") = genx20::g_nterg,
+                                 Named("intg")  = genx20::g_intg,
+                                 Named("ipxcg") = genx20::g_ipxcg);
 
 List GENX03 = Rcpp::List::create(Named("ipkode") = genx03::g_ipkode,
                                  Named("ipplab") = genx03::g_ipplab,
@@ -443,10 +443,10 @@ List GENX07 = Rcpp::List::create(Named("kdist") = genx07::g_kdist,
                                  Named("llog") = genx07::g_llog,
                                  Named("nparm") = genx07::g_nparm);
 
-List GENX21 = Rcpp::List::create(Named("gamms") = genx21::gamms,
-                                 Named("ipthet") = genx21::ipthet,
-                                 Named("irelag") = genx21::irelag,
-                                 Named("igtyg") = genx21::igtyg);
+List GENX21 = Rcpp::List::create(Named("gamms") = genx21::g_gamms,
+                                 Named("ipthet") = genx21::g_ipthet,
+                                 Named("irelag") = genx21::g_irelag,
+                                 Named("igtyg") = genx21::g_igtyg);
 
 List globals = Rcpp::List::create(Named("explan") = EXPLAN_G,
                                   Named("astww")  = ASTWW_G,
