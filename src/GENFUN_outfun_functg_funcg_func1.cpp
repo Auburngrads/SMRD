@@ -36,8 +36,8 @@ int kfunca,ier = 0;
 
 // Pick up scale and probability
    scale = one;
-   if(genx09::kscloc > 0) scale = gamme.at(genx09::kscloc - 1);
-   p = gamme.at(genx09::kprloc - 1);
+   if(genx09::g_kscloc > 0) scale = gamme.at(genx09::g_kscloc - 1);
+   p = gamme.at(genx09::g_kprloc - 1);
    
 // We need pminus because if funarg is real close to p, the
 // routines that compute derivatives will blow up
