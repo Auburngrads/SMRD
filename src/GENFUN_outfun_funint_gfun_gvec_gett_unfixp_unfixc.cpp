@@ -43,7 +43,7 @@ if(debug::kprint >= 6){
    Rcpp::Rcout << "\nFIXC**6**\n" << std::endl;
    Rcpp::Rcout << "fixc = " << fix_c << std::endl;
    Rcpp::Rcout << "kpoint = " << genx08::g_kpoint << std::endl;
-   Rcpp::Rcout << "kscloc = " << genx09::kscloc << std::endl;
+   Rcpp::Rcout << "kscloc = " << genx09::g_kscloc << std::endl;
    Rcpp::Rcout << "kmccde = " << genx07::g_kmccde << std::endl;
    Rcpp::Rcout << "klmode = " << genx08::g_klmode << std::endl;
    Rcpp::Rcout << "pest = " << genx08::g_pest << std::endl;
@@ -97,7 +97,7 @@ if(debug::kprint >= 6){
    Rcpp::Rcout << "\nUNFIXC**6**\n" << std::endl;
    Rcpp::Rcout << "unfixc = " << un_fixc << std::endl;
    Rcpp::Rcout << "kpoint = " << genx08::g_kpoint << std::endl;
-   Rcpp::Rcout << "kscloc = " << genx09::kscloc << std::endl;
+   Rcpp::Rcout << "kscloc = " << genx09::g_kscloc << std::endl;
    Rcpp::Rcout << "kmccde = " << genx07::g_kmccde << std::endl;
    Rcpp::Rcout << "klmode = " << genx08::g_klmode << std::endl;
    Rcpp::Rcout << "pest = " << genx08::g_pest << std::endl;
