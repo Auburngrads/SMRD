@@ -1,4 +1,4 @@
-library(smrdfortran)
+library(SMRD)
 x <- c(1:10)
 xmu  = -1.5
 sigma = 0.5
@@ -7,10 +7,10 @@ smalldelta = 0.001
 old_way = !T
 
   maxlen <- max(length(x), length(xmu), length(delta), length(sigma))
-  x     <- smrdfortran:::expand.vec(x, maxlen)
-  xmu   <- smrdfortran:::expand.vec(xmu, maxlen)
-  sigma <- smrdfortran:::expand.vec(sigma, maxlen)
-  delta <- smrdfortran:::expand.vec(delta, maxlen)
+  x     <- SMRD:::expand.vec(x, maxlen)
+  xmu   <- SMRD:::expand.vec(xmu, maxlen)
+  sigma <- SMRD:::expand.vec(sigma, maxlen)
+  delta <- SMRD:::expand.vec(delta, maxlen)
   logsigma <- logb(sigma)
   xk <- rep(0, maxlen)
   sqrtxk <- rep(0, maxlen)
@@ -42,7 +42,7 @@ if(old_way) {
   zout <- .Fortran("sgpdfl", as.double(x), as.double(gammemat), 
                    as.integer(maxlen), answer = double(maxlen))
 
-new <- wqmmlesss::sgpdfl(as.double(x), 
+new <- SMRD2::sgpdfl(as.double(x), 
                         as.matrix(gammemat), 
                         as.integer(maxlen), 
                         answer = double(maxlen))
