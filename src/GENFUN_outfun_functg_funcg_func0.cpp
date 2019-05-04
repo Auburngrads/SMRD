@@ -32,7 +32,7 @@ int ier = 0,kfunca;
 // Get absolute value (negative indicates need for constraint shift)
    kfunca = std::abs(kfuncf);
    scale = one;
-   if(genx09::kscloc > 0) scale = gamme.at(genx09::kscloc - 1);
+   if(genx09::g_kscloc > 0) scale = gamme.at(genx09::g_kscloc - 1);
  
 // Population failure probability as a function of time
 // later we will allow a negative kfuncf here for probability constraint
