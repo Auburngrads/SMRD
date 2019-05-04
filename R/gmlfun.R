@@ -16,9 +16,9 @@ function (gmlest.out,
     y <-Response(data.ld)
     ncoly <- ncol(y)
     number.cases <- nrow(y)
-    the.case.weights <- SMRD:::case.weights(data.ld)
+    the.case.weights <- case.weights(data.ld)
     ny <- ncol(y)
-    the.truncation.codes <- SMRD:::truncation.codes(data.ld)
+    the.truncation.codes <- truncation.codes(data.ld)
     
     if (is.null(the.truncation.codes)) {
         ty <- 1
