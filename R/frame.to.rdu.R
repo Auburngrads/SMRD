@@ -23,7 +23,7 @@ function (frame, time.column, ID.column, cost.count.column, event.column,
         stop("Must specify Time column")
       
     } else { 
-      time.column <- SMRD:::check.column(time.column, ncol.data.mat,
+      time.column <- check.column(time.column, ncol.data.mat,
         names.the.frame)
     }
     
@@ -31,7 +31,7 @@ function (frame, time.column, ID.column, cost.count.column, event.column,
         stop("Must specify unit ID column")
       
     } else {
-        ID.column <- SMRD:::check.column(ID.column, ncol.data.mat, names.the.frame)
+        ID.column <- check.column(ID.column, ncol.data.mat, names.the.frame)
         frame[[ID.column]] <- as.factor(frame[[ID.column]])
     }
     
@@ -39,7 +39,7 @@ function (frame, time.column, ID.column, cost.count.column, event.column,
         stop("Must specify Events column")
       
     } else {
-        event.column <- SMRD:::check.column(event.column, ncol.data.mat,
+        event.column <- check.column(event.column, ncol.data.mat,
             names.the.frame)
     }
     
@@ -47,7 +47,7 @@ function (frame, time.column, ID.column, cost.count.column, event.column,
         cost.count.column <- NULL
         
     } else {
-        cost.count.column <- SMRD:::check.column(cost.count.column,
+        cost.count.column <- check.column(cost.count.column,
             ncol.data.mat, names.the.frame)
     }
     attr(frame, "data.title") <- data.title
@@ -65,12 +65,12 @@ function (frame, time.column, ID.column, cost.count.column, event.column,
     
     if (is.null(cost.count.column)) {
       
-        WindowInfo <- SMRD:::TestWindow(frame[, ID.column], frame[,
+        WindowInfo <- TestWindow(frame[, ID.column], frame[,
             time.column], frame[, event.column], rep(1, nrow(frame)))
         
     } else {
       
-        WindowInfo <- SMRD:::TestWindow(frame[, ID.column], frame[,
+        WindowInfo <- TestWindow(frame[, ID.column], frame[,
            time.column], frame[, event.column], frame[, cost.count.column])
     }
     attr(frame, "WindowInfo") <- WindowInfo
