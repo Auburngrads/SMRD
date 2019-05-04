@@ -18,11 +18,11 @@ void unscvx(Rcpp::NumericMatrix &vcvs,
       Rcpp::NumericVector ig2 = Rcpp::NumericVector(genx07::g_nparm);
       Rcpp::NumericMatrix ivcvn = Rcpp::NumericMatrix(idim,idim);
       
-      Rcpp::IntegerVector NXG = clone(genx20::nxg);
-      Rcpp::IntegerVector INTG = clone(genx20::intg);
-      Rcpp::IntegerVector NTERG = clone(genx20::nterg);
-      Rcpp::List IPXCG = clone(genx20::ipxcg);
-      Rcpp::IntegerVector IPTHET = clone(genx21::ipthet);
+      Rcpp::IntegerVector NXG = clone(genx20::g_nxg);
+      Rcpp::IntegerVector INTG = clone(genx20::g_intg);
+      Rcpp::IntegerVector NTERG = clone(genx20::g_nterg);
+      Rcpp::List IPXCG = clone(genx20::g_ipxcg);
+      Rcpp::IntegerVector IPTHET = clone(genx21::g_ipthet);
       Rcpp::NumericVector IPXBRU = clone(genx05::g_ipxbru);
       Rcpp::NumericVector IPSD = clone(genx05::g_ipsd);
       
@@ -30,13 +30,13 @@ void unscvx(Rcpp::NumericMatrix &vcvs,
              NTERG,INTG,IPXCG,IPTHET,genx03::g_ngame,
              IPXBRU,IPSD,ig1,ig2);
       
-      genx20::nxg = clone(NXG);
-      genx20::intg = clone(INTG);
-      genx20::ipxcg = clone(IPXCG);
+      genx20::g_nxg = clone(NXG);
+      genx20::g_intg = clone(INTG);
+      genx20::g_ipxcg = clone(IPXCG);
       genx05::g_ipxbru = clone(IPXBRU);
       genx05::g_ipsd = clone(IPSD);
-      genx21::ipthet = clone(IPTHET);
-      genx20::nterg = clone(NTERG);
+      genx21::g_ipthet = clone(IPTHET);
+      genx20::g_nterg = clone(NTERG);
       
 return;
 
