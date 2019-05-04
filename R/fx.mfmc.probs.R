@@ -14,7 +14,7 @@ function (theta.hat, multiple.mlest.out, time.vec)
         multiple.mlest.out[[i]]$theta.hat <- replace.theta.hat
         theta.index.low <- theta.index.high + 1
         
-        cdfhat.out <- SMRD:::cdfhat(multiple.mlest.out[[i]], 
+        cdfhat.out <- cdfhat(multiple.mlest.out[[i]], 
                                     time.vec = time.vec)
         
         where.na <- is.na(cdfhat.out$fhat)
