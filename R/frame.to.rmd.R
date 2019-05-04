@@ -45,11 +45,11 @@ function (frame,
         names(response.units) <- NULL
     }
     ncol.data.mat <- ncol(frame)
-    response.column <- SMRD:::check.column(response.column, 
+    response.column <- check.column(response.column, 
                                     ncol.data.mat,
                                     names.the.frame)
-    time.column <- SMRD:::check.column(time.column, ncol.data.mat, names.the.frame)
-    unit.column <- SMRD:::check.column(unit.column, 
+    time.column <- check.column(time.column, ncol.data.mat, names.the.frame)
+    unit.column <- check.column(unit.column, 
                                 ncol.data.mat, 
                                 names.the.frame,
                                 number.col.allowed = -1)
@@ -60,12 +60,12 @@ function (frame,
     
     `if`(missing(group.column) || is.null(group.column),
          group.column <- NULL,
-         group.column <- SMRD:::check.column(group.column, 
+         group.column <- check.column(group.column, 
                                       ncol.data.mat,
                                       names.the.frame))
     
     if (!is.null(x.columns)) {
-        x.columns <- SMRD:::check.column(x.columns, 
+        x.columns <- check.column(x.columns, 
                                   ncol.data.mat, 
                                   names.the.frame,
                                   number.col.allowed = -1)
