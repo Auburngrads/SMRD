@@ -1,7 +1,7 @@
 TestWindow <-
 function (ID, time, event, count) 
 {
-    if (SMRD:::map.SMRDDebugLevel() > 0) {
+    if (map.SMRDDebugLevel() > 0) {
         cat("ID\n")
         print(ID)
         cat("time\n")
