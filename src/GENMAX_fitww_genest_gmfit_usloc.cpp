@@ -14,9 +14,12 @@ void usloc(Rcpp::NumericVector &theta,
    Rcpp::NumericVector ivhold = Rcpp::NumericVector(genx07::g_nparm);
    Rcpp::NumericVector idel = Rcpp::NumericVector(genx07::g_nparm);
    Rcpp::NumericVector igrad = Rcpp::NumericVector(genx07::g_nparm);
+   Rcpp::IntegerVector IPKODE = clone(genx03::g_ipkode);
    
-   usloc1(theta,genx03::g_ipkode,vcv,ivhold,
+   usloc1(theta,IPKODE,vcv,ivhold,
           idel,igrad,genx07::g_nparm,idim);
+   
+   genx03::g_ipkode = clone(IPKODE);
    
 return;
    
