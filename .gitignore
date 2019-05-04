@@ -35,4 +35,6 @@
 .Rhistory
 .Rproj.user
 
-
+# C++ Dump Files
+*.txt
+*.6
