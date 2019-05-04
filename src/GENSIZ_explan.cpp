@@ -49,10 +49,8 @@ if(debug::kprint >= 4){
   
 }
 
-Rcpp::Rcout << "\nHERE\n" << std::endl;
 if(ncolx == 0) goto exit;
 if(nrelat == 0) goto exit;
-Rcpp::Rcout << "\nHERE\n" << std::endl;
 
 for(int irnow = 0; irnow < nrelat; irnow++){
 
@@ -120,11 +118,6 @@ for(int irnow = 0; irnow < nrelat; irnow++){
        my_col = mrelat.column(irnow);
        //my_col2 = IntegerVector((nxd.at(kparm - 1) - (iup)),0);
        int vec_n = nrvar.at(irnow); 
-       // for(int j = 0; j < vec_n; j++){
-       //   
-       //     my_col2.at(j) = my_col.at(iup - 1 + j);
-       //   
-       // }
        
        if(intd.at(kparm - 1) == 1) {
           
@@ -203,4 +196,5 @@ for(int j = 0; j < npardm; j++){
 }
 
 return;
+
 }
