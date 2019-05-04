@@ -3,20 +3,20 @@ function (data.ld,
           number.needed = 2, 
           censored.in.interval = "average")
 {
-    the.failure.modes <- SMRD:::failure.modes(data.ld)
+    the.failure.modes <- failure.modes(data.ld)
     if (is.null(the.failure.modes))
         stop("Data set does not have failure modes defined")
     
     unique.modes <- as.character(unique(the.failure.modes))
     unique.modes <- 
       sort(unique.modes[is.na(match(casefold(unique.modes),
-        SMRD:::ClistToVec(SMRD:::get.right.censor.names(data.ld))))])
+        ClistToVec(get.right.censor.names(data.ld))))])
     multiple.d.list <- list()
     for (i in 1:length(unique.modes)) {
         y <- Response(data.ld)
-        the.censor.codes <- SMRD:::censor.codes(data.ld)
-        the.case.weights <- SMRD:::case.weights(data.ld)
-        the.truncation.codes<- SMRD:::truncation.codes(data.ld)
+        the.censor.codes <- censor.codes(data.ld)
+        the.case.weights <- case.weights(data.ld)
+        the.truncation.codes<- truncation.codes(data.ld)
         ty <- NULL
         this.one <- the.failure.modes == unique.modes[i]
         
@@ -39,13 +39,13 @@ function (data.ld,
                      upper      = { y[!this.one, 2] }, 
                      lower      = { y[!this.one, 1] })
         }
-        data.title <- paste(SMRD:::get.data.title(data.ld), 
+        data.title <- paste(get.data.title(data.ld), 
                             unique.modes[i],
                             "Failure Mode")
         time.units = as.character(colnames(Response(data.ld)))
         the.xmat = xmat(data.ld)
-        xlabel = SMRD:::get.xlabel(data.ld)
-        xx.ld <- SMRD:::make.frame.ld(y = y, 
+        xlabel = get.xlabel(data.ld)
+        xx.ld <- make.frame.ld(y = y, 
                                the.censor.codes = the.censor.codes,
                                the.case.weights = the.case.weights, 
                                data.title = data.title,
