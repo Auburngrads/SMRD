@@ -1,4 +1,4 @@
-library(smrdfortran)
+library(SMRD)
 
 distribution  = "weibull"
 kprint = 0
@@ -60,12 +60,12 @@ xi.in = xi.vec
     nplan <- length(as.vector(pi.in))
     pi <- rbind(as.vector(pi.in), 1 - as.vector(pi.in))
     xi <- rbind(as.vector(xi.in), 1)
-    a <- smrdfortran:::expand.vec(a, nplan)
-    b1 <- smrdfortran:::expand.vec(b1, nplan)
-    b2 <- smrdfortran:::expand.vec(b2, nplan)
-    theta <- smrdfortran:::expand.vec(theta.in, nplan)
-    perc <- smrdfortran:::expand.vec(perc, nplan)
-    idist <- smrdfortran:::numdist(distribution)
+    a <- SMRD:::expand.vec(a, nplan)
+    b1 <- SMRD:::expand.vec(b1, nplan)
+    b2 <- SMRD:::expand.vec(b2, nplan)
+    theta <- SMRD:::expand.vec(theta.in, nplan)
+    perc <- SMRD:::expand.vec(perc, nplan)
+    idist <- SMRD:::numdist(distribution)
     idistp <- (idist + 1)/2
     parameter <- c(a, b1, b2, theta)
     if (theta.known) {
@@ -98,7 +98,7 @@ xi.in = xi.vec
         as.integer(known), fisher = double(dim * dim), varret = double(nplan),
         as.integer(kprint))
     
-    new <- wqmevlike::vvar1(as.double(parameter), 
+    new <- SMRD2::vvar1(as.double(parameter), 
                             as.double(xi),
                             as.double(pi),
                             as.double(zd), 
