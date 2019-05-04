@@ -4,7 +4,7 @@ function (groupm.out, new.data)
     if (nrow(new.data) > 1) {
         stop("Number of rows in new.data is > 1")
     }
-    relationship <- SMRD:::multiple.generic.relationship.name(groupm.out$relationship)
+    relationship <- multiple.generic.relationship.name(groupm.out$relationship)
     if (is.null(names(relationship)))
         names(relationship) <- names(new.data)
     assign(envir = .frame0,  inherits = TRUE,"relationship.vector", relationship)
