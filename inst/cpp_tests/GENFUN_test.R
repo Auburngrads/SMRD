@@ -16,8 +16,6 @@ ld <- frame.to.ld(superalloy,
                      x.columns = c(4,5,6))
 gmlest.out <- SMRD2:::mlest(ld, distribution = "weibull",
                           explan.vars = c(2,3))
-distribution = "Weibull"
-
 gmlest.out$model = 0
     
 }
