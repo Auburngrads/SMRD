@@ -33,16 +33,16 @@ void proexv(Rcpp::IntegerVector &nxd,
         
  proex1(nxd,intd,ipxcd,irelad,igtyd,imarkd,npard,
         nregr,NXG,NTERG,INTG,IPXCG,IRELAG,IGTYG,
-        genx09::kscloc,genx09::kprloc,genx09::kpwloc,
+        genx09::g_kscloc,genx09::g_kprloc,genx09::g_kpwloc,
         IPTHET,ngamd,ngame,nparm,kodet,ifix);
  
- genx21::igtyg  = clone(IGTYG);
- genx21::ipthet = clone(IPTHET);
- genx20::nxg = clone(NXG);
- genx20::intg = clone(INTG);
- genx21::irelag = clone(IRELAG);
- genx20::nterg = clone(NTERG);
- genx20::ipxcg = clone(IPXCG);
+ genx21::g_igtyg  = clone(IGTYG);
+ genx21::g_ipthet = clone(IPTHET);
+ genx20::g_nxg = clone(NXG);
+ genx20::g_intg = clone(INTG);
+ genx21::g_irelag = clone(IRELAG);
+ genx20::g_nterg = clone(NTERG);
+ genx20::g_ipxcg = clone(IPXCG);
  
 return;
 
