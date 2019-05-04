@@ -17,20 +17,29 @@ void scpx(Rcpp::NumericVector &theta,
  if(debug::kprint >= 4) {
     
     Rcpp::Rcout << "\nSCPX START\n" << std::endl;
-    Rcpp::Rcout << "ipthet = " << genx21::ipthet << std::endl;
+    Rcpp::Rcout << "ipthet = " << genx21::g_ipthet << std::endl;
     Rcpp::Rcout << "ngame = " << genx03::g_ngame << std::endl;
-    Rcpp::Rcout << "nterg = " << genx20::nterg << std::endl;
-    Rcpp::Rcout << "nxg = " << genx20::nxg << std::endl;
+    Rcpp::Rcout << "nterg = " << genx20::g_nterg << std::endl;
+    Rcpp::Rcout << "nxg = " << genx20::g_nxg << std::endl;
     Rcpp::Rcout << "nparm = " << genx07::g_nparm << std::endl;
     Rcpp::Rcout << "thetas = " << thetas << std::endl;
     Rcpp::Rcout << "theta = " << theta << std::endl;
     
  }
  
+Rcpp::IntegerVector NXG = clone(genx20::g_nxg);
+Rcpp::IntegerVector INTG = clone(genx20::g_intg);
+Rcpp::List IPXCG = clone(genx20::g_ipxcg);
+Rcpp::NumericVector IPXBRU = clone(genx05::g_ipxbru);
+Rcpp::NumericVector IPSD = clone(genx05::g_ipsd);
+Rcpp::IntegerVector IPISCD = clone(genx05::g_ipiscd);
+Rcpp::IntegerVector IPTHET = clone(genx21::g_ipthet);
+Rcpp::IntegerVector NTERG = clone(genx20::g_nterg);
+ 
 for(int igame = 1; igame <= genx03::g_ngame; igame++){
   
 // Pick up pointer to theta vector for the current gamma parameter
-   ipoint = genx21::ipthet.at(igame - 1);
+   ipoint = IPTHET.at(igame - 1);
   
 // Pick up pointer to the columns of x used in the explanatory
 // variable relationship for the current gamma parameter
@@ -41,10 +50,10 @@ for(int igame = 1; igame <= genx03::g_ngame; igame++){
 
 // nterg(igame) = 0 indicates that this is  
 // a saved function of another parmeter
-   if(genx20::nterg.at(igame - 1) ==  0) goto line21;
+   if(NTERG.at(igame - 1) ==  0) goto line21;
 
 //  nxg(igame) = 0   indicates no regression--copy single
-    if(genx20::nxg.at(igame - 1) != 0) {
+    if(NXG.at(igame - 1) != 0) {
 
        if(debug::kprint >= 10) {
           
@@ -52,24 +61,10 @@ for(int igame = 1; igame <= genx03::g_ngame; igame++){
           
        }
        
-       Rcpp::IntegerVector NXG = clone(genx20::nxg);
-       Rcpp::IntegerVector INTG = clone(genx20::intg);
-       Rcpp::List IPXCG = clone(genx20::ipxcg);
-       Rcpp::NumericVector IPXBRU = clone(genx05::g_ipxbru);
-       Rcpp::NumericVector IPSD = clone(genx05::g_ipsd);
-       Rcpp::IntegerVector IPISCD = clone(genx05::g_ipiscd);
-       
        sclp(ipoint,igame,theta,NXG.at(igame - 1),
             INTG.at(igame - 1),IPXCG,IPXBRU,
             IPSD,thetas,IPISCD);
        
-       genx20::nxg = clone(NXG);
-       genx20::intg = clone(INTG);
-       genx20::ipxcg = clone(IPXCG);
-       genx05::g_ipxbru = clone(IPXBRU);
-       genx05::g_ipsd = clone(IPSD);
-       genx05::g_ipiscd = clone(IPISCD);
-
       goto line21;
 
     }
@@ -80,22 +75,31 @@ line21: if(debug::kprint >= 4) {
   
            Rcpp::Rcout << "\nscpx**4**\n"                               << std::endl;
            Rcpp::Rcout << "igame = "    << igame - 1                    << std::endl;
-           Rcpp::Rcout << "ipthet = "   << genx21::ipthet.at(igame - 1) << std::endl;
-           Rcpp::Rcout << "intg = "     << genx20::intg.at(igame - 1)   << std::endl;
-           Rcpp::Rcout << "nxg = "      << genx20::nxg.at(igame - 1)    << std::endl;
-           Rcpp::Rcout << "nterg = "    << genx20::nterg.at(igame - 1)  << std::endl;
+           Rcpp::Rcout << "ipthet = "   << IPTHET.at(igame - 1) << std::endl;
+           Rcpp::Rcout << "intg = "     << INTG.at(igame - 1)   << std::endl;
+           Rcpp::Rcout << "nxg = "      << NXG.at(igame - 1)    << std::endl;
+           Rcpp::Rcout << "nterg = "    << NTERG.at(igame - 1)  << std::endl;
            Rcpp::Rcout << "theta = "    << theta                        << std::endl;
            Rcpp::Rcout << "thetas = "   << thetas                       << std::endl;
 
-           if(genx20::ipxcg[igame - 1] != R_NilValue) {
+           if(IPXCG[igame - 1] != R_NilValue) {
       
-              SEXP l = genx20::ipxcg[igame - 1]; Rcpp::IntegerVector y(l);
+              SEXP l = IPXCG[igame - 1]; Rcpp::IntegerVector y(l);
               Rcpp::Rcout << "ipxcg(igame) = " << y << std::endl;
      
            }
 
         }
 }
+
+genx20::g_nxg = clone(NXG);
+genx20::g_intg = clone(INTG);
+genx20::g_ipxcg = clone(IPXCG);
+genx05::g_ipxbru = clone(IPXBRU);
+genx05::g_ipsd = clone(IPSD);
+genx05::g_ipiscd = clone(IPISCD);
+genx21::g_ipthet = clone(IPTHET);
+genx20::g_nterg = clone(NTERG);
 
 if(debug::kprint >= 4) {
   
