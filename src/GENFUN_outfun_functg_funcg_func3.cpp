@@ -31,7 +31,7 @@ double phis,phis1,phis2,phis3,phis4,phis5,phis6,phibm;
 int kfunca, ier = 0;
 
       scale = one;
-      if(genx09::kscloc > 0) scale = gamme.at(genx09::kscloc - 1);
+      if(genx09::g_kscloc > 0) scale = gamme.at(genx09::g_kscloc - 1);
       kfunca = std::abs(kfuncf);
       
 // Population failure probability as a function of time
@@ -39,7 +39,7 @@ int kfunca, ier = 0;
      
       tfarg = funarg;
       if(llog == 1) tfarg = dlogc(funarg);
-      func_3 = one - gcdfm(tfarg,gamme(genx09::kpwloc),7) * gcdfm(tfarg,gamme,kdist);
+      func_3 = one - gcdfm(tfarg,gamme(genx09::g_kpwloc),7) * gcdfm(tfarg,gamme,kdist);
       
    }
       
@@ -75,12 +75,12 @@ int kfunca, ier = 0;
       if(llog == 1) tfarg = dlogc(funarg);
       phis1 = gpdf(tfarg,gamme,kdist);
       phis2 = gcdfm(tfarg,gamme,kdist);
-      phis3 = gpdf(tfarg,gamme(genx09::kpwloc),7);
-      phis4 = gcdfm(tfarg,gamme(genx09::kpwloc),7);
+      phis3 = gpdf(tfarg,gamme(genx09::g_kpwloc),7);
+      phis4 = gcdfm(tfarg,gamme(genx09::g_kpwloc),7);
       phis5 = gcdfm(tfarg,gamme,kdist);
-      phis6 = gcdfm(tfarg,gamme(genx09::kpwloc),7);
+      phis6 = gcdfm(tfarg,gamme(genx09::g_kpwloc),7);
       phis  = (phis1 / (phis2) + phis3 / (phis4)) * phis5 * phis6;
-      phibm = gcdfm(tfarg,gamme(genx09::kpwloc),7) * gcdfm(tfarg,gamme,kdist);
+      phibm = gcdfm(tfarg,gamme(genx09::g_kpwloc),7) * gcdfm(tfarg,gamme,kdist);
       
       dcheck(phibm,1.0e-30,1.0e00,1.0e-30,1.0e00,ier,-98230);
       
