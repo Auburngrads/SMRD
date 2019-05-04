@@ -58,12 +58,12 @@ if (is.null(relationship)) {
     relationship[!group.var.numeric] <- "class"
 }
     
-SMRD:::relationship.sanity(the.xmat, relationship)
-relationship <- SMRD:::set.relationship.power(relationship, power)
+relationship.sanity(the.xmat, relationship)
+relationship <- set.relationship.power(relationship, power)
 names(relationship) <- reduced.xmat.names
     
 for (i in 1:ncol(the.xmat)) {
-    if (SMRD:::generic.relationship.name(relationship[i]) == "class") {
+    if (generic.relationship.name(relationship[i]) == "class") {
         the.xmat[, i] <- as.factor(the.xmat[, i])
     }
 }
@@ -74,7 +74,7 @@ assign(envir = .frame0,
        "relationship.vector", 
        relationship)
     
-if (is.null(formula)) formula <- SMRD:::get.default.formula(the.xmat, 
+if (is.null(formula)) formula <- get.default.formula(the.xmat, 
                                                      relationship)
 Terms <-terms(formula)
 the.data.frame <- data.frame(Response = rep(1, nrow(the.xmat)),
@@ -87,19 +87,19 @@ the.model.matrix <- model.matrix(Terms, the.data.frame)
 
 attr(the.model.matrix, "contrast.method") <- as.character(.Options$contrasts)
 
-stresses <- SMRD:::get.x.markers(data.ld, 
+stresses <- get.x.markers(data.ld, 
                            group.var = group.var,
                            do.order = F)
     
-ordered.stresses <- SMRD:::get.x.markers(data.ld, 
+ordered.stresses <- get.x.markers(data.ld, 
                                    group.var = group.var,
                                    do.order = T)
     
 `if`(length(relationship) == 1 && relationship == "class",
-     stress.names <- SMRD:::get.x.markers(data.ld, 
+     stress.names <- get.x.markers(data.ld, 
                                     group.var = group.var,
                                     do.order = F),
-     stress.names <- SMRD:::get.x.markers(data.ld, 
+     stress.names <- get.x.markers(data.ld, 
                                     group.var = group.var,
                                     long = T, do.order = F))
     
@@ -109,7 +109,7 @@ ordered.stresses <- SMRD:::get.x.markers(data.ld,
      { the.not.stripped <- rep(T, length(stresses))
        stress.order <- match(ordered.stresses, stresses) })
     
-if (SMRD:::map.SMRDDebugLevel() >= 6) {
+if (map.SMRDDebugLevel() >= 6) {
     cat("\n unordered stresses \n")
     print(stresses)
     cat("\n unordered stress names \n")
@@ -119,7 +119,7 @@ if (SMRD:::map.SMRDDebugLevel() >= 6) {
 stress.names <- stress.names[stress.order]
 stresses <- stresses[stress.order]
     
-if (SMRD:::map.SMRDDebugLevel() >= 6) {
+if (map.SMRDDebugLevel() >= 6) {
     cat("\n ordered stresses \n")
     print(stresses)
     cat("\n ordered stress names \n")
@@ -151,19 +151,19 @@ if (plotem && length(stresses) > stresses.limit) {
     }
 }
 
-SMRD:::xmat(data.ld) <- SMRD:::model.matrix.to.matrix(the.model.matrix)
+xmat(data.ld) <- model.matrix.to.matrix(the.model.matrix)
 attr(data.ld, "the.relationships") <- relationship
     
 mlest.out <- mlest(data.ld, 
                    distribution, 
-                   explan.vars = seq(1:ncol(SMRD:::xmat(data.ld))),
+                   explan.vars = seq(1:ncol(xmat(data.ld))),
                    theta.start = theta.start, 
                    parameter.fixed = parameter.fixed,
                    kprint = dump, 
                    send.col.ones = T, 
                    intercept = F,...)
 
-SMRD:::xmat(data.ld) <- the.xmat
+xmat(data.ld) <- the.xmat
 mlest.out$relationship <- relationship
 mlest.out$power <- power
 
@@ -180,10 +180,10 @@ mlest.out$stresses <- stresses
 
 attr(data.ld, "xlabel") <- reduced.xmat.names
 mlest.out$data.ld <- data.ld
-mlest.out$title <- paste(SMRD:::get.data.title(data.ld), 
+mlest.out$title <- paste(get.data.title(data.ld), 
                          "\n", 
                          paste(reduced.xmat.names,
-                               SMRD:::name.relationship(relationship, 
+                               name.relationship(relationship, 
                                                  allow = T), 
                                sep = "", collapse = ", "), 
                          paste(", Dist:", distribution, sep = ""))
@@ -226,7 +226,7 @@ pch          <- pch[plotted]
 col.fhat.vec <- col.fhat.vec[plotted]
 lty          <- lty[plotted]
 cdfest.out   <- cdfest(data.ld)
-cdpoints.out <- SMRD:::cdpoints(cdfest.out)
+cdpoints.out <- cdpoints(cdfest.out)
 upper.quantile.max <- NULL
     
 if (compute.subsets) {
@@ -237,11 +237,11 @@ for (i in 1:length(stresses.plus)) {
   
 data.name <- stresses.plus[i]
             
-`if`(SMRD:::is.onlist(i, ci.list),
+`if`(is.onlist(i, ci.list),
      conf.level.send <- conf.level,
      conf.level.send <- 0 )
           
-if (SMRD:::map.SMRDDebugLevel() >= 6)  cat("stress=", 
+if (map.SMRDDebugLevel() >= 6)  cat("stress=", 
                                 stresses.plus[i], 
                                 "ci=", 
                                 conf.level.send,
@@ -249,16 +249,16 @@ if (SMRD:::map.SMRDDebugLevel() >= 6)  cat("stress=",
 
 if (i <= length(stresses)) {
               
-  if (SMRD:::map.SMRDDebugLevel() >= 6) cat("stress=", 
+  if (map.SMRDDebugLevel() >= 6) cat("stress=", 
                                      stresses[i], 
                                      "stress name=",
                                      stress.names[i], 
                                      "\n")
               
-  data.subset.ld <- SMRD:::multiple.get.data.subset(data.ld,
+  data.subset.ld <- multiple.get.data.subset(data.ld,
                                              stresses[i], 
                                              columns = 1:ncol(the.xmat))
-  if (SMRD:::map.SMRDDebugLevel() >= 4) {
+  if (map.SMRDDebugLevel() >= 4) {
     
       cat("*******Loop index:", stresses.plus[i], "\n")
       print(data.subset.ld)
@@ -268,7 +268,7 @@ if (i <= length(stresses)) {
               
   single.xmat <- as.data.frame(xmat(data.subset.ld))
   dimnames(single.xmat)[[2]] <- reduced.xmat.names
-  get.location.out <- SMRD:::get.single.dist(mlest.out,
+  get.location.out <- get.single.dist(mlest.out,
                                        single.xmat[1, , drop = F])
                 
   mlest.dummy <- list(distribution = distribution,
@@ -278,7 +278,7 @@ if (i <= length(stresses)) {
                       ierfit = 0,
                       iervcv = 0)
   
-  if (!SMRD:::good.data(data.subset.ld, 
+  if (!good.data(data.subset.ld, 
                         check.level = check.level,
                         number.needed = 1)) {
     
@@ -289,13 +289,13 @@ if (i <= length(stresses)) {
   
     cdfest.out <- cdfest(data.subset.ld)
     if (length(cdfest.out$q) > 0) {
-        cdpoints.out <- SMRD:::cdpoints(cdfest.out)
+        cdpoints.out <- cdpoints(cdfest.out)
         trunc.correct <- (!is.null(cdfest.out$left.trun.cond) ||
                       !is.null(cdfest.out$right.trun.cond)) && trunc.correct
     if (trunc.correct) {
       
         mlest.subset.out <- mlest(data.subset.ld, distribution)
-        cdpoints.out <- SMRD:::truncadj(cdpoints.out,
+        cdpoints.out <- truncadj(cdpoints.out,
                                  mlest.dummy,
                                  debug1 = debug1)
     }
@@ -322,7 +322,7 @@ return.list[[stress.names[i]]] <- sublist
 
 upper.quantile     <- 0.99 * max(cdpoints.out$pplot + 0.01)
 upper.quantile.max <- max(upper.quantile, upper.quantile.max)
-the.quantiles      <- SMRD:::quantiles.mlest(mlest.dummy,
+the.quantiles      <- quantiles.mlest(mlest.dummy,
                                       printem = F, 
                                       to = upper.quantile)[, "Quanhat"]
 xlim.quant.now <- range(the.quantiles)
@@ -334,13 +334,13 @@ xtvna          <- is.na(time.range)
         xlim.quant.use <- xlim.quant },
       { xlim.quant.use <- xlim.quant.now })
  
-bands <- SMRD:::get.parametric.bands.zhat(mlest.dummy,
+bands <- get.parametric.bands.zhat(mlest.dummy,
                                    conf.level = conf.level.send, 
                                    xlim = xlim.quant.use)
 } else {
   
   inow <- i - length(stresses)
-  the.quantiles <- SMRD:::quantiles.groupm.out(mlest.out,
+  the.quantiles <- quantiles.groupm.out(mlest.out,
                                         new.data = new.data[inow, , drop = F], 
                                         printem = F,
                                         to = upper.quantile.max)
@@ -361,9 +361,9 @@ bands <- SMRD:::get.parametric.bands.zhat(mlest.dummy,
        { tv.range <- xlim.quant })
   
   fail.prob.out <- 
-    SMRD:::failure.probabilities.groupm.out(mlest.out,
+    failure.probabilities.groupm.out(mlest.out,
                                      new.data = new.data[inow, , drop = F], 
-                                     time.vec = SMRD:::vec.from.range(range(tv.range),distribution, number.points = number.points),
+                                     time.vec = vec.from.range(range(tv.range),distribution, number.points = number.points),
                                      printem = F, 
                                      conf.level = conf.level.send)
   if (is.null(fail.prob.out)) {
@@ -390,7 +390,7 @@ if (dump) browser()
 
 if (plotem && length(nonparametric.list) == 0) {
           
-    warning(paste("No estimable data sets in", SMRD:::get.data.title(data.ld)))
+    warning(paste("No estimable data sets in", get.data.title(data.ld)))
     plotem <- F
             
 } else {
@@ -419,7 +419,7 @@ log.of.data <- probplot.setup(distribution,
 
 bands.list.data.names <- names(bands.list)
 
-        if (SMRD:::map.SMRDDebugLevel() >= 6) {
+        if (map.SMRDDebugLevel() >= 6) {
             cat("\nbands.list\n")
             print(bands.list.data.names)
             cat("\nstresses.plus\n")
@@ -432,11 +432,11 @@ data.name <- bands.list.data.names[i]
 
 if (plotem) {
   
-    if (SMRD:::is.onlist(data.name, names(nonparametric.list))) {
+    if (is.onlist(data.name, names(nonparametric.list))) {
       
         cdpoints.out <- nonparametric.list[[data.name]]
-        points.default(SMRD:::pp.data(cdpoints.out$yplot, log.of.data), 
-                       SMRD:::quant(cdpoints.out$pplot, distribution),
+        points.default(pp.data(cdpoints.out$yplot, log.of.data), 
+                       quant(cdpoints.out$pplot, distribution),
                        col = col.fhat.vec[i], 
                        pch = pch[i]%%19,
                        cex = (1.2 * GetSMRDDefault("SMRD.point.size"))/100)
@@ -445,21 +445,21 @@ bands <- bands.list[[data.name]]
 if (is.null(bands$times)) next
 times <- bands$times
 
-lines(SMRD:::pp.data(times, log.of.data), 
-      SMRD:::pp.quant(bands$fhat, distribution, shape), 
+lines(pp.data(times, log.of.data), 
+      pp.quant(bands$fhat, distribution, shape), 
       col = col.fhat.vec[i],
       lty = lty[i], 
       lwd = 2)
 
 if (!is.null(bands$lower)) {
   
-    lines(SMRD:::pp.data(times, log.of.data), 
-          SMRD:::pp.quant(bands$lower, distribution, shape), 
+    lines(pp.data(times, log.of.data), 
+          pp.quant(bands$lower, distribution, shape), 
           col = col.ci, 
           lty = 3,
           lwd = 2)
-    lines(SMRD:::pp.data(times, log.of.data), 
-          SMRD:::pp.quant(bands$upper, distribution, shape), 
+    lines(pp.data(times, log.of.data), 
+          pp.quant(bands$upper, distribution, shape), 
           col = col.ci, 
           lty = 3,
           lwd = 2)
@@ -467,13 +467,13 @@ if (!is.null(bands$lower)) {
 }
 }
 
-SMRD:::f.plot.censored.ticks(data.ld, 
+f.plot.censored.ticks(data.ld, 
                       log.of.data, 
                       plot.censored.ticks)
 pch.done <- -pch
 pch.done[1:length(stresses)] <- -pch.done[1:length(stresses)]
 
-stresses.plus <- SMRD:::switch.units(stresses.plus)
+stresses.plus <- switch.units(stresses.plus)
 
 if (do.legend == "On plot" && plotem) {
     legend(x.loc(0.003), 
