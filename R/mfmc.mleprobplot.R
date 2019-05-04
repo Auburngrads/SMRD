@@ -1,7 +1,7 @@
 mfmc.mleprobplot <-
 function (data.ld, 
           distribution, 
-          xlab = SMRD:::get.time.units(data.ld),
+          xlab = get.time.units(data.ld),
           ylab = GetSMRDDefault("SMRD.LabelOnYaxis"), 
           xlim = c(NA,NA), 
           ylim = c(NA,NA), 
@@ -27,8 +27,8 @@ function (data.ld,
     if (length(distribution) > 1)
         stop("Distribution should be a single name; use distribution.vec for multiple distributions")
     
-    band.type <- SMRD:::generic.band.type(band.type)
-    data.mfld <- SMRD:::ld.to.mfld(data.ld)
+    band.type <- generic.band.type(band.type)
+    data.mfld <- ld.to.mfld(data.ld)
     distribution.vec = rep(distribution, length = length(data.mfld))
     failure.modes = names(data.mfld)
     col.fhat.vec = 1:length(data.mfld)
@@ -56,13 +56,13 @@ function (data.ld,
     combined.color <- 'purple'
     lwd[lty == 2] <- 4
     xtvna <- is.na(time.range)
-    if (any(xtvna)) time.range[xtvna] <- SMRD:::get.time.range(data.ld, 
+    if (any(xtvna)) time.range[xtvna] <- get.time.range(data.ld, 
                                                         distribution = distribution)[xtvna]
     
-    ylim.data <- range(SMRD:::strip.na(SMRD:::cdpoints(SMRD:::cdfest(data.ld))$pplot))
+    ylim.data <- range(strip.na(cdpoints(cdfest(data.ld))$pplot))
     
-    `if`(SMRD:::is.logdist(distribution),
-         time.vector <- SMRD:::logseq(time.range[1], 
+    `if`(is.logdist(distribution),
+         time.vector <- logseq(time.range[1], 
                                time.range[2],
                                length = time.vector.length),
          time.vector <-    seq(time.range[1], 
@@ -136,7 +136,7 @@ function (data.ld,
          band.type.send <- "none")
     
     mfmc.probs.out <- 
-      SMRD:::failure.probabilities.mfmc(x = multiple.mlest.out,
+      failure.probabilities.mfmc(x = multiple.mlest.out,
                                  time.vector = time.vector, 
                                  band.type = band.type.send, 
                                  conf.level = conf.level)
