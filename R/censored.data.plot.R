@@ -14,10 +14,10 @@
 #'    \bold{(optional)} Range of plotting values for the x-axis.  If left blank, values will be chosen based on the information in \code{data.ld}
 #' @param x.axis character(\code{"linear"}) 
 #' 
-#'    Transformation applied to the values defined along the x-axis.  See \code{SMRD:::.generic.relationship.name} for the list of transformation relationships that can be used
+#'    Transformation applied to the values defined along the x-axis.  See \code{.generic.relationship.name} for the list of transformation relationships that can be used
 #' @param y.axis character(\code{"linear"}) 
 #' 
-#'    Transformation applied to the values defined along the x-axis.  See \code{SMRD:::.generic.relationship.name} for the list of transformation relationships that can be used.
+#'    Transformation applied to the values defined along the x-axis.  See \code{.generic.relationship.name} for the list of transformation relationships that can be used.
 #' @param my.title character(\code{NULL})
 #' 
 #'    Title to be displayed above the plot
