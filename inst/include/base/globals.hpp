@@ -70,7 +70,7 @@ namespace genx08{
     extern int g_kparm,g_klmode,g_kpoint;
 };
 namespace genx09{
-    extern int kscloc,kprloc,kpwloc,kthloc;
+    extern int g_kscloc,g_kprloc,g_kpwloc,g_kthloc;
 };
 namespace genx14{
     extern double g_funarg;
@@ -83,12 +83,12 @@ namespace genx16{
     extern double g_xlogmh,g_thetah,g_sigmah;
 };
 namespace genx20{ 
-    extern Rcpp::IntegerVector nxg,nterg,intg; //all length 20
-    extern Rcpp::List ipxcg;  // length 5
+    extern Rcpp::IntegerVector g_nxg,g_nterg,g_intg; //all length 20
+    extern Rcpp::List g_ipxcg;  // length 5
 };
 namespace genx21{
-    extern Rcpp::NumericVector gamms;
-    extern Rcpp::IntegerVector ipthet,irelag,igtyg; //all length 20
+    extern Rcpp::NumericVector g_gamms;
+    extern Rcpp::IntegerVector g_ipthet,g_irelag,g_igtyg; //all length 20
 };
 namespace gdump{
     extern int g_kprint;
