@@ -1,4 +1,4 @@
-library(smrdfortran)
+library(SMRD)
 
 distribution = 'exponential'
 n = 100
@@ -12,7 +12,7 @@ number.sim = 10
 kprint = 0
 debug1 = F
 
-altsim.out <- smrdfortran:::altsim(rbind(0, diag(k - 1)),
+altsim.out <- SMRD:::altsim(rbind(0, diag(k - 1)),
                      rep(n, k), rep(r, k),
                      theta = c(rep(0, k), 1),
                      distribution = distribution,
