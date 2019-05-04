@@ -1,4 +1,4 @@
-library(smrdfortran)
+library(SMRD)
 korder = 2
 nsamsize = 10
 timevec = 5
@@ -8,12 +8,12 @@ distribution = 'lognormal'
 
 old <- .Fortran("postkp", as.integer(korder), as.integer(nsamsize), 
                 as.double(timevec), as.integer(length(timevec)), as.double(mu), 
-                as.double(sigma), as.integer(length(mu)), as.integer(smrdfortran:::numdist(distribution)), 
+                as.double(sigma), as.integer(length(mu)), as.integer(SMRD:::numdist(distribution)), 
                 pdf = double(length(timevec)), cdf = double(length(timevec)))
 
-new <- wqmmlesss::postkp(as.integer(korder), as.integer(nsamsize), 
+new <- SMRD2::postkp(as.integer(korder), as.integer(nsamsize), 
                         as.double(timevec), as.integer(length(timevec)), as.double(mu), 
-                        as.double(sigma), as.integer(length(mu)), as.integer(smrdfortran:::numdist(distribution)), 
+                        as.double(sigma), as.integer(length(mu)), as.integer(SMRD:::numdist(distribution)), 
                         pdf = double(length(timevec)), cdf = double(length(timevec)))
 
 old$pdf - new$pdf
