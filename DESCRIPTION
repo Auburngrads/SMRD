@@ -1,17 +1,48 @@
 Package: SMRD2
 Type: Package
-Title: What the Package Does in One 'Title Case' Line
-Version: 1.0
+Title: Statistical Methods For Reliability Data
+Version: 2019.04.29
 Date: 2019-04-29
-Author: Your Name
-Maintainer: Your Name <your@email.com>
-Description: One paragraph description of what the
-      package does as one or more full sentences.
+Authors@R: c(
+    person("Jason", "Freels", 
+           email = "auburngrads@live.com", 
+           role = c("cre")),
+    person("William", "Meeker", 
+           email = "wqmeeker@iastate.edu", 
+           role = c("aut")),
+    person("Luis", "Escobar", 
+           email = "luis@lsu.edu", 
+           role = c("aut")))
+Maintainer: Jason Freels <auburngrads@live.com>   
+Description: Implements the reliability estimation functions and 
+    data sets for use with the text "Statistical Methods for 
+    Reliability Data" Copyright 1998 by Meeker & Escobar.
 License: GPL (>= 2)
-Imports: Rcpp (>= 1.0.1)
+LazyData: true
+Depends:
+    R (>= 3.5.0)
+Imports:
+    graphics,
+    stats,
+    nlme,
+    lattice,
+    grid,
+    survival,
+    plot3D,
+    FSA,
+    DT,
+    xtable,
+    pacman,
+    Rcpp (>= 1.0.1),
+    shiny,
+    teachingApps
 LinkingTo: Rcpp
-Suggests: 
-    testthat
+NeedsCompilation: yes
+Archs: i386, x64
+Suggests:
+    testthat,
+    knitr,
+    rmarkdown
 RoxygenNote: 6.1.1
 Encoding: UTF-8
-LazyData: true
+VignetteBuilder: knitr
