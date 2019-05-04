@@ -9,7 +9,7 @@ function (CensorIndicator,
           warn.unrecognized = T)
 {
     if (!is.numeric(CensorIndicator))
-        CensorIndicator <- SMRD:::strip.blanks.factor(CensorIndicator)
+        CensorIndicator <- strip.blanks.factor(CensorIndicator)
     
     CensorIndicator <- casefold(CensorIndicator)
     CensorCodes <- rep(NA, length(CensorIndicator))
@@ -25,16 +25,16 @@ function (CensorIndicator,
     
         }
     
-    failure.censor.names.vec   <- SMRD:::ClistToVec(failure.censor.names)
-    right.censor.names.vec     <- SMRD:::ClistToVec(right.censor.names)
-    left.censor.names.vec      <- SMRD:::ClistToVec(left.censor.names)
-    interval.censor.names.vec  <- SMRD:::ClistToVec(interval.censor.names)
-    sinterval.censor.names.vec <- SMRD:::ClistToVec(sinterval.censor.names)
-    CensorCodes[SMRD:::is.onlist(CensorIndicator, sinterval.censor.names.vec)] <- 5
-    CensorCodes[SMRD:::is.onlist(CensorIndicator, interval.censor.names.vec)]  <- 4
-    CensorCodes[SMRD:::is.onlist(CensorIndicator, left.censor.names.vec)]      <- 3
-    CensorCodes[SMRD:::is.onlist(CensorIndicator, failure.censor.names.vec)]   <- 1
-    CensorCodes[SMRD:::is.onlist(CensorIndicator, right.censor.names.vec)]     <- 2
+    failure.censor.names.vec   <- ClistToVec(failure.censor.names)
+    right.censor.names.vec     <- ClistToVec(right.censor.names)
+    left.censor.names.vec      <- ClistToVec(left.censor.names)
+    interval.censor.names.vec  <- ClistToVec(interval.censor.names)
+    sinterval.censor.names.vec <- ClistToVec(sinterval.censor.names)
+    CensorCodes[is.onlist(CensorIndicator, sinterval.censor.names.vec)] <- 5
+    CensorCodes[is.onlist(CensorIndicator, interval.censor.names.vec)]  <- 4
+    CensorCodes[is.onlist(CensorIndicator, left.censor.names.vec)]      <- 3
+    CensorCodes[is.onlist(CensorIndicator, failure.censor.names.vec)]   <- 1
+    CensorCodes[is.onlist(CensorIndicator, right.censor.names.vec)]     <- 2
 
 
     if (warn.unrecognized && any(is.na(CensorCodes))) {
