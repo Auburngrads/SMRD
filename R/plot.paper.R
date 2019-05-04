@@ -34,7 +34,7 @@ function (x,
     if (missing(x)) x <- c(1, 100)
     if (missing(y)) y <- c(1, 100)
     
-    GetAxesRange.out <- SMRD:::GetAxesRange("plot.paper", 
+    GetAxesRange.out <- GetAxesRange("plot.paper", 
                                      x.axis, 
                                      xlim = x,
                                      xlab, 
@@ -60,7 +60,7 @@ function (x,
     
         }
     
-    g.x.axis <- SMRD:::generic.relationship.name(x.axis)
+    g.x.axis <- generic.relationship.name(x.axis)
     
     if (is.null(hw.xaxis)) {
       
@@ -71,11 +71,11 @@ function (x,
       
         if (g.x.axis == "log" || g.x.axis == "log10" || log.like.x.axis) {
           
-            getxax.out <- SMRD:::logax(x[1], x[2], ...)
+            getxax.out <- logax(x[1], x[2], ...)
             
             } else {
               
-            getxax.out <- SMRD:::linax(x[1], x[2], ...)
+            getxax.out <- linax(x[1], x[2], ...)
             
             switch(g.x.axis, 
                    
@@ -115,7 +115,7 @@ function (x,
     
     datax.tic.location <- as.numeric(getxax.out$ticloc)
     datax.tic.label.loc <- as.numeric(getxax.out$ticlab)
-    g.y.axis <- SMRD:::generic.relationship.name(y.axis)
+    g.y.axis <- generic.relationship.name(y.axis)
     
     if (is.null(hw.yaxis)) {
       
@@ -126,12 +126,12 @@ function (x,
       
         if (g.y.axis == "log" || g.y.axis == "log10" || log.like.y.axis) {
           
-            getyax.out <- SMRD:::logax(y[1], y[2],...)
+            getyax.out <- logax(y[1], y[2],...)
             if (is.null(yaxis.line)) yaxis.line <- 3.5
             
             } else {
               
-            getyax.out <- SMRD:::linax(y[1], y[2],...)
+            getyax.out <- linax(y[1], y[2],...)
             if (is.null(yaxis.line)) yaxis.line <- 3.5
         
             }
@@ -196,8 +196,8 @@ function (x,
             paste("y=", y.axis, y.axis.p, y.prange[1], y.prange[2], sep = ","), 
             "\n")
     
-    plot(x = SMRD:::f.relationship(x.prange, x.axis.p), 
-         y = SMRD:::f.relationship(y.prange, y.axis), 
+    plot(x = f.relationship(x.prange, x.axis.p), 
+         y = f.relationship(y.prange, y.axis), 
          type = "n", 
          xaxt = "n", 
          yaxt = "n", 
@@ -216,11 +216,11 @@ function (x,
     if (x.axis != "blank" && is.null(xaxis.labels)) {
       
         tran.datax.tic.location <- 
-          SMRD:::f.relationship(datax.tic.location, x.axis)
+          f.relationship(datax.tic.location, x.axis)
         good.tran.datax.tic.location <- 
           tran.datax.tic.location[tran.datax.tic.location > -1e+31]
         tran.datax.tic.label.loc <- 
-          SMRD:::f.relationship(datax.tic.label.loc, x.axis)
+          f.relationship(datax.tic.label.loc, x.axis)
         good.tran.datax.tic.label.loc <- 
           tran.datax.tic.label.loc[tran.datax.tic.label.loc > -1e+31]
         
@@ -233,11 +233,11 @@ function (x,
         
         if (!missing(x)) {
             xlabels <- 
-              SMRD:::vector.power10(getxax.out$ticlab[tran.datax.tic.label.loc > -1e+31])
+              vector.power10(getxax.out$ticlab[tran.datax.tic.label.loc > -1e+31])
 
             axis(side = 1, 
                  at = good.tran.datax.tic.label.loc,
-                 labels = parse(text = SMRD:::fix.exp.labels(getxax.out$ticlab[tran.datax.tic.label.loc > -1e+31])), 
+                 labels = parse(text = fix.exp.labels(getxax.out$ticlab[tran.datax.tic.label.loc > -1e+31])), 
                  adj = 0.5, 
                  tck = -0.02, 
                  mgp = c(5, 1, 0), 
@@ -262,7 +262,7 @@ function (x,
     if (y.axis != "blank") {
       
         axis(side = 2, 
-             at = SMRD:::f.relationship(datay.tic.location, y.axis), 
+             at = f.relationship(datay.tic.location, y.axis), 
              labels = F, 
              tck = -0.01, 
              mgp = c(5, 2.1, 0), 
@@ -270,12 +270,12 @@ function (x,
       
         if (!missing(y)) {
           
-            ylabels <- SMRD:::vector.power10(getyax.out$ticlab)
+            ylabels <- vector.power10(getyax.out$ticlab)
 
-            the.labels <- SMRD:::fix.exp.labels(getyax.out$ticlab)
+            the.labels <- fix.exp.labels(getyax.out$ticlab)
             yaxis.line <- max(nchar(the.labels) - 1, yaxis.line)
             axis(side = 2, 
-                 at = SMRD:::f.relationship(datay.tic.label.loc, y.axis), 
+                 at = f.relationship(datay.tic.label.loc, y.axis), 
                  labels = parse(text = the.labels), 
                  adj = 1, 
                  tck = -0.02,
