@@ -12,7 +12,7 @@ function (x,
     data.ld <- attr(x, "data.ld")
     
     if (is.null(time.vector))
-        time.vector <- SMRD:::get.time.vector(data.ld, 
+        time.vector <- get.time.vector(data.ld, 
                                               distribution = x[[1]]$distribution,
                                               number = 10)
     
@@ -34,13 +34,13 @@ function (x,
     
         }
     
-    conf.char <- SMRD:::percent.conf.level(conf.level)
+    conf.char <- percent.conf.level(conf.level)
     conf.int.title <- paste("Pointwise Approximate", 
                             conf.char, 
                             "Confidence Intervals")
     
     my.title <- paste("Combined Multiple Failure Mode Series System\nParametric ML CDF Estimates from ",
-                       SMRD:::get.data.title(data.ld), 
+                       get.data.title(data.ld), 
                       add.title, "\n\n", 
                       conf.int.title,
                       "\n", 
@@ -48,7 +48,7 @@ function (x,
     
     if (band.type == "pointwise") {
       
-        mfmc.probs.out <- SMRD:::f.mfmc.probs(multiple.mlest.out = x, 
+        mfmc.probs.out <- f.mfmc.probs(multiple.mlest.out = x, 
                                               time.vec = time.vector)
         the.list <- 
           compute.confidence.interval(mfmc.probs.out$vec,
