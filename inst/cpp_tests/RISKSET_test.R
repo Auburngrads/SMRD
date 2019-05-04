@@ -1,4 +1,4 @@
-library(smrdfortran)
+library(SMRD)
 data.rdu <- frame.to.rdu(r4490,
                          time.column = 2,
                          cost.count.column = 4,
