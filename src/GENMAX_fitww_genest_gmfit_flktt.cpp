@@ -23,10 +23,14 @@ thetat = Rcpp::as<NumericVector>(Rcpp::as<List>(fargs)["lt"]);
 
 // Grab space for the untransformed thetas values that we will compute
    Rcpp::NumericVector ithets = Rcpp::NumericVector(genx07::g_nparm);
+   Rcpp::IntegerVector IPKODE = clone(genx03::g_ipkode);
+   Rcpp::IntegerVector IPINOW = clone(genx01::g_ipinow);
    
-   fl_ktt = flktt1(thetat,ithets,genx03::g_ipkode,
-                   genx01::g_ipinow,genx07::g_nparm,
-                   genx00::g_npoint);
+   fl_ktt = flktt1(thetat,ithets,IPKODE,IPINOW,
+                   genx07::g_nparm,genx00::g_npoint);
+   
+   genx03::g_ipkode = clone(IPKODE);
+   genx01::g_ipinow = clone(IPINOW);
     
 return Rcpp::List::create(Named("val") = fl_ktt);
 
