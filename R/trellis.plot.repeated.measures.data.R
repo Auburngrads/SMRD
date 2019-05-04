@@ -48,10 +48,10 @@ function (x,
     time.column <- attr(x, "time.column")
     unit.column <- attr(x, "unit.column")
     time.units <- attr(x, "time.units")
-    response.units <- SMRD:::get.response.units(x)
+    response.units <- get.response.units(x)
     unit.column <- attr(x, "unit.column")
     Unit.marker <- x[[unit.column]]
-    subset <- SMRD:::get.subset.vector(subset, x)
+    subset <- get.subset.vector(subset, x)
     subset.name <- attr(subset, "subset.name")
     
     my.title <- `if`(title.option != "blank" && is.null(my.title),
@@ -71,7 +71,7 @@ function (x,
     
     the.formula <- as.formula(the.formula)
     
-    if (missing(x.columns)) x.columns <- SMRD:::get.x.columns(x)
+    if (missing(x.columns)) x.columns <- get.x.columns(x)
     
     if (!is.null(x.columns)) {
       
