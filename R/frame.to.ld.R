@@ -98,20 +98,20 @@ function (frame,
     names(names.the.frame) <- names.the.frame
     ncol.data.mat <- ncol(as.matrix(frame))
     
-    response.column <- SMRD:::check.column(response.column, 
+    response.column <- check.column(response.column, 
                                     ncol.data.mat,
                                     names.the.frame, 
                                     number.col.allowed = c(1, 2))
     
     `if`(missing(censor.column) || is.null(censor.column),
          censor.column <- NULL,
-         censor.column <- SMRD:::check.column(censor.column, 
+         censor.column <- check.column(censor.column, 
                                        ncol.data.mat,
                                        names.the.frame))
     
     `if`(missing(truncation.type.column) || is.null(truncation.type.column),
          truncation.type.column <- NULL,
-         truncation.type.column <- SMRD:::check.column(truncation.type.column,
+         truncation.type.column <- check.column(truncation.type.column,
                                                 ncol.data.mat, 
                                                 names.the.frame))
          
@@ -120,7 +120,7 @@ function (frame,
             stop("Must specify truncation response if truncations type is specified")
         truncation.response.column <- NULL
         } else {
-        truncation.response.column <- SMRD:::check.column(truncation.response.column,
+        truncation.response.column <- check.column(truncation.response.column,
                                                    ncol.data.mat, 
                                                    names.the.frame, 
                                                    number.col.allowed = c(1,2))
@@ -129,7 +129,7 @@ function (frame,
         }
 
     if (!is.null(x.columns)) {
-        x.columns <- SMRD:::check.column(x.columns, 
+        x.columns <- check.column(x.columns, 
                                   ncol.data.mat, 
                                   names.the.frame,
                                   number.col.allowed = -1)
@@ -137,13 +137,13 @@ function (frame,
     
     `if`(missing(case.weight.column) || is.null(case.weight.column),
          case.weight.column <- NULL,
-         case.weight.column <- SMRD:::check.column(case.weight.column,
+         case.weight.column <- check.column(case.weight.column,
                                             ncol.data.mat, 
                                             names.the.frame))
     
     `if`(missing(failure.mode.column) || is.null(failure.mode.column),
          failure.mode.column <- NULL,
-         failure.mode.column <- SMRD:::check.column(failure.mode.column,
+         failure.mode.column <- check.column(failure.mode.column,
                                              ncol.data.mat, 
                                              names.the.frame))
     
