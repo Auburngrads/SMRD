@@ -1,4 +1,4 @@
-library(smrdfortran)
+library(SMRD)
 data.rdu <- frame.to.rdu(r4490,
                          time.column = 2,
                          cost.count.column = 4,
@@ -6,13 +6,13 @@ data.rdu <- frame.to.rdu(r4490,
                          event.column = 3)
 debug1 = F 
 
-  event <- smrdfortran:::events(data.rdu)
+  event <- SMRD:::events(data.rdu)
   EndPoints <- is.element(casefold(event), c("end", "mend", 
                                    "removed"))
   StartPoints <- is.element(casefold(event), c("start", "mstart"))
   CriticalEvent <- !(EndPoints | StartPoints)
-  Times <- smrdfortran:::times(data.rdu)
-  UnitID <- as.factor(smrdfortran:::get.UnitID(data.rdu))
+  Times <- SMRD:::times(data.rdu)
+  UnitID <- as.factor(SMRD:::get.UnitID(data.rdu))
   WindowInfo <- attr(data.rdu, "WindowInfo")
   WindowPoint <- WindowInfo$WindowPoint
   WindowU <- WindowInfo$WindowU
@@ -24,7 +24,7 @@ debug1 = F
   
 #  RecurrUnitID <- UnitID[CriticalEvent]
   RecurrUnitID <- as.numeric(attr(RecurrTimes, "names"))
-  RecurrCosts <- smrdfortran:::get.Costs(data.rdu)[CriticalEvent]
+  RecurrCosts <- SMRD:::get.Costs(data.rdu)[CriticalEvent]
   numRecurr <- length(RecurrTimes)
   
 old <-  .Fortran("xxmcf", numRecurr = as.integer(numRecurr),
