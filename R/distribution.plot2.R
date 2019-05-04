@@ -92,7 +92,7 @@ distribution.plot2 <-
           
         }
     
-switch(SMRD:::generic.distribution(distribution), 
+switch(generic.distribution(distribution), 
              
              exponential = {
                
@@ -128,7 +128,7 @@ switch(SMRD:::generic.distribution(distribution),
              cdf.x = x 
              cdf.y = outer(x, shape, pweibull)
              haz.x = x
-             haz.y = outer(x, shape, weibhaz)#/(SMRD:::dist.outer((1/x), shape, dummy = scale, pweibull))
+             haz.y = outer(x, shape, weibhaz)#/(dist.outer((1/x), shape, dummy = scale, pweibull))
              rel.x = x
              rel.y = 1-outer(x, shape, pweibull)
              
@@ -148,13 +148,13 @@ switch(SMRD:::generic.distribution(distribution),
              x <- seq(range[1], range[2], length = number.points)
              
              pdf.x = x
-             pdf.y = SMRD:::dist.outer(x, shape, dummy = location,dsev)
+             pdf.y = dist.outer(x, shape, dummy = location,dsev)
              cdf.x = x 
-             cdf.y = SMRD:::dist.outer(x, shape, dummy = location, psev)
+             cdf.y = dist.outer(x, shape, dummy = location, psev)
              haz.x = x 
-             haz.y = SMRD:::dist.outer(x, shape, dummy = location,dsev)/(SMRD:::dist.outer(x, shape, dummy = location,ssev)) 
+             haz.y = dist.outer(x, shape, dummy = location,dsev)/(dist.outer(x, shape, dummy = location,ssev)) 
              rel.x = x
-             rel.y = SMRD:::dist.outer(x, shape, dummy = location, ssev)
+             rel.y = dist.outer(x, shape, dummy = location, ssev)
              
              parameter2 <- location
              parameter2.name <- char.mu
@@ -173,13 +173,13 @@ switch(SMRD:::generic.distribution(distribution),
              x <- seq(range[1], range[2], length = number.points)
              
              pdf.x = x 
-             pdf.y = SMRD:::dist.outer(x, shape, dummy = location, dlev)
+             pdf.y = dist.outer(x, shape, dummy = location, dlev)
              cdf.x = x 
-             cdf.y = SMRD:::dist.outer(x, shape, dummy = location, plev)
+             cdf.y = dist.outer(x, shape, dummy = location, plev)
              haz.x = x 
-             haz.y = SMRD:::dist.outer(x, shape, dummy = location,dlev)/(SMRD:::dist.outer(x, shape, dummy = location,slev))
+             haz.y = dist.outer(x, shape, dummy = location,dlev)/(dist.outer(x, shape, dummy = location,slev))
              rel.x = x
-             rel.y = SMRD:::dist.outer(x, shape, dummy = location, slev)
+             rel.y = dist.outer(x, shape, dummy = location, slev)
              
              parameter2 <- location
              parameter2.name <- char.mu
@@ -196,13 +196,13 @@ switch(SMRD:::generic.distribution(distribution),
                         max(qlogis(prob.range[2], location = location, shape)))
              x <- seq(range[1], range[2], length = number.points)
              pdf.x = x
-             pdf.y = SMRD:::dist.outer(x, shape, dummy = location, dlogis)
+             pdf.y = dist.outer(x, shape, dummy = location, dlogis)
              cdf.x = x 
-             cdf.y = SMRD:::dist.outer(x, shape, dummy = location, plogis)
+             cdf.y = dist.outer(x, shape, dummy = location, plogis)
              haz.x = x 
-             haz.y = SMRD:::dist.outer(x, shape, dummy = location, dlogis)/(1-SMRD:::dist.outer(x, shape, dummy = -location,plogis))
+             haz.y = dist.outer(x, shape, dummy = location, dlogis)/(1-dist.outer(x, shape, dummy = -location,plogis))
              rel.x = x
-             rel.y = 1-SMRD:::dist.outer(x, shape, dummy = location, plogis)
+             rel.y = 1-dist.outer(x, shape, dummy = location, plogis)
              
              parameter2 <- location
              parameter2.name <- char.mu
@@ -220,13 +220,13 @@ switch(SMRD:::generic.distribution(distribution),
                         max(qnorm(prob.range[2], mean = location, shape)))
              x <- seq(range[1], range[2], length = number.points)
              pdf.x = x 
-             pdf.y = SMRD:::dist.outer(x, shape, dummy = location, dnorm)
+             pdf.y = dist.outer(x, shape, dummy = location, dnorm)
              cdf.x = x 
-             cdf.y = SMRD:::dist.outer(x, shape, dummy = location, pnorm)
+             cdf.y = dist.outer(x, shape, dummy = location, pnorm)
              haz.x = x 
-             haz.y = SMRD:::dist.outer(x, shape, dummy = location,dnorm)/(SMRD:::dist.outer(-x, shape, dummy = -location,pnorm))
+             haz.y = dist.outer(x, shape, dummy = location,dnorm)/(dist.outer(-x, shape, dummy = -location,pnorm))
              rel.x = x
-             rel.y = 1-SMRD:::dist.outer(x, shape, dummy = location, pnorm)
+             rel.y = 1-dist.outer(x, shape, dummy = location, pnorm)
              
              parameter2 <- location
              parameter2.name <- char.mu
@@ -243,13 +243,13 @@ switch(SMRD:::generic.distribution(distribution),
                         max(qlnorm(prob.range[2], location, shape)))
              x <- seq(range[1], range[2], length = number.points)
              pdf.x = x 
-             pdf.y = SMRD:::dist.outer(x, shape, 0, dlnorm)
+             pdf.y = dist.outer(x, shape, 0, dlnorm)
              cdf.x = x 
-             cdf.y = SMRD:::dist.outer(x, shape, 0, plnorm)
+             cdf.y = dist.outer(x, shape, 0, plnorm)
              haz.x = x 
-             haz.y = SMRD:::dist.outer(x, shape, 0, dlnorm)/(SMRD:::dist.outer((1/x),shape, 0, plnorm))
+             haz.y = dist.outer(x, shape, 0, dlnorm)/(dist.outer((1/x),shape, 0, plnorm))
              rel.x = x
-             rel.y = 1-SMRD:::dist.outer(x, shape, 0, plnorm)
+             rel.y = 1-dist.outer(x, shape, 0, plnorm)
              
              parameter2 <- location
              parameter1.name <- char.sigma
@@ -262,17 +262,17 @@ switch(SMRD:::generic.distribution(distribution),
 
           }, loglogistic = {
         
-             range <- c(min(SMRD:::qloglogis(prob.range[1], location, shape)),
-                        max(SMRD:::qloglogis(prob.range[2], location, shape)))
+             range <- c(min(qloglogis(prob.range[1], location, shape)),
+                        max(qloglogis(prob.range[2], location, shape)))
              x <- seq(range[1], range[2], length = number.points)
              pdf.x = x 
-             pdf.y = SMRD:::dist.outer(x, shape, 0, SMRD:::dloglogis)
+             pdf.y = dist.outer(x, shape, 0, dloglogis)
              cdf.x = x 
-             cdf.y = SMRD:::dist.outer(x, shape, 0, SMRD:::ploglogis)
+             cdf.y = dist.outer(x, shape, 0, ploglogis)
              haz.x = x 
-             haz.y = SMRD:::dist.outer(x, shape, 0, SMRD:::dloglogis)/(1-SMRD:::dist.outer(x, shape, 0, SMRD:::ploglogis))
+             haz.y = dist.outer(x, shape, 0, dloglogis)/(1-dist.outer(x, shape, 0, ploglogis))
              rel.x = x
-             rel.y = 1-SMRD:::dist.outer(x, shape, 0, SMRD:::ploglogis)
+             rel.y = 1-dist.outer(x, shape, 0, ploglogis)
              
              parameter2 <- location
              parameter1.name <- char.sigma
@@ -359,13 +359,13 @@ switch(SMRD:::generic.distribution(distribution),
                         max(qgoma(prob.range[2], shape, shape2, scale = scale)))
              x <- seq(range[1], range[2], length = number.points)
              pdf.x = x
-             pdf.y = SMRD:::dist.outer(x, shape, shape2, dgoma)
+             pdf.y = dist.outer(x, shape, shape2, dgoma)
              cdf.x = x 
-             cdf.y = SMRD:::dist.outer(x, shape, shape2, pgoma)
+             cdf.y = dist.outer(x, shape, shape2, pgoma)
              haz.x = x 
-             haz.y = SMRD:::dist.outer(x, shape, shape2, dgoma)/(SMRD:::dist.outer(x,shape, shape2, sgoma))
+             haz.y = dist.outer(x, shape, shape2, dgoma)/(dist.outer(x,shape, shape2, sgoma))
              rel.x = x
-             rel.y = SMRD:::dist.outer(x, shape, shape2, sgoma)
+             rel.y = dist.outer(x, shape, shape2, sgoma)
              
              parameter2 <- shape2
              parameter3 <- scale
