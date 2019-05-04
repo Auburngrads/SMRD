@@ -1,4 +1,4 @@
-library(smrdfortran)
+library(SMRD)
 ndist1 = 2
 ndist2 = 2
 alpha = .5
