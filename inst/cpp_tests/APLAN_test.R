@@ -1,5 +1,5 @@
-library(smrdfortran)
-alt.plan.values <- smrdfortran:::get.alt.plan.values.from.slope.and.point(
+library(SMRD)
+alt.plan.values <- SMRD:::get.alt.plan.values.from.slope.and.point(
   distribution="Weibull",
   relationship="Arrhenius",
   accelvar.units=c("DegreesC"),
@@ -23,8 +23,8 @@ method = NULL
 
   number.levels <- 3
   eta <- logb(censor.time)
-  xu <- smrdfortran:::f.relationship(use.condition, alt.plan.values$relationship)
-  xh <- smrdfortran:::f.relationship(highest.condition, alt.plan.values$relationship)
+  xu <- SMRD:::f.relationship(use.condition, alt.plan.values$relationship)
+  xh <- SMRD:::f.relationship(highest.condition, alt.plan.values$relationship)
   a <- (eta - (alt.plan.values$theta.vec["beta0"] + alt.plan.values$theta.vec["beta"] *
     xu))/alt.plan.values$sigma
   b1 <- (alt.plan.values$theta.vec["beta"] * (xh - xu))/alt.plan.values$sigma
@@ -61,7 +61,7 @@ method = NULL
     stop(paste("plan type not recognized", plan.type))
   })
   
-  idist <- smrdfortran:::numdist(alt.plan.values$distribution)
+  idist <- SMRD:::numdist(alt.plan.values$distribution)
   idist.single <- floor((idist + 1)/2)
   relationship <- alt.plan.values$relationship
   maxstress <- 3
