@@ -19,9 +19,9 @@ function (multiple.mlest.out, time.vec, do.se = T)
         theta.index.low <- theta.index.high + 1
     }
     if (do.se) 
-        results <- SMRD:::f.gendeltamethod(vcv.theta = vcv.theta, 
+        results <- f.gendeltamethod(vcv.theta = vcv.theta, 
                                     theta = theta.hat, 
-                                    gfun = SMRD:::fx.mfmc.probs, 
+                                    gfun = fx.mfmc.probs, 
                                     multiple.mlest.out, 
                                     time.vec)
     else results <- fx.mfmc.probs(theta.hat, 
