@@ -156,7 +156,7 @@ void compute_winmcf(int &muniqrecurr,
 double vardbar, covterms, covdjdk, sunit;
 double dbarjk;
 int jm1, istartj, iendj;
-int istartk, iendk, deltajk, kdebug = 1;
+int istartk, iendk, deltajk;
 int inwindowk; //kount00
 
 // compute the number in the riskset;
