@@ -85,9 +85,9 @@ void wqm_varco1(Rcpp::NumericMatrix &xnew,
                 int &ier){
   
 Rcpp::NumericVector qder(5);
-double small = 1.0e-2, xtol = 1.0e-12;
+double xtol = 1.0e-12;
 double sigma,sigma2,xmu,z,z2,tru,trl;
-double s1,s2,s3,xj,xk,sfder,s;
+double s1,s2,s3,xj,xk,sfder,s = 0.0e00;
 int nparmm, jj,kk = 0;
 int wti, ittype, itype, irank = 0;
 ier = 0;
