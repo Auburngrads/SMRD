@@ -36,7 +36,7 @@ void wqm_verrck(Rcpp::NumericMatrix &vcvd,
 double xdtol = 1.0e-01;
 double xztol = 1.0e-12;
 double xlrtol = 15.0e00;
-int jj, kk;
+int jj, kk = 0;
 double evmin,evmax,xdmax;
 int iernzd,iernpd,iernfr;
 double xlmin,xlmax,xlr;
