@@ -86,7 +86,7 @@ void outfun(int &kmod,
             int &nregr,
             int &ier){
 
-int kfuncf,i;
+int kfuncf,i = 1;
 double epsx,funarg;
     
 // Call setup to center and standardize data
@@ -108,7 +108,7 @@ double epsx,funarg;
       Rcpp::Rcout << "kpoint = " << kpoint << std::endl;
       Rcpp::Rcout << "kpopu = " << kpopu << std::endl;
       Rcpp::Rcout << "kfuncp = " << kfuncp << std::endl;
-      Rcpp::Rcout << "nargv = " << 4 << std::endl;
+      Rcpp::Rcout << "nargv = " << nargv << std::endl;
       
    }
   
