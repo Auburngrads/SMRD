@@ -9,7 +9,7 @@ void dinvv(Rcpp::NumericMatrix &amat,
            int &irank,
            int &idim){
 
-int np1 = n + 1,index;
+int np1 = n + 1;
    
 // Get pointers to scratch arrays
    Rcpp::NumericMatrix ianew = Rcpp::NumericMatrix(np1,np1);
