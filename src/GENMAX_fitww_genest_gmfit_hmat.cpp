@@ -61,7 +61,8 @@ void hmat1(Rcpp::List (*func)(Rcpp::List),
 Rcpp::NumericVector accum = Rcpp::NumericVector(2);
 double small = 1.0e-30,thetai,deltai,deltaj,thetaj;
 double xmmlll, xmplll, xpmlll, xpplll, xflll;
-double tfuns,fout,foutmm,foutmp,foutpm,foutpp;
+double tfuns = 0.0e00,fout = 0.0e00;
+double foutmm = 0.0e00,foutmp = 0.0e00,foutpm = 0.0e00,foutpp = 0.0e00;
 double d12,funcmm,funcmp,funcpm,funcpp;
 int jm1,weight;
 Rcpp::List fargsmm,fargsmp,fargspm,fargspp,flist;
