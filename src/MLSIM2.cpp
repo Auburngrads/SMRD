@@ -93,7 +93,7 @@ Rcpp::List MLSIM2(Rcpp::NumericMatrix x,
                   int iersim){
 
 bool lcheck;
-int ii,nrowr, nvcv, kount,method;
+int ii,nrowr, kount,method;
 int ierfit, iervcv;
 double xlike;
 Rcpp::NumericMatrix ipxnew,iptmat,ipvcvb,ipvcvg,ivcvd,ivcvdd;
@@ -155,8 +155,7 @@ for(int i = 0; i < nparm; i++){
 }
 
 // Fix up things to keep this version simple
-lcheck = false;
-nvcv = nparm * (nparm + 1) / 2;
+   lcheck = false;
 
 // Setup generator
    snset(wt,nrow,kount,method,iarray,marray,iersim);
