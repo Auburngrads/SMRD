@@ -18,7 +18,7 @@ double val;
 Rcpp::NumericVector thetas;
 
 thetas = Rcpp::as<NumericVector>(Rcpp::as<List>(args)["lt"]);
-nparm  = Rcpp::as<int>(Rcpp::as<List>(args)["ln"]); 
+//nparm  = Rcpp::as<int>(Rcpp::as<List>(args)["ln"]); 
 // cxx#we could use the upest short cut here but we would not save much
 //       call gttqua(kmod,kdist,pest,kprint,kpoine,ngame,kpopu)
 // cxx#    later we can use this for upest short cut
