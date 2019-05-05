@@ -30,7 +30,7 @@ double emin,dscale,aaa = 0.0e00,scer,a,b;
 double sum,fkeep,fp,fa,fprev,fmval;
 int maxtry = 5,iprxxx,ipline;
 int j,jj,jjj,k,nfcc,inn,ind,iterc,isgrad,itone;
-int krxp,is,jtl = 0,nm1,ntry,idirn,iline;
+int krxp,is,jtl = 0,ntry,idirn,iline;
 double dmax,dmag,ddmax,ddmag,dacc,d,dl,dd,ddhh,diff;
 double db = 0.0e00,da = 0.0e00,dc = 0.0e00,di = 0.0e00;
 double fc = 0.0e00,fi = 0.0e00,fb = 0.0e00,fhold = 0.0e00;
@@ -53,8 +53,7 @@ ntry = 1;
 dd = 1.0e32;
 
 // powelm restart here
-line1001:  nm1 = n - 1;
-           iprxxx = iprpow;
+line1001:  iprxxx = iprpow;
            ipline = 0;
            if(iprpow >= 5) ipline = 1;
            if(iprpow >= 5) iprxxx = 1;
@@ -131,6 +130,13 @@ line8: ddhh = dd;
       
 //    dd=0.7d00*dd;
       diff = ddhh + dd;
+      if(debug::kprint >= 4) {
+        
+         Rcpp::Rcout << "\nPOWELM CHECK\n" << std::endl;
+         Rcpp::Rcout << "dd = "   << dd    << std::endl;
+         Rcpp::Rcout << "diff = " << diff  << std::endl;
+        
+      }
       
       if(debug::kprint >= 3) {
         
@@ -229,8 +235,8 @@ line26: d = db + dsign(ddmax,(db - da));
 line265: if(std::abs(ddmax - dmax) < epsilon) goto line8;
          if(ddmax < dmax) goto line8;
 
-line27: ddmax = dmax;
-        goto line8;
+         ddmax = dmax;
+         goto line8;
 
 line13: if(std::abs(f - fa) < epsilon) goto line23;
         if(f > fa) goto line23;
@@ -245,14 +251,14 @@ line29: fb = f;
 line12: if(std::abs(f - fb) < epsilon) goto line28;
         if(f < fb) goto line28;
 
-line31: fa = f;
+        fa = f;
         da = d;
         goto line30;
 
 line11: if(std::abs(f - fb) < epsilon) goto line10;
         if(f > fb) goto line10;
 
-line32: fa = fb;
+        fa = fb;
         da = db;
         goto line29;
 
@@ -285,8 +291,7 @@ line34: d = 0.5 * (a * (db + dc) + b * (da + dc)) / (a + b);
 
         if(std::abs(fb - fc) < epsilon) goto line44;
         if(fb < fc) goto line44;
-
-line43: di = dc;
+        di = dc;
         fi = fc;
 
 line44: if(itone == 1) goto line86;
@@ -299,7 +304,7 @@ line85: itone = 2;
 line86: if(std::abs(std::abs(d - di) - dacc) < epsilon) goto line41;
         if(std::abs(d - di) < dacc) goto line41;
 
-line93: if(std::abs(std::abs(d - di) - (pz3 * std::abs(d))) < epsilon) goto line41;
+        if(std::abs(std::abs(d - di) - (pz3 * std::abs(d))) < epsilon) goto line41;
         if(std::abs(d - di) < (pz3 * std::abs(d))) goto line41;
         
 line45: if(std::abs((da - dc) * (dc - d)) < epsilon) goto line46;
@@ -315,7 +320,7 @@ line47: is = 2;
         if(std::abs((db - d) * (d - dc)) < epsilon) goto line8;
         if(((db - d) * (d - dc)) > 0.0) goto line8;
 
-line48: is = 3;
+        is = 3;
         goto line8;
 
 line41: f = fi;
@@ -377,7 +382,7 @@ line95: sum = fprev - f;
 
 line94: if(idirn <= jj) goto line7;
 
-line84: if(ind == 1) goto line92;
+        if(ind == 1) goto line92;
         if(ind == 2) goto line72;
 
 line92: fhold = f;
@@ -400,15 +405,15 @@ line96: if(ind == 1) goto line112;
 line112: if(std::abs(fp - f) < epsilon) goto line37;
          if(fp < f) goto line37;
 
-line91: d = 2 * (fp + f - 2 * fhold) / std::pow((fp - f),2);
+         d = 2 * (fp + f - 2 * fhold) / std::pow((fp - f),2);
 
-        if(std::abs((d * std::pow((fp - fhold - sum),2)) - sum) < epsilon) goto line37;
-        if(((d * std::pow((fp - fhold - sum),2)) - sum) > 0.0) goto line37;
+         if(std::abs((d * std::pow((fp - fhold - sum),2)) - sum) < epsilon) goto line37;
+         if(((d * std::pow((fp - fhold - sum),2)) - sum) > 0.0) goto line37;
 
 line87: j = jtl * n + 1;
         if(j > jj) goto line61;
         
-line60: for(int i = j; i <= jj; i++){
+        for(int i = j; i <= jj; i++){
 
             k = i - n;
             w.at(k - 1) = w.at(i - 1);
@@ -435,7 +440,7 @@ for(int i = 1; i <= n; i++){
     if(std::abs(aaa - std::abs(w.at(k - 1) / e.at(i - 1))) < epsilon) goto line67;
     if(aaa > std::abs(w.at(k - 1) / e.at(i - 1))) goto line67;
 
-    line66: aaa = std::abs(w.at(k - 1) / e.at(i - 1));
+    aaa = std::abs(w.at(k - 1) / e.at(i - 1));
 
     line67: k = k + 1;
 
@@ -535,12 +540,12 @@ line108: iterc = iterc + 1;
          // check to see if the log likelihood is changing slowly
          if(iterc <= maxit) goto line5;
          
-line81: Rcpp::Rcout << "maxit = " << maxit << std::endl;
+        Rcpp::Rcout << "maxit = " << maxit << std::endl;
         Rcpp::warning("poweld: max iterations completed without meeting specifications");
         if(std::abs(f - fkeep) < epsilon) goto line20;
         if(f < fkeep) goto line20;
 
-line110: f = fkeep;
+        f = fkeep;
 
          for(int i = 1; i <= n; i++){
          
