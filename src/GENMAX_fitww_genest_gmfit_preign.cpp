@@ -8,7 +8,6 @@ void preign(Rcpp::NumericVector &amat,
             int &idim){
    
 double xtol = 1.0e-10;
-int nblank = 8 * idim;
    
 // Get pointers to scratch arrays
    Rcpp::NumericMatrix ianew = Rcpp::NumericMatrix(idim, idim);
@@ -25,6 +24,6 @@ int nblank = 8 * idim;
       
    }
 
-   return;
+return;
    
 }
