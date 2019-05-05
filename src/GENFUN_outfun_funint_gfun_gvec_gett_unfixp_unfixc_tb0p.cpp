@@ -17,7 +17,7 @@ int kfnow,llogn,nparm;
 Rcpp::NumericVector thetas;
 
 thetas = Rcpp::as<NumericVector>(Rcpp::as<List>(args)["lt"]);
-nparm  = Rcpp::as<int>(Rcpp::as<List>(args)["ln"]); 
+// nparm  = Rcpp::as<int>(Rcpp::as<List>(args)["ln"]); 
   
 // Grab space for gamma vector
    Rcpp::NumericVector ipgame = Rcpp::NumericVector(genx03::g_ngame);
