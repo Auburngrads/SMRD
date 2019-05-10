@@ -1,36 +1,104 @@
+#' Perform a life test simulation using planning values
+#'
+#' @param plan.values 
+#' @param n 
+#' @param censor.time 
+#' @param censor.number 
+#' @param my.title 
+#' @param number.sim 
+#' @param quantile.mark 
+#' @param number.points 
+#' @param perc.low 
+#' @param perc.high 
+#' @param cex 
+#' @param xlim 
+#' @param ylim 
+#' @param title.option 
+#' @param xlab 
+#' @param print.bad.count 
+#' @param max.lines.to.plot 
+#' @param save.data.list 
+#' @param number.detail 
+#' @param force.from.gui 
+#' @param conf.level 
+#' @param show.histogram 
+#' @param band.method 
+#' @param mono.tran 
+#' @param ... 
+#'
+#' @return A series of plots
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' plan.values1 <- get.plan.values("Weibull", 
+#'                                  beta = 2, 
+#'                                  prob = .1, 
+#'                                  time = 100, 
+#'                                  time.units = "Hours")
+#'                                  
+#' life.test.simulation(plan.values1, 
+#'                      n = 50,
+#'                      censor.time = 120, 
+#'                      number.detail = 5, 
+#'                      quantile.mark = 0.2) 
+#'                      
+#' plan.values2 <- get.plan.values("Lognormal", 
+#'                                 sigma = 0.5,
+#'                                 prob = 0.1, 
+#'                                 time = 100, 
+#'                                 time.units = "Hours")
+#' 
+#' life.test.simulation(plan.values2, 
+#'                      n = 50,
+#'                      censor.time = 1000, 
+#'                      quantile.mark = .1)
+#' }
 life.test.simulation <-
-function (plan.values, n, censor.time = NULL, censor.number = NULL,
-    my.title, number.sim = 2000, quantile.mark = NULL, number.points = 20,
-    perc.low = 0.005, perc.high = 0.995, cex = 1, xlim = c(NA,
-        NA), ylim = NULL, title.option = GetSMRDDefault("SMRD.TitleOption"), xlab = plan.values$time.units,
-    print.bad.count = T, max.lines.to.plot = min(50, number.sim),
-    save.data.list = NULL, number.detail = 5, force.from.gui = F,
-    conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, show.histogram = TRUE,
-    band.method = GetSMRDDefault("SMRD.ConfidenceBandMethod"),
-    mono.tran = FALSE, ...)
+function (plan.values, 
+          n, 
+          censor.time = NULL, 
+          censor.number = NULL,
+          my.title, 
+          number.sim = 2000, 
+          quantile.mark = NULL, 
+          number.points = 20,
+          perc.low = 0.005, 
+          perc.high = 0.995, 
+          cex = 1, xlim = c(NA,NA), 
+          ylim = NULL, 
+          title.option = GetSMRDDefault("SMRD.TitleOption"), 
+          xlab = plan.values$time.units,
+          print.bad.count = T, 
+          max.lines.to.plot = min(50, number.sim),
+          save.data.list = NULL, 
+          number.detail = 5, 
+          force.from.gui = F,
+          conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, 
+          show.histogram = TRUE,
+          band.method = GetSMRDDefault("SMRD.ConfidenceBandMethod"),
+          mono.tran = FALSE, ...)
 {
     sample.size <- n
-    if (number.sim <= 0)
-        stop(paste("Requested number of simulations is",
-            number.sim))
-    max.lines.to.plot <- max(min(max.lines.to.plot, number.sim),
-        0)
-    number.detail <- max(min(max.lines.to.plot, number.detail),
-        0)
-    if (is.sv3())
-        sys.calls.index <- 5
+    if (number.sim <= 0) stop(paste("Requested number of simulations is", number.sim))
+    max.lines.to.plot <- max(min(max.lines.to.plot, number.sim), 0)
+    number.detail <- max(min(max.lines.to.plot, number.detail), 0)
+    if (is.sv3()) sys.calls.index <- 5
     else sys.calls.index <- 2
     save.par <- par(err = -1)
     on.exit(par(save.par))
     if (!is.R()) {
+      
         sys.calls.index <- 3
-        if (any(regexpr("^menu.life.test", as.character(sys.calls()[[sys.calls.index]])) >
-            0) || force.from.gui)
-            from.gui <- T
-        else from.gui <- F
-  } else {
-        from.gui <- F
-    }
+        `if`(any(regexpr("^menu.life.test", as.character(sys.calls()[[sys.calls.index]])) > 0) || force.from.gui,
+             from.gui <- T,
+             from.gui <- F)
+        
+      } else {
+    
+       from.gui <- F
+       
+      }
     zvalue <- qnorm(1 - (1 - conf.level)/2)
     mu <- plan.values$mu
     sigma <- plan.values$sigma
@@ -42,22 +110,24 @@ function (plan.values, n, censor.time = NULL, censor.number = NULL,
     Rfactor <- rep(NA, number.sim)
     vcv.save <- matrix(NA, ncol = 3, nrow = number.sim)
     sigma.save <- rep(NA, number.sim)
-    if (is.null(xlab))
-        xlab <- "Time"
+    if (is.null(xlab)) xlab <- "Time"
     if (!is.null(censor.time)) {
-        if (is.logdist(distribution))
-            the.time <- log(censor.time)
-        else the.time <- censor.time
-        pfail <- wqmf.phibf((the.time - plan.values$mu)/plan.values$sigma,
-            distribution)
-        censor.rule.string <- paste("censored at", censor.time,
-            plan.values$time.units)
-        expected.failing.string <- paste("with E(r)=", format(n *
-            pfail))
+      
+        `if`(is.logdist(distribution),
+             the.time <- log(censor.time),
+             the.time <- censor.time)
+      
+        pfail <- wqmf.phibf((the.time - plan.values$mu) / plan.values$sigma, distribution)
+        censor.rule.string <- paste("censored at", 
+                                    censor.time,
+                                    plan.values$time.units)
+        expected.failing.string <- paste("with E(r)=", format(n * pfail))
+        
   } else {
+    
         censor.rule.string <- ""
-        expected.failing.string <- paste("with", censor.number,
-            "failing")
+        expected.failing.string <- paste("with", censor.number, "failing")
+        
     }
     if (missing(my.title)) {
         if (numdist(distribution) == 2) {
@@ -85,18 +155,15 @@ function (plan.values, n, censor.time = NULL, censor.number = NULL,
     logtime.lower <- mu + sigma * quant(perc.low, distribution)
     logtime.upper <- mu + sigma * quant(perc.high, distribution)
     xrna <- is.na(xlim)
-    if (any(xrna))
-        xlim[xrna] <- c(logtime.lower, logtime.upper)[xrna]
+    if (any(xrna)) xlim[xrna] <- c(logtime.lower, logtime.upper)[xrna]
     logtime <- seq(logtime.lower, logtime.upper, length = number.points)
     if (is.logdist(distribution)) {
         if (any(xrna))
             xlim[xrna] <- exp(c(logtime.lower, logtime.upper))[xrna]
         realtime <- exp(logtime)
-        if (!is.null(censor.time))
-            censor.time <- logb(censor.time)
+        if (!is.null(censor.time)) censor.time <- logb(censor.time)
   } else {
-        if (is.null(xlim))
-            xlim <- c(logtime.lower, logtime.upper)
+        if (is.null(xlim)) xlim <- c(logtime.lower, logtime.upper)
         realtime <- logtime
     }
     ylim <- c(perc.low, perc.high)
@@ -111,32 +178,39 @@ function (plan.values, n, censor.time = NULL, censor.number = NULL,
         pop.cdf1 <- wqmf.phibf((logtime - mu)/sigma, distribution)
         lines(logtime, quant(pop.cdf1, distribution), type = "l",
             lwd = 5, col = 6)
-        if (!is.null(censor.time))
-            lines(c(censor.time, censor.time), c(y.loc(0), y.loc(1)),
-                col = 1, lwd = 2, lty = 1)
-        if (!is.null(censor.time))
-        axis(side = 3, at = censor.time, labels = FALSE, adj = 1.0, col = 1, lwd = 2, tck = -.06)  
+        if (!is.null(censor.time)) lines(c(censor.time, censor.time), 
+                                         c(y.loc(0), y.loc(1)),
+                                         col = 1, 
+                                         lwd = 2, 
+                                         lty = 1)
+        
+        if (!is.null(censor.time)) axis(side = 3, 
+                                        at = censor.time, 
+                                        labels = FALSE, 
+                                        adj = 1.0, 
+                                        col = 1, 
+                                        lwd = 2, 
+                                        tck = -.06)  
         mtext(side = 3, expression(Censor~Time%->%''), at = censor.time, adj = 1, line = .15)  
     }
-    if (sample.size == 0)
-        return(invisible())
+    if (sample.size == 0) return(invisible())
     strip.away <- c(1, 2, number.points - 1, number.points)
     simple.sim.dat <- function(mu, sigma, sample.size, distribution,
         censor.time, censor.number) {
         y.start <- mu + sigma * quant(runif(sample.size), distribution)
         if (is.null(censor.time)) {
-            if (is.null(censor.number))
-                censor.time <- 2 * max(y.start)
-            else censor.time <- sort(y.start)[censor.number]
+          
+            `if`(is.null(censor.number),
+                 censor.time <- 2 * max(y.start),
+                 censor.time <- sort(y.start)[censor.number])
+          
         }
         y.final <- y.start[y.start <= censor.time]
         number.censored <- length(y.start) - length(y.final)
         if (number.censored > 0) {
             y.final <- c(y.final, censor.time)
-            the.case.weights <- c(rep(1, length(y.final) - 1),
-                number.censored)
-            the.censor.codes <- c(rep(1, length(y.final) - 1),
-                2)
+            the.case.weights <- c(rep(1, length(y.final) - 1), number.censored)
+            the.censor.codes <- c(rep(1, length(y.final) - 1), 2)
       } else {
             y.final <- c(y.final)
             the.case.weights <- NULL
@@ -146,23 +220,34 @@ function (plan.values, n, censor.time = NULL, censor.number = NULL,
             y.final <- exp(y.final)
             log.y <- y.final
       } else log.y <- y.final
-        data.title <- paste("Simulated", distribution, "data mu=",
-            format(mu), "sigma=", format(sigma))
-        true.model <- list(distribution = distribution, mu = mu,
-            sigma = sigma)
+        data.title <- paste("Simulated", 
+                            distribution, 
+                            "data mu=",
+                            format(mu), 
+                            "sigma=", 
+                            format(sigma))
+        true.model <- list(distribution = distribution, 
+                           mu = mu,
+                           sigma = sigma)
         if (is.null(the.censor.codes)) {
+          
             the.frame <- data.frame(Time = y.final)
-            sim.ld <- frame.to.ld(the.frame, response.column = "Time",
-                data.title = data.title)
+            
+            sim.ld <- frame.to.ld(the.frame, 
+                                  response.column = "Time",
+                                  data.title = data.title)
       } else {
-            the.frame <- data.frame(Time = y.final, Censor = the.censor.codes,
-                Weights = the.case.weights)
-            sim.ld <- frame.to.ld(the.frame, response.column = "Time",
-                censor.column = "Censor", case.weight.column = "Weights",
-                data.title = data.title)
-            if (map.SMRDDebugLevel() >= 4)
-                cat("\nNumber of failures=", length(y.final) -
-                  1, "\n")
+            the.frame <- data.frame(Time = y.final, 
+                                    Censor = the.censor.codes,
+                                    Weights = the.case.weights)
+            sim.ld <- frame.to.ld(the.frame, 
+                                  response.column = "Time",
+                                  censor.column = "Censor", 
+                                  case.weight.column = "Weights",
+                                  data.title = data.title)
+            
+            if (map.SMRDDebugLevel() >= 4) cat("\nNumber of failures=", 
+                                               length(y.final) - 1, "\n")
         }
         attr(sim.ld, "true.model") <- true.model
         return(sim.ld)
