@@ -187,20 +187,20 @@ line40: thetg.at(nparm - 1) = std::exp(thetg.at(nparm - 1));
 // Compute the residuals and fitted values
 sigma = thetg.at(nparm - 1);
 
-for(int i = 0; i < nrow; i++){
+for(int i = 1; i <= nrow; i++){
 
-    for(int j = 0; j < ny; j++){
+    for(int j = 1; j <= ny; j++){
 
-    itype = cen.at(i);
-    xmu = wqm_dfxmu(i,xnew,nrow,nter,thetaf,nparm,upcen,sigma);
-    fv.at(i) = wqm_upck(xmu,kdist);
+        itype = cen.at(i - 1);
+        xmu = wqm_dfxmu(i,xnew,nrow,nter,thetaf,nparm,upcen,sigma);
+        fv.at(i - 1) = wqm_upck(xmu,kdist);
 
-    if(!((itype == 3) and (ltr3) and (j == 0))) goto line50;
+        if(!((itype == 3) and (ltr3) and (j == 1))) goto line50;
 
-    y.at(i,j) = 0.0;
-    cen.at(i) = 4;
-
-    line50: res.at(i,j) = wqm_upck((y.at(i,j) - xmu) / sigma, kdist);
+        y.at(i - 1,j - 1) = 0.0;
+        cen.at(i - 1) = 4;
+    
+        line50: res.at(i - 1,j - 1) = wqm_upck((y.at(i - 1,j - 1) - xmu) / sigma, kdist);
 
     }
 
