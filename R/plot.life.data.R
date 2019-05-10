@@ -1,3 +1,4 @@
+#' @export
 plot.life.data <-
 function (x, distribution = NULL, ...)
 {
