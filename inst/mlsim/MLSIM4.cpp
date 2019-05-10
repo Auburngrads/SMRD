@@ -1,6 +1,10 @@
-#include <base/base.h>
-#include <utility/wqm_filld.h>
-#include <wqmmlesss/wqm_mlboth.h>
+#include <base/base.hpp>
+#include <utility/wqm_filld.hpp>
+#include <wqmmlesss/wqm_mlboth.hpp>
+#include <mlsim2/psbinx.hpp>
+#include <mlsim2/qsbinx.hpp>
+#include <mlsim2/prisk.hpp>
+#include <mlsim2/msmdat1.hpp>
 
 //' Staggered entry prediction for future (within sample) failures bootstrap
 //' 
@@ -44,9 +48,8 @@
 //' iersim  data space too small
 //' 
 //'    need to send down data space big enough to cover all data situations
-
 // [[Rcpp::export]]
-Rcpp::List mlsim4(Rcpp::NumericMatrix x,
+Rcpp::List MLSIM4(Rcpp::NumericMatrix x,
                   Rcpp::NumericMatrix y,
                   Rcpp::IntegerVector cen,
                   Rcpp::IntegerVector wt,
@@ -98,11 +101,11 @@ Rcpp::List mlsim4(Rcpp::NumericMatrix x,
                   int iersim){
 
 debug::kprint = kprint;
+   
 bool lcheck;
-double anslow,ansup,pquan,xlike;
-double crisk,prisk
-int nvcv,nrownw,iervcv,ierfit,nwhich;
-int klower, kupper;
+double anslow,ansup,pquan,xlike,crisk;
+int nrownw,iervcv,ierfit,nwhich;
+int klower, kupper,kpredt;
 Rcpp::NumericMatrix ipxnew,iptmat,ipvcvb,ipvcvg,ivcvd,ivcvdd;
 Rcpp::NumericVector iprv1,ipdiag,ipthb,ipthg,ipfsd,ipnext;
 Rcpp::NumericVector itd,itf,ied,iw,ivd;
@@ -156,8 +159,11 @@ if(debug::kprint >= 2){
 
 // Fix  up things to keep this version simple
    wqm_filld(0.0e00,gamthr,1,nrow);
-   Rcpp::NumericVector xcol0 = Rcpp::NumericVector(nrow,1);
-   x.column(0) = xcol0;
+   for(int k = 1; k <= nrow; k++){
+      
+       x.at(k - 1,0) = one;
+      
+   }
    nnomle = 0;
    ny = 1;
 
@@ -171,7 +177,6 @@ if(debug::kprint >= 2){
    lfix.at(1) = false;
    lcheck = false;
    intcpt = 1;
-   nvcv = (nparm) * (nparm + 1) / 2;
 
 // Initilize
    for(int iclev = 1; iclev <= nclev; iclev++){
@@ -296,7 +301,8 @@ if(debug::kprint >= 2){
                     
                     qsbinx(kmeth,pquan,nmrvec,rhostr,ngroup,klower);
                     klower = std::max(0,klower - 1);
-                    psbinx(kmeth,klower - 1,nmrvec,rhohat,ngroup,anslow);
+                    int klow = klower - 1;
+                    psbinx(kmeth,klow,nmrvec,rhohat,ngroup,anslow);
                     anslow = one - anslow;
                     cpl.at(iclev - 1) = cpl.at(iclev - 1) + anslow;
                     cpl2.at(iclev - 1) = cpl2.at(iclev - 1) + anslow * anslow;
@@ -339,7 +345,7 @@ if(debug::kprint >= 2){
                         Rcpp::Rcout << "crisk = " << crisk << std::endl;
                         Rcpp::Rcout << "klower = " << klower << std::endl;
                         Rcpp::Rcout << "kupper = " << kupper << std::endl;
-                        Rcpp::Rcout << "clevc(iclev) = " << clevc(iclev - 1) << std::endl;
+                        Rcpp::Rcout << "clevc(iclev) = " << clevc.at(iclev - 1) << std::endl;
                         Rcpp::Rcout << "anslow = " << anslow << std::endl;
                         Rcpp::Rcout << "ansup = " << ansup << std::endl;
                         
