@@ -1,14 +1,13 @@
-#
-#
-#
-
+#' A description of event.plot
+#'
+#' @rdname event.plot
+#' @export
 event.plot <-
 function (x,...)
 UseMethod("event.plot")
 
-#
-#
-
+#' @rdname event.plot
+#' @export
 event.plot.life.data <-
   function (x, my.title = NULL, xlab = paste(get.time.units(x)),
             ylab = ifelse(is.null(case.weights(x) ), "Unit", ""),
@@ -181,9 +180,8 @@ event.plot.life.data <-
     invisible()
   }
 
-#
-#
-
+#' @rdname event.plot
+#' @export
 event.plot.recurrence.data <-
   function (x, my.title = NULL, xlab = paste("Time in",
                                              get.time.units(x)), ylab = "System ID", title.option = GetSMRDDefault("SMRD.TitleOption"),
