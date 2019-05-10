@@ -1,6 +1,6 @@
 #include <base/base.hpp>
 #include <genmax/ast0x1.hpp>
-// #include <genmax/outpar.hpp>
+#include <genmax/outpar.hpp>
 
 // Start values for the aft model
 void ast0xx(int &kmod,
@@ -80,8 +80,8 @@ if(debug::kprint >= 3){
    double conlev = 0.95;
    double xlogl = 0.0;
    
-   // outpar(2,kmod,kdist,xlogl,thetas,
-   //        kodet,iplab,vcv,r,nparm,conlev,nparm,3)
+   outpar(2,kmod,kdist,xlogl,thetas,
+          kodet,iplab,vcv,r,nparm,conlev,nparm);
    
 }
 
