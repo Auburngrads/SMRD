@@ -1,3 +1,44 @@
+#' Return asd quantity
+#'
+#' @param plan.values 
+#' @param n 
+#' @param censor.time 
+#' @param quantile.mark 
+#'
+#' @return variance
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' plan.values3 <- get.plan.values("Weibull",
+#'                                 prob = c(.2,.12),
+#'                                 time = c(1000,500), 
+#'                                 time.units = "Hours")
+#' 
+#' asd.quant(plan.values3, 
+#'           n = 50, 
+#'           censor.time = 1000, 
+#'           quantile.mark = 0.1)
+#' 
+#' #compare:
+#' 
+#' asd.quant(plan.values3,
+#'           n = 50, 
+#'           censor.time = 1000, 
+#'           quantile.mark = 0.1)*sqrt(50)
+#' 
+#' asd.quant(plan.values3,
+#'           n = 500, 
+#'           censor.time = 1000, 
+#'           quantile.mark = 0.1)*sqrt(500)
+#' 
+#' asd.quant(plan.values3,
+#'           n = 5000, 
+#'           censor.time = 1000, 
+#'           quantile.mark = 0.1)*sqrt(5000)
+#' 
+#' }
+#' @seealso code{link{get.plan.values}}
 asd.quant <-
 function (plan.values, 
           n, 
@@ -17,7 +58,7 @@ function (plan.values,
     zc <- expand.vec(zc, vlength)
     ze <- expand.vec(ze, vlength)
     
-    zout <- VAVAR(as.integer(idist),
+    zout <- VAVAR(as.integer(distribution),
                   as.integer(vlength),
                   as.double(zc),
                   as.double(ze),
