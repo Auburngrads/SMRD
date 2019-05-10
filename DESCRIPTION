@@ -20,7 +20,7 @@ Description: Implements the reliability estimation functions and
 License: GPL (>= 2)
 LazyData: true
 Depends:
-    R (>= 3.5.0)
+    R (>= 3.6.0)
 Imports:
     graphics,
     stats,
