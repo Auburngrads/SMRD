@@ -1,7 +1,7 @@
 ---
-title: "`r SMRD:::info('book')`"
-subtitle: "`r SMRD:::info('chapter10')`"
-author: "`r SMRD:::info('authors')`"
+title: "`r SMRD2:::info('book')`"
+subtitle: "`r SMRD2:::info('chapter10')`"
+author: "`r SMRD2:::info('authors')`"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -14,8 +14,8 @@ vignette: >
 ---
 
 ```{r, echo=FALSE}
-SMRD:::vinny()
-library(SMRD)
+SMRD2:::vinny()
+library(SMRD2)
 ```
 
 # In This Vignette...
@@ -63,48 +63,97 @@ life.test.simulation(plan.values1,
 Other optional arguments and skip detail
 
 ```{r}
-life.test.simulation(plan.values1, n=50,censor.time = 1000, number.sim = 50, quantile.mark=.2)
+life.test.simulation(plan.values1, 
+                     n = 50,
+                     censor.time = 1000, 
+                     number.sim = 50, 
+                     quantile.mark = 0.2)
 ```
 
-#now try lognormal distribution
+Now try lognormal distribution
 
-influid.plan.values2 <- get.plan.values("Lognormal", sigma=.5,prob=.1, time=100, time.units="Hours")
+```{r}
+plan.values2 <- get.plan.values("Lognormal", 
+                                sigma = 0.5,
+                                prob = 0.1, 
+                                time = 100, 
+                                time.units = "Hours")
 
-summary(influid.plan.values2)
-plot(influid.plan.values2)
+summary(plan.values2)
+plot(plan.values2)
 
-plot(influid.plan.values2, censor.time=1000, grids=F)
+plot(plan.values2, 
+     censor.time = 1000, 
+     grids = F)
 
-life.test.simulation(influid.plan.values2, n=50,censor.time = 1000, quantile.mark=.1)
+life.test.simulation(plan.values2, 
+                     n = 50,
+                     censor.time = 1000, 
+                     quantile.mark = .1)
+```
 
 # Get planning values by specifying two points
 
-influid.plan.values3 <- get.plan.values("Weibull",prob=c(.2,.12), time=c(1000,500), time.units="Hours")
-influid.plan.values4 <- get.plan.values("Weibull",prob=c(.05,.15), time=c(40000,100000), time.units="Hours")
+```{r}
+plan.values3 <- get.plan.values("Weibull",
+                                prob = c(.2,.12),
+                                time = c(1000,500), 
+                                time.units = "Hours")
 
-summary(influid.plan.values3)
-plot(influid.plan.values3)
+plan.values4 <- get.plan.values("Weibull",
+                                prob = c(.05,.15),
+                                time = c(40000,100000),
+                                time.units = "Hours")
+
+summary(plan.values3)
+plot(plan.values3)
 
 
-life.test.simulation(influid.plan.values3, n=50, censor.time = 1000, quantile.mark.1)
+life.test.simulation(plan.values3, 
+                     n = 50, 
+                     censor.time = 1000, 
+                     quantile.mark = 0.1)
 
 #compare the simulated value with the large-sample approx below
 
-asd.quant(influid.plan.values3, n=50, censor.time = 1000, quantile.mark=.1)
+asd.quant(plan.values3, 
+          n=50, 
+          censor.time = 1000, 
+          quantile.mark=.1)
 
 #compare:
 
-asd.quant(influid.plan.values3,n=50, censor.time = 1000, quantile.mark=.1)*sqrt(50)
-asd.quant(influid.plan.values3,n=500, censor.time = 1000, quantile.mark=.1)*sqrt(500)
-asd.quant(influid.plan.values3,n=5000, censor.time = 1000, quantile.mark=.1)*sqrt(5000)
+asd.quant(plan.values3,
+          n=50, 
+          censor.time = 1000, 
+          quantile.mark=.1)*sqrt(50)
+
+asd.quant(plan.values3,
+          n=500, 
+          censor.time = 1000, 
+          quantile.mark=.1)*sqrt(500)
+
+asd.quant(plan.values3,
+          n=5000, 
+          censor.time = 1000, 
+          quantile.mark=.1)*sqrt(5000)
+```
 
 #get a single variance factor like in Figures 10.5 and 10.6
 
-variance.factor(distribution = 'normal', type = 'quantile', .02,.2)
+```{r}
+variance.factor(distribution = 'normal', 
+                type = 'quantile', 
+                quantile.of.interest = 0.02,
+                proportion.failing = 0.2)
 
 #and for the normal distribution
 
-variance.factor(distribution = 'sev',type = 'quantile', .02,.2)
+variance.factor(distribution = 'sev',
+                type = 'quantile', 
+                quantile.of.interest = 0.02,
+                proportion.failing = 0.2)
+```
 
 asym.test.plan.properties(influid.plan.values3, n=50, proportion.failing=.1)
 
