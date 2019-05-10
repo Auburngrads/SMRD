@@ -2,7 +2,7 @@
 #include <mlsim2/mthcdf.hpp>
 #include <mlsim2/simnp.hpp>
 #include <mlsim2/snset.hpp>
-#include <wqm_cdfest/wqm_cdfest.hpp>
+#include <wqmcdfest/wqm_cdfest.hpp>
 
 // #method 3 simulation---nonparametric sampling/parametric inference;
 // #;
@@ -173,20 +173,19 @@ mnew = 0;
             maxmsd,pnew,qnew,prbnew,sdnew,mnew,
             pchmax,lsd,ier,ilcv,iucv,iltv,
             iutv,iorder,xlcen,xrcen,fail,xltru,xrtru,ys,
-            pgrad,s,probd,fscrat);
+            pgrad,s,probd);
 
 // Save the results
 // always save error and redistributed prbnew, sdnew;
    retmat.at(0,isim - 1) = ier;
 
-   Rcpp::Rcout << "Here" << std::endl;
-   Rcpp::Rcout << "mnew = " << mnew << std::endl;
 // Match and redistributed prbnew, sdnew
    prtvec = Rcpp::NumericVector(m);
    srtvec = Rcpp::NumericVector(m);
    
    if(debug::kprint > 8) {
       
+      Rcpp::Rcout << "  mnew = " << mnew << std::endl;
       Rcpp::Rcout << "prtvec = " << prtvec << std::endl;
       Rcpp::Rcout << "srtvec = " << srtvec << std::endl;
       
