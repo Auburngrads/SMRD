@@ -1,3 +1,10 @@
+#' Return a summmary of reliability test plan values
+#'
+#' @param object 
+#' @param ... 
+#'
+#' @return A summary
+#' @export
 summary.plan.values <-
 function (object,...)
 {
