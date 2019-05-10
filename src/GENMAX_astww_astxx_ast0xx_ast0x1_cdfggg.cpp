@@ -114,7 +114,7 @@ void cdfggg(Rcpp::NumericMatrix &y,
   
 // Set up scratch array
    int np3 = n + 3;
-   double maxmat = maxmsd * (maxmsd - 1) / 2;
+   int maxmat = maxmsd * (maxmsd - 1) / 2;
    double xllgkm;
 
 Rcpp::NumericVector isave  = Rcpp::NumericVector(np3);
@@ -122,7 +122,6 @@ Rcpp::NumericVector iprobd = Rcpp::NumericVector(np3);
 Rcpp::NumericVector ixlcen = Rcpp::NumericVector(np3);
 Rcpp::NumericVector ipgrad = Rcpp::NumericVector(np3);
 Rcpp::NumericVector ixrcen = Rcpp::NumericVector(np3);
-Rcpp::NumericVector ifscr  = Rcpp::NumericVector(maxmat);
 Rcpp::NumericVector ifail  = Rcpp::NumericVector(np3);
 Rcpp::NumericVector ixltru = Rcpp::NumericVector(np3);
 Rcpp::NumericVector ixrtru = Rcpp::NumericVector(np3);
@@ -138,7 +137,7 @@ Rcpp::IntegerVector iorder = Rcpp::IntegerVector(2 * np3);
         maxmsd,ixlcen,ixrcen,ifail,ixltru,
         ixrtru,iys,p,q,ipgrad,prob,sd,isave,
         iprobd,m,xllgkm,ilcv,iucv,iltv,iutv,
-        iorder,ifscr,pchmax,lsd,ier);
+        iorder,pchmax,lsd,ier);
  
 // cover up first jump at a time point;
    if(ier <= 0) { 
