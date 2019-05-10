@@ -32,13 +32,13 @@ double phibd, phibd2, zphis, zphis2;
 double phipd, phisd, zphisd;
 double zphip,zphip2,zphipd,tphip,tphip2,tphipd;
   
-for(int i = 0; i < 5; i++){
+for(int i = 1; i <= 5; i++){
   
-    qder.at(i) = zero;
+    qder.at(i - 1) = zero;
   
 }
   
-if(itype == 0) return;
+if(itype == 0) goto exit;
   
 if(itypep < 0) {
   
@@ -70,7 +70,7 @@ line101: ez = std::exp(z);
          qder.at(3) = z * ez + qder.at(0);
          qder.at(4) = two * qder.at(1) + z * z * ez + one;
          
-         return;
+         goto exit;
 
 // Normal distribution;
 line102: zsq = z * z;
@@ -80,10 +80,10 @@ line102: zsq = z * z;
          qder.at(3) = qder.at(0) + z;
          qder.at(4) = qder.at(1) + two * zsq;
          
-         return;
+         goto exit;
 
 // Logistic distribution (general except for phiq);
-line103: wqm_phiall(phip,phibm,phis,phip,z,kdist);
+line103: wqm_phiall(phib,phibm,phis,phip,z,kdist);
 
          // phiq is the second derivative of the density;
             phiq = phip - two * (phis * phis + phip * phib);
@@ -95,10 +95,10 @@ line103: wqm_phiall(phip,phibm,phis,phip,z,kdist);
             qder.at(3) = -z*phiqds + qder.at(0) + qder.at(0) * qd2;
             qder.at(4) = -z * z * phiqds + two * qd2 + qd2 * qd2 - one;
          
-            return;
+            goto exit;
 
 // LEV distribution (general except for phiq)
-line104: wqm_phiall(phip,phibm,phis,phip,z,kdist);
+line104: wqm_phiall(phib,phibm,phis,phip,z,kdist);
          
          // phiq is the second derivative of the density
             phiq = std::exp(-z) * (phib - two * phis + phip);
@@ -110,10 +110,10 @@ line104: wqm_phiall(phip,phibm,phis,phip,z,kdist);
             qder.at(3) = -z * phiqds + qder.at(0) + qder.at(0) * qd2;
             qder.at(4) = -z * z * phiqds + two * qd2 + qd2 * qd2 - one;
             
-            return;
+            goto exit;
 
 // Right censored observation
-line2012: wqm_phiall(phip,phibm,phis,phip,z,kdist);
+line2012: wqm_phiall(phib,phibm,phis,phip,z,kdist);
           
           phipdb = phip / phibm;
           qder.at(0) = phis / phibm;
@@ -122,7 +122,7 @@ line2012: wqm_phiall(phip,phibm,phis,phip,z,kdist);
           qder.at(3) = z * phipdb + qder.at(0) + qder.at(0) * qder.at(1);
           qder.at(4) = z * z * phipdb + two * qder.at(1) + qder.at(1) * qder.at(1);
           
-          return;
+          goto exit;
           
 // Left censored observation;
 line2013: wqm_phiall(phib,phibm,phis,phip,z,kdist);
@@ -134,12 +134,12 @@ line2013: wqm_phiall(phib,phibm,phis,phip,z,kdist);
           qder.at(3) = -z * phipdb + qder.at(0) + qder.at(0) * qder.at(1);
           qder.at(4) = -z * z * phipdb + two * qder.at(1) + qder.at(1) * qder.at(1);
           
-          return;
+          goto exit;
           
 // Interval observation;
-line2014: wqm_phiall(phip,phibm,phis,phip,z,kdist);
+line2014: wqm_phiall(phib,phibm,phis,phip,z,kdist);
           
-          wqm_phiall(phip2,phibm2,phis2,phip2,z2,kdist);
+          wqm_phiall(phib2,phibm2,phis2,phip2,z2,kdist);
           
           phibd = phib - phib2;
           phibd2 = phibm2 - phibm;
@@ -148,23 +148,78 @@ line2014: wqm_phiall(phip,phibm,phis,phip,z,kdist);
           phisd = phis2 - phis;
           phibd = phib2 - phib;
           
-          if(logically_equal(phibd, zero)) return;
+          if(logically_equal(phibd, zero)) {
             
-          zphis = z * phis;
+             for(int i = 1; i <= 5; i++){
+               
+                 qder.at(i - 1) = zero;
+               
+             }
+            
+             goto exit;
+            
+          }
+            
+          zphis  = z  * phis;
           zphis2 = z2 * phis2;
           zphisd = zphis2 - zphis;
-          zphip = z * phip;
+          zphip  = z  * phip;
           zphip2 = z2 * phip2;
           zphipd = zphip2 - zphip;
-          tphip = z * zphip;
+          tphip  = z  * zphip;
           tphip2 = z2 * zphip2;
           tphipd = tphip2 - tphip;
-          qder.at(0) = -phisd / phibd;
-          qder.at(1) = -zphisd / phibd;
-          qder.at(2) = -phipd / phibd + qder.at(0) * qder.at(0);
-          qder.at(3) = -zphipd / phibd + qder.at(0) + qder.at(0) * qder.at(1);
-          qder.at(4) = -tphipd / phibd + two * qder.at(1) + qder.at(1) * qder.at(1);
+          qder.at(0) = -1 * phisd  / phibd;
+          qder.at(1) = -1 * zphisd / phibd;
+          qder.at(2) = -1 * phipd  / phibd + qder.at(0) * qder.at(0);
+          qder.at(3) = -1 * zphipd / phibd + qder.at(0) + qder.at(0) * qder.at(1);
+          qder.at(4) = -1 * tphipd / phibd + two * qder.at(1) + qder.at(1) * qder.at(1);
+
+exit: if(debug::kprint >= 7){
   
+         Rcpp::Rcout << "\nWQM_DERIV**END**\n" << std::endl;
+         Rcpp::Rcout << "phib = " << phip << std::endl;
+         Rcpp::Rcout << "phip = " << phip << std::endl;
+         Rcpp::Rcout << "phibm = " << phibm << std::endl;
+         Rcpp::Rcout << "phis = " << phis << std::endl;
+         
+         if(itype == 1){
+           
+            Rcpp::Rcout << "ez = " << ez << std::endl;
+            Rcpp::Rcout << "qd2 = " << qd2 << std::endl;
+            Rcpp::Rcout << "phiq = " << phiq << std::endl;
+            Rcpp::Rcout << "phiqds = " << phiqds << std::endl;
+           
+         }
+         
+         if((itype == 2) or (itype == 3)) {
+           
+            Rcpp::Rcout << "phipdb = " << phipdb << std::endl; 
+           
+         }
+         
+         if(itype == 4){
+           
+            Rcpp::Rcout << "phip2 = " << phip2 << std::endl;
+            Rcpp::Rcout << "phibm2 = " << phibm2 << std::endl;
+            Rcpp::Rcout << "phis2 = " << phis2 << std::endl;
+            Rcpp::Rcout << "zphis = " << zphis << std::endl;
+            Rcpp::Rcout << "zphis2 = " << zphis2 << std::endl;
+            Rcpp::Rcout << "zphisd = " << zphisd << std::endl;
+            Rcpp::Rcout << "zphip = " << zphip << std::endl;
+            Rcpp::Rcout << "zphip2 = " << zphip2 << std::endl;
+            Rcpp::Rcout << "zphipd = " << zphipd << std::endl;
+            Rcpp::Rcout << "tphip = " << tphip << std::endl;
+            Rcpp::Rcout << "tphip2 = " << tphip2 << std::endl;
+            Rcpp::Rcout << "tphipd = " << tphipd << std::endl;
+            Rcpp::Rcout << "phibd = " << phibd << std::endl;
+            Rcpp::Rcout << "phibd2 = " << phibd2 << std::endl;
+            Rcpp::Rcout << "phipd = " << phipd << std::endl;
+            Rcpp::Rcout << "phisd = " << phisd << std::endl;
+            
+         }
+         
+      }
   
  return;
 
