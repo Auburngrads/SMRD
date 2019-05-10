@@ -1,6 +1,6 @@
 #include <base/base.hpp>
-#include <wqm_cdfest/wqm_cdfemi.hpp>
-#include <wqm_cdfest/wqm_cdfezk.hpp>
+#include <wqmcdfest/wqm_cdfemi.hpp>
+#include <wqmcdfest/wqm_cdfezk.hpp>
 
 //' @description Use the em algorithm according to
 //'              Turnbull to find the nonparametric
@@ -51,18 +51,22 @@ for(int i = 1; i <= n; i++){
     xnobs = xnobs + weight.at(i - 1);
 
     if((itype == 1) or (itype == 4) or (itype == 5)){
+      
         x2obs = x2obs + weight.at(i - 1);
         x3obs = x3obs + weight.at(i - 1);
-        continue;
+        
     }
 
     if(itype == 2){
-      x2obs = x2obs + weight.at(i - 1);
-      continue;
+      
+       x2obs = x2obs + weight.at(i - 1);
+      
     }
+    
     if(itype == 3){
-      x3obs = x3obs + weight.at(i - 1);
-      continue;
+      
+       x3obs = x3obs + weight.at(i - 1);
+      
     }
 
 }
@@ -105,23 +109,21 @@ for(int j = 1; j <= m; j++){
 // #iterations for turnbull self-consistancy algorithm;
 for(int iter = 1; iter <= maxit; iter++){
 
-    if(iter == maxit - 100) inow = 2;
-    if(iter == maxit - 50)  inow = 3;
+    if(iter == (maxit - 100)) inow = 2;
+    if(iter == (maxit - 50))  inow = 3;
 
     wqm_cdfemi(s,probd,m,ilcv,iucv,
                weight,nty,iltv,iutv,n,xnobs);
 
 // Check for cell probabilities approaching the boundary
-   if(!((iter < 10) or (iter % inc.at(inow - 1) != 1))) {
+   if((iter < 10) or ((iter % inc.at(inow - 1)) != 1)) goto line50;
    
       wqm_cdfezk(ilcv,iucv,iltv,iutv,weight,
                  nty,n,probd,m,pgrad,
                  biggrp.at(inow - 1),smprop.at(inow - 1),indc);
      
-   }
-
 // Check for convergence
-   absdm = zero;
+   line50: absdm = zero;
 
 for(int j = 1; j <= m; j++){
 
@@ -137,6 +139,7 @@ for(int j = 1; j <= m; j++){
         Rcpp::Rcout << "s(j) = "     << s.at(j - 1)     << std::endl;
         Rcpp::Rcout << "pgrad(j) = " << pgrad.at(j - 1) << std::endl;
         Rcpp::Rcout << "absd = "     << absd            << std::endl;
+        Rcpp::Rcout << "absdm= "     << absdm           << std::endl;
       
       
     }
@@ -150,11 +153,12 @@ for(int j = 1; j <= m; j++){
       Rcpp::Rcout << "\nWQM_CDFEMA\n" << std::endl;
       Rcpp::Rcout << "iteration = "   << iter  << std::endl;
       Rcpp::Rcout << "max change = "  << absdm << std::endl;
+      Rcpp::Rcout << "tolabs = "      << tolabs << std::endl;
      
    }
 
 
-if(absdm <= tolabs) goto line97;
+   if(absdm <= tolabs) goto line97;
 
 }
 
@@ -162,28 +166,16 @@ pchmax = absdm;
 
 line97: inow = 4;
 
-    wqm_cdfemi(s,probd,m,ilcv,iucv,weight,nty,
-               iltv,iutv,n,xnobs);
+line98: wqm_cdfemi(s,probd,m,ilcv,iucv,weight,nty,
+                   iltv,iutv,n,xnobs);
 
-    wqm_cdfezk(ilcv,iucv,iltv,iutv,weight,nty,
-               n,probd,m,pgrad,biggrp.at(inow - 1),
-               smprop.at(inow - 1),indc);
-
+        wqm_cdfezk(ilcv,iucv,iltv,iutv,weight,nty,
+                   n,probd,m,pgrad,biggrp.at(inow - 1),
+                   smprop.at(inow - 1),indc);
+        
 for(int j = 1; j <= m; j++) { s.at(j - 1) = probd.at(j - 1); }
 
-if(indc != 0) {
-
-    wqm_cdfemi(s,probd,m,ilcv,iucv,weight,nty,
-               iltv,iutv,n,xnobs);
-
-     wqm_cdfezk(ilcv,iucv,iltv,iutv,weight,nty,
-                n,probd,m,pgrad,biggrp.at(inow - 1),
-                smprop.at(inow - 1),indc);
-
-  for(int j = 1; j <= m; j++) { s.at(j - 1) = probd.at(j - 1); }
-
-
-}
+if(indc != 0) goto line98;
 
 // Accumulate the cdf estimate into prob
 
@@ -196,7 +188,7 @@ for(int j = 1; j <= m; j++) {
 
 }
 
-    return;
+return;
 
 }
 
