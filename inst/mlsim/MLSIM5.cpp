@@ -1,4 +1,9 @@
-#include <base/base.h>
+#include <base/base.hpp>
+#include <utility/wqm_filld.hpp>
+#include <wqmmlesss/wqm_mlboth.hpp>
+#include <mlsim2/psbinx.hpp>
+#include <mlsim2/qsbinx.hpp>
+#include <mlsim2/msmdat1.hpp>
 
 //' staggered entry prediction bootstrap for a new sample
 //' 
@@ -35,9 +40,8 @@
 //' iersim  data space too small
 //' 
 //'    need to send down data space big enough to cover all data situations
-
 // [[Rcpp::export]]
-Rcpp::List mlsim4(Rcpp::NumericMatrix x,
+Rcpp::List MLSIM5(Rcpp::NumericMatrix x,
                   Rcpp::NumericMatrix y,
                   Rcpp::IntegerVector cen,
                   Rcpp::IntegerVector wt,
@@ -86,7 +90,7 @@ Rcpp::List mlsim4(Rcpp::NumericMatrix x,
 debug::kprint = kprint;
 bool lcheck;
 double anslow,ansup,pquan,xlike,prdelt;
-int nvcv,nfail;
+int nvcv,nfail,nrownw = 0;
 Rcpp::NumericMatrix ipxnew,iptmat,ipvcvb,ipvcvg,ivcvd,ivcvdd;
 Rcpp::NumericVector iprv1,ipdiag,ipthb,ipthg,ipfsd,ipnext;
 Rcpp::NumericVector itd,itf,ied,iw,ivd;
@@ -316,8 +320,8 @@ if(debug::kprint >= 2){
                      }
                      
                   // return one of the cbs
-                     retmat.AT(4,nsimg - 1) = klower;
-                     retmat.AT(5,nsimg - 1) = kupper;
+                     retmat.at(4,nsimg - 1) = klower;
+                     retmat.at(5,nsimg - 1) = kupper;
                      
                      if(debug::kprint >= 4){
                         
