@@ -1,3 +1,4 @@
+#' @method summary ADDT.plan.values
 summary.ADDT.plan.values <-
 function (object,...)
 {
