@@ -1,5 +1,5 @@
 #include <base/base.hpp>
-#include <wqm_cdfest/wqm_cdfest.hpp>
+#include <wqmcdfest/wqm_cdfest.hpp>
 
 //' Compute Nonparametric CDF Estimates
 //'
@@ -129,13 +129,12 @@ Rcpp::NumericVector ys    = NumericVector(2 * n);
 Rcpp::NumericVector pgrad = NumericVector(n);
 Rcpp::NumericVector s     = NumericVector(n);
 Rcpp::NumericVector probd = NumericVector(n);
-Rcpp::NumericVector fscrat = NumericVector(n);
 
   wqm_cdfest(y,ny,codes,weight,ty,nty,tcodes,n,nstart,
              dscrat,scrat,iscrat,maxit,tol,maxmsd,
              p,q,prob,sd,m,pchmax,lsd,ier,ilcv,iucv,iltv,
              iutv,iorder,xlcen,xrcen,fail,xltru,xrtru,ys,
-             pgrad,s,probd,fscrat);
+             pgrad,s,probd);
              
 nummat = List::create(Named("y")  = y,
                       Named("ty") = ty);
@@ -161,8 +160,7 @@ numvec = List::create(Named("xlcen") = xlcen,
                       Named("prob")  = prob,
                       Named("sd")    = sd,
                       Named("s")     = s,
-                      Named("probd") = probd,
-                      Named("fscrat") = fscrat);
+                      Named("probd") = probd);
 
 others = List::create(Named("ny")     = y.ncol(),
                       Named("nty")    = nty,
