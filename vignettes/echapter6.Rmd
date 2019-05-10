@@ -1,7 +1,7 @@
 ---
-title: "`r SMRD:::info('book')`"
-subtitle: "`r SMRD:::info('chapter6')`"
-author: "`r SMRD:::info('authors')`"
+title: "`r SMRD2:::info('book')`"
+subtitle: "`r SMRD2:::info('chapter6')`"
+author: "`r SMRD2:::info('authors')`"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -14,8 +14,8 @@ vignette: >
 ---
 
 ```{r, echo=FALSE}
-SMRD:::vinny()
-library(SMRD)
+SMRD2:::vinny()
+library(SMRD2)
 ```
 
 # Shockabsorber Data Set `shockabsorber`
@@ -102,8 +102,8 @@ Bleed.ld <- frame.to.ld(bleed,
                         x.columns = 4,
                         time.units = "Hours")
 
-ld.split(Bleed.ld,stress.var="D")
-ld.split(Bleed.ld,stress.var="Other")
+Bleed.ld_D <- SMRD2:::ld.split(Bleed.ld,stress.var="D")
+Bleed.ld_Other <- SMRD2:::ld.split(Bleed.ld,stress.var="Other")
 ```
 
 ```{r, fig.height=9}
@@ -112,11 +112,11 @@ summary(Bleed.ld)
 ```
 
 ```{r, fig.height=6}
-event.plot(Bleed.Dbase.ld)
-summary(Bleed.Dbase.ld)
+event.plot(Bleed.ld_D)
+summary(Bleed.ld_D)
 
-event.plot(Bleed.Otherbase.ld)
-summary(Bleed.Otherbase.ld)
+event.plot(Bleed.ld_Other)
+summary(Bleed.ld_Other)
 ```
 
 ```{r}
@@ -126,11 +126,11 @@ plot(Bleed.ld,
      distribution = "Weibull",
      my.title = "Bleed System Failures\nAll Bases")
 
-plot(Bleed.Dbase.ld,
+plot(Bleed.ld_D,
      distribution = "Weibull",
      my.title = "Bleed System Failures\nOnly Base D")
 
-plot(Bleed.Otherbase.ld,
+plot(Bleed.ld_Other,
      distribution = "Weibull",
      my.title = "Bleed System Failures\nOmitting Base D")
 ```
@@ -138,7 +138,7 @@ plot(Bleed.Otherbase.ld,
 # Some commands to generate probability paper
 
 ```{r}
-probpaper("Weibull",
+SMRD2:::probpaper("Weibull",
           xlim = c(1, 10), 
           grid = TRUE, 
           ylim = c(0.011,0.981))
@@ -177,6 +177,7 @@ probpaper("Lognormal",
 # Some Additional Functions
 
 ```{r, eval=FALSE}
+lzbearing.ld <- frame.to.ld(lzbearing, response.column = 1)
 plot(lzbearing.ld,
      distribution = "gng",
      shape = .1,
