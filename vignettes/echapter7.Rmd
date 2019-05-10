@@ -1,7 +1,7 @@
 ---
-title: "`r SMRD:::info('book')`"
-subtitle: "`r SMRD:::info('chapter7')`"
-author: "`r SMRD:::info('authors')`"
+title: "`r SMRD2:::info('book')`"
+subtitle: "`r SMRD2:::info('chapter7')`"
+author: "`r SMRD2:::info('authors')`"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -14,8 +14,8 @@ vignette: >
 ---
 
 ```{r, echo=FALSE}
-SMRD:::vinny()
-library(SMRD)
+SMRD2:::vinny()
+library(SMRD2)
 ```
 
 ```{r}
@@ -34,13 +34,11 @@ plot(berkson200.ld, dist = "Exponential")
 
 ```{r}
 cdfest(berkson200.ld)
-
-print(cdfest(berkson200.ld))
 ```
 
 
 ```{r}
-berkson200.mle.exp <- mlest(berkson200.ld, distribution = "Exponential")
+berkson200.mle.exp <- SMRD2:::mlest(berkson200.ld, distribution = "Exponential")
 
 print(berkson200.mle.exp)$ll.text
 print(berkson200.mle.exp)$ll.value
@@ -55,7 +53,7 @@ print(berkson200.mle.exp)$hazard.table
 ```
 
 ```{r}
-mleprobplot(berkson200.ld, 
+SMRD2:::mleprobplot(berkson200.ld, 
             distribution = "Exponential", 
             param.loc = "bottomright") 
 ```
@@ -66,9 +64,9 @@ berkson200.mle.exp <- expon.mle(berkson200.ld)
 berkson200.mle.gam <- Gamma.mle(berkson200.ld)
 
 ```{r}
-simple.contour(berkson200.ld, 
+SMRD2:::simple.contour(berkson200.ld, 
                distribution = 'exponential', 
-               xlim = c(500,800))
+               xlim = c(400,800))
 ```
 
 compare.many.exponential.profiles(theta=5,sample.size=3,number.simulation=10)
