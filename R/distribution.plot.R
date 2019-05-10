@@ -1,3 +1,63 @@
+#' Create a four-panel distribution plot
+#'
+#' @param distribution Generates an array of ggplot2 grobs showing
+#'                     the cdf, pdf, survival function and hazard 
+#'                     function for a distribution
+#' @param shape A vector of shape parameters
+#' @param prob.range A vector (length 2) of values between 0 and 1 
+#'                   providing the lower and upper limits of the 
+#'                   probability range
+#' @param number.points The number points to be used in the plot
+#' @param scale A numeric value of the scale parameter (see Details)
+#' @param location A numeric value of the location parameter (see Details)
+#' @param shape2 A numeric value of the second shape parameter (see Details)
+#' @param exponential2 Is this 2-param exponential
+#' @param cex A positive numeric value giving the amount by which the
+#'            plot text should be magnified relative to the default.
+#' @param lwd A positive numeric value giving the amount by which the
+#'            line widths should be magnified relative to the default. 
+#' @param ... Currently not used
+#'
+#' @importFrom ggplot2 ggplot geom_line aes theme_bw facet_wrap
+#' @importFrom stats qlogis dlogis plogis
+#' @importFrom stats qnorm dnorm pnorm
+#' @importFrom stats qlnorm dlnorm plnorm
+#' @importFrom stats qweibull dweibull pweibull
+#' @importFrom stats qexp dexp pexp
+#' @importFrom stats qgamma dgamma pgamma
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' distribution.plot("Exponential",
+#'                   shape = c(.5,1))
+#' 
+#' distribution.plot("Lognormal",
+#'                   shape = c(.3, .8))
+#' 
+#' distribution.plot("Normal",
+#'                   shape = c( .30, .5,.8),
+#'                   location = 5)
+#' 
+#' distribution.plot("Weibull",
+#'                   shape = c(.8,1,1.5))
+#' 
+#' distribution.plot("Smallest Extreme Value",
+#'                   shape = c(5,6,7),
+#'                   location = 50)
+#' 
+#' distribution.plot("Largest Extreme Value",
+#'                   shape = c(5, 6, 7),
+#'                   location = 10)
+#' 
+#' distribution.plot("Logistic",
+#'                   shape = c(1, 2, 3),
+#'                   location = 15)
+#' 
+#' distribution.plot("Loglogistic",
+#'                   shape = c(.2,.4,.6), 
+#'                   prob.range = c(0.001, 0.95))
+#' }
 distribution.plot <-
   function (distribution, 
             shape, 
