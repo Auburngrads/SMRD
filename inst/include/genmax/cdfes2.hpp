@@ -32,7 +32,6 @@ void cdfes2(Rcpp::NumericMatrix &y,
             Rcpp::IntegerVector &iltv,
             Rcpp::IntegerVector &iutv,
             Rcpp::IntegerVector &iorder,
-            Rcpp::NumericVector &fscrat,
             double &pchmax,
             int &lsd,
             int &ier);
