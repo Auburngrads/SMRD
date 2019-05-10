@@ -1,3 +1,55 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param distribution 
+#' @param plot.dist 
+#' @param xlab 
+#' @param xlim 
+#' @param ylim 
+#' @param time.range 
+#' @param conf.level 
+#' @param interactive 
+#' @param original.par 
+#' @param mle.quantiles 
+#' @param my.title 
+#' @param type 
+#' @param cex 
+#' @param cexlab 
+#' @param sub.title 
+#' @param grids 
+#' @param linear.axes 
+#' @param slope.axis 
+#' @param print.table 
+#' @param title.option 
+#' @param ylab 
+#' @param trunc.correct 
+#' @param add 
+#' @param plot.censored.ticks 
+#' @param pch 
+#' @param lty 
+#' @param lwd 
+#' @param length.time.vec 
+#' @param compare.dists 
+#' @param col.ci 
+#' @param lwd.ci 
+#' @param xxx.mle.out 
+#' @param ciMethod 
+#' @param extrapolate.ci 
+#' @param band.type 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' lzbearing.ld <- frame.to.ld(lzbearing, response.column = 1)
+#' 
+#' gmleprobplot(lzbearing.ld,
+#'              distribution="bisa",
+#'              compare=c("Lognormal"))
+#' 
+#' }
 gmleprobplot <-
 function (data.ld, distribution, plot.dist = "lognormal", xlab = get.time.units(data.ld),
     xlim = c(NA, NA), ylim = c(NA, NA), time.range = c(NA,
