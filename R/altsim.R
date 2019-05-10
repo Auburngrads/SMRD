@@ -37,18 +37,16 @@ altsim <- function (accel.var.mat,
           randomize = T)
 {
     number.cases <- sum(nsamsz + 1)
-    plan <- list(accel.var.mat = accel.var.mat, nsamsz = nsamsz,
-        centim = centim)
+    plan <- list(accel.var.mat = accel.var.mat, 
+                 nsamsz = nsamsz,
+                 centim = centim)
     nty <- 0
-    if (intercept)
-        int <- 1
-    else int <- 0
+    `if`(intercept, int <- 1, int <- 0)
     theta.hat <- theta
     distribution.number <- numdist(distribution)
     if (is.null(accel.var.mat)) {
         accel.var.mat <- 0
-        if (int != 1)
-            stop("must have int=1 if no x matrix")
+        if (int != 1) stop("must have int=1 if no x matrix")
         param.names <- c("mu", "sigma")
         nter <- 1
         nsubex <- 1
@@ -56,8 +54,7 @@ altsim <- function (accel.var.mat,
   } else {
         nsubex <- nrow(accel.var.mat)
         nacvar <- ncol(accel.var.mat)
-        param.names <- c(paste("beta", 0:ncol(accel.var.mat),
-            sep = ""), "sigma")
+        param.names <- c(paste("beta", 0:ncol(accel.var.mat), sep = ""), "sigma")
         nter <- ncol(accel.var.mat) + int
     }
     number.parameters <- nter + 1
@@ -110,7 +107,7 @@ altsim <- function (accel.var.mat,
                    xnew = matrix(0, nrow = number.cases, ncol = nter),
                    ynew = matrix(0, nrow = number.cases, ncol = ny), 
                    centim = as.double(centim),
-                   acvar = accel.var.mat, 
+                   acvar = as.matrix(accel.var.mat), 
                    nsubex = as.integer(nsubex),
                    nacvar = as.integer(nacvar), 
                    nsamsz = as.integer(nsamsz),
@@ -219,9 +216,13 @@ ALTsim <-
     }
     number.sim.remaining <- number.sim - as.numeric(show.detail.on)
     if (number.sim.remaining > 0) {
-      altsim.out <- altsim(accel.var.mat = levels, nsamsz = number.of.units,
-                           centim = censor.times, theta = theta, distribution = distribution,
-                           number.sim = number.sim.remaining,debug1= F, kprint = 0)
+      altsim.out <- altsim(accel.var.mat = levels, 
+                           nsamsz = number.of.units,
+                           centim = censor.times, 
+                           theta = theta, 
+                           distribution = distribution,
+                           number.sim = number.sim.remaining,
+                           debug1= F, kprint = 0)
       indices.of.new <- (show.detail.on + 1):number.sim
       ierstuff[indices.of.new] <- altsim.out$ierstuff
       vcv[indices.of.new, ] <- altsim.out$vcv
@@ -232,13 +233,13 @@ ALTsim <-
     number.good <- sum(as.numeric(good.ones))
     vcv <- vcv[good.ones, , drop = F]
     theta.hat.star <- theta.hat.star[good.ones, , drop = F]
-    if (number.good < number.sim)
-      warning(paste("******There were", number.sim - number.good,
-                    "bad simulations"))
-    if (number.good == 0)
-      stop("No good simulation results returned")
-    param.names <- c("beta0", paste("beta", 1:(length(relationship)),
-                                    sep = ""), "sigma")
+    if (number.good < number.sim) warning(paste("******There were", 
+                                                number.sim - number.good,
+                                                "bad simulations"))
+    if (number.good == 0) stop("No good simulation results returned")
+    param.names <- c("beta0", 
+                     paste("beta", 1:(length(relationship)), sep = ""), 
+                     "sigma")
     dimnames(theta.hat.star) <- list(NULL, param.names)
     dimnames(vcv) <- list(NULL, get.vcv.names(param.names))
     return.list <- cbind(theta.hat.star, vcv)
@@ -252,9 +253,11 @@ ALTsim <-
     attr(return.list, "title") <- paste("ALT Simulation Results",
                                         "\nfrom", input.title)
     model <- list(distribution = ALT.plan.values$distribution,
-                  relationships = ALT.plan.values$relationship, explan.vars = attr(ALT.test.plan,
-                                                                                   "accelvar.names"), accelvar.units = ALT.plan.values$accelvar.units,
+                  relationships = ALT.plan.values$relationship, 
+                  explan.vars = attr(ALT.test.plan,"accelvar.names"), 
+                  accelvar.units = ALT.plan.values$accelvar.units,
                   param.names = param.names)
+    
     attr(return.list, "model") <- model
     oldClass(return.list) <- c("simulate.alt.out", "matrix")
     MysetOldClass(attr(return.list, "class"))
