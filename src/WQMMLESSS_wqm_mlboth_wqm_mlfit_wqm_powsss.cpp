@@ -525,7 +525,7 @@ for(int i = 1; i <= n; i++){
 
 goto line53;
 
-        aaa = aaa * (1.0 + di);
+line38: aaa = aaa * (1.0 + di);
         if(ind == 1) goto line53;
         if(ind == 2) goto line106;
 
