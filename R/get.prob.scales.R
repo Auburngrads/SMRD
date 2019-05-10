@@ -1,6 +1,8 @@
 get.prob.scales <-
-function (distribution, ylab = GetSMRDDefault("SMRD.LabelOnYaxis"), 
-    prob.range = NULL, shape = NULL) 
+function (distribution, 
+          ylab = GetSMRDDefault("SMRD.LabelOnYaxis"), 
+          prob.range = NULL, 
+          shape = NULL) 
 {
     sev.tick.location <- c(".00000001", ".00000002", ".00000003", 
         ".00000005", ".0000001", ".0000002", ".0000003", ".0000005", 
@@ -97,13 +99,22 @@ function (distribution, ylab = GetSMRDDefault("SMRD.LabelOnYaxis"),
         ".6", ".7", ".8", ".9", "1.")
     uniform.Percent.tick.labels <- c("0", "10", "20", "30", "40", 
         "50", "60", "70", "80", "90", "100")
-    distribution <- generic.distribution(distribution)
-    if (is.null(prob.range)) 
-        prob.range <- range(as.numeric(sev.tick.labels))
+    
+    distribution <- SMRD2:::generic.distribution(distribution)
+    if (is.null(prob.range))  prob.range <- range(as.numeric(sev.tick.labels))
     dist.info.out <- dist.info(distribution)
-    if (length(shape) < dist.info.out$num.shape.needed) 
-        stop(paste("Need", dist.info.out$num.shape.needed, "shape parameters for", 
-            distribution, "distribution--", length(shape), "provided"))
+    
+    if (length(shape) < dist.info.out$num.shape.needed) {
+      
+        stop(paste("Need", 
+                   dist.info.out$num.shape.needed, 
+                   "shape parameters for", 
+                   distribution, 
+                   "distribution--", 
+                   length(shape), 
+                   "provided"))
+      
+    }
     if (is.null(shape)) {
         switch(distribution, gng = {
             tick.labels <- sev.tick.labels
@@ -132,8 +143,7 @@ function (distribution, ylab = GetSMRDDefault("SMRD.LabelOnYaxis"),
         }, loguniform = {
             tick.labels <- wqm.pretty(prob.range, nint = 5)
             tick.location <- wqm.pretty(tick.labels, nint = 25)
-            percent.tick.labels <- wqm.pretty(prob.range, nint = 5) * 
-                100
+            percent.tick.labels <- wqm.pretty(prob.range, nint = 5) *  100
         }, exponential = {
             if (prob.range[2] > 0.01) {
                 tick.labels <- exponential.tick.labels
@@ -145,29 +155,34 @@ function (distribution, ylab = GetSMRDDefault("SMRD.LabelOnYaxis"),
                 percent.tick.labels <- sev.Percent.tick.labels
             }
         }, stop("Distribution not recognized"))
-        if (dist.info.out$take.logs == "never") 
-            logger <- F
-        else logger <- T
+      
+        `if`(dist.info.out$take.logs == "never", logger <- F, logger <- T)
+        
   } else {
-        if (!is.logdist(distribution)) 
-            stop(paste("Shape parameter provided for", distribution, 
-                "distribution"))
+    
+        if (!is.logdist(distribution)) stop(paste("Shape parameter provided for", 
+                                                  distribution, "distribution"))
         if (prob.range[2] > 0.01) {
+          
             tick.location <- exponential.tick.location
             tick.labels <- exponential.tick.labels
-            percent.tick.labels <- as.character(as.numeric(tick.labels) * 
-                100)
-      } else {
+            percent.tick.labels <- as.character(as.numeric(tick.labels) * 100)
+            
+          } else {
+        
             tick.location <- sev.tick.location
             tick.labels <- sev.tick.labels
-            percent.tick.labels <- as.character(as.numeric(tick.labels) * 
-                100)
+            percent.tick.labels <- as.character(as.numeric(tick.labels) * 100)
+            
         }
-        if (dist.info.out$take.logs == "always") 
-            logger <- T
-        else logger <- F
-    }
-    return(list(tick.location = tick.location, tick.labels = tick.labels, 
-        percent.tick.labels = percent.tick.labels, logger = logger, 
-        distribution = dist.info.out$formal.name, prob.scale = dist.info.out$prob.scale))
+    
+        `if`(dist.info.out$take.logs == "always", logger <- T, logger <- F)
+  }
+    
+    return(list(tick.location = tick.location, 
+                tick.labels = tick.labels, 
+                percent.tick.labels = percent.tick.labels, 
+                logger = logger, 
+                distribution = dist.info.out$formal.name, 
+                prob.scale = dist.info.out$prob.scale))
 }
