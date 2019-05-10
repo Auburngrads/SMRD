@@ -38,14 +38,14 @@ if(MOD_2(kdist,2)) leven = true;
 double flikes = -1.0e15;
 double sigmal = thetg.at(nparm - 1);
 
-if(std::fabs(sigmal) <= dmaxx) {
+if(std::abs(sigmal) <= dmaxx) {
 
     sigma = std::exp(sigmal);
     flikes = 0.0e00;
 
-    for(int i = 0; i < nrow; i++){
+    for(int i = 1; i <= nrow; i++){
 
-         itype = cen.at(i);
+         itype = cen.at(i - 1);
          if(itype == 0) continue;
          epsxxx = zero;
          if(itype == 5) epsxxx = epslike;
@@ -55,27 +55,27 @@ if(std::fabs(sigmal) <= dmaxx) {
 
         addon = zero;
         flikem = zero;
-        if((leven) and (itype == 1)) addon = -1 * y.at(i,0);
+        if((leven) and (itype == 1)) addon = -1 * y.at(i - 1,0);
          xmu = wqm_dfxmu(i,xnew,nrow,nter,thetg,nparm,upcen,sigma);
-         z = (y.at(i,0) - xmu - epsxxx) / sigma;
+         z = (y.at(i - 1,0) - xmu - epsxxx) / sigma;
          z = wqm_ztran(z,kdist);
 
          if(itype >= 4){
 
-            z2 = (y.at(i,ny - 1) - xmu + epsxxx) / sigma;
+            z2 = (y.at(i - 1,ny - 1) - xmu + epsxxx) / sigma;
             z2 = wqm_ztran(z2,kdist);
          }
 
          if(nty > 0) {
 
-            trl = (ty.at(i,0) - xmu) / sigma;
+            trl = (ty.at(i - 1,0) - xmu) / sigma;
             //trl = wqm_ztran(trl,kdist);
 
-            ittype = tcodes.at(i);
+            ittype = tcodes.at(i - 1);
 
             if(ittype == 4){
 
-               tru = (ty.at(i,1) - xmu) / sigma;
+               tru = (ty.at(i - 1,1) - xmu) / sigma;
                //tru = wqm_ztran(tru,kdist);
 
             }
@@ -86,7 +86,7 @@ if(std::fabs(sigmal) <= dmaxx) {
                                      sigmal,nty,ittype,
                                      trl,tru,kdist);
 
-         flikes = flikes + flikem * wt.at(i);
+         flikes = flikes + flikem * wt.at(i - 1);
 
     }
 
@@ -102,10 +102,10 @@ if(debug::kprint >= 4) {
       thetb.at(0) = thetb.at(0) - upcen * sigma;
   
       Rcpp::Rcout << "\nEND OF WQM_FLIKE\n"    << std::endl;
-      Rcpp::Rcout << "flikes"   << flikes      << std::endl;
-      Rcpp::Rcout << "thetb(0)" << thetb.at(0) << std::endl;
-      Rcpp::Rcout << "nter"     << nter        << std::endl;
-      Rcpp::Rcout << "sigma"    << sigma       << std::endl;
+      Rcpp::Rcout << "flikes = "   << flikes      << std::endl;
+      Rcpp::Rcout << "thetb(0) = " << thetb.at(0) << std::endl;
+      Rcpp::Rcout << "nter = "     << nter        << std::endl;
+      Rcpp::Rcout << "sigma = "    << sigma       << std::endl;
   
 }
 
