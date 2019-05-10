@@ -1,12 +1,12 @@
 #include <base/base.hpp>
-#include <wqm_cdfest/wqm_cdfckd.hpp> // done
-#include <wqm_cdfest/wqm_cdfstr.hpp>
-#include <wqm_cdfest/wqm_cdftru.hpp>
+#include <wqmcdfest/wqm_cdfckd.hpp> // done
+#include <wqmcdfest/wqm_cdfstr.hpp>
+#include <wqmcdfest/wqm_cdftru.hpp>
 //#include "heads/wqm_cdfest/wqm_cdfgra.h"
-#include <wqm_cdfest/wqm_cdfgkm.hpp>
-#include <wqm_cdfest/wqm_cdfema.hpp>
-#include <wqm_cdfest/wqm_cdfesi.hpp>
-#include <wqm_cdfest/wqm_cdfegr.hpp>
+#include <wqmcdfest/wqm_cdfgkm.hpp>
+#include <wqmcdfest/wqm_cdfema.hpp>
+#include <wqmcdfest/wqm_cdfesi.hpp>
+#include <wqmcdfest/wqm_cdfegr.hpp>
 #include <genmax/cdfxlk.hpp>
 
 //' @description Basic routine for computing the nonparametric maximum 
@@ -55,7 +55,6 @@ void cdfes2(Rcpp::NumericMatrix &y,
             Rcpp::IntegerVector &iltv,
             Rcpp::IntegerVector &iutv,
             Rcpp::IntegerVector &iorder,
-            Rcpp::NumericVector &fscrat,
             double &pchmax,
             int &lsd,
             int &ier){
@@ -143,8 +142,8 @@ if(ier > 0) return;
             prob,s,probd,n,m,nty,nstart,maxit,tol,pchmax);
 
 // #call the information matrix standard error routine;
- wqm_cdfesi(weight,ilcv,iucv,iltv,iutv,probd,sd, 
-            fscrat,m,n,1.0e-15,nty,ier,maxmsd);
+ wqm_cdfesi(weight,ilcv,iucv,iltv,iutv,probd, 
+            sd,m,n,1.0e-15,nty,ier,maxmsd);
  
 if((ier >= 21) and (ier <= 23)) lsd = 0;
 
