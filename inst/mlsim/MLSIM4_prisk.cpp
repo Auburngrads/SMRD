@@ -1,12 +1,11 @@
-#include <base/base.h>
-#include <wqmmlesss/wqm_phibf.h>
+#include <base/base.hpp>
+#include <wqmmlesss/wqm_phibf.hpp>
 
 //' Compute the information for the prediction/risk analysis
 //'  centim(ngroup)       censor time of cohort
 //'  nsamsz(ngroup)       sample size of cohort
 //'  prdelt               length of future time interval
 //'  krfail(ngroup)       number of observed failures in cohort
-
 void prisk(int &kdist,
            double &xmu,
            double &sigma,
@@ -19,7 +18,7 @@ void prisk(int &kdist,
            Rcpp::IntegerVector &nmrvec,
            double &crisk){
   
-double zpstar,zcstar,plttpd,pltct;
+double zpstar,zcstar,plttpd,pltct,htime,grisk;
   
 // Go over groups to get the future failure info for calibration
    if(debug::kprint >= 1){
