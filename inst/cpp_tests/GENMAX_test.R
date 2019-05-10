@@ -37,7 +37,7 @@ model = 0
 gamthr = 0
 escale = 10000
 intercept = T
-kprint = 0
+if(!exists("kprint")) kprint <- 0
 conlev = 0.95
 maxit = 500
 debug1 = F
