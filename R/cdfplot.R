@@ -1,28 +1,27 @@
 cdfplot <-
-function (data.ld, 
-          logx = F, 
-          my.title = NULL, 
-          conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
-          xlab = get.time.units(data.ld), 
-          xlim = c(NA, NA), 
-          ylim = c(NA, NA), 
-          ylab = GetSMRDDefault("SMRD.LabelOnYaxis"),
-          band.type = "Pointwise", 
-          how.show.fhat = "step.fun", 
+function (data.ld,
+          logx = F,
+          my.title = NULL,
+          conf.level = SMRD2:::GetSMRDDefault("SMRD.ConfLevel")/100,
+          xlab = SMRD2:::get.time.units(data.ld),
+          xlim = c(NA, NA),
+          ylim = c(NA, NA),
+          ylab = SMRD2:::GetSMRDDefault("SMRD.LabelOnYaxis"),
+          band.type = "Pointwise",
+          how.show.fhat = "step.fun",
           how.show.interval = "step.fun",
-          title.option = GetSMRDDefault("SMRD.TitleOption"), 
-          grids = 0, 
+          title.option = SMRD2:::GetSMRDDefault("SMRD.TitleOption"),
+          grids = 0,
           plot.censored.ticks = F,
-          point.pch = 18, 
-          axsi = F, 
+          point.pch = 18,
+          axsi = F,
           oldpar = T, ...)
 {
   CheckString <- function (pat, str) { return(regexpr(pat, str) > 0) }
 
     if (axsi) {
         par(yaxs = "i", xaxs = "i")
-        if (oldpar)
-            on.exit(par(yaxs = "r", xaxs = "r"))
+        if (oldpar) on.exit(par(yaxs = "r", xaxs = "r"))
     }
   
     `if`(title.option == "blank",
@@ -33,7 +32,7 @@ function (data.ld,
          the.distribution <- "loguniform",
          the.distribution <- "Uniform")
     
-    cdfest.out <- npprobplot(data.ld, 
+    cdfest.out <- SMRD2:::npprobplot(data.ld, 
                              distribution = the.distribution,
                              xlab = xlab, 
                              ylab = ylab, 
@@ -50,10 +49,9 @@ function (data.ld,
                              grids = grids, 
                              trunc.correct = F,...)
     
-    default.title <- get.data.title(cdfest.out$data.ld)
+    default.title <- SMRD2:::get.data.title(cdfest.out$data.ld)
     
-    if (is.null(band.type) || band.type == "")
-        band.type <- "none"
+    if (is.null(band.type) || band.type == "") band.type <- "none"
     
     if (is.character(band.type)) {
       
@@ -61,7 +59,7 @@ function (data.ld,
             switch(casefold(cdfest.out$band.type), pointwise = ,
                 simultaneous = {
                   my.title <- paste(default.title, "\n", "Nonparametric CDF Estimate\nwith Nonparametric ",
-                    cdfest.out$band.type, percent.conf.level(conf.level),
+                    cdfest.out$band.type, SMRD2:::percent.conf.level(conf.level),
                     "Confidence Bands")
                 }, {
                   my.title <- paste(default.title, "\n", "Nonparametric CDF Estimate")
