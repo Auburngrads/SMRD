@@ -339,7 +339,7 @@ List ints1 = Rcpp::List::create(Named("kmod") = kmod,
                                 Named("nstart") = nstart,
                                 Named("maxmsd") = maxmsd,
                                 Named("lsd") = lsd,
-                                Named("debug__kprint") = debug::kprint);
+                                Named("kprint") = debug::kprint);
 
 List ints2 = Rcpp::List::create(Named("nregr") = nregr,
                                 Named("kgtall") = kgtall,
@@ -372,10 +372,10 @@ List intvec = Rcpp::List::create(Named("kodet") = kodet,
                                  Named("weight") = weight,
                                  Named("tcodes") = tcodes,
                                  Named("mnrvar") = mnrvar,
-                                 Named("genmax_g__iplabp") = iplabp,
-                                 Named("genmax_g__ipcode") = ipcode,
-                                 Named("genmax_g__ipweig") = ipweig,
-                                 Named("genmax_g__iptc")   = iptc,
+                                 Named("iplabp") = iplabp,
+                                 Named("ipcode") = ipcode,
+                                 Named("ipweig") = ipweig,
+                                 Named("iptc")   = iptc,
                                  Named("nxd")              =  nxd,
                                  Named("intd")             =  intd,
                                  Named("irelad")           =  irelad);
@@ -393,32 +393,11 @@ List nummat = Rcpp::List::create(Named("y") = y,
                                  Named("vcvs") = vcvs,
                                  Named("vcv") = vcv,
                                  Named("r") = r,
-                                 Named("genmax_g__ipynew") = ipynew,
-                                 Named("genmax_g__ipxnew") = ipxnew,
-                                 Named("genmax_g__iptynw") = iptynw,
-                                 Named("genmax_g__iresid") = iresid,
-                                 Named("genmax_g__iyhat")  = iyhat);
-
-List EXPLAN_G = Rcpp::List::create(Named("mu_rel") = explan_g::mu_cols,
-                                   Named("si_rel") = explan_g::si_cols,
-                                   Named("p1_rel") = explan_g::p1_cols,
-                                   Named("p2_rel") = explan_g::p2_cols,
-                                   Named("p3_rel") = explan_g::p3_cols);
-
-List ASTWW_G = Rcpp::List::create(Named("iipcod")  =  astww_g::iipcod,
-                                  Named("iipwei")  =  astww_g::iipwei);
-
-List AST0XX_G = Rcpp::List::create(Named("iresid") = ast0xx_g::iresid,
-                                   Named("iyhat") = ast0xx_g::iyhat,
-                                   Named("itimes") = ast0xx_g::itimes,
-                                   Named("iq") = ast0xx_g::iq,
-                                   Named("ip") = ast0xx_g::ip,
-                                   Named("iprob") = ast0xx_g::iprob,
-                                   Named("ipsd") = ast0xx_g::ipsd,
-                                   Named("ithtmp") = ast0xx_g::ithtmp,
-                                   Named("iypoin") = ast0xx_g::iypoin,
-                                   Named("ippoin") = ast0xx_g::ippoin,
-                                   Named("ippsd") = ast0xx_g::ippsd);
+                                 Named("ipynew") = ipynew,
+                                 Named("ipxnew") = ipxnew,
+                                 Named("iptynw") = iptynw,
+                                 Named("iresid") = iresid,
+                                 Named("iyhat")  = iyhat);
 
 List GENX20 = Rcpp::List::create(Named("nxg")   = genx20::g_nxg,
                                  Named("nterg") = genx20::g_nterg,
@@ -448,10 +427,7 @@ List GENX21 = Rcpp::List::create(Named("gamms") = genx21::g_gamms,
                                  Named("irelag") = genx21::g_irelag,
                                  Named("igtyg") = genx21::g_igtyg);
 
-List globals = Rcpp::List::create(Named("explan") = EXPLAN_G,
-                                  Named("astww")  = ASTWW_G,
-                                  Named("ast0xx") = AST0XX_G,
-                                  Named("genx20") = GENX20,
+List globals = Rcpp::List::create(Named("genx20") = GENX20,
                                   Named("genx21") = GENX21,
                                   Named("genx03") = GENX03,
                                   Named("genx05") = GENX05,
