@@ -1,5 +1,5 @@
 library(SMRD)
-testnum = 2
+testnum = 3
 
 if(testnum == 1) {
 
@@ -34,13 +34,26 @@ explan.vars = list(mu.relat = c(2,3),
 model = 1
   
 }
+if(testnum == 3){
+  
+  ConnectionStrength.ld <- 
+  frame.to.ld(connectionstrength,
+              response.column = 1,
+              failure.mode.column = 2,
+              case.weight.column = 3)
+
+SMRD2:::mfm.to.ld(ConnectionStrength.ld)
+
+data.ld <- ConnectionStrength.Bond.ld
+  
+}
 gamthr = 0
 escale = 10000
 e = rep(1e-04, nparm)
 parameter.fixed = rep(F, nparm)
 intercept = T
 #model = 0
-kprint = 0
+if(!exists("kprint")) kprint = 0
 conlev = 0.95
 maxit = 500
 debug1 = F
@@ -69,11 +82,9 @@ distribution.number <- SMRD:::numdist(distribution)
   cat("dist num =", distribution, distribution.number, "\n")
     the.censor.codes <- SMRD:::censor.codes(data.ld)
 
-    if (length(gamthr) == 1)
-      gamthr <- rep(gamthr, number.cases)
+    if (length(gamthr) == 1) gamthr <- rep(gamthr, number.cases)
 
-      if (length(gamthr) != number.cases)
-        stop("specified offset is the wrong length")
+      if (length(gamthr) != number.cases) stop("specified offset is the wrong length")
 
         get.rmodel.info.out <- SMRD:::get.rmodel.info(distribution,
                                                model,
@@ -91,19 +102,16 @@ distribution.number <- SMRD:::numdist(distribution)
 
           the.xmat <- xmat(data.ld)
           ncol.orig.x <- ncol(the.xmat)
-          if (is.null(the.xmat))
-            stop("Explanatory variables requested, but there is no X matrix")
+          if (is.null(the.xmat)) stop("Explanatory variables requested, but there is no X matrix")
             regression <- T
-          if (nrow(the.xmat) != number.cases)
-            stop(paste("Number of rows in x matrix ", nrow(the.xmat),
+          if (nrow(the.xmat) != number.cases) stop(paste("Number of rows in x matrix ", nrow(the.xmat),
                        " is wrong"))
             uniq.explan.vars <- unique(get.rmodel.info.out$mrelat)
 
          #   if (any(uniq.explan.vars<=0))
          #     stop("Negative or 0 explanatory variables column specified")
 
-              if (max(uniq.explan.vars) > ncol(the.xmat))
-                stop("Specified explanatory variable column greater than number of columns in X matrix")
+              if (max(uniq.explan.vars) > ncol(the.xmat)) stop("Specified explanatory variable column greater than number of columns in X matrix")
 
                 if (intercept) {
 
