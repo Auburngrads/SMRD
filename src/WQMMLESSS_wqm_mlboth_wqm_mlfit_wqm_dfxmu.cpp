@@ -13,9 +13,9 @@ double wqm_dfxmu(int i,
 
 double dfxmu = 0.0e00;
   
-for(int j = 0; j < nter; j++){
+for(int j = 1; j <= nter; j++){
   
-    dfxmu = dfxmu + thetaf.at(j) * xnew.at(i,j);
+    dfxmu = dfxmu + thetaf.at(j - 1) * xnew.at(i - 1,j - 1);
   
 }
 
