@@ -4,9 +4,20 @@
 \name{SMRD2-package}
 \alias{SMRD2}
 \alias{SMRD2-package}
-\title{SMRD2: What the Package Does in One 'Title Case' Line}
+\title{SMRD2: Statistical Methods For Reliability Data}
 \description{
-One paragraph description of what the
-      package does as one or more full sentences.
+Implements the reliability estimation functions and 
+    data sets for use with the text "Statistical Methods for 
+    Reliability Data" Copyright 1998 by Meeker & Escobar.
+}
+\author{
+\strong{Maintainer}: Jason Freels \email{auburngrads@live.com}
+
+Authors:
+\itemize{
+  \item William Meeker \email{wqmeeker@iastate.edu}
+  \item Luis Escobar \email{luis@lsu.edu}
+}
+
 }
 \keyword{internal}
