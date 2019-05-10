@@ -1,3 +1,23 @@
+#' Plot reliability life test
+#'
+#' @param x 
+#' @param censor.time 
+#' @param my.title 
+#' @param grids 
+#' @param quantile.mark 
+#' @param number.points 
+#' @param perc.low 
+#' @param perc.high 
+#' @param cex 
+#' @param xlim 
+#' @param ylim 
+#' @param title.option 
+#' @param xlab 
+#' @param digits 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
 plot.plan.values <-
 function (x, censor.time = NULL, my.title, grids = 2,
     quantile.mark = NULL, number.points = 20, perc.low = 0.01,
