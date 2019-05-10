@@ -1,7 +1,7 @@
 ---
-title: "`r SMRD:::info('book')`"
-subtitle: "`r SMRD:::info('chapter4')`"
-author: "`r SMRD:::info('authors')`"
+title: "`r SMRD2:::info('book')`"
+subtitle: "`r SMRD2:::info('chapter4')`"
+author: "`r SMRD2:::info('authors')`"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -14,45 +14,45 @@ vignette: >
 ---
 
 ```{r, echo=FALSE}
-SMRD:::vinny()
-library(SMRD)
+SMRD2:::vinny()
+library(SMRD2)
 ```
 
 # Vignette Info
 
 ```{r}
 
-distribution.plot("Exponential",
+distribution.plot2("Exponential",
                   shape = c(.5,1),
                   xlim = c(0,3))
 
-distribution.plot("Lognormal",
+distribution.plot2("Lognormal",
                   shape = c(.3, .8),
                   xlim = c(0,3))
 
-distribution.plot("Normal",
+distribution.plot2("Normal",
                   shape = c( .30, .5,.8),
                   loc = 5)
 
-distribution.plot("Weibull",
+distribution.plot2("Weibull",
                   shape = c(.8,1,1.5),
                   xlim = c(0,2))
 
-distribution.plot("Smallest Extreme Value",
+distribution.plot2("Smallest Extreme Value",
                   shape = c(5,6,7),
                   loc = 50,
                   xlim = c(30,60))
 
-distribution.plot("Largest Extreme Value",
+distribution.plot2("Largest Extreme Value",
                   shape = c(5,6,7),
                   loc = 10)
 
-distribution.plot("Logistic",
+distribution.plot2("Logistic",
                   shape = c(1,2,3),
                   loc = 15,
                   xlim = c(5,25))
 
-distribution.plot("Loglogistic",
+distribution.plot2("Loglogistic",
                   shape = c(.2,.4,.6), 
                   prob.range = c(0.001, 0.95),
                   xlim = c(0,4))
