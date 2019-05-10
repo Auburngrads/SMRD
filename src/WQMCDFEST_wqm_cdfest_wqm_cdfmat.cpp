@@ -27,16 +27,21 @@ for(int i = 1; i <= mm1; i++){
     
     Rcpp::Rcout << "\nWQM_CDFMAT\n" << std::endl;
     Rcpp::Rcout << "i = " << i << std::endl;
+    Rcpp::Rcout << "ic = " << ic << std::endl;
+    Rcpp::Rcout << "ixl = " << ixl << std::endl;
+    Rcpp::Rcout << "ixu = " << ixu << std::endl;
     
-    out = Rcpp::NumericVector(ic);
-    for(int k = ixl; k <= ixu; k++){
+    out = Rcpp::NumericVector(ixu - ixl + 1);
+    for(int k = 1; k <= (ixu - ixl + 1); k++){
       
-        out.at(k - 1) = f.at(k - 1);
+        out.at(k - 1) = f.at((k - 1) + (ixl - 1));
       
     }
     
     Rcpp::Rcout << "f = " << out << std::endl;
 
 }
- return;
+
+return;
+
 }
