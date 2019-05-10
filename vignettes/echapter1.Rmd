@@ -1,7 +1,7 @@
 ---
-title: "`r SMRD:::info('book')`"
-subtitle: "`r SMRD:::info('chapter1')`"
-author: "`r SMRD:::info('authors')`"
+title: "`r SMRD2:::info('book')`"
+subtitle: "`r SMRD2:::info('chapter1')`"
+author: "`r SMRD2:::info('authors')`"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -14,8 +14,8 @@ vignette: >
 ---
 
 ```{r, echo=FALSE}
-SMRD:::vinny()
-library(SMRD)
+SMRD2:::vinny()
+library(SMRD2)
 ```
 
 # In This Vignette...
@@ -41,7 +41,7 @@ DT::datatable(lzbearing, options = list(pageLength = 8))
 
 
 
-- Many functions in the SMRD package require a `life.data` object.  `life.data` objects are created using the function `frame.to.ld`.
+- Many functions in the SMRD2 package require a `life.data` object.  `life.data` objects are created using the function `frame.to.ld`.
 
 ```{r}
 lzbearing.ld <- frame.to.ld(lzbearing, 
