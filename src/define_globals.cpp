@@ -13,33 +13,12 @@
 //' In C++ global variables can only be defined once in a 
 //' single .cpp file. That's the purpose of this file.
 
-Rcpp::NumericVector cstak::g_ds(50000);
-
 int debug::kprint;
 
-Rcpp::IntegerVector explan_g::mu_cols;
-Rcpp::IntegerVector explan_g::si_cols;
-Rcpp::IntegerVector explan_g::p1_cols;
-Rcpp::IntegerVector explan_g::p2_cols;
-Rcpp::IntegerVector explan_g::p3_cols;
-
-Rcpp::IntegerVector fdnprd_g::ipgty;
-Rcpp::IntegerVector fdnprd_g::ipmark;
-
-Rcpp::IntegerVector astww_g::iipcod;
-Rcpp::IntegerVector astww_g::iipwei;
-
-Rcpp::NumericMatrix ast0xx_g::iresid;
-Rcpp::NumericMatrix ast0xx_g::iyhat;
-Rcpp::NumericMatrix ast0xx_g::itimes;
-Rcpp::NumericVector ast0xx_g::ip;
-Rcpp::NumericVector ast0xx_g::iq;
-Rcpp::NumericVector ast0xx_g::iprob;
-Rcpp::NumericVector ast0xx_g::ithtmp;
-Rcpp::NumericVector ast0xx_g::iypoin;
-Rcpp::NumericVector ast0xx_g::ippoin;
-Rcpp::NumericVector ast0xx_g::ipsd;
-Rcpp::NumericVector ast0xx_g::ippsd;
+int fdb001::g_np;
+double fdb001::g_pbinp;
+double fdb001::g_pquanp;
+double fdb001::g_xlamp;
 
 int genx00::g_nrownw;
 int genx00::g_ncoly;
