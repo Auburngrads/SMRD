@@ -38,6 +38,5 @@ void wqm_cpoints(Rcpp::NumericMatrix &y,
                  Rcpp::NumericVector &ys,
                  Rcpp::NumericVector &pgrad,
                  Rcpp::NumericVector &s,
-                 Rcpp::NumericVector &probd,
-                 Rcpp::NumericVector &fscrat);
+                 Rcpp::NumericVector &probd);
 #endif
