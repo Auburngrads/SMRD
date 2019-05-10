@@ -1,7 +1,7 @@
 ---
-title: "`r SMRD:::info('book')`"
-subtitle: "`r SMRD:::info('chapter14')`"
-author: "`r SMRD:::info('authors')`"
+title: "`r SMRD2:::info('book')`"
+subtitle: "`r SMRD2:::info('chapter14')`"
+author: "`r SMRD2:::info('authors')`"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -14,8 +14,8 @@ vignette: >
 ---
 
 ```{r, echo = FALSE}
-SMRD:::vinny()
-library(SMRD)
+SMRD2:::vinny()
+library(SMRD2)
 ```
 
 # In This Vignette...
@@ -123,13 +123,13 @@ prior2.bcage <-
 
 
 prior.and.post2.bcage <-
-  get.big.posterior(bcage.prior.lognormal.spec1,
+  SMRD2:::get.big.posterior(bcage.prior.lognormal.spec1,
                     BearingCage.ld)
 
 prior.and.post2.bcage$post[1:10,]
 
 prior.and.post3.bcage <- 
-  make.small.posterior.object(prior.and.post2.bcage)
+  SMRD2:::make.small.posterior.object(prior.and.post2.bcage)
 ```
 
 Marginal distribution of the parameters
@@ -338,18 +338,18 @@ plot.prediction(prior.and.post2.bcage,
 The plotting functions below can take a long time
 
 ```{r}
-SMRD:::plot.prediction.order(x = 1,
+SMRD2:::plot.prediction.order(x = 1,
                              nsamsize = 3,
                              prior.and.post2.bcage,
-                             time.range = log(c(50,10000)),
+                             time.range = log(c(50,200000)),
                              xlab = "Hours")
 ```
 
 ```{r}
-SMRD:::plot.prediction.order(x = 1,
+SMRD2:::plot.prediction.order(x = 1,
                              nsamsize = 50,
                              prior.and.post2.bcage,
-                             time.range = log(c(10,10000)),
+                             time.range = log(c(10,100000)),
                              xlab = "Hours")
 ```
 
