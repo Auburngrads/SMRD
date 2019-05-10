@@ -1,10 +1,10 @@
 #include <base/base.hpp>
-#include <wqm_cdfest/wqm_cdfcm.hpp>
-#include <wqm_cdfest/wqm_cdfmat.hpp>
-#include <wqm_cdfest/wqm_cdfcs.hpp>
-#include <wqm_cdfest/wqm_cdffac.hpp>
-#include <wqm_cdfest/wqm_cdfzs.hpp>
-#include <wqm_cdfest/wqm_invpx.hpp>
+#include <wqmcdfest/wqm_cdfcm.hpp>
+#include <wqmcdfest/wqm_cdfmat.hpp>
+#include <wqmcdfest/wqm_cdfcs.hpp>
+#include <wqmcdfest/wqm_cdffac.hpp>
+#include <wqmcdfest/wqm_cdfzs.hpp>
+#include <wqmcdfest/wqm_invpx.hpp>
 
 //' Function to call all other functions
 //' 
@@ -58,7 +58,6 @@ void wqm_cdfesi(Rcpp::IntegerVector &weight,
                 Rcpp::IntegerVector &iutv,
                 Rcpp::NumericVector &probd,
                 Rcpp::NumericVector &sd,
-                Rcpp::NumericVector &f,
                 int &m,
                 int &n,
                 double small,
@@ -94,6 +93,28 @@ if((nnzs <= 0) or (nnzs > maxmsd)) {
 }
 
 mnzs = (nnzs + 1) * nnzs / 2;
+Rcpp::NumericVector f = Rcpp::NumericVector(mnzs);
+
+if(debug::kprint >= 5){
+   
+   Rcpp::Rcout << "\nCDFESI BEFORE CDFCM\n" << std::endl;
+   Rcpp::Rcout << "mnzs = " << mnzs << std::endl;
+   Rcpp::Rcout << "nnzs = " << nnzs << std::endl;
+   Rcpp::Rcout << "ilcv = " << ilcv << std::endl;
+   Rcpp::Rcout << "iucv = " << iucv << std::endl;
+   Rcpp::Rcout << "iltv = " << iltv << std::endl;
+   Rcpp::Rcout << "iutv = " << iutv << std::endl;
+   Rcpp::Rcout << "probd = " << probd << std::endl;
+   Rcpp::Rcout << "f = " << f << std::endl;
+   Rcpp::Rcout << "weight = " << weight << std::endl;
+   Rcpp::Rcout << "m = " << m << std::endl;
+   Rcpp::Rcout << "n = " << n << std::endl;
+   Rcpp::Rcout << "nty = " << nty << std::endl;
+   Rcpp::Rcout << "m1 = " << m1 << std::endl;
+   Rcpp::Rcout << "mm1 = " << mm1 << std::endl;
+   Rcpp::Rcout << "small = " << small << std::endl;
+   
+}
 
 // call subroutine to compute information matrix;
    wqm_cdfcm(ilcv,iucv,iltv,iutv,probd,f,
@@ -102,22 +123,21 @@ mnzs = (nnzs + 1) * nnzs / 2;
 
 // Call subroutine to print information matrix if iprint ge 1
    wqm_cdfmat(f,mm1,small,probd,mnzs,m,nnzs);
-
-// Call matrix inversion subroutine;
+   
+// Call matrix inversion subroutine
    wqm_invpx(f,nnzs,ier);
-
+   
 if(ier > 0) ier = 22;
 
-// call subroutine to print variance matrix if iprint ge 1;
+// Call subroutine to print variance matrix if iprint ge 1
    wqm_cdfmat(f,mm1,small,probd,mnzs,m,nnzs);
-
+   
 // call subroutine to compute standard errors;
    wqm_cdfcs(sd,f,m,m1,mm1,probd,small,mnzs,nnzs);
-
+   
 if(nnzs > 0) return;
 
-// call subroutine to return vector of zero
-// standard deviations if nnzs=0
+// call subroutine to return vector of zero standard deviations if nnzs=0
    wqm_cdfzs(m, ier, sd, nnzs, maxmsd);
    
 return;
