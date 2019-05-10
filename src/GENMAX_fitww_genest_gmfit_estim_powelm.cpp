@@ -1,6 +1,7 @@
 #include <base/base.hpp>
 #include <utility/vmin.hpp>
 #include <utility/dsign.hpp>
+#include <aplan/powprn.hpp>
 
 //' powell algorthim for minimizing a function of n variables
 //' without the use of derivatives.
@@ -357,7 +358,7 @@ line50: if(ipline == 1) goto line556;
         goto line557;
         
 line556: fmval = -f;
-         // call powprn(iterc,nfcc,fmval,x,n);
+         powprn(iterc,nfcc,fmval,x,n);
          if(debug::kprint > 0){
           
            Rcpp::Rcout << "\npoweld **556**\n" << std::endl;
