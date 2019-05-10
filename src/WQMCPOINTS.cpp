@@ -5,7 +5,7 @@
 //' @details Need wrapper to be able to call from 
 //'          debugging mail program
 // [[Rcpp::export]]
-Rcpp::List wqmcpoints(Rcpp::NumericMatrix y,
+Rcpp::List WQMCPOINTS(Rcpp::NumericMatrix y,
                       int ny,
                       Rcpp::IntegerVector codes,
                       Rcpp::NumericVector codes2,
@@ -44,8 +44,7 @@ Rcpp::List wqmcpoints(Rcpp::NumericMatrix y,
                       Rcpp::NumericVector ys,
                       Rcpp::NumericVector pgrad,
                       Rcpp::NumericVector s,
-                      Rcpp::NumericVector probd,
-                      Rcpp::NumericVector fscrat){
+                      Rcpp::NumericVector probd){
 
 debug::kprint = iprint;
 Rcpp::List ints, doubs, bools, nummat, numvec, intvec;
@@ -54,7 +53,7 @@ wqm_cpoints(y,ny,codes,codes2,weight,weight2,ty,nty,tcodes,
             n,nstart,dscrat,scrat,iscrat,maxit,tol,maxmsd,
             p,q,prob,sd,m,pchmax,lsd,ier,ilcv,iucv,iltv,
             iutv,iorder,xlcen,xrcen,fail,xltru,xrtru,ys,
-            pgrad,s,probd,fscrat);
+            pgrad,s,probd);
             
 ints = Rcpp::List::create(Named("m") = m,
                           Named("ier") = ier,
@@ -82,7 +81,6 @@ numvec = Rcpp::List::create(Named("p") = p,
                             Named("pgrad") = pgrad,
                             Named("s") = s,
                             Named("probd") = probd,
-                            Named("fscrat") = fscrat,
                             Named("codes2") = codes2,
                             Named("weight2") = weight2);
 
@@ -110,7 +108,7 @@ return Rcpp::List::create(Named("ints") = ints,
 
 #include <base/base.hpp>
 #include <wqmpoints/wqm_points.hpp>
-#include <wqm_cdfest/wqm_cdfest.hpp>
+#include <wqmcdfest/wqm_cdfest.hpp>
 
 // Call cdfest and points
 //
@@ -249,8 +247,7 @@ void wqm_cpoints(Rcpp::NumericMatrix &y,
                  Rcpp::NumericVector &ys,
                  Rcpp::NumericVector &pgrad,
                  Rcpp::NumericVector &s,
-                 Rcpp::NumericVector &probd,
-                 Rcpp::NumericVector &fscrat){
+                 Rcpp::NumericVector &probd){
 
 int mplot = 0;
 
@@ -259,7 +256,7 @@ int mplot = 0;
               dscrat,scrat,iscrat,maxit,tol,maxmsd,p,q,
               prob,sd,m,pchmax,lsd,ier,ilcv,iucv,iltv,
               iutv,iorder,xlcen,xrcen,fail,xltru,xrtru,ys,
-              pgrad,s,probd,fscrat);
+              pgrad,s,probd);
 
 // Now get the points
 
