@@ -31,11 +31,11 @@ censored.data.plot(data.ld, explan.var = 1, ylim = c(NA, NA),
 
 \item{x.axis}{character(\code{"linear"}) 
 
-   Transformation applied to the values defined along the x-axis.  See \code{SMRD:::.generic.relationship.name} for the list of transformation relationships that can be used}
+   Transformation applied to the values defined along the x-axis.  See \code{.generic.relationship.name} for the list of transformation relationships that can be used}
 
 \item{y.axis}{character(\code{"linear"}) 
 
-   Transformation applied to the values defined along the x-axis.  See \code{SMRD:::.generic.relationship.name} for the list of transformation relationships that can be used.}
+   Transformation applied to the values defined along the x-axis.  See \code{.generic.relationship.name} for the list of transformation relationships that can be used.}
 
 \item{my.title}{character(\code{NULL})
 
