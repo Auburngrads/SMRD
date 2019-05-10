@@ -1,5 +1,5 @@
 #include <base/base.hpp>
-#include <wqm_cdfest/wqm_cdfes1.hpp>
+#include <wqmcdfest/wqm_cdfes1.hpp>
 
 void wqm_cdfest(NumericMatrix &y,
                 int &ny,
@@ -37,26 +37,25 @@ void wqm_cdfest(NumericMatrix &y,
                 Rcpp::NumericVector &ys,
                 Rcpp::NumericVector &pgrad,
                 Rcpp::NumericVector &s,
-                Rcpp::NumericVector &probd,
-                Rcpp::NumericVector &fscrat){
+                Rcpp::NumericVector &probd){
 
 wqm_cdfes1(y,ny,codes,weight,ty,nty,tcodes,n,nstart,
            dscrat,scrat,iscrat,
            maxit,tol,maxmsd,xlcen,xrcen,fail,xltru,xrtru,
            ys,p,q,pgrad,prob,sd,s,probd,m,ilcv,iucv,iltv,iutv,
-           iorder,fscrat,pchmax,lsd,ier);
+           iorder,pchmax,lsd,ier);
   
 }
 
 #include <base/base.hpp>
-#include <wqm_cdfest/wqm_cdfckd.hpp>
-#include <wqm_cdfest/wqm_cdfstr.hpp>
-#include <wqm_cdfest/wqm_cdftru.hpp>
+#include <wqmcdfest/wqm_cdfckd.hpp>
+#include <wqmcdfest/wqm_cdfstr.hpp>
+#include <wqmcdfest/wqm_cdftru.hpp>
 //#include "heads/wqm_cdfest/wqm_cdfgra.h"
-#include <wqm_cdfest/wqm_cdfgkm.hpp>
-#include <wqm_cdfest/wqm_cdfema.hpp>
-#include <wqm_cdfest/wqm_cdfesi.hpp>
-#include <wqm_cdfest/wqm_cdfegr.hpp>
+#include <wqmcdfest/wqm_cdfgkm.hpp>
+#include <wqmcdfest/wqm_cdfema.hpp>
+#include <wqmcdfest/wqm_cdfesi.hpp>
+#include <wqmcdfest/wqm_cdfegr.hpp>
 
 //' @description Basic routine for computing the
 //'              nonparametric maximum likelihood
@@ -97,7 +96,6 @@ void wqm_cdfes1(Rcpp::NumericMatrix &y,
                 Rcpp::IntegerVector &iltv,
                 Rcpp::IntegerVector &iutv,
                 Rcpp::IntegerVector &iorder,
-                Rcpp::NumericVector &fscrat,
                 double &pchmax,
                 bool &lsd,
                 int &ier){
@@ -208,12 +206,11 @@ lsd = false;
 wqm_cdfema(weight,codes,ilcv,iucv,iltv,iutv,pgrad,
            prob,s,probd,n,m,nty,nstart,maxit,tol,
            pchmax);
-
+        
 //  Call the information matrix standard error routine
     wqm_cdfesi(weight,ilcv,iucv,iltv,iutv,probd,
-               sd, fscrat, m, n, 1.0e-15, 
-               nty, ier, maxmsd);
-
+               sd,m,n,1.0e-15,nty,ier,maxmsd);
+ 
 lsd = true;
 
 if((ier >= 21) and (ier < 23)) lsd = false;
@@ -246,7 +243,7 @@ if(debug::kprint > 1) {
 loop1: for(int j = 1; j <= m; j++) {
 
            ipndx = iorder.at(j - 1);
-           iqndx = iorder.at(j - 1 + m);
+           iqndx = iorder.at(j + m - 1);
 
            if(j != m) {
 
