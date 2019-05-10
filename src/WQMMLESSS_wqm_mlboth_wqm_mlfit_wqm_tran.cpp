@@ -31,13 +31,13 @@ ier = 0;
 int itype;
 double ynew;
   
-for(int i = 0; i < nrow; i++){
+for(int i = 1; i <= nrow; i++){
   
-    itype = cen.at(i);
+    itype = cen.at(i - 1);
 
     // Don't do anything if a dummy observation
 
-    if((itype == 0) or (wt.at(i) <= 0)) continue;
+    if((itype == 0) or (wt.at(i - 1) <= 0)) continue;
 
     // Don't signal error or do anything else if we are
     // doing truncation but there is no truncation for 
@@ -47,19 +47,19 @@ for(int i = 0; i < nrow; i++){
 
     // Go over columns of y (if more than one)
 
-    for(int j = 0; j < ny; j++){
+    for(int j = 1; j <= ny; j++){
       
-        if((itype != 4) or (y.at(i,0) > gamthr.at(i)) or (j == 1)) goto line50;
+        if((itype != 4) or (y.at(i - 1,0) > gamthr.at(i - 1)) or (j == 2)) goto line50;
 
         // Here lower limit of an observation or a truncation
         // interval is 0; make it into a left censored
         // observation and mark the action by setting ltr3 = true
 
         ltr3 = true;
-        cen.at(i) = 3;
-        y.at(i,0) = y.at(i,ny - 1);
-        line50: ynew = y.at(i,j);
-                y.at(i,j) = -1.0e25;
+        cen.at(i - 1) = 3;
+        y.at(i - 1,0) = y.at(i - 1,ny - 1);
+        line50: ynew = y.at(i - 1,j - 1);
+                y.at(i - 1,j - 1) = -1.0e25;
 
         // If a censored observation is less than gamthr, 
         // ignore and return log(0+)
@@ -72,11 +72,11 @@ for(int i = 0; i < nrow; i++){
    
            // Subtract out gamthr and take logs
    
-           y.at(i,j) = ynew - gamthr.at(i);
+           y.at(i - 1,j - 1) = ynew - gamthr.at(i - 1);
         
     }
 }
 
-  return;
+return;
         
 }
