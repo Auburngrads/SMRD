@@ -481,9 +481,9 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// mlsim7
-Rcpp::List mlsim7(Rcpp::NumericMatrix x, Rcpp::NumericMatrix y, Rcpp::IntegerVector cen, Rcpp::IntegerVector wt, int nrow, int nter, int ny, int nty, Rcpp::NumericMatrix ty, Rcpp::IntegerVector tcodes, int kdist, Rcpp::NumericVector gamthr, Rcpp::LogicalVector lfix, Rcpp::IntegerVector krfail, int nparm, int intcpt, double escale, Rcpp::NumericVector e, int maxit, int kprint, Rcpp::NumericVector dscrat, Rcpp::IntegerVector iscrat, Rcpp::NumericMatrix devian, Rcpp::NumericVector thetah, Rcpp::NumericVector fsder, Rcpp::NumericMatrix vcv, Rcpp::NumericMatrix r, Rcpp::NumericMatrix res, Rcpp::NumericVector fv, Rcpp::NumericVector theta, Rcpp::NumericMatrix retmat, int numsim, double prdelt, int ngroup, Rcpp::NumericVector centim, Rcpp::IntegerVector nsamsz, Rcpp::IntegerVector nmrvec, int nsimg, int numret, int nnomle, int iersim);
-RcppExport SEXP _SMRD2_mlsim7(SEXP xSEXP, SEXP ySEXP, SEXP cenSEXP, SEXP wtSEXP, SEXP nrowSEXP, SEXP nterSEXP, SEXP nySEXP, SEXP ntySEXP, SEXP tySEXP, SEXP tcodesSEXP, SEXP kdistSEXP, SEXP gamthrSEXP, SEXP lfixSEXP, SEXP krfailSEXP, SEXP nparmSEXP, SEXP intcptSEXP, SEXP escaleSEXP, SEXP eSEXP, SEXP maxitSEXP, SEXP kprintSEXP, SEXP dscratSEXP, SEXP iscratSEXP, SEXP devianSEXP, SEXP thetahSEXP, SEXP fsderSEXP, SEXP vcvSEXP, SEXP rSEXP, SEXP resSEXP, SEXP fvSEXP, SEXP thetaSEXP, SEXP retmatSEXP, SEXP numsimSEXP, SEXP prdeltSEXP, SEXP ngroupSEXP, SEXP centimSEXP, SEXP nsamszSEXP, SEXP nmrvecSEXP, SEXP nsimgSEXP, SEXP numretSEXP, SEXP nnomleSEXP, SEXP iersimSEXP) {
+// MLSIM7
+Rcpp::List MLSIM7(Rcpp::NumericMatrix x, Rcpp::NumericMatrix y, Rcpp::IntegerVector cen, Rcpp::IntegerVector wt, int nrow, int nter, int ny, int nty, Rcpp::NumericMatrix ty, Rcpp::IntegerVector tcodes, int kdist, Rcpp::NumericVector gamthr, Rcpp::LogicalVector lfix, Rcpp::IntegerVector krfail, int nparm, int intcpt, double escale, Rcpp::NumericVector e, int maxit, int kprint, Rcpp::NumericVector dscrat, Rcpp::IntegerVector iscrat, Rcpp::NumericMatrix devian, Rcpp::NumericVector thetah, Rcpp::NumericVector fsder, Rcpp::NumericMatrix vcv, Rcpp::NumericMatrix r, Rcpp::NumericMatrix res, Rcpp::NumericVector fv, Rcpp::NumericVector theta, Rcpp::NumericMatrix retmat, int numsim, double prdelt, int ngroup, Rcpp::NumericVector centim, Rcpp::IntegerVector nsamsz, Rcpp::IntegerVector nmrvec, int nsimg, int numret, int nnomle, int iersim);
+RcppExport SEXP _SMRD2_MLSIM7(SEXP xSEXP, SEXP ySEXP, SEXP cenSEXP, SEXP wtSEXP, SEXP nrowSEXP, SEXP nterSEXP, SEXP nySEXP, SEXP ntySEXP, SEXP tySEXP, SEXP tcodesSEXP, SEXP kdistSEXP, SEXP gamthrSEXP, SEXP lfixSEXP, SEXP krfailSEXP, SEXP nparmSEXP, SEXP intcptSEXP, SEXP escaleSEXP, SEXP eSEXP, SEXP maxitSEXP, SEXP kprintSEXP, SEXP dscratSEXP, SEXP iscratSEXP, SEXP devianSEXP, SEXP thetahSEXP, SEXP fsderSEXP, SEXP vcvSEXP, SEXP rSEXP, SEXP resSEXP, SEXP fvSEXP, SEXP thetaSEXP, SEXP retmatSEXP, SEXP numsimSEXP, SEXP prdeltSEXP, SEXP ngroupSEXP, SEXP centimSEXP, SEXP nsamszSEXP, SEXP nmrvecSEXP, SEXP nsimgSEXP, SEXP numretSEXP, SEXP nnomleSEXP, SEXP iersimSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -528,13 +528,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type numret(numretSEXP);
     Rcpp::traits::input_parameter< int >::type nnomle(nnomleSEXP);
     Rcpp::traits::input_parameter< int >::type iersim(iersimSEXP);
-    rcpp_result_gen = Rcpp::wrap(mlsim7(x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, krfail, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, retmat, numsim, prdelt, ngroup, centim, nsamsz, nmrvec, nsimg, numret, nnomle, iersim));
+    rcpp_result_gen = Rcpp::wrap(MLSIM7(x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, krfail, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, retmat, numsim, prdelt, ngroup, centim, nsamsz, nmrvec, nsimg, numret, nnomle, iersim));
     return rcpp_result_gen;
 END_RCPP
 }
-// mlsim8
-Rcpp::List mlsim8(Rcpp::NumericMatrix x, Rcpp::NumericMatrix y, Rcpp::IntegerVector cen, Rcpp::IntegerVector wt, int nrow, int nter, int ny, int nty, Rcpp::NumericMatrix ty, Rcpp::IntegerVector tcodes, int kdist, Rcpp::NumericVector gamthr, Rcpp::LogicalVector lfix, Rcpp::IntegerVector krfail, int nparm, int intcpt, double escale, Rcpp::NumericVector e, int maxit, int kprint, Rcpp::NumericVector dscrat, Rcpp::IntegerVector iscrat, Rcpp::NumericMatrix devian, Rcpp::NumericVector thetah, Rcpp::NumericVector fsder, Rcpp::NumericMatrix vcv, Rcpp::NumericMatrix r, Rcpp::NumericMatrix res, Rcpp::NumericVector fv, Rcpp::NumericVector theta, Rcpp::NumericMatrix retmat, int numsim, double prdelt, int ngroup, Rcpp::NumericVector centim, Rcpp::IntegerVector nsamsz, Rcpp::IntegerVector nmrvec, int nsimg, int numret, int nnomle, int iersim);
-RcppExport SEXP _SMRD2_mlsim8(SEXP xSEXP, SEXP ySEXP, SEXP cenSEXP, SEXP wtSEXP, SEXP nrowSEXP, SEXP nterSEXP, SEXP nySEXP, SEXP ntySEXP, SEXP tySEXP, SEXP tcodesSEXP, SEXP kdistSEXP, SEXP gamthrSEXP, SEXP lfixSEXP, SEXP krfailSEXP, SEXP nparmSEXP, SEXP intcptSEXP, SEXP escaleSEXP, SEXP eSEXP, SEXP maxitSEXP, SEXP kprintSEXP, SEXP dscratSEXP, SEXP iscratSEXP, SEXP devianSEXP, SEXP thetahSEXP, SEXP fsderSEXP, SEXP vcvSEXP, SEXP rSEXP, SEXP resSEXP, SEXP fvSEXP, SEXP thetaSEXP, SEXP retmatSEXP, SEXP numsimSEXP, SEXP prdeltSEXP, SEXP ngroupSEXP, SEXP centimSEXP, SEXP nsamszSEXP, SEXP nmrvecSEXP, SEXP nsimgSEXP, SEXP numretSEXP, SEXP nnomleSEXP, SEXP iersimSEXP) {
+// MLSIM8
+Rcpp::List MLSIM8(Rcpp::NumericMatrix x, Rcpp::NumericMatrix y, Rcpp::IntegerVector cen, Rcpp::IntegerVector wt, int nrow, int nter, int ny, int nty, Rcpp::NumericMatrix ty, Rcpp::IntegerVector tcodes, int kdist, Rcpp::NumericVector gamthr, Rcpp::LogicalVector lfix, Rcpp::IntegerVector krfail, int nparm, int intcpt, double escale, Rcpp::NumericVector e, int maxit, int kprint, Rcpp::NumericVector dscrat, Rcpp::IntegerVector iscrat, Rcpp::NumericMatrix devian, Rcpp::NumericVector thetah, Rcpp::NumericVector fsder, Rcpp::NumericMatrix vcv, Rcpp::NumericMatrix r, Rcpp::NumericMatrix res, Rcpp::NumericVector fv, Rcpp::NumericVector theta, Rcpp::NumericMatrix retmat, int numsim, double prdelt, int ngroup, Rcpp::NumericVector centim, Rcpp::IntegerVector nsamsz, Rcpp::IntegerVector nmrvec, int nsimg, int numret, int nnomle, int iersim);
+RcppExport SEXP _SMRD2_MLSIM8(SEXP xSEXP, SEXP ySEXP, SEXP cenSEXP, SEXP wtSEXP, SEXP nrowSEXP, SEXP nterSEXP, SEXP nySEXP, SEXP ntySEXP, SEXP tySEXP, SEXP tcodesSEXP, SEXP kdistSEXP, SEXP gamthrSEXP, SEXP lfixSEXP, SEXP krfailSEXP, SEXP nparmSEXP, SEXP intcptSEXP, SEXP escaleSEXP, SEXP eSEXP, SEXP maxitSEXP, SEXP kprintSEXP, SEXP dscratSEXP, SEXP iscratSEXP, SEXP devianSEXP, SEXP thetahSEXP, SEXP fsderSEXP, SEXP vcvSEXP, SEXP rSEXP, SEXP resSEXP, SEXP fvSEXP, SEXP thetaSEXP, SEXP retmatSEXP, SEXP numsimSEXP, SEXP prdeltSEXP, SEXP ngroupSEXP, SEXP centimSEXP, SEXP nsamszSEXP, SEXP nmrvecSEXP, SEXP nsimgSEXP, SEXP numretSEXP, SEXP nnomleSEXP, SEXP iersimSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -579,7 +579,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type numret(numretSEXP);
     Rcpp::traits::input_parameter< int >::type nnomle(nnomleSEXP);
     Rcpp::traits::input_parameter< int >::type iersim(iersimSEXP);
-    rcpp_result_gen = Rcpp::wrap(mlsim8(x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, krfail, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, retmat, numsim, prdelt, ngroup, centim, nsamsz, nmrvec, nsimg, numret, nnomle, iersim));
+    rcpp_result_gen = Rcpp::wrap(MLSIM8(x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, krfail, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, retmat, numsim, prdelt, ngroup, centim, nsamsz, nmrvec, nsimg, numret, nnomle, iersim));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -1030,9 +1030,9 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// wqmcpoints
-Rcpp::List wqmcpoints(Rcpp::NumericMatrix y, int ny, Rcpp::IntegerVector codes, Rcpp::NumericVector codes2, Rcpp::IntegerVector weight, Rcpp::NumericVector weight2, Rcpp::NumericMatrix ty, int nty, Rcpp::IntegerVector tcodes, int n, int nstart, Rcpp::NumericVector dscrat, Rcpp::NumericVector scrat, Rcpp::IntegerVector iscrat, int iprint, int maxit, double tol, int maxmsd, Rcpp::NumericVector p, Rcpp::NumericVector q, Rcpp::NumericVector prob, Rcpp::NumericVector sd, int m, double pchmax, bool lsd, int ier, Rcpp::IntegerVector ilcv, Rcpp::IntegerVector iucv, Rcpp::IntegerVector iltv, Rcpp::IntegerVector iutv, Rcpp::IntegerVector iorder, Rcpp::NumericVector xlcen, Rcpp::NumericVector xrcen, Rcpp::NumericVector fail, Rcpp::NumericVector xltru, Rcpp::NumericVector xrtru, Rcpp::NumericVector ys, Rcpp::NumericVector pgrad, Rcpp::NumericVector s, Rcpp::NumericVector probd, Rcpp::NumericVector fscrat);
-RcppExport SEXP _SMRD2_wqmcpoints(SEXP ySEXP, SEXP nySEXP, SEXP codesSEXP, SEXP codes2SEXP, SEXP weightSEXP, SEXP weight2SEXP, SEXP tySEXP, SEXP ntySEXP, SEXP tcodesSEXP, SEXP nSEXP, SEXP nstartSEXP, SEXP dscratSEXP, SEXP scratSEXP, SEXP iscratSEXP, SEXP iprintSEXP, SEXP maxitSEXP, SEXP tolSEXP, SEXP maxmsdSEXP, SEXP pSEXP, SEXP qSEXP, SEXP probSEXP, SEXP sdSEXP, SEXP mSEXP, SEXP pchmaxSEXP, SEXP lsdSEXP, SEXP ierSEXP, SEXP ilcvSEXP, SEXP iucvSEXP, SEXP iltvSEXP, SEXP iutvSEXP, SEXP iorderSEXP, SEXP xlcenSEXP, SEXP xrcenSEXP, SEXP failSEXP, SEXP xltruSEXP, SEXP xrtruSEXP, SEXP ysSEXP, SEXP pgradSEXP, SEXP sSEXP, SEXP probdSEXP, SEXP fscratSEXP) {
+// WQMCPOINTS
+Rcpp::List WQMCPOINTS(Rcpp::NumericMatrix y, int ny, Rcpp::IntegerVector codes, Rcpp::NumericVector codes2, Rcpp::IntegerVector weight, Rcpp::NumericVector weight2, Rcpp::NumericMatrix ty, int nty, Rcpp::IntegerVector tcodes, int n, int nstart, Rcpp::NumericVector dscrat, Rcpp::NumericVector scrat, Rcpp::IntegerVector iscrat, int iprint, int maxit, double tol, int maxmsd, Rcpp::NumericVector p, Rcpp::NumericVector q, Rcpp::NumericVector prob, Rcpp::NumericVector sd, int m, double pchmax, bool lsd, int ier, Rcpp::IntegerVector ilcv, Rcpp::IntegerVector iucv, Rcpp::IntegerVector iltv, Rcpp::IntegerVector iutv, Rcpp::IntegerVector iorder, Rcpp::NumericVector xlcen, Rcpp::NumericVector xrcen, Rcpp::NumericVector fail, Rcpp::NumericVector xltru, Rcpp::NumericVector xrtru, Rcpp::NumericVector ys, Rcpp::NumericVector pgrad, Rcpp::NumericVector s, Rcpp::NumericVector probd);
+RcppExport SEXP _SMRD2_WQMCPOINTS(SEXP ySEXP, SEXP nySEXP, SEXP codesSEXP, SEXP codes2SEXP, SEXP weightSEXP, SEXP weight2SEXP, SEXP tySEXP, SEXP ntySEXP, SEXP tcodesSEXP, SEXP nSEXP, SEXP nstartSEXP, SEXP dscratSEXP, SEXP scratSEXP, SEXP iscratSEXP, SEXP iprintSEXP, SEXP maxitSEXP, SEXP tolSEXP, SEXP maxmsdSEXP, SEXP pSEXP, SEXP qSEXP, SEXP probSEXP, SEXP sdSEXP, SEXP mSEXP, SEXP pchmaxSEXP, SEXP lsdSEXP, SEXP ierSEXP, SEXP ilcvSEXP, SEXP iucvSEXP, SEXP iltvSEXP, SEXP iutvSEXP, SEXP iorderSEXP, SEXP xlcenSEXP, SEXP xrcenSEXP, SEXP failSEXP, SEXP xltruSEXP, SEXP xrtruSEXP, SEXP ysSEXP, SEXP pgradSEXP, SEXP sSEXP, SEXP probdSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -1076,8 +1076,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type pgrad(pgradSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type s(sSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type probd(probdSEXP);
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type fscrat(fscratSEXP);
-    rcpp_result_gen = Rcpp::wrap(wqmcpoints(y, ny, codes, codes2, weight, weight2, ty, nty, tcodes, n, nstart, dscrat, scrat, iscrat, iprint, maxit, tol, maxmsd, p, q, prob, sd, m, pchmax, lsd, ier, ilcv, iucv, iltv, iutv, iorder, xlcen, xrcen, fail, xltru, xrtru, ys, pgrad, s, probd, fscrat));
+    rcpp_result_gen = Rcpp::wrap(WQMCPOINTS(y, ny, codes, codes2, weight, weight2, ty, nty, tcodes, n, nstart, dscrat, scrat, iscrat, iprint, maxit, tol, maxmsd, p, q, prob, sd, m, pchmax, lsd, ier, ilcv, iucv, iltv, iutv, iorder, xlcen, xrcen, fail, xltru, xrtru, ys, pgrad, s, probd));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -1171,9 +1170,9 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// wqmmrr2
-Rcpp::List wqmmrr2(Rcpp::NumericMatrix y, Rcpp::IntegerVector cen, Rcpp::IntegerVector wt, Rcpp::IntegerVector iscrat, Rcpp::NumericVector rscrat, int nrownw, Rcpp::NumericVector thetamrr);
-RcppExport SEXP _SMRD2_wqmmrr2(SEXP ySEXP, SEXP cenSEXP, SEXP wtSEXP, SEXP iscratSEXP, SEXP rscratSEXP, SEXP nrownwSEXP, SEXP thetamrrSEXP) {
+// WQMMRR2
+Rcpp::List WQMMRR2(Rcpp::NumericMatrix y, Rcpp::IntegerVector cen, Rcpp::IntegerVector wt, Rcpp::IntegerVector iscrat, Rcpp::NumericVector rscrat, int nrownw, Rcpp::NumericVector thetamrr);
+RcppExport SEXP _SMRD2_WQMMRR2(SEXP ySEXP, SEXP cenSEXP, SEXP wtSEXP, SEXP iscratSEXP, SEXP rscratSEXP, SEXP nrownwSEXP, SEXP thetamrrSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -1184,7 +1183,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type rscrat(rscratSEXP);
     Rcpp::traits::input_parameter< int >::type nrownw(nrownwSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type thetamrr(thetamrrSEXP);
-    rcpp_result_gen = Rcpp::wrap(wqmmrr2(y, cen, wt, iscrat, rscrat, nrownw, thetamrr));
+    rcpp_result_gen = Rcpp::wrap(WQMMRR2(y, cen, wt, iscrat, rscrat, nrownw, thetamrr));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -1272,8 +1271,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_SMRD2_MLSIM2", (DL_FUNC) &_SMRD2_MLSIM2, 41},
     {"_SMRD2_MLSIM3", (DL_FUNC) &_SMRD2_MLSIM3, 33},
     {"_SMRD2_MLSIM6", (DL_FUNC) &_SMRD2_MLSIM6, 41},
-    {"_SMRD2_mlsim7", (DL_FUNC) &_SMRD2_mlsim7, 41},
-    {"_SMRD2_mlsim8", (DL_FUNC) &_SMRD2_mlsim8, 41},
+    {"_SMRD2_MLSIM7", (DL_FUNC) &_SMRD2_MLSIM7, 41},
+    {"_SMRD2_MLSIM8", (DL_FUNC) &_SMRD2_MLSIM8, 41},
     {"_SMRD2_NPSYS", (DL_FUNC) &_SMRD2_NPSYS, 19},
     {"_SMRD2_POSTKP", (DL_FUNC) &_SMRD2_POSTKP, 10},
     {"_SMRD2_POSTPR", (DL_FUNC) &_SMRD2_POSTPR, 8},
@@ -1296,10 +1295,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_SMRD2_VAVAR", (DL_FUNC) &_SMRD2_VAVAR, 5},
     {"_SMRD2_VVAR1", (DL_FUNC) &_SMRD2_VVAR1, 13},
     {"_SMRD2_WQMCDFEST", (DL_FUNC) &_SMRD2_WQMCDFEST, 24},
-    {"_SMRD2_wqmcpoints", (DL_FUNC) &_SMRD2_wqmcpoints, 41},
+    {"_SMRD2_WQMCPOINTS", (DL_FUNC) &_SMRD2_WQMCPOINTS, 40},
     {"_SMRD2_WQMEVLIKE", (DL_FUNC) &_SMRD2_WQMEVLIKE, 29},
     {"_SMRD2_WQMMLESSS", (DL_FUNC) &_SMRD2_WQMMLESSS, 41},
-    {"_SMRD2_wqmmrr2", (DL_FUNC) &_SMRD2_wqmmrr2, 7},
+    {"_SMRD2_WQMMRR2", (DL_FUNC) &_SMRD2_WQMMRR2, 7},
     {"_SMRD2_WQMPOINTS", (DL_FUNC) &_SMRD2_WQMPOINTS, 10},
     {"_SMRD2_WQMSPHIALL", (DL_FUNC) &_SMRD2_WQMSPHIALL, 7},
     {"_SMRD2_XXMCF", (DL_FUNC) &_SMRD2_XXMCF, 23},
