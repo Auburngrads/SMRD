@@ -1,5 +1,5 @@
 #include <base/base.hpp>
-#include <wqm_cdfest/wqm_plestx.hpp>
+#include <wqmcdfest/wqm_plestx.hpp>
 using namespace std;
 
 //' @description Generalized kaplan estimator using
@@ -126,14 +126,14 @@ if(debug::kprint > 4) {
       
    }
    
-       Rcpp::Rcout << "maxiuc =" << maxiuc << std::endl;
-       Rcpp::Rcout << "multiple left censoring =" << llcen << std::endl;
-       Rcpp::Rcout << "minilc =" << minilc << std::endl;
-       Rcpp::Rcout << "multiple right censoring =" << lrcen << std::endl;
-       Rcpp::Rcout << "maxilt =" << maxilt << std::endl;
-       Rcpp::Rcout << "left truncation =" << lltru << std::endl;
-       Rcpp::Rcout << "miniut =" << miniut << std::endl;
-       Rcpp::Rcout << "right truncation =" << lrtru << std::endl;
+       Rcpp::Rcout << "maxiuc = " << maxiuc << std::endl;
+       Rcpp::Rcout << "multiple left censoring = " << llcen << std::endl;
+       Rcpp::Rcout << "minilc = " << minilc << std::endl;
+       Rcpp::Rcout << "multiple right censoring = " << lrcen << std::endl;
+       Rcpp::Rcout << "maxilt = " << maxilt << std::endl;
+       Rcpp::Rcout << "left truncation = " << lltru << std::endl;
+       Rcpp::Rcout << "miniut = " << miniut << std::endl;
+       Rcpp::Rcout << "right truncation = " << lrtru << std::endl;
   
 }
 
@@ -147,7 +147,7 @@ if((lltru) and (lrtru)) { ier = -23; return; }
 // # maxiuc minilc;
 // # maxilt miniut;
 // #check for illegal crossing or illegal combinations;
-if(((maxiuc + 1) >= (minilc)) and (llcen and lrcen)){
+if(((maxiuc + 1) >= minilc) and ((llcen) and (lrcen))){
 
   ier = -24;
   return;
