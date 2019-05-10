@@ -1,5 +1,5 @@
 #include <base/base.hpp>
-#include <wqm_cdfest/wqm_cdffac.hpp>
+#include <wqmcdfest/wqm_cdffac.hpp>
 
 //' @description Computes the Fisher information matrix;
 //' @details If \code{ltrunc = false (true)}, compute
@@ -30,7 +30,8 @@ int ilc,ilt,iuc,iut,wt;
 // For each observation, 
 // add (subtract) censoring (truncation) 
 // factor to information matrix
-   for(int i = 0; i < n; i++){
+
+   for(int i = 1; i <= n; i++){
 
        ilc = ilcv.at(i - 1);
        if(ilc <= 0) continue;
@@ -54,6 +55,21 @@ int ilc,ilt,iuc,iut,wt;
    
    // Call subroutine to compute and add censoring
    // factor to information matrix
+      if(debug::kprint >= 6){
+         
+         Rcpp::Rcout << "\nCDFCM CDFFAC1\n" << std::endl;
+         Rcpp::Rcout << "i = " << i << std::endl;
+         Rcpp::Rcout << "ilc = " << ilc << std::endl;
+         Rcpp::Rcout << "iuc = " << iuc << std::endl;
+         Rcpp::Rcout << "f = " << f << std::endl;
+         Rcpp::Rcout << "probd = " << probd << std::endl;
+         Rcpp::Rcout << "wt = " << wt << std::endl;
+         Rcpp::Rcout << "ltrunc = " << ltrunc << std::endl;
+         Rcpp::Rcout << "small = " << small << std::endl;
+         Rcpp::Rcout << "m = " << m << std::endl;
+         Rcpp::Rcout << "nty = " << nty << std::endl;
+         
+      }
       wqm_cdffac(ilc,iuc,f,probd,wt,ltrunc,small,
                  nnzs,mnzs,m,nty);
 
@@ -61,6 +77,22 @@ int ilc,ilt,iuc,iut,wt;
 
    // Call subroutine to compute and add truncation
    // factor to information matrix
+      if(debug::kprint >= 6){
+         
+         Rcpp::Rcout << "\nCDFCM CDFFAC2\n" << std::endl;
+         Rcpp::Rcout << "i = " << i << std::endl;
+         Rcpp::Rcout << "ilt = " << ilt << std::endl;
+         Rcpp::Rcout << "iut = " << iut << std::endl;
+         Rcpp::Rcout << "f = " << f << std::endl;
+         Rcpp::Rcout << "probd = " << probd << std::endl;
+         Rcpp::Rcout << "wt = " << wt << std::endl;
+         Rcpp::Rcout << "ltrunc = " << ltrunc << std::endl;
+         Rcpp::Rcout << "small = " << small << std::endl;
+         Rcpp::Rcout << "m = " << m << std::endl;
+         Rcpp::Rcout << "nty = " << nty << std::endl;
+         
+      }
+
       wqm_cdffac(ilt,iut,f,probd,wt,ltrunc,small,
                  nnzs,mnzs,m,nty);
       
