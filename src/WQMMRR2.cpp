@@ -2,7 +2,7 @@
 #include <wqmmrr2/mrr2.hpp>
 
 // [[Rcpp::export]]
-Rcpp::List wqmmrr2(Rcpp::NumericMatrix y,
+Rcpp::List WQMMRR2(Rcpp::NumericMatrix y,
                    Rcpp::IntegerVector cen,
                    Rcpp::IntegerVector wt,
                    Rcpp::IntegerVector iscrat,
