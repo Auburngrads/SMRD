@@ -122,7 +122,7 @@ for(int i = 1; i <= nrow; i++){
     itype = cen.at(i - 1);
     if(itype == 0) continue;
     wti = wt.at(i - 1); 
-    xmu = wqm_dfxmu(i - 1,xnew,nrow,nter,thetad,nparm,upcen,sigma);
+    xmu = wqm_dfxmu(i,xnew,nrow,nter,thetad,nparm,upcen,sigma);
     z = wqm_ztran((y.at(i - 1,0) - xmu) / sigma,kdist);
 
     if(itype == 4) z2 = wqm_ztran((y.at(i - 1,ny - 1) - xmu) / sigma, kdist);
@@ -180,14 +180,14 @@ for(int i = 1; i <= nrow; i++){
                if(debug::kprint >= 4){
                  
                   Rcpp::Rcout << "\nVARCO1**4**\n" << std::endl;
-                  Rcpp::Rcout << "j" << j << std::endl;
-                  Rcpp::Rcout << "k" << k << std::endl;
-                  Rcpp::Rcout << "thetg(j)" << thetg.at(j - 1) << std::endl;
-                  Rcpp::Rcout << "thetg(k)" << thetg.at(k - 1) << std::endl;
-                  Rcpp::Rcout << "s" << s << std::endl;
-                  Rcpp::Rcout << "sfder" << sfder << std::endl;
-                  Rcpp::Rcout << "fsderd(j)" << fsderd.at(j - 1) << std::endl;
-                  Rcpp::Rcout << "vcvd(k,j)" << vcvd.at(k - 1,j - 1) << std::endl;
+                  Rcpp::Rcout << "j = " << j - 1 << std::endl;
+                  Rcpp::Rcout << "k = " << k - 1 << std::endl;
+                  Rcpp::Rcout << "thetg(j) = " << thetg.at(j - 1) << std::endl;
+                  Rcpp::Rcout << "thetg(k) = " << thetg.at(k - 1) << std::endl;
+                  Rcpp::Rcout << "s = " << s << std::endl;
+                  Rcpp::Rcout << "sfder = " << sfder << std::endl;
+                  Rcpp::Rcout << "fsderd(j) = " << fsderd.at(j - 1) << std::endl;
+                  Rcpp::Rcout << "vcvd(k,j) = " << vcvd.at(k - 1,j - 1) << std::endl;
                   
                }     
             }
@@ -196,9 +196,9 @@ for(int i = 1; i <= nrow; i++){
     if(debug::kprint >= 3) {
       
        Rcpp::Rcout << "\nVARCO1**3**\n" << std::endl;
-       Rcpp::Rcout << "i" << i << std::endl;
-       Rcpp::Rcout << "itype" << itype << std::endl;
-       Rcpp::Rcout << "ittype" << ittype << std::endl;
+       Rcpp::Rcout << "i = " << i << std::endl;
+       Rcpp::Rcout << "itype = " << itype << std::endl;
+       Rcpp::Rcout << "ittype = " << ittype << std::endl;
       
     }
 }
