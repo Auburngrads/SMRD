@@ -2,8 +2,6 @@
 #include <utility/icheck.hpp>
 #include <utility/filli.hpp>
 
-using namespace explan_g;
-
 //' Looks at exp var relationships and model and decides
 //' whether or not to center each explanatory variable. If 
 //' an explanatory variable is to be centered, iscd is set 
