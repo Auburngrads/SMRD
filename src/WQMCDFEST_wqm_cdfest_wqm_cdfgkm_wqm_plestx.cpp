@@ -67,21 +67,19 @@ if(debug::kprint > 4) {
 
 atrisk = atrisk - failt - xlose.at(j - 1);
 
-if(irev == 0) {
+if(irev == 0) goto line70; 
 
-  if(j < maxiuc)  continue;
-
-  prob.at(j - 1) = std::fabs(one - sprob);
-    sd.at(j - 1) = sdd;
-    
- } else {
-
-   if((j >= minilc) or (j == 1)) continue; // reverse
+// Reverse
+   if((j >= minilc) or (j == 1)) continue;
+   prob.at(j - 2) = sprob;
+   sd.at(j - 2) = sdd;
+   continue;
    
-   prob.at(j - 1) = sprob;
-     sd.at(j - 1) = sdd;
-  
-}
+// Forward
+   line70: if(j < maxiuc) continue;
+           prob.at(j - 1) = std::abs(one - sprob);
+           sd.at(j - 1) = sdd;
+
 }
 
 prob.at(m - 1) = one;
