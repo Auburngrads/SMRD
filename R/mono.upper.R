@@ -1,7 +1,7 @@
 mono.upper <-
 function (upper) 
 {
-    zout <- bfixu(as.double(upper))
+    zout <- BFIXU(as.double(upper))
     
     return(zout$upper)
     
