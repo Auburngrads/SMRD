@@ -1,5 +1,6 @@
 library(SMRD)
-test = 1
+library(SMRD2)
+test = 6
 if(test == 1) {
 data.ld <- frame.to.ld(heatexchanger,
                        response.column = c(1,2),
@@ -17,7 +18,7 @@ if(test == 3) {
 }
 if(test == 4) {
   
-data.ld <- frame.to.ld(SMRD::doatrun,
+data.ld <- frame.to.ld(SMRD2::doatrun,
                        response.column = c(1,2),
                        censor.column = 3,
                        case.weight.column = 4,
@@ -25,21 +26,39 @@ data.ld <- frame.to.ld(SMRD::doatrun,
                        truncation.type.column = 6)
 
 }
+if(test == 5){
+  
+data.ld <- frame.to.ld(turbine, 
+                       response.column = 1, 
+                       censor.column = 2,
+                       case.weight.column = 3,
+                       time.units = "Hundreds of Hours")
+  
+}
+if(test == 6){
+  
+  data.ld <- frame.to.ld(berkson200,
+                         response.column = c(1,2),
+                         censor.column = 3,
+                         case.weight.column = 4,
+                         time.units = "1/5000 Seconds")
+  
+}
 gamthr = 0
-kprint = 0
+if(!exists("kprint")) kprint <- 0
 maxit = 5e+05
 tol = 0.001
 maxmsd = 200
 start.values = NULL # is this needed
 debug1 = F
 
-  y <- Response(data.ld)
-  the.case.weights <- SMRD:::case.weights(data.ld)
+  y <- SMRD2:::Response(data.ld)
+  the.case.weights <- SMRD2:::case.weights(data.ld)
 
   if (is.null(start.values)) nstart <- 0 # what if not null?
   number.cases <- nrow(y)
     ny <- ncol(y)
-    the.censor.codes <- SMRD:::censor.codes(data.ld)
+    the.censor.codes <- SMRD2:::censor.codes(data.ld)
 
     if (length(gamthr) == 1)
       gamthr <- rep(gamthr, number.cases)
@@ -55,7 +74,7 @@ debug1 = F
           number.observations <- sum(the.case.weights[the.censor.codes > 0])
           left.trun.cond <- NULL
         right.trun.cond <- NULL
-        the.truncation.codes <- SMRD:::truncation.codes(data.ld)
+        the.truncation.codes <- SMRD2:::truncation.codes(data.ld)
 
           if (is.null(the.truncation.codes)) {
 
@@ -65,7 +84,7 @@ debug1 = F
 
           } else {
 
-            ty <- SMRD:::truncation.response(data.ld)
+            ty <- SMRD2:::truncation.response(data.ld)
             nty <- ncol(ty)
             if (all(the.truncation.codes == 3))
               left.trun.cond <- min(ty[the.truncation.codes == 3, 1])
@@ -78,33 +97,33 @@ nrscrat <- max(7 * (number.cases + 1),
                (maxmsd * (maxmsd - 1))/2 + 1)
 niscrat <- 6 * number.cases + 7
 
- zout <- .Fortran("wqmcdfest", 
-                     as.single(y), 
+ zout <- .Fortran("wqmcdfest",
+                     as.single(y),
                      as.integer(ny),
-                     as.single(the.censor.codes), 
+                     as.single(the.censor.codes),
                      as.single(the.case.weights),
-                     as.single(ty), 
-                     as.integer(nty), 
+                     as.single(ty),
+                     as.integer(nty),
                      as.single(the.truncation.codes),
-                     as.integer(number.cases), 
-                     as.integer(nstart), 
+                     as.integer(number.cases),
+                     as.integer(nstart),
                      double(ndscrat),
-                     single(nrscrat), 
-                     integer(niscrat), 
+                     single(nrscrat),
+                     integer(niscrat),
                      as.integer(kprint),
-                     as.integer(maxit), 
-                     as.single(tol), 
+                     as.integer(maxit),
+                     as.single(tol),
                      as.integer(maxmsd),
-                     p = single(number.cases + 1), 
-                     q = single(number.cases + 1), 
-                     prob = single(number.cases + 1), 
-                     sd = single(number.cases + 1), 
-                     m = integer(1), 
-                     pchmax = single(1), 
+                     p = single(number.cases + 1),
+                     q = single(number.cases + 1),
+                     prob = single(number.cases + 1),
+                     sd = single(number.cases + 1),
+                     m = integer(1),
+                     pchmax = single(1),
                      lsd = integer(1),
                      ier = integer(1))
 
-new = WQMCDFEST(y,
+new = SMRD2:::WQMCDFEST(y,
                    as.integer(ny),
                    as.integer(the.censor.codes),
                    as.integer(the.case.weights),
