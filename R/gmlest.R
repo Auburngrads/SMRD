@@ -1,3 +1,40 @@
+#' Generalized maximum likelihood
+#'
+#' @param data.ld 
+#' @param distribution 
+#' @param theta.start 
+#' @param explan.vars 
+#' @param mu.relat 
+#' @param sigma.relat 
+#' @param prob.relat 
+#' @param gamthr 
+#' @param escale 
+#' @param e 
+#' @param parameter.fixed 
+#' @param intercept 
+#' @param model 
+#' @param kprint 
+#' @param conlev 
+#' @param maxit 
+#' @param debug1 
+#'
+#' @return A big thing
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#'  ConnectionStrength.ld <- 
+#'  frame.to.ld(connectionstrength,
+#'               response.column = 1,
+#'               failure.mode.column = 2,
+#'               case.weight.column = 3)
+#' 
+#'  mfm.to.ld(ConnectionStrength.ld)
+#'  
+#'  gmlest(ConnectionStrength.Bond.ld,
+#'         distribution = "normal")
+#' }
 gmlest <-
 function (data.ld, 
           distribution, 
@@ -17,12 +54,12 @@ function (data.ld,
           maxit = 500, 
           debug1 = F)
 {
-    y <-Response(data.ld)
+    y <-SMRD2:::Response(data.ld)
     ncoly <- ncol(y)
     number.cases <- nrow(y)
-    the.case.weights <- case.weights(data.ld)
+    the.case.weights <- SMRD2:::case.weights(data.ld)
     ny <- ncol(y)
-    the.truncation.codes <- truncation.codes(data.ld)
+    the.truncation.codes <- SMRD2:::truncation.codes(data.ld)
     if (is.null(the.truncation.codes)) {
         ty <- 1
         ncolty <- 0
@@ -30,24 +67,22 @@ function (data.ld,
   
         } else {
           
-        ty <- truncation.response(data.ld)
+        ty <- SMRD2:::truncation.response(data.ld)
         ncolty <- ncol(ty)
     
         }
-    distribution.number <- numdist(distribution)
+    distribution.number <- SMRD2:::numdist(distribution)
     
     if (distribution.number == 14) distribution.number <- 8
     
     cat("dist num =", distribution, distribution.number, "\n")
-    the.censor.codes <- censor.codes(data.ld)
+    the.censor.codes <- SMRD2:::censor.codes(data.ld)
     
-    if (length(gamthr) == 1)
-        gamthr <- rep(gamthr, number.cases)
+    if (length(gamthr) == 1) gamthr <- rep(gamthr, number.cases)
     
-    if (length(gamthr) != number.cases)
-        stop("specified offset is the wrong length")
+    if (length(gamthr) != number.cases) stop("specified offset is the wrong length")
     
-    get.rmodel.info.out <- get.rmodel.info(distribution, 
+    get.rmodel.info.out <- SMRD2:::get.rmodel.info(distribution, 
                                            model, 
                                            explan.vars)
     explan.vars <- get.rmodel.info.out$explan.vars
@@ -61,21 +96,17 @@ function (data.ld,
   
         } else {
           
-        the.xmat <- xmat(data.ld)
+        the.xmat <- SMRD2:::xmat(data.ld)
         ncol.orig.x <- ncol(the.xmat)
-        if (is.null(the.xmat))
-            stop("Explanatory variables requested, but there is no X matrix")
+        if (is.null(the.xmat)) stop("Explanatory variables requested, but there is no X matrix")
         regression <- T
-        if (nrow(the.xmat) != number.cases)
-            stop(paste("Number of rows in x matrix ", nrow(the.xmat),
+        if (nrow(the.xmat) != number.cases) stop(paste("Number of rows in x matrix ", nrow(the.xmat),
                 " is wrong"))
         uniq.explan.vars <- unique(get.rmodel.info.out$mrelat)
         
-        if (any(uniq.explan.vars<=0))
-            stop("Negative or 0 explanatory variables column specified")
+        if (any(uniq.explan.vars<=0)) stop("Negative or 0 explanatory variables column specified")
         
-        if (max(uniq.explan.vars) > ncol(the.xmat))
-            stop("Specified explanatory variable column greater than number of columns in X matrix")
+        if (max(uniq.explan.vars) > ncol(the.xmat)) stop("Specified explanatory variable column greater than number of columns in X matrix")
         
         if (intercept) {
             
@@ -89,7 +120,7 @@ function (data.ld,
             }
     
         }
-    zsize <- GENSIZ(as.integer(model),
+    zsize <- SMRD2:::GENSIZ(as.integer(model),
                     as.integer(distribution.number),
                     as.integer(get.rmodel.info.out$kparv),
                     as.integer(get.rmodel.info.out$nrvar),
@@ -118,8 +149,8 @@ function (data.ld,
                     nterd = as.integer(0),
                     maxpd = as.integer(20))
     
-    nparm <- zsize$nparm
-    npard <- zsize$npard
+    nparm <- zsize$ints1$nparm
+    npard <- zsize$ints1$npard
     
     if (is.null(theta.start)) {
       
