@@ -382,8 +382,8 @@ int icompd(int k1,
            int k2,
            Rcpp::NumericVector yd){
 
-      if(yd.at(k1 - 1) - yd.at(k2 - 1) < 0) return -1;
-      if(yd.at(k1 - 1) - yd.at(k2 - 1) > 0) return  1;
+      if((yd.at(k1 - 1) - yd.at(k2 - 1)) < 0) return -1;
+      if((yd.at(k1 - 1) - yd.at(k2 - 1)) > 0) return  1;
 
       return 0;
 }
@@ -463,7 +463,7 @@ if(il.at(ip - 1) < iu.at(ip - 1)) goto line101;
    wqm_exchan(key.at(i - 1),key.at(j - 1));
 
 // Fix stack so that shorter is done first
-   if(i - il.at(ip - 1) >= iu.at(ip - 1) - i) goto line102;
+   if((i - il.at(ip - 1)) >= (iu.at(ip - 1) - i)) goto line102;
    il.at(ip + 1 - 1) = il.at(ip - 1);
    iu.at(ip + 1 - 1) = i - 1;
    il.at(ip - 1) = i + 1;
