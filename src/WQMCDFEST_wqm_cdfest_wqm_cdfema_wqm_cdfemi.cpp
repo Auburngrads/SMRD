@@ -1,6 +1,6 @@
 #include <base/base.hpp>
-#include <wqm_cdfest/wqm_cdfezk.hpp>
-#include <wqm_cdfest/wqm_divckd.hpp>
+#include <wqmcdfest/wqm_cdfezk.hpp>
+#include <wqmcdfest/wqm_divckd.hpp>
 
 //' @description Computes a single iteration of
 //'              Turnbull's self-consistancy
@@ -109,7 +109,7 @@ return;
 }
 
 #include <base/base.hpp>
-#include <wqm_cdfest/wqm_cdfegr.hpp>
+#include <wqmcdfest/wqm_cdfegr.hpp>
 
 //' @description Function to check probabilities
 //'              to determine when one is close to 0
@@ -131,7 +131,6 @@ void wqm_cdfezk(Rcpp::IntegerVector &ilcv,
 double zero = 0.0,grmax,absp;
 int mm1, jhold;
 indc = 0;
-
 
 if(m <= 2) return;
 
