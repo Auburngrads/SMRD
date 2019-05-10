@@ -293,9 +293,8 @@ return result;
 #include <base/base.hpp>
 #include <sbvn/wqm_calerf.hpp>
 
-//' Compute the error function
-//' @source W. J. Cody - January 8, 1985
-
+// Compute the error function
+// @source W. J. Cody - January 8, 1985
 double derfc(double x){
   
 int jint = 1;
