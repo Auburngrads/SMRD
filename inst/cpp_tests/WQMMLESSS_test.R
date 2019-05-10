@@ -1,5 +1,6 @@
 library(SMRD)
-test = 1
+library(SMRD2)
+test = 4
 if(test == 1){
   
    data.ld <- frame.to.ld(lzbearing, response.column = 1) 
@@ -17,21 +18,29 @@ if(test == 3){
    data.ld <- frame.to.ld(prob3_5, 
                           response.column = 1,
                           censor.column = 2)
-   }
+}
+if(test == 4){
+  
+  data.ld <- frame.to.ld(berkson200,
+                         response.column = c(1,2),
+                         censor.column = 3,
+                         case.weight.column = 4,
+                         time.units = "1/5000 Seconds")
+}
 
-distribution = 'sev' 
+distribution = 'lev' 
 explan.vars = NULL
 gamthr = 0
 escale = 10000 
 parameter.fixed = NULL 
 intercept = T
-kprint = 0
+if(!exists("kprint")) kprint = 0
 maxit = 500
 debug1 = F 
-likelihood.method = GetSMRDDefault("SMRD.likelihood.method")
+likelihood.method = SMRD2:::GetSMRDDefault("SMRD.likelihood.method")
 
 
-    the.xmat <- SMRD:::xmat(data.ld)
+    the.xmat <- SMRD2:::xmat(data.ld)
     #if(!is.null(the.xmat)) explan.vars = seq(1:ncol(xmat(data.ld)))
     
     if (!is.null(the.xmat) && is.null(dimnames(the.xmat)[[2]])) {
@@ -42,14 +51,14 @@ likelihood.method = GetSMRDDefault("SMRD.likelihood.method")
         warning("No dimnames in xmat --- set to V1,...Vp")
     }
     
-    yresp               <- SMRD:::Response(data.ld)
+    yresp               <- SMRD2:::Response(data.ld)
     number.cases        <- nrow(yresp)
     nyresp              <- ncol(yresp)
-    the.case.weights    <- SMRD:::case.weights(data.ld)
-    the.censor.codes    <- SMRD:::censor.codes(data.ld)
-    distribution.number <- SMRD:::numdist(distribution)
-    truncation.codes    <- SMRD:::truncation.codes(data.ld)
-    tyresp              <- SMRD:::truncation.response(data.ld)
+    the.case.weights    <- SMRD2:::case.weights(data.ld)
+    the.censor.codes    <- SMRD2:::censor.codes(data.ld)
+    distribution.number <- SMRD2:::numdist(distribution)
+    truncation.codes    <- SMRD2:::truncation.codes(data.ld)
+    tyresp              <- SMRD2:::truncation.response(data.ld)
     
     if (!is.null(truncation.codes) && !is.null(tyresp)) {
       
@@ -77,13 +86,13 @@ likelihood.method = GetSMRDDefault("SMRD.likelihood.method")
         if (is.null(theta.start)) theta.start <- rep(NA, nparm)
         
         `if`(any(is.na(theta.start)),
-             theta.start.comp <- SMRD:::theta.start.est(data.ld, distribution),
+             theta.start.comp <- SMRD2:::theta.start.est(data.ld, distribution),
              theta.start.comp <- theta.start)
         
       } else {
         
         regression  <- T
-        the.xmat    <- SMRD:::Check.xmat(the.xmat, explan.vars, number.cases)
+        the.xmat    <- SMRD2:::Check.xmat(the.xmat, explan.vars, number.cases)
         RegrNames   <- dimnames(the.xmat)[[2]][explan.vars]
         col.of.ones <- all(abs(the.xmat[, 1] - 1) < 1e-10)
         
@@ -102,7 +111,7 @@ likelihood.method = GetSMRDDefault("SMRD.likelihood.method")
         if (is.null(theta.start)) theta.start <- rep(NA, nparm)
         
         `if`(is.null(theta.start) || any(is.na(theta.start)),
-             theta.start.comp <- SMRD:::mlest.start.values(data.ld, 
+             theta.start.comp <- SMRD2:::mlest.start.values(data.ld, 
                                                     distribution = distribution,
                                                     intercept = intercept),
              theta.start.comp <- theta.start)
@@ -129,7 +138,7 @@ if (any(startna)) theta.start[startna] <- theta.start.comp[startna]
     mathsoft.gamthr <- rep(0, nrow(yresp))
     relationship <- attr(data.ld, "the.relationships")
     
-    if (SMRD:::is.logdist(distribution)) {
+    if (SMRD2:::is.logdist(distribution)) {
       
         non.pos.resp <- yresp[, 1] <= 0
         
@@ -143,17 +152,17 @@ if (any(startna)) theta.start[startna] <- theta.start.comp[startna]
     if (is.null(parameter.fixed)) parameter.fixed <- rep(F, nparm)
     
     if (regression) {
-        is.eyring <- !is.null(relationship) && any(SMRD:::multiple.generic.relationship.name(relationship) ==
+        is.eyring <- !is.null(relationship) && any(SMRD2:::multiple.generic.relationship.name(relationship) ==
             "Eyring")
         if (any(is.eyring)) {
-            eyring.relationship <- SMRD:::subscript.relationship(relationship,
+            eyring.relationship <- SMRD2:::subscript.relationship(relationship,
                 is.eyring)
             if (length(eyring.relationship) > 1)
                 stop(paste("More than one Eyring relationship:",
                   paste(relationship, collapse = ", ")))
             eyring.index <- (1:length(is.eyring))[is.eyring] +
                 intercept.increment
-            tempk <- SMRD:::f.relationshipinv(the.xmat[, eyring.index],
+            tempk <- SMRD2:::f.relationshipinv(the.xmat[, eyring.index],
                 eyring.relationship) + 273.16
             eyring.power <- attr(relationship, "the.power")[is.eyring]
             correction <- -log(tempk) * eyring.power
@@ -166,7 +175,7 @@ if (any(startna)) theta.start[startna] <- theta.start.comp[startna]
         }
     }
     dummy <- the.censor.codes
-    if (SMRD:::generic.distribution(distribution) == "exponential") {
+    if (SMRD2:::generic.distribution(distribution) == "exponential") {
         distribution.number <- 2
         theta.start[nparm] <- 1
         parameter.fixed[nparm] <- T
@@ -188,24 +197,24 @@ if (any(startna)) theta.start[startna] <- theta.start.comp[startna]
               iervcv = 0)
     
     rvec <- c(0, escale = escale, log.likelihood = 0)
-    zout <- .Fortran("wqmmlesss", 
-                     ivec = as.integer(ivec), 
+    zout <- .Fortran("wqmmlesss",
+                     ivec = as.integer(ivec),
                      rvec = as.single(rvec),
-                     number.cases = as.integer(number.cases), 
+                     number.cases = as.integer(number.cases),
                      nparm = as.integer(nparm),
-                     xmat = as.single(the.xmat), 
+                     xmat = as.single(the.xmat),
                      yresp = as.single(yresp),
                      as.single(c(the.censor.codes, the.case.weights, mathsoft.gamthr)),
-                     tyresp = as.single(tyresp), 
+                     tyresp = as.single(tyresp),
                      truncation.codes = as.single(truncation.codes),
-                     parameter.fixed = as.logical(parameter.fixed), 
+                     parameter.fixed = as.logical(parameter.fixed),
                      e = as.single(e),
-                     ndscrat = double(ndscrat), 
+                     ndscrat = double(ndscrat),
                      niscrat = integer(niscrat),
-                     theta.hat = as.single(theta.start), 
+                     theta.hat = as.single(theta.start),
                      first.derivative = single(nparm),
-                     vcv.matrix = single(nparm * nparm), 
-                     correlation.matrix = single(nparm * nparm), 
+                     vcv.matrix = single(nparm * nparm),
+                     correlation.matrix = single(nparm * nparm),
                      residuals = single(nyresp * number.cases),
                      fitted.values.and.deviance = single(4 * number.cases))
 
@@ -250,13 +259,13 @@ new = SMRD2:::WQMMLESSS(  ivec = as.integer(ivec),
                       ivcvdd = matrix(0, nrow = nparm + 1, ncol = nparm + 1),
                       iir = double(nparm + 1),
                       ijc = double(nparm + 1))
-cat("xnew"); xnew.end = 0; 
+cat("xnew"); xnew.end = 0;
              zout$ndscrat[(xnew.end + 1):(number.cases*nter)] - new$nummat$ipxnew[1:(number.cases*nter)]
-cat("rv1") ; rv1.end = xnew.end + number.cases*nter 
+cat("rv1") ; rv1.end = xnew.end + number.cases*nter
              zout$ndscrat[(rv1.end + 1):(rv1.end + nparm)] - new$numvec$iprv1
-cat("diag"); diag.end = rv1.end + nparm  
+cat("diag"); diag.end = rv1.end + nparm
              zout$ndscrat[(diag.end + 1):(diag.end + nparm)] - new$numvec$ipdiag
-cat("tmat"); tmat.end = diag.end + nparm  
+cat("tmat"); tmat.end = diag.end + nparm
              zout$ndscrat[(tmat.end + 1):(tmat.end + nparm * 2)] - new$nummat$iptmat[1:(nparm * 2)]
 cat("thetb"); thetb.end = tmat.end + nparm * 2
               zout$ndscrat[(thetb.end + 1):(thetb.end + nparm)] - new$numvec$ipthb
