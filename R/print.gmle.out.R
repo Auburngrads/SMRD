@@ -1,3 +1,16 @@
+#' Title
+#'
+#' @param x 
+#' @param conf.level 
+#' @param digits 
+#' @param print.vcv 
+#' @param add.title 
+#' @param quote 
+#' @param prefix 
+#' @param ... 
+#'
+#' @return printed stuff
+#' @export
 print.gmle.out <-
 function (x, conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
     digits = GetSMRDDefault("SMRD.DigitsPrinted"), print.vcv = GetSMRDDefault("SMRD.LongPrint"),
