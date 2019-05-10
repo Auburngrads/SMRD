@@ -1,3 +1,24 @@
+#' Generate a CDF estimate
+#'
+#' @param data.ld 
+#' @param gamthr 
+#' @param kprint 
+#' @param maxit 
+#' @param tol 
+#' @param maxmsd 
+#' @param start.values 
+#' @param debug1 
+#'
+#' @return A formal S4 object of class CDFEST with slot \code{list}
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' lz.ld <- life_data(lzbearing, response.column = 1)
+#' lz.cd <- cdfest(lz.ld, distribution = 'weibull')
+#' lz.cd
+#' }
+
 cdfest <-
 function (data.ld, 
           gamthr = 0, 
@@ -122,6 +143,6 @@ function (data.ld,
         
         }
     
-    oldClass(rlist) <- "ecdf"
-    return(rlist)
+        oldClass(rlist) <- "cdfest"
+        return(rlist)
 }
