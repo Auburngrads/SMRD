@@ -4,36 +4,11 @@
 namespace debug{
     extern int kprint;
 };
-namespace cstak{ 
-    extern Rcpp::NumericVector g_ds; //length 50000
-};
-namespace explan_g{
-    extern Rcpp::IntegerVector  mu_cols;
-    extern Rcpp::IntegerVector  si_cols;
-    extern Rcpp::IntegerVector  p1_cols;
-    extern Rcpp::IntegerVector  p2_cols;
-    extern Rcpp::IntegerVector  p3_cols;
-};
-namespace fdnprd_g{
-    extern Rcpp::IntegerVector  ipgty;
-    extern Rcpp::IntegerVector  ipmark;
-};
-namespace astww_g{
-    extern Rcpp::IntegerVector iipcod;
-    extern Rcpp::IntegerVector iipwei;
-};
-namespace ast0xx_g{
-    extern Rcpp::NumericMatrix iresid;
-    extern Rcpp::NumericMatrix iyhat;
-    extern Rcpp::NumericMatrix itimes;
-    extern Rcpp::NumericVector ip;
-    extern Rcpp::NumericVector iq;
-    extern Rcpp::NumericVector iprob;
-    extern Rcpp::NumericVector ithtmp;
-    extern Rcpp::NumericVector iypoin;
-    extern Rcpp::NumericVector ippoin;
-    extern Rcpp::NumericVector ipsd;
-    extern Rcpp::NumericVector ippsd;
+namespace fdb001{
+    extern double g_pbinp;
+    extern double g_pquanp;
+    extern int g_np;
+    extern double g_xlamp;
 };
 namespace genx00{
     extern int g_nrownw,g_ncoly,g_ncolty,g_npoint;
@@ -144,5 +119,3 @@ namespace passer{
     extern double g_dfp,g_tfp,g_d0p,g_sfactp,g_kdmodp;
 };
 #endif
-
-
