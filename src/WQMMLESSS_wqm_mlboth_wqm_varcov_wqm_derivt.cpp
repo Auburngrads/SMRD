@@ -52,12 +52,12 @@ if((nty == 0) or (ittype == 1)) {
    
     wqm_deriv(qder,itype,z,z2,kdist);
    
-   for(int i = 0; i < 5; i++){
+   for(int i = 1; i <= 5; i++){
      
-       qder.at(i) = qder.at(i) - qdert.at(i);
+       qder.at(i - 1) = qder.at(i - 1) - qdert.at(i - 1);
      
    }
  
-   return; 
+return; 
  
 }
