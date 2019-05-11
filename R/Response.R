@@ -1,3 +1,9 @@
+#' Compute the Response 
+#'
+#' @param data.d 
+#'
+#' @return A vector of responses
+#' @export
 Response <-
 function (data.d)
 {
