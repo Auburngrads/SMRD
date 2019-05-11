@@ -58,8 +58,7 @@ summary(lzbearing.ld)
 
 print(lzbearing.ld)
 
-plot(lzbearing.ld,
-     band.type = "none")
+plot(lzbearing.ld, distribution = "weibull")
 ```
 
 ## Nelson's Super-Alloy Data Set `superalloy`
