@@ -93,6 +93,11 @@ summary(Fan.ld)
 
 plot(Fan.ld, 
      plot.censored.ticks = "top")
+
+plot(Fan.ld, 
+     plot.censored.ticks = "top",
+     distribution = "exponential",
+     shape = c(15))
 ```
 
 
