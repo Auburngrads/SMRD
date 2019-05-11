@@ -3,11 +3,11 @@ function (data.ld,
           distribution,
           shape = NULL,
           xlab = NULL,
-          ylab = SMRD2:::GetSMRDDefault("SMRD.LabelOnYaxis"),
+          ylab = GetSMRDDefault("SMRD.LabelOnYaxis"),
           xlim = c(NA, NA),
           ylim = c(NA, NA),
           band.type = "Simultaneous",
-          conf.level = SMRD2:::GetSMRDDefault("SMRD.ConfLevel")/100,
+          conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
           a.limit = 0.001,
           b.limit = 0.999,
           interactive = T,
@@ -17,7 +17,7 @@ function (data.ld,
           how.show.fhat = "points",
           how.show.interval = "step.fun",
           grids = 0,
-          title.option = SMRD2:::GetSMRDDefault("SMRD.TitleOption"),
+          title.option = GetSMRDDefault("SMRD.TitleOption"),
           trunc.correct = T,
           slope.axis = F,
           draw.line = F,
@@ -36,27 +36,27 @@ function (data.ld,
   
     if (is.null(xlab)) {
       
-        xlab <- SMRD2:::get.time.units(data.ld)
+        xlab <- get.time.units(data.ld)
         if (!is.null(gamthr)) xlab <- paste(xlab, "-", gamthr)
         
     }
   
-    if (!is.null(gamthr)) SMRD2:::Response(data.ld) <- SMRD2:::Response(data.ld) - gamthr
+    if (!is.null(gamthr)) Response(data.ld) <- Response(data.ld) - gamthr
     
-    cdfest.out <- SMRD2:::cdfest(data.ld)
+    cdfest.out <- cdfest(data.ld)
     
-    if (SMRD2:::is.logdist(distribution)) {
+    if (is.logdist(distribution)) {
       
-        if (any(SMRD2:::Response(data.ld) <= 0)) stop("log-distribution specified but nonpositive response(s) in your life data object.")
+        if (any(Response(data.ld) <= 0)) stop("log-distribution specified but nonpositive response(s) in your life data object.")
       
     }
     
-    default.title <- SMRD2:::get.data.title(data.ld)
+    default.title <- get.data.title(data.ld)
     there.is.truncation <- F
     if (trunc.correct && (!is.null(cdfest.out$left.trun.cond) || !is.null(cdfest.out$right.trun.cond))) {
       
         there.is.truncation <- T
-        mlest.out <- SMRD2:::mlest(data.ld, 
+        mlest.out <- mlest(data.ld, 
                            distribution, 
                            gamthr = 0,...)
         trunc.est.ok <- mlest.out$iervcv == 0
@@ -65,7 +65,7 @@ function (data.ld,
     
     if (trunc.correct && there.is.truncation && trunc.est.ok) {
       
-        cdfest.out <- SMRD2:::trunc.adj.cdfest.out(cdfest.out, 
+        cdfest.out <- trunc.adj.cdfest.out(cdfest.out, 
                                            mlest.out,
                                            debug1 = debug1)
         trunc.correct.string <- "\nwith truncation-corrected nonparametric estimate"
@@ -76,7 +76,7 @@ function (data.ld,
     
       }
     
-    cdpoints.out <- SMRD2:::cdpoints(cdfest.out)
+    cdpoints.out <- cdpoints(cdfest.out)
     
     if (band.type == "none" || is.null(cdfest.out$sd)) {
         band.type <- "none"
@@ -84,15 +84,15 @@ function (data.ld,
   
       } else {
     
-        bands <- SMRD2:::get.npbands(cdfest.out = cdfest.out, 
+        bands <- get.npbands(cdfest.out = cdfest.out, 
                              band.type = band.type,
                              conf.level = conf.level, 
                              how.show.interval = how.show.interval,
                              a.limit = a.limit, 
                              b.limit = b.limit)
         
-        ybandrange <- c(SMRD2:::strip.na(bands$lower), 
-                        SMRD2:::strip.na(bands$upper))
+        ybandrange <- c(strip.na(bands$lower), 
+                        strip.na(bands$upper))
         ybandrange <- range(ybandrange[ybandrange > 0 & ybandrange < 1])
         
         }
@@ -109,10 +109,20 @@ function (data.ld,
     if (any(yrna)) ylim[yrna] <- range(cdpoints.out$pplot, ybandrange)[yrna]
     ylim[1] <- ylim[1] + 1e-10
     ylim[2] <- ylim[2] - 1e-10
+    
+    if(is.null(my.title)) {
+      
+       `if`(band.type != "none",
+            my.title <- paste(default.title, "\n", "with Nonparametric ", 
+                bands$band.type, percent.conf.level(conf.level), 
+                "Confidence Bands", trunc.correct.string),
+            my.title <- paste(default.title, "\n", "Nonparametric CDF Estimate", 
+                trunc.correct.string))
+    }
  
     if(!add) {
       
-       log.of.data <- SMRD2:::probplot.setup(distribution = distribution,
+       log.of.data <- probplot.setup(distribution = distribution,
                                      xlim = xlim, 
                                      ylim = ylim, 
                                      xlab = xlab,
@@ -128,12 +138,13 @@ function (data.ld,
                                      title.line.adj = title.line.adj, ...)
      } else {
     
-       log.of.data <- SMRD2:::get.prob.scales(distribution = distribution,
-                                       shape = NULL, 
-                                       prob.range = ylim)$logger
+       log.of.data <- get.prob.scales(distribution = distribution,
+                                      shape = NULL, 
+                                      prob.range = ylim)$logger
+       
      }
     
-    SMRD2:::plot.nonparametric.estimate(cdfest.out, 
+    plot.nonparametric.estimate(cdfest.out, 
                                 cdpoints.out, 
                                 distribution,
                                 log.of.data, 
@@ -158,7 +169,7 @@ function (data.ld,
     }
     if (band.type != "none") {
       
-        SMRD2:::plot.bands(bands, 
+        plot.bands(bands, 
                    distribution = distribution, 
                    shape = shape,
                    log.of.data = log.of.data, 
@@ -168,7 +179,7 @@ function (data.ld,
       
     }
     
-    SMRD2:::f.plot.censored.ticks(data.ld, log.of.data, plot.censored.ticks)
+    f.plot.censored.ticks(data.ld, log.of.data, plot.censored.ticks)
     invisible()
     cdfest.out$band.type <- band.type
     invisible(cdfest.out)
