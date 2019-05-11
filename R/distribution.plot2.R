@@ -29,36 +29,36 @@
 #'
 #' @examples
 #' \dontrun{
-#' distribution.plot2("Exponential",
+#' distribution.plot("Exponential",
 #'                   shape = c(.5,1))
 #' 
-#' distribution.plot2("Lognormal",
+#' distribution.plot("Lognormal",
 #'                   shape = c(.3, .8))
 #' 
-#' distribution.plot2("Normal",
+#' distribution.plot("Normal",
 #'                   shape = c( .30, .5,.8),
 #'                   location = 5)
 #' 
-#' distribution.plot2("Weibull",
+#' distribution.plot("Weibull",
 #'                   shape = c(.8,1,1.5))
 #' 
-#' distribution.plot2("Smallest Extreme Value",
+#' distribution.plot("Smallest Extreme Value",
 #'                   shape = c(5,6,7),
 #'                   location = 50)
 #' 
-#' distribution.plot2("Largest Extreme Value",
+#' distribution.plot("Largest Extreme Value",
 #'                   shape = c(5, 6, 7),
 #'                   location = 10)
 #' 
-#' distribution.plot2("Logistic",
+#' distribution.plot("Logistic",
 #'                   shape = c(1, 2, 3),
 #'                   location = 15)
 #' 
-#' distribution.plot2("Loglogistic",
+#' distribution.plot("Loglogistic",
 #'                   shape = c(.2,.4,.6), 
 #'                   prob.range = c(0.001, 0.95))
 #' }
-distribution.plot2 <-
+distribution.plot <-
   function (distribution, 
             shape, 
             prob.range = c(0.01, 0.99), 
