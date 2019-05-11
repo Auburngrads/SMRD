@@ -22,10 +22,12 @@ function (distribution,
           title.line.adj = 0, 
           cex.axis = 1.05,...)
 {
-    if (title.option != "blank" && (!is.logical(linear.axes) ||
-        (slope.axis))) {
+    if (title.option != "blank" && (!is.logical(linear.axes) || (slope.axis))) {
+      
         warning("Probably should not have a title if shape parameter scale has been requested")
+      
     }
+  
     if (missing(xlim)) warning("xlim should be specified")
     if (missing(ylim)) warning("ylim should be specified")
   
@@ -140,7 +142,8 @@ function (distribution,
          yaxt = "n", 
          type = "n",
          cex.axis = cex.axis, 
-         cex.lab = cex.labs)
+         cex.lab = cex.labs,
+         main = my.title)
     title(xlab = xlab, cex.lab = cex.labs)
     axis(side = 2, 
          at = SMRD2:::pp.quant(tick.location, distribution,shape), 
