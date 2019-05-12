@@ -17,7 +17,7 @@ double wqm_fliket(int itype,
 double fliket = 0.0e00;
 double denom;
   
-if((nty == 0) or (ittype == 1)) {
+if((nty == 1) or (ittype == 1)) {
 
    // If there is no truncation, things are simple
       fliket = wqm_flikei(itype,z,z2,sigmal,kdist);
