@@ -55,6 +55,15 @@ Create a \code{life.data} object from a \code{data.frame}
 lzbearing.ld <- frame.to.ld(lzbearing, 
                             response.column = 1,
                             time.units = "Megacycles")
+ 
+# Example with censoring and truncation
+                           
+trun.ld <- frame.to.ld(SMRD2::doatrun,
+                       response.column = c(1,2),
+                       censor.column = 3,
+                       case.weight.column = 4,
+                       truncation.response.column = 5,
+                       truncation.type.column = 6)
 }
 }
 \seealso{
