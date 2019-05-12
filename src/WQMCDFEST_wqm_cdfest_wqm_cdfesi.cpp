@@ -34,7 +34,7 @@
 //' # matrix and the variance matrix will be printed;
 //' # small if any probabilities are less than this number, that;
 //' # probability is suspected to be zero;
-//' # nty if nty = 0, there is no truncation;
+//' # nty if nty = 1, there is no truncation;
 //' # if nty = 1, there is either left or right truncation;
 //' # if nty = 2, both left or right truncation or interval;
 //' # truncation can be present;
