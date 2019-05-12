@@ -37,7 +37,7 @@ int ilc,ilt,iuc,iut,wt;
        if(ilc <= 0) continue;
        iuc = iucv.at(i - 1);
 
-       if(nty == 0) {
+       if(nty == 1) {
 
           ilt = 1;
           iut = m;
