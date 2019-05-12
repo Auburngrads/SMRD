@@ -32,7 +32,7 @@ for(int i = 1; i <= n; i++){
     iltv.at(i - 1) = 1;
 
 // Skip over dummy obserations
-   if((ysi >= big31) or (nty == 1)) {
+   if((ysi >= big31) or (nty == 0)) {
    
        tlow  = -big32;
        thigh =  big32;
@@ -72,7 +72,7 @@ if(itype == 4) {
    
 }
 
-if(nty == 1) continue;
+if(nty == 0) continue;
 
 if((tlow > ysi) or (thigh < ysip)) {
 
