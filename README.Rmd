@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "SMRD: Statistical Methods of Reliability Data"
 author: "Jason Freels"
 date: "4/17/2019"
 output: 
