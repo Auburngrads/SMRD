@@ -232,6 +232,7 @@ Rcpp::List GENMAX(int &kmod,
    debug::kprint = kprint;
    Rcpp::NumericMatrix iptynw;
    Rcpp::IntegerVector iptc;
+   if((ncolty == 1) and (ty.nrow() == 1)) ncolty = 0;
 
 // Grab space for distribution parameter lables
    Rcpp::IntegerVector iplabp = Rcpp::IntegerVector(20 * (nparm + 1));
