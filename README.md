@@ -1,4 +1,4 @@
-SMRD: Statistical Methods of Reliability Data
+SMRD: Statistical Methods for Reliability Data
 ================
 Jason K. Freels, William Q. Meeker, and Luis A. Escobar
 <br/>05 May 2019
