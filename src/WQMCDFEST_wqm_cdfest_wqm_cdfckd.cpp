@@ -55,7 +55,7 @@ for(int i = 1; i <= n; i++) {
 
          }
      
-     if(nty == 0) continue;
+     if(nty == 1) continue;
 
      // check the truncation codes for consistancy
         itype = tcodes.at(i - 1);
