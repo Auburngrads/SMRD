@@ -1,5 +1,5 @@
 ---
-title: "SMRD: Statistical Methods for Reliability Data"
+title: ":package: SMRD: Statistical Methods for Reliability Data"
 author: "Jason K. Freels, William Q. Meeker, and Luis A. Escobar"
 date: "<br/>`r format(Sys.Date(), '%m %B %Y')`"
 output: 
