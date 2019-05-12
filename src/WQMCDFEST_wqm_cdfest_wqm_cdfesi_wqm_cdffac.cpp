@@ -27,7 +27,7 @@ void wqm_cdffac(int &il,
 double ss, factr, pdl;
 int nx,n1,nn1,ilx,iux,index;
 
-if((ltrunc) and (nty == 0)) return;
+if((ltrunc) and (nty == 1)) return;
 
 // Compute factor
    ss = zero;
