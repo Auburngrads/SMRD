@@ -1,7 +1,7 @@
 SMRD: Statistical Methods of Reliability Data
 ================
-Jason Freels
-4/17/2019
+Jason K. Freels, William Q. Meeker, and Luis A. Escobar
+<br/>05 May 2019
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
