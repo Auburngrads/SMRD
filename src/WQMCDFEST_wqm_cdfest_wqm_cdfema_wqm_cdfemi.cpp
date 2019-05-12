@@ -67,7 +67,7 @@ if(nty != 0) {
    
    }
 
-if(nty == 0) continue;
+if(nty == 1) continue;
 
 if(ilt > 1) {
 
@@ -91,7 +91,7 @@ for(int j = iutp; j <= m; j++) {
 }
 }
 
-if(nty == 0) return; 
+if(nty == 1) return; 
 
 // Normalize by dividing by estimated sample size m
    xm = zero;
