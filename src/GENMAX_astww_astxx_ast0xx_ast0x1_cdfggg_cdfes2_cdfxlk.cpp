@@ -36,7 +36,7 @@ xllgkm = zero;
             
           }
           
-          if(nty == 0) goto line56;
+          if(nty == 1) goto line56;
           sumt = zero;
           ilt = iltv.at(i - 1);
           iut = iutv.at(i - 1);
