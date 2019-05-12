@@ -111,6 +111,7 @@ Rcpp::List WQMCDFEST(NumericMatrix &y,
                       int &ier){
 
 debug::kprint = kprint;
+if((nty == 1) and (ty.nrow() == 1)) nty = 0;
 
 Rcpp::List nummat, numvec, intvec, others;
   
