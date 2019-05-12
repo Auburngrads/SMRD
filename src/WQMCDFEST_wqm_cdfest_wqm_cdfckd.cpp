@@ -65,7 +65,7 @@ for(int i = 1; i <= n; i++) {
 
         if(itype == 1) continue;
 
-        if(itype != 4) {
+        if((itype == 2) or (itype == 3)) {
 
            if(std::fabs((ty.at(i - 1, 0) - ty.at(i - 1, nty - 1)) / std::max(ty.at(i - 1, 0), small)) > small ) {
 
@@ -76,7 +76,7 @@ for(int i = 1; i <= n; i++) {
            
         }
 
-        if((itype == 2) or (itype == 3)) {
+        if(itype == 4) {
            
            // Check for backwards truncation interval
               if(ty.at(i - 1, 0) >= ty.at(i - 1, nty - 1)) { ier = 12; return; } 
