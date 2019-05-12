@@ -55,7 +55,7 @@ for(int i = 1; i <= n; i++) {
 
          }
      
-     if(nty == 1) continue;
+     if(nty == 0) continue;
 
      // check the truncation codes for consistancy
         itype = tcodes.at(i - 1);
@@ -82,7 +82,7 @@ for(int i = 1; i <= n; i++) {
               if(ty.at(i - 1, 0) >= ty.at(i - 1, nty - 1)) { ier = 12; return; } 
               
            // Check for only 1 col of truncation values, code 4 or 5 found  
-              if(nty == 1) { ier = 13; return; } 
+              if(nty == 0) { ier = 13; return; } 
 
          }
 
