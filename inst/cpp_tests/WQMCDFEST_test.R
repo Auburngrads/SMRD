@@ -1,6 +1,6 @@
 library(SMRD)
 library(SMRD2)
-test = 6
+test = 4
 if(test == 1) {
 data.ld <- frame.to.ld(heatexchanger,
                        response.column = c(1,2),
@@ -128,7 +128,7 @@ new = SMRD2:::WQMCDFEST(y,
                    as.integer(the.censor.codes),
                    as.integer(the.case.weights),
                    ty,
-                   as.integer(nty),
+                   as.integer(ncol(ty)),
                    as.integer(the.truncation.codes),
                    as.integer(number.cases),
                    as.integer(nstart),
