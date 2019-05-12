@@ -153,7 +153,7 @@ if(debug::kprint >= 2) {
 // nsimg returns the number of good simulations
 // but brings down which alpha to return the naive pred bounds's
    nwhich = nsimg;
-   nty = 0;
+   nty = 1;
    nter = 1;
    nparm = 2;
    lfix.at(0) = false;
