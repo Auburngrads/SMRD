@@ -1,7 +1,7 @@
 ---
 title: "SMRD: Statistical Methods of Reliability Data"
-author: "Jason Freels"
-date: "4/17/2019"
+author: "Jason K. Freels, William Q. Meeker, and Luis A. Escobar"
+date: "<br/>`r format(Sys.Date(), '%m %B %Y')`"
 output: 
   github_document:
     html_preview: false
