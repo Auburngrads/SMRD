@@ -17,7 +17,7 @@ void wqm_derivt(Rcpp::NumericVector &qder,
 Rcpp::NumericVector qdert(5);
   
 // If no truncation, things are simple
-if((nty == 0) or (ittype == 1)) {
+if((nty == 1) or (ittype == 1)) {
   
     wqm_deriv(qder,itype,z,z2,kdist);
     return;
