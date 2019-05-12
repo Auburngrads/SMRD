@@ -5,12 +5,10 @@ Jason Freels
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-
-<!-- badges: start --> [![CRAN
+[![CRAN
 status](https://www.r-pkg.org/badges/version/SMRD2)](https://cran.r-project.org/package=SMRD2)
-<!-- badges: end --> <!-- badges: start --> [![Travis build
+[![Travis build
 status](https://travis-ci.org/Auburngrads/SMRD2.svg?branch=master)](https://travis-ci.org/Auburngrads/SMRD2)
-<!-- badges: end -->
 
 ## R Markdown
 
