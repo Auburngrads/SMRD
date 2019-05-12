@@ -61,6 +61,8 @@ bool lcheck = false;
 
 debug::kprint = ivec.at(9);
 
+if((nty == 1) and (ty.nrow() == 1)) nty = 0;
+
 if(debug::kprint >= 2){
   
    Rcpp::Rcout << "\nWQMMLESSS - before MLBOTH\n" << std::endl;
