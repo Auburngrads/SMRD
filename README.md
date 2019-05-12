@@ -1,4 +1,4 @@
-Untitled
+SMRD: Statistical Methods of Reliability Data
 ================
 Jason Freels
 4/17/2019
