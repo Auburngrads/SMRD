@@ -1,3 +1,4 @@
+#' @export
 summary.multiple.mlest.out <-
 function (object, weibull.traditional = T, sum.likelihood = T,
     conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, digits = GetSMRDDefault("SMRD.DigitsPrinted"),...)
