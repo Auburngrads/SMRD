@@ -1,3 +1,4 @@
+#' @export
 quantiles.mlest <-
 function (x, prob.vec = as.numeric(ClistToVec(GetSMRDDefault("SMRD.DefaultQuantileList"))),
     conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, shape = NULL,
