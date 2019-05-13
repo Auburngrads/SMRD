@@ -1,3 +1,4 @@
+#' @export
 plot.joint.sim <-
 function (x, focus.quantity1 = focus.quantity1,
     focus.quantity.detail1, x.of.interest1 = x.of.interest1,
