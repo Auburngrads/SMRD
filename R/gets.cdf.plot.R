@@ -1,3 +1,16 @@
+#' Title
+#'
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' gets.cdf.plot()
+#' 
+#' }
 gets.cdf.plot <-
 function (...)
 {
