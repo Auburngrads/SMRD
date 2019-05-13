@@ -1,3 +1,4 @@
+#' @export
 print.groupi.Dest.Degrad.out <-
 function (x, conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
     digits = GetSMRDDefault("SMRD.DigitsPrinted"),...)
