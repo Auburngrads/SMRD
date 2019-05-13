@@ -1,3 +1,4 @@
+#' @export
 plot.rmd.residual <-
 function (x, title.option = GetSMRDDefault("SMRD.TitleOption"), xlab = NULL, ylab = "Residuals",
     outer.plot = F, order.groups = F, group.var = 1:length(get.x.columns(x)),...)
