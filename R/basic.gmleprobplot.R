@@ -1,3 +1,77 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param distribution 
+#' @param plot.dist 
+#' @param xlab 
+#' @param xlim 
+#' @param ylim 
+#' @param time.range 
+#' @param conf.level 
+#' @param interactive 
+#' @param original.par 
+#' @param mle.quantiles 
+#' @param my.title 
+#' @param type 
+#' @param cex 
+#' @param cex.points 
+#' @param cexlab 
+#' @param sub.title 
+#' @param grids 
+#' @param linear.axes 
+#' @param slope.axis 
+#' @param print.table 
+#' @param title.option 
+#' @param ylab 
+#' @param trunc.correct 
+#' @param add 
+#' @param plot.censored.ticks 
+#' @param pch 
+#' @param lty 
+#' @param lwd 
+#' @param length.time.vec 
+#' @param compare.dists 
+#' @param col.ci 
+#' @param lwd.ci 
+#' @param xxx.mle.out 
+#' @param ciMethod 
+#' @param extrapolate.ci 
+#' @param band.type 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' AlloyC.ld <- frame.to.ld(alloyc,
+#'                          response.column = c(1,2),
+#'                          censor.column = 3,
+#'                          case.weight.column = 4,
+#'                          data.title = "Alloy C",
+#'                          time.units = "ksi")
+#' 
+#' AlloyC.sevgets.gmle.out <- gets.mle(AlloyC.ld, distribution = "sev")
+#' 
+#' AlloyC.norgets.gmle.out <- gets.mle(AlloyC.ld, distribution = "normal")
+#' 
+#' basic.gmleprobplot(AlloyC.ld, distribution = "sevgets",
+#'                    xxx.mle.out = AlloyC.sevgets.gmle.out,
+#'                    my.title = "",
+#'                    cexlab = 1.5,
+#'                    plot.dist = "sev")
+#' 
+#' AlloyC.gets.nor.gmle.out <- gets.mle(AlloyC.ld, distribution = "normal")
+#' 
+#' basic.gmleprobplot(AlloyC.ld,
+#'                    distribution = "normalgets",
+#'                    xxx.mle.out = AlloyC.norgets.gmle.out, 
+#'                    my.title = "", 
+#'                    cexlab = 1.5,
+#'                    plot.dist = "sev")
+#' 
+#' }
 basic.gmleprobplot <-
 function (data.ld, distribution, plot.dist, xlab = get.time.units(data.ld),
     xlim = c(NA, NA), ylim = c(NA, NA), time.range = c(NA,
