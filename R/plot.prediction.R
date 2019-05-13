@@ -1,3 +1,4 @@
+#' @export
 plot.prediction <-
 function (x, conf.level = 0.95, xlab = NULL, interval.type = "two-sided",
     ...)
