@@ -1,3 +1,25 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param debug1 
+#' @param theta.start 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' at7987.ld <- frame.to.ld(at7987, 
+#'                          response.column = 1,
+#'                          censor.column = 2, 
+#'                          case.weight.column = 3,
+#'                          time.units = "Kilocycles")
+#' 
+#' summary(at7987.ld)
+#' 
+#' at7987.bisa.gmle.out <- bisa.mle(at7987.ld)
+#' }
 bisa.mle <-
 function (data.ld,debug1= F, theta.start = NULL) 
 {
