@@ -1,3 +1,4 @@
+#' @export
 plot.rflm.mle <-
 function (x, ylim = c(NA, NA), xlim = c(NA, NA),
     my.title = NULL, title.option = GetSMRDDefault("SMRD.TitleOption"), censor.time = NULL,
