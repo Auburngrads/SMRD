@@ -1,3 +1,4 @@
+#' @export
 plot.prior.pdf <-
 function (x, s2, distribution = "triangle", parname = "sigma",
     smallprob = pnorm(-3), fudge = 1.1,...)
