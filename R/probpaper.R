@@ -1,3 +1,65 @@
+#' Title
+#'
+#' @param distribution 
+#' @param xlab 
+#' @param xlim 
+#' @param ylim 
+#' @param original.par 
+#' @param my.title 
+#' @param cex 
+#' @param cex.labs 
+#' @param cex.tic.lab 
+#' @param cex.title 
+#' @param sub.title 
+#' @param grids 
+#' @param linear.axes 
+#' @param slope.axis 
+#' @param title.option 
+#' @param shape 
+#' @param draw.line 
+#' @param ylab 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' probpaper("Weibull",
+#'           xlim = c(1, 10), 
+#'           grid = TRUE, 
+#'           ylim = c(0.011,0.981))
+#' 
+#' probpaper("Weibull",
+#'           xlim = c(1, 100),
+#'           grid = TRUE,
+#'           ylim = c(0.011,0.981))
+#' 
+#' probpaper("Weibull",
+#'           xlim = c(1, 1000),
+#'           grid = TRUE,
+#'           ylim = c(0.011,0.981))
+#' 
+#' probpaper("Weibull",
+#'           xlim = c(1, 1000),
+#'           grid = TRUE, 
+#'           ylim = c(0.0011,0.9981))
+#' 
+#' probpaper("Lognormal",
+#'           xlim = c(1, 10),
+#'           grid = TRUE,
+#'           ylim = c(0.011,0.981))
+#' 
+#' probpaper("Lognormal",
+#'           xlim = c(1, 100),
+#'           grid = TRUE,
+#'           ylim = c(0.011,0.981))
+#' 
+#' probpaper("Lognormal",
+#'           xlim = c(1, 1000),
+#'           grid = TRUE,
+#'           ylim = c(0.011,0.981))
+#' }
 probpaper <-
 function (distribution, xlab = "Time", xlim = c(1, 10), ylim = c(0.011, 
     0.99), original.par = F, my.title = NULL, cex = 1, cex.labs = 1.1, 
