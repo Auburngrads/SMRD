@@ -1,3 +1,4 @@
+#' @export
 summary.prior.and.post <-
 function (object,...)
 {
