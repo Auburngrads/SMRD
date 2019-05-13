@@ -1,3 +1,4 @@
+#' @export
 plot.rmd.average <-
 function (x, xlim = c(NA, NA), ylim = c(NA, NA),
     ylab = attr(x, "response.units"), xlab = attr(x,
