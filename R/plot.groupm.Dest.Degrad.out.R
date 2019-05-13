@@ -1,3 +1,4 @@
+#' @export
 plot.groupm.Dest.Degrad.out <-
 function (x, 
           FailLevel, 
