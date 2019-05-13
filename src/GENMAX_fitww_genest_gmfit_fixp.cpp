@@ -43,7 +43,7 @@ int ier = 0;
 // check kmccde below
    thetas.at(0) = fixc(thetas,nparm);
    
-   for(int i  =1; i <= nparm; i++){
+   for(int i = 1; i <= nparm; i++){
       
        thetat.at(i - 1) = fxpi(thetas.at(i - 1),kodet.at(i - 1),ier);
       
