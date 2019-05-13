@@ -1,3 +1,4 @@
+#' @export
 plot.marginals.sim <-
 function (x, focus.quantity, focus.quantity.detail,
     plot.type = "histogram", x.of.interest = NA, xlim = c(NA,
