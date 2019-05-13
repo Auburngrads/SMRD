@@ -1,3 +1,69 @@
+#' Title
+#'
+#' @param theCumulativePredictTable 
+#' @param lty 
+#' @param lwd 
+#' @param add 
+#' @param plot.what 
+#' @param plot.points 
+#' @param my.title 
+#' @param xlim 
+#' @param ylim 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' # No warranty enforcement
+#' 
+#' DeviceN.NoEnforce.weib <-
+#'   CumulativePredictTable(DeviceN.mlest.weib,
+#'                          time.increment = 1,
+#'                          number.time.units.ahead = 50,
+#'                          warranty.time = 1000)
+#' 
+#' PlotCumulativePredictTable(DeviceN.NoEnforce.weib,
+#'                            plot.what = "density")
+#' 
+#' PlotCumulativePredictTable(DeviceN.NoEnforce.weib,
+#'                            plot.what = "cumulative")
+#' 
+#' # Strict warranty enforcement
+#' 
+#' DeviceN.Enforced.weib <-
+#'   CumulativePredictTable(DeviceN.mlest.weib,
+#'                          time.increment = 1,
+#'                          number.time.units.ahead = 50,
+#'                          warranty.time = 36)
+#' 
+#' PlotCumulativePredictTable(DeviceN.Enforced.weib,
+#'                            plot.what = "density")
+#' 
+#' PlotCumulativePredictTable(DeviceN.Enforced.weib,
+#'                            plot.what = "cumulative")
+#' # Strict vs. no warranty enforcement (Weibull distribution)
+#' 
+#' PlotCumulativePredictTable(DeviceN.NoEnforce.weib,
+#'                            plot.what = "density",
+#'                            ylim = c(0,NA))
+#' 
+#' PlotCumulativePredictTable(DeviceN.Enforced.weib,
+#'                            plot.what = "density",
+#'                            add = TRUE,
+#'                            lty = 3,
+#'                            lwd = 3)
+#' 
+#' PlotCumulativePredictTable(DeviceN.NoEnforce.weib,
+#'                            plot.what = "cumulative")
+#' 
+#' PlotCumulativePredictTable(DeviceN.Enforced.weib,
+#'                            plot.what = "cumulative",
+#'                            add = TRUE,
+#'                            lty = 3,
+#'                            lwd = 3)
+#' }
 PlotCumulativePredictTable <-
 function (theCumulativePredictTable, lty = 1, lwd = 1, add = FALSE, 
     plot.what = "density", plot.points = FALSE, my.title = NULL, 
