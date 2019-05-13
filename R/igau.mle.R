@@ -1,3 +1,26 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param debug1 
+#' @param theta.start 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' lzbearing.ld <- frame.to.ld(lzbearing, 
+#'                             response.column = 1)
+#' 
+#' bear.igau.gmle.out <- igau.mle(lzbearing.ld)
+#' 
+#' bkfatigue10.ld <- frame.to.ld(bkfatigue10, 
+#'                               response.column = 1,
+#'                               time.units = "Kilocycles")
+#'    
+#' bkfatigue10.igau.gmle.out <- igau.mle(bkfatigue10.ld)                           
+#' }
 igau.mle <-
 function (data.ld,debug1= F, theta.start = NULL) 
 {
