@@ -1,3 +1,4 @@
+#' @export
 print.ddd.plan.values <-
 function (x, prefix = "",...)
 {
