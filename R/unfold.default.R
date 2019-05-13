@@ -1,3 +1,4 @@
+#' @export
 unfold.default <-
 function (x,...)
 {
