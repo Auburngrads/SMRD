@@ -1,3 +1,4 @@
+#' @export
 failure.probabilities.groupm.out <-
 function (x, new.data, printem = T, conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
     time.vec = NULL,...)
