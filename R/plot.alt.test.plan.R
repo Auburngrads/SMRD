@@ -1,3 +1,4 @@
+#' @export
 plot.alt.test.plan <-
 function (x, ALT.plan.values, use.conditions = NULL,
     quant.lines = c(0.1, 0.5, 0.9), plot.title.string = "", digits = GetSMRDDefault("SMRD.DigitsPrinted"),
