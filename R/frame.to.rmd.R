@@ -1,3 +1,54 @@
+#' Title
+#'
+#' @param frame 
+#' @param response.column 
+#' @param time.column 
+#' @param unit.column 
+#' @param group.column 
+#' @param response.units 
+#' @param unit.name 
+#' @param data.title 
+#' @param time.units 
+#' @param x.columns 
+#' @param xlabel 
+#' @param data.note 
+#' @param skip 
+#'
+#' @return NULL 
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' GaAsLaser.rmd <- 
+#'   frame.to.rmd(gaaslaser, 
+#'                response.column = 1, 
+#'                unit.column = 2, 
+#'                time.column = 3, 
+#'                response.units = "Increase in Operating Current (%)")
+#' 
+#' summary(GaAsLaser.rmd)
+#' plot(GaAsLaser.rmd)
+#' trellis.plot(GaAsLaser.rmd, order.groups = T)
+#' 
+#' trellis.plot(GaAsLaser.rmd, order.groups = F)
+#' 
+#' # Convert to a \code{life.data} object
+#' 
+#' GaAsLaser.ld <- rmd.to.ld(GaAsLaser.rmd, 
+#'                           fail.level = 10, 
+#'                           x.axis = "sqrt")
+#' 
+#' plot.rmd.residual(GaAsLaser.ld)
+#' 
+#' GaAsLaser.ld <- rmd.to.ld(GaAsLaser.rmd,
+#'                           fail.level = 10)
+#' 
+#' plot.rmd.residual(GaAsLaser.ld)
+#' 
+#' summary(GaAsLaser.ld)
+#' 
+#' }
 frame.to.rmd <-
 function (frame, 
           response.column, 
