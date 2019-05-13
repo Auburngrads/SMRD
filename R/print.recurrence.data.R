@@ -1,3 +1,4 @@
+#' @export
 print.recurrence.data <-
 function (x, includex = T, quote = T, prefix = "",...)
 {
