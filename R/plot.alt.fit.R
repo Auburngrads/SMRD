@@ -1,3 +1,4 @@
+#' @export
 plot.alt.fit <-
 function (x, data.ld, ylim = c(NA, NA), xlim = c(NA,
     NA), xlab = NULL, ylab = NULL, grids = F, title.option = GetSMRDDefault("SMRD.TitleOption"),
