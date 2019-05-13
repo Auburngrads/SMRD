@@ -689,7 +689,7 @@ thetas.at(1) = theta.at(nparm - 1);
 // 26 Aug 94 f77 noticed that nxp was undefined--perhaps nxd?? change;
 // do 33 i=3,nxp
    nxp = nxd.at(0);
-   Rcpp::stop("Pre existing issue in ast4xx -- aborting");
+   Rcpp::stop("\nPre existing issue in ast4xx -- aborting");
    
 for(int i = 3; i <= nxp; i++){
   
