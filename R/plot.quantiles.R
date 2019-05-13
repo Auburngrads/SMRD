@@ -1,3 +1,4 @@
+#' @export
 plot.quantiles <-
 function (x, log.of.data, xrange = range(Response(x$data.ld)),
     conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, col.mle = 1,
@@ -9,7 +10,7 @@ function (x, log.of.data, xrange = range(Response(x$data.ld)),
     theta.hat <- x$theta.hat
     sigma <- theta.hat[2]
     if (length(xrange) > 2) {
-        if  (is.even(numdist(distribution))) {
+        if  (SMRD2:::is.even(SMRD2:::numdist(distribution))) {
             ltime <- logb(xrange)
             time <- exp(ltime)
       } else {
@@ -17,7 +18,7 @@ function (x, log.of.data, xrange = range(Response(x$data.ld)),
             time <- ltime
         }
   } else {
-        if  (is.even(numdist(distribution))) {
+        if  (SMRD2:::is.even(SMRD2:::numdist(distribution))) {
             ltime <- seq(logb(xrange[1]), logb(xrange[2]), length = timelen)
             time <- exp(ltime)
       } else {
