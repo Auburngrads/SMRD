@@ -1,3 +1,4 @@
+#' @export
 failure.probabilities.mlest <-
 function (x,
           time.vec = NULL,
