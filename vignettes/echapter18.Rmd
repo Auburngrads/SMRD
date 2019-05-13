@@ -1,7 +1,7 @@
 ---
-title: "`r SMRD2:::info('book')`"
-subtitle: "`r SMRD2:::info('chapter18')`"
-author: "`r SMRD2:::info('authors')`"
+title: "`r info('book')`"
+subtitle: "`r info('chapter18')`"
+author: "`r info('authors')`"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -14,7 +14,7 @@ vignette: >
 ---
 
 ```{r, echo=FALSE}
-SMRD2:::vinny()
+vinny()
 library(SMRD2)
 ```
 
@@ -24,7 +24,7 @@ library(SMRD2)
 
 ```{r, eval=FALSE}
 advbond.model1 <- 
-  SMRD2:::get.alt.plan.values.from.two.points(
+  get.alt.plan.values.from.two.points(
     distribution = "Weibull",
     relationship = "Inverse Power Rule", 
     time.units = "hours", 
@@ -35,7 +35,7 @@ advbond.model1 <-
     beta = 1.667)
 
 advbond.test.plan1 <- 
-  SMRD2:::get.alt.test.plan.direct(accel.variable.levels = c(130,140,150),
+  get.alt.test.plan.direct(accel.variable.levels = c(130,140,150),
                            number.of.units = c(100,100,100))
 
 plot(advbond.test.plan1,
@@ -53,7 +53,7 @@ advbond.model2 <-
                                       sigma = .5)
 
 
-advbond.test.plan2 <- SMRD2:::get.alt.test.plan.direct(accel.variable.levels = c(80,100,120),
+advbond.test.plan2 <- get.alt.test.plan.direct(accel.variable.levels = c(80,100,120),
                          number.of.units = c(100,100,100))
 
 plot(advbond.test.plan2, 
@@ -65,9 +65,9 @@ plot(advbond.test.plan2,
 # Acceleration factors
 
 ```{r}
-SMRD2:::AF(160,80,.8,"arrhenius")
+AF(160,80,.8,"arrhenius")
 
-SMRD2:::AFplot(160,80,.8,"arrhenius")
+AFplot(160,80,.8,"arrhenius")
 
 AFplot(160,80,c(.7,.8,.9),"arrhenius")
 
