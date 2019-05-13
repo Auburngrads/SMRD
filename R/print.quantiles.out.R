@@ -1,3 +1,4 @@
+#' @export
 print.quantiles.out <-
 function (x,...)
 {
