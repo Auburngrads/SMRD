@@ -1,3 +1,4 @@
+#' @export
 plot.warranty.gmle.out <-
 function (x, add = F, xlim = c(NA, NA), ylim = c(NA,
     NA), sigma.factor = 2.5, miles.limit = NULL, time.limit = NULL,
