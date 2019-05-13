@@ -182,8 +182,7 @@ if((limit < 1) or (lenw < (limit * 4))) goto line10;
    line10: if(ier == 6) lvl = 1;
    if((ier != 0) and ((debug::kprint > 0) or (lvl > 0))) {
       
-      Rcpp::Rcout << "\nDQAGI ier = " << ier << std::endl;
-      Rcpp::warning("abnormal return from dqagi");
+      Rcpp::warning("\nAbnormal return from dqagi -- ier = %i", ier);
      
    }
    
