@@ -1,3 +1,4 @@
+#' @export
 plot.mcf <-
 function (x, conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
     plot.data = T, title.option = GetSMRDDefault("SMRD.TitleOption"), my.title = NULL, xlab = paste("Time in",
