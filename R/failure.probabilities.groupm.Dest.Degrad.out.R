@@ -1,3 +1,4 @@
+#' @export
 failure.probabilities.groupm.Dest.Degrad.out<-
 function (x, FailLevel, use.condition, time.vec = NULL,
     conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, digits = GetSMRDDefault("SMRD.DigitsPrinted"),
