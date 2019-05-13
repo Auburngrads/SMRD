@@ -1,3 +1,79 @@
+#' Title
+#'
+#' @param posterior.object 
+#' @param number.rows 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' # Specify prior distribution characteristics for the 
+#' # \code{bearingcage} data using a non-informative quantile 
+#' # and a noninformative sigma
+#' 
+#' prior.spec1 <-
+#'   specify.simple.prior(p = .01,
+#'                        qdist = "loguniform",
+#'                        qlower = 100,
+#'                        qupper = 5000,
+#'                        sigma.dist =  "lognormal",
+#'                        sigma.lower = 0.2,
+#'                        sigma.upper =  0.5,
+#'                        distribution = "Weibull")
+#'                        
+#' # Specify prior distribution characteristics for the 
+#' # \code{bearingcage} data using a noninformative quantile 
+#' # and an informative sigma
+#' 
+#' prior.spec2 <-
+#'   specify.simple.prior(p = .01,
+#'                        qdist = "loguniform",
+#'                        qlower = 1000,
+#'                        qupper = 1400,
+#'                        sigma.dist = "lognormal",
+#'                        sigma.lower = 1.5,
+#'                        sigma.upper = 2.5, 
+#'                        distribution  = "Weibull")
+#'                        
+#' # Specify prior distribution characteristics for the 
+#' # \code{bearingcage} data using an informative quantile 
+#' # and an informative sigma
+#' 
+#' prior.spec3 <-
+#'   specify.simple.prior(p = .01,
+#'                        qdist = "lognormal",
+#'                        qlower = 1000,
+#'                        qupper = 1400,
+#'                        sigma.dist = "lognormal",
+#'                        sigma.lower = 1.5,
+#'                        sigma.upper = 2.5,
+#'                        distribution  = "Weibull")
+#'  
+#' # Create the prior distributions                      
+#' prior3.bcage <- 
+#'   make.prior(spec = prior.spec3, 
+#'              number.in.prior = 3000)
+#' 
+#' 
+#' prior.and.post3.bcage <-
+#'   get.big.posterior(prior.spec3,
+#'                     BearingCage.ld)
+#' 
+#' prior.and.post3.bcage$post[1:10,] 
+#' 
+#' prior.and.post3.bcage <- 
+#'   make.small.posterior.object(prior.and.post3.bcage)
+#'   
+#' summarize.posterior.or.prior(prior.and.post3.bcage,
+#'                              post.or.prior = "post",
+#'                              task = "Marginals only",
+#'                              marginal.on.sigma = T,
+#'                              marginal.on.pos = F,
+#'                              type.position = "Parameter",
+#'                              newdata = "mu",
+#'                              include.likelihood = T)
+#' }
 make.small.posterior.object <-
 function (posterior.object, number.rows = 10) 
 {
