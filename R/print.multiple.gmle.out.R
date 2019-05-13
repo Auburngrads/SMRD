@@ -1,3 +1,4 @@
+#' @export
 print.multiple.gmle.out <-
 function (x, conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
     digits = GetSMRDDefault("SMRD.DigitsPrinted"), print.vcv = GetSMRDDefault("SMRD.LongPrint"),
