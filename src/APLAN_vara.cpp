@@ -21,8 +21,7 @@ int iopt = 0,ioptmp,iplan,k;
    if(pass3::g_iopts == 1){
      
       // z(1)=(pass2::g_a - wqm_quant(pass2::g_pmlim,idist))/b
-      Rcpp::Rcout << "\nNo optimization of stress\n" << std::endl;
-      Rcpp::stop("Execution stopped at vara.cpp");
+      Rcpp::stop("\nVARA: No optimization of stress -- Execution stopped");
      
    }
 
