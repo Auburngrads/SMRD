@@ -1,3 +1,4 @@
+#' @export
 print.alt.test.plan <-
 function (x, digits = 4, prefix = "",...)
 {
