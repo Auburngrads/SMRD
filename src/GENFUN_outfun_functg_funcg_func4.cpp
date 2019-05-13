@@ -50,7 +50,7 @@ int kfunca;
      
       if((funarg <= zero) or (funarg >= one)) {
         
-          Rcpp::stop("\nFUNARG ERROR IN FUNC3\n");
+          Rcpp::stop("\nFUNARG ERROR IN FUNC3 -- funarg = %f",funarg);
         
       }
       
