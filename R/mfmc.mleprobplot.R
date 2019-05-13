@@ -1,3 +1,63 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param distribution 
+#' @param xlab 
+#' @param ylab 
+#' @param xlim 
+#' @param ylim 
+#' @param time.range 
+#' @param time.vector.length 
+#' @param dump 
+#' @param grids 
+#' @param cex 
+#' @param linear.axes 
+#' @param plot.censored.ticks 
+#' @param ci.list 
+#' @param cex.points 
+#' @param shape 
+#' @param do.legend 
+#' @param conf.level 
+#' @param band.type 
+#' @param col.ci 
+#' @param lwd.ci 
+#' @param show.individual 
+#' @param slope.axis 
+#' @param cexlab 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' DeviceG.ld <- frame.to.ld(deviceg,
+#'                           response.column = 1, 
+#'                           failure.mode.column =  2)
+#'                           
+#' # Plots the individual failure modes separately
+#' 
+#' par(mfrow = c(1,2))
+#' mfmi.mleprobplot(DeviceG.ld, distribution = "weibull") 
+#' mfmi.mleprobplot(DeviceG.ld, distribution = "lognormal") 
+#' par(mfrow = c(1,1))
+#' 
+#' # Plots both modes in one plot
+#' 
+#' mfmc.mleprobplot(DeviceG.ld, 
+#'                  distribution = "Weibull") 
+#' 
+#' mfmc.mleprobplot(DeviceG.ld, 
+#'                  distribution = "Weibull", 
+#'                  band.type = "none")
+#'                  
+#' # different distributions for the different failure modes
+#' 
+#' mfmc.mleprobplot(DeviceG.ld, 
+#'                  distribution = "Weibull", 
+#'                  distribution.vec = c("Weibull","Lognormal"))
+#' }
 mfmc.mleprobplot <-
 function (data.ld, 
           distribution, 
