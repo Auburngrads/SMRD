@@ -1,3 +1,4 @@
+#' @export
 subset.life.data <-
 function (x, markers, columns = 1:ncol(xmat(x)),...)
 {
