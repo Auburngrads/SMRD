@@ -1,3 +1,4 @@
+#' @export
 plot.bvn <-
 function (x, muy, sdx, sdy, rho, xlim = NULL, ylim = NULL,
     fact = 2.5, number = 100, relative = F, add = T, ...)
