@@ -1,9 +1,7 @@
 #include <base/base.hpp>
 #include <genmax/gmfit1.hpp>
-#include <string>
 
 //' Perform ml estimation and find vcvs and correlation matrices
-// [[Rcpp::plugins(cpp11)]]
 void gmfit(int &ifit,
            Rcpp::NumericVector &thetas,
            Rcpp::IntegerVector &kodet,
@@ -53,8 +51,7 @@ return;
 
 using namespace genx04;
 
-//' Perform ml estimation and find vcvs and correlation matrices
-
+// Perform ml estimation and find vcvs and correlation matrices
 void gmfit1(int &ifit,
             Rcpp::NumericVector &thetat,
             Rcpp::NumericVector &thetas,
