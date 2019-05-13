@@ -1,3 +1,46 @@
+#' Title
+#'
+#' @param data.rmd 
+#' @param fail.level 
+#' @param x.axis 
+#' @param y.axis 
+#' @param xlim 
+#' @param ylim 
+#' @param title.option 
+#' @param censor.time 
+#' @param xlab 
+#' @param time.units 
+#' @param ylab 
+#' @param subset 
+#' @param big.one 
+#' @param my.title 
+#' @param group.var 
+#' @param stresses 
+#' @param extrapolation.control 
+#' @param print.estimates 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' GaAsLaser.rmd <- 
+#'   frame.to.rmd(gaaslaser, 
+#'                response.column = 1, 
+#'                unit.column = 2, 
+#'                time.column = 3, 
+#'                response.units = "Increase in Operating Current (%)")
+#' 
+#' # Convert to a \code{life.data} object
+#' 
+#' GaAsLaser.ld <- rmd.to.ld(GaAsLaser.rmd, 
+#'                           fail.level = 10, 
+#'                           x.axis = "sqrt")
+#' summary(GaAsLaser.ld)
+#' plot(GaAsLaser.ld)
+#'
+#' }
 rmd.to.ld <-
 function (data.rmd, 
           fail.level, 
