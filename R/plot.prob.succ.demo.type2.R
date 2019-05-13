@@ -1,3 +1,4 @@
+#' @export
 plot.prob.succ.demo.type2 <-
 function (x, qprob, conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
     the.n.r.values = 1:length(names(x)), do.legend = "On plot",
