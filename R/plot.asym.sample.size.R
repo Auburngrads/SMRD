@@ -1,3 +1,4 @@
+#' @export
 plot.asym.sample.size <-
 function (x, censor.time, fraction.failing, quantile.of.interest,
     xlim = c(NA, NA), ylim = c(NA, NA), conf.levels = c(0.8,
