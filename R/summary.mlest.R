@@ -1,3 +1,4 @@
+#' @export
 summary.mlest <-
 function (object,...)
 {
