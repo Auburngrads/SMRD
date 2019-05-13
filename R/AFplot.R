@@ -1,3 +1,32 @@
+#' Title
+#'
+#' @param stress 
+#' @param stress0 
+#' @param coef 
+#' @param relationship 
+#' @param power 
+#' @param number.points 
+#' @param grid 
+#' @param my.title 
+#' @param title.option 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' AF(160,80,.8,"arrhenius")
+#' 
+#' AFplot(160,80,.8,"arrhenius")
+#' 
+#' AFplot(160,80,c(.7,.8,.9),"arrhenius")
+#' 
+#' AF(130,110,-2,"Inverse Power Rule")
+#' 
+#' AFplot(130,110,-2,"Inverse Power Rule")
+#' }
+
 AFplot <-
 function (stress, stress0, coef, relationship, power, number.points = 100,
     grid = T, my.title = NULL, title.option = "full")
@@ -11,15 +40,6 @@ function (stress, stress0, coef, relationship, power, number.points = 100,
         relationship <- relationship
         coef <- coef
   }
-
-    AF <- function (stress, stress0, coef, relationship, power)
-      {
-        relationship <- set.relationship.power(relationship, power)
-        answer <- exp(coef * (f.relationship(stress0, relationship) -
-                                f.relationship(stress, relationship)))
-        names(answer) <- NULL
-        return(answer)
-      }
 
     relationship <- set.relationship.power(relationship, power)
     if (length(stress) != 1 || length(stress0) != 1)
