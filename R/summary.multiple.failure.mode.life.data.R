@@ -1,3 +1,4 @@
+#' @export
 summary.multiple.failure.mode.life.data <-
 function (object, fmode = NULL,...)
 {
