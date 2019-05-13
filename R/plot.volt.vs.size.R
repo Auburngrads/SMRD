@@ -1,3 +1,4 @@
+#' @export
 plot.volt.vs.size <-
 function (x = c(100, 200, 300), size.vec = c(1, 2, 3),...)
 {
