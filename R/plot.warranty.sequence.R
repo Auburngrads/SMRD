@@ -1,3 +1,4 @@
+#' @export
 plot.warranty.sequence <-
 function (x, miles.limit = 36, time.limit = 36,
     max.number = NULL, xlim = c(2, 1000), ylim = c(2, 1000),
