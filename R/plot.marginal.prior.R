@@ -1,3 +1,4 @@
+#' @export
 plot.marginal.prior <-
 function (x, post.or.prior, logger = "none", type.position = "Parameter",
     newdata = "mu", number.plot = 500,...)
