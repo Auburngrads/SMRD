@@ -1,8 +1,9 @@
 #include <base/base.hpp>
 #include <genmax/gmfit1.hpp>
+#include <string>
 
 //' Perform ml estimation and find vcvs and correlation matrices
-
+// [[Rcpp::plugins(cpp11)]]
 void gmfit(int &ifit,
            Rcpp::NumericVector &thetas,
            Rcpp::IntegerVector &kodet,
@@ -184,6 +185,7 @@ line102: if(debug::kprint >= 3){
       Rcpp::Rcout << "epsx = " << epsx << std::endl;
       Rcpp::Rcout << "ilabp = " << ilabp << std::endl;
       Rcpp::Rcout << "thetas = " << thetas << std::endl;
+      Rcpp::Rcout << "thetat = " << thetat << std::endl;
                
    }
    
@@ -195,6 +197,7 @@ line102: if(debug::kprint >= 3){
       Rcpp::Rcout << "\nGMFIT1**4**\n" << std::endl;
       Rcpp::Rcout << "ilabp = " << ilabp << std::endl;
       Rcpp::Rcout << "thetas = " << thetas << std::endl;
+      Rcpp::Rcout << "thetat = " << thetat << std::endl;
       Rcpp::Rcout << "delta = " << delta << std::endl;
                
    }
@@ -233,6 +236,8 @@ line102: if(debug::kprint >= 3){
       
       Rcpp::Rcout << "\nGMFIT1: fisher matrix of thetat\n" << std::endl;
       Rcpp::Rcout << "vcvs = " << vcvs << std::endl;
+      Rcpp::Rcout << "thetas = " << thetas << std::endl;
+      Rcpp::Rcout << "thetat = " << thetat << std::endl;
       
    }
    
@@ -249,6 +254,8 @@ line102: if(debug::kprint >= 3){
       
       Rcpp::Rcout << "\nGMFIT1: fisher matrix of thetas without percentile fix\n" << std::endl;
       Rcpp::Rcout << "vcvs = " << vcvs << std::endl;
+      Rcpp::Rcout << "thetas = " << thetas << std::endl;
+      Rcpp::Rcout << "thetat = " << thetat << std::endl;
       
    }
    
@@ -273,9 +280,9 @@ line102: if(debug::kprint >= 3){
    if(irank != nparmm){
       
       ierv = 1;
-      Rcpp::warning("\nGMFIT1: irank != nparmm (error code: -8080)");
-      Rcpp::Rcout << "irank = " << irank << std::endl;
-      Rcpp::Rcout << "nparmm = " << nparmm << std::endl;
+      Rcpp::warning("\nGMFIT1: irank (%i) != nparmm (%i) (error code: -8080)",irank,nparmm);
+      //Rcpp::Rcout << "irank = " << irank << std::endl;
+      //Rcpp::Rcout << "nparmm = " << nparmm << std::endl;
       
    }
    
@@ -297,6 +304,8 @@ line102: if(debug::kprint >= 3){
          
       Rcpp::Rcout << "\nGMFIT1:  expanded vcvs percentile fix\n" << std::endl;
       Rcpp::Rcout << "vcvs = " << vcvs << std::endl;
+      Rcpp::Rcout << "thetas = " << thetas << std::endl;
+      Rcpp::Rcout << "thetat = " << thetat << std::endl;
          
    }
 
