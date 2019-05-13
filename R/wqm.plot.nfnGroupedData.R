@@ -1,3 +1,6 @@
+#' @importFrom lattice strip.default panel.grid panel.xyplot 
+#' @importFrom lattice trellis.par.get panel.superpose xyplot
+#' @importFrom nlme getGroupsFormula
 wqm.plot.nfnGroupedData <-
 function (x, 
           outer = NULL, 
