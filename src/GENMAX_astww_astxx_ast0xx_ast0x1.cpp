@@ -106,7 +106,7 @@ int m = q.size(), mplot = 0;
  
 // ier = 21 is not serious here
    if(ier == 21) ier = 0;
-   if(ier > 1) Rcpp::stop("ier error at ast0x1");
+   if(ier > 1) Rcpp::stop("\nier error at ast0x1 -- ier = %i",ier);
 
    wqm_points(q,p,prob,sd,lsd,m,yplot,pplot,sdplot,mplot);
  
