@@ -141,7 +141,7 @@ line8: ddhh = dd;
       
       if(debug::kprint >= 3) {
         
-         Rcpp::Rcout << " *****warning---dd changing sign in powell" << std::endl;
+         Rcpp::warning("powelm: dd changing sign");
         
       }
       
@@ -183,9 +183,9 @@ line17: d = d + d;
         
 line18: if(debug::kprint >= 2){
   
-           Rcpp::Rcout << "0*****warning---maximum change does not alter function" << std::endl;
+           Rcpp::warning("powelm: maximum change does not alter function");
   
-}
+        }
 
         ier = 2;
         goto line20;
@@ -228,7 +228,7 @@ line26: d = db + dsign(ddmax,(db - da));
         if(ntry > maxtry) goto line993;
         
         // Try again
-        Rcpp::Rcout << "\n*****warning--poweld restart number = " << ntry << std::endl;
+        Rcpp::warning("\npowelm restart number = %i", ntry);
         ntry = ntry + 1;
         dscale = dscale * 4.0; //factor
         goto line1001;
@@ -526,7 +526,7 @@ line76: if(std::abs(f - fp) < epsilon) goto line78;
         
 line78: if((emin > 1.0e-05) or (debug::kprint >= 3)) {
   
-            Rcpp::warning("poweld: accuracy may be limited by noise in the log likelihood function");
+            Rcpp::warning("powelm: accuracy may be limited by noise in the log likelihood function");
   
         }
 
@@ -541,8 +541,7 @@ line108: iterc = iterc + 1;
          // check to see if the log likelihood is changing slowly
          if(iterc <= maxit) goto line5;
          
-        Rcpp::Rcout << "maxit = " << maxit << std::endl;
-        Rcpp::warning("poweld: max iterations completed without meeting specifications");
+        Rcpp::warning("powelm: %i iterations completed without meeting specifications", maxit);
         if(std::abs(f - fkeep) < epsilon) goto line20;
         if(f < fkeep) goto line20;
 
@@ -595,7 +594,7 @@ line107: inn = 1;
          goto line35;
 
 line993: ier = 3;
-         Rcpp::warning("poweld: warning---terminating because of too many restarts");
+         Rcpp::warning("powelm terminating because of too many restarts");
          
 return;
 
