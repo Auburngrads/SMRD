@@ -1,3 +1,4 @@
+#' @export
 summary.FillRegion.out <-
 function (object, digits = 4,...)
 {
