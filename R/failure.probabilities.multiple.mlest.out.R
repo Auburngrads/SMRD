@@ -1,3 +1,4 @@
+#' @export
 failure.probabilities.multiple.mlest.out <-
 function (x, time.vec = NULL, conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
     shape = NULL, digits = GetSMRDDefault("SMRD.DigitsPrinted"),
