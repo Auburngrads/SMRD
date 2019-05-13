@@ -1,3 +1,4 @@
+#' @export
 print.failure.probabilities.out <-
 function (x,...)
 {
