@@ -1,3 +1,60 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param debug1 
+#' @param theta.start 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' berkson200.ld <- frame.to.ld(berkson200,
+#'                              response.column = c(1,2),
+#'                              censor.column = 3,
+#'                              case.weight.column = 4,
+#'                              time.units = "1/5000 Seconds")
+#' 
+#' summary(berkson200.ld)
+#' 
+#' plot(berkson200.ld)
+#' plot(berkson200.ld, dist = "gamma", shape = 0.5)
+#' plot(berkson200.ld, dist = "gamma", shape = 5)
+#' 
+#' berkson200.mle.gam <- Gamma.mle(berkson200.ld)
+#' 
+#' LocomotiveControl.ld <- frame.to.ld(locomotivecontrol,
+#'                                     response.column = 1, 
+#'                                     censor.column = 2,
+#'                                     case.weight.column = 3,
+#'                                     time.units = "kMiles")
+#'                                     
+#' LocomotiveControl.gamma.gmle.out <- Gamma.mle(LocomotiveControl.ld)
+#' 
+#' summary(bear.gamma.gmle.out)
+#' 
+#' gmleprobplot(LocomotiveControl.ld,
+#'              distribution = "gamma", 
+#'              xlim = c(10,199),
+#'              ylim = c(.0011,.991))
+#'              
+#' bkfatigue10.ld <- frame.to.ld(bkfatigue10, 
+#'                               response.column = 1,
+#'                               time.units = "Kilocycles")
+#' 
+#' summary(bkfatigue10.ld)
+#' 
+#' bkfatigue10.gamma.gmle.out <- Gamma.mle(bkfatigue10.ld)
+#' 
+#' gmleprobplot(bkfatigue10.ld,
+#'              distribution = "gamma",
+#'              compare = c("Lognormal"))
+#' 
+#' gmleprobplot(bkfatigue10.ld,
+#'              distribution = "Lognormal",
+#'              compare = c("gamma"))
+#' }
 Gamma.mle <-
   function (data.ld,debug1= F, theta.start = NULL)
   {
