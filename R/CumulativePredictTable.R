@@ -1,3 +1,45 @@
+#' Title
+#'
+#' @param mlest.out 
+#' @param time.increment 
+#' @param number.time.units.ahead 
+#' @param warranty.time 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' # No warranty enforcement
+#' 
+#' DeviceN.NoEnforce.weib <-
+#'   CumulativePredictTable(DeviceN.mlest.weib,
+#'                          time.increment = 1,
+#'                          number.time.units.ahead = 50,
+#'                          warranty.time = 1000)
+#' 
+#' PlotCumulativePredictTable(DeviceN.NoEnforce.weib,
+#'                            plot.what = "density")
+#' 
+#' PlotCumulativePredictTable(DeviceN.NoEnforce.weib,
+#'                            plot.what = "cumulative")
+#' 
+#' # Strict warranty enforcement
+#' 
+#' DeviceN.Enforced.weib <-
+#'   CumulativePredictTable(DeviceN.mlest.weib,
+#'                          time.increment = 1,
+#'                          number.time.units.ahead = 50,
+#'                          warranty.time = 36)
+#' 
+#' PlotCumulativePredictTable(DeviceN.Enforced.weib,
+#'                            plot.what = "density")
+#' 
+#' PlotCumulativePredictTable(DeviceN.Enforced.weib,
+#'                            plot.what = "cumulative")
+#' 
+#' }
 CumulativePredictTable <-
 function (mlest.out, time.increment, number.time.units.ahead, 
     warranty.time) 
