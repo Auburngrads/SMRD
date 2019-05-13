@@ -43,7 +43,7 @@ dlegengl <-
                       lgamxk)
     
     zout <- SGPDFL(as.double(x), 
-                   as.double(gammemat), 
+                   as.matrix(gammemat), 
                    as.integer(maxlen), 
                    answer = double(maxlen))
     
@@ -98,7 +98,7 @@ pegengl <-
                       lgamxk)
     
     zout <- SPGENG(as.double(q), 
-                   as.double(gammemat), 
+                   as.matrix(gammemat), 
                    as.integer(maxlen), 
                    answer = double(maxlen))
     
@@ -158,7 +158,7 @@ qegengl <-
                       lgamxk)
     
     zout <- SGQUAN(as.double(p),
-                   as.double(gammemat),
+                   as.matrix(gammemat),
                    as.integer(maxlen), 
                    answer = double(maxlen))
     
@@ -200,7 +200,7 @@ segengl <-
                       lgamxk)
     
     zout <- SPMLGENG(as.double(x),
-                     as.double(gammemat), 
+                     as.matrix(gammemat), 
                      as.integer(maxlen), 
                      answer = double(maxlen))
     
