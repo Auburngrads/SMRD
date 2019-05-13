@@ -1,3 +1,28 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param debug1 
+#' @param theta.start 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' berkson200.ld <- frame.to.ld(berkson200,
+#'                              response.column = c(1,2),
+#'                              censor.column = 3,
+#'                              case.weight.column = 4,
+#'                              time.units = "1/5000 Seconds")
+#' 
+#' summary(berkson200.ld)
+#' 
+#' plot(berkson200.ld)
+#' plot(berkson200.ld, dist = "Exponential")
+#' 
+#' expon.mle(berkson200.ld)
+#' }
 expon.mle <-
 function (data.ld,debug1= F, theta.start = NULL)
 {
