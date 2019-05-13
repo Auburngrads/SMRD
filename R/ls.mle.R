@@ -1,3 +1,25 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param distribution 
+#' @param debug1 
+#' @param theta.start 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' ShockAbsorber.ld <- frame.to.ld(shockabsorber,
+#'                                 response.column = 1, 
+#'                                 censor.column = 3,
+#'                                 time.units = "Kilometers")
+#'                                 
+#' SA.weibull.gmle <- ls.mle(ShockAbsorber.ld, 
+#'                           distribution = "Weibull")
+#' }
 ls.mle <-
 function (data.ld, distribution = "weibull",debug1= 0, theta.start = NULL,
     ...)
