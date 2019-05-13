@@ -1,3 +1,4 @@
+#' @export
 plot.groupi.Dest.Degrad.out <-
 function (x, transformation.x, ylim = c(NA,
     NA), xlim = c(NA, NA), my.title = NULL, title.option = GetSMRDDefault("SMRD.TitleOption"),
