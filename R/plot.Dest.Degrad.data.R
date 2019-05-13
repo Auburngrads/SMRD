@@ -1,3 +1,4 @@
+#' @export
 plot.Dest.Degrad.data <-
 function (x, 
           transformation.response = "log", 
