@@ -1,3 +1,4 @@
+#' @export
 plot.use.rate.dist <-
 function (x, xlab = "Cycles per Unit Time", number.sample = 50000,...)
 {
