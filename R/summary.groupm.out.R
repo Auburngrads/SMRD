@@ -1,3 +1,4 @@
+#' @export
 summary.groupm.out <-
 function (object, ...)
 {
