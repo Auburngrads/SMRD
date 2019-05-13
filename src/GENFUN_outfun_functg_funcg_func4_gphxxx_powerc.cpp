@@ -34,13 +34,7 @@ prod = xlog * power;
 
 if(prod > bigexp){
   
-   Rcpp::warning("\nprod > bigexp in powerc");
-   Rcpp::Rcout << "\nPOWERC\n" << std::endl;
-   Rcpp::Rcout << "x = " << x << std::endl;
-   Rcpp::Rcout << "power = " << power << std::endl;
-   Rcpp::Rcout << "xlog = " << xlog << std::endl;
-   Rcpp::Rcout << "prod = " << prod << std::endl;
-   Rcpp::Rcout << "powerc = " << power_c << std::endl;
+   Rcpp::warning("\nprod (%f) > bigexp (%f) in powerc.\nAlso, power = %f \n x = %f \n xlog = %f \n powerc = %f", prod,bigexp,power,x,xlog,power_c);
    
    return power_c;
   
