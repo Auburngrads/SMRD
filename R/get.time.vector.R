@@ -1,3 +1,50 @@
+#' Title
+#'
+#' @param obj 
+#' @param distribution 
+#' @param number 
+#' @param time.range 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' ShockAbsorber.ld <- frame.to.ld(shockabsorber,
+#'                                 response.column = 1,
+#'                                 failure.mode.column = 2,
+#'                                 censor.column = 3, 
+#'                                 time.units = "Kilometers")
+#' summary(ShockAbsorber.ld)
+#' event.plot(ShockAbsorber.ld)
+#' 
+#' # Split out by failure mode
+#' 
+#' mleprobplot(ShockAbsorber.ld, 
+#'             distribution = "Weibull")
+#' 
+#' mfmi.mleprobplot(ShockAbsorber.ld, 
+#'                  distribution = "Weibull")
+#' 
+#' mfmc.mleprobplot(ShockAbsorber.ld, 
+#'                  distribution = "Weibull")
+#'                  
+#' ShockAbsorber.mfld <- mfm.to.ld(ShockAbsorber.ld)
+#' 
+#' multiple.mleprobplot(ShockAbsorber.mfld,
+#'                      data.ld.name="xx",
+#'                      xlab="yy",
+#'                      distribution="Weibull")
+#' 
+#' mleprobplot(ShockAbsorber.Mode1.ld, 
+#'             distribution = "Weibull")
+#' 
+#' mleprobplot(ShockAbsorber.Mode2.ld,
+#'             distribution = "Weibull")
+#' 
+#' get.time.vector(ShockAbsorber.Mode2.ld)
+#' }
 get.time.vector <-
 function (obj, 
           distribution, 
