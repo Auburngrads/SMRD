@@ -1,3 +1,4 @@
+#' @export
 plot.rmd.predicted <-
 function (x, p = NA, col.quantile.mle = 3, plot.data.points = T,
     col.predicted = 4,...)
