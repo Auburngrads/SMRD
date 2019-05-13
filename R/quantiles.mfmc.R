@@ -1,3 +1,4 @@
+#' @export
 quantiles.mfmc <-
 function (x, prob.vec = as.numeric(ClistToVec(GetSMRDDefault("SMRD.DefaultQuantileList"))),
     my.title = NULL, conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
