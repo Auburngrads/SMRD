@@ -1,3 +1,4 @@
+#' @export
 summary.groupi.Dest.Degrad.out <-
 function (object, ...)
 {
