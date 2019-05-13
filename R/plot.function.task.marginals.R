@@ -1,3 +1,4 @@
+#' @export
 plot.function.task.marginals <-
 function (x, post.or.prior, marginal.on, marginal.on.detail,
     conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, interval.type = "two-sided",
