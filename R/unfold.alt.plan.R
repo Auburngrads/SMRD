@@ -1,3 +1,4 @@
+#' @export
 unfold.alt.plan <-
 function (x, alt.plan.values, use.condition,...)
 {
