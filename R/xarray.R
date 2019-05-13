@@ -11,6 +11,7 @@
 #' @param ... Additional options used in \code{xtable:::print.xtable}
 #' 
 #' @return An printed LaTeX array class object 
+#' @importFrom xtable xtable print.xtable 
 #' @export 
 xarray <- function(table, digits = NULL, matrix = FALSE,...) {
 
