@@ -1,3 +1,4 @@
+#' @export
 plot.hazard <-
 function (x, 
           xlim = c(NA, NA), 
