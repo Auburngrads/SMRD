@@ -1,3 +1,4 @@
+#' @export
 plot.prediction.order <-
 function (x, 
           nsamsize, 
