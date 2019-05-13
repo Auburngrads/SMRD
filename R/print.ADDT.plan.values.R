@@ -1,3 +1,4 @@
+#' @export
 print.ADDT.plan.values <-
 function (x, prefix = "", quote = F,...)
 {
