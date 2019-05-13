@@ -1,3 +1,4 @@
+#' @export
 plot.function.marginals <-
 function (x, conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
     interval.type = "two-sided", p.for.quantile = NULL, x.of.interest = NULL,
