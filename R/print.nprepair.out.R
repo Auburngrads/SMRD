@@ -1,3 +1,4 @@
+#' @export
 print.nprepair.out <-
 function (x, conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
     citype = "logtran",...)
