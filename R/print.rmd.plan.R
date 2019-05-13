@@ -1,3 +1,4 @@
+#' @export
 print.rmd.plan <-
 function (x,...)
 {
