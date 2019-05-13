@@ -1,3 +1,4 @@
+#' @export
 failure.probabilities.plan.values<-
 function (x, time.vec = NULL, digits = 3, number.times = 10,...)
 {
