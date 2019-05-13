@@ -1,3 +1,4 @@
+#' @export
 print.mcf.table <-
 function (x,...)
 {
