@@ -1,3 +1,4 @@
+#' @export
 plot.use.rate.model <-
 function (x, modes.to.plot, xlim = c(NA, NA),
     ylim = c(NA, NA), field.data.ld = NULL, lab.data.list = NULL,
