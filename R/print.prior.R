@@ -1,3 +1,4 @@
+#' @export
 print.prior <-
 function (x, 
           prefix = "xx", 
