@@ -1,3 +1,60 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param distribution 
+#' @param relationship.parameters 
+#' @param explan.vars 
+#' @param gamthr 
+#' @param theta.start 
+#' @param parameter.fixed 
+#' @param intercept 
+#' @param kprint 
+#' @param maxit 
+#' @param debug1 
+#' @param genforce 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' berkson200.ld <- frame.to.ld(berkson200,
+#'                              response.column = c(1,2),
+#'                              censor.column = 3,
+#'                              case.weight.column = 4,
+#'                              time.units = "1/5000 Seconds")
+#' 
+#' summary(berkson200.ld)
+#' 
+#' plot(berkson200.ld)
+#' plot(berkson200.ld, dist = "Exponential")
+#' 
+#' cdfest(berkson200.ld)
+#' 
+#' berkson200.mle.exp <- mlest(berkson200.ld, 
+#'                             distribution = "Exponential")
+#' 
+#' print(berkson200.mle.exp)
+#' 
+#' doatrun.ld <- frame.to.ld(doatrun,
+#'                           response.column = c(1,2),
+#'                           censor.column = 3, 
+#'                           case.weight.column = 4,
+#'                           truncation.response.column = 5, 
+#'                           truncation.type.column = 6, 
+#'                           data.title = "DOA Truncated Data", 
+#'                           time.units = "Hours")
+#' 
+#' summary(doatrun.ld)
+#' 
+#' cdfest(doatrun.ld)
+#' 
+#' doatrun.mle.weib <- mlest(doatrun.ld,"Weibull")
+#' 
+#' print(doatrun.mle.weib)
+#' }
 mlest <-
 function (data.ld, 
           distribution, 
