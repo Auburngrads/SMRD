@@ -61,9 +61,7 @@ for(int j = 1; j <= ncolxp; j++){
 
    if(ier > 0) {
       
-      Rcpp::Rcout << "\nier error in trdat" << std::endl;
-      Rcpp::Rcout << "ier = " << ier        << std::endl;
-      Rcpp::stop("Execution stopped at trdat.cpp");
+      Rcpp::stop("\ntrdat: ier error\nier1 = %i\nier2 = %i\nier = %i",ier1,ier2,ier);
       
    }
 
