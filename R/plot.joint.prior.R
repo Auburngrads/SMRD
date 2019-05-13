@@ -1,3 +1,4 @@
+#' @export
 plot.joint.prior <-
 function (x, post.or.prior, type.position, newdata = NULL,
     logger = "none", number.plot = 500, xlim = c(NA, NA),
