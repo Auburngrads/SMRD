@@ -142,36 +142,48 @@ asd.quant(plan.values3,
 #get a single variance factor like in Figures 10.5 and 10.6
 
 ```{r}
+# For the normal distribution
 variance.factor(distribution = 'normal', 
                 type = 'quantile', 
                 quantile.of.interest = 0.02,
                 proportion.failing = 0.2)
 
-#and for the normal distribution
 
+# For the smallest extreme value distribution
 variance.factor(distribution = 'sev',
                 type = 'quantile', 
                 quantile.of.interest = 0.02,
                 proportion.failing = 0.2)
 ```
 
-asym.test.plan.properties(influid.plan.values3, n=50, proportion.failing=.1)
+```{r}
+asym.test.plan.properties(plan.values3, 
+                          n = 50, 
+                          proportion.failing = 0.1)
 
-asd.quant(influid.plan.values3,n=50, censor.time = 1000, quantile.mark=c(0.1, 0.3, 0.5, 0.63))
+asd.quant(plan.values3,
+          n = 50, 
+          censor.time = 1000, 
+          quantile.mark = c(0.1, 0.3, 0.5, 0.63))
+```
 
-#scaled fisher information matrix elements from the Escobar & Meeker algorithm:
+Scaled fisher information matrix elements from the Escobar & Meeker algorithm
 
-lsinf(seq(-1,1,by=.1),"right","sev")
+```{r}
+lsinf(seq(-1,1, by = 0.1),"right","sev")
 
-lsinf(seq(-2,2,by=.2),"right","normal")
+lsinf(seq(-2,2, by = 0.2),"right","normal")
+```
 
-# information like that in Table C.20
+Generate information table like that shown in Table C.20
 
+```{r}
 table.lines(seq(-1,1,by=.1),"sev")
 
 table.lines(seq(-1,1,by=.1),"normal")
+```
 
-
+```{r}
 variance.factor("sev", type = 'quantile')
 variance.factor("normal", type = 'quantile')
 variance.factor("logistic", type = 'quantile')
@@ -180,81 +192,145 @@ variance.factor("logistic", type = 'quantile')
 variance.factor("sev", type = 'hazard')
 variance.factor("normal", type = 'hazard')
 variance.factor("logistic", type = 'hazard')
+```
 
-#number of test time.units needed for minimum-sized demonstration
+Number of test time units needed for minimum-sized demonstration
 
-zero.failure.plan(xrange=c(1.51,3.99), yrange=c(.1,29), krange=c(1.5,3.83))
+```{r}
+zero.failure.plan(xlim = c(1.51,3.99), 
+                  ylim = c(.1,29), 
+                  krange = c(1.5,3.83))
 
-zero.failure.plan(betavec = c( 1., 2.), quantile = 0.01, conlev = 0.95, xrange=c(1.51,10), yrange=c(.1,199), krange=c(1.5,10),grid=T,bw=FALSE)
+zero.failure.plan(betavec = c( 1., 2.), 
+                  quantile = 0.01, 
+                  conlev = 0.95, 
+                  xlim = c(1.51,10), 
+                  ylim = c(.1,199), 
+                  krange = c(1.5,10),
+                  grid = T,
+                  bw = FALSE)
+```
 
-#determine test length (multiple of spec)
+Determine test length (multiple of spec)
 
+```{r}
 zero.failure.k(beta = 2, quantile = 0.1, conlev = 0.99,	n = 5)
 
 zero.failure.k(beta = 1, quantile = 0.01, conlev = 0.95, n = 5)
 
 zero.failure.k(beta = 2, quantile = 0.01, conlev = 0.95, n = 5)
+```
 
-#determine sample size for a 0-failure test
+Determine sample size for a 0-failure test
 
-zero.failure.n(conlev=.95, quantile=0.01, k=14, beta=1)
+```{r}
+zero.failure.n(conlev = 0.95, quantile = 0.01, k = 14, beta = 1)
 
-zero.failure.n(conlev=.95, quantile=0.01, k=3.369, beta=2)
+zero.failure.n(conlev = 0.95, quantile = 0.01, k = 3.369, beta = 2)
 
-zero.failure.prsd(alpha.vec=c(0.05,0.1),quantile=.01,pfactor=3)
+zero.failure.prsd(alpha.vec = c(0.05,0.1), quantile = 0.01, pfactor = 3)
+```
 
+# Plan for a light bulb test
 
-#plan for a light bulb test
-
-bulb.plan.values1 <- get.plan.values("normal", sigma=85, prob=.5, time=1000, time.units="Hours")
+```{r}
+bulb.plan.values1 <- get.plan.values("normal", 
+                                     sigma = 85, 
+                                     prob = 0.5,
+                                     time = 1000,
+                                     time.units = "Hours")
 
 summary(bulb.plan.values1)
 plot(bulb.plan.values1)
 
-life.test.simulation(bulb.plan.values1, n=50,censor.time = 1000, number.detail=5, quantile.mark=.5)
+life.test.simulation(bulb.plan.values1, 
+                     n = 50,
+                     censor.time = 1000, 
+                     number.detail = 5,
+                     quantile.mark = 0.5)
+```
 
-
-plot(influid.plan.values3,censor.time=100,quantile.of.interest=.1)
+```{r}
+plot(plan.values3,
+     censor.time = 100,
+     quantile.of.interest = 0.1)
 
 #here is an example using type 2 censoring
 
-plot(influid.plan.values3,fraction.failing=.1,quantile.of.interest=.1)
+plot(plan.values3,
+     fraction.failing = 0.1,
+     quantile.of.interest = 0.1)
 
-#in actual application, use number.sim = 10000 to get smoother curves
+# In actual application, use number.sim = 10000 to get smoother curves
 
+asym.sample.size(plan.values3,
+                 censor.time = 500,
+                 Rvalue = 1.5,
+                 quantile.of.interest = 0.1)
 
-asym.sample.size(influid.plan.values3,censor.time=500,Rvalue=1.5,quantile.of.interest=.1)
+asym.sample.size(plan.values3,
+                 fraction.failing = 0.1,
+                 Rvalue = 1.5,
+                 quantile.of.interest = 0.1)
 
-asym.sample.size(influid.plan.values3,fraction.failing=.1,Rvalue=1.5,quantile.of.interest=.1)
+asym.sample.size(bulb.plan.values1,
+                 fraction.failing = 0.1,
+                 HalfWidth = 50,
+                 quantile.of.interest = 0.1)
+```
 
-asym.sample.size(bulb.plan.values1 ,fraction.failing=.1,HalfWidth=50,quantile.of.interest=.1)
+```{r}
+mstt1 <- multiple.simulate.type.two(n = c(20,30,40), 
+                                    r = c(20,30,40),
+                                    distribution = "lognormal",
+                                    number.sim = 1000)
 
-mstt1.out <- multiple.simulate.type.two(n=c(20,30,40), r=c(20,30,40), distribution="lognormal", number.sim = 1000)
-
-
-plot(mstt1.out,qprob=.9)
-
-plot(mstt1.out,qprob=.8)
-
-plot(mstt1.out,qprob=.5)
-
-
-mstt2.out <- multiple.simulate.type.two(n=c(20,30,40), r=c(10,15,20), distribution="lognormal", number.sim = 1000)
-
-plot(mstt2.out,qprob=.9)
-plot(mstt2.out,qprob=.8)
-plot(mstt2.out,qprob=.5,grids=T)
-
-plot(multiple.simulate.type.two(n=c(24,28,33), r=c(24,28,33), distribution="normal", number.sim = 1000),qprob=.9)
-
-# The following are for testing only and actual simulations should use at least 2000 trials
-
-plot.prob.cs.type2("lognormal", k=2,n=c(5,10,20),r=c(3,6,12), number.sim=100)
-
-plot.prob.cs.type2("loglogistic", k=2,n=c(5,10,20),r=c(3,6,12), number.sim=100)
-
-plot.prob.cs.type2("weibull", k=2,n=c(5,10,20),r=c(3,6,12), number.sim=100)
-
-plot.prob.cs.type2("frechet", k=2,n=c(5,10,20),r=c(3,6,12), number.sim=100)
+plot(mstt1, qprob = 0.9)
+plot(mstt1, qprob = 0.8)
+plot(mstt1, qprob = 0.5)
 
 
+mstt2 <- multiple.simulate.type.two(n = c(20,30,40), 
+                                    r = c(10,15,20),
+                                    distribution = "lognormal",
+                                    number.sim = 1000)
+
+plot(mstt2, qprob = 0.9)
+plot(mstt2, qprob = 0.8)
+plot(mstt2, qprob = 0.5, grids = T)
+
+mstt3 <- multiple.simulate.type.two(n = c(24,28,33), 
+                                    r = c(24,28,33),
+                                    distribution = "normal", 
+                                    number.sim = 1000)
+
+plot(mstt3, qprob = 0.9)
+```
+
+The following are for testing only and actual simulations should use at least 2000 trials
+
+```{r}
+plot.prob.cs.type2("lognormal", 
+                   k = 2,
+                   n = c(5,10,20),
+                   r = c(3,6,12), 
+                   number.sim = 100)
+
+plot.prob.cs.type2("loglogistic", 
+                   k = 2,
+                   n = c(5,10,20),
+                   r = c(3,6,12), 
+                   number.sim = 100)
+
+plot.prob.cs.type2("weibull", 
+                   k = 2,
+                   n = c(5,10,20),
+                   r = c(3,6,12), 
+                   number.sim = 100)
+
+plot.prob.cs.type2("frechet", 
+                   k = 2,
+                   n = c(5,10,20),
+                   r = c(3,6,12),
+                   number.sim = 100)
+```
