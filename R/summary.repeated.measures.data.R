@@ -1,3 +1,4 @@
+#' @export
 summary.repeated.measures.data <-
 function (object,...)
 {
