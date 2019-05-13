@@ -1,3 +1,20 @@
+#' Title
+#'
+#' @param z 
+#' @param distribution 
+#'
+#' @return a list of values
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' table.lines(seq(-1,1,by=.1),"sev")
+#'
+#' table.lines(seq(-1,1,by=.1),"normal")
+#' 
+#' }
+#' @seealso \code{\link{lsinf}} \code{\link{variance.factor}}
 table.lines <-
 function (z, distribution) 
 {
