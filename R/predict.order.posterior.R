@@ -1,3 +1,4 @@
+#' @export
 predict.order.posterior <-
 function (object, 
           nsamsize, 
