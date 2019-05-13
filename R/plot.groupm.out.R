@@ -1,3 +1,4 @@
+#' @export
 plot.groupm.out <-
 function (x, focus.variable, fixed.other.values, range.of.focus = range(xmat(data.ld)[[focus.variable]]),
     ylim = c(NA, NA), xlim = c(NA, NA), xlab = NULL, ylab = NULL,
