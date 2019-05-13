@@ -1,6 +1,0 @@
-Kilocycles	Event	Count
-212	Censored	1
-292	Fail	1
-345	Fail	1
-392	Fail	1
-1100	Censored	8
