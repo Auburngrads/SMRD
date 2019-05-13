@@ -1,3 +1,4 @@
+#' @export
 print.life.data <-
 function (x, 
           includex = T, 
