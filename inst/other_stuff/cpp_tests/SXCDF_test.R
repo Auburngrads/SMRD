@@ -1,0 +1,40 @@
+library(SMRD)
+ndist1 = 2
+ndist2 = 2
+beta0 = 30.27241
+beta1 = -5.100121
+stress = 270
+sigma = 0.2894549
+ugamma = 5.365834
+sgamma = 0.03140004
+w = logb(5000)
+debug1= F
+    
+      max.length <- max(length(beta0), length(beta1), length(sigma),
+                        length(ugamma), length(sgamma), length(stress), length(w))
+      beta0  <- SMRD:::expand.vec(beta0, max.length)
+      beta1  <- SMRD:::expand.vec(beta1, max.length)
+      sigma  <- SMRD:::expand.vec(sigma, max.length)
+      ugamma <- SMRD:::expand.vec(ugamma, max.length)
+      sgamma <- SMRD:::expand.vec(sgamma, max.length)
+      stress <- SMRD:::expand.vec(stress, max.length)
+      w      <- SMRD:::expand.vec(w, max.length)
+      if (debug1) browser()
+      zout <- .Fortran("sxcdf", as.integer(ndist1), as.integer(ndist2),
+                       as.double(beta0), as.double(beta1), as.double(stress),
+                       as.double(sigma), as.double(ugamma), as.double(sgamma),
+                       as.double(w), as.integer(max.length), answer = double(max.length),
+                       ier = integer(max.length))
+      
+      new = SMRD2::SXCDF(as.integer(ndist1), 
+                         as.integer(ndist2),
+                         as.double(beta0), 
+                         as.double(beta1), 
+                         as.double(stress),
+                         as.double(sigma), 
+                         as.double(ugamma),
+                         as.double(sgamma),
+                         as.double(w), 
+                         as.integer(max.length), 
+                         answer = double(max.length),
+                         ier = integer(max.length))
