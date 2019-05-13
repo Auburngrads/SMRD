@@ -1,3 +1,4 @@
+#' @export
 plot.censored.data.points <-
 function (x, y.data, censor.codes, x.axis, y.axis, cex.points = 1.2,
     response.on.yaxis = T, cex = 1.2, pch.point = 16, dummy = rep(F,
