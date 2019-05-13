@@ -1,5 +1,5 @@
 library(SMRD)
-testnum = 2
+testnum = 3
 if(testnum == 1) {
 lz.ld <- frame.to.ld(superalloy,
                      response.column = 1,
@@ -28,6 +28,22 @@ data.ld <- lz.ld
 distribution = "weibull"
 theta.start = NULL
 explan.vars = list(mu.relat = c(2,3))
+mu.relat = NULL
+sigma.relat = NULL
+prob.relat = NULL
+model = 0
+
+}
+if(testnum == 3) {
+lz.ld <- frame.to.ld(superalloy,
+                     response.column = 1,
+                     censor.column = 2,
+                     case.weight.column = 3,
+                     x.columns = c(4,5,6))
+data.ld <- lz.ld
+distribution = "weibull"
+theta.start = NULL
+explan.vars = NULL
 mu.relat = NULL
 sigma.relat = NULL
 prob.relat = NULL
