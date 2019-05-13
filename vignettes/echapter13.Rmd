@@ -63,7 +63,7 @@ GaAsLaser.ld <- SMRD2:::rmd.to.ld(GaAsLaser.rmd,
 
 SMRD2:::plot.rmd.residual(GaAsLaser.ld)
 
-#summary(GaAsLaser.ld)
+summary(GaAsLaser.ld)
 ```
 
 ## ML Probability plots
