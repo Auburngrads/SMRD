@@ -1,3 +1,4 @@
+#' @export
 plot.simple.contour <-
 function (x, the.quantile = NA, rel.or.conf = "Joint confidence region",
     contour.indicators = NULL, title.option = GetSMRDDefault("SMRD.TitleOption"), factor = 3.5,
