@@ -1,3 +1,4 @@
+#' @export
 print.multiple.estimates.out <-
 function (x,...)
 {
