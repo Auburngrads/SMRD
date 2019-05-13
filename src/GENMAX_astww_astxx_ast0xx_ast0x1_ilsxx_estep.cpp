@@ -75,8 +75,7 @@ for(int i = 1; i <= nrownw; i++){
         } else {
           
            times.at(i - 1,0) = (y.at(i - 1,0) + y.at(i - 1,1)) / 2.0;
-           Rcpp::Rcout << "Diff error in estep times = " << times.at(i - 1,0) << std::endl;
-           Rcpp::stop("Error: Execution stopped at estep.cpp");
+           Rcpp::stop("\nDiff error in estep -- Diff = %f", times.at(i - 1,0));
         
         }
        
