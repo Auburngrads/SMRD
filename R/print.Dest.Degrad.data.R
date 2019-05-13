@@ -1,3 +1,4 @@
+#' @export
 print.Dest.Degrad.data <-
 function (x, includex = T, quote = F, prefix = "",...)
 {
