@@ -1,3 +1,4 @@
+#' @export
 simulate.truncate.ld <-
 function (object, ...)
 {
