@@ -1,3 +1,4 @@
+#' @export
 print.mcf <-
 function (x, conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
     citype = "logtran", digits = GetSMRDDefault("SMRD.DigitsPrinted"),
