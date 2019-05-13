@@ -1,3 +1,4 @@
+#' @export
 quantiles.groupm.out <-
 function (x, new.data, prob.vec = as.numeric(ClistToVec(GetSMRDDefault("SMRD.DefaultQuantileList"))),
     printem = T, conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
