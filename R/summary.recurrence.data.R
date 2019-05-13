@@ -1,3 +1,4 @@
+#' @export
 summary.recurrence.data <-
 function (object,...)
 {
