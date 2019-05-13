@@ -155,8 +155,7 @@ l3 = limit + l2;
 // Call error handler if necessary
    line10: if(ier != 0){
         
-              Rcpp::Rcout << "\nier = " << ier << std::endl;
-              Rcpp::stop("Abnormal return from dqags");
+              Rcpp::stop("\nAbnormal return from dqags -- ier = %i",ier);
                  
            } 
 
