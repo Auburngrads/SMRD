@@ -1,3 +1,4 @@
+#' @export
 quantiles.groupm.Dest.Degrad.out <-
 function (x, FailLevel, use.condition, prob.vec = as.numeric(ClistToVec(GetSMRDDefault("SMRD.DefaultQuantileList"))),
     conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, digits = GetSMRDDefault("SMRD.DigitsPrinted"),
