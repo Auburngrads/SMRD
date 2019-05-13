@@ -1,3 +1,4 @@
+#' @export
 print.ADDT.test.plan <-
 function (x, print = "hframe",...)
 {
