@@ -49,7 +49,7 @@ int ier = 0,kfunca;
      
       if((funarg < zero) or (funarg >= one)) {
         
-          Rcpp::stop("\nFUNARG ERROR IN FUNC0\n");
+          Rcpp::stop("\nFUNARG ERROR IN FUNC0 -- funarg = %f",funarg);
         
       }
       
