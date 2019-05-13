@@ -153,12 +153,9 @@ dinvx(vcv,ntermm,tol,ic,jc,irank,idim);
 
 if(irank != ntermm) {
 
-   Rcpp::Rcout << "irank != ntermm\n"   << std::endl;
-   Rcpp::Rcout << "irank = "  << irank  << std::endl;
-   Rcpp::Rcout << "ntermm = " << ntermm << std::endl;
    Rcpp::Rcout << "ic = "     << ic     << std::endl;
    Rcpp::Rcout << "jc = "     << jc     << std::endl;
-   Rcpp::stop("Execution halted at wlsq1.cpp");
+   Rcpp::stop("\nwlsq1: irank (%i) != ntermm (%i)", irank,ntermm);
 
 }
 
