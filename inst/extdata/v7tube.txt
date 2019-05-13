@@ -1,6 +1,0 @@
-Lower	Upper	Event	Count
-25	25	Left	109
-25	50	Interval	42
-50	75	Interval	17
-75	100	Interval	7
-100	100	Right	13
