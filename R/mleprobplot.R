@@ -1,3 +1,81 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param distribution 
+#' @param gamthr 
+#' @param xlab 
+#' @param xlim 
+#' @param ylim 
+#' @param time.range 
+#' @param conf.level 
+#' @param my.title 
+#' @param cex 
+#' @param cex.labs 
+#' @param cex.axis 
+#' @param sub.title 
+#' @param grids 
+#' @param linear.axes 
+#' @param slope.axis 
+#' @param title.option 
+#' @param ylab 
+#' @param trunc.correct 
+#' @param add 
+#' @param cex.points 
+#' @param theta.start 
+#' @param parameter.fixed 
+#' @param plot.censored.ticks 
+#' @param pch 
+#' @param print.parameters 
+#' @param band.type 
+#' @param debug1 
+#' @param lwd.ci 
+#' @param lwd.fhat 
+#' @param band.method 
+#' @param mono.tran 
+#' @param title.line.adj 
+#' @param param.loc 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' ShockAbsorber.ld <- frame.to.ld(shockabsorber,
+#'                                 response.column = 1,
+#'                                 failure.mode.column = 2,
+#'                                 censor.column = 3, 
+#'                                 time.units = "Kilometers")
+#' summary(ShockAbsorber.ld)
+#' event.plot(ShockAbsorber.ld)
+#' 
+#' # Split out by failure mode
+#' 
+#' mleprobplot(ShockAbsorber.ld, 
+#'             distribution = "Weibull")
+#' 
+#' mfmi.mleprobplot(ShockAbsorber.ld, 
+#'                  distribution = "Weibull")
+#' 
+#' mfmc.mleprobplot(ShockAbsorber.ld, 
+#'                  distribution = "Weibull")
+#'                  
+#' ShockAbsorber.mfld <- mfm.to.ld(ShockAbsorber.ld)
+#' 
+#' multiple.mleprobplot(ShockAbsorber.mfld,
+#'                      data.ld.name="xx",
+#'                      xlab="yy",
+#'                      distribution="Weibull")
+#' 
+#' mleprobplot(ShockAbsorber.Mode1.ld, 
+#'             distribution = "Weibull")
+#' 
+#' mleprobplot(ShockAbsorber.Mode2.ld,
+#'             distribution = "Weibull")
+#' 
+#' get.time.vector(ShockAbsorber.Mode2.ld)
+#' }
 mleprobplot <-
 function (data.ld,
           distribution,
@@ -48,7 +126,7 @@ function (data.ld,
     
     if(SMRD2:::is.logdist(distribution)) {
       
-       if(any(SMRD2:::Response(data.ld) <= 0)) stop("log-distribution specified but nonpositive response(s) in your life data object.")
+       if(any(Response(data.ld) <= 0)) stop("log-distribution specified but nonpositive response(s) in your life data object.")
       
     }
     
@@ -70,27 +148,27 @@ function (data.ld,
     xtvna <- is.na(time.range)
     if (any(xtvna)) time.range[xtvna] <- range(cdpoints.out$yplot)[xtvna]
     
-    if (SMRD2:::map.SMRDDebugLevel() >= 4) {
+    if (map.SMRDDebugLevel() >= 4) {
       
         cat("Band method is", band.method, "band type is", band.type,
             "Confidence level=", conf.level, "\n")
       
     }
     switch(band.method, logit.cdf.method = {
-        bands <- SMRD2:::get.parametric.bands(mlest.out, conf.level = conf.level,
+        bands <- get.parametric.bands(mlest.out, conf.level = conf.level,
             xlim = time.range, mono.tran = mono.tran)
         xbandrange <- NULL
-        ybandrange <- range(SMRD2:::strip.na(bands$lower), SMRD2:::strip.na(bands$upper))
+        ybandrange <- range(strip.na(bands$lower), strip.na(bands$upper))
     }, zhat.cdf.method = {
-        bands <- SMRD2:::get.parametric.bands.zhat(mlest.out, conf.level = conf.level,
+        bands <- get.parametric.bands.zhat(mlest.out, conf.level = conf.level,
             xlim = time.range, mono.tran = mono.tran)
         xbandrange <- NULL
-        ybandrange <- range(SMRD2:::strip.na(bands$lower), SMRD2:::strip.na(bands$upper))
+        ybandrange <- range(strip.na(bands$lower), strip.na(bands$upper))
     }, log.quantile.method = {
-        bands <- SMRD2:::get.parametric.bands.quant(mlest.out, conf.level = conf.level,
+        bands <- get.parametric.bands.quant(mlest.out, conf.level = conf.level,
             xlim = time.range)
         ybandrange <- NULL
-        xbandrange <- range(SMRD2:::strip.na(bands$lower), SMRD2:::strip.na(bands$upper))
+        xbandrange <- range(strip.na(bands$lower), strip.na(bands$upper))
     }, {
         stop(paste(band.method, "Not recognized"))
     })
@@ -107,7 +185,7 @@ function (data.ld,
     
     if (is.null(my.title)) {
       
-        my.title <- paste(SMRD2:::get.data.title(data.ld), 
+        my.title <- paste(get.data.title(data.ld), 
                           "\n", "with",
                           distribution, 
                           "ML Estimate ", 
@@ -118,7 +196,7 @@ function (data.ld,
     
     if(!missing(gamthr) && is.null(sub.title)) {
       
-       `if`(SMRD2:::is.postsctiptok(),
+       `if`(is.postsctiptok(),
             { sub.title <- paste("~f13~.g~f3~. = ", format(gamthr),"~", sep = "") ; cex <- 1.2 },
               sub.title <- paste("shift gamma = ", format(gamthr)))
         
@@ -130,7 +208,7 @@ function (data.ld,
     
     if(!add) {
       
-       log.of.data <- SMRD2:::probplot.setup(distribution, 
+       log.of.data <- probplot.setup(distribution, 
                                      range(xlim),
                                      ylim, 
                                      my.title = my.title, 
@@ -147,13 +225,13 @@ function (data.ld,
         
      } else {
     
-       log.of.data <- SMRD2:::get.prob.scales(distribution, 
+       log.of.data <- get.prob.scales(distribution, 
                                       shape = NULL,
                                       prob.range = ylim)$logger
        
      }
     
-     SMRD2:::plot.nonparametric.estimate(x = cdfest.out, 
+     plot.nonparametric.estimate(x = cdfest.out, 
                                          cdpoints.out, 
                                          distribution,
                                          log.of.data, 
@@ -172,8 +250,8 @@ function (data.ld,
     
     if(!is.null(fhat)) {
       
-       lines(SMRD2:::pp.data(times[bands.over], log.of.data), 
-             SMRD2:::pp.quant(fhat, distribution)[bands.over], 
+       lines(pp.data(times[bands.over], log.of.data), 
+             pp.quant(fhat, distribution)[bands.over], 
              col = "black", lwd = lwd.fhat)
       
     }
@@ -183,7 +261,7 @@ function (data.ld,
              
            if(band.type != "n" && !is.null(ybandrange)) {
              
-              SMRD2:::plot.bands(bands, 
+              plot.bands(bands, 
                                  distribution = distribution, 
                                  log.of.data = log.of.data,
                                  lwd.ci = lwd.ci, 
@@ -195,7 +273,7 @@ function (data.ld,
           
            if(band.type != "n" && !is.null(xbandrange)) {
              
-              SMRD2:::plot.bands.quantile(bands, 
+              plot.bands.quantile(bands, 
                                           distribution = distribution,
                                           log.of.data = log.of.data, 
                                           lwd.ci = lwd.ci, 
@@ -208,6 +286,6 @@ function (data.ld,
           
         })
     
-    SMRD2:::f.plot.censored.ticks(data.ld, log.of.data, plot.censored.ticks)
-    SMRD2:::f.print.parameters(mlest.out, print.parameters, param.loc = param.loc)
+    f.plot.censored.ticks(data.ld, log.of.data, plot.censored.ticks)
+    f.print.parameters(mlest.out, print.parameters, param.loc = param.loc)
 }
