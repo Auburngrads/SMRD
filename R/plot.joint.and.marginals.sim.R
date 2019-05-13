@@ -1,3 +1,4 @@
+#' @export
 plot.joint.and.marginals.sim <-
 function (x, focus.quantity1, focus.quantity.detail1,
     x.of.interest1 = NA, focus.quantity2, focus.quantity.detail2,
