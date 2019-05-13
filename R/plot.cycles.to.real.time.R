@@ -1,3 +1,4 @@
+#' @export
 plot.cycles.to.real.time <-
 function (x, distribution, mu.cycles, sigma.cycles,
     time.range = c(NA, NA), npoints = 100, xlim = c(NA, NA),
