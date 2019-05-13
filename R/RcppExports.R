@@ -303,9 +303,6 @@ GENMAX <- function(kmod, kdist, theta, thetas, kodet, ifix, nparm, npard, y, nco
     .Call(`_SMRD2_GENMAX`, kmod, kdist, theta, thetas, kodet, ifix, nparm, npard, y, ncoly, nrownw, x, ncolx, codes, weight, ty, ncolty, tcodes, kprint, kparv, nrvar, mrelat, nrelat, mnrvar, xlogl, yhat, resid, vcvs, vcv, r, start, lstar, conlev, ilabp, ilabd, ier, nxd, intd, ipxcd, irelad, fstder, nregr, kcentr, kpoint, ifit, kgtall, llog, kmodp, maxit, pest, epsx, npardm, nnum, kparm, iup, nterd, maxpd, pfail, kmccde, nstart, maxmsd, tol, lsd, pchmax)
 }
 
-#' Perform ml estimation and find vcvs and correlation matrices
-NULL
-
 #' Compute the sizes of parameter vectors
 #' 
 #' @description Given model information compute nparm and 
