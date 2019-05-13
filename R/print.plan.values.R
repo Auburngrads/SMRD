@@ -1,3 +1,4 @@
+#' @export
 print.plan.values <-
 function (x,...)
 {
