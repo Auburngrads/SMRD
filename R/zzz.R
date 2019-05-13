@@ -167,15 +167,3 @@ buildSysdata <- function(name = NULL,Rd = FALSE,...) {
   if(Rd) devtools::document()
   
 }
-
-# for(i in 1:length(ls())) {
-#   
-#   datas[[i]] <- get(ls()[i], envir = .GlobalEnv)
-# }
-# 
-# names(datas) <- ls()
-  
-
-
-
-
