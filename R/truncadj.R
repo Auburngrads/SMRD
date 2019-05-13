@@ -7,15 +7,20 @@ function (cdpoints.out, mlest.out,debug1= T)
     }
     right.trun.cond <- cdpoints.out$right.trun.cond
     left.trun.cond <- cdpoints.out$left.trun.cond
-    log.of.data <- is.even(numdist(mlest.out$distribution))
+    log.of.data <- is.even(SMRD2:::numdist(mlest.out$distribution))
     if (debug1) {
-        xcdpoints.out <- list(yplot = cdpoints.out$yplot, pplot = cdpoints.out$pplot)
+        xcdpoints.out <- list(yplot = cdpoints.out$yplot, 
+                              pplot = cdpoints.out$pplot)
         print(xcdpoints.out)
     }
     if (!is.null(left.trun.cond)) {
-        plot.quantiles.out <- plot.quantiles(mlest.out, conf.level = 0,
-            xrange = left.trun.cond, plotem = F, timelen = 1,
-            log.of.data = log.of.data)
+        plot.quantiles.out <- SMRD2:::plot.quantiles(mlest.out, 
+                                                     conf.level = 0,
+                                                     xrange = left.trun.cond, 
+                                                     plotem = F, 
+                                                     timelen = 1,
+                                                     log.of.data = log.of.data)
+        
         ftlower <- plot.quantiles.out$dist.probs
         se.ftlower <- plot.quantiles.out$stderror
   } else {
