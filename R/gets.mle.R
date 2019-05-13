@@ -1,3 +1,44 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param distribution 
+#' @param theta.start 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' lzbearing.ld <- frame.to.ld(lzbearing, 
+#'                             response.column = 1)
+#'                             
+#' bear.gets.sev.gmle.out <- gets.mle(lzbearing.ld, 
+#'                                    distribution = "sev")
+#'                                    
+#' Fan.ld <- frame.to.ld(fan,
+#'                       response.column = 1, 
+#'                       censor.column = 2, 
+#'                       case.weight.column = 3,
+#'                       time.units = "Hours")
+#'                     
+#' gets.mle(small.interval(Fan.ld, delta = 0.01),
+#'          distribution = "sev")
+#' 
+#' gets.mle(small.interval(Fan.ld, delta = 0.01),
+#'          distribution = "normal")
+#' 
+#' AlloyC.ld <- frame.to.ld(alloyc,
+#'                          response.column = c(1,2),
+#'                          censor.column = 3, 
+#'                          case.weight.column = 4,
+#'                          data.title = "Alloy C", 
+#'                          time.units = "ksi")
+#' 
+#' gets.mle(AlloyC.ld, distribution = "sev")
+#' gets.mle(AlloyC.ld, distribution = "normal")
+#' 
+#' }
 gets.mle <-
 function (data.ld, distribution, theta.start = NULL) 
 {
