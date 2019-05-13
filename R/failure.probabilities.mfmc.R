@@ -1,3 +1,4 @@
+#' @export
 failure.probabilities.mfmc <-
 function (x, 
           time.vector = NULL, 
