@@ -1,9 +1,0 @@
-System Months Event
-System1 5 Repair
-System1 8 Repair
-System1 12 End
-System2 16 End
-System3 1 Repair
-System3 8 Repair
-System3 16 Repair
-System3 20 End
