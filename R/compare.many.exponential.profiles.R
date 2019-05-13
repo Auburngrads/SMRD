@@ -1,3 +1,24 @@
+#' Title
+#'
+#' @param theta 
+#' @param sample.size 
+#' @param number.simulation 
+#' @param profile.title 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' compare.many.exponential.profiles(theta = 5,
+#'                                   sample.size = 3,
+#'                                   number.simulation = 10)
+#' 
+#' compare.many.exponential.profiles(theta =5,
+#'                                   sample.size = 1000,
+#'                                   number.simulation = 10)
+#' }
 compare.many.exponential.profiles <-
 function (theta = 5, sample.size = 10, number.simulation = 10,
     profile.title = NULL)
