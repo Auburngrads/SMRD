@@ -1,3 +1,36 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param distribution 
+#' @param debug1 
+#' @param theta.start 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' ShockAbsorber.ld <- frame.to.ld(shockabsorber,
+#'                                 response.column = 1, 
+#'                                 censor.column = 3,
+#'                                 time.units = "Kilometers")
+#'                                 
+#' SA.weibull.gmle <- ls2.mle(ShockAbsorber.ld, 
+#'                           distribution = "Weibull")
+#'                           
+#' BearingCage.ld <- frame.to.ld(bearingcage,
+#'                               response.column = 1, 
+#'                               censor.column = 2, 
+#'                               case.weight.column = 3,
+#'                               time.units = "Hours")
+#' 
+#' summary(BearingCage.ld)
+#' 
+#' ls2.mle(BearingCage.ld, 
+#'         distribution ="Weibull", 
+#'         theta.start = c(9,.4))
+#' }
 ls2.mle <-
 function (data.ld, distribution = "weibull",debug1= F, theta.start = NULL) 
 {
