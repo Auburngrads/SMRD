@@ -1,3 +1,4 @@
+#' @export
 plot.bands.quantile <-
 function (x, log.of.data, distribution, shape = NULL, col.fhat = 1,
     col.ci = 4, cex.point = 1.5, lwd.ci = 3, lwd.fhat = 2, mono.tran = T,...)
