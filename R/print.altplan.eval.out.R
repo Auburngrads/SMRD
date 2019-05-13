@@ -1,3 +1,4 @@
+#' @export
 print.altplan.eval.out <-
 function (x, details = F,...)
 {
