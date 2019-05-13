@@ -45,6 +45,7 @@ void sclp(int &ipoint,
            Rcpp::Rcout << "sd(j) = " << sd.at(j - 1) <<  std::endl;
            Rcpp::Rcout << "Const = " << Const <<  std::endl;
            Rcpp::Rcout << "ipoint = " << ipoint <<  std::endl;
+           
          }
         
 }
