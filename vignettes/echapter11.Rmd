@@ -20,34 +20,47 @@ library(SMRD2)
 
 # In This Vignette...
 
+Warning: some of the ML estimation attempts fail to converge
 
-
-#  Warning: some of the ML estimation attempts fail to converge
-#
-#
 ```{r}
 LocomotiveControl.ld <- frame.to.ld(locomotivecontrol,
                                     response.column = 1, 
                                     censor.column = 2,
                                     case.weight.column = 3,
                                     time.units = "kMiles")
-```
+
 LocomotiveControl.gamma.gmle.out <- Gamma.mle(LocomotiveControl.ld)
 
-gmleprobplot(LocomotiveControl.ld,distribution="gamma", 
-             xlim=c(10,199),ylim=c(.0011,.991))
+gmleprobplot(LocomotiveControl.ld,
+             distribution = "gamma", 
+             xlim = c(10,199),
+             ylim = c(.0011,.991))
+```
 
-#Note that these examples take longer to run
 
+These examples can take longer to run
+
+```{r}
 ## gamma dist examples
+lzbearing.ld <- frame.to.ld(lzbearing, response.column = 1)
 
 bear.gamma.gmle.out <- Gamma.mle(lzbearing.ld)
 
 summary(bear.gamma.gmle.out)
 
-gmleprobplot(lzbearing.ld,distribution="gamma",xlim=c(10,199),ylim=c(.0011,.991),compare=c("Lognormal","Weibull"))
+gmleprobplot(lzbearing.ld,
+             distribution = "gamma",
+             xlim = c(10,199),
+             ylim = c(.0011,.991),
+             compare = c("Lognormal","Weibull"))
 
-legend(x=c(3.6,5.2),y=c(-1.6,-2.7), c("Gamma","Lognormal","Weibull","95% pointwise confidence intervals"),lty = c(1, 3, 4,2),bty="n",cex=1.2)
+legend(x = c(3.6,5.2),
+       y = c(-1.6,-2.7), 
+       c("Gamma","Lognormal","Weibull","95% pointwise confidence intervals"),
+       lty = c(1,3,4,2),
+       bty = "n",
+       cex = 1.2)
+```
 
 ```{r}
 bkfatigue10.ld <- frame.to.ld(bkfatigue10, 
@@ -55,13 +68,17 @@ bkfatigue10.ld <- frame.to.ld(bkfatigue10,
                               time.units = "Kilocycles")
 
 summary(bkfatigue10.ld)
-```
 
 bkfatigue10.gamma.gmle.out <- Gamma.mle(bkfatigue10.ld)
 
-gmleprobplot(bkfatigue10.ld,distribution="gamma",compare=c("Lognormal"))
+gmleprobplot(bkfatigue10.ld,
+             distribution = "gamma",
+             compare = c("Lognormal"))
 
-gmleprobplot(bkfatigue10.ld,distribution="Lognormal",compare=c("gamma"))
+gmleprobplot(bkfatigue10.ld,
+             distribution = "Lognormal",
+             compare = c("gamma"))
+```
 
 ```{r}
 at7987.ld <- frame.to.ld(at7987, 
@@ -69,16 +86,20 @@ at7987.ld <- frame.to.ld(at7987,
                          censor.column = 2, 
                          case.weight.column = 3,
                          time.units = "Kilocycles")
-```
 
 summary(at7987.ld)
 
 at7987.gamma.gmle.out <- Gamma.mle(at7987.ld)
 
-gmleprobplot(at7987.ld,distribution="Gamma",compare=c("Lognormal"))
+gmleprobplot(at7987.ld,
+             distribution = "Gamma",
+             compare = c("Lognormal"))
+```
 
-# egeng examples
 
+egeng examples
+
+```{r}
 at7987.egeng.gmle.out <- egeng.mle(at7987.ld)
 
 bear.egeng.gmle.out <- egeng.mle(lzbearing.ld)
@@ -87,16 +108,25 @@ lzbearing5.ld <- small.interval(lzbearing.ld, delta = 1e-03, tlog = T)
 
 bear5.egeng.gmle.out <- egeng.mle(lzbearing5.ld)
 
-at7987.egeng.gmle.out <- gmleprobplot(at7987.ld,distribution="egeng")
+at7987.egeng.gmle.out <- gmleprobplot(at7987.ld,
+                                      distribution = "egeng")
 
-gmleprobplot(lzbearing.ld,distribution="egeng",xlim=c(10,199),ylim=c(.0011,.991),compare=c("Weibull","Lognormal","Exponential"))
+gmleprobplot(lzbearing.ld,
+             distribution = "egeng",
+             xlim = c(10,199),
+             ylim = c(.0011,.991),
+             compare = c("Weibull","Lognormal","Exponential"))
+
 text(2.4969, -1.31908, "EXP")
 text(2.50633, -3.4758, "WEIB")
 text(2.34606, -5.75833, "EGENG")
 text(2.70432, -6.94453, "LOGNOR")
 
-
-tmp <- one.dim.profile(bear.egeng.gmle.out,profile.on.list = 3,range.list =  	list(c(-1,2.0)),size = 50,save.structures=F )
+tmp <- one.dim.profile(bear.egeng.gmle.out,
+                       profile.on.list = 3,
+                       range.list = list(c(-1,2.0)),
+                       size = 50,
+                       save.structures = F)
 
 
 profile.plot(tmp, variable.name="lambda")
@@ -105,111 +135,180 @@ abline(v=1,lty=3)
 text(0.829561, 0.224463, "WEIB")
 text(-0.236364, 0.224463, "LOGNOR")
 
+Fan.ld <- frame.to.ld(fan,
+                      response.column = 1, 
+                      censor.column = 2, 
+                      case.weight.column = 3,
+                      time.units = "Hours")
 
 Fan.egeng.gmle.out <- egeng.mle(Fan.ld)
 
-gmleprobplot(Fan.ld,distribution="egeng",xlim=c(200,9999), ylim=c(.0011,.39),
-             compare=c("Weibull","Lognormal","Exponential"))
+gmleprobplot(Fan.ld,
+             distribution = "egeng",
+             xlim = c(200,9999),
+             ylim = c(.0011,.39),
+             compare = c("Weibull","Lognormal","Exponential"))
+
 text(5.37368, -2.28317, "EXP")
 text(5.39218, -2.6004, "WEIB")
 text(6.00877, -3.03298, "GENG")
 text(5.52783, -2.91186, "LOGNOR")
 
 
-one.dim.profile(Fan.egeng.gmle.out,profile.on.list = 3,range.list =list(c(-8,2)),size = 50)
-
+one.dim.profile(Fan.egeng.gmle.out,
+                profile.on.list = 3,
+                range.list = list(c(-8,2)),
+                size = 50)
 
 profile.plot(Fan.egeng.gmle.outstruct3)
+```
 
-#bisa examples
+# bisa examples
 
+```{r}
 bear.bisa.gmle.out <- bisa.mle(lzbearing.ld)
 
-gmleprobplot(lzbearing.ld,distribution="bisa",compare=c("Lognormal"))
+gmleprobplot(lzbearing.ld,
+             distribution = "bisa",
+             compare = c("Lognormal"))
 
 Fan.bisa.gmle.out <- bisa.mle(Fan.ld)
 
-basic.gmleprobplot(Fan.ld,distribution="bisa",xxx.mle.out=Fan.bisa.gmle.out,compare=c("Lognormal"))
+basic.gmleprobplot(Fan.ld,
+                   distribution = "bisa",
+                   xxx.mle.out = Fan.bisa.gmle.out,
+                   compare = c("Lognormal"))
 
 at7987.bisa.gmle.out <- bisa.mle(at7987.ld)
 
-basic.gmleprobplot(at7987.ld,distribution="bisa",xxx.mle.out=at7987.bisa.gmle.out,compare=c("Lognormal"))
+basic.gmleprobplot(at7987.ld,
+                   distribution = "bisa",
+                   xxx.mle.out = at7987.bisa.gmle.out,
+                   compare = c("Lognormal"))
 
+basic.gmleprobplot(at7987.ld,
+                   distribution = "bisa",
+                   plot.dist = "lognormal",
+                   xxx.mle.out = at7987.bisa.gmle.out,
+                   compare = c("Lognormal"))
+```
 
-basic.gmleprobplot(at7987.ld,distribution="bisa",plot.dist="lognormal",xxx.mle.out=at7987.bisa.gmle.out,compare=c("Lognormal"))
+# igau examples
 
-
-#igau examples
-
+```{r}
 bear.igau.gmle.out <- igau.mle(lzbearing.ld)
 
 bkfatigue10.igau.gmle.out <- igau.mle(bkfatigue10.ld)
 
-basic.gmleprobplot(bkfatigue10.ld, distribution="igau",xxx.mle.out=bkfatigue10.igau.gmle.out,compare=c("Lognormal"))
+basic.gmleprobplot(bkfatigue10.ld, 
+                   distribution = "igau",
+                   xxx.mle.out = bkfatigue10.igau.gmle.out,
+                   compare = c("Lognormal"))
 
+gmleprobplot(bkfatigue10.ld, 
+             distribution = "igau",
+             compare = c("Lognormal"))
 
-gmleprobplot(bkfatigue10.ld, distribution="igau",compare=c("Lognormal"))
-gmleprobplot(bkfatigue10.ld, distribution="bisa",compare=c("Lognormal"))
-gmleprobplot(bkfatigue10.ld, distribution="gamma",compare=c("Lognormal"))
-gmleprobplot(bkfatigue10.ld, distribution="lognormal",compare=c("Lognormal"))
-gmleprobplot(bkfatigue10.ld, distribution="Weibull",compare=c("Lognormal"))
+gmleprobplot(bkfatigue10.ld,
+             distribution = "bisa",
+             compare = c("Lognormal"))
+gmleprobplot(bkfatigue10.ld, 
+             distribution = "gamma",
+             compare = c("Lognormal"))
 
+gmleprobplot(bkfatigue10.ld,
+             distribution = "lognormal",
+             compare = c("Lognormal"))
+
+gmleprobplot(bkfatigue10.ld, 
+             distribution = "Weibull",
+             compare = c("Lognormal"))
+```
 
 # gets (threshold) examples
 
-bear.gets.sev.gmle.out <- gets.mle(lzbearing.ld, distribution="sev")
+```{r}
+bear.gets.sev.gmle.out <- gets.mle(lzbearing.ld, distribution = "sev")
 
-Fan.gets.sev.gmle.out <- gets.mle(small.interval(Fan.ld, delta=.01),distribution="sev")
+Fan.gets.sev.gmle.out <- gets.mle(small.interval(Fan.ld, delta = 0.01),
+                                  distribution = "sev")
 
-Fan.gets.nor.gmle.out <- gets.mle(small.interval(Fan.ld, delta=.01),distribution="normal")
+Fan.gets.nor.gmle.out <- gets.mle(small.interval(Fan.ld, delta = 0.01),
+                                  distribution = "normal")
 
-basic.gmleprobplot(small.interval(Fan.ld, delta=.01), distribution="sevgets",xxx.mle.out=Fan.gets.sev.gmle.out, my.title="", cexlab=1.5,
-	compare=list(Fan.gets.nor.gmle.out))
+basic.gmleprobplot(small.interval(Fan.ld, delta=.01),
+                   distribution = "sevgets",
+                   xxx.mle.out = Fan.gets.sev.gmle.out, 
+                   my.title = "", 
+                   cexlab = 1.5,
+                   compare = list(Fan.gets.nor.gmle.out))
 
 basic.gmleprobplot(small.interval(Fan.ld, delta=.01), distribution="sevgets",xxx.mle.out=Fan.gets.sev.gmle.out, my.title="", cexlab=1.5,compare=c("lognormal","gamma","bisa"))
 
 
-gmleprobplot(small.interval(Fan.ld, delta=.01), distribution="sevgets",	my.title="", cexlab=1.5)
-
-
+gmleprobplot(small.interval(Fan.ld, delta = 0.01), 
+             distribution = "sevgets",
+             my.title = "", 
+             cexlab = 1.5)
 
 at7987.sevgets.gmle.out <- gets.mle(at7987.ld, distribution="sev")
 
 at7987.norgets.gmle.out <- gets.mle(at7987.ld, distribution="normal")
 
-basic.gmleprobplot(at7987.ld, distribution="sevgets",xxx.mle.out=at7987.sevgets.gmle.out, my.title="", cexlab=1.5,compare=list(at7987.norgets.gmle.out))
+basic.gmleprobplot(at7987.ld,
+                   distribution = "sevgets",
+                   xxx.mle.out = at7987.sevgets.gmle.out, 
+                   my.title = "",
+                   cexlab = 1.5,
+                   compare = list(at7987.norgets.gmle.out))
 
+AlloyC.ld <- frame.to.ld(alloyc,
+                         response.column = c(1,2),
+                         censor.column = 3,
+                         case.weight.column = 4,
+                         data.title = "Alloy C",
+                         time.units = "ksi")
 
+AlloyC.sevgets.gmle.out <- gets.mle(AlloyC.ld, distribution = "sev")
 
+AlloyC.norgets.gmle.out <- gets.mle(AlloyC.ld, distribution = "normal")
 
-AlloyC.ld <- frame.to.ld(alloyc,response.column=c(1,2),censor.column = 3, case.weight.column = 4,data.title = "Alloy C", time.units = "ksi")
+basic.gmleprobplot(AlloyC.ld, distribution = "sevgets",
+                   xxx.mle.out = AlloyC.sevgets.gmle.out,
+                   my.title = "",
+                   cexlab = 1.5,
+                   plot.dist = "sev")
 
+AlloyC.gets.nor.gmle.out <- gets.mle(AlloyC.ld, distribution = "normal")
 
-AlloyC.sevgets.gmle.out <- gets.mle(AlloyC.ld, distribution="sev")
+basic.gmleprobplot(AlloyC.ld,
+                   distribution = "normalgets",
+                   xxx.mle.out = AlloyC.norgets.gmle.out, 
+                   my.title = "", 
+                   cexlab = 1.5,
+                   plot.dist = "sev")
+```
 
+Begin to fill region for lr confidence intervals. The code in the following chunk is experimental
 
-AlloyC.norgets.gmle.out <- gets.mle(AlloyC.ld, distribution="normal")
-
-basic.gmleprobplot(AlloyC.ld, distribution="sevgets",xxx.mle.out=AlloyC.sevgets.gmle.out, my.title="",cexlab=1.5,plot.dist="sev")
-
-AlloyC.gets.nor.gmle.out <- gets.mle(AlloyC.ld, distribution="normal")
-basic.gmleprobplot(AlloyC.ld, distribution="normalgets",xxx.mle.out=AlloyC.norgets.gmle.out, my.title="", cexlab=1.5,
-plot.dist="sev")
-
-
-###  begin to fill region for lr confidence intervals
-#
-#    the things between if(F){...} are experimental
-##
-if(F){
-
- Fan.egeng.gmle.out <- FillRegion(Fan.egeng.gmle.out,nbound=10,iter = 500)
+```{r, eval=FALSE}
+Fan.egeng.gmle.out <- FillRegion(Fan.egeng.gmle.out,
+                                 nbound = 10,
+                                 iter = 500)
 
 summary(Fan.egeng.gmle.out.jcr)
 
 names(Fan.egeng.gmle.out.jcr)
 
-basic.gmleprobplot(Fan.ld,distribution="egeng",xlim=c(200,99999),ylim=c(.0011,.69),xxx.mle.out=Fan.egeng.gmle.out,my.title="",cexlab=1.5,conlev=.95,ciMethod="lr.approx",length.time.vec = 2)
+basic.gmleprobplot(Fan.ld,distribution = "egeng",
+                   xlim = c(200,99999),
+                   ylim = c(.0011,.69),
+                   xxx.mle.out = Fan.egeng.gmle.out,
+                   my.title = "",
+                   cexlab = 1.5,
+                   conlev = .95,
+                   ciMethod = "lr.approx",
+                   length.time.vec = 2)
 
 bear.egeng.gmle.out <- egeng.mle(lzbearing.ld)
 
@@ -217,19 +316,28 @@ bear.egeng.gmle.out <- egeng.mle(lzbearing.ld)
 Fan.egeng.gmle.out <- egeng.mle(Fan.ld)
 
 
-Fan.weibull.gmle.out <-  FillRegion(Fan.weibull.gmle.out,nbound=4,iter = 50, cull = 2 )
-
+Fan.weibull.gmle.out <-  FillRegion(Fan.weibull.gmle.out,
+                                    nbound = 4,
+                                    iter = 50,
+                                    cull = 2 )
 
 summary(Fan.weibull.gmle.out.jcr)
 summary(Fan.weibull.gmle.out)
 
 
-
 mleprobplot(Fan.ld,"Weibull",
-	     xlim=c(200,9999),
-	     ylim=c(.0031,.49))
+            xlim = c(200,9999),
+            ylim = c(.0031,.49))
 
-basic.gmleprobplot(Fan.ld,distribution="Weibull",xlim=c(200,9999),ylim=c(.0031,.49),xxx.mle.out=Fan.weibull.gmle.out,my.title="",cexlab=1.5,conlev=.95,length.time.vec = 30)
+basic.gmleprobplot(Fan.ld,
+                   distribution = "Weibull",
+                   xlim = c(200,9999),
+                   ylim = c(.0031,.49),
+                   xxx.mle.out = Fan.weibull.gmle.out,
+                   my.title = "",
+                   cexlab = 1.5,
+                   conlev = .95,
+                   length.time.vec = 30)
 
 basic.gmleprobplot(Fan.ld,distribution="Weibull",xlim=c(200,9999),ylim=c(.0031,.49),xxx.mle.out=Fan.weibull.gmle.out,my.title="",cexlab=1.5,conlev=.95,ciMethod="lr.approx",length.time.vec = 30)
 
@@ -299,26 +407,25 @@ do.profile.plot(BearingCage.weibull.gmle.out,quantile=.1)
 do.profile.plot(BearingCage.weibull.gmle.out,failure.probability=5000)
 
 BearingCage.weibull.gmle.out$model$f.origparam
+```
 
-}
-
-
-
-#right truncation example
+## Right truncation example
 
 ```{r}
 doatrun.ld <- frame.to.ld(doatrun,
                           response.column = c(1,2),
                           censor.column = 3, 
                           case.weight.column = 4,
-                          truncation.response.column=5, 
-                          truncation.type.column=6, 
+                          truncation.response.column = 5, 
+                          truncation.type.column = 6, 
                           data.title = "DOA Truncated Data", 
                           time.units = "Hours")
-```
+
 summary(doatrun.ld)
 
 cdfest(doatrun.ld)
+```
+
 
 mlest(doatrun.ld,"Weibull")
 
@@ -330,7 +437,14 @@ npprobplot(doatrun.ld,distribution="Weibull",trunc.correct=F)
 
 #left truncation example
 
-lfptrun100.ld <- frame.to.ld(lfptrun100,response.column = c(1), case.weight.column = 2,truncation.response.column=3, truncation.type.column=4, data.title = "LFP Truncated Data", time.units = "Hours")
+```{r}
+lfptrun100.ld <- frame.to.ld(lfptrun100, 
+                             response.column = c(1), 
+                             case.weight.column = 2,
+                             truncation.response.column = 3, 
+                             truncation.type.column = 4, 
+                             data.title = "LFP Truncated Data", 
+                             time.units = "Hours")
 
 summary(lfptrun100.ld)
 
@@ -343,52 +457,66 @@ mleprobplot(lfptrun100.ld,distribution="Weibull")
 
 plot(lfptrun100.ld,distribution="Weibull",trunc.correct=F)
 plot(lfptrun100.ld,distribution="Weibull")
+```
 
-#
-#
 #  Examples of fitting the Random Fatigue Limit Model
-#
-#
-#-----------------------------------------------------------
-# Laminate Panel Fatigue Data
-#-----------------------------------------------------------
 
+## Laminate Panel Fatigue Data
 
-LaminatePanel[1:5,]
+```{r}
+LaminatePanel.ld <- frame.to.ld(laminatepanel,
+                                response.column = "kilocycles",
+                                time.units = "kilocycles",
+                                data.title = "Laminate Panel Fatigue Data",
+                                censor.column = "event", 
+                                x.column = "mpa")
 
-LaminatePanel.ld <- frame.to.ld(laminatepanel,response.column="Kilocycles",time.units="Kilocycles",data.title ="Laminate Panel Fatigue Data",censor.column="Status", x.column="MPa")
-
-censored.data.plot(LaminatePanel.ld, x.axis = "log", y.axis = "log",response.on.yaxis = F)
+censored.data.plot(LaminatePanel.ld, 
+                   x.axis = "log", 
+                   y.axis = "log",
+                   response.on.yaxis = F)
 
 censored.data.plot(LaminatePanel.ld)
 
-LaminatePanel.fit11.out <- rflm.mle(LaminatePanel.ld,cond.dist = "sev", fl.dist = "sev")
-
+LaminatePanel.fit11.out <- rflm.mle(LaminatePanel.ld,
+                                    cond.dist = "sev", 
+                                    fl.dist = "sev")
 
 plot(LaminatePanel.fit11.out,response.on.yaxis = F)
 
-LaminatePanel.fit11f.out <- rflm.mle(LaminatePanel.ld,cond.dist = "sev", fl.dist = "sev", fixed.param.list=list(fixed.parameters=3,fixed.parameter.values=.20),debug=1)
+LaminatePanel.fit11f.out <- rflm.mle(LaminatePanel.ld,
+                                     cond.dist = "sev", 
+                                     fl.dist = "sev",
+                                     debug = 1,
+                                     fixed.param.list =   
+                                     list(fixed.parameters = 3,
+                                          fixed.parameter.values = 0.20))
 
-plot(LaminatePanel.fit11f.out,response.on.yaxis = F)
+plot(LaminatePanel.fit11f.out,
+     response.on.yaxis = F)
 
 
+LaminatePanel.fit12.out <- rflm.mle(LaminatePanel.ld,
+                                    cond.dist = "sev", 
+                                    fl.dist = "normal")
 
-
-LaminatePanel.fit12.out <- rflm.mle(LaminatePanel.ld,cond.dist = "sev", fl.dist = "normal")
 print(LaminatePanel.fit12.out)
 
+LaminatePanel.fit21.out <- rflm.mle(LaminatePanel.ld, 
+                                    cond.dist = "normal", 
+                                    fl.dist = "sev")
 
-
-LaminatePanel.fit21.out <- rflm.mle(LaminatePanel.ld, cond.dist = "normal", fl.dist = "sev")
 print(LaminatePanel.fit21.out)
 
 plot(LaminatePanel.fit21.out, response.on.yaxis = F)
 
 
+LaminatePanel.fit22.out <- rflm.mle(LaminatePanel.ld,
+                                    cond.dist = "normal", 
+                                    fl.dist = "normal")
 
-LaminatePanel.fit22.out <- rflm.mle(LaminatePanel.ld,cond.dist = "normal", fl.dist = "normal")
 print(LaminatePanel.fit22.out)
-
+```
 
 if(F){
 
