@@ -1,3 +1,4 @@
+#' @export
 simulate.ADDT.test.plan <-
 function (object, nsim = 3, seed = NULL, ADDT.plan.values, use.conditions, FailLevel,
     quantile.list = c(0.1, 0.5, 0.9), ylim = c(NA, NA), xlim = c(NA,
