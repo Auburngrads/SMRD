@@ -1,3 +1,4 @@
+#' @export
 print.estimates.out <-
 function (x, digits = 5,...)
 {
