@@ -1,3 +1,4 @@
+#' @importFrom survival Surv
 ld.to.surv<-function(ld) {
 
   for (i in 1:ncol(ld)) {
