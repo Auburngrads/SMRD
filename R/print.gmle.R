@@ -1,3 +1,4 @@
+#' @export
 print.gmle <-
 function (x,...)
 {
