@@ -1,3 +1,16 @@
+#' Title
+#'
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' gets.pdf.plot()
+#' 
+#' }
 gets.pdf.plot <-
 function (...) 
 {
