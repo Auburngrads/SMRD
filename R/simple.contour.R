@@ -1,3 +1,89 @@
+#' Create a contour plots of a likelihood function
+#'
+#' @param data.ld 
+#' @param distribution 
+#' @param xlim 
+#' @param ylim 
+#' @param size 
+#' @param quantile 
+#' @param show.confidence 
+#' @param contour.indicators 
+#' @param zoom.level 
+#' @param show.mle 
+#' @param my.title 
+#' @param threeD 
+#' @param direction 
+#' @param profile 
+#' @param lwd 
+#' @param elevation 
+#' @param distance 
+#' @param original.par 
+#' @param log.quantile 
+#' @param log.axis 
+#' @param add 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' ShockAbsorber.ld <- frame.to.ld(shockabsorber,
+#'                                 response.column = 1, 
+#'                                 censor.column = 3,
+#'                                 time.units = "Kilometers")
+#'
+#' simple.contour(ShockAbsorber.ld,
+#'                distribution = "lognormal",
+#'                show.confidence = T)
+#' 
+#' 
+#' simple.contour(ShockAbsorber.ld,
+#'                distribution = "lognormal",
+#'                show.confidence = T,
+#'                threeD = T)
+#'                
+#' bulb.ld <- frame.to.ld(bulb,
+#'                        response.column = 1,
+#'                        data.title = "Bulb Data",
+#'                        time.units = "Hours")
+#' 
+#' mlest(bulb.ld,"lognormal")
+#' 
+#' simple.contour(bulb.ld,"lognormal", quantile = .5)
+#' 
+#' # Bearing Cage Data Set
+#' 
+#' BearingCage.ld <- frame.to.ld(bearingcage,
+#'                               response.column = 1, 
+#'                               censor.column = 2, 
+#'                               case.weight.column = 3,
+#'                               time.units = "Hours")
+#' 
+#' simple.contour(BearingCage.ld,
+#'                distribution = "Weibull",
+#'                zoom.level = 4,
+#'                quantile = .1,
+#'                threeD = TRUE)
+#' 
+#' simple.contour(BearingCage.ld,
+#'                distribution = "Weibull",
+#'                zoom.level = 4,
+#'                profile = "x")
+#' 
+#' simple.contour(BearingCage.ld,
+#'                distribution = "Weibull",
+#'                zoom.level = 4,
+#'                profile = "y")
+#' 
+#' 
+#' simple.contour(BearingCage.ld,
+#'                distribution = "Weibull",
+#'                threeD = T,
+#'                zoom.level = 3,
+#'                size = 75)
+#' }
 simple.contour <-
 function (data.ld, 
           distribution, 
