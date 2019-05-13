@@ -1,3 +1,28 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param delta 
+#' @param tlog 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' Fan.ld <- frame.to.ld(fan,
+#'                       response.column = 1, 
+#'                       censor.column = 2, 
+#'                       case.weight.column = 3,
+#'                       time.units = "Hours")
+#'                     
+#' gets.mle(small.interval(Fan.ld, delta = 0.01),
+#'          distribution = "sev")
+#' 
+#' gets.mle(small.interval(Fan.ld, delta = 0.01),
+#'          distribution = "normal")
+#'
+#' }
 small.interval <-
 function (data.ld, delta = 1e-05, tlog = T)
 {
