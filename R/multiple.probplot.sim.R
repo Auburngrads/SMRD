@@ -1,3 +1,22 @@
+#' Title
+#'
+#' @param distribution 
+#' @param parameter 
+#' @param sample.size.vec 
+#' @param number.simulations 
+#' @param my.title 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' multiple.probplot.sim()
+#' 
+#' multiple.probplot.sim(dist = "exponential")
+#' 
+#' }
 multiple.probplot.sim <-
 function (distribution = "normal", parameter = 1, sample.size.vec = c(10,
     20, 40), number.simulations = 5, my.title = NULL)
