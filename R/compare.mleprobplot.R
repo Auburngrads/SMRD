@@ -1,3 +1,72 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param main.distribution 
+#' @param compare.distribution 
+#' @param gamthr 
+#' @param xlim 
+#' @param ylim 
+#' @param time.range 
+#' @param my.title 
+#' @param sub.title 
+#' @param grids 
+#' @param linear.axes 
+#' @param slope.axis 
+#' @param band.type 
+#' @param xlab 
+#' @param conf.level 
+#' @param cex 
+#' @param title.option 
+#' @param trunc.correct 
+#' @param do.legend 
+#' @param plot.censored.ticks 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' ShockAbsorber.ld <- frame.to.ld(shockabsorber,
+#'                                 response.column = 1, 
+#'                                 censor.column = 3,
+#'                                 time.units = "Kilometers")
+#' 
+#' mleprobplot(ShockAbsorber.ld, distribution = "Weibull")
+#' mleprobplot(ShockAbsorber.ld, distribution = "loglogistic")
+#' mleprobplot(ShockAbsorber.ld, distribution = "lognormal")
+#' mleprobplot(ShockAbsorber.ld, distribution = "frechet")
+#' 
+#' 
+#' #compare lognormal and Weibull distributions
+#' 
+#' compare.mleprobplot(ShockAbsorber.ld, 
+#'                     main.distribution = "Lognormal",
+#'                     compare.distribution ="Weibull")
+#'                     
+#' compare.mleprobplot(ShockAbsorber.ld, main.distribution= "Lognormal",compare.distribution=c("Weibull","Loglogistic"))
+#' 
+#' compare.mleprobplot(ShockAbsorber.ld, 
+#'                     main.distribution = "Lognormal",
+#'                     xlim = c(100,100000),
+#'                     ylim = c(.005,.9),
+#'                     compare.distribution = c("Weibull","Loglogistic"))
+#' 
+#' compare.mleprobplot(ShockAbsorber.ld, 
+#'                     main.distribution = "Lognormal",
+#'                     xlim = c(100,50001),
+#'                     ylim = c(.005,.9),
+#'                     compare.distribution = c("Weibull","Loglogistic","Exponential"),
+#'                     band.type = "chull")
+#' 
+#' compare.mleprobplot(ShockAbsorber.ld, 
+#'                     main.distribution = "Lognormal",
+#'                     xlim = c(100,100000),
+#'                     ylim = c(.005,.9),
+#'                     compare.distribution = c("Weibull","Exponential"),
+#'                     band.type = "chull")
+#' 
+#' }
 compare.mleprobplot <-
 function (data.ld, main.distribution, compare.distribution, gamthr = 0,
     xlim = c(NA, NA), ylim = c(NA, NA), time.range = c(NA,
