@@ -1,3 +1,4 @@
+#' @export
 plot.prob.cs.type2 <-
 function (x, k, r, n, d.range = c(NA, NA), prob.range = c(NA,
     NA), d.length = 100, dvec = NULL, number.sim = 500, kprint = 0,
