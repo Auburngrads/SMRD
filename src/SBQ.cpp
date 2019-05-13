@@ -218,7 +218,7 @@ fb = f(b);
    if((fa == zero) or (fb == zero)) goto line20;
    if((fa * (fb / std::abs(fb))) <= zero) goto line20;
    
-   Rcpp::warning("f(ax) and f(bx) do not have different signs zeroin is aborting");
+   Rcpp::warning("f(ax) and f(bx) do not have different signs -- zeroin is aborting");
    zero_in = zero;
    return zero_in;
    
