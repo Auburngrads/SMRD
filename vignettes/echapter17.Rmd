@@ -1,7 +1,7 @@
 ---
-title: "`r SMRD2:::info('book')`"
-subtitle: "`r SMRD2:::info('chapter17')`"
-author: "`r SMRD2:::info('authors')`"
+title: "`r info('book')`"
+subtitle: "`r info('chapter17')`"
+author: "`r info('authors')`"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -14,7 +14,7 @@ vignette: >
 ---
 
 ```{r, echo=FALSE}
-SMRD2:::vinny()
+vinny()
 library(SMRD2)
 ```
 
@@ -38,12 +38,12 @@ censored.data.plot(comptime.ld,
 Note that for each level of load only a single failure is observed.  Therefore, the following functions return warnings stating that there are not enough failures to include in the plot. 
 
 ```{r}
-comptime.mlest.out <- SMRD2:::groupm.mleprobplot(comptime.ld, 
+comptime.mlest.out <- groupm.mleprobplot(comptime.ld, 
                                          distribution ="Lognormal", 
                                          group.var = 1, 
                                          relationship = "linear")
 
-comptime.mlest.out2 <- SMRD2:::groupm.mleprobplot(comptime.ld, 
+comptime.mlest.out2 <- groupm.mleprobplot(comptime.ld, 
                                           distribution ="Normal", 
                                           group.var = 1, 
                                           relationship = "linear")
@@ -145,17 +145,17 @@ Constrain the Weibull shape parameters to be the same - like one-way ANOVA
 
 ```{r}
 ZelenCap.groupm.out1 <-
-  SMRD2:::groupm.mleprobplot(ZelenCap.ld,
+  groupm.mleprobplot(ZelenCap.ld,
                      distribution = "Weibull")
 
-SMRD2:::resid.vs.order(ZelenCap.groupm.out1)
+resid.vs.order(ZelenCap.groupm.out1)
 
-SMRD2:::resid.vs.fit(ZelenCap.groupm.out1)
+resid.vs.fit(ZelenCap.groupm.out1)
 
-SMRD2:::resid.vs.explan(ZelenCap.groupm.out1,
+resid.vs.explan(ZelenCap.groupm.out1,
                 x.to.plot = 1)
 
-SMRD2:::resid.vs.explan(ZelenCap.groupm.out1,
+resid.vs.explan(ZelenCap.groupm.out1,
                 x.to.plot = 2)
 
 #resid.probplot(ZelenCap.groupm.out1)
@@ -165,7 +165,7 @@ SMRD2:::resid.vs.explan(ZelenCap.groupm.out1,
 
 ```{r}
 ZelenCap.groupm.out2 <-
-  SMRD2:::groupm.mleprobplot(ZelenCap.ld,
+  groupm.mleprobplot(ZelenCap.ld,
                      distribution = "Lognormal",
                      formula= Location ~ + g(celsius),
                      relationship = c("arrhenius", "log"))
@@ -175,7 +175,7 @@ ZelenCap.groupm.out2 <-
 
 ```{r}
 ZelenCap.groupm.out3 <-
-  SMRD2:::groupm.mleprobplot(ZelenCap.ld,
+  groupm.mleprobplot(ZelenCap.ld,
                      distribution = "Lognormal",
                      formula= Location ~ + g(volts),
                      relationship = c("arrhenius", "log"))
@@ -185,12 +185,12 @@ ZelenCap.groupm.out3 <-
 
 ```{r}
 ZelenCap.groupm.out4 <-
-  SMRD2:::groupm.mleprobplot(ZelenCap.ld,
+  groupm.mleprobplot(ZelenCap.ld,
                      distribution = "normal",
                      formula = Location ~ + g(celsius) +  g(volts))
 
 ZelenCap.groupm.out5 <-
-  SMRD2:::groupm.mleprobplot(ZelenCap.ld,
+  groupm.mleprobplot(ZelenCap.ld,
                      distribution = "normal",
                      formula= Location ~  +  g(volts) + g(celsius))
 ```
@@ -199,7 +199,7 @@ ZelenCap.groupm.out5 <-
 
 ```{r}
 ZelenCap.groupm.out6 <-
-  SMRD2:::groupm.mleprobplot(ZelenCap.ld,
+  groupm.mleprobplot(ZelenCap.ld,
                      distribution = "normal",
                      formula = Location ~ celsius + volts + celsius:volts )
 ```
@@ -208,7 +208,7 @@ ZelenCap.groupm.out6 <-
 
 ```{r}
 ZelenCap.groupm.out7 <-
-  SMRD2:::groupm.mleprobplot(ZelenCap.ld,
+  groupm.mleprobplot(ZelenCap.ld,
                      distribution = "Lognormal",
                      relationship=c("arrhenius","log"))
 ```
@@ -235,7 +235,7 @@ failure.probabilities(ZelenCap.groupm.out3,new.data="165;188")
 
 
 
-SMRD2:::resid.vs.explan.multiple(ZelenCap.groupm.out3)
+resid.vs.explan.multiple(ZelenCap.groupm.out3)
 residual.plots(ZelenCap.groupm.out3)
 ```
 
