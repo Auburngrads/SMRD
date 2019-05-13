@@ -117,9 +117,7 @@ Rcpp::IntegerVector iwork = Rcpp::IntegerVector(100);
    
    if(ier > 0) {
      
-      Rcpp::warning("ier > 0 in sft2gr1");
-      Rcpp::Rcout << "\nier = \n" << ier      << std::endl;
-      Rcpp::Rcout << "sft2gr1 = " << sft2_gr1 << std::endl;
+      Rcpp::warning("\nier warning in sft2gr1 -- ier = %i, return value = %f",ier,sft2_gr1);
      
    }
    
