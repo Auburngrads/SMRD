@@ -1,3 +1,4 @@
+#' @export
 plot.joint.prior.or.post.marginals <-
 function (x, post.or.prior, logger = "none", type.position = "Base Quantile",
     newdata = NULL, number.plot = 500, xlim = c(NA, NA), ylim = c(NA,
