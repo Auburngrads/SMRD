@@ -1,3 +1,22 @@
+#' Title
+#'
+#' @param z 
+#' @param censor.type 
+#' @param distribution 
+#' @param force 
+#' @param debug1 
+#'
+#' @return list of values
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' lsinf(seq(-1,1, by = 0.1),"right","sev")
+#' 
+#' lsinf(seq(-2,2, by = 0.2),"right","normal")
+#' 
+#' }
 lsinf <-
 function (z, 
           censor.type, 
