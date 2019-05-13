@@ -1,3 +1,4 @@
+#' @export
 plot.ADDT.test.plan <-
 function (x,...)
 {
