@@ -1,3 +1,4 @@
+#' @export
 plot.vpm.vs.size <-
 function (x = c(100, 150, 200), size.vec = c(1, 2, 3),
     use.conditions = c(50.1),...)
