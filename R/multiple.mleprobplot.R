@@ -1,3 +1,81 @@
+#' Title
+#'
+#' @param data.list 
+#' @param data.ld.name 
+#' @param distribution 
+#' @param distribution.vec 
+#' @param xlab 
+#' @param ylab 
+#' @param conf.level 
+#' @param check.level 
+#' @param xlim 
+#' @param ylim 
+#' @param time.range 
+#' @param dump 
+#' @param grids 
+#' @param my.title 
+#' @param cex 
+#' @param linear.axes 
+#' @param slope.axis 
+#' @param pch 
+#' @param lty 
+#' @param ci.list 
+#' @param lwd 
+#' @param trunc.correct 
+#' @param col.fhat.vec 
+#' @param col.ci 
+#' @param shape 
+#' @param do.legend 
+#' @param add.title 
+#' @param do.list 
+#' @param plotem 
+#' @param plot.censored.ticks 
+#' @param ylim.data 
+#' @param plot.np 
+#' @param plot.frame 
+#' @param debug1 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' ShockAbsorber.ld <- frame.to.ld(shockabsorber,
+#'                                 response.column = 1,
+#'                                 failure.mode.column = 2,
+#'                                 censor.column = 3, 
+#'                                 time.units = "Kilometers")
+#' summary(ShockAbsorber.ld)
+#' event.plot(ShockAbsorber.ld)
+#' 
+#' # Split out by failure mode
+#' 
+#' mleprobplot(ShockAbsorber.ld, 
+#'             distribution = "Weibull")
+#' 
+#' mfmi.mleprobplot(ShockAbsorber.ld, 
+#'                  distribution = "Weibull")
+#' 
+#' mfmc.mleprobplot(ShockAbsorber.ld, 
+#'                  distribution = "Weibull")
+#'                  
+#' ShockAbsorber.mfld <- mfm.to.ld(ShockAbsorber.ld)
+#' 
+#' multiple.mleprobplot(ShockAbsorber.mfld,
+#'                      data.ld.name="xx",
+#'                      xlab="yy",
+#'                      distribution="Weibull")
+#' 
+#' mleprobplot(ShockAbsorber.Mode1.ld, 
+#'             distribution = "Weibull")
+#' 
+#' mleprobplot(ShockAbsorber.Mode2.ld,
+#'             distribution = "Weibull")
+#' 
+#' get.time.vector(ShockAbsorber.Mode2.ld)
+#' }
 multiple.mleprobplot <-
 function (data.list, 
           data.ld.name, 
