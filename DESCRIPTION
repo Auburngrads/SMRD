@@ -29,7 +29,6 @@ Imports:
     grid,
     survival,
     plot3D,
-    FSA,
     DT,
     xtable,
     pacman,
