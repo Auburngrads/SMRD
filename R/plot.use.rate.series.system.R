@@ -1,3 +1,4 @@
+#' @export
 plot.use.rate.series.system <-
 function (x, xlim = c(30, 4000), ylim = c(0.01,
     0.95), number.points = 100, lwd.fhat = 3, col.field = 6,
