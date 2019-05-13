@@ -1,3 +1,4 @@
+#' @export
 plot.alt.sample.size <-
 function (x, ALT.plan.values, use.conditions, quantile.of.interest = 0.1,
     xlim = c(NA, NA), ylim = c(NA, NA), conf.levels = c(0.8,
