@@ -1,3 +1,4 @@
+#' @importFrom survival survfit Surv
 survPlot<- function (ld) {
 
   for (i in 1:ncol(ld)) {
