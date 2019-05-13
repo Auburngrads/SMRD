@@ -1,3 +1,4 @@
+#' @export
 summary.mfm.multiple.mlest.out <-
 function (object,...)
 {
