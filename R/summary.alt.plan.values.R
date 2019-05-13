@@ -1,3 +1,4 @@
+#' @export
 summary.alt.plan.values <-
 function (object, ...)
 {
