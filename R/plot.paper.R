@@ -1,3 +1,4 @@
+#' @export
 plot.paper <-
 function (x, 
           y, 
