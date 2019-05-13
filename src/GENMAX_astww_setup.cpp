@@ -87,10 +87,7 @@ void setup(int &kmod,
 // of npard that was provided coming into this routine
    if(npard != npardc) {
 
-      Rcpp::Rcout << "ERROR: npard != npardc in setup"  << std::endl;
-      Rcpp::Rcout << "npard = "  << npard               << std::endl;
-      Rcpp::Rcout << "npardc = " << npardc              << std::endl;
-      Rcpp::stop("Execution stopped at setup.cpp");
+      Rcpp::stop("\nsetup: npard (%i) != npardc (%i)",npard,npardc);
 
    }
 
@@ -103,10 +100,7 @@ void setup(int &kmod,
 
    if(nparm != nparmc) {
 
-      Rcpp::Rcout << "ERROR: nparm != nparmc in setup"  << std::endl;
-      Rcpp::Rcout << "nparm = "  << nparm               << std::endl;
-      Rcpp::Rcout << "nparmc = " << nparmc              << std::endl;
-      Rcpp::stop("Execution stopped at setup.cpp");
+      Rcpp::stop("\nsetup: nparm (%i) != nparmc (%i)",nparm,nparmc);
 
    }
 
