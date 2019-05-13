@@ -174,9 +174,8 @@ int lvl,l1,l2,l3;
    
    if(ier != 0){
      
-      Rcpp::Rcout << "\nier = " << ier << std::endl;
-      if(lvl == 1) Rcpp::stop("Abnormal return from wqm_dqags");
-      Rcpp::warning("Abnormal return from wqm_dqags");
+      if(lvl == 1) Rcpp::stop("\nAbnormal return from wqm_dqags -- ier = %i", ier);
+      Rcpp::warning("\nAbnormal return from wqm_dqags -- ier = %i", ier);
      
    } 
 
