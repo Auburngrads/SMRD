@@ -1,3 +1,4 @@
+#' @export
 plot.line <-
 function (x, point2, xrange = NULL, col = 1, lty = 1, lwd = 1,...)
 {
