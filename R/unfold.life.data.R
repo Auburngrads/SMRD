@@ -1,3 +1,4 @@
+#' @export
 unfold.life.data <-
 function (x,...)
 {
