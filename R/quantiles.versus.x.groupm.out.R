@@ -1,3 +1,4 @@
+#' @export
 quantiles.versus.x.groupm.out <-
 function (x, new.data, prob, conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,...)
 {
