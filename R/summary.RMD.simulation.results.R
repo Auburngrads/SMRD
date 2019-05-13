@@ -1,3 +1,4 @@
+#' @export
 summary.RMD.simulation.results <-
 function (object,...)
 {
