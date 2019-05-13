@@ -1,3 +1,5 @@
+#' @importFrom nlme nfGroupedData nmGroupedData getGroupsFormula
+#' @export
 trellis.plot.repeated.measures.data <-
 function (x, 
           title.option = GetSMRDDefault("SMRD.TitleOption"), 
