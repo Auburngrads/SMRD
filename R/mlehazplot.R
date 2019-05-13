@@ -1,3 +1,70 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param distribution 
+#' @param gamthr 
+#' @param xlab 
+#' @param xlim 
+#' @param ylim 
+#' @param time.vec 
+#' @param conf.level 
+#' @param my.title 
+#' @param cex 
+#' @param sub.title 
+#' @param yaxis.line 
+#' @param x.axis 
+#' @param y.axis 
+#' @param ylab 
+#' @param fits 
+#' @param grids 
+#' @param theta.start 
+#' @param parameter.fixed 
+#' @param title.option 
+#' @param print.parameters 
+#' @param band.type 
+#' @param plotem 
+#' @param param.loc 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' ShockAbsorber.ld <- frame.to.ld(shockabsorber,
+#'                                 response.column = 1, 
+#'                                 censor.column = 3,
+#'                                 time.units = "Kilometers")
+#'
+#' mlehazplot(ShockAbsorber.ld, 
+#'            distribution = "Weibull", 
+#'            param.loc = "topleft")
+#' 
+#' mlehazplot(ShockAbsorber.ld, 
+#'            distribution = "Frechet")
+#' 
+#' 
+#' mlehazplot(ShockAbsorber.ld, 
+#'            distribution = "Lognormal")
+#' 
+#' 
+#' mlehazplot(ShockAbsorber.ld, 
+#'            distribution = "Lognormal",
+#'            xlim = c(5000,500000), 
+#'            y.axis = "log")
+#' 
+#' 
+#' mlehazplot(ShockAbsorber.ld, 
+#'            distribution = "Weibull",
+#'            time.vec = c(10000,20000,30000))
+#' 
+#' mlehazplot(ShockAbsorber.ld, 
+#'            distribution = "Weibull",
+#'            time.vec = c(10000,20000,30000),
+#'            parameter.fixed = c(F,T),
+#'            theta.start = c(9.,2))
+#' }
 mlehazplot <-
 function (data.ld, 
           distribution, 
