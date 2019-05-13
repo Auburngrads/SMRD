@@ -1,3 +1,4 @@
+#' @export
 unfold.Dest.Degrad.data <-
 function (x,...)
 {
