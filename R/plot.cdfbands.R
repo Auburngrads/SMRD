@@ -1,3 +1,4 @@
+#' @export
 plot.cdfbands <-
 function (x,
           npbands,
