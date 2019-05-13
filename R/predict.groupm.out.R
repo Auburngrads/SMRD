@@ -1,3 +1,4 @@
+#' @export
 predict.groupm.out <-
 function (object, ProbLessThan = NA, new.data,...)
 {
