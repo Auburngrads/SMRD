@@ -1,3 +1,4 @@
+#' @export
 print.mlehazplot.out <-
 function (x, digits = 5,...)
 {
