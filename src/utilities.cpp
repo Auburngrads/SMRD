@@ -497,9 +497,8 @@ if((xc >= xl) and (xc <= xu)) return;
      
      xc = defl;
      ier = ier_num;
-     Rcpp::warning("\ndcheck quantity below lower limit\n");
-     Rcpp::Rcout << "ier = " << ier << std::endl;
-     //if(ier_num != 0) Rcpp::stop("ier = ", ier_num);
+     Rcpp::warning("\ndcheck quantity (%f) below lower limit (%f) -- ier = %i", xc,xl,ier);
+     //if(ier_num != 0) Rcpp::stop("\nier = %i", ier_num);
      
    }
    
@@ -507,9 +506,8 @@ if((xc >= xl) and (xc <= xu)) return;
      
      xc = defu;
      ier = ier_num;
-     Rcpp::warning("\ndcheck quantity above upper limit\n");
-     Rcpp::Rcout << "ier = " << ier << std::endl;
-     //if(ier_num != 0) Rcpp::stop("ier = ", ier_num);
+     Rcpp::warning("\ndcheck quantity (%f) above upper limit (%f) -- ier = %i", xc,xu,ier);
+     //if(ier_num != 0) Rcpp::stop("\nier = %i", ier_num);
      
    }
 
@@ -534,9 +532,8 @@ if((ic >= il) and (ic <= iu)) return;
      
      ic = idefl;
      ier = ier_num;
-     Rcpp::warning("\nicheck quantity below lower limit\n");
-     Rcpp::Rcout << "ier = " << ier << std::endl;
-     //if(ier_num != 0) Rcpp::stop("ier = ", ier_num);
+     Rcpp::warning("\nicheck quantity (%i) below lower limit (%i) -- ier = %i",ic,il,ier);
+     //if(ier_num != 0) Rcpp::stop("\nier = %i", ier_num);
      
    }
    
@@ -544,9 +541,8 @@ if((ic >= il) and (ic <= iu)) return;
      
      ic = idefu;
      ier = ier_num;
-     Rcpp::warning("\nicheck quantity above upper limit\n");
-     Rcpp::Rcout << "ier = " << ier << std::endl;
-     //if(ier_num != 0) Rcpp::stop("ier = ", ier_num);
+     Rcpp::warning("\nicheck quantity (%i) above upper limit (%i) -- ier = %i", ic,iu,ier);
+     //if(ier_num != 0) Rcpp::stop("\nier = %i", ier_num);
      
    }
 
