@@ -1,3 +1,4 @@
+#' @export
 summary.simulate.ADDT.out <-
 function (object,...)
 {
