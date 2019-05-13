@@ -1,4 +1,5 @@
 library(SMRD)
+library(SMRD2)
 testnum = 2
 if(testnum == 1){
 ld <- SMRD::frame.to.ld(lzbearing, response.column = 1)
@@ -23,7 +24,7 @@ kfunc = 2
 fargv = NULL
 kpopu = 0
 kpoint = 0
-kprint = 0 
+if(!exists("kprint")) kprint = 0 
 conf.level = GetSMRDDefault("SMRD.ConfLevel") / 100
 debug1 = F
 
