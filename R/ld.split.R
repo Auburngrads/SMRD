@@ -1,3 +1,50 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param stress.var.list 
+#' @param group.var 
+#' @param the.ld.name 
+#' @param prefix 
+#' @param allow.poor.data 
+#' @param number.needed 
+#' @param printem 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' Bleed.ld <- frame.to.ld(bleed,
+#'                         response.column = 1, 
+#'                         censor.column = 2, 
+#'                         case.weight.column = 3,
+#'                         x.columns = 4,
+#'                         time.units = "Hours")
+#' 
+#' Bleed.ld_D <- ld.split(Bleed.ld, stress.var = "D")
+#' Bleed.ld_Other <- ld.split(Bleed.ld, stress.var = "Other")
+#' 
+#' event.plot(Bleed.ld_D)
+#' summary(Bleed.ld_D)
+#' 
+#' event.plot(Bleed.ld_Other)
+#' summary(Bleed.ld_Other)
+#' 
+#' plot(Bleed.ld,my.title="All Bases")
+#' 
+#' plot(Bleed.ld,
+#'      distribution = "Weibull",
+#'      my.title = "Bleed System Failures\nAll Bases")
+#' 
+#' plot(Bleed.ld_D,
+#'      distribution = "Weibull",
+#'      my.title = "Bleed System Failures\nOnly Base D")
+#' 
+#' plot(Bleed.ld_Other,
+#'      distribution = "Weibull",
+#'      my.title = "Bleed System Failures\nOmitting Base D")
+#' }
 ld.split <-
 function (data.ld, stress.var.list = unique(xmat(data.ld)[, group.var]),
     group.var = 1, the.ld.name = NULL, prefix = NULL, allow.poor.data = F,
