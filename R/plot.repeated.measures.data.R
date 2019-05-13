@@ -1,3 +1,4 @@
+#' @export
 plot.repeated.measures.data <-
 function (x, 
           x.axis = "linear", 
