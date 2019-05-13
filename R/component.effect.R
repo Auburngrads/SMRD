@@ -1,3 +1,27 @@
+#' Title
+#'
+#' @param parallel 
+#' @param dependent 
+#' @param mu 
+#' @param xlim 
+#' @param ylim 
+#' @param sd 
+#' @param rho 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' component.effect(parallel = TRUE)
+#' 
+#' parallel.effect()
+#' 
+#' parallel.dep.effect()
+#' 
+#' series.dep.effect()
+#' 
+#' }
 component.effect <- 
   function (parallel = TRUE, 
             dependent = FALSE, 
@@ -33,9 +57,27 @@ component.effect <-
     }
 }
 
-#
-#
 
+#' Title
+#'
+#' @param xrange 
+#' @param yrange 
+#' @param ncomp 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' component.effect(parallel = TRUE)
+#' 
+#' parallel.effect()
+#' 
+#' parallel.dep.effect()
+#' 
+#' series.dep.effect()
+#' 
+#' }
 parallel.effect <-
   function (xrange = c(0.5, 1), 
             yrange = c(0.8, 1), 
@@ -95,9 +137,29 @@ parallel.effect <-
            xpd = T)
   }
 
-#
-#
 
+#' Title
+#'
+#' @param xrange 
+#' @param yrange 
+#' @param mu 
+#' @param sd 
+#' @param rho 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' component.effect(parallel = TRUE)
+#' 
+#' parallel.effect()
+#' 
+#' parallel.dep.effect()
+#' 
+#' series.dep.effect()
+#' 
+#' }
 parallel.dep.effect <-
   function (xrange = c(0.5, 0.999), 
             yrange = c(0.8, 1), 
@@ -163,9 +225,27 @@ parallel.dep.effect <-
            xpd = T)
   }
 
-#
-#
 
+#' Title
+#'
+#' @param xrange 
+#' @param yrange 
+#' @param ncomp 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' component.effect(parallel = TRUE)
+#' 
+#' parallel.effect()
+#' 
+#' parallel.dep.effect()
+#' 
+#' series.dep.effect()
+#' 
+#' }
 series.effect <-
   function (xrange = c(0.98, 1), 
             yrange = c(0, 1), 
@@ -225,8 +305,29 @@ series.effect <-
            xpd = T)
   }
 
-#
-#
+
+#' Title
+#'
+#' @param xrange 
+#' @param yrange 
+#' @param mu 
+#' @param sd 
+#' @param rho 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' component.effect(parallel = TRUE)
+#' 
+#' parallel.effect()
+#' 
+#' parallel.dep.effect()
+#' 
+#' series.dep.effect()
+#' 
+#' }
 
 series.dep.effect <-
   function (xrange = c(0.8, 0.999), 
