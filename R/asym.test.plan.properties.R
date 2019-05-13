@@ -1,3 +1,26 @@
+#' Title
+#'
+#' @param plan.values 
+#' @param n 
+#' @param proportion.failing 
+#' @param quantiles 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#'  plan.values3 <- get.plan.values("Weibull",
+#'                                  prob = c(.2,.12),
+#'                                  time = c(1000,500), 
+#'                                  time.units = "Hours")
+#'                                
+#'  asym.test.plan.properties(plan.values3, 
+#'                            n = 50, 
+#'                            proportion.failing = 0.1)
+#' 
+#' }
 asym.test.plan.properties <-
 function (plan.values, n, proportion.failing, quantiles = c(0.1, 
     0.3, 0.5, 0.632)) 
