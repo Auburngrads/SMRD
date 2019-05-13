@@ -1,3 +1,4 @@
+#' @export
 plot.ADDT.sample.size <-
 function (x, ADDT.plan.values, use.condition, FailLevel,
     quantile.of.interest = 0.1, xlim = c(NA, NA), ylim = c(NA,
