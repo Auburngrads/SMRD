@@ -1,3 +1,4 @@
+#' @export
 print.repeated.measures.data <-
 function (x, quote = F, prefix = "",...)
 {
