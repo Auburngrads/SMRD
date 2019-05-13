@@ -1,7 +1,7 @@
 ---
-title: "`r SMRD2:::info('book')`"
-subtitle: "`r SMRD2:::info('chapter15')`"
-author: "`r SMRD2:::info('authors')`"
+title: "`r info('book')`"
+subtitle: "`r info('chapter15')`"
+author: "`r info('authors')`"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -14,12 +14,13 @@ vignette: >
 ---
 
 ```{r, echo=FALSE}
-SMRD2:::vinny()
+vinny()
 library(SMRD2)
 ```
 
 # In This Vignette...
 
+```{r}
 component.effect(parallel = TRUE)
 
 parallel.effect()
@@ -27,11 +28,12 @@ parallel.effect()
 parallel.dep.effect()
 
 series.dep.effect()
+```
 
 Create the `life.data` object and print the data summary
 
 ```{r}
-DeviceG.ld <- SMRD2:::frame.to.ld(deviceg,
+DeviceG.ld <- frame.to.ld(deviceg,
                           response.column = 1, 
                           failure.mode.column =  2)
 
@@ -57,34 +59,34 @@ summary(ld.to.mfld(DeviceG.ld))
 
 ```{r}
 par(mfrow = c(1,2))
-SMRD2:::mfmi.mleprobplot(DeviceG.ld, distribution = "weibull") 
-SMRD2:::mfmi.mleprobplot(DeviceG.ld, distribution = "lognormal") 
+mfmi.mleprobplot(DeviceG.ld, distribution = "weibull") 
+mfmi.mleprobplot(DeviceG.ld, distribution = "lognormal") 
 par(mfrow = c(1,1))
 ```
 
 # Plots both modes in one plot
 
 ```{r}
-SMRD2:::mfmc.mleprobplot(DeviceG.ld, 
+mfmc.mleprobplot(DeviceG.ld, 
                  distribution = "Weibull") 
 
-SMRD2:::mfmc.mleprobplot(DeviceG.ld, 
+mfmc.mleprobplot(DeviceG.ld, 
                  distribution = "Weibull", 
                  band.type = "none")
 
-tmp <- SMRD2:::mfmc.mleprobplot(DeviceG.ld, 
+tmp <- mfmc.mleprobplot(DeviceG.ld, 
                        distribution = "Weibull", 
                        band.type = "none", 
                        show.individual = F, 
                        ylim = c(0.1, .99))
-#failure.probabilities(tmp)
-#quantiles(tmp)
+failure.probabilities(tmp)
+quantiles(tmp)
 ```
 
 # different distributions for the different failure modes
 
 ```{r}
-tmpx <- SMRD2:::mfmc.mleprobplot(DeviceG.ld, 
+tmpx <- mfmc.mleprobplot(DeviceG.ld, 
                          distribution = "Weibull", 
                          distribution.vec = c("Weibull","Lognormal"))
 
@@ -109,17 +111,17 @@ event.plot(ShockAbsorber.ld)
 ## Split out by failure mode
 
 ```{r}
-SMRD2:::mleprobplot(ShockAbsorber.ld, 
+mleprobplot(ShockAbsorber.ld, 
             distribution = "Weibull")
 
-SMRD2:::mfmi.mleprobplot(ShockAbsorber.ld, 
+mfmi.mleprobplot(ShockAbsorber.ld, 
                  distribution = "Weibull")
 
-tmpx <- SMRD2:::mfmc.mleprobplot(ShockAbsorber.ld, 
+tmpx <- mfmc.mleprobplot(ShockAbsorber.ld, 
                          distribution = "Weibull")
 
-#failure.probabilities(tmpx)
-#quantiles(tmpx)
+failure.probabilities(tmpx)
+quantiles(tmpx)
 ```
 
 ```{r}
@@ -152,12 +154,12 @@ ConnectionStrength.ld <-
 summary(ConnectionStrength.ld )
 event.plot(ConnectionStrength.ld)
 
-SMRD2:::mfm.to.ld(ConnectionStrength.ld)
+mfm.to.ld(ConnectionStrength.ld)
 
-SMRD2:::mleprobplot(ConnectionStrength.Bond.ld , 
+mleprobplot(ConnectionStrength.Bond.ld , 
             distribution = "normal")
 
-SMRD2:::mlest(ConnectionStrength.Bond.ld , 
+mlest(ConnectionStrength.Bond.ld , 
       distribution = "normal")
 ```
 
@@ -165,7 +167,7 @@ SMRD2:::mlest(ConnectionStrength.Bond.ld ,
 # the following causes R to crash---using genmax
 
 ```{r, eval=FALSE}
-SMRD2:::gmlest(ConnectionStrength.Bond.ld , 
+gmlest(ConnectionStrength.Bond.ld , 
        distribution = "normal")
 ```
 
