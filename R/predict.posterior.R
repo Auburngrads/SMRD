@@ -1,3 +1,4 @@
+#' @export
 predict.posterior <-
 function (object, time.range = NULL, x.of.interest = NULL,
     extra.explan.vars = NULL, use.rows = 1:length(object$post[,
