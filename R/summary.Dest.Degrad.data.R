@@ -1,3 +1,4 @@
+#' @export
 summary.Dest.Degrad.data <-
 function (object,...)
 {
