@@ -1,3 +1,4 @@
+#' @export
 plot.use.rate.model.out <-
 function (x, modes.to.plot, xlab = NULL, my.title = NULL,
     ...)
