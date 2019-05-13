@@ -1,3 +1,4 @@
+#' @export
 plot.joint.prior.marginals <-
 function (x, logger = "xy", whichxy = c(1, 2), number.plot = 500,
     widthx = NULL, widthy = NULL,...)
