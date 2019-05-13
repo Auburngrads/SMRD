@@ -1,3 +1,4 @@
+#' @export
 print.groupm.out <-
 function (x, stress.state = NULL,...) 
 {
