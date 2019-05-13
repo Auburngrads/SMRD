@@ -1,3 +1,4 @@
+#' @export
 plot.multiple.mlest.out <-
 function (x, index = 1,...)
 {
