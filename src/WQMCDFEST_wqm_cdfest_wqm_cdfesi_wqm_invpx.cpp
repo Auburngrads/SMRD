@@ -14,8 +14,8 @@ void wqm_invpx(Rcpp::NumericVector &f,
 
 double tol = 0.0625e00;
 double x,test,sum,relz;
-int ipndex = 1,iphold,kount;
-int ipind1 = 1,nm1,jndex,index,jindex;
+int ipndex = 1;
+int ipind1,nm1,index,jndex,jindex;
 int jl,indlow,jm1,jndlow;
 
 relz = tol / n;
@@ -23,8 +23,8 @@ ier = 0;
 
 for(int i = 1; i <= n; i++){
 
-    iphold = ipndex;
-    kount = 1;
+    int iphold = ipndex;
+    int kount = 1;
    
     for(int j = 1; j <= i; j++){
 
@@ -61,14 +61,14 @@ for(int i = 1; i <= n; i++){
    
    }
    
-}
+   if(debug::kprint >= 5) {
+       
+      Rcpp::Rcout << "\nWQM_INVPX AFTER LOOP1\n" << std::endl;
+      Rcpp::Rcout << "f = " << f << std::endl;
+      Rcpp::Rcout << "n = " << n << std::endl;
+       
+   }
 
-if(debug::kprint >= 5) {
-    
-   Rcpp::Rcout << "\nWQM_INVPX AFTER LOOP1\n" << std::endl;
-   Rcpp::Rcout << "f = " << f << std::endl;
-   Rcpp::Rcout << "n = " << n << std::endl;
-    
 }
 
 nm1 = n - 1;
