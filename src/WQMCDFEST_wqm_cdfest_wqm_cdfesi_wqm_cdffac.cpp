@@ -1,9 +1,22 @@
 #include <base/base.hpp>
 
 int kindex(int k1,
-           int l1){
+           int l1,
+           std::string chk){
 
-  return l1 + (k1 - 1) * k1 / 2;
+  int OUT = l1 + (k1 - 1) * std::floor(k1 / 2);
+  
+  if(debug::kprint >= 10){
+    
+     Rcpp::Rcout << "\nkindex check\n" << std::endl;
+     Rcpp::Rcout << "where = " << chk << std::endl;
+     Rcpp::Rcout << "k1 = " << k1 << std::endl;
+     Rcpp::Rcout << "l1 = " << l1 << std::endl;
+     Rcpp::Rcout << "index = " << OUT << std::endl;
+    
+  }
+  return OUT;
+  
 }
 
 
@@ -54,7 +67,8 @@ if(il != 1) {
       for(int l = 1; l <= n1; l++){
       
           pdl = probd.at(l - 1);
-          if(pdl > small)  nx = nx + 1;
+          if(pdl <= small) continue;
+          nx = nx + 1;
       
       }
 }
@@ -68,7 +82,8 @@ ilx = nx + 1;
    for(int l = il; l <= iu; l++) {
    
        pdl = probd.at(l - 1);
-       if(pdl > small) nx = nx + 1;
+       if(pdl <= small) continue;
+       nx = nx + 1;
    
    }
 
@@ -81,39 +96,35 @@ for(int k = ilx; k <= iux; k++){
 
     for(int l = ilx; l <= k; l++){
 
-        if(k != nn1) {
+        if(k == nn1) goto line50;
 
-           index = kindex(k,l);
+           index = kindex(k,l,"In loop k-l");
            f.at(index - 1) = f.at(index - 1) + factr;
            continue;
 
-        } 
-
-        if(l == nn1) { 
+        line50: if(l == nn1) goto line60; 
       
-           for(int kk = 1; kk <= mnzs; kk++){
-  
-               f.at(kk - 1) = f.at(kk - 1) + factr;
-  
-           }
-       
-           continue;
-      
-        }
-    
         for(int ii = 1; ii <= l; ii++){
       
-            index = kindex(l,ii);
+            index = kindex(l,ii,"In loop ii");
             f.at(index - 1) = f.at(index - 1) - factr;
         
         }
 
         for(int jj = l; jj <= nnzs; jj++){
       
-            index = kindex(jj,l);
+            index = kindex(jj,l,"In loop jj");
             f.at(index - 1) = f.at(index - 1) - factr;
         
         }
+        
+        continue;
+        
+        line60: for(int kk = 1; kk <= mnzs; kk++){
+          
+                    f.at(kk - 1) = f.at(kk - 1) + factr;
+          
+                }
     }
 }
 
