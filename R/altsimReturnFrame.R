@@ -1,3 +1,65 @@
+#' Title
+#'
+#' @param accel.var.mat 
+#' @param nsamsz 
+#' @param centim 
+#' @param theta 
+#' @param distribution 
+#' @param relationship 
+#' @param time.units 
+#' @param kctype 
+#' @param escale 
+#' @param e 
+#' @param parameter.fixed 
+#' @param intercept 
+#' @param kprint 
+#' @param maxit 
+#' @param debug1 
+#' @param randomize 
+#' @param my.title 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' test.matrix <- cbind(V1 = c(1,1,2,2),V2 = c(1,2,1,2))
+#' 
+#' altsim.out <- altsim(accel.var.mat = test.matrix, 
+#'                      nsamsz = c(4,4,4,4), 
+#'                      centim = c(40000,40000,40000,40000), 
+#'                      theta = c(1,-24,5,1), 
+#'                      distribution = "normal",
+#'                      number.sim = 10, 
+#'                      debug = F)
+#' 
+#' altsim.out <- altsim(accel.var.mat = as.matrix(c(1,2,3,4)), 
+#'                      nsamsz = c(4,4,4,4), 
+#'                      centim = c(200,200,200,200), 
+#'                      theta = c(1,-2,3), 
+#'                      distribution = "normal", 
+#'                      number.sim = 5, 
+#'                      debug = F, 
+#'                      kprint = 0)
+#' 
+#' altsimReturnFrame(accel.var.mat = test.matrix, 
+#'                   nsamsz = c(4,4,4,4),
+#'                   centim = c(100,100,100,100),
+#'                   theta = c(1,1,1,2),
+#'                   distribution =" lognormal", 
+#'                   relationship = c("linear","log"))
+#' 
+#' ## Simulate a single ALT data set
+#' 
+#' altsimReturnFrame(accel.var.mat = test.matrix, 
+#'                   nsamsz = c(4,4,4,4),
+#'                   centim = c(100,100,100,100), 
+#'                   theta = c(1,1,1,2), 
+#'                   distribution = "lognormal", 
+#'                   relationship = c("linear","log"))
+#' 
+#' }
 altsimReturnFrame <-
 function (accel.var.mat, 
           nsamsz, 
