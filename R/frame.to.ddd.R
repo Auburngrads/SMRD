@@ -1,3 +1,94 @@
+#' Title
+#'
+#' @param frame 
+#' @param response.column 
+#' @param time.column 
+#' @param censor.column 
+#' @param case.weight.column 
+#' @param failure.mode.column 
+#' @param right.censor.names 
+#' @param left.censor.names 
+#' @param interval.censor.names 
+#' @param sinterval.censor.names 
+#' @param failure.censor.names 
+#' @param data.title 
+#' @param time.units 
+#' @param response.units 
+#' @param x.columns 
+#' @param xlabel 
+#' @param data.note 
+#' @param func.call 
+#' @param file.name 
+#' @param skip 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' InsulationBrkdwn.ddd <- frame.to.ddd(insulationbrkdwn,
+#'                                      response.column = 3, 
+#'                                      time.column = 1,
+#'                                      x.columns = 2,
+#'                                      data.title = "Voltage Breakdown Data",
+#'                                      response.units = "Volts",
+#'                                      time.units = "Weeks")
+#' 
+#' print(InsulationBrkdwn.ddd)
+#' 
+#' plot(InsulationBrkdwn.ddd,
+#'      transformation.Response = "log",
+#'      transformation.time = "linear")
+#' 
+#' tmp <- groupi.Dest.Degrad.indivplots(InsulationBrkdwn.ddd,
+#'                                      transformation.Response = "log", 
+#'                                      transformation.time = "linear",
+#'                                      distribution = "normal")
+#' 
+#' groupi.Dest.Degrad.oneplot(InsulationBrkdwn.ddd,
+#'                            transformation.Response = "log", 
+#'                            transformation.time = "linear",
+#'                            distribution="normal")
+#' groupm.Dest.Degrad(InsulationBrkdwn.ddd, 
+#'                    distribution = "normal",
+#'                    transformation.Response = "log10",
+#'                    transformation.x = "invtemp",
+#'                    transformation.time = "linear")
+#' 
+#' 
+#' groupm.Dest.Degrad(InsulationBrkdwn.ddd, 
+#'                    distribution = "normal",
+#'                    transformation.Response = "log",
+#'                    transformation.x = "arrhenius",
+#'                    transformation.time="linear")
+#' 
+#' # Do individual analyses at each level of temperature
+#' 
+#' InsulationBrkdwn.groupi.Dest.Degrad <-groupi.Dest.Degrad(InsulationBrkdwn.ddd,
+#'                                                          distribution = "normal",
+#'                                                          transformation.Response = "log", 
+#'                                                          transformation.time = "sqrt")
+#' 
+#' 
+#' plot(InsulationBrkdwn.groupi.Dest.Degrad,
+#'      transformation.x = "Arrhenius")
+#' 
+#' InsulationBrkdwn.groupm.Dest.Degrad <-groupm.Dest.Degrad(InsulationBrkdwn.ddd,
+#'                                                          distribution = "normal", 
+#'                                                          transformation.Response = "log",
+#'                                                          transformation.x = "arrhenius", 
+#'                                                          transformation.time = "sqrt")
+#' 
+#' InsulationBrkdwn.groupm.Dest.Degrad<-groupm.Dest.Degrad(InsulationBrkdwn.ddd,
+#'                                                         distribution = "normal",
+#'                                                         transformation.Response = "log",
+#'                                                         transformation.x = "arrhenius",
+#'                                                         transformation.time = "sqrt",
+#'                                                         new.data = c("150,260"))
+#' 
+#' 
+#' }
 frame.to.ddd <-
 function (frame, 
           response.column, 
@@ -19,33 +110,27 @@ function (frame,
           skip = 0)
 {
     if (missing(frame)) {
-        if (missing(file.name))
-            stop("Must provide either frame or file.name")
+        if (missing(file.name)) stop("Must provide either frame or file.name")
         frame <- read.table(file.name, header = T, skip = skip)
         the.mode <- "data.frame"
         dynamic.data.object <- F
-        if (is.null(data.title))
-            data.title <- file.name
+        if (is.null(data.title)) data.title <- file.name
   } else {
-        if (!missing(file.name))
-            stop("Cannot provide both frame and file.name")
+        if (!missing(file.name)) stop("Cannot provide both frame and file.name")
         if (is.character(frame)) {
             the.mode <- "character"
             frame.name <- frame
-            if (is.null(data.title))
-                data.title <- frame.name
+            if (is.null(data.title)) data.title <- frame.name
             dynamic.data.object <- T
             frame <- get(envir = .frame0, frame.name)
             
       } else {
         
             the.mode <- "data.frame"
-            if (is.null(data.title))
-                data.title <- deparse(substitute(frame))
+            if (is.null(data.title)) data.title <- deparse(substitute(frame))
             dynamic.data.object <- F
             
-            if (!is.data.frame(frame))
-                stop("Need to input either a frame or a file.name that can be read into a data frame")
+            if (!is.data.frame(frame)) stop("Need to input either a frame or a file.name that can be read into a data frame")
             
         }
     }
