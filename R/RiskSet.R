@@ -1,3 +1,25 @@
+#' Title
+#'
+#' @param data.rdu 
+#' @param kdebug1 
+#' @param JustEvent 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' halfbeak.rdu <- frame.to.rdu(halfbeak,
+#'                              ID.column = "unit", 
+#'                              time.column = "hours" ,
+#'                              event.column = "event", 
+#'                              data.title = "Halfbeak Data", 
+#'                              time.units = "Thousands of Hours of Operation")
+#' 
+#' RiskSet(halfbeak.rdu)
+#' 
+#' }
 RiskSet <-
 function (data.rdu, kdebug1= F, JustEvent = T) 
 {
