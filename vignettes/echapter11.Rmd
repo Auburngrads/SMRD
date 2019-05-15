@@ -134,7 +134,9 @@ abline(v=0,lty=3)
 abline(v=1,lty=3)
 text(0.829561, 0.224463, "WEIB")
 text(-0.236364, 0.224463, "LOGNOR")
+```
 
+```{r}
 Fan.ld <- frame.to.ld(fan,
                       response.column = 1, 
                       censor.column = 2, 
@@ -155,7 +157,7 @@ text(6.00877, -3.03298, "GENG")
 text(5.52783, -2.91186, "LOGNOR")
 
 
-one.dim.profile(Fan.egeng.gmle.out,
+SMRD2:::one.dim.profile(Fan.egeng.gmle.out,
                 profile.on.list = 3,
                 range.list = list(c(-8,2)),
                 size = 50)
@@ -243,8 +245,12 @@ basic.gmleprobplot(small.interval(Fan.ld, delta=.01),
                    cexlab = 1.5,
                    compare = list(Fan.gets.nor.gmle.out))
 
-basic.gmleprobplot(small.interval(Fan.ld, delta=.01), distribution="sevgets",xxx.mle.out=Fan.gets.sev.gmle.out, my.title="", cexlab=1.5,compare=c("lognormal","gamma","bisa"))
-
+basic.gmleprobplot(small.interval(Fan.ld, delta = .01), 
+                   distribution = "sevgets",
+                   xxx.mle.out = Fan.gets.sev.gmle.out, 
+                   my.title="", 
+                   cexlab = 1.5,
+                   compare = c("lognormal","gamma","bisa"))
 
 gmleprobplot(small.interval(Fan.ld, delta = 0.01), 
              distribution = "sevgets",
@@ -518,28 +524,33 @@ LaminatePanel.fit22.out <- rflm.mle(LaminatePanel.ld,
 print(LaminatePanel.fit22.out)
 ```
 
-if(F){
+The code in the following chunk is for testing only 
 
-one.dim.profile(LaminatePanel.fit22.out,profile.on.list=3,size = 50, range.list = list(c(-35,0)),save.parameter.vectors=T)
+```{r, eval=FALSE}
+one.dim.profile(LaminatePanel.fit22.out,
+                profile.on.list = 3,
+                size = 50, 
+                range.list = list(c(-35,0)),
+                save.parameter.vectors = T)
 
-
-
-one.dim.profile(LaminatePanel.fit22.out,profile.on.list=3,
-                 size = 300, range.list = list(c(-35,0)),
-		save.parameter.vectors=T)
-
+one.dim.profile(LaminatePanel.fit22.out,
+                profile.on.list = 3,
+                size = 300, 
+                range.list = list(c(-35,0)), 
+                save.parameter.vectors = T)
 
 profile.plot(LaminatePanel.fit22.outstruct3)
 
+one.dim.profile(LaminatePanel.fit22.out,
+                profile.on.list = 5,
+                size = 30, 
+                range.list = list(c(-9.21, -2.3)),
+                save.parameter.vectors = T)
+```
 
-one.dim.profile(LaminatePanel.fit22.out,profile.on.list=5,size = 30, range.list = list(c(-9.21, -2.3)),save.parameter.vectors=T)
-
-}
-
-#-----------------------------------------------------------
 # inconel superalloy data
-#-----------------------------------------------------------
 
+```{r}
 inconelsub <- inconel[inconel$Strain<.007,]
 
 inconel.ld <- frame.to.ld(inconel,response.column="Cycles",data.title ="Inconel Superalloy Fatigue Data with Stress < 7000",censor.column="Status", x.column="Strain")
@@ -563,13 +574,11 @@ inconel.fit22 <-rflm.mle(inconel.ld, cond.dist = "normal", fl.dist = "normal")
 print(inconel.fit22)
 
 plot(inconel.fit22)
+```
 
-
-
-#-----------------------------------------------------------
 # titanium Ti64 fatigue data
-#-----------------------------------------------------------
 
+```{r}
 titanium.ld <- frame.to.ld(titanium,response.column="kcycles",censor.column="Status",data.title="Ti64 Fatigue Failure Data",x.column="kstrain")
 
 
@@ -592,12 +601,11 @@ print(titanium.fit22)
 plot(titanium.fit22)
 
 plot(titanium.fit22, response.on.yaxis = F ,xlim=c(5.1,24))
+```
 
-
-#-----------------------------------------------------------
 # Concrete Data
-#-----------------------------------------------------------
 
+```{r}
 Concrete[1:5,]
 
 Concrete.ld <- frame.to.ld(concrete,response.column="kcycles",time.units="Kilocycles",data.title ="Concrete Fatigue Data",xlabel="Smax-Sfail",x.column="StressRatio")
@@ -618,35 +626,56 @@ print(Concrete.fit21.out)
 Concrete.fit22.out <- rflm.mle(Concrete.ld,cond.dist = "normal", fl.dist = "normal")
 print(Concrete.fit22.out)
 plot(Concrete.fit22.out,response.on.yaxis = F)
+```
 
-
-
-#-----------------------------------------------------------
 # high-cycle fatigue
-#-----------------------------------------------------------
 
-if(F){
+```{r, eval=FALSE}
 
-hcf.ld <- frame.to.ld(hcfdata,response.column="Cycles",right.censor.names="0", data.title="High Cycle Fatigue Data",censor.column="fail", x.column=c("SWT"))
+hcf.ld <- frame.to.ld(hcfdata,
+                      response.column = "cycles",
+                      right.censor.names = "0", 
+                      data.title = "High Cycle Fatigue Data",
+                      censor.column = "event", 
+                      x.column = c("swt"))
 
 censored.data.plot(hcf.ld, x.axis = "log",y.axis = "log")
 
-censored.data.plot(hcf.ld, x.axis = "log", y.axis = "log", response.on.yaxis = F)
+censored.data.plot(hcf.ld, 
+                   x.axis = "log", 
+                   y.axis = "log", 
+                   response.on.yaxis = F)
 
-#
-#turning the trace on and up the number of digits for these
-#
+# Turning the trace on and up the number of digits for these
 
-hcf.fit22f1 <- rflm.mle(hcf.ld, cond.dist = "normal", fl.dist = "normal",digits=10,dump=7,fixed.param.list=list(fixed.parameters=3,fixed.parameter.values=.02))
+hcf.fit22f1 <- rflm.mle(hcf.ld, 
+                        cond.dist = "normal", 
+                        fl.dist = "normal",
+                        digits=10,
+                        dump=7,
+                        fixed.param.list=list(fixed.parameters=3,
+                                              fixed.parameter.values=.02))
 #likelihood on Alpha chip= -123.3193856
 #likelihood on Wintel chip= -123.31939
 
-hcf.fit22f2 <-rflm.mle(hcf.ld, cond.dist = "normal", fl.dist = "normal",digits=10,dump=7,fixed.param.list=list(fixed.parameters=3,fixed.parameter.values=.0002))
+hcf.fit22f2 = rflm.mle(hcf.ld, 
+                       cond.dist = "normal",
+                       fl.dist = "normal",
+                       digits = 10,
+                       dump = 7,
+                       fixed.param.list = list(fixed.parameters = 3,
+                                               fixed.parameter.values = 0.0002))
 #likelihood on Alpha chip = -123.2937926
 #likelihood on Wintel chip= -123.29379
 
 
-hcf.fit22f3 <-rflm.mle(hcf.ld, cond.dist = "normal", fl.dist = "normal",digits=10,dump=7,fixed.param.list=list(fixed.parameters=3,fixed.parameter.values=.00002))
+hcf.fit22f3 = rflm.mle(hcf.ld, 
+                       cond.dist = "normal", 
+                       fl.dist = "normal",
+                       digits = 10,
+                       dump = 7,
+                       fixed.param.list = list(fixed.parameters = 3,
+                                               fixed.parameter.values = 0.00002))
 #likelihood on Alpha chip= -123.2937897 (false convergence messaage,
 #but the gradiant looks fine)
 #likelihood on Wintel chip= -123.29620
@@ -669,7 +698,16 @@ hcf.fit22f3 <-rflm.mle(hcf.ld, cond.dist = "normal", fl.dist = "normal",digits=1
 # But no standard error from windows.
 #
 
-hcf22.fit <- rflm.mle(hcf.ld, cond.dist = "normal", fl.dist = "normal",digits=10,dump=7, theta.start= c(9.356277116, -2.935035745, 2e-04, 3.863027231, 0.1183292607))
+hcf22.fit <- rflm.mle(hcf.ld, 
+                      cond.dist = "normal", 
+                      fl.dist = "normal",
+                      digits=10,
+                      dump=7, 
+                      theta.start= c(9.356277116, 
+                                     -2.935035745, 
+                                     2e-04, 
+                                     3.863027231, 
+                                     0.1183292607))
 
 #likelihood on Alpha chip = -123.2937897
 #likelihood on Wintel chip= -123.2937926
@@ -685,21 +723,24 @@ plot(hcf22.fit, response.on.yaxis = F)
 #No problem on my 1GB Alpha. My guess is that it will run ok with 256MB
 #It ran ok (about 15 minutes on my 233MHz) with  size = 20
 #
-#
 
 
-censored.data.plot(hcf.ld, x.axis = "log", y.axis = "log", response.on.yaxis = F)
+censored.data.plot(hcf.ld, 
+                   x.axis = "log", 
+                   y.axis = "log", 
+                   response.on.yaxis = F)
 
 hcf.fit <-rflm.mle(hcf.ld, cond.dist = "sev", fl.dist = "normal")
 
 plot(hcf.fit)
 
 
-# #
-# The following indicates that we will have trouble identifying sigma from these data
-#
-
-one.dim.profile(hcf22.fit,profile.on.list=3,size = 20, range.list = list(c(-10,0)))
+# The following indicates that we will have trouble  
+# identifying sigma from these data
+one.dim.profile(hcf22.fit,
+                profile.on.list=3,
+                size = 20, 
+                range.list = list(c(-10,0)))
 
 profile.plot(hcf22.fitstruct3)
 
@@ -711,7 +752,4 @@ xcdf(1, 2, 29, -5, 270 ,  .36, 5.3, .020,6.0 )
 #>
 xpdf(1, 2, 29, -5, 380 ,  .36, 5.3, .020,3.5322 )
 #jave[1] 0.2656861
-
-
-}
-
+```
