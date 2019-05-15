@@ -1,3 +1,30 @@
+#' Title
+#'
+#' @param data.rdu 
+#' @param my.title 
+#' @param xlab 
+#' @param ylab 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' halfbeak.rdu <- frame.to.rdu(halfbeak,
+#'                              ID.column = "unit", 
+#'                              time.column = "hours" ,
+#'                              event.column = "event", 
+#'                              data.title = "Halfbeak Data", 
+#'                              time.units = "Thousands of Hours of Operation")
+#' 
+#' interarrival.plot(halfbeak.rdu,
+#'                   xlab = "Thousands of Hours of Operation",
+#'                   ylab = "Thousands of Hours Between Maintenance Actions",
+#'                   my.title="")
+#' 
+#' }
 interarrival.plot <-
 function (data.rdu, my.title = NULL, xlab = paste("Age in", get.time.units(data.rdu)),
     ylab = "Time Between Failure", ...)
