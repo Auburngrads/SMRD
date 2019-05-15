@@ -1,3 +1,37 @@
+#' Title
+#'
+#' @param data.ddd 
+#' @param distribution 
+#' @param transformation.response 
+#' @param transformation.x 
+#' @param transformation.time 
+#' @param group.var 
+#' @param debug1 
+#' @param theta.start 
+#' @param power 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' AdhesiveStrength.ddd <- frame.to.ddd(adhesivestrength, 
+#'                                      response.column = "pounds",
+#'                                      time.column = "days",
+#'                                      x.columns = "celsius",
+#'                                      data.title = "AdhesiveStrength Strength Data",
+#'                                      time.units = "Days")
+#' 
+#' AdhesiveStrength.gmle <- dest.degrad.mle(AdhesiveStrength.ddd,
+#'                                          distribution = "normal",
+#'                                          transformation.response = "log", 
+#'                                          transformation.x = "arrhenius", 
+#'                                          transformation.time = "linear")
+#' 
+#' get.sub.model.dest.degrad.mle.out(AdhesiveStrength.gmle,c(50,60,70))
+#' 
+#' }
 dest.degrad.mle <-
 function (data.ddd, distribution, transformation.response, transformation.x,
     transformation.time, group.var = 1:ncol(xmat(data.ddd)),
