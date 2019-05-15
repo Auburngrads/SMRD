@@ -1,3 +1,98 @@
+#' Title
+#'
+#' @param data.ddd 
+#' @param distribution 
+#' @param transformation.response 
+#' @param transformation.time 
+#' @param ylim 
+#' @param xlim 
+#' @param my.title 
+#' @param ylab 
+#' @param xlab 
+#' @param cex 
+#' @param cex.labs 
+#' @param cex.points 
+#' @param cex.tic.lab 
+#' @param add 
+#' @param grids 
+#' @param title.option 
+#' @param pch.point 
+#' @param response.on.yaxis 
+#' @param group.var 
+#' @param subset 
+#' @param fail.level 
+#' @param plot.lines 
+#' @param do.legend 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' InsulationBrkdwn.ddd <- frame.to.ddd(insulationbrkdwn,
+#'                                      response.column = 3, 
+#'                                      time.column = 1,
+#'                                      x.columns = 2,
+#'                                      data.title = "Voltage Breakdown Data",
+#'                                      response.units = "Volts",
+#'                                      time.units = "Weeks")
+#' 
+#' print(InsulationBrkdwn.ddd)
+#' 
+#' plot(InsulationBrkdwn.ddd,
+#'      transformation.Response = "log",
+#'      transformation.time = "linear")
+#' 
+#' tmp <- groupi.Dest.Degrad.indivplots(InsulationBrkdwn.ddd,
+#'                                      transformation.Response = "log", 
+#'                                      transformation.time = "linear",
+#'                                      distribution = "normal")
+#' 
+#' groupi.Dest.Degrad.oneplot(InsulationBrkdwn.ddd,
+#'                            transformation.Response = "log", 
+#'                            transformation.time = "linear",
+#'                            distribution="normal")
+#' groupm.Dest.Degrad(InsulationBrkdwn.ddd, 
+#'                    distribution = "normal",
+#'                    transformation.Response = "log10",
+#'                    transformation.x = "invtemp",
+#'                    transformation.time = "linear")
+#' 
+#' 
+#' groupm.Dest.Degrad(InsulationBrkdwn.ddd, 
+#'                    distribution = "normal",
+#'                    transformation.Response = "log",
+#'                    transformation.x = "arrhenius",
+#'                    transformation.time="linear")
+#' 
+#' # Do individual analyses at each level of temperature
+#' 
+#' InsulationBrkdwn.groupi.Dest.Degrad <-groupi.Dest.Degrad(InsulationBrkdwn.ddd,
+#'                                                          distribution = "normal",
+#'                                                          transformation.Response = "log", 
+#'                                                          transformation.time = "sqrt")
+#' 
+#' 
+#' plot(InsulationBrkdwn.groupi.Dest.Degrad,
+#'      transformation.x = "Arrhenius")
+#' 
+#' InsulationBrkdwn.groupm.Dest.Degrad <-groupm.Dest.Degrad(InsulationBrkdwn.ddd,
+#'                                                          distribution = "normal", 
+#'                                                          transformation.Response = "log",
+#'                                                          transformation.x = "arrhenius", 
+#'                                                          transformation.time = "sqrt")
+#' 
+#' InsulationBrkdwn.groupm.Dest.Degrad<-groupm.Dest.Degrad(InsulationBrkdwn.ddd,
+#'                                                         distribution = "normal",
+#'                                                         transformation.Response = "log",
+#'                                                         transformation.x = "arrhenius",
+#'                                                         transformation.time = "sqrt",
+#'                                                         new.data = c("150,260"))
+#' 
+#' 
+#' }
+
 groupi.Dest.Degrad.indivplots <-
 function (data.ddd, distribution, transformation.response = "log",
     transformation.time = "linear", ylim = c(NA, NA), xlim = c(NA,
