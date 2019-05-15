@@ -155,18 +155,23 @@ function (data.ld,
       
     }
     switch(band.method, logit.cdf.method = {
-        bands <- get.parametric.bands(mlest.out, conf.level = conf.level,
-            xlim = time.range, mono.tran = mono.tran)
+        bands <- get.parametric.bands(mlest.out, 
+                                      conf.level = conf.level,
+                                      xlim = time.range, 
+                                      mono.tran = mono.tran)
         xbandrange <- NULL
         ybandrange <- range(strip.na(bands$lower), strip.na(bands$upper))
     }, zhat.cdf.method = {
-        bands <- get.parametric.bands.zhat(mlest.out, conf.level = conf.level,
-            xlim = time.range, mono.tran = mono.tran)
+        bands <- get.parametric.bands.zhat(mlest.out, 
+                                           conf.level = conf.level,
+                                           xlim = time.range, 
+                                           mono.tran = mono.tran)
         xbandrange <- NULL
         ybandrange <- range(strip.na(bands$lower), strip.na(bands$upper))
     }, log.quantile.method = {
-        bands <- get.parametric.bands.quant(mlest.out, conf.level = conf.level,
-            xlim = time.range)
+        bands <- get.parametric.bands.quant(mlest.out, 
+                                            conf.level = conf.level,
+                                            xlim = time.range)
         ybandrange <- NULL
         xbandrange <- range(strip.na(bands$lower), strip.na(bands$upper))
     }, {
@@ -274,11 +279,11 @@ function (data.ld,
            if(band.type != "n" && !is.null(xbandrange)) {
              
               plot.bands.quantile(bands, 
-                                          distribution = distribution,
-                                          log.of.data = log.of.data, 
-                                          lwd.ci = lwd.ci, 
-                                          lwd.fhat = lwd.fhat,
-                                          mono.tran = mono.tran)
+                                  distribution = distribution,
+                                  log.of.data = log.of.data, 
+                                  lwd.ci = lwd.ci, 
+                                  lwd.fhat = lwd.fhat,
+                                  mono.tran = mono.tran)
              
            }
           
