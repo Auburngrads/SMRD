@@ -1,3 +1,28 @@
+#' Title
+#'
+#' @param data.rdu 
+#' @param form 
+#' @param debug1 
+#' @param theta.start 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' halfbeak.rdu <- frame.to.rdu(halfbeak,
+#'                              ID.column = "unit", 
+#'                              time.column = "hours" ,
+#'                              event.column = "event", 
+#'                              data.title = "Halfbeak Data", 
+#'                              time.units = "Thousands of Hours of Operation")
+#' 
+#' NHPP.mle(halfbeak.rdu, form = "power rule")
+#' NHPP.mle(halfbeak.rdu, form = "log linear")
+#' 
+#' }
 NHPP.mle <-
 function (data.rdu, form = "power rule",debug1= 0, theta.start = c(NA,
     NA), ...)
