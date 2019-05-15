@@ -1,3 +1,37 @@
+#' Title
+#'
+#' @param data.rdu 
+#' @param my.title 
+#' @param xlab 
+#' @param ylab 
+#' @param nacf 
+#' @param plot.acf 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' halfbeak.rdu <- frame.to.rdu(halfbeak,
+#'                              ID.column = "unit", 
+#'                              time.column = "hours" ,
+#'                              event.column = "event", 
+#'                              data.title = "Halfbeak Data", 
+#'                              time.units = "Thousands of Hours of Operation")
+#' ar1.plot(halfbeak.rdu,
+#'          xlab = "Lagged Thousands of Hours Between Maintenance Actions",
+#'          ylab = "Thousands of Hours Between Maintenance Actions")
+#' 
+#' ar1.plot(halfbeak.rdu,
+#'          xlab = "Lagged Thousands of Hours Between Maintenance Actions",
+#'          ylab = "Thousands of Hours Between Maintenance Actions",
+#'          plot.acf = T)
+#' 
+#' 
+#' 
+#' }
 ar1.plot <-
 function (data.rdu, my.title = NULL, xlab = "Interarrival Times", 
     ylab = "Lagged Interarrival Times", nacf = 5, plot.acf = F, 
