@@ -1,3 +1,30 @@
+#' Title
+#'
+#' @param data.rdu 
+#' @param start.gamma1 
+#' @param xlab 
+#' @param ylab 
+#' @param plot.seg 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' halfbeak.rdu <- frame.to.rdu(halfbeak,
+#'                              ID.column = "unit", 
+#'                              time.column = "hours" ,
+#'                              event.column = "event", 
+#'                              data.title = "Halfbeak Data", 
+#'                              time.units = "Thousands of Hours of Operation")
+#' 
+#' fit.power.and.loglin.process(halfbeak.rdu,
+#'                              xlab = "Thousands of Hours of Operation",
+#'                              ylab = "Cumulative Number of Maintenance Actions")
+#' 
+#' 
+#' }
 fit.power.and.loglin.process <-
 function (data.rdu, start.gamma1 = 0.001, xlab = paste("Age in",
     get.time.units(data.rdu)), ylab = "Mean Cumulative Failures",
