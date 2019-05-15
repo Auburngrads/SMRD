@@ -50,7 +50,7 @@ PredictTable(BearingCage.mlest.weib,
 ```
 
 ```{r}
-CondProbInterval(mu = 3.7393, 
+SMRD2:::CondProbInterval(mu = 3.7393, 
                  sigma = 0.7639,
                  distribution = "lognormal",
                  age = 1,
