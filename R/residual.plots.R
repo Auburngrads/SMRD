@@ -1,3 +1,35 @@
+#' Title
+#'
+#' @param results.out 
+#' @param which.plot 
+#' @param x.to.plot 
+#' @param my.title 
+#' @param xlim 
+#' @param ylim 
+#' @param fvquant 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' ZelenCap.ld <- frame.to.ld(zelencap,
+#'                            response.column = 1,
+#'                            censor.column = 2,
+#'                            case.weight.column = 3,
+#'                            x.columns = c(4, 5),
+#'                            time.units = "Hours")
+#' 
+#' ZelenCap.groupm.out3 <- 
+#'   groupm.mleprobplot(ZelenCap.ld, 
+#'                      distribution = "Lognormal", 
+#'                      relationship = c("linear", "linear"), 
+#'                      formula = Location ~ + g(volts) + g(celsius) + g(volts):g(celsius))
+#' 
+#' residual.plots(ZelenCap.groupm.out3)
+#' 
+#' }
 residual.plots <-
 function (results.out, which.plot = "All", x.to.plot = NULL, 
     my.title = NULL, xlim = c(NA, NA), ylim = c(NA, NA), 
