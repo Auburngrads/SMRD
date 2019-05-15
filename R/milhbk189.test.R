@@ -1,3 +1,25 @@
+#' Title
+#'
+#' @param data.rdu 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' halfbeak.rdu <- frame.to.rdu(halfbeak,
+#'                              ID.column = "unit", 
+#'                              time.column = "hours" ,
+#'                              event.column = "event", 
+#'                              data.title = "Halfbeak Data", 
+#'                              time.units = "Thousands of Hours of Operation")
+#' 
+#' laplace.test(halfbeak.rdu)
+#' lewis.robinson.test(halfbeak.rdu)
+#' milhbk189.test(halfbeak.rdu)
+#' 
+#' }
 milhbk189.test <-
 function (data.rdu) 
 {
