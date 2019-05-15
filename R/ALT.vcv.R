@@ -1,3 +1,44 @@
+#' Title
+#'
+#' @param ALT.test.plan 
+#' @param ALT.plan.values 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' AdhesiveBond.Weibull.altpv <- get.alt.plan.values.from.slope.and.point(distribution = "Weibull",
+#'                                                                        relationship = "Arrhenius", 
+#'                                                                        accelvar.units = c("DegreesC"),
+#'                                                                        time.units = "Days", 
+#'                                                                        censor.time = 183,
+#'                                                                        probs = c(.001), 
+#'                                                                        accelvar = c(50),
+#'                                                                        slope = 0.726, 
+#'                                                                        beta = 1.667)
+#' 
+#' print(AdhesiveBond.Weibull.altpv)
+#' 
+#' AdhesiveBond1.altplan <- get.alt.test.plan.direct(accel.variable.levels = c(78,98,120),
+#'                                                   number.of.units = c(155,60,84),
+#'                                                   censor.times = c(183,183,183))
+#' 
+#' plot(AdhesiveBond1.altplan,
+#'      ALT.plan.values = AdhesiveBond.Weibull.altpv,
+#'      use.condition = 50)
+#' 
+#' ALT.vcv(AdhesiveBond1.altplan,
+#'         ALT.plan.values = AdhesiveBond.Weibull.altpv)
+#' 
+#' evaluate(AdhesiveBond1.altplan,
+#'          ALT.plan.values = AdhesiveBond.Weibull.altpv,
+#'          quantile.of.interest = 0.5,
+#'          use.condition = 50)
+#' 
+#' 
+#' }
 ALT.vcv <-
 function (ALT.test.plan, ALT.plan.values)
 {
