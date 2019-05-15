@@ -43,26 +43,28 @@ failure.probabilities(plan.values1)
 
 Carry out life test simulation using specified planning values.  The function below plots several individual test simulations (the number of simulations is equal to `number.detail`) along with a plot of several simulations depending on the value of the argument `number.sim` (default is 2000).
 
-```{r}
+```{r, eval=FALSE}
 life.test.simulation(plan.values1, 
                      n = 50,
                      censor.time = 120, 
                      number.detail = 5, 
-                     quantile.mark = 0.2)
+                     quantile.mark = 0.2,
+                     number.sim = 200)
 ```
 
 ## Try a longer test
 
-```{r}
+```{r, eval=FALSE}
 life.test.simulation(plan.values1, 
                      n = 50,
                      censor.time = 300, 
-                     number.detail = 5)
+                     number.detail = 5,
+                     number.sim = 200)
 ```
 
 Other optional arguments and skip detail
 
-```{r}
+```{r, eval=FALSE}
 life.test.simulation(plan.values1, 
                      n = 50,
                      censor.time = 1000, 
@@ -85,11 +87,13 @@ plot(plan.values2)
 plot(plan.values2, 
      censor.time = 1000, 
      grids = F)
+```
 
+```{r, eval=FALSE}
 life.test.simulation(plan.values2, 
                      n = 50,
                      censor.time = 1000, 
-                     quantile.mark = .1)
+                     quantile.mark = 0.1)
 ```
 
 # Get planning values by specifying two points
@@ -107,36 +111,39 @@ plan.values4 <- get.plan.values("Weibull",
 
 summary(plan.values3)
 plot(plan.values3)
+```
 
-
+```{r, eval=FALSE}
 life.test.simulation(plan.values3, 
                      n = 50, 
                      censor.time = 1000, 
                      quantile.mark = 0.1)
+```
 
+```{r}
 #compare the simulated value with the large-sample approx below
 
 asd.quant(plan.values3, 
-          n=50, 
+          n = 50, 
           censor.time = 1000, 
-          quantile.mark=.1)
+          quantile.mark = 0.1)
 
 #compare:
 
 asd.quant(plan.values3,
-          n=50, 
+          n = 50, 
           censor.time = 1000, 
-          quantile.mark=.1)*sqrt(50)
+          quantile.mark = 0.1) * sqrt(50)
 
 asd.quant(plan.values3,
-          n=500, 
+          n = 500, 
           censor.time = 1000, 
-          quantile.mark=.1)*sqrt(500)
+          quantile.mark = 0.1) * sqrt(500)
 
 asd.quant(plan.values3,
-          n=5000, 
+          n = 5000, 
           censor.time = 1000, 
-          quantile.mark=.1)*sqrt(5000)
+          quantile.mark = 0.1) * sqrt(5000)
 ```
 
 #get a single variance factor like in Figures 10.5 and 10.6
@@ -242,7 +249,9 @@ bulb.plan.values1 <- get.plan.values("normal",
 
 summary(bulb.plan.values1)
 plot(bulb.plan.values1)
+```
 
+```{r, eval=FALSE}
 life.test.simulation(bulb.plan.values1, 
                      n = 50,
                      censor.time = 1000, 
@@ -310,27 +319,27 @@ plot(mstt3, qprob = 0.9)
 The following are for testing only and actual simulations should use at least 2000 trials
 
 ```{r}
-plot.prob.cs.type2("lognormal", 
-                   k = 2,
-                   n = c(5,10,20),
-                   r = c(3,6,12), 
-                   number.sim = 100)
+SMRD2:::plot.prob.cs.type2("lognormal", 
+                            k = 2,
+                            n = c(5,10,20),
+                            r = c(3,6,12), 
+                            number.sim = 100)
 
-plot.prob.cs.type2("loglogistic", 
-                   k = 2,
-                   n = c(5,10,20),
-                   r = c(3,6,12), 
-                   number.sim = 100)
+SMRD2:::plot.prob.cs.type2("loglogistic", 
+                           k = 2,
+                           n = c(5,10,20),
+                           r = c(3,6,12), 
+                           number.sim = 100)
 
-plot.prob.cs.type2("weibull", 
-                   k = 2,
-                   n = c(5,10,20),
-                   r = c(3,6,12), 
-                   number.sim = 100)
+SMRD2:::plot.prob.cs.type2("weibull", 
+                           k = 2,
+                           n = c(5,10,20),
+                           r = c(3,6,12), 
+                           number.sim = 100)
 
-plot.prob.cs.type2("frechet", 
-                   k = 2,
-                   n = c(5,10,20),
-                   r = c(3,6,12),
-                   number.sim = 100)
+SMRD2:::plot.prob.cs.type2("frechet", 
+                           k = 2,
+                           n = c(5,10,20),
+                           r = c(3,6,12),
+                           number.sim = 100)
 ```
