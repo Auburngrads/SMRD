@@ -14,7 +14,7 @@ vignette: >
 ---
 
 ```{r, echo=FALSE}
-vinny()
+SMRD2:::vinny()
 library(SMRD2)
 ```
 
@@ -138,7 +138,6 @@ summary(ZelenCap.groupi.Weibull.out)
 names(xmat(ZelenCap.ld))
 ```
 
-
 ## Fit categorical 
 
 Constrain the Weibull shape parameters to be the same - like one-way ANOVA
@@ -171,6 +170,7 @@ ZelenCap.groupm.out2 <-
                      relationship = c("arrhenius", "log"))
 
 ```
+
 ## Fitting to `volts` only
 
 ```{r}
