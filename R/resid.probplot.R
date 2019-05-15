@@ -1,3 +1,49 @@
+#' Title
+#'
+#' @param groupm.list 
+#' @param xlim 
+#' @param ylim 
+#' @param original.par 
+#' @param my.title 
+#' @param point.cex 
+#' @param shape 
+#' @param title.option 
+#' @param grids 
+#' @param conf.level 
+#' @param band.type 
+#' @param a.limit 
+#' @param b.limit 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' ZelenCap.ld <- frame.to.ld(zelencap,
+#'                            response.column = 1,
+#'                            censor.column = 2,
+#'                            case.weight.column = 3,
+#'                            x.columns = c(4, 5),
+#'                            time.units = "Hours")
+#' ZelenCap.groupm.out1 <-
+#'   groupm.mleprobplot(ZelenCap.ld,
+#'                      distribution = "Weibull")
+#' 
+#' resid.vs.order(ZelenCap.groupm.out1)
+#' 
+#' resid.vs.fit(ZelenCap.groupm.out1)
+#' 
+#' resid.vs.explan(ZelenCap.groupm.out1,
+#'                 x.to.plot = 1)
+#' 
+#' resid.vs.explan(ZelenCap.groupm.out1,
+#'                 x.to.plot = 2)
+#'                 
+#' resid.probplot(ZelenCap.groupm.out1)
+#' 
+#' }
 resid.probplot <-
 function (groupm.list, xlim = c(NA, NA), ylim = c(NA, NA),
     original.par = T, my.title = NULL, point.cex = 1.2, shape = NULL,
