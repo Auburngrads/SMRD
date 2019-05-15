@@ -58,7 +58,7 @@ function (plan.values,
     zc <- expand.vec(zc, vlength)
     ze <- expand.vec(ze, vlength)
     
-    zout <- VAVAR(as.integer(distribution),
+    zout <- VAVAR(as.integer(numdist(distribution)),
                   as.integer(vlength),
                   as.double(zc),
                   as.double(ze),
