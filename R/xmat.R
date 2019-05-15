@@ -1,3 +1,24 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param allow 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' ZelenCap.ld <- frame.to.ld(zelencap,
+#'                            response.column = 1,
+#'                            censor.column = 2,
+#'                            case.weight.column = 3,
+#'                            x.columns = c(4, 5),
+#'                            time.units = "Hours")
+#' 
+#' xmat(ZelenCap.ld)
+#' 
+#' }
 xmat <- function (data.ld, allow = T)
 {
     frame.type <- data.object.type(data.ld)
