@@ -1,3 +1,31 @@
+#' Title
+#'
+#' @param data.rdu 
+#' @param debug1 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' #time.column, ID.column, cost.count.column, event.column
+#' WorkStation.rdu <- SMRD2:::frame.to.rdu(workstation,
+#'                                 ID.column = "station",
+#'                                 time.column = "days",
+#'                                 event.column = "event")
+#' 
+#' #attr(WorkStation.rdu,"WindowInfo")
+#' 
+#' WorkStation.mcf <- SMRD2:::mcf(WorkStation.rdu)
+#' 
+#' #sqrt(WorkStation.mcf$Var)
+#' 
+#' event.plot(WorkStation.rdu)
+#' 
+#' plot(WorkStation.mcf)
+#' 
+#' }
 mcf <-
 function (data.rdu,
           debug1 = F) 
