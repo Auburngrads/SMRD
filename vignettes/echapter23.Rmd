@@ -59,13 +59,15 @@ groupi.Dest.Degrad.oneplot(InsulationBrkdwn.ddd,
 Fit model using Nelson's parameterization and base 10 logs
 
 ```{r}
-groupm.Dest.Degrad(InsulationBrkdwn.ddd, distribution = "normal",
+groupm.Dest.Degrad(InsulationBrkdwn.ddd, 
+                   distribution = "normal",
                    transformation.Response = "log10",
                    transformation.x = "invtemp",
                    transformation.time = "linear")
 
 
-groupm.Dest.Degrad(InsulationBrkdwn.ddd, distribution = "normal",
+groupm.Dest.Degrad(InsulationBrkdwn.ddd, 
+                   distribution = "normal",
                    transformation.Response = "log",
                    transformation.x = "arrhenius",
                    transformation.time="linear")
