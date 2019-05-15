@@ -1,14 +1,9 @@
-#
-#
-#
-
+#' @export
 evaluate <-
 function (x,...)
 UseMethod("evaluate")
 
-#
-#
-
+#' @export
 evaluate.ADDT.test.plan <-
   function (x, ADDT.plan.values, use.condition, FailLevel,
             quantile.of.interest = 0.1, conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
@@ -127,9 +122,7 @@ evaluate.ADDT.test.plan <-
     invisible(return.table)
   }
 
-#
-#
-
+#' @export
 evaluate.alt.test.plan <-
   function (x, ALT.plan.values, use.conditions, quantile.of.interest,
             conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,...)
