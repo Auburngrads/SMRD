@@ -22,11 +22,9 @@ function (..., save.options = FALSE)
             stop(paste("invalid argument:", arg))
         })
     }
-    if (length(dotdotdot) == 0)
-        return()
+    if (length(dotdotdot) == 0) return()
     the.names <- names(dotdotdot)
-    if (is.null(the.names))
-        stop("options must be given by name")
+    if (is.null(the.names)) stop("options must be given by name")
     changed <- current[the.names]
     names(changed) <- the.names
     names(dotdotdot) <- NULL
