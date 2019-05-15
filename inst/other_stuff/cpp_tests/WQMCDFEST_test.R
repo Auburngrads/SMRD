@@ -1,6 +1,6 @@
 library(SMRD)
 library(SMRD2)
-test = 4
+test = 7
 if(test == 1) {
 data.ld <- frame.to.ld(heatexchanger,
                        response.column = c(1,2),
@@ -42,6 +42,14 @@ if(test == 6){
                          censor.column = 3,
                          case.weight.column = 4,
                          time.units = "1/5000 Seconds")
+  
+}
+if(test == 7){
+  
+  data.ld <- frame.to.ld(devicen,
+                          response.column = "months", 
+                          censor.column = "event",
+                          case.weight.column = "counts")
   
 }
 gamthr = 0
