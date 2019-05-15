@@ -1,3 +1,39 @@
+#' Title
+#'
+#' @param data.rdu 
+#' @param form 
+#' @param xlab 
+#' @param ylab 
+#' @param plot.seg 
+#' @param number.points 
+#' @param conf.level 
+#' @param band.type 
+#' @param theta.start 
+#' @param my.title 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' Cylinder.rdu <- frame.to.rdu(cylinder,
+#'                              ID.column = "engine", 
+#'                              time.column = "days", 
+#'                              event.column = "event", 
+#'                              cost.count.column = "count", 
+#'                              data.title = "Cylinder Replacement Data",
+#'                              time.units = "Days")
+#' 
+#' #attr(Cylinder.rdu,"WindowInfo")
+#' 
+#' PlotMCFandNHPP(Cylinder.rdu, form = "power rule")
+#' 
+#' Cylinder.mcf <- mcf(Cylinder.rdu)
+#' 
+#' plot(Cylinder.mcf)
+#' 
+#' }
 PlotMCFandNHPP <-
 function (data.rdu, form, xlab = paste("Age in", get.time.units(data.rdu)),
     ylab = "Mean Cumulative Failures", plot.seg = T, number.points = 200,
