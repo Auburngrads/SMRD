@@ -1,3 +1,45 @@
+#' Title
+#'
+#' @param pi.vec 
+#' @param xi.vec 
+#' @param distribution 
+#' @param a 
+#' @param b1 
+#' @param b2 
+#' @param pd 
+#' @param ph 
+#' @param theta 
+#' @param theta.known 
+#' @param quad.model 
+#' @param perc 
+#' @param zd 
+#' @param kprint 
+#' @param levels 
+#' @param cex2 
+#' @param xlab 
+#' @param ylab 
+#' @param scale.var 
+#' @param old.a 
+#' @param old.b1 
+#' @param xiL.lower 
+#' @param dump 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' varone.grid(a = -0.9, 
+#'             b1 = -7.9, 
+#'             perc = 0.01, 
+#'             xlab = "xiL", 
+#'             ylab = "piL",
+#'             xiL.lower = -1, 
+#'             levels = c(.001,.01,0.10000000000000001, 0.20000000000000001, 0.5, 1, 2),
+#'             dump = T)
+#' 
+#' }
 varone.grid <-
 function (pi.vec = seq(0.001, 0.999, length = 100), xi.vec = seq(xiL.lower,
     0.999, length = 100), distribution = "weibull", a = NULL,
