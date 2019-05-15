@@ -1,3 +1,44 @@
+#' Title
+#'
+#' @param groupm.list 
+#' @param original.par 
+#' @param cex 
+#' @param my.title 
+#' @param grids 
+#' @param xlim 
+#' @param ylim 
+#' @param x.axis 
+#' @param x.to.plot 
+#' @param cex.points 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' ZelenCap.ld <- frame.to.ld(zelencap,
+#'                            response.column = 1,
+#'                            censor.column = 2,
+#'                            case.weight.column = 3,
+#'                            x.columns = c(4, 5),
+#'                            time.units = "Hours")
+#' ZelenCap.groupm.out1 <-
+#'   groupm.mleprobplot(ZelenCap.ld,
+#'                      distribution = "Weibull")
+#' 
+#' resid.vs.order(ZelenCap.groupm.out1)
+#' 
+#' resid.vs.fit(ZelenCap.groupm.out1)
+#' 
+#' resid.vs.explan(ZelenCap.groupm.out1,
+#'                 x.to.plot = 1)
+#' 
+#' resid.vs.explan(ZelenCap.groupm.out1,
+#'                 x.to.plot = 2)
+#' 
+#' }
 resid.vs.explan <-
 function (groupm.list, original.par = T, cex = 1, my.title = NULL,
     grids = F, xlim = c(NA, NA), ylim = c(NA, NA), x.axis = "linear",
