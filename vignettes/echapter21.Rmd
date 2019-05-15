@@ -1,0 +1,148 @@
+---
+title: "`r SMRD2:::info('book')`"
+subtitle: "`r SMRD2:::info('chapter21')`"
+author: "`r SMRD2:::info('authors')`"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    css: my-vignette.css
+    fig_caption: yes
+vignette: >
+  %\VignetteIndexEntry{echapter21}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo=FALSE}
+SMRD2:::vinny()
+library(SMRD2)
+```
+
+# In This Vignette...
+
+## Chapter overview
+
+```{r}
+Resistor.rmd <- frame.to.rmd(resistor,
+                             response.column = "percent",
+                             time.column = "hours", 
+                             unit.column = "resistor",
+                             data.title = "Carbon-Film Resistor Accelerated Test", 
+                             response.units = "Percent Increase in Resistance", 
+                             x.columns = "celsius" )
+
+## plot the degradation data
+
+plot(Resistor.rmd)
+
+plot(Resistor.rmd, y.axis = "log")
+
+plot(Resistor.rmd, y.axis = "sqrt")
+
+plot(Resistor.rmd, x.axis = "log")
+
+plot(Resistor.rmd, 
+     x.axis = "log",
+     y.axis = "log",
+     group.var = NA)
+
+names(Resistor.rmd)
+
+Resistor.ld1 <- rmd.to.ld(Resistor.rmd, 
+                         fail.level = 5, 
+                         subset = "hours > 0.6",
+                         censor.time = 35,
+                         x.axis = "sqrt")
+
+SMRD2:::plot.rmd.average(Resistor.rmd) #issue
+SMRD2:::plot.rmd.residual(Resistor.ld1) #issue
+
+Resistor.ld <- rmd.to.ld(Resistor.rmd, 
+                         fail.level = 5, 
+                         subset = "hours" > 0.6,
+                         censor.time = 35)
+```
+
+```{r}
+SMRD2:::plot.rmd.residual(Resistor.ld)
+
+
+trellis.plot(Resistor.rmd,
+             order.groups = F,
+             outer.plot = F)
+trellis.plot(Resistor.rmd,
+             order.groups = F,
+             outer.plot = T)
+
+
+## summarize the data
+
+print(Resistor.ld) 
+summary(Resistor.ld)
+
+## analyze the Resistor pseudo failure-time data
+
+censored.data.plot(Resistor.ld, 
+                   x.axis = "log",
+                   y.axis  = "Arrhenius")
+
+groupi.mleprobplot(Resistor.ld, distribution = "Lognormal")
+
+Resistor.groupm.out <- groupm.mleprobplot(Resistor.ld, 
+                                          distribution = "Lognormal", 
+                                          relationship  = "Arrhenius",
+                                          ci.list = 1)
+
+plot(Resistor.groupm.out,censor.time = 8000)
+```
+
+##  MetalWear example
+
+```{r}
+MetalWear.rmd <- frame.to.rmd(metalwear,
+                              response.column = 1,
+                              time.column = 3,
+                              unit.column = 2,
+                              data.title = "Sliding Metal Wear",
+                              x.columns = 4,
+                              skip = 1)
+
+plot(MetalWear.rmd)
+
+plot(MetalWear.rmd, 
+     x.axis="log",
+     y.axis="log")
+```
+
+
+```{r}
+MetalWear.ld <- rmd.to.ld(MetalWear.rmd,
+                          fail.level = 50,
+                          ylim = c(2,100),
+                          xlim = c(2,1000),
+                          x.axis = "log",
+                          y.axis = "log")
+
+censored.data.plot(MetalWear.ld)
+
+censored.data.plot(MetalWear.ld,
+                   y.axis = "log", 
+                   xlab = "Grams", 
+                   ylab = "Cycles")
+
+MetalWear.groupi.out <- groupi.mleprobplot(MetalWear.ld,
+                                           distribution = "Lognormal")
+
+MetalWear.groupm.out <- groupm.mleprobplot(MetalWear.ld,
+                                           distribution = "lognormal",
+                                           relationship = "class",
+                                           ci.list = 1)
+
+MetalWear.groupm.out <- groupm.mleprobplot(MetalWear.ld,
+                                           distribution = "lognormal", 
+                                           relationship = "linear", 
+                                           ci.list = 1)
+
+plot(MetalWear.groupm.out, 
+     censor.time = 500)
+```
