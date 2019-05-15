@@ -1,3 +1,28 @@
+#' Title
+#'
+#' @param data.rdu 
+#' @param theta.mat 
+#' @param form 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' AMSAAExactFail.rdu <- frame.to.rdu(amsaaexactfail,
+#'                                    ID.column = "vehicle", 
+#'                                    time.column = "miles" , 
+#'                                    event.column = "event")
+#' 
+#' theta.mat <- matrix(c(1,1,2,2),2,2)
+#' theta.mat <- c(1,2)
+#' loglikeNHPPvec(AMSAAExactFail.rdu, theta.mat, "power.law")
+#' 
+#' theta.mat <- matrix(c(.01,.01,.02,.02),2,2)
+#' loglikeNHPPvec(AMSAAExactFail.rdu, theta.mat, "log.linear")
+#' 
+#' }
 loglikeNHPPvec <-
 function (data.rdu, theta.mat, form)
 {
