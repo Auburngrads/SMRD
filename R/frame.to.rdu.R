@@ -1,3 +1,40 @@
+#' Title
+#'
+#' @param frame 
+#' @param time.column 
+#' @param ID.column 
+#' @param cost.count.column 
+#' @param event.column 
+#' @param time.units 
+#' @param failure.censor.names 
+#' @param right.censor.names 
+#' @param left.censor.names 
+#' @param interval.censor.names 
+#' @param data.title 
+#' @param data.note 
+#' @param skip 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' WorkStation.rdu <- frame.to.rdu(workstation,
+#'                                 ID.column = "station",
+#'                                 time.column = "days",
+#'                                 event.column = "event")
+#' 
+#' #attr(WorkStation.rdu,"WindowInfo")
+#' 
+#' WorkStation.mcf <- mcf(WorkStation.rdu)
+#' 
+#' #sqrt(WorkStation.mcf$Var)
+#' 
+#' event.plot(WorkStation.rdu)
+#' 
+#' plot(WorkStation.mcf)
+#' }
 frame.to.rdu <-
 function (frame, time.column, ID.column, cost.count.column, event.column,
     time.units = names.the.frame[time.column[1]], failure.censor.names = GetSMRDDefault("SMRD.FailName"),
