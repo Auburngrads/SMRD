@@ -28,11 +28,11 @@ function (x, distribution = NULL, ...)
 
      for(i in 1:length(distribution)) matc[i] = matc[i] + i
      
-     layout(mat = matrix(matc, nrow = rows, ncol = cols, byrow = T))
+     layout(mat = matrix(matc, nrow = rows, ncol = 2, byrow = T))
 
      for(i in 1:length(distribution)){
        
-        tmp <- npprobplot(data.ld = data.ld, 
+        tmp <- npprobplot(data.ld = x, 
                           distribution = distribution[i],
                           my.title = paste0(toupper(distribution[i])),...)
        
