@@ -37,14 +37,11 @@ function (data.ld,
     ny <- ncol(y)
     the.censor.codes <- censor.codes(data.ld)
     
-    if (length(gamthr) == 1)
-        gamthr <- rep(gamthr, number.cases)
+    if (length(gamthr) == 1) gamthr <- rep(gamthr, number.cases)
     
-    if (length(gamthr) != number.cases)
-        stop("specified offset is the wrong length")
+    if (length(gamthr) != number.cases) stop("specified offset is the wrong length")
     
-    if (ny == 2)
-        gamthr <- cbind(gamthr, gamthr)
+    if (ny == 2) gamthr <- cbind(gamthr, gamthr)
     
     y <- y - as.matrix(gamthr)
     
@@ -63,10 +60,8 @@ function (data.ld,
           
         ty <- truncation.response(data.ld)
         nty <- ncol(ty)
-        if (all(the.truncation.codes == 3))
-            left.trun.cond <- min(ty[the.truncation.codes == 3, 1])
-        if (all(the.truncation.codes == 2))
-            right.trun.cond <- max(ty[the.truncation.codes == 2, nty])
+        if (all(the.truncation.codes == 3)) left.trun.cond <- min(ty[the.truncation.codes == 3, 1])
+        if (all(the.truncation.codes == 2)) right.trun.cond <- max(ty[the.truncation.codes == 2, nty])
     }
     dummy <- the.censor.codes
     ndscrat <- 3 * number.cases + 4
