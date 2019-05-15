@@ -1,3 +1,60 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param distribution 
+#' @param number.sim 
+#' @param escale 
+#' @param e 
+#' @param parameter.fixed 
+#' @param intercept 
+#' @param kprint 
+#' @param maxit 
+#' @param max.sim.scratch.space 
+#' @param debug1 
+#' @param randomize 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples 
+#' \dontrun{
+#' 
+#' ShockAbsorber.ld <- frame.to.ld(shockabsorber,
+#'                                 response.column = 1,
+#'                                 censor.column = 3,
+#'                                 time.units = "Kilometers")
+#' 
+#' ShockAbsorber.boot.p <- parametric.bootstrap(ShockAbsorber.ld,
+#'                                              distribution = "Weibull",
+#'                                              number.sim = 2000)
+#' 
+#' plot(ShockAbsorber.boot.p)
+#' plot(ShockAbsorber.boot.p, 
+#'      simulate.parameters = TRUE, 
+#'      parameter.sims = 500)
+#' 
+#' summary(ShockAbsorber.boot.p,
+#'         inference.on = "parameter", 
+#'         which = 1)
+#' 
+#' summary(ShockAbsorber.boot.p,
+#'         inference.on = "parameter", 
+#'         which = 2,
+#'         do.compare = T)
+#' 
+#' summary(ShockAbsorber.boot.p,
+#'         inference.on = "parameter", 
+#'         which = 2)
+#' 
+#' summary(ShockAbsorber.boot.p,
+#'         inference.on = "quantile",
+#'         which = 0.1)
+#' 
+#' summary(ShockAbsorber.boot.p,
+#'         inference.on = "probability", 
+#'         which = 1000)
+#' 
+#' }
 parametric.bootstrap <-
   function (data.ld, 
             distribution, 
@@ -132,9 +189,38 @@ parametric.bootstrap <-
     
   }
 
-#
-#
 
+#' Title
+#'
+#' @param data.ld 
+#' @param number.sim 
+#' @param kprint 
+#' @param maxit 
+#' @param max.sim.scratch.space 
+#' @param maxmsd 
+#' @param debug1 
+#' @param randomize 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples 
+#' \dontrun{
+#' 
+#' ShockAbsorber.ld <- frame.to.ld(shockabsorber,
+#'                                 response.column = 1,
+#'                                 censor.column = 3,
+#'                                 time.units = "Kilometers")
+#' 
+#' ShockAbsorber.boot.np<- nonparametric.bootstrap(ShockAbsorber.ld,
+#'                                                 number.sim = 20)
+#' 
+#' plot(ShockAbsorber.boot.np)
+#' 
+#' summary(ShockAbsorber.boot.np, 
+#'         compare = T)
+#'  
+#' }
 nonparametric.bootstrap <-
   function (data.ld, 
             number.sim = 10, 
@@ -729,8 +815,7 @@ focus.boot.npar.par.out <-
                    upper.bound = upper.bound))
   }
 
-#
-#
+#' @export
 
 plot.boot.cdf <-
   function (x, my.xlab, my.title, trim, lower.quantile, lower.perc,
@@ -760,8 +845,7 @@ plot.boot.cdf <-
     title(xlab = parse(text = my.xlab), ylab = "Bootstrap cdf", cex.lab = 1.1)
   }
 
-#
-#
+#' @export
 
 plot.boot.npar.npar.out <-
   function (x, xlog = F, xlab = get.time.units(data.ld),
@@ -816,8 +900,7 @@ plot.boot.npar.npar.out <-
     invisible(cdfest.out)
   }
 
-#
-#
+#' @export
 
 plot.boot.npar.par.out <-
   function (x, xlim = c(NA, NA), ylim = c(NA,
@@ -939,8 +1022,7 @@ plot.boot.npar.par.out <-
     
   }
 
-#
-#
+#' @export
 
 summary.boot.npar.npar.out <-
   function (object, time.index = last.one, method = "boott.logit",
@@ -1105,8 +1187,7 @@ summary.boot.npar.npar.out <-
                 upper.perc = upper.perc, lower.bound = lower.bound, upper.bound = upper.bound))
   }
 
-#
-#
+#' @export
 
 summary.boot.npar.par.out <-
   function (object, inference.on = "parameter", which = 1,
