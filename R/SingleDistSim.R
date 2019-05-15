@@ -1,3 +1,45 @@
+#' Title
+#'
+#' @param number.sim 
+#' @param distribution 
+#' @param sample.size 
+#' @param censor.type 
+#' @param fail.number 
+#' @param fail.fraction 
+#' @param theta 
+#' @param debug1 
+#' @param kprint 
+#' @param randomize 
+#' @param remove.bad 
+#' @param var 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' SingleDistSim(number.sim = 10,
+#'               distribution = "Weibull",
+#'               theta = c(mu = 0.0, sigma = 1.0),
+#'               sample.size = 10,
+#'               censor.type = "None")
+#' 
+#' SingleDistSim(number.sim = 10,
+#'               distribution = "Weibull",
+#'               theta = c(mu = 0.0, sigma = 1.0),
+#'               sample.size = 10,
+#'               censor.type = "Type 1", 
+#'               fail.fraction = 0.5)
+#' 
+#' SingleDistSim(number.sim = 10,
+#'               distribution = "Weibull",
+#'               theta = c(mu = 0.0, sigma = 1.0),
+#'               sample.size = 10,
+#'               censor.type = "Type 2",
+#'               fail.number = 5)
+#' 
+#' }
 SingleDistSim <-
 function (number.sim, 
           distribution, 
