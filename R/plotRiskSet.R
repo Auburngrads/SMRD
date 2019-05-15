@@ -1,3 +1,27 @@
+#' Title
+#'
+#' @param data.rdu 
+#' @param xlab 
+#' @param ylab 
+#' @param proportion 
+#' @param plot.average 
+#' @param my.title 
+#' @param JustEvent 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' AMSAAExactFail.rdu <- frame.to.rdu(amsaaexactfail,
+#'                                    ID.column = "vehicle", 
+#'                                    time.column = "miles" , 
+#'                                    event.column = "event")
+#' 
+#' plotRiskSet(AMSAAExactFail.rdu,proportion = T)
+#' 
+#' }
 plotRiskSet <-
 function (data.rdu, xlab = paste("Time in", get.time.units(data.rdu)),
     ylab = ifelse(proportion, "Proportion at Risk", "Number in Risk Set"),
