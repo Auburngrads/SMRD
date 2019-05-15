@@ -1,3 +1,54 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param distribution 
+#' @param stresses 
+#' @param group.var 
+#' @param contour.indicators 
+#' @param xlim 
+#' @param ylim 
+#' @param loc.or.quant 
+#' @param the.quantile 
+#' @param rel.or.conf 
+#' @param my.title 
+#' @param cex 
+#' @param title.option 
+#' @param do.legend 
+#' @param stresses.limit 
+#' @param size 
+#' @param the.factor 
+#' @param show.mle 
+#' @param original.par 
+#' @param col.fhat.vec 
+#' @param lty 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' Snubber.ld <- frame.to.ld(snubber, 
+#'                           response.column = "cycles", 
+#'                           censor.column = "event",
+#'                           time.units = "Cycles",
+#'                           case.weight.column = "count",
+#'                           x.columns = "design")
+#' ```
+#' 
+#' event.plot(Snubber.ld)
+#' summary(Snubber.ld)
+#' 
+#' Snubber.groupi.nor.out <-  groupi.mleprobplot(Snubber.ld,"normal")
+#' 
+#' tmpxx <- groupi.contour(Snubber.ld,"Weibull",the.quantile=.1)
+#' tmpxx <- groupi.contour(Snubber.ld,"lognormal",the.quantile=.1)
+#' tmpxx <- groupi.contour(Snubber.ld,"lognormal")
+#' tmpxx <- groupi.contour(Snubber.ld,"normal")
+#' tmpxx <- groupi.contour(Snubber.ld,"normal",the.quantile=.1)
+#' 
+#' }
 groupi.contour <-
 function (data.ld, distribution, stresses = get.x.markers(data.ld,
     group.var = group.var), group.var = 1, contour.indicators = NULL,
