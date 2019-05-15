@@ -1,3 +1,27 @@
+#' Title
+#'
+#' @param data.rdu 
+#' @param my.title 
+#' @param xlab 
+#' @param ylab 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' halfbeak.rdu <- frame.to.rdu(halfbeak,
+#'                              ID.column = "unit", 
+#'                              time.column = "hours" ,
+#'                              event.column = "event", 
+#'                              data.title = "Halfbeak Data", 
+#'                              time.units = "Thousands of Hours of Operation")
+#' 
+#' repair.tsplot(halfbeak.rdu)
+#' 
+#' }
 repair.tsplot <-
 function (data.rdu, my.title = NULL, xlab = "Failure Number",
     ylab = "Time Between Failure", ...)
