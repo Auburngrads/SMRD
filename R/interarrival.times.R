@@ -1,3 +1,30 @@
+#' Title
+#'
+#' @param data.rdu 
+#' @param small.for.tie 
+#' @param replace.zero 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' halfbeak.rdu <- frame.to.rdu(halfbeak,
+#'                              ID.column = "unit", 
+#'                              time.column = "hours" ,
+#'                              event.column = "event", 
+#'                              data.title = "Halfbeak Data", 
+#'                              time.units = "Thousands of Hours of Operation")
+#' 
+#' 
+#' summary(halfbeak.rdu)
+#' event.plot(halfbeak.rdu)
+#' print(mcf(halfbeak.rdu))
+#' mcf.plot(halfbeak.rdu)
+#' interarrival.times(halfbeak.rdu)
+#' 
+#' }
 interarrival.times <-
 function (data.rdu, small.for.tie = 1e-05, replace.zero = T) 
 {
