@@ -54,7 +54,7 @@ advbond.model2 <-
 
 
 advbond.test.plan2 <- get.alt.test.plan.direct(accel.variable.levels = c(80,100,120),
-                         number.of.units = c(100,100,100))
+                                               number.of.units = c(100,100,100))
 
 plot(advbond.test.plan2, 
      ALT.plan.values = advbond.model2, 
