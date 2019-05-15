@@ -223,14 +223,15 @@ function (data.ld,
     ierfit <- zout$ints$ierfit
     iervcv <- zout$ints$iervcv
     if (ierfit + iervcv > 0 && options("warn")[[1]] >= 0) {
-        warning(paste("MLest warning messages estimation/vcv",
-                      ierfit, 
-                      iervcv, "
-                      \nCheck for extreme outlier or other mismatch between model and data"))
+        warning(paste("mlest estimation warning\n",
+                      "ierfit = ", ierfit, "\n", 
+                      "iervcv = ", iervcv, "\n",
+                      "Check for extreme outlier or other mismatch between model and data"))
       
         if (T || map.SMRDDebugLevel() >= 4) {
-            cat("First derivatives of the loglikelihood = ", paste(zout$numvec$fsder,
-                collapse = ","), "\n")
+          
+            cat("First derivatives of the loglikelihood = ", 
+                paste(zout$numvec$fsder, collapse = ","), "\n")
             file.name <- paste("ProblemData", floor(runif(1) * 1e+07), ".ld", sep = "")
             if (map.SMRDDebugLevel() >= 4) {
                 assign(envir = .frame0,  inherits = TRUE,file.name, data.ld)
