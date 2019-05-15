@@ -1,3 +1,65 @@
+#' Title
+#'
+#' @param data1.rdu 
+#' @param data2.rdu 
+#' @param conf.level 
+#' @param plot.data 
+#' @param title.option 
+#' @param my.title 
+#' @param xlab 
+#' @param ylab 
+#' @param plot.seg 
+#' @param lty 
+#' @param xlim 
+#' @param ylim 
+#' @param band.type 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' Grids1.rdu <- frame.to.rdu(grids1,
+#'                            ID.column = "unit", 
+#'                            time.column = "days",
+#'                            event.column = "event",
+#'                            data.title = "Grids1 Replacement Data",
+#'                            time.units = "Days")
+#' 
+#' summary(Grids1.rdu)
+#' 
+#' event.plot(Grids1.rdu)
+#' print(mcf(Grids1.rdu))
+#' mcf.plot(Grids1.rdu)
+#' 
+#' Grids2.rdu <- frame.to.rdu(grids2, 
+#'                            time.column = c(2), 
+#'                            event.column = 3,
+#'                            ID.column = 1, 
+#'                            data.title = "Grids2 Replacement Data",
+#'                            time.units ="Days")
+#' 
+#' summary(Grids2.rdu)
+#' 
+#' #attr(Grids2.rdu,"WindowInfo")
+#' 
+#' PlotMCFandNHPP(Grids2.rdu,
+#'                form = "power rule")
+#' Grids2.mcf <- mcf(Grids2.rdu)
+#' plot(Grids2.mcf)
+#' 
+#' event.plot(Grids2.rdu)
+#' print(mcf(Grids2.rdu))
+#' mcf.plot(Grids2.rdu)
+#' 
+#' mcf.diff.plot(Grids1.rdu,
+#'               Grids2.rdu,
+#'               plot.seg = T,
+#'               xlab = "Locomotive Age in Days",
+#'               ylab = "Difference in Mean Cumulative Replacements")
+#' 
+#' }
 mcf.diff.plot <-
 function (data1.rdu, data2.rdu, conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, 
     plot.data = F, title.option = GetSMRDDefault("SMRD.TitleOption"), my.title = NULL, xlab = paste("Time in", 
