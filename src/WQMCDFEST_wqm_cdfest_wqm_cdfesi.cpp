@@ -65,7 +65,7 @@ void wqm_cdfesi(Rcpp::IntegerVector &weight,
                 int &ier,
                 int &maxmsd){
   
-int m1 = m * (m - 1) / 2;
+int m1 = m * std::floor((m - 1) / 2);
 int mm1 = m - 1;
 
 // compute number of nonzero probability values;
@@ -93,7 +93,7 @@ if((nnzs <= 0) or (nnzs > maxmsd)) {
 }
 
 mnzs = (nnzs + 1) * nnzs / 2;
-Rcpp::NumericVector f = Rcpp::NumericVector(mnzs);
+Rcpp::NumericVector f = Rcpp::NumericVector(m1*10);
 
 if(debug::kprint >= 5){
    
@@ -125,7 +125,14 @@ if(debug::kprint >= 5){
    wqm_cdfmat(f,mm1,small,probd,mnzs,m,nnzs);
    
 // Call matrix inversion subroutine
-   wqm_invpx(f,nnzs,ier);
+//   wqm_invpx(f,nnzs,ier);
+   
+   if(debug::kprint >= 7){
+      
+      Rcpp::Rcout << "\ncheck f after wqm_invpx\n" << std::endl;
+      Rcpp::Rcout << "f = " << f << std::endl;
+      
+   }
    
 if(ier > 0) ier = 22;
 
