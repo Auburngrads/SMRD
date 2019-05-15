@@ -1,3 +1,31 @@
+#' Title
+#'
+#' @param distribution 
+#' @param type 
+#' @param quantile.of.interest 
+#' @param proportion.failing 
+#' @param number.points 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' # For the normal distribution
+#' variance.factor(distribution = 'normal', 
+#'                 type = 'quantile', 
+#'                 quantile.of.interest = 0.02,
+#'                 proportion.failing = 0.2)
+#' 
+#' 
+#' # For the smallest extreme value distribution
+#' variance.factor(distribution = 'sev',
+#'                 type = 'quantile', 
+#'                 quantile.of.interest = 0.02,
+#'                 proportion.failing = 0.2)
+#' }
 variance.factor <- 
   function(distribution = NULL, type = 'quantile', 
            quantile.of.interest = NULL, proportion.failing = NULL,
