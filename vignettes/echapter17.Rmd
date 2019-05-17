@@ -1,7 +1,7 @@
 ---
-title: "`r info('book')`"
-subtitle: "`r info('chapter17')`"
-author: "`r info('authors')`"
+title: "`r SMRD2:::info('book')`"
+subtitle: "`r SMRD2:::info('chapter17')`"
+author: "`r SMRD2:::info('authors')`"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
