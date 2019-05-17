@@ -22,7 +22,7 @@ library(SMRD2)
 
 # Generic ALT model pictures
 
-```{r, eval=FALSE}
+```{r, eval=!FALSE}
 advbond.model1 <- 
   get.alt.plan.values.from.two.points(
     distribution = "Weibull",
