@@ -47,10 +47,7 @@ event.plot(DeviceG.ld)
 ```
 
 ```{r}
-par(mfrow = c(1,2))
-plot(DeviceG.ld, distribution = "weibull")
-plot(DeviceG.ld, distribution = "lognormal")
-par(mfrow = c(1,1))
+plot(DeviceG.ld, distribution = c("weibull", "lognormal"))
 ```
 
 summary(ld.to.mfld(DeviceG.ld))
@@ -79,6 +76,7 @@ tmp <- mfmc.mleprobplot(DeviceG.ld,
                        band.type = "none", 
                        show.individual = F, 
                        ylim = c(0.1, .99))
+
 failure.probabilities(tmp)
 quantiles(tmp)
 ```
