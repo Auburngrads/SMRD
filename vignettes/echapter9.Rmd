@@ -115,7 +115,7 @@ plot(ShockAbsorber.boot.np)
 summary(ShockAbsorber.boot.np, 
         compare = T)
 
-compare.summary.boot.npar.npar.out(ShockAbsorber.boot.np)
+SMRD2:::compare.summary.boot.npar.npar.out(ShockAbsorber.boot.np)
 
 ShockAbsorber.boot.np2 <- nonparametric.bootstrap(ShockAbsorber.ld,
                                                   number.sim = 200)
@@ -124,12 +124,20 @@ plot(ShockAbsorber.boot.np2)
 
 summary(ShockAbsorber.boot.np2)
 
-compare.summary.boot.npar.npar.out(ShockAbsorber.boot.np2)
+SMRD2:::compare.summary.boot.npar.npar.out(ShockAbsorber.boot.np2)
 ```
 
 ## Bearing cage  -- parametric bootstrap
 
 ```{r}
+BearingCage.ld <- frame.to.ld(bearingcage,
+                              response.column = 1, 
+                              censor.column = 2, 
+                              case.weight.column = 3,
+                              time.units = "Hours")
+
+summary(BearingCage.ld)
+
 BearingCage.boot.p <- parametric.bootstrap(BearingCage.ld,
                                            distribution = "Weibull",
                                            number.sim = 200)
@@ -154,13 +162,13 @@ summary(BearingCage.boot.p,
 
 ```{r}
 BearingCage.boot.np <- nonparametric.bootstrap(BearingCage.ld,
-                                               number.sim = 2000)
+                                               number.sim = 200)
 
 plot(BearingCage.boot.np)
 
 summary(BearingCage.boot.np)
 
-compare.summary.boot.npar.npar.out(BearingCage.boot.np)
+SMRD2:::compare.summary.boot.npar.npar.out(BearingCage.boot.np)
 ```
 
 ## Bulb -- parametric bootstrap
@@ -198,7 +206,7 @@ plot(bulb.boot.np)
 summary(bulb.boot.np,
         time.index = 200)
 
-compare.summary.boot.npar.npar.out(bulb.boot.np,
+SMRD2:::compare.summary.boot.npar.npar.out(bulb.boot.np,
                                    time.index = 200)
 ```
 
