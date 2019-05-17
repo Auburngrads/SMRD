@@ -238,7 +238,7 @@ Fan.gets.sev.gmle.out <- gets.mle(small.interval(Fan.ld, delta = 0.01),
 Fan.gets.nor.gmle.out <- gets.mle(small.interval(Fan.ld, delta = 0.01),
                                   distribution = "normal")
 
-basic.gmleprobplot(small.interval(Fan.ld, delta=.01),
+basic.gmleprobplot(small.interval(Fan.ld, delta = 0.01),
                    distribution = "sevgets",
                    xxx.mle.out = Fan.gets.sev.gmle.out, 
                    my.title = "", 
@@ -458,11 +458,19 @@ cdfest(lfptrun100.ld)
 
 mlest(lfptrun100.ld,"Weibull")
 
-mleprobplot(lfptrun100.ld,distribution="Weibull",trunc.correct=F)
-mleprobplot(lfptrun100.ld,distribution="Weibull")
+mleprobplot(lfptrun100.ld,
+            distribution = "Weibull",
+            trunc.correct = F)
 
-plot(lfptrun100.ld,distribution="Weibull",trunc.correct=F)
-plot(lfptrun100.ld,distribution="Weibull")
+mleprobplot(lfptrun100.ld,
+            distribution = "Weibull")
+
+plot(lfptrun100.ld,
+     distribution = "Weibull",
+     trunc.correct = F)
+
+plot(lfptrun100.ld,
+     distribution = "Weibull")
 ```
 
 #  Examples of fitting the Random Fatigue Limit Model
