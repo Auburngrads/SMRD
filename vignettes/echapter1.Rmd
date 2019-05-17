@@ -39,8 +39,6 @@ Most basic
 DT::datatable(lzbearing, options = list(pageLength = 8))
 ```
 
-
-
 - Many functions in the SMRD2 package require a `life.data` object.  `life.data` objects are created using the function `frame.to.ld`.
 
 ```{r}
@@ -70,8 +68,6 @@ superalloy.ld <- frame.to.ld(superalloy,
                              x.columns = c(5,6,4),
                              time.units = "Kilocycles")
 
-
-
 summary(superalloy.ld)
 
 censored.data.plot(superalloy.ld, 
@@ -80,7 +76,6 @@ censored.data.plot(superalloy.ld,
 censored.data.plot(superalloy.ld, 
                    explan.var = 3,
                    response.on.yaxis = F)
-
 
 censored.data.plot(superalloy.ld, 
                    explan.var = 3, 
