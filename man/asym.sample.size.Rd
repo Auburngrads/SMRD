@@ -47,7 +47,6 @@ asym.sample.size(bulb.plan.values1,
                  fraction.failing = 0.1,
                  HalfWidth = 50,
                  quantile.of.interest = 0.1)
- 
 
 }
 }
