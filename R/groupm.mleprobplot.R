@@ -1,3 +1,70 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param distribution 
+#' @param formula 
+#' @param group.var 
+#' @param xlab 
+#' @param ylab 
+#' @param conf.level 
+#' @param xlim 
+#' @param ylim 
+#' @param relationship 
+#' @param power 
+#' @param dump 
+#' @param mle.intervals 
+#' @param cex 
+#' @param grids 
+#' @param slope.axis 
+#' @param linear.axes 
+#' @param lty 
+#' @param plot.censored.ticks 
+#' @param time.range 
+#' @param shape 
+#' @param ci.list 
+#' @param col.ci 
+#' @param printem 
+#' @param trunc.correct 
+#' @param include.interaction 
+#' @param new.data 
+#' @param plotem 
+#' @param do.legend 
+#' @param stresses.limit 
+#' @param number.points 
+#' @param plotted 
+#' @param from.six.plot 
+#' @param debug1 
+#' @param theta.start 
+#' @param parameter.fixed 
+#' @param compute.subsets 
+#' @param check.level 
+#' @param title.line.adj 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' ICDevice2.ld <- frame.to.ld(icdevice2, 
+#'                             response.column = c(1,2),
+#'                             censor.column = 3,
+#'                             case.weight.column = 4,
+#'                             x.column = 5,  
+#'                             data.title = "New Technology Device ALT", 
+#'                             xlabel = "Degrees C", 
+#'                             time.units = "Hours")
+#' 
+#' groupi.mleprobplot(ICDevice2.ld, 
+#'                    distribution = "Lognormal")
+#' 
+#' ICDevice02.groupm.lognor <- groupm.mleprobplot(ICDevice2.ld, 
+#'                                                distribution = "Lognormal", 
+#'                                                relationship = "Arrhenius", 
+#'                                                ci.list = 6)
+#' 
+#' }
 groupm.mleprobplot <-
 function (data.ld, 
           distribution, 
