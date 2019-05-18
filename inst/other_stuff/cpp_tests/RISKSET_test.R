@@ -1,10 +1,12 @@
 library(SMRD)
-data.rdu <- frame.to.rdu(r4490,
+library(SMRD2)
+data.rdu <- SMRD2:::frame.to.rdu(r4490,
                          time.column = 2,
                          cost.count.column = 4,
                          ID.column = 1,
                          event.column = 3)
-kdebug1 = F
+
+if(!exists("kdebug1")) kdebug1 = 0
 JustEvent = T
 
 time.column <- attr(data.rdu, "time.column")
@@ -24,24 +26,30 @@ Cevent <- !(EndPoints | StartPoints)
                                 WindowInfo$WindowU)))
     }
 
-oldrs <- .Fortran("riskset", muniqrecurr = as.integer(length(tuniq)),
-                 tuniq = as.double(tuniq), nwindows = as.integer(length(WindowInfo$WindowU)),
-                 twindowsl = as.double(WindowInfo$WindowL), twindowsu = as.double(WindowInfo$WindowU),
-                 wcounts = as.integer(WindowInfo$WindowCounts), iordl = integer(length(WindowInfo$WindowL)),
-                 iordu = integer(length(WindowInfo$WindowL)), delta = integer(length(tuniq)),
-                 kdebug1= as.integer(kdebug1), iscrat = integer(length(WindowInfo$WindowL)))
+oldrs <- .Fortran("riskset", 
+                  muniqrecurr = as.integer(length(tuniq)),
+                  tuniq = as.double(tuniq), 
+                  nwindows = as.integer(length(WindowInfo$WindowU)),
+                  twindowsl = as.double(WindowInfo$WindowL), 
+                  twindowsu = as.double(WindowInfo$WindowU),
+                  wcounts = as.integer(WindowInfo$WindowCounts), 
+                  iordl = integer(length(WindowInfo$WindowL)),
+                  iordu = integer(length(WindowInfo$WindowL)), 
+                  delta = integer(length(tuniq)),
+                  kdebug1= as.integer(kdebug1), 
+                  iscrat = integer(length(WindowInfo$WindowL)))
 
-newrs <- SMRD2::RISKSET(muniqrecurr = as.integer(length(tuniq)),
-                             tuniq = as.double(tuniq), 
-                             nwindows = as.integer(length(WindowInfo$WindowU)),
-                             twindowsl = as.double(WindowInfo$WindowL), 
-                             twindowsu = as.double(WindowInfo$WindowU),
-                             wcounts = as.integer(WindowInfo$WindowCounts), 
-                             iordl = integer(length(WindowInfo$WindowL)),
-                             iordu = oldrs$iordu - 1, 
-                             delta = integer(length(tuniq)),
-                             kdebug= as.integer(kdebug1), 
-                             iscrat = integer(length(WindowInfo$WindowL)))
+newrs <- SMRD2:::RISKSET(muniqrecurr = as.integer(length(tuniq)),
+                        tuniq = as.double(tuniq), 
+                        nwindows = as.integer(length(WindowInfo$WindowU)),
+                        twindowsl = as.double(WindowInfo$WindowL), 
+                        twindowsu = as.double(WindowInfo$WindowU),
+                        wcounts = as.integer(WindowInfo$WindowCounts), 
+                        iordl = integer(length(WindowInfo$WindowL)),
+                        iordu = integer(length(WindowInfo$WindowL)),
+                        delta = integer(length(tuniq)),
+                        kdebug= as.integer(kdebug1), 
+                        iscrat = integer(length(WindowInfo$WindowL)))
 
 twindowsl = as.double(WindowInfo$WindowL)
 twindowsu = as.double(WindowInfo$WindowU)
