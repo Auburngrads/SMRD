@@ -6,6 +6,8 @@
 #'
 #' @return NULL
 #' @export
+#' @name RiskSet
+#' @rdname RiskSet_r
 #'
 #' @examples
 #' \dontrun{
@@ -21,7 +23,9 @@
 #' 
 #' }
 RiskSet <-
-function (data.rdu, kdebug1= F, JustEvent = T) 
+function (data.rdu, 
+          kdebug1 = F, 
+          JustEvent = T) 
 {
     time.column <- attr(data.rdu, "time.column")
     event.column <- attr(data.rdu, "event.column")
@@ -31,10 +35,10 @@ function (data.rdu, kdebug1= F, JustEvent = T)
     EndPoints <- is.element(casefold(event), c("end", "mend"))
     StartPoints <- is.element(casefold(event), c("start", "mstart"))
     Cevent <- !(EndPoints | StartPoints)
-    if (JustEvent) 
-        tuniq <- unique(sort(Times[Cevent]))
-    else tuniq <- unique(sort(c(0, Times[Cevent], WindowInfo$WindowL, 
-        WindowInfo$WindowU)))
+    
+    `if`(JustEvent,
+         tuniq <- unique(sort(Times[Cevent])),
+         tuniq <- unique(sort(c(0, Times[Cevent], WindowInfo$WindowL, WindowInfo$WindowU))))
     
     zout <- RISKSET(muniqrecurr = as.integer(length(tuniq)),
                     tuniq = as.double(tuniq), 
@@ -43,10 +47,12 @@ function (data.rdu, kdebug1= F, JustEvent = T)
                     twindowsu = as.double(WindowInfo$WindowU),
                     wcounts = as.integer(WindowInfo$WindowCounts), 
                     iordl = integer(length(WindowInfo$WindowL)),
-                    iordu = oldrs$iordu - 1, 
+                    iordu = integer(length(WindowInfo$WindowL)), 
                     delta = integer(length(tuniq)),
-                    kdebug= as.integer(kdebug1), 
+                    kdebug = as.integer(kdebug1), 
                     iscrat = integer(length(WindowInfo$WindowL)))
     
-    return(list(Times = zout$tuniq, Counts = zout$delta, NumberUnits = length(unique(get.UnitID(data.rdu)))))
+    return(list(Times = zout$tuniq, 
+                Counts = zout$delta, 
+                NumberUnits = length(unique(get.UnitID(data.rdu)))))
 }
