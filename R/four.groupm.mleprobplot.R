@@ -1,3 +1,84 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param formula 
+#' @param stresses 
+#' @param group.var 
+#' @param xlab 
+#' @param ylab 
+#' @param conf.level 
+#' @param xlim 
+#' @param ylim 
+#' @param relationship 
+#' @param power 
+#' @param my.title 
+#' @param dump 
+#' @param mle.intervals 
+#' @param cex 
+#' @param grids 
+#' @param linear.axes 
+#' @param title.option 
+#' @param lwd 
+#' @param plot.censored.ticks 
+#' @param time.range 
+#' @param shape 
+#' @param ci.list 
+#' @param col.ci 
+#' @param printem 
+#' @param trunc.correct 
+#' @param new.data 
+#' @param plotem 
+#' @param stresses.limit 
+#' @param landscape 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' DeviceA.ld <- frame.to.ld(devicea, 
+#'                           data.title = "Device-A ALT Results",
+#'                           response.column = 1,
+#'                           time.units = "Hours",
+#'                           censor.column = 2,
+#'                           case.weight.column = 3,
+#'                           x.columns = 4, 
+#'                           xlab = "Degrees C")
+#' 
+#' print(DeviceA.ld)
+#' summary(DeviceA.ld)
+#' 
+#' censored.data.plot(DeviceA.ld)
+#' 
+#' censored.data.plot(DeviceA.ld, 
+#'                    y.axis ="log", 
+#'                    x.axis = "Arrhenius")
+#' 
+#' groupi.mleprobplot(DeviceA.ld, 
+#'                    distribution = "Weibull")
+#' 
+#' four.groupi.mleprobplot(DeviceA.ld)
+#' 
+#' DeviceA.weib.groupi <- groupi.mleprobplot(DeviceA.ld,
+#'                                           distribution = "Weibull")
+#' 
+#' print(DeviceA.weib.groupi)
+#' summary(DeviceA.weib.groupi)
+#' 
+#' 
+#' DeviceA.lognor.groupi <- groupi.mleprobplot(DeviceA.ld, 
+#'                                             distribution = "Lognormal")
+#' 
+#' summary(DeviceA.lognor.groupi)
+#' 
+#' failure.probabilities(DeviceA.lognor.groupi)
+#' quantiles(DeviceA.lognor.groupi)
+#' 
+#' four.groupm.mleprobplot(DeviceA.ld, 
+#'                         relationship = "Arrhenius")
+#' 
+#' }
 four.groupm.mleprobplot <-
 function (data.ld, formula = NULL, stresses = get.x.markers(data.ld,
     group.var = group.var), group.var = 1, xlab = get.time.units(data.ld),
