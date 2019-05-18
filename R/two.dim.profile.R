@@ -1,3 +1,52 @@
+#' Title
+#'
+#' @param gmle.out 
+#' @param profile.setup 
+#' @param profile.stable.parameters 
+#' @param range.list 
+#' @param profile.on.list 
+#' @param which 
+#' @param special.stuff.profile 
+#' @param size 
+#' @param interactive 
+#' @param save.structures 
+#' @param addname 
+#' @param monitor 
+#' @param debug1 
+#' @param alt.max 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' R4490.rdu <- frame.to.rdu(r4490,
+#'                           ID.column = "vin",
+#'                           time.column = "days" , 
+#'                           cost.count.column = "costcount" ,
+#'                           event.column = "code")
+#' 
+#' attr(R4490.rdu,"WindowInfo")
+#' 
+#' event.plot(R4490.rdu)
+#' R4490.mcf <- mcf(R4490.rdu)
+#' plot(R4490.mcf)
+#' 
+#' R4490.nhpp.out <- PlotMCFandNHPP(R4490.rdu, form = "power rule")
+#' one.dim.profile(R4490.nhpp.out,size = 5,save.s = T)
+#' two.dim.profile(R4490.nhpp.out, 
+#'                 profile.on.list = NULL,
+#'                 which = c(1,2), 
+#'                 size = c(5,5))
+#' 
+#' profile.contour(R4490.nhpp.outstruct1x2,
+#'                 transformationy = "log",
+#'                 variable.namey = "sigma", 
+#'                 variable.namex = "mu", 
+#'                 v = c(0.001, 0.01, .1,0.2, 0.4, 0.7, 0.9) )
+#' 
+#' }
 two.dim.profile <-
 function (gmle.out, profile.setup = NULL, profile.stable.parameters = NULL,
     range.list = NULL, profile.on.list = NULL, which = seq(1:length(t.param.names)),

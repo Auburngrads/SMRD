@@ -1,3 +1,55 @@
+#' Title
+#'
+#' @param fitted 
+#' @param xlim 
+#' @param ylim 
+#' @param profile.title 
+#' @param variable.namex 
+#' @param variable.namey 
+#' @param transformationx 
+#' @param transformationy 
+#' @param original.par 
+#' @param levels 
+#' @param pretty.x 
+#' @param pretty.y 
+#' @param add 
+#' @param lty 
+#' @param col 
+#' @param lwd 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' R4490.rdu <- frame.to.rdu(r4490,
+#'                           ID.column = "vin",
+#'                           time.column = "days" , 
+#'                           cost.count.column = "costcount" ,
+#'                           event.column = "code")
+#' 
+#' attr(R4490.rdu,"WindowInfo")
+#' 
+#' event.plot(R4490.rdu)
+#' R4490.mcf <- mcf(R4490.rdu)
+#' plot(R4490.mcf)
+#' 
+#' R4490.nhpp.out <- PlotMCFandNHPP(R4490.rdu, form = "power rule")
+#' one.dim.profile(R4490.nhpp.out,size = 5,save.s = T)
+#' two.dim.profile(R4490.nhpp.out, 
+#'                 profile.on.list = NULL,
+#'                 which = c(1,2), 
+#'                 size = c(5,5))
+#' 
+#' profile.contour(R4490.nhpp.outstruct1x2,
+#'                 transformationy = "log",
+#'                 variable.namey = "sigma", 
+#'                 variable.namex = "mu", 
+#'                 v = c(0.001, 0.01, .1,0.2, 0.4, 0.7, 0.9) )
+#' 
+#' }
 profile.contour <-
 function (fitted, 
           xlim = c(NA, NA),

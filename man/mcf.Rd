@@ -20,14 +20,14 @@ Title
 \dontrun{
 
 #time.column, ID.column, cost.count.column, event.column
-WorkStation.rdu <- SMRD2:::frame.to.rdu(workstation,
+WorkStation.rdu <- frame.to.rdu(workstation,
                                 ID.column = "station",
                                 time.column = "days",
                                 event.column = "event")
 
 #attr(WorkStation.rdu,"WindowInfo")
 
-WorkStation.mcf <- SMRD2:::mcf(WorkStation.rdu)
+WorkStation.mcf <- mcf(WorkStation.rdu)
 
 #sqrt(WorkStation.mcf$Var)
 
