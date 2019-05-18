@@ -125,7 +125,7 @@ if(debug::kprint >= 5){
    wqm_cdfmat(f,mm1,small,probd,mnzs,m,nnzs);
    
 // Call matrix inversion subroutine
-//   wqm_invpx(f,nnzs,ier);
+   wqm_invpx(f,nnzs,ier);
    
    if(debug::kprint >= 7){
       
