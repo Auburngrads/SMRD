@@ -5,6 +5,7 @@
 //' observation windows.
 //' 
 //' @name RISKSET
+//' @rdname RISKSET_cpp
 //' 
 //' @description We want the number of units at risk 
 //'              just before each event time it is 
@@ -61,7 +62,7 @@ Rcpp::List RISKSET(int muniqrecurr,
 }
 
 #include <base/base.hpp>
-#include <utility/merge_sortd.hpp>
+#include <utility/merge_sortdd.hpp>
 
 void wqm_riskset(int &muniqrecurr,
                  Rcpp::NumericVector &tuniq,
@@ -77,39 +78,49 @@ void wqm_riskset(int &muniqrecurr,
 double twinl = 0;
 double twinu = 0;
 int icurrentl, icurrentu,deltaold;
-//int deltaold;
 
 // Find the index vector to order the
 // upper and lower window endpoints
-   iordl = Rcpp::as<Rcpp::IntegerVector>(merge_sortd(twindowsl, IntegerVector(nwindows, 0), false));
-   iordu = Rcpp::as<Rcpp::IntegerVector>(merge_sortd(twindowsu, iordl, true));
+   Rcpp::IntegerVector ISCRAT(nwindows);
+   merge_sortdd(twindowsl,nwindows,iordl,ISCRAT);
+   
+   Rcpp::IntegerVector ISCRAT2 = clone(iordu);
+   merge_sortdd(twindowsl,nwindows,iordu, ISCRAT2);
+   
+   if(debug::kprint >= 2){
+      
+      Rcpp::Rcout << "\nWQM_RISKSET**1**\n" << std::endl;
+      Rcpp::Rcout << "iordl = " << iordl << std::endl;
+      Rcpp::Rcout << "iordu = " << iordu << std::endl;
+      Rcpp::Rcout << "twindowsl = " << twindowsl << std::endl;
+      Rcpp::Rcout << "twindowsu = " << twindowsu << std::endl;
 
-//call merge_sortd(twindowsl,nwindows,iordl, iscrat);
-//call merge_sortd(twindowsu,nwindows,iordu, iscrat);
+      
+   }
 
 // Initilize the window pointers
-   icurrentl = 0;
-   icurrentu = 0;
+   icurrentl = 1;
+   icurrentu = 1;
 
 // loop over the unique recurrence times
-for(int i = 0; i < muniqrecurr; i++) {
+for(int i = 1; i <= muniqrecurr; i++) {
 
 // initilize the risk set accumulator
-   if(i > 0) {
+   if(i > 1) {
    
-      delta.at(i) = delta.at(i - 1);
+      delta.at(i - 1) = delta.at(i - 2);
    
     } else {
    
-      delta.at(i) = 0;
+      delta.at(i - 1) = 0;
     }
 
 if(debug::kprint > 4){
   
    Rcpp::Rcout << "\nBefore Index,time,delta\n" << std::endl;
-   Rcpp::Rcout << "i = "        << i << std::endl;
-   Rcpp::Rcout << "tuniq(i) = " << tuniq.at(i) << std::endl;
-   Rcpp::Rcout << "delta(i) = " << delta.at(i) << std::endl;
+   Rcpp::Rcout << "i = "        << i - 1 << std::endl;
+   Rcpp::Rcout << "tuniq(i) = " << tuniq.at(i - 1) << std::endl;
+   Rcpp::Rcout << "delta(i) = " << delta.at(i - 1) << std::endl;
   
 }
 
@@ -117,71 +128,71 @@ if(debug::kprint > 4){
 // Continue until twinl >= tuniq(i) or end of list
    if(icurrentl < nwindows) {
    
-      twinl = twindowsl.at(iordl.at(icurrentl));
+      twinl = twindowsl.at(iordl.at(icurrentl - 1) - 1);
    
    }
 
 
-while((twinl <= tuniq.at(i)) and (icurrentl < nwindows)) {
+while((twinl <= tuniq.at(i - 1)) and (icurrentl <= nwindows)) {
 
-       deltaold = delta.at(i);
-       delta.at(i) = delta.at(i) + wcounts.at(iordl.at(icurrentl));
+       deltaold = delta.at(i - 1);
+       delta.at(i - 1) = delta.at(i - 1) + wcounts.at(iordl.at(icurrentl - 1) - 1);
        
        if(debug::kprint > 4){
   
           Rcpp::Rcout << "\nwqm_riskset Add**\n"        << std::endl;
-          Rcpp::Rcout << "i = "         << i            << std::endl;
+          Rcpp::Rcout << "i = "         << i - 1            << std::endl;
           Rcpp::Rcout << "twinl = "     << twinl        << std::endl;
           Rcpp::Rcout << "icurrentl = " << icurrentl    << std::endl;
           Rcpp::Rcout << "nwindows = "  << nwindows     << std::endl;
           Rcpp::Rcout << "deltaold = "  << deltaold     << std::endl;
-          Rcpp::Rcout << "wcounts(iordl(icurrentl)) = " << wcounts.at(iordl.at(icurrentl)) << std::endl;
-          Rcpp::Rcout << "delta(i) = "  << delta.at(i)  << std::endl;
+          Rcpp::Rcout << "wcounts(iordl(icurrentl)) = " << wcounts.at(iordl.at(icurrentl - 1) - 1) << std::endl;
+          Rcpp::Rcout << "delta(i) = "  << delta.at(i - 1)  << std::endl;
   
        }
 
        
        icurrentl = icurrentl + 1;
        
-       if(icurrentl < nwindows) {
+       if(icurrentl <= nwindows) {
        
-          twinl = twindowsl.at(iordl.at(icurrentl));
+          twinl = twindowsl.at(iordl.at(icurrentl - 1) - 1);
        
        }
 }
 
 // Subtract out counts at the end of each interval
 // Continue until twinu <= tuniq(i) or end of list
-   if(icurrentu < nwindows) {
+   if(icurrentu <= nwindows) {
    
-      twinu = twindowsu.at(iordu.at(icurrentu));
+      twinu = twindowsu.at(iordu.at(icurrentu - 1) - 1);
    
    }
 
-while((twinu <= tuniq.at(i)) and (icurrentu < nwindows)) {
+while((twinu <= tuniq.at(i - 1)) and (icurrentu <= nwindows)) {
 
-       deltaold    = delta.at(i);
-       delta.at(i) = delta.at(i) - wcounts.at(iordu.at(icurrentu));
+       deltaold    = delta.at(i - 1);
+       delta.at(i - 1) = delta.at(i - 1) - wcounts.at(iordu.at(icurrentu - 1) - 1);
 
        if(debug::kprint > 6){
   
           Rcpp::Rcout << "\nwqm_riskset Subtract**\n"        << std::endl;
-          Rcpp::Rcout << "i = "         << i            << std::endl;
+          Rcpp::Rcout << "i = "         << i - 1            << std::endl;
           Rcpp::Rcout << "twinu = "     << twinu        << std::endl;
           Rcpp::Rcout << "icurrentu = " << icurrentu    << std::endl;
           Rcpp::Rcout << "nwindows = "  << nwindows     << std::endl;
           Rcpp::Rcout << "deltaold = "  << deltaold     << std::endl;
-          Rcpp::Rcout << "wcounts(iordu(icurrentu)) = " << wcounts.at(iordu.at(icurrentu)) << std::endl;
-          Rcpp::Rcout << "delta(i) = "  << delta.at(i)  << std::endl;
+          Rcpp::Rcout << "wcounts(iordu(icurrentu)) = " << wcounts.at(iordu.at(icurrentu - 1) - 1) << std::endl;
+          Rcpp::Rcout << "delta(i) = "  << delta.at(i - 1)  << std::endl;
   
        }
 
        
        icurrentu = icurrentu + 1;
 
-       if(icurrentu < nwindows) {
+       if(icurrentu <= nwindows) {
        
-          twinu = twindowsu.at(iordu.at(icurrentu));
+          twinu = twindowsu.at(iordu.at(icurrentu - 1) - 1);
        
        }
 }
@@ -189,9 +200,9 @@ while((twinu <= tuniq.at(i)) and (icurrentu < nwindows)) {
 if(debug::kprint > 4){
   
    Rcpp::Rcout << "\nAfter Index,time,delta\n" << std::endl;
-   Rcpp::Rcout << "i = "        << i << std::endl;
-   Rcpp::Rcout << "tuniq(i) = " << tuniq.at(i) << std::endl;
-   Rcpp::Rcout << "delta(i) = " << delta.at(i) << std::endl;
+   Rcpp::Rcout << "i = "        << i - 1 << std::endl;
+   Rcpp::Rcout << "tuniq(i) = " << tuniq.at(i - 1) << std::endl;
+   Rcpp::Rcout << "delta(i) = " << delta.at(i - 1) << std::endl;
   
 }
 
