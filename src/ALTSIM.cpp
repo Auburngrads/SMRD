@@ -4,50 +4,33 @@
 #include <wqmmlesss/wqm_mlboth.hpp>
 #include <utility/copyrr.hpp>
 
-// # alt simulation---parametric (spec censoring);
-// #;
-// # parameter meanings same as in wqm_mlboth except the following:;
-// #;
-// #19 dec 97 modifying for multiple accelerating variables;
-// #;
-// #;
-// #theta(nparm) true value of theta;
-// #;
-// #thetah(nparm) space for thetahat;
-// #;
-// #;
-// #xnew hold space for x;
-// #;
-// #ynew hold space for y;
-// #;
-// #centim(nsubex) vector of censor times for alt;
-// #acvar(nsubex,nacvar) matrix of accelerating vars;
-// #;
-// # Accelerating Variable;
-// # X1 X1;
-// # Comb1;
-// # Comb2;
-// # Comb3;
-// #;
-// #nsubex number of subexperiments;
-// #nacvar number of accelerating variables;
-// #nsamsz(nsubex) vector giving number of units at each comb;
-// #;
-// #;
-// #kctype = 1 for type 1 at centim;
-// #kctype = 2 for type 2 with centim failures;
-// #;
-// #;
-// #;
-// #retmat(numret,numsim) matrix to return results, one result per col;
-// #;
-// #numsim number of simulations to be run;
-// #;
-// #nrowr number of rows being returned in retmat;
-// #;
-// #iersim >0 if data space too small;
-// #;
-// #need to send down data space big enough to cover all data situations;
+//' Parametric accelerated life test simulation
+//' 
+//' @name ALTSIM
+//' 
+//' @rdname altsim_cpp
+//' 
+//' @description Parametric accelerated life test simulation (spec censoring)
+//' 
+//' @details Parameter meanings same as in wqm_mlboth except those listed here
+//'
+//' @note Modified 19 December 1997 to account for multiple accelerating variables
+//'
+//' @param theta (nparm) true value of theta
+//' @param thetah (nparm) space for thetahat
+//' @param xnew hold space for x
+//' @param ynew hold space for y
+//' @param centim (nsubex) vector of censor times for alt
+//' @param acvar (nsubex,nacvar) matrix of accelerating vars
+//' @param Accelerating Variable - X1, X1, Comb1, Comb2, Comb3
+//' @param nsubex number of subexperiments
+//' @param nacvar number of accelerating variables
+//' @param nsamsz (nsubex) vector giving number of units at each comb
+//' @param kctype = 1 for type 1 at centim, = 2 for type 2 with centim failures
+//' @param retmat (numret,numsim) matrix to return results, one result per col
+//' @param numsim number of simulations to be run
+//' @param nrowr number of rows being returned in retmat
+//' @param iersim > 0 if data space too small
 // [[Rcpp::export]]
 Rcpp::List ALTSIM(Rcpp::NumericMatrix x,
                   Rcpp::NumericMatrix y,
