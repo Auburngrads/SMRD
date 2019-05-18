@@ -5,7 +5,7 @@
 \title{Title}
 \usage{
 NHPP.mle(data.rdu, form = "power rule", debug1 = 0,
-  theta.start = c(NA, NA), ...)
+  theta.start = c(NA, NA), kprint = 0, ...)
 }
 \arguments{
 \item{data.rdu}{}
@@ -15,6 +15,8 @@ NHPP.mle(data.rdu, form = "power rule", debug1 = 0,
 \item{debug1}{}
 
 \item{theta.start}{}
+
+\item{kprint}{}
 
 \item{...}{}
 }
