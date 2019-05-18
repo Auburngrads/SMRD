@@ -1,5 +1,7 @@
 mcf.diff <-
-function (data1.rdu, data2.rdu, conf.level = GetSMRDDefault("SMRD.ConfLevel")/100) 
+function (data1.rdu, 
+          data2.rdu, 
+          conf.level = GetSMRDDefault("SMRD.ConfLevel")/100) 
 {
     norquan <- qnorm(1 - (1 - conf.level)/2)
     mcf1.out <- mcf(data1.rdu)

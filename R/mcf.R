@@ -2,6 +2,7 @@
 #'
 #' @param data.rdu 
 #' @param debug1 
+#' @param kprint
 #'
 #' @return NULL
 #' @export
@@ -10,14 +11,14 @@
 #' \dontrun{
 #' 
 #' #time.column, ID.column, cost.count.column, event.column
-#' WorkStation.rdu <- SMRD2:::frame.to.rdu(workstation,
+#' WorkStation.rdu <- frame.to.rdu(workstation,
 #'                                 ID.column = "station",
 #'                                 time.column = "days",
 #'                                 event.column = "event")
 #' 
 #' #attr(WorkStation.rdu,"WindowInfo")
 #' 
-#' WorkStation.mcf <- SMRD2:::mcf(WorkStation.rdu)
+#' WorkStation.mcf <- mcf(WorkStation.rdu)
 #' 
 #' #sqrt(WorkStation.mcf$Var)
 #' 
@@ -28,7 +29,8 @@
 #' }
 mcf <-
 function (data.rdu,
-          debug1 = F) 
+          debug1 = F,
+          kprint = 0) 
 {
     event <- events(data.rdu)
     EndPoints <- is.element(casefold(event), c("end", "mend", "removed"))
@@ -59,7 +61,7 @@ function (data.rdu,
                          lnumrecurr = integer(1), 
                          delta = integer(numRecurr), 
                          nunitsgroups = as.integer(length(WindowInfo$WindowPoint)), 
-                         wpoint = as.integer(WindowInfo$WindowPoint - 1L), 
+                         wpoint = as.integer(WindowInfo$WindowPoint), 
                          nwindows = as.integer(length(WindowInfo$WindowL)), 
                          twindowsl = as.double(WindowInfo$WindowL), 
                          twindowsu = as.double(WindowInfo$WindowU), 
@@ -71,7 +73,8 @@ function (data.rdu,
                          iordl = integer(length(WindowInfo$WindowL)), 
                          iordu = integer(length(WindowInfo$WindowL)), 
                          iorder = integer(numRecurr), 
-                         iscrat = integer(numRecurr))
+                         iscrat = integer(numRecurr),
+                         kdebug = as.integer(kprint))
     
     max.censoring.time <- max(WindowInfo$WindowU)
     muniqrecurr <- mcfdata.out$muniqrecurr

@@ -4,6 +4,7 @@
 #' @param form 
 #' @param debug1 
 #' @param theta.start 
+#' @param kprint 
 #' @param ... 
 #'
 #' @return NULL
@@ -24,16 +25,18 @@
 #' 
 #' }
 NHPP.mle <-
-function (data.rdu, form = "power rule",debug1= 0, theta.start = c(NA,
-    NA), ...)
+function (data.rdu, 
+          form = "power rule",
+          debug1 = 0, 
+          theta.start = c(NA,NA),
+          kprint = 0,...)
 {
     assign(envir = .frame0,  inherits = TRUE,"debug1", debug1)
   
     options(digits = 5)
     func.call <- match.call()
     event <- events(data.rdu)
-    EndPoints <- is.element(casefold(event), c("end", "mend",
-        "removed"))
+    EndPoints <- is.element(casefold(event), c("end", "mend", "removed"))
     StartPoints <- is.element(casefold(event), c("start", "mstart"))
     CriticalEvent <- !(EndPoints | StartPoints)
     Times <- times(data.rdu)
@@ -48,18 +51,18 @@ function (data.rdu, form = "power rule",debug1= 0, theta.start = c(NA,
     RecurrTimes <- Times[CriticalEvent, ]
     non.positive <- RecurrTimes <= 0
     if (any(non.positive)) {
-        if (any(RecurrTimes < 0))
-            stop("Negative event times not allowed in NHPP model")
+      
+        if (any(RecurrTimes < 0)) stop("Negative event times not allowed in NHPP model")
         warning("Events at time 0 detected. Adding a small amount to make positive.")
         unique.times <- sort(unique(RecurrTimes))
-        if (length(unique.times) < 2)
-            stop("All events times are zero")
+        if (length(unique.times) < 2) stop("All events times are zero")
         eps <- (unique.times[2] - unique.times[1])/10
-        RecurrTimes[non.positive] <- RecurrTimes[non.positive] +
-            eps
+        RecurrTimes[non.positive] <- RecurrTimes[non.positive] + eps
         Times[CriticalEvent, ] <- RecurrTimes
         times(data.rdu) <- Times
+        
     }
+    
     median.time <- median(unique(RecurrTimes))
     RecurrUnitID <- UnitID[CriticalEvent]
     RecurrCosts <- get.Costs(data.rdu)[CriticalEvent]
@@ -105,7 +108,7 @@ function (data.rdu, form = "power rule",debug1= 0, theta.start = c(NA,
     }
     start.na <- is.na(theta.start)
     if (any(start.na)) {
-        mcf.out <- mcf(data.rdu)
+        mcf.out <- mcf(data.rdu, debug1 = debug1,kprint = kprint)
         time.quantiles <- quantile(mcf.out[[1]])
         mcf.quantiles <- quantile(mcf.out[[2]])
         logmcf.quantiles <- log(mcf.quantiles)
