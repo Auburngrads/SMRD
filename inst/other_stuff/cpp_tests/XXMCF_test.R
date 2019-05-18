@@ -1,18 +1,40 @@
 library(SMRD)
-data.rdu <- frame.to.rdu(r4490,
-                         time.column = 2,
-                         cost.count.column = 4,
-                         ID.column = 1,
-                         event.column = 3)
-debug1 = F 
+library(SMRD2)
+test = 3
+if(test == 1) {
+  
+data.rdu <- SMRD2:::frame.to.rdu(r4490,
+                                 time.column = 2,
+                                 cost.count.column = 4,
+                                 ID.column = 1,
+                                 event.column = 3)
+}
 
-  event <- SMRD:::events(data.rdu)
+if(test == 2){
+  
+  data.rdu <- SMRD2:::frame.to.rdu(computerlab,
+                                ID.column = "computer",
+                                time.column = "days",
+                                event.column = "event")
+  
+}
+if(test == 3){
+  
+  data.rdu.rdu <- SMRD2:::frame.to.rdu(workstation,
+                                ID.column = "station",
+                                time.column = "days",
+                                event.column = "event")
+  
+}
+debug1 = F 
+if(!exists("kdebug")) kdebug = 0
+  event <- SMRD2:::events(data.rdu)
   EndPoints <- is.element(casefold(event), c("end", "mend", 
                                    "removed"))
   StartPoints <- is.element(casefold(event), c("start", "mstart"))
   CriticalEvent <- !(EndPoints | StartPoints)
-  Times <- SMRD:::times(data.rdu)
-  UnitID <- as.factor(SMRD:::get.UnitID(data.rdu))
+  Times <- SMRD2:::times(data.rdu)
+  UnitID <- as.factor(SMRD2:::get.UnitID(data.rdu))
   WindowInfo <- attr(data.rdu, "WindowInfo")
   WindowPoint <- WindowInfo$WindowPoint
   WindowU <- WindowInfo$WindowU
@@ -22,11 +44,12 @@ debug1 = F
   CriticalEvent <- !(EndPoints | StartPoints)
   RecurrTimes <- Times[CriticalEvent, ]
   
-#  RecurrUnitID <- UnitID[CriticalEvent]
-  RecurrUnitID <- as.numeric(attr(RecurrTimes, "names"))
-  RecurrCosts <- SMRD:::get.Costs(data.rdu)[CriticalEvent]
+  RecurrUnitID <- UnitID[CriticalEvent]
+#  RecurrUnitID <- as.numeric(attr(RecurrTimes, "names"))
+  RecurrCosts <- SMRD2:::get.Costs(data.rdu)[CriticalEvent]
   numRecurr <- length(RecurrTimes)
-  
+
+if(F){ 
 old <-  .Fortran("xxmcf", numRecurr = as.integer(numRecurr),
         RecurrTimes = as.double(RecurrTimes), KRecurrID = as.integer(RecurrUnitID),
         dCost = as.double(RecurrCosts), muniqrecurr = integer(1),
@@ -40,8 +63,9 @@ old <-  .Fortran("xxmcf", numRecurr = as.integer(numRecurr),
         dbar = double(numRecurr), iordl = integer(length(WindowInfo$WindowL)),
         iordu = integer(length(WindowInfo$WindowL)), iorder = integer(numRecurr),
         iorder2 = integer(numRecurr))
+}
 
-new <- SMRD2::XXMCF(numrecurr = as.integer(numRecurr),
+new <- SMRD2:::XXMCF(numrecurr = as.integer(numRecurr),
                        timeofrecurr = as.double(RecurrTimes), 
                        krecurrid = as.integer(RecurrUnitID), 
                        dcost = as.double(RecurrCosts), 
@@ -51,7 +75,7 @@ new <- SMRD2::XXMCF(numrecurr = as.integer(numRecurr),
                        lnumrecurr = integer(1), 
                        delta = integer(numRecurr), 
                        nunitsgroups = as.integer(length(WindowInfo$WindowPoint)), 
-                       wpoint = as.integer(WindowInfo$WindowPoint - 1L), 
+                       wpoint = as.integer(WindowInfo$WindowPoint), 
                        nwindows = as.integer(length(WindowInfo$WindowL)), 
                        twindowsl = as.double(WindowInfo$WindowL), 
                        twindowsu = as.double(WindowInfo$WindowU), 
@@ -63,4 +87,5 @@ new <- SMRD2::XXMCF(numrecurr = as.integer(numRecurr),
                        iordl = integer(length(WindowInfo$WindowL)), 
                        iordu = integer(length(WindowInfo$WindowL)), 
                        iorder = integer(numRecurr), 
-                       iscrat = integer(numRecurr))
+                       iscrat = integer(numRecurr),
+                     kdebug = as.integer(kdebug))
