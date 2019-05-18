@@ -1,5 +1,6 @@
 library(SMRD)
-test = 1
+library(SMRD2)
+test = 4
 if(test == 1){
   
    data.ld <- frame.to.ld(lzbearing, response.column = 1) 
@@ -17,13 +18,22 @@ if(test == 3){
    data.ld <- frame.to.ld(prob3_5, 
                           response.column = 1,
                           censor.column = 2)
-   }
+}
+if(test == 4){
+  
+  data.ld <- frame.to.ld(bearingcage,
+                         response.column = 1, 
+                         censor.column = 2, 
+                         case.weight.column = 3,
+                         time.units = "Hours")
+  
+}
  
 distribution = "weibull"
-number.sim = 500
+number.sim = 50
 escale = 10000
 intercept = T
-kprint = 0
+if(!exists("kprint")) kprint = 0
 maxit = 500
 max.sim.scratch.space = 1000
 debug1 = F
@@ -119,47 +129,47 @@ randomize = T
                      lrand = as.logical(randomize), 
                      iersim = integer(1))
     
-new = SMRD2::mlsim2(x = as.matrix(the.xmat), 
-y = as.matrix(y), 
-cen = as.integer(the.censor.codes), 
-wt = as.integer(the.case.weights), 
-nrow = as.integer(number.cases), 
-nter = as.integer(nter), 
-ny = as.integer(ny), 
-nty = as.integer(nty), 
-ty = matrix(0,nrow = number.cases, ncol = 1), 
-tcodes = integer(number.cases), 
-kdist = as.integer(distribution.number), 
-gamthr = double(number.cases), 
-lfix = as.logical(parameter.fixed), 
-nparm = as.integer(number.parameters), 
-intcpt = as.integer(int), 
-escale = as.double(escale), 
-e = as.double(e), 
-maxit = as.integer(maxit), 
-kprint = as.integer(kprint), 
-dscrat = double(ndscrat), 
-iscrat = integer(niscrat), 
-devian = matrix(0, nrow = number.cases, ncol = 3), 
-thetah = as.double(theta.start), 
-fsder = double(number.parameters), 
-vcv = matrix(0, nrow = number.parameters, ncol = number.parameters), 
-r = matrix(0, nrow = number.parameters, ncol = number.parameters), 
-res = matrix(0, ncol = ny, nrow = number.cases), 
-fv = matrix(0, ncol = ny, nrow = number.cases), 
-theta = double(number.parameters), 
-iarray = integer(sim.scratch.space), 
-marray = as.integer(sim.scratch.space), 
-wtnew = integer(number.cases), 
-xnew = matrix(0, nrow = number.cases, ncol = nter), 
-ynew = matrix(0, nrow = number.cases, ncol = ny), 
-iret = as.integer(iret), 
-retmat = matrix(4, ncol = number.sim, nrow = number.things.returned), 
-numsim = as.integer(number.sim), 
-numret = as.integer(number.things.returned), 
-tspass = as.double(tspass), 
-lrand = as.logical(randomize), 
-iersim = integer(1))
+new = SMRD2:::MLSIM2(x = as.matrix(the.xmat), 
+                     y = as.matrix(y), 
+                     cen = as.integer(the.censor.codes), 
+                     wt = as.integer(the.case.weights), 
+                     nrow = as.integer(number.cases), 
+                     nter = as.integer(nter), 
+                     ny = as.integer(ny), 
+                     nty = as.integer(nty), 
+                     ty = matrix(0,nrow = number.cases, ncol = 1), 
+                     tcodes = integer(number.cases), 
+                     kdist = as.integer(distribution.number), 
+                     gamthr = double(number.cases), 
+                     lfix = as.logical(parameter.fixed), 
+                     nparm = as.integer(number.parameters), 
+                     intcpt = as.integer(int), 
+                     escale = as.double(escale), 
+                     e = as.double(e), 
+                     maxit = as.integer(maxit), 
+                     kprint = as.integer(kprint), 
+                     dscrat = double(ndscrat), 
+                     iscrat = integer(niscrat), 
+                     devian = matrix(0, nrow = number.cases, ncol = 3), 
+                     thetah = as.double(theta.start), 
+                     fsder = double(number.parameters), 
+                     vcv = matrix(0, nrow = number.parameters, ncol = number.parameters), 
+                     r = matrix(0, nrow = number.parameters, ncol = number.parameters), 
+                     res = matrix(0, ncol = ny, nrow = number.cases), 
+                     fv = matrix(0, ncol = ny, nrow = number.cases), 
+                     theta = double(number.parameters), 
+                     iarray = integer(sim.scratch.space), 
+                     marray = as.integer(sim.scratch.space), 
+                     wtnew = integer(number.cases), 
+                     xnew = matrix(0, nrow = number.cases, ncol = nter), 
+                     ynew = matrix(0, nrow = number.cases, ncol = ny), 
+                     iret = as.integer(iret), 
+                     retmat = matrix(4, ncol = number.sim, nrow = number.things.returned), 
+                     numsim = as.integer(number.sim), 
+                     numret = as.integer(number.things.returned), 
+                     tspass = as.double(tspass), 
+                     lrand = as.logical(randomize), 
+                     iersim = integer(1))
 
 old.return.matrix <- t(matrix(zout$return.matrix, nrow = number.things.returned))
 new.return.matrix <- t(new$nummat$retmat)
