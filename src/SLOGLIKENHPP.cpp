@@ -5,18 +5,18 @@
 //' corresponding to a thetav matrix
 //' @name sloglikenhpp
 // [[Rcpp::export]]
-Rcpp::NumericVector SLOGLIKENHPP(Rcpp::NumericVector time, 
-                                 int ntimes, 
-                                 Rcpp::NumericVector recurrcosts,
-                                 Rcpp::NumericVector timel, 
-                                 Rcpp::NumericVector timeu, 
-                                 Rcpp::IntegerVector kwcount,
-                                 int nwindows, 
-                                 int kform, 
-                                 Rcpp::NumericMatrix thetav, 
-                                 int nparm, 
-                                 int ntheta, 
-                                 Rcpp::NumericVector answer){
+Rcpp::List SLOGLIKENHPP(Rcpp::NumericVector time, 
+                        int ntimes, 
+                        Rcpp::NumericVector recurrcosts,
+                        Rcpp::NumericVector timel, 
+                        Rcpp::NumericVector timeu, 
+                        Rcpp::IntegerVector kwcount,
+                        int nwindows, 
+                        int kform, 
+                        Rcpp::NumericMatrix thetav, 
+                        int nparm, 
+                        int ntheta, 
+                        Rcpp::NumericVector answer){
   
 for(int itheta = 0; itheta < ntheta; itheta++){
   
@@ -26,7 +26,7 @@ for(int itheta = 0; itheta < ntheta; itheta++){
   
 }
 
-return answer;
+return Rcpp::List::create(Named("answer") = answer);
   
 }
 

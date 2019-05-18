@@ -213,6 +213,7 @@ PlotMCFandNHPP(halfbeak.rdu, form = "power rule")
 PlotMCFandNHPP(halfbeak.rdu, form = "log linear")
 ```
 
+```{r}
 ### fit.power.process(halfbeak.rdu)
 ### fit.loglin.process(halfbeak.rdu)
 fit.power.and.loglin.process(halfbeak.rdu)
@@ -224,19 +225,23 @@ attr(halfbeak.rdu,"WindowInfo")
 
 TestWindow(halfbeak[[1]],halfbeak[[2]],halfbeak[[3]],NULL)
 
-RiskSet(halfbeak.rdu )
+RiskSet(halfbeak.rdu)
 
 
 halfbeak.mcf.out <- mcf(halfbeak.rdu)
 plot(halfbeak.mcf.out )
 fit.power.and.loglin.process(halfbeak.rdu)
 
-NHPP.mle(halfbeak.rdu,form="power rule")
-NHPP.mle(halfbeak.rdu,form="log linear")
+NHPP.mle(halfbeak.rdu,
+         form = "power rule")
+NHPP.mle(halfbeak.rdu,
+         form = "log linear")
 
-PlotMCFandNHPP(halfbeak.rdu,form="log linear")
-PlotMCFandNHPP(halfbeak.rdu,form="power rule")
-
+PlotMCFandNHPP(halfbeak.rdu,
+               form = "log linear")
+PlotMCFandNHPP(halfbeak.rdu,
+               form = "power rule")
+```
 ##	Grampus
 
 ```{r grampus}
@@ -280,18 +285,18 @@ PlotMCFandNHPP(grampus.rdu,form=c("power rule","log linear"))
 mleprobplot(interarrival.times(grampus.rdu),"Weibull")
 
 mcf.plot(grampus.rdu,
-         xlab="Thousands of Hours of Operation",
-         ylab="Cumulative Number of Maintenance Actions")
+         xlab = "Thousands of Hours of Operation",
+         ylab = "Cumulative Number of Maintenance Actions")
 
 interarrival.plot(grampus.rdu,
-                  xlab="Thousands of Hours of Operation",
-                  ylab="Thousands of Hours Between Maintenance Actions",
-                  my.title="")
+                  xlab = "Thousands of Hours of Operation",
+                  ylab = "Thousands of Hours Between Maintenance Actions",
+                  my.title = "")
 
 ar1.plot(grampus.rdu,
-         xlab="Lagged Thousands of Hours Between Maintenance Actions",
-         ylab="Thousands of Hours Between Maintenance Actions",
-         my.title="")
+         xlab = "Lagged Thousands of Hours Between Maintenance Actions",
+         ylab = "Thousands of Hours Between Maintenance Actions",
+         my.title = "")
 
 fit.power.and.loglin.process(grampus.rdu,
                              xlab = "Thousands of Hours of Operation",
@@ -346,27 +351,30 @@ R4490.rdu <- frame.to.rdu(r4490,
                           cost.count.column = "costcount" ,
                           event.column = "code")
 
-#attr(R4490.rdu,"WindowInfo")
+attr(R4490.rdu,"WindowInfo")
 
 event.plot(R4490.rdu)
-#R4490.mcf <- mcf(R4490.rdu)
-#plot(R4490.mcf)
+R4490.mcf <- mcf(R4490.rdu)
+plot(R4490.mcf)
+```
 
+```{r, eval=FALSE}
+R4490.nhpp.out <- PlotMCFandNHPP(R4490.rdu, form = "power rule")
 
-#caused crash
-if(FALSE){
-R4490.nhpp.out <-PlotMCFandNHPP(R4490.rdu, form = "power rule")
-one.dim.profile(R4490.nhpp.out,size = 5,save.s = T)
+one.dim.profile(R4490.nhpp.out,
+                size = 5,
+                save.s = T)
+
 two.dim.profile(R4490.nhpp.out, 
                 profile.on.list = NULL,
                 which = c(1,2), 
                 size = c(5,5))
+
 profile.contour(R4490.nhpp.outstruct1x2,
                 transformationy = "log",
                 variable.namey = "sigma", 
                 variable.namex = "mu", 
                 v = c(0.001, 0.01, .1,0.2, 0.4, 0.7, 0.9) )
-}
 ```
 
 ##	High Pressure Compressure Repairs
@@ -379,7 +387,9 @@ HPCRepairs.rdu <- frame.to.rdu(hpcrepairs,
 
 attr(HPCRepairs.rdu,"WindowInfo")
 
-PlotMCFandNHPP(HPCRepairs.rdu,form="power rule")
+PlotMCFandNHPP(HPCRepairs.rdu,
+               form = "power rule")
+
 HPCRepairs.mcf <- mcf(HPCRepairs.rdu)
 plot(HPCRepairs.mcf)
 ```
@@ -388,9 +398,9 @@ plot(HPCRepairs.mcf)
 
 ```{r amsaaexactfail, eval=FALSE}
 SMRD2:::TestWindow(amsaaexactfail[[1]],
-           amsaaexactfail[[2]],
-           amsaaexactfail[[3]],
-           NULL)
+                   amsaaexactfail[[2]],
+                   amsaaexactfail[[3]],
+                   NULL)
 
 AMSAAExactFail.rdu <- frame.to.rdu(amsaaexactfail,
                                    ID.column = "vehicle", 
@@ -399,16 +409,15 @@ AMSAAExactFail.rdu <- frame.to.rdu(amsaaexactfail,
 
 names(attributes(AMSAAExactFail.rdu))
 
-#
-#testing the loglikelihood
-#
+# testing the loglikelihood
 theta.mat <- matrix(c(1,1,2,2),2,2)
-theta.mat <- c(1,2)
-#SMRD2:::loglikeNHPPvec(AMSAAExactFail.rdu, theta.mat, "power.law")
+#theta.mat <- c(1,2)
+loglikeNHPPvec(AMSAAExactFail.rdu, theta.mat, "power.law")
+
 SMRD2:::TestLike(AMSAAExactFail.rdu, theta.mat, "power.law")
 
 theta.mat <- matrix(c(.01,.01,.02,.02),2,2)
-#SMRD2:::loglikeNHPPvec(AMSAAExactFail.rdu, theta.mat, "log.linear")
+loglikeNHPPvec(AMSAAExactFail.rdu, theta.mat, "log.linear")
 
 attr(AMSAAExactFail.rdu,"WindowInfo")
 
@@ -427,11 +436,11 @@ plotRiskSet(AMSAAExactFail.rdu,proportion = T)
 plot(mcf(AMSAAExactFail.rdu))
 
 PlotMCFandNHPP(AMSAAExactFail.rdu,
-               form="log linear")
+               form = "log linear")
 
 AMSAAExactFail.nhpp.out <- 
   PlotMCFandNHPP(AMSAAExactFail.rdu,
-                 form="power rule")
+                 form = "power rule")
 
 one.dim.profile(AMSAAExactFail.nhpp.out,
                 size = 5,
@@ -492,11 +501,11 @@ plot(mcf(AMSAAWindow2.rdu))
 ## this was causing some crashes in R
 
 ```{r, eval=FALSE}
-if(FALSE) {
-PlotMCFandNHPP(AMSAAWindow2.rdu, form = "log linear")
-AMSAAWindow2.nhpp.out <- 
-  PlotMCFandNHPP(AMSAAWindow2.rdu,
-                 form = "power rule")
+PlotMCFandNHPP(AMSAAWindow2.rdu, 
+               form = "log linear")
+
+AMSAAWindow2.nhpp.out <-  PlotMCFandNHPP(AMSAAWindow2.rdu, 
+                                         form = "power rule")
 
 one.dim.profile(AMSAAWindow2.nhpp.out,
                 size = 5,
@@ -511,7 +520,7 @@ profile.contour(AMSAAWindow2.nhpp.outstruct1x2,
                 transformationy = "log",
                 variable.namey = "sigma", 
                 variable.namex = "mu", 
-                v = c(0.001, 0.01, .1,0.2, 0.4, 0.7, 0.9))
+                v = c(0.001, 0.01, 0.1, 0.2, 0.4, 0.7, 0.9))
 
 AMSAAWindow2.nhpp.loglin.out <- 
   PlotMCFandNHPP(AMSAAWindow2.rdu,
@@ -532,18 +541,17 @@ profile.contour(AMSAAWindow2.nhpp.loglin.outstruct1x2,
                 variable.namey = "sigma", 
                 variable.namex = "mu",
                 v = c(0.001, 0.01, .1,0.2, 0.4, 0.7, 0.9) )
-}
 ```
 
 ##	Test
 
 ```{r, eval=FALSE}
-
-if(F){
 test.rdu <- frame.to.rdu(test,
-	ID.column="Unit", time.column="Hours" ,event.column="Event",
-	data.title = "Test Data", time.units =
-	"Thousands of Hours of Operation")
+                         ID.column = "Unit",
+                         time.column = "Hours",
+                         event.column = "Event",
+                         data.title = "Test Data", 
+                         time.units = "Thousands of Hours of Operation")
 
 summary(test.rdu)
 
@@ -559,21 +567,22 @@ mcf.plot(test.rdu,
          ylab="Cumulative Number of Maintenance Actions")
 
 interarrival.plot(test.rdu,
-                  xlab="Thousands of Hours of Operation",
-                  ylab="Thousands of Hours Between Maintenance Actions",
-                  my.title="")
+                  xlab = "Thousands of Hours of Operation",
+                  ylab = "Thousands of Hours Between Maintenance Actions",
+                  my.title = "")
 
 ar1.plot(test.rdu,
-         xlab="Lagged Thousands of Hours Between Maintenance Actions",
-         ylab="Thousands of Hours Between Maintenance Actions")
+         xlab = "Lagged Thousands of Hours Between Maintenance Actions",
+         ylab = "Thousands of Hours Between Maintenance Actions")
 
-ar1.plot(test.rdu,
-	xlab="Lagged Thousands of Hours Between Maintenance Actions",
-	ylab="Thousands of Hours Between Maintenance Actions",plot.acf=T)
+ar1.plot(test.rdu, 
+         xlab = "Lagged Thousands of Hours Between Maintenance Actions",
+         ylab = "Thousands of Hours Between Maintenance Actions",
+         plot.acf = T)
 
 fit.power.and.loglin.process(test.rdu,
-                             xlab="Thousands of Hours of Operation",
-                             ylab="Cumulative Number of Maintenance Actions") 
+                             xlab = "Thousands of Hours of Operation",
+                             ylab = "Cumulative Number of Mx Actions") 
 legend(1.55474, 
        63.7603,
        legend = c("Nonparametric MCF estimate",
@@ -601,5 +610,4 @@ dump(c("loglikeNHPP",
        "fmcf",
        "fmcfpower",
        "fmcfloglin"),"nhpp.q")
-}
 ```

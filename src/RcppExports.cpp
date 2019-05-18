@@ -798,7 +798,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // SLOGLIKENHPP
-Rcpp::NumericVector SLOGLIKENHPP(Rcpp::NumericVector time, int ntimes, Rcpp::NumericVector recurrcosts, Rcpp::NumericVector timel, Rcpp::NumericVector timeu, Rcpp::IntegerVector kwcount, int nwindows, int kform, Rcpp::NumericMatrix thetav, int nparm, int ntheta, Rcpp::NumericVector answer);
+Rcpp::List SLOGLIKENHPP(Rcpp::NumericVector time, int ntimes, Rcpp::NumericVector recurrcosts, Rcpp::NumericVector timel, Rcpp::NumericVector timeu, Rcpp::IntegerVector kwcount, int nwindows, int kform, Rcpp::NumericMatrix thetav, int nparm, int ntheta, Rcpp::NumericVector answer);
 RcppExport SEXP _SMRD2_SLOGLIKENHPP(SEXP timeSEXP, SEXP ntimesSEXP, SEXP recurrcostsSEXP, SEXP timelSEXP, SEXP timeuSEXP, SEXP kwcountSEXP, SEXP nwindowsSEXP, SEXP kformSEXP, SEXP thetavSEXP, SEXP nparmSEXP, SEXP nthetaSEXP, SEXP answerSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
