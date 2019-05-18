@@ -1,7 +1,11 @@
 #' Simulate Accelerated Life Test Data
 #' 
 #' @description Simulates data from an accelerated life test
+#' 
 #' @name altsim
+#' 
+#' @rdname altsim_r
+#' 
 #' @param accel.var.mat 
 #' @param nsamsz 
 #' @param centim 
@@ -189,6 +193,10 @@ altsim <- function (accel.var.mat,
 
 #' Title
 #'
+#' @name ALTsim
+#' 
+#' @rdname ALT_sim
+#' 
 #' @param ALT.test.plan 
 #' @param ALT.plan.values 
 #' @param number.sim 
@@ -202,7 +210,7 @@ altsim <- function (accel.var.mat,
 #' @export
 #'
 #' @examples
-#' #' \dontrun{
+#' \dontrun{
 #' 
 #' NelsonInsulation.Weibull.altpv  <- 
 #'   get.alt.plan.values.from.slope.and.point(distribution = "Weibull",
