@@ -9,7 +9,7 @@ Meeker, Iowa State University}
 XXMCF(numrecurr, timeofrecurr, krecurrid, dcost, muniqrecurr, tuniq,
   apoint, lnumrecurr, delta, nunitsgroups, wpoint, nwindows, twindowsl,
   twindowsu, wcounts, inwindowj, muhat, varhat, dbar, iordl, iordu, iorder,
-  iscrat)
+  iscrat, kdebug)
 }
 \description{
 Computes the sample MCF and its robust sample 
