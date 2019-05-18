@@ -1225,8 +1225,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // XXMCF
-Rcpp::List XXMCF(int numrecurr, Rcpp::NumericVector timeofrecurr, Rcpp::IntegerVector krecurrid, Rcpp::NumericVector dcost, int muniqrecurr, Rcpp::NumericVector tuniq, Rcpp::IntegerVector apoint, int lnumrecurr, Rcpp::IntegerVector delta, int nunitsgroups, Rcpp::IntegerVector wpoint, int nwindows, Rcpp::NumericVector twindowsl, Rcpp::NumericVector twindowsu, Rcpp::IntegerVector wcounts, Rcpp::IntegerVector inwindowj, Rcpp::NumericVector muhat, Rcpp::NumericVector varhat, Rcpp::NumericVector dbar, Rcpp::IntegerVector iordl, Rcpp::IntegerVector iordu, Rcpp::IntegerVector iorder, Rcpp::IntegerVector iscrat);
-RcppExport SEXP _SMRD2_XXMCF(SEXP numrecurrSEXP, SEXP timeofrecurrSEXP, SEXP krecurridSEXP, SEXP dcostSEXP, SEXP muniqrecurrSEXP, SEXP tuniqSEXP, SEXP apointSEXP, SEXP lnumrecurrSEXP, SEXP deltaSEXP, SEXP nunitsgroupsSEXP, SEXP wpointSEXP, SEXP nwindowsSEXP, SEXP twindowslSEXP, SEXP twindowsuSEXP, SEXP wcountsSEXP, SEXP inwindowjSEXP, SEXP muhatSEXP, SEXP varhatSEXP, SEXP dbarSEXP, SEXP iordlSEXP, SEXP iorduSEXP, SEXP iorderSEXP, SEXP iscratSEXP) {
+Rcpp::List XXMCF(int numrecurr, Rcpp::NumericVector timeofrecurr, Rcpp::IntegerVector krecurrid, Rcpp::NumericVector dcost, int muniqrecurr, Rcpp::NumericVector tuniq, Rcpp::IntegerVector apoint, int lnumrecurr, Rcpp::IntegerVector delta, int nunitsgroups, Rcpp::IntegerVector wpoint, int nwindows, Rcpp::NumericVector twindowsl, Rcpp::NumericVector twindowsu, Rcpp::IntegerVector wcounts, Rcpp::IntegerVector inwindowj, Rcpp::NumericVector muhat, Rcpp::NumericVector varhat, Rcpp::NumericVector dbar, Rcpp::IntegerVector iordl, Rcpp::IntegerVector iordu, Rcpp::IntegerVector iorder, Rcpp::IntegerVector iscrat, int kdebug);
+RcppExport SEXP _SMRD2_XXMCF(SEXP numrecurrSEXP, SEXP timeofrecurrSEXP, SEXP krecurridSEXP, SEXP dcostSEXP, SEXP muniqrecurrSEXP, SEXP tuniqSEXP, SEXP apointSEXP, SEXP lnumrecurrSEXP, SEXP deltaSEXP, SEXP nunitsgroupsSEXP, SEXP wpointSEXP, SEXP nwindowsSEXP, SEXP twindowslSEXP, SEXP twindowsuSEXP, SEXP wcountsSEXP, SEXP inwindowjSEXP, SEXP muhatSEXP, SEXP varhatSEXP, SEXP dbarSEXP, SEXP iordlSEXP, SEXP iorduSEXP, SEXP iorderSEXP, SEXP iscratSEXP, SEXP kdebugSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -1253,7 +1253,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type iordu(iorduSEXP);
     Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type iorder(iorderSEXP);
     Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type iscrat(iscratSEXP);
-    rcpp_result_gen = Rcpp::wrap(XXMCF(numrecurr, timeofrecurr, krecurrid, dcost, muniqrecurr, tuniq, apoint, lnumrecurr, delta, nunitsgroups, wpoint, nwindows, twindowsl, twindowsu, wcounts, inwindowj, muhat, varhat, dbar, iordl, iordu, iorder, iscrat));
+    Rcpp::traits::input_parameter< int >::type kdebug(kdebugSEXP);
+    rcpp_result_gen = Rcpp::wrap(XXMCF(numrecurr, timeofrecurr, krecurrid, dcost, muniqrecurr, tuniq, apoint, lnumrecurr, delta, nunitsgroups, wpoint, nwindows, twindowsl, twindowsu, wcounts, inwindowj, muhat, varhat, dbar, iordl, iordu, iorder, iscrat, kdebug));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -1301,7 +1302,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_SMRD2_WQMMRR2", (DL_FUNC) &_SMRD2_WQMMRR2, 7},
     {"_SMRD2_WQMPOINTS", (DL_FUNC) &_SMRD2_WQMPOINTS, 10},
     {"_SMRD2_WQMSPHIALL", (DL_FUNC) &_SMRD2_WQMSPHIALL, 7},
-    {"_SMRD2_XXMCF", (DL_FUNC) &_SMRD2_XXMCF, 23},
+    {"_SMRD2_XXMCF", (DL_FUNC) &_SMRD2_XXMCF, 24},
     {NULL, NULL, 0}
 };
 
