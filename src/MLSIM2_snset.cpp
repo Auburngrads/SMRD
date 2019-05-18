@@ -61,8 +61,15 @@ if(kount <= marray) {
           }
           
       }
+      
+if(debug::kprint >= 3){
    
-   return;
+   Rcpp::Rcout << "\nSNSET METHOD 1\n" << std::endl;
+   Rcpp::Rcout << "iarray = \n" << iarray << std::endl;
+   
+}
+   
+return;
 
 }
 
@@ -80,6 +87,13 @@ if(kount <= marray) {
        iarray.at(i - 1) = iarray.at(i - 2) + wtold.at(i - 1);
               
    }
+
+if(debug::kprint >= 3){
+   
+   Rcpp::Rcout << "\nSNSET METHOD 1\n" << std::endl;
+   Rcpp::Rcout << "iarray = \n" << iarray << std::endl;
+   
+}
 
 return;
 
