@@ -189,7 +189,7 @@ if(printem) {
                the.mean <- apply(the.xmat[, numeric.columns,drop = F], 2, mean)
                the.sd <- sqrt(apply(the.xmat[, numeric.columns, drop = F], 2, var))
                the.cv <- the.sd/the.mean
-               predictors <- names(get.xlabel(data.ld)[numeric.columns])
+               predictors <- names(get.x.columns(data.ld)[numeric.columns])
                xsummary <- data.frame(predictors,
                                       apply(the.xmat[, numeric.columns,drop = F], 2, min), 
                                       apply(the.xmat[, numeric.columns,drop = F], 2, max), 
@@ -243,7 +243,7 @@ if(printem) {
                 unique_combinations <- 1:nrow(the.table)
                 the.table <- cbind(unique_combinations, the.table)
                 colnames(the.table) <- c("",
-                                         names(get.xlabel(data.ld)),
+                                         names(get.x.columns(data.ld)),
                                          "Min response", 
                                          "Max response", 
                                          "Mean response",
@@ -255,8 +255,8 @@ if(printem) {
                                          "Total")
                 
                 check.zero <- function(x) { any(x != 0) }
-                some.censoring <- any(the.table[, ncolx + 9] != the.table[, ncolx + 5])
-                if(some.censoring) the.table <- the.table[, -(ncolx + c(3, 4))]
+                some.censoring <- any(the.table[, ncolx + 1 + 9] != the.table[, ncolx + 1 + 5])
+                if(!some.censoring) the.table <- the.table[, -(ncolx + 1 + c(6, 7, 8))]
                 any.non.zero <- apply(the.table, 2, check.zero)
                 
                 if(nrow(the.table) < print.limit) { 
