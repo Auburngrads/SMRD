@@ -1,3 +1,74 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param distribution 
+#' @param gamthr 
+#' @param stresses 
+#' @param group.var 
+#' @param xlab 
+#' @param ylab 
+#' @param conf.level 
+#' @param xlim 
+#' @param ylim 
+#' @param time.range 
+#' @param dump 
+#' @param grids 
+#' @param my.title 
+#' @param cex 
+#' @param linear.axes 
+#' @param title.option 
+#' @param pch 
+#' @param lty 
+#' @param ci.list 
+#' @param lwd 
+#' @param plot.censored.ticks 
+#' @param trunc.correct 
+#' @param col.fhat.vec 
+#' @param col.ci 
+#' @param shape 
+#' @param do.legend 
+#' @param stresses.limit 
+#' @param plotem 
+#' @param check.level 
+#' @param title.line.adj 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' DeviceA.ld <- frame.to.ld(devicea, 
+#'                           data.title = "Device-A ALT Results",
+#'                           response.column = 1,
+#'                           time.units = "Hours",
+#'                           censor.column = 2,
+#'                           case.weight.column = 3,
+#'                           x.columns = 4, 
+#'                           xlab = "Degrees C")
+#' 
+#' print(DeviceA.ld)
+#' summary(DeviceA.ld)
+#' 
+#' censored.data.plot(DeviceA.ld)
+#' 
+#' censored.data.plot(DeviceA.ld, 
+#'                    y.axis ="log", 
+#'                    x.axis = "Arrhenius")
+#' 
+#' groupi.mleprobplot(DeviceA.ld, 
+#'                    distribution = "Weibull")
+#' 
+#' four.groupi.mleprobplot(DeviceA.ld)
+#' 
+#' DeviceA.weib.groupi <- groupi.mleprobplot(DeviceA.ld,
+#'                                           distribution = "Weibull")
+#' 
+#' print(DeviceA.weib.groupi)
+#' summary(DeviceA.weib.groupi)
+#' 
+#' }
 groupi.mleprobplot <-
 function (data.ld, 
           distribution, 
