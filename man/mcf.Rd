@@ -4,12 +4,14 @@
 \alias{mcf}
 \title{Title}
 \usage{
-mcf(data.rdu, debug1 = F)
+mcf(data.rdu, debug1 = F, kprint = 0)
 }
 \arguments{
 \item{data.rdu}{}
 
 \item{debug1}{}
+
+\item{kprint}{}
 }
 \description{
 Title
