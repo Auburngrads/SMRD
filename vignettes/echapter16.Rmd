@@ -387,7 +387,7 @@ plot(HPCRepairs.mcf)
 ##	AMSAAExactFail
 
 ```{r amsaaexactfail, eval=FALSE}
-SMRD:::TestWindow(amsaaexactfail[[1]],
+SMRD2:::TestWindow(amsaaexactfail[[1]],
            amsaaexactfail[[2]],
            amsaaexactfail[[3]],
            NULL)
@@ -404,11 +404,11 @@ names(attributes(AMSAAExactFail.rdu))
 #
 theta.mat <- matrix(c(1,1,2,2),2,2)
 theta.mat <- c(1,2)
-SMRD:::loglikeNHPPvec(AMSAAExactFail.rdu, theta.mat, "power.law")
-SMRD:::TestLike(AMSAAExactFail.rdu, theta.mat, "power.law")
+#SMRD2:::loglikeNHPPvec(AMSAAExactFail.rdu, theta.mat, "power.law")
+SMRD2:::TestLike(AMSAAExactFail.rdu, theta.mat, "power.law")
 
 theta.mat <- matrix(c(.01,.01,.02,.02),2,2)
-SMRD:::loglikeNHPPvec(AMSAAExactFail.rdu, theta.mat, "log.linear")
+#SMRD2:::loglikeNHPPvec(AMSAAExactFail.rdu, theta.mat, "log.linear")
 
 attr(AMSAAExactFail.rdu,"WindowInfo")
 
@@ -416,7 +416,7 @@ RiskSet(AMSAAExactFail.rdu)
 
 plotRiskSet(AMSAAExactFail.rdu,proportion = T)
 
-SMRD:::get.UnitID(AMSAAExactFail.rdu)
+SMRD2:::get.UnitID(AMSAAExactFail.rdu)
 
 mcf(AMSAAExactFail.rdu)
 
