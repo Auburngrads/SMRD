@@ -28,8 +28,11 @@ Rcpp::List XXMCF(int numrecurr,
                  Rcpp::IntegerVector iordl, 
                  Rcpp::IntegerVector iordu, 
                  Rcpp::IntegerVector iorder, 
-                 Rcpp::IntegerVector iscrat){
+                 Rcpp::IntegerVector iscrat,
+                 int kdebug){
 
+debug::kprint = kdebug;
+  
 // Set up the mcf input data structure
    setup_winmcfdata(numrecurr, timeofrecurr, krecurrid,
                     dcost, muniqrecurr, tuniq, lnumrecurr, 
@@ -62,8 +65,6 @@ Rcpp::List XXMCF(int numrecurr,
                             Named("nwindows")    = nwindows,
                             Named("wcounts")     = wcounts);
 }
-
-
 
 
 #include <base/base.hpp>
@@ -159,47 +160,100 @@ int jm1, istartj, iendj;
 int istartk, iendk, deltajk;
 int inwindowk; //kount00
 
+if(debug::kprint > 0) {
+  
+   Rcpp::Rcout << "\nCOMPUTE_WINMCF***1***\n" << std::endl;
+
+   Rcpp::Rcout << "\nmuniqrecurr\n" << std::endl;
+   Rcpp::Rcout << "delta      = " << delta << std::endl;
+   Rcpp::Rcout << "apoint     = " << apoint << std::endl;
+   Rcpp::Rcout << "tuniq      = " << tuniq << std::endl;
+
+   Rcpp::Rcout << "\nlnumrecurr\n" << std::endl;
+   Rcpp::Rcout << "krecurrid  = " << krecurrid << std::endl;
+   Rcpp::Rcout << "dcost      = " << dcost << std::endl;
+
+   Rcpp::Rcout << "\nnunitsgroups\n" << std::endl;
+   Rcpp::Rcout << "wpoint     = " << wpoint << std::endl;
+
+   Rcpp::Rcout << "\nnwindows\n" << std::endl;
+   Rcpp::Rcout << "twindowsl  = " << twindowsl << std::endl;
+   Rcpp::Rcout << "twindowsu  = " << twindowsu << std::endl;
+
+}
+
 // compute the number in the riskset;
    wqm_riskset(muniqrecurr, tuniq, nwindows,
                twindowsl, twindowsu, wcounts, 
                iordl, iordu, delta, iorder);
 
+if(debug::kprint > 0) {
+  
+   Rcpp::Rcout << "\nCOMPUTE_WINMCF***2***\n" << std::endl;
+
+   Rcpp::Rcout << "\nmuniqrecurr\n" << std::endl;
+   Rcpp::Rcout << "delta      = " << delta << std::endl;
+   Rcpp::Rcout << "apoint     = " << apoint << std::endl;
+   Rcpp::Rcout << "tuniq      = " << tuniq << std::endl;
+
+   Rcpp::Rcout << "\nlnumrecurr\n" << std::endl;
+   Rcpp::Rcout << "krecurrid  = " << krecurrid << std::endl;
+   Rcpp::Rcout << "dcost      = " << dcost << std::endl;
+
+   Rcpp::Rcout << "\nnunitsgroups\n" << std::endl;
+   Rcpp::Rcout << "wpoint     = " << wpoint << std::endl;
+
+   Rcpp::Rcout << "\nnwindows\n" << std::endl;
+   Rcpp::Rcout << "twindowsl  = " << twindowsl << std::endl;
+   Rcpp::Rcout << "twindowsu  = " << twindowsu << std::endl;
+
+}
+
+
 // begin computation of the sample mcf and its sample variance;
 // loop over the unique recurrence times;
-   istartj = 0;
+   istartj = 1;
 
 // unique_times:
-for(int j = 0; j < muniqrecurr; j++){
+for(int j = 1; j <= muniqrecurr; j++){
 
 // get indices for units with an recurrence at time t_j;
-   if(j > 0) istartj = apoint.at(j - 1) + 1;
-   iendj = apoint.at(j);
+   if(j > 1) istartj = apoint.at(j - 2) + 1;
+   iendj = apoint.at(j - 1);
 
 // loop over the individual units/groups to;
 // determine whether the current recurrence
 // time tuniq(j) is in at least one of the
 // observation windows corresponding to
 // unit/group index;
-   for(int index = 0; index < nunitsgroups; index++){
+   for(int index = 1; index <= nunitsgroups; index++){
    
-       inwindowj.at(index) = icheckwin(tuniq.at(j), index,
-                                       nunitsgroups, wpoint,
-                                       nwindows, twindowsl,
-                                       twindowsu);
+       inwindowj.at(index - 1) = icheckwin(tuniq.at(j - 1),index,nunitsgroups, 
+                                           wpoint,nwindows,twindowsl,twindowsu);
+     
+       if(debug::kprint > 6){
+         
+          Rcpp::Rcout << "\nj,tj,index,inwindowj(index)\n" << std::endl;
+          Rcpp::Rcout << "j                = " << j - 1 << std::endl;
+          Rcpp::Rcout << "tuniq(j)         = " << tuniq.at(j - 1) << std::endl;
+          Rcpp::Rcout << "index            = " << index << std::endl;
+          Rcpp::Rcout << "inwindowj(index) = " << inwindowj.at(index - 1) << std::endl;
+         
+       }
    
    }
    
 // compute dbar(j), the sample mean jump size at time tuniq(j);
-   dbar.at(j) = zero;
+   dbar.at(j - 1) = zero;
 
 // sum of increments
    for(int ij = istartj; ij <= iendj; ij++) {
    
-       dbar.at(j) = dbar.at(j) + dcost.at(ij);
+       dbar.at(j - 1) = dbar.at(j - 1) + dcost.at(ij - 1);
    
    }
 
-   dbar.at(j) = dbar.at(j) / (float)delta.at(j);
+   dbar.at(j - 1) = dbar.at(j - 1) / (float)delta.at(j - 1);
    
 // compute the sample variance of dbar(j),;
 // looping over units with recurrences at time t_j;
@@ -208,38 +262,62 @@ for(int j = 0; j < muniqrecurr; j++){
 // sum of squares
    for(int ij = istartj; ij <= iendj; ij++){
    
-       vardbar = vardbar + pow((dcost.at(ij) - dbar.at(j)),2);
+       vardbar = vardbar + pow((dcost.at(ij - 1) - dbar.at(j - 1)),2);
    
    }
 
 // add in stuff for units with no recurrences;
-   vardbar = vardbar + (float)(delta.at(j) - iendj + istartj - 1) * pow(dbar.at(j),2);
-   
+   vardbar = vardbar + (float)(delta.at(j - 1) - iendj + istartj - 1) * pow(dbar.at(j - 1),2);
+   int kount00 = delta.at(j - 1) - iendj + istartj - 1;
+   if(debug::kprint > 2){
+     
+      Rcpp::Rcout << "\nCOMPUTE_WINMCF: vardbar 1\n" << std::endl;
+      Rcpp::Rcout << "j        = " << j - 1 << std::endl;
+      Rcpp::Rcout << "istartj  = " << istartj << std::endl;
+      Rcpp::Rcout << "iendj    = " << iendj << std::endl;
+      Rcpp::Rcout << "delta(j) = " << delta.at(j - 1) << std::endl;
+      Rcpp::Rcout << "kount00  = " << kount00 << std::endl;
+      Rcpp::Rcout << "dbar(j)  = " << dbar.at(j - 1) << std::endl;
+      Rcpp::Rcout << "vardbar  = " << vardbar << std::endl;
+     
+   }
+ 
 // kount00 = (float)delta.at(j) - iendj + istartj - 1;
-   vardbar = vardbar / ((float)delta.at(j) * (float)delta.at(j));
+   vardbar = vardbar / ((float)delta.at(j - 1) * (float)delta.at(j - 1));
+   if(debug::kprint > 1){
+     
+      Rcpp::Rcout << "\nCOMPUTE_WINMCF: vardbar 2\n" << std::endl;
+      Rcpp::Rcout << "j        = " << j - 1 << std::endl;
+      Rcpp::Rcout << "istartj  = " << istartj << std::endl;
+      Rcpp::Rcout << "iendj    = " << iendj << std::endl;
+      Rcpp::Rcout << "delta(j) = " << delta.at(j - 1) << std::endl;
+      Rcpp::Rcout << "dbar(j)  = " << dbar.at(j - 1) << std::endl;
+      Rcpp::Rcout << "vardbar  = " << vardbar << std::endl;
+     
+   }
 
 // do the initilization or accumulations for the sample mcf;
 // and its sample variance;
-if(j == 0) {
+if(j == 1) {
 
    muhat.at(0) = dbar.at(0);
    varhat.at(0) = vardbar;
 
  } else {
 
-   muhat.at(j) = muhat.at(j - 1) + dbar.at(j);
+   muhat.at(j - 1) = muhat.at(j - 2) + dbar.at(j - 1);
    covterms = zero;
-   istartk = 0;
+   istartk = 1;
    jm1 = j - 1;
 
 // if j > 1, loop over the unique times that are less than the current t_j;
 // to compute the sample covariance between dbar(j) and dbar(k);
-for(int k = 0; k < jm1; k++){
+for(int k = 1; k <= jm1; k++){
 
 // get indices for units with an recurrence at time t_k;
-if(k > 0) istartk = apoint.at(k - 1) + 1;
+if(k > 1) istartk = apoint.at(k - 2) + 1;
 
-iendk = apoint.at(k);
+iendk = apoint.at(k - 1);
 
 // compute the size of the risk set just before;
 // the recurrence at t_j counting among only the units;
@@ -247,6 +325,19 @@ iendk = apoint.at(k);
    deltajk = pairrisk(k, inwindowj, tuniq, muniqrecurr,
                       nunitsgroups, wpoint, nwindows,
                       twindowsl, twindowsu, wcounts);
+
+   if(debug::kprint > 3){
+     
+      Rcpp::Rcout << "\nCOMPUTE_WINMCF: after pairrisk\n" << std::endl;
+      Rcpp::Rcout << "j       = " << j << std::endl; 
+      Rcpp::Rcout << "istartj = " << istartj << std::endl; 
+      Rcpp::Rcout << "iendj   = " << iendj << std::endl; 
+      Rcpp::Rcout << "k       = " << k << std::endl; 
+      Rcpp::Rcout << "istartk = " << istartk << std::endl; 
+      Rcpp::Rcout << "iendk   = " << iendk << std::endl; 
+      Rcpp::Rcout << "deltajk = " << deltajk << std::endl; 
+     
+   }
 
 // if there were some units at risk at both t_j and t_k,;
 // the we compute a covariance term for the pair;
@@ -263,43 +354,87 @@ if(deltajk > 0) {
    for(int ij = istartj; ij <= iendj; ij++){
    
    // check to see if tuniq(k) in one of the windows of krecurrid(ij);
-      inwindowk = icheckwin(tuniq.at(k),krecurrid.at(ij),
+      inwindowk = icheckwin(tuniq.at(k - 1),krecurrid.at(ij - 1),
                             nunitsgroups, wpoint, nwindows,
                             twindowsl, twindowsu);
    
-       if(inwindowk > 0) dbarjk = dbarjk + dcost.at(ij);
+       if(inwindowk > 0) dbarjk = dbarjk + dcost.at(ij - 1);
+       
+       if(debug::kprint > 2){
+         
+          Rcpp::Rcout << "\nCOMPUTE_WINMCF: after icheckwin\n" << std::endl;
+          Rcpp::Rcout << "j             = " << j - 1 << std::endl;
+          Rcpp::Rcout << "k             = " << k - 1 << std::endl;
+          Rcpp::Rcout << "ij            = " << ij - 1 << std::endl;
+          Rcpp::Rcout << "krecurrid(ij) = " << krecurrid.at(ij - 1) << std::endl;
+          Rcpp::Rcout << "inwindowk     = " << inwindowk << std::endl;
+          Rcpp::Rcout << "deltajk       = " << deltajk << std::endl;
+          Rcpp::Rcout << "tuniq(k)      = " << tuniq.at(k - 1) << std::endl;
+          Rcpp::Rcout << "dcost(ij)     = " << dcost.at(ij - 1) << std::endl;
+          Rcpp::Rcout << "dbarjk        = " << dbarjk << std::endl;
+         
+       }
    
    }
 
 dbarjk = dbarjk / (float)deltajk;
 
+if(debug::kprint > 1){
+  
+   Rcpp::Rcout << "\nj,istj, iej, k,istk,iek, delj,dbarjk\n" << std::endl;
+   Rcpp::Rcout << "j       = " << j - 1 << std::endl;
+   Rcpp::Rcout << "istartj = " << istartj << std::endl;
+   Rcpp::Rcout << "iendj   = " << iendj << std::endl;
+   Rcpp::Rcout << "k       = " << k - 1 << std::endl;
+   Rcpp::Rcout << "istartk = " << istartk << std::endl;
+   Rcpp::Rcout << "iendk   = " << iendk << std::endl;
+   Rcpp::Rcout << "deltajk = " << deltajk << std::endl;
+   Rcpp::Rcout << "dbarjk  = " << dbarjk << std::endl;
+
+}
+   
 // loop over the units that had an recurrence at time t_k;
 for(int ik = istartk; ik <= iendk; ik++){
 
     sunit = zero;
     // add this part only if t_j is in one of the windows;
     // corresponding to recurrence ik;
-    if(inwindowj.at(krecurrid.at(ik)) > 0) {
+    if(inwindowj.at(krecurrid.at(ik - 1) - 1) > 0) {
 
     // loop over the units that had an recurrence at t_j;
     for(int ij = istartj; ij <= iendj; ij++){
 
         // accumulate extra terms for recurrences at t_j and t_k;
         // that are within the same unit;
-        if(krecurrid.at(ik) == krecurrid.at(ij)) {
+        if(krecurrid.at(ik - 1) == krecurrid.at(ij - 1)) {
 
-           sunit = sunit + dcost.at(ij);
+           sunit = sunit + dcost.at(ij - 1);
 
         }
 
     }
 
-    covdjdk = covdjdk + dcost.at(ik) * (sunit - dbarjk);
+    covdjdk = covdjdk + dcost.at(ik - 1) * (sunit - dbarjk);
 
     }
+    
+    if(debug::kprint > 1){
+  
+       Rcpp::Rcout << "\nj,tuniq(j),k,ik,krecurrid(ik),dc,cdjdk,covt\n" << std::endl;
+       Rcpp::Rcout << "j             = " << j - 1 << std::endl;
+       Rcpp::Rcout << "tuniq(j)      = " << tuniq(j - 1) << std::endl;
+       Rcpp::Rcout << "k             = " << k - 1 << std::endl;
+       Rcpp::Rcout << "ik            = " << ik - 1 << std::endl;
+       Rcpp::Rcout << "krecurrid(ik) = " << krecurrid.at(ik - 1) << std::endl;
+       Rcpp::Rcout << "dcost(ik)     = " << dcost.at(ik - 1) << std::endl;
+       Rcpp::Rcout << "covdjdk       = " << covdjdk << std::endl;
+       Rcpp::Rcout << "covterms      = " << covterms << std::endl;  
+  
+    }
+
 }
 
-covdjdk = covdjdk / ((float)delta.at(j) * (float)delta.at(k));
+covdjdk = covdjdk / ((float)delta.at(j - 1) * (float)delta.at(k - 1));
 
 }
 
@@ -308,10 +443,24 @@ covterms = covterms + covdjdk;
 }
 
 // add in the variance and covariance terms for t_j;
-   varhat.at(j) = varhat.at(j - 1) + vardbar + two * covterms;
+   varhat.at(j - 1) = varhat.at(j - 2) + vardbar + two * covterms;
 
  }
 
+if(debug::kprint > 0){
+  
+   Rcpp::Rcout << "\n*ans*j,tj,delj,muj,dbarj,vdb,covt,varj\n" << std::endl;
+   Rcpp::Rcout << "j         = " << j - 1 << std::endl;
+   Rcpp::Rcout << "tuniq(j)  = " << tuniq.at(j - 1) << std::endl;
+   Rcpp::Rcout << "delta(j)  = " << delta.at(j - 1) << std::endl;
+   Rcpp::Rcout << "muhat(j)  = " << muhat.at(j - 1) << std::endl;
+   Rcpp::Rcout << "dbar(j)   = " << dbar.at(j - 1) << std::endl;
+   Rcpp::Rcout << "vardbar   = " << vardbar << std::endl;
+   Rcpp::Rcout << "covterms  = " << covterms << std::endl;
+   Rcpp::Rcout << "varhat(j) = " << varhat.at(j - 1) << std::endl;
+  
+}
+ 
 }
 
 return;
@@ -332,34 +481,35 @@ int icheckwin(double tuniq,
               Rcpp::NumericVector twindowsl, 
               Rcpp::NumericVector twindowsu){
 
-int icheckwin = 0, istart, iend;
+int icheck_win = 0, istart, iend;
 
 // get the start and end window pointers for the krecurrid id;
-istart = wpoint.at(index);
+istart = wpoint.at(index - 1);
 
-if(index == (nunitsgroups - 1)) {
+if(index == nunitsgroups) {
   
    iend = nwindows;
 
  } else {
   
-   iend = wpoint.at(index + 1);
+   iend = wpoint.at(index + 1 - 1) - 1;
 
 }
  
 // loop across the windows for the unit with id krecurrid;
-for(int i = istart; i < iend; i++){
+for(int i = istart; i <= iend; i++){
   
     // return with 1 (true) as soon as we find tuniq in a window;
-    if((tuniq >= twindowsl.at(i)) and (twindowsu.at(i) >= tuniq)) {
+    if((tuniq >= twindowsl.at(i - 1)) and (twindowsu.at(i - 1) >= tuniq)) {
       
-        icheckwin = 1;
-        return icheckwin;
+        icheck_win = 1;
+        return icheck_win;
+        
     }
     
 }
 
-  return icheckwin;
+return icheck_win;
  
 }
 
@@ -386,27 +536,26 @@ int pairrisk(int k,
              Rcpp::NumericVector twindowsu, 
              Rcpp::IntegerVector wcounts){
   
-int inwindowk, wcounti, pairrisk, iwinindex;
+int inwindowk, wcounti, pair_risk = 0, iwinindex;
   
 // loop over the individual units/groups to;
 // determine whether the current recurrence times;
 // tuniq(j) and tuniq(k) are both in;
 // observation windows corresponding to unit/group krecurrid(i);
-pairrisk = 0;
 
-for(int i = 0; i < nunitsgroups; i++){
+for(int i = 1; i <= nunitsgroups; i++){
   
-    if(inwindowj.at(i) > 0) {
+    if(inwindowj.at(i - 1) > 0) {
       
-       inwindowk = icheckwin(tuniq.at(k),i, nunitsgroups, 
+       inwindowk = icheckwin(tuniq.at(k - 1),i, nunitsgroups, 
                              wpoint, nwindows, twindowsl, 
                              twindowsu);
        
        if(inwindowk > 0) {
          
-          iwinindex = wpoint.at(i);
-          wcounti   = wcounts.at(iwinindex);
-          pairrisk  = pairrisk + inwindowj.at(i) * inwindowk * wcounti;
+          iwinindex = wpoint.at(i - 1);
+          wcounti   = wcounts.at(iwinindex - 1);
+          pair_risk  = pair_risk + inwindowj.at(i - 1) * inwindowk * wcounti;
        
        }
     
@@ -414,15 +563,14 @@ for(int i = 0; i < nunitsgroups; i++){
 
 }
 
-return pairrisk;
+return pair_risk;
 
 }
 
 
-
 #include <base/base.hpp>
-#include <utility/merge_sortd.hpp>
-#include <utility/merge_sorti.hpp>
+#include <utility/merge_sortdd.hpp>
+#include <utility/merge_sortii.hpp>
 #include <xxmcf/reorderd.hpp>
 #include <xxmcf/reorderi.hpp>
 #include <xxmcf/wqm_uniqued.hpp>
@@ -475,11 +623,28 @@ int j, i, lastid;
 
 // find the needed ordering indices for the 
 // recurrences first order with respect to unit id
-   merge_sorti(krecurrid, iorder, false);
+   Rcpp::IntegerVector ISCRAT(numrecurr);
+   merge_sortii(krecurrid, numrecurr, iorder, ISCRAT);
 
+   if(debug::kprint > 6){
+     
+      Rcpp::Rcout << "\nSETUP_WINMCFDATA: iorder check 1\n" << std::endl;
+      Rcpp::Rcout << "krecurrid = " << krecurrid << std::endl;
+      Rcpp::Rcout << "iorder    = " << iorder << std::endl;
+   }
 // reorder order vector based on the times ordered by units
 // signal with negative length
-   merge_sortd(timeofrecurr, iorder, true);
+   Rcpp::IntegerVector ISCRAT2(numrecurr);
+   merge_sortdd(timeofrecurr, -numrecurr, iorder, ISCRAT2);
+   if(debug::kprint > 0){
+     
+      Rcpp::Rcout << "\ninitial setup_winmcfdata ordered\n" << std::endl;
+      Rcpp::Rcout << "iorder       = " << iorder << std::endl;
+      Rcpp::Rcout << "krecurrid    = " << krecurrid << std::endl;
+      Rcpp::Rcout << "timeofrecurr = " << timeofrecurr << std::endl;
+      Rcpp::Rcout << "dcost        = " << dcost   << std::endl;
+     
+   } 
 
 //  reorder krecurrid, timeofrecurr, dcost according
 //  to iorder using scratch in iscrat and tuniq
@@ -493,32 +658,63 @@ int j, i, lastid;
     wqm_uniqued(timeofrecurr, numrecurr, tuniq,
                 muniqrecurr, iorder, iscrat);
 
+    if(debug::kprint > 1){
+      
+       Rcpp::Rcout << "\nSETUP_WINMCF: after wqm_uniqed\n" << std::endl;
+       Rcpp::Rcout << "timeofrecurr = " << timeofrecurr << std::endl;
+       Rcpp::Rcout << "tuniq        = " << tuniq << std::endl; 
+       Rcpp::Rcout << "krecurrid    = " << krecurrid << std::endl;
+       Rcpp::Rcout << "dcost        = " << dcost << std::endl;
+      
+    } 
+
 // combine the tied recurrences within the same unit
+   if(debug::kprint > 0){
+     
+      Rcpp::Rcout << "\nbefore collapse setup_winmcfdata\n" << std::endl;
+      Rcpp::Rcout << "krecurrid    = " << krecurrid << std::endl;
+      Rcpp::Rcout << "timeofrecurr = " << timeofrecurr << std::endl;
+      Rcpp::Rcout << "dcost        = " << dcost << std::endl;
+
+   } 
+
    lasttime = timeofrecurr.at(0);
    lastid = krecurrid.at(0);
-   lnumrecurr = 0;
+   lnumrecurr = 1;
 
-for(i = 1; i < numrecurr; i++){
+for(i = 2; i <= numrecurr; i++){
 
 //	if the id and the time agree,
 //  combine into one observation with double cost
 
-	   if((krecurrid.at(i) == lastid) and	(timeofrecurr.at(i) == lasttime)) {
+	   if((krecurrid.at(i - 1) == lastid) and	(timeofrecurr.at(i - 1) == lasttime)) {
 
-	       dcost.at(lnumrecurr) = dcost.at(lnumrecurr) + dcost.at(i);
+	       dcost.at(lnumrecurr - 1) = dcost.at(lnumrecurr - 1) + dcost.at(i - 1);
 
 	    } else {
 
 	       lnumrecurr = lnumrecurr + 1;
-	       dcost.at(lnumrecurr) = dcost.at(i);
+	       dcost.at(lnumrecurr - 1) = dcost.at(i - 1);
 	      
 
 	   }
 
-	   krecurrid.at(lnumrecurr)    = krecurrid.at(i);
-	   timeofrecurr.at(lnumrecurr) = timeofrecurr.at(i);
-	   lastid   = krecurrid.at(i);
-	   lasttime = timeofrecurr.at(i);
+	   krecurrid.at(lnumrecurr - 1)    = krecurrid.at(i - 1);
+	   timeofrecurr.at(lnumrecurr - 1) = timeofrecurr.at(i - 1);
+	   lastid   = krecurrid.at(i - 1);
+	   lasttime = timeofrecurr.at(i - 1);
+
+	   if(debug::kprint > 2){
+	     
+	      Rcpp::Rcout << "\ncollapse setup_winmcfdata\n" << std::endl;
+        Rcpp::Rcout << "i               = " << i - 1 << std::endl;
+        Rcpp::Rcout << "lnumrecurr      = " << lnumrecurr << std::endl;
+        Rcpp::Rcout << "krecurrid(i)    = " << krecurrid.at(i - 1) << std::endl;
+        Rcpp::Rcout << "muniqrecurr     = " << muniqrecurr << std::endl;
+        Rcpp::Rcout << "timeofrecurr(i) = " << timeofrecurr.at(i - 1) << std::endl;
+        Rcpp::Rcout << "dcost(i)        = " << dcost.at(i - 1) << std::endl;
+
+	   } 
 
 	}
 
@@ -526,21 +722,30 @@ for(i = 1; i < numrecurr; i++){
 
 	j = 1;
 
-	for(i = 0; i < muniqrecurr; i++){
+	for(i = 1; i <= muniqrecurr; i++){
 
-	    while((j <= lnumrecurr) and (tuniq.at(i) > timeofrecurr.at(j))) {
+	    while((j <= lnumrecurr) and (tuniq.at(i - 1) > timeofrecurr.at(j - 1))) {
 
 	           j = j + 1;
 
 	    }
 
-	    if(i > 0) apoint(i - 1) = j - 1;
+	    if(i > 1) apoint(i - 2) = j - 1;
+	    
+	    if((i > 1) and (debug::kprint > 1)){
+	      
+	       Rcpp::Rcout << "\nAPOINT\n" << std::endl;
+	       Rcpp::Rcout << "i             = " << i - 1 << std::endl;
+	       Rcpp::Rcout << "apoint(i - 1) = " << apoint.at(i - 2) << std::endl;
+	       Rcpp::Rcout << "tuniq(i)      = " << tuniq.at(i - 1) << std::endl;
+	      
+	    } 
 
 	}
 
 	apoint.at(muniqrecurr - 1) = lnumrecurr;
 	
-	return;
+return;
 	
 }
 
@@ -556,9 +761,9 @@ void reorderd(Rcpp::NumericVector &dinvec,
   
 if(n > 0) {
   
-   for(int i = 0; i < n; i++){
+   for(int i = 1; i <= n; i++){
      
-   dscrat.at(i) = dinvec.at(iorder.at(i));
+   dscrat.at(i - 1) = dinvec.at(iorder.at(i - 1) - 1);
    
    }
    
@@ -582,9 +787,9 @@ void reorderi(Rcpp::IntegerVector &invec,
   
 if(n > 0) {
   
-   for(int i = 0; i < n; i++) {
+   for(int i = 1; i <= n; i++) {
    
-       iscrat.at(i) = invec.at(iorder.at(i));
+       iscrat.at(i - 1) = invec.at(iorder.at(i - 1) - 1);
    
    }
    
@@ -599,7 +804,7 @@ return;
 
 
 #include <base/base.hpp>
-#include <utility/merge_sortd.hpp>
+#include <utility/merge_sortdd.hpp>
 
 // @usage uniqd(dvec, n, duniq, nuniq, iorder, iscrat)
 // @param y A double precision vector to be uniqed
@@ -625,28 +830,27 @@ void wqm_uniqued(Rcpp::NumericVector &y,
 int index;
 nuniq = 0;
 
-if(n != 0) {
+if(n == 0) return;
      
-   // trivial is n = 1
-      nuniq = 0;
-      yuniq.at(0) = y.at(0);
-   
-   if(n != 1) {
+// trivial is n = 1
+   nuniq = 1;
+   yuniq.at(0) = y.at(0);
+   if(n == 1) return; 
      
-      // first get the ordering vector;
-         iorder = merge_sortd(y, Rcpp::IntegerVector(n,0), false);
+// first get the ordering vector;
+   Rcpp::IntegerVector ISCRAT(n);
+   merge_sortdd(y, n, iorder, ISCRAT);
       
-      for(int i = 1; i < n; i++){
+   for(int i = 1; i <= n; i++){
         
-          index = iorder.at(i);
-          // save and increment if the new y is bigger;
-          if(y.at(i) <= yuniq.at(nuniq)) continue;
+       index = iorder.at(i - 1);
+     
+       // save and increment if the new y is bigger;
+          if(y.at(i - 1) <= yuniq.at(nuniq - 1)) continue;
           nuniq = nuniq + 1;
-          yuniq.at(nuniq) = y.at(index);
+          yuniq.at(nuniq - 1) = y.at(index - 1);
           
-      }
    }
-}
 
 return;
 
