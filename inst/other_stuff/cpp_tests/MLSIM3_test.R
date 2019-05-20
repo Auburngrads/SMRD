@@ -1,5 +1,5 @@
 library(SMRD)
-test = 2
+test = 5
 if(test == 1) {
 data.ld <- frame.to.ld(heatexchanger,
                        response.column = c(1,2),
@@ -24,6 +24,15 @@ data.ld <- frame.to.ld(SMRD::doatrun,
                        truncation.response.column = 5,
                        truncation.type.column = 6)
 
+}
+if(test == 5){
+  
+  data.ld <- frame.to.ld(bearingcage,
+                         response.column = 1, 
+                         censor.column = 2, 
+                         case.weight.column = 3,
+                         time.units = "Hours")
+  
 }
 
 number.sim = 2000
@@ -88,7 +97,7 @@ randomize = !T
                      as.logical(randomize), 
                      iersim = integer(1))
 
-new = MLSIM3(y, 
+new = SMRD2:::MLSIM3(y, 
                         the.censor.codes, 
                         the.case.weights,
                         number.cases, 
