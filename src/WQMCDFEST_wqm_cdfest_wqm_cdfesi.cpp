@@ -93,7 +93,7 @@ if((nnzs <= 0) or (nnzs > maxmsd)) {
 }
 
 mnzs = (nnzs + 1) * nnzs / 2;
-Rcpp::NumericVector f = Rcpp::NumericVector(m1*10);
+Rcpp::NumericVector f = Rcpp::NumericVector(mnzs);
 
 if(debug::kprint >= 5){
    
