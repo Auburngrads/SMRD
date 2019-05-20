@@ -1,6 +1,6 @@
 library(SMRD)
 library(SMRD2)
-test = 5
+test = 6
 if(test == 1){
   
    data.ld <- frame.to.ld(lzbearing, response.column = 1) 
@@ -34,6 +34,14 @@ if(test == 5){
                        data.title = "Bulb Data",
                        time.units = "Hours")
   
+}
+if(test == 6){
+  
+  data.ld <- frame.to.ld(bearingcage,
+                         response.column = 1, 
+                         censor.column = 2, 
+                         case.weight.column = 3,
+                         time.units = "Hours")
 }
 
 distribution = 'lognormal' 
