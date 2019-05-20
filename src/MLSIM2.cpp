@@ -94,7 +94,7 @@ Rcpp::List MLSIM2(Rcpp::NumericMatrix x,
 
 bool lcheck;
 int ii,nrowr, kount,method;
-int ierfit, iervcv;
+int ierfit = 0, iervcv = 0;
 double xlike;
 Rcpp::NumericMatrix ipxnew,iptmat,ipvcvb,ipvcvg,ivcvd,ivcvdd;
 Rcpp::NumericVector iprv1,ipdiag,ipthb,ipthg,ipfsd,ipnext;
@@ -159,6 +159,18 @@ for(int i = 0; i < nparm; i++){
 
 // Setup generator
    snset(wt,nrow,kount,method,iarray,marray,iersim);
+   if(debug::kprint >= 3){
+      
+      Rcpp::Rcout << "\nMLSIM2: AFTER SNSET\n" << std::endl;
+      Rcpp::Rcout << "kount = " << kount << std::endl;
+      Rcpp::Rcout << "method = " << method << std::endl;
+      Rcpp::Rcout << "iarray = " << iarray << std::endl;
+      Rcpp::Rcout << "weights = " << wt << std::endl;
+      Rcpp::Rcout << "marray = " << marray << std::endl;
+      Rcpp::Rcout << "iersim = " << iersim << std::endl;
+      
+   }
+   
    if(iersim > 2000) goto exit;
    
 for(int isim = 1; isim <= numsim; isim++){
@@ -168,7 +180,7 @@ for(int isim = 1; isim <= numsim; isim++){
       
        if((isim % 50) == 1) {
          
-           Rcpp::Rcout << "Beginning simulation number = " << isim << std::endl;
+           Rcpp::Rcout << "\nBeginning simulation number = " << isim << std::endl;
          
        }
        
@@ -202,7 +214,7 @@ for(int isim = 1; isim <= numsim; isim++){
        
       if(debug::kprint >= 3){
         
-         Rcpp::Rcout << "thetah = " << thetah << std::endl;
+         Rcpp::Rcout << "\nthetah = " << thetah << std::endl;
          Rcpp::Rcout << "xnew = " << x << std::endl;
          Rcpp::Rcout << "ynew = " << y << std::endl;
          Rcpp::Rcout << "cen = " << cen << std::endl;
@@ -240,8 +252,8 @@ for(int isim = 1; isim <= numsim; isim++){
 
       // Should give this a junk number below too, probably
          xlike = 7777.0e00;
-         int iervcv = 0;
-         int ierfit = 0;
+         iervcv = 0;
+         ierfit = 0;
          ipxnew = Rcpp::NumericMatrix(nrow, nter);
          iprv1 = Rcpp::NumericVector(nparm);
          ipdiag = Rcpp::NumericVector(nparm);
@@ -287,10 +299,7 @@ for(int isim = 1; isim <= numsim; isim++){
 
       if((iervcv + ierfit) > 0) {
          
-         Rcpp::Rcout << "Weights for problem boot resample data = " << wtnew << std::endl;
-         Rcpp::Rcout << "isim = " << isim << std::endl;
-         Rcpp::Rcout << "ierfit = " << ierfit << std::endl;
-         Rcpp::Rcout << "iervcv = " << iervcv << std::endl;
+         Rcpp::warning("\nProblem with updated weights for bootstrap sample\nsimulation number = %i\n Updated weights = %i\nierfit = %i\niervcv = %i", isim,wtnew,ierfit,iervcv);
          
       }
 
