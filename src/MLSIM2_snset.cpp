@@ -78,7 +78,7 @@ return;
 // iarray: 3 5 6 9 10 11 16
    method = 2;
    
-   if(nrow > marray) ier = 1; return;
+   if(nrow > marray) { ier = 1; return; }
             
    iarray.at(0) = wtold.at(0);
             
@@ -90,7 +90,7 @@ return;
 
 if(debug::kprint >= 3){
    
-   Rcpp::Rcout << "\nSNSET METHOD 1\n" << std::endl;
+   Rcpp::Rcout << "\nSNSET METHOD 2\n" << std::endl;
    Rcpp::Rcout << "iarray = \n" << iarray << std::endl;
    
 }
