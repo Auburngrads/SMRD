@@ -29,10 +29,10 @@ if(method != 2) {
           if(debug::kprint > 0) {
              
               Rcpp::Rcout << "\nSIMNP method 1\n" << std::endl;
-              Rcpp::Rcout << "i = " << i << std::endl;
+              Rcpp::Rcout << "i = " << i - 1 << std::endl;
               Rcpp::Rcout << "kount = " << kount << std::endl;
-              Rcpp::Rcout << "jndex = " << jndex << std::endl;
-              Rcpp::Rcout << "index = " << index << std::endl;
+              Rcpp::Rcout << "jndex = " << jndex - 1 << std::endl;
+              Rcpp::Rcout << "index = " << index - 1 << std::endl;
               Rcpp::Rcout << "iarray(index) = " << iarray.at(index - 1) << std::endl;
               Rcpp::Rcout << "xran = " << xran << std::endl;
               Rcpp::Rcout << "wtnew(jndex) = " << wtnew.at(jndex - 1) << std::endl;
