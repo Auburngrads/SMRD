@@ -1,6 +1,6 @@
 library(SMRD)
 library(SMRD2)
-test = 7
+test = 5
 if(test == 1) {
 data.ld <- frame.to.ld(heatexchanger,
                        response.column = c(1,2),
