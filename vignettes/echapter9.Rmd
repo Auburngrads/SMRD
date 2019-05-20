@@ -20,7 +20,6 @@ library(SMRD2)
 
 # In This Vignette...
 
-
 ## ShockAbsorber -- parametric bootstrap
 
 The following is a test example that uses only a small number of simulations to test the routines. Note, that the nonparametric boot output structures can be quite large.
@@ -33,9 +32,10 @@ ShockAbsorber.ld <- frame.to.ld(shockabsorber,
 
 ShockAbsorber.boot.p <- parametric.bootstrap(ShockAbsorber.ld,
                                              distribution = "Weibull",
-                                             number.sim = 200)
+                                             number.sim = 20)
 
 plot(ShockAbsorber.boot.p)
+
 plot(ShockAbsorber.boot.p, 
      simulate.parameters = TRUE, 
      parameter.sims = 500)
@@ -71,9 +71,11 @@ summary(ShockAbsorber.boot.p,
         inference.on = "parameter", 
         which = 2,
         do.compare = F)
+```
 
+```{r}
 ShockAbsorber.boot.p2 <- parametric.bootstrap(ShockAbsorber.ld,
-                                              number.sim = 200,
+                                              number.sim = 20,
                                               distribution = "Weibull")
 
 plot(ShockAbsorber.boot.p2)
@@ -116,9 +118,11 @@ summary(ShockAbsorber.boot.np,
         compare = T)
 
 SMRD2:::compare.summary.boot.npar.npar.out(ShockAbsorber.boot.np)
+```
 
+```{r}
 ShockAbsorber.boot.np2 <- nonparametric.bootstrap(ShockAbsorber.ld,
-                                                  number.sim = 200)
+                                                  number.sim = 20)
 
 plot(ShockAbsorber.boot.np2)
 
@@ -140,7 +144,7 @@ summary(BearingCage.ld)
 
 BearingCage.boot.p <- parametric.bootstrap(BearingCage.ld,
                                            distribution = "Weibull",
-                                           number.sim = 200)
+                                           number.sim = 20)
 
 plot(BearingCage.boot.p)
 
@@ -161,8 +165,8 @@ summary(BearingCage.boot.p,
 ## Bearing cage -- nonparametric bootstrap
 
 ```{r}
-BearingCage.boot.np <- nonparametric.bootstrap(BearingCage.ld,
-                                               number.sim = 200)
+BearingCage.boot.np <- SMRD2:::nonparametric.bootstrap(BearingCage.ld,
+                                               number.sim = 20)
 
 plot(BearingCage.boot.np)
 
@@ -174,6 +178,11 @@ SMRD2:::compare.summary.boot.npar.npar.out(BearingCage.boot.np)
 ## Bulb -- parametric bootstrap
 
 ```{r}
+bulb.ld <- frame.to.ld(bulb,
+                       response.column = 1,
+                       data.title = "Bulb Data",
+                       time.units = "Hours")
+
 summary(bulb.ld)
 
 bulb.boot.p <- parametric.bootstrap(bulb.ld,
