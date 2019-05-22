@@ -155,10 +155,10 @@ for(int j = 1; j <= 7; j++){
     fval2 = (fval2 / absc2) / absc2;
     fv1.at(j - 1) = fval1;
     fv2.at(j - 1) = fval2;
-    fsum = fval1+fval2;
+    fsum = fval1 + fval2;
     resg = resg + wg.at(j - 1) * fsum;
     resk = resk + wgk.at(j - 1) * fsum;
-    resabs = resabs + wgk(j - 1) * (std::abs(fval1) + std::abs(fval2));
+    resabs = resabs + wgk.at(j - 1) * (std::abs(fval1) + std::abs(fval2));
 
 }
 
@@ -167,7 +167,7 @@ resasc = wgk.at(7) * std::abs(fc - reskh);
 
 for(int j = 1; j <= 7; j++){
 
-    resasc = resasc + wgk.at(j - 1) * (std::abs(fv1.at(j - 1) -reskh) + std::abs(fv2.at(j - 1) - reskh));
+    resasc = resasc + wgk.at(j - 1) * (std::abs(fv1.at(j - 1) - reskh) + std::abs(fv2.at(j - 1) - reskh));
 
 }
 
