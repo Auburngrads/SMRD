@@ -141,7 +141,7 @@ int l1,l2,l3;
    result = 0.0e+00;
    abserr = 0.0e+00;
 
-if((limit < 1) or (lenw < limit * 4)) goto line10;
+if((limit < 1) or (lenw < (limit * 4))) goto line10;
 
 l1 = limit + 1;
 l2 = limit + l1;
