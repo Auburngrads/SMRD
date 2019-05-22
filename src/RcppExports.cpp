@@ -914,8 +914,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // SXCDF
-Rcpp::List SXCDF(int ndist1, int ndist2, Rcpp::NumericVector beta0, Rcpp::NumericVector beta1, Rcpp::NumericVector xstr, Rcpp::NumericVector sigma, Rcpp::NumericVector ugamma, Rcpp::NumericVector sgamma, Rcpp::NumericVector w, int num, Rcpp::NumericVector answer, Rcpp::IntegerVector ier);
-RcppExport SEXP _SMRD2_SXCDF(SEXP ndist1SEXP, SEXP ndist2SEXP, SEXP beta0SEXP, SEXP beta1SEXP, SEXP xstrSEXP, SEXP sigmaSEXP, SEXP ugammaSEXP, SEXP sgammaSEXP, SEXP wSEXP, SEXP numSEXP, SEXP answerSEXP, SEXP ierSEXP) {
+Rcpp::List SXCDF(int ndist1, int ndist2, Rcpp::NumericVector beta0, Rcpp::NumericVector beta1, Rcpp::NumericVector xstr, Rcpp::NumericVector sigma, Rcpp::NumericVector ugamma, Rcpp::NumericVector sgamma, Rcpp::NumericVector w, int num, Rcpp::NumericVector answer, Rcpp::IntegerVector ier, int kprint);
+RcppExport SEXP _SMRD2_SXCDF(SEXP ndist1SEXP, SEXP ndist2SEXP, SEXP beta0SEXP, SEXP beta1SEXP, SEXP xstrSEXP, SEXP sigmaSEXP, SEXP ugammaSEXP, SEXP sgammaSEXP, SEXP wSEXP, SEXP numSEXP, SEXP answerSEXP, SEXP ierSEXP, SEXP kprintSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -931,7 +931,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type num(numSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type answer(answerSEXP);
     Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type ier(ierSEXP);
-    rcpp_result_gen = Rcpp::wrap(SXCDF(ndist1, ndist2, beta0, beta1, xstr, sigma, ugamma, sgamma, w, num, answer, ier));
+    Rcpp::traits::input_parameter< int >::type kprint(kprintSEXP);
+    rcpp_result_gen = Rcpp::wrap(SXCDF(ndist1, ndist2, beta0, beta1, xstr, sigma, ugamma, sgamma, w, num, answer, ier, kprint));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -1291,7 +1292,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_SMRD2_SPMLGENG", (DL_FUNC) &_SMRD2_SPMLGENG, 4},
     {"_SMRD2_SSFT2GR1", (DL_FUNC) &_SMRD2_SSFT2GR1, 13},
     {"_SMRD2_SURLIKE", (DL_FUNC) &_SMRD2_SURLIKE, 13},
-    {"_SMRD2_SXCDF", (DL_FUNC) &_SMRD2_SXCDF, 12},
+    {"_SMRD2_SXCDF", (DL_FUNC) &_SMRD2_SXCDF, 13},
     {"_SMRD2_SXPDF3", (DL_FUNC) &_SMRD2_SXPDF3, 13},
     {"_SMRD2_VAVAR", (DL_FUNC) &_SMRD2_VAVAR, 5},
     {"_SMRD2_VVAR1", (DL_FUNC) &_SMRD2_VVAR1, 13},
