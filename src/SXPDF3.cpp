@@ -17,27 +17,37 @@ Rcpp::List SXPDF3(int ndist1,
                   int kprint){
   
 debug::kprint = kprint;
+   
+Rcpp::NumericVector beta0p = clone(beta0);
+Rcpp::NumericVector beta1p = clone(beta1);
+Rcpp::NumericVector xstrp = clone(xstr);
+Rcpp::NumericVector sigmap = clone(sigma);
+Rcpp::NumericVector ugammap = clone(ugamma);
+Rcpp::NumericVector sgammap = clone(sgamma);
+Rcpp::NumericVector wp = clone(w);
+Rcpp::NumericVector answerp = clone(answer);
+Rcpp::IntegerVector ierp = clone(ier);
   
 for(int i = 0; i < num; i++){
   
-    xpdf3(ndist1,ndist2,beta0.at(i),beta1.at(i),
-          xstr.at(i),sigma.at(i),ugamma.at(i),sgamma.at(i),
-          w.at(i),answer.at(i),ier.at(i));
+    xpdf3(ndist1,ndist2,beta0p.at(i),beta1p.at(i),
+          xstrp.at(i),sigmap.at(i),ugammap.at(i),sgammap.at(i),
+          wp.at(i),answerp.at(i),ierp.at(i));
      
 }
 
-    return Rcpp::List::create(Named("ier") = ier,
+    return Rcpp::List::create(Named("ier") = ierp,
                               Named("ndist1") = ndist1,
                               Named("ndist2") = ndist2,
-                              Named("beta0") = beta0,
-                              Named("beta1") = beta1,
-                              Named("xstr") = xstr,
-                              Named("sigma") = sigma,
-                              Named("ugamma") = ugamma,
-                              Named("sgamma") = sgamma,
-                              Named("w") = w,
+                              Named("beta0") = beta0p,
+                              Named("beta1") = beta1p,
+                              Named("xstr") = xstrp,
+                              Named("sigma") = sigmap,
+                              Named("ugamma") = ugammap,
+                              Named("sgamma") = sgammap,
+                              Named("w") = wp,
                               Named("num") = num,
-                              Named("answer") = answer);
+                              Named("answer") = answerp);
   
 }
 
@@ -100,7 +110,7 @@ void xpdf3(int &ndist1,
            int &ier){
   
 Rcpp::IntegerVector iwork(100);
-Rcpp::NumericVector work(400),glimits(3);
+Rcpp::NumericVector work(400),glimits(4);
 double eps,xlog,beta11,ugamma1,w1,g1,g2,abserr;
 double answer1,answer2,answer3,answer0,vbound;
 double lim_zero = 0.0e00;
@@ -148,15 +158,9 @@ int last,neval;
    answer0 = zero;
    vbound = one - std::exp(w1 / beta11);
    
-   if(debug::kprint > 1) {
+   if(vbound <= zero) {
      
-      Rcpp::Rcout << "\nXPDF3**1 vbound = " << vbound << std::endl;
-     
-   }
-   
-   if(vbound > zero) {
-     
-     glimits.at(0) = 2.0e00; 
+     glimits.at(0) = 2.0e00;
      
    } else {
      
@@ -165,44 +169,53 @@ int last,neval;
      
    }
    
-   vbound = one - std::exp((w1 - 4.0e00) / beta11);
-   
    if(debug::kprint > 1) {
      
-      Rcpp::Rcout << "\nXPDF3**2 vbound = " << vbound << std::endl;
+      Rcpp::Rcout << "\nXPDF3**1 vbound = " << vbound << std::endl;
+      Rcpp::Rcout << "glimits = " << glimits << std::endl;
      
    }
+
+   vbound = one - std::exp((w1 - 4.0e00) / beta11);
    
-   if(vbound > zero) {
+   if(vbound <= zero) {
      
       glimits.at(1) = 2.0e00;
      
    } else {
-     
-     neg = neg + 1;
-     glimits.at(1) = std::log(vbound);
+      
+      neg = neg + 1;
+      glimits.at(1) = std::log(vbound);
      
    }
-   
-   vbound = one - std::exp((w1 + 4.0e00) / beta11);
    
    if(debug::kprint > 1) {
      
-      Rcpp::Rcout << "\nXPDF3**3 vbound = " << vbound << std::endl;
+      Rcpp::Rcout << "\nXPDF3**2 vbound = " << vbound << std::endl;
+      Rcpp::Rcout << "glimits = " << glimits << std::endl;
      
    }
+
+   vbound = one - std::exp((w1 + 4.0e00) / beta11);
    
-   if(vbound > zero) {
+   if(vbound <= zero) {
      
       glimits.at(2) = 2.0e00;
      
    } else {
      
-     neg = neg + 1;
-     glimits.at(2) = std::log(vbound);
+      neg = neg + 1;
+      glimits.at(2) = std::log(vbound);
      
    }
    
+   if(debug::kprint > 1) {
+     
+      Rcpp::Rcout << "\nXPDF3**3 vbound = " << vbound << std::endl;
+      Rcpp::Rcout << "glimits = " << glimits << std::endl;
+     
+   }
+
 // Sort bounds and put in glimits
    for(int i = 1; i <= 2; i++){
 
@@ -229,7 +242,7 @@ if(debug::kprint > 1) {
    Rcpp::Rcout << "\nXPDF3 neg = " << neg << std::endl;
   
 }
-if(neg == nzero) {
+if(neg != nzero) {
 
    glimits.at(0) = ugamma1 - 4.0e00 * sdgamma;
    glimits.at(1) = ugamma1 + 4.0e00 * sdgamma;
@@ -284,6 +297,18 @@ answer0 = answer1 + answer2 + answer3;
 
 }
 
+if(debug::kprint >= 5){
+   
+   Rcpp::Rcout << "\nEND OF XPDF3\n" << std::endl;
+   Rcpp::Rcout << "answer  = " << answer  << std::endl;
+   Rcpp::Rcout << "answer0 = " << answer0 << std::endl;
+   Rcpp::Rcout << "answer1 = " << answer1 << std::endl;
+   Rcpp::Rcout << "answer2 = " << answer2 << std::endl;
+   Rcpp::Rcout << "answer3 = " << answer3 << std::endl;
+   Rcpp::Rcout << "glimits = " << glimits << std::endl;
+   
+}
+
 answer = answer0 / (sigma * sdgamma);
 
 return;
@@ -314,8 +339,8 @@ double fint(double x){
 
   double f_int,y,z;
   
-  y =(x - passer3::g_ugamma1p) /  passer3::g_sdgammap;
-  z =  passer3::g_w1p -  passer3::g_beta11p * std::log(1.0e00 - std::exp(x));
+  y = (x - passer3::g_ugamma1p) / passer3::g_sdgammap;
+  z =  passer3::g_w1p - passer3::g_beta11p * std::log(1.0e00 - std::exp(x));
   
   f_int = rflpdf(z, passer4::g_ndist1p) * rflpdf(y, passer4::g_ndist2p);
   
