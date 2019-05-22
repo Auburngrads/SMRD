@@ -15,22 +15,290 @@ knitr::opts_chunk$set(echo = TRUE)
 [![Travis build status](https://travis-ci.org/Auburngrads/SMRD2.svg?branch=master)](https://travis-ci.org/Auburngrads/SMRD2)
 
 
-## R Markdown
+## Overview
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+- ___Statistical Methods for Reliability Data___ (Meeker & Escobar) is a foundational text for analyzing failure-time and survival data
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+- Along with the text, the authors developed an S-Plus software package to utilize the methods for industry data  
 
-```{r cars}
-summary(cars)
+- Today, R is the most popular statistical computing language in the world - largely supplanting S
+
+- This presentation introduces tools under-development for use with the current and future versions of the ___SMRD___ to
+
+    + Analyzing industry and, laboratory test data
+    + Simplify reliability/survivability instruction in the classroom
+
+## The ___SMRD___ Toolkit
+
+1. R Package `SMRD`
+
+    + Implements methods from the text to reproduce results from the text
+    + Implements methods from the text for use on industry data
+    + Interactive Shiny gadgets to instantly perform reliability analyses and generate reports
+
+2. ___Statistical Methods for Reliability Data in R___ 
+
+    + Expanded package documentation and example vignettes
+    + In-depth examples corresponding to each chapter in the ___SMRD___ text
+
+3. R package `teachingSMRD` 
+
+    + Examples from the ___SMRD___ reproduced as interactive shiny apps
+    + Automatic generation of assigments and solutions for ___SMRD___ exercises
+
+# Background | The R Languange & R Packages
+
+## The R Project for Statistical Computing
+
+- A statistical programming environment for data analysis and graphics
+
+- Developed by Ross Ihaka and Robert Gentleman at the University of Auckland
+
+- Open-source implementation of the 'S' language created by Becker et. al. at Bell Labs 
+
+- A pre-eminent tool for statistics and data science 
+
+- One of the fastest growing technical computing languages in the world
+
+    + Used for data processing and visualization, computational statistics, and natural language processing etc.
+
+    + Heavily used by Google, Facebook, Twitter, Microsoft, etc.
+
+## R Packages
+
+- In R, the fundamental unit of shareable code is called a package  
+
+- Packages bundle together code, data, documentation, and tests to easily share analysis methods with others  
+
+- Currently `r length(available.packages(contriburl = "https://mirrors.nics.utk.edu/cran/src/contrib")[,1])` packages are available on the Comprehensive R Archive Network ([CRAN](https://cran.r-project.org)) 
+
+- Many more available from the [Bioconductor](https://www.bioconductor.org) and [GitHub](https://github.com) repositories
+
+- The huge variety of packages is a key reason why R is so popular
+
+    + Chances are that someone has already solved a problem that you're working on
+
+    + You can benefit from their work by downloading their package
+
+# R Package `SMRD` | Development Process and Package Features
+
+## `SMRD` - Development Process
+
+- Meeker developed a large collection of FORTRAN subroutines as part of contracted efforts
+
+- Meeker & Escobar wrapped the FORTRAN code into an S-Plus package called [_SPLIDA_](http://www.public.iastate.edu/~splida/')  (**S**-**P**lus **LI**fe **D**ata **A**nalysis)
+
+- _SPLIDA_ serves as the companion software for <a target=' 'href='https://www.amazon.com/Statistical-Methods-Reliability-William-Meeker/dp/0471143286'>Statistical Methods for Reliability Data</a> 1st ed.
+
+- Meeker began an effort to translate _SPLIDA_ into R under the name _RSplida_
+
+    + Not user-friendly - couldn't be installed as a traditional R package 
+
+    + Difficult to use with modern IDE's (i.e. RStudio, Visual Studio, Eclipse, etc.)
+
+## `SMRD` - Development Process (cont.)
+    
+- (**2015**) Freels & Meeker sign MOU to share FORTRAN code for purpose of developing an R package
+
+- Aim to publish `SMRD` to the CRAN in 2018
+
+- Remaining tasks to be completed before publishing <b>(% complete)</b>
+
+    + (90%) Update older R & S-Plus idioms to modern equivalents
+    + (75%) Update graphics objects
+    + (75%) Document datasets
+    + (75%) Update for modern use-cases - literate programming/interactivity
+    + (50%) Ensure compatibility with modern dependencies
+    + (15%) Document exported functions
+    + (10%) Translate FORTRAN code over C++
+
+## `SMRD` Package Features | Estimation/prediction methods for many types of failure data
+
++ Multiple failure events
++ Censored data (right, left, and interval censoring)
++ Truncated data (right, left, and interval truncation)
++ Failure data with explanatory variables (failure-time regression)
++ Repeated measures degradation data (linear & non-linear mixed effects)
++ Repairable system failure data (recurring events)
++ Physical/performance degradation data
++ Failure data with prior information (Bayesian reliability)
++ Reliability growth test data
++ Reliability test simulations
+
+## `SMRD` Package Features | Minimal data pre-processing through flexible event definitions
+
+- Organizations often use different terms to describe the same event
+
+    + 'Failure' = 'Failed' = 'Fail' = 'dead' = 'died'
+    + 'right' = 'rcensored' = 'suspended' = 'alive'
+    + 'left' = 'doa' = 'lcensored'
+    + 'interval' = 'int' = 'icensored' = 'grouped'
+
+- Many applications force users to recode these events
+
+- `SMRD` allows for flexible event definitions to utilize the data as-is
+
+- <focus>Event definitions can even be mixed</focus>
+
+- `SMRD` event definitions easily mapped to `survival` numeric definitions
+
+## `SMRD` Default Event Definitions
+
+```{r, echo=FALSE}
+library(SMRD)
+fail <- strsplit(SMRDOptionsDefaults()$SMRD.F,  split = ',')[[1]]
+left <- strsplit(SMRDOptionsDefaults()$SMRD.Lc, split = ',')[[1]]
+righ <- strsplit(SMRDOptionsDefaults()$SMRD.Rc, split = ',')[[1]]
+intv <- strsplit(SMRDOptionsDefaults()$SMRD.Ic, split = ',')[[1]]
+lengths <- lapply(X = list(fail,left,righ,intv), 
+                  FUN = function(x) length(x))
+
+Length <- max(unlist(lengths))
+
+fails <- c(fail, rep('', Length-length(fail)))
+lefts <- c(left, rep('', Length-length(left)))
+righs <- c(righ, rep('', Length-length(righ)))
+intvs <- c(intv, rep('', Length-length(intv)))
+dats <- data.frame(fails,lefts,righs,intvs)
+colnames(dats) <- c('Failed', 
+                    'Left-censored',
+                    'Right-censored',
+                    'Interval-censored') 
+DT::datatable(dats, options = list(pageLength = 8))
 ```
 
-## Including Plots
+## `SMRD` Package Features | Easily Access Data from Multiple Sources
 
-You can also embed plots, for example:
+- `SMRD` includes over 120 fully-documented datasets
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+- For importing external data, `SMRD` leverages several other R packages
+
+- Excel files 
+
+    + `XLConnect`, `readxl`, `xlsx`
+
+- CSV/TSV files 
+
+    + `base`, `utils`, `readr`, `data.table`
+
+- Info, Minitab, S, SAS, SPSS, Stata, Systat and Weka files
+
+    + `foreign`, `HMISC`
+
+## `SMRD` Package Features | Faster workflows through literate programming
+
+__Literate programming:__ integrating text with snippets of executable code in documents & presentations
+
+- In R, literate programming is supported by the `knitr` and `rmarkdown` packages
+
+    + Weave code from multiple languages, $\LaTeX$-typeset equations, and text together in one document
+    + Run and compile `code`, <green>$\LaTeX$</green>, <focus>text</focus> simultaneously
+    + Everything is stored in a single file
+    + Output to any of a number of presentation or document formats
+    
+## `SMRD` Package Features | Faster workflows through literate programming
+
+- With _SPLIDA_, many results were returned simultaneously
+
+    + Graphics
+    + Numeric values 
+    + Tables of results
+    + Text summaries
+
+- For GUI-based software tools, presenting multiple results is <green>GOOD</green>
+
+- For tools emphasizing reproducible research and literate programming, presenting multiple results simultaneously is <red>BAD</red>
+
+    + `SMRD` built to support literate programming - go from data to report fast
+    + Ensure that specific results can be produced and called where desired
+
+# A Quick `SMRD` Example | Analyzing the shockabsorber dataset
+
+## Dataset: `shockabsorber`
+
+- This example demonstrates some of the `SMRD` functions to analyze the shockabsorber dataset used throughout the text
+
+```{r, comment=NA}
+DT::datatable(shockabsorber, options = list(pageLength = 6))
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## Creating `life.data` Objects
+
+- Many of the methods in the package require a `life.data`-class object
+
+```{r, echo=TRUE}
+shock.ld <- frame.to.ld(frame = shockabsorber,
+                        response.column = 1,
+                        failure.mode.column = 2,
+                        censor.column = 3,
+                        time.units = 'Kilometers')
+```
+
+- Since _SPLIDA_ was written as a GUI, many functions to produce results and graphics already existed
+
+- Thus, once the `life.data` object has been created, many different plots and numeric results can be produced, each requiring only a single line of code
+
+## Producing Results From `life.data` Objects 
+
+<div class='columns-2'>
+- Nonparametric CDF plots 
+
+- Parametric CDF plots
+
+- ML CDF and hazard plots
+
+- Explanatory variable plots
+
+- Multi-failure mode plots
+
+- Relative likelihood surfaces
+
+- Relative likelihood curves
+
+<br/>
+
+- $F(t)$ at specified values of $t$
+
+- $h(t)$ at specified values of $t$
+
+- $t^{-1}(p)$ at specified values of $p$
+
+- ML parameter estimates and standard errors
+
+- Logit and log transformed confidence intervals (pointwise and simultaneous)
+</div>
+
+## Nonparametric & Parametric CDF plots
+
+```{r, echo=-1, fig.align='center', fig.width=10}
+par(mfrow = c(1,2), bg = NA)
+plot(shock.ld)
+plot(shock.ld, distribution = 'lognormal')
+```
+
+## ML Plots $F(t)$ \& $h(t)$
+
+```{r, echo=-1, fig.width=10, fig.align='center'}
+par(mfrow = c(1,2), bg = NA)
+mlehazplot(shock.ld,  distribution = 'lognormal', param.loc = 'topleft')
+mleprobplot(shock.ld, distribution = 'weibull', param.loc = 'topleft')
+```
+
+## ML Surface Plots
+
+```{r, echo=-1, fig.width=10, fig.align='center'}
+par(mfrow = c(1,2), bg = NA, las = 1)
+simple.contour(shock.ld, distribution = 'sev', threeD = T, original.par = F)
+simple.contour(shock.ld, distribution = 'sev', show.confidence = F, zoom = 1.75)
+```
+
+## ML Estimate Table | Generate tables automatically
+
+```{r, echo=TRUE,results='hide'}
+tab <- print(mlest(shock.ld, distribution = 'weibull'))$mle
+xarray(table = tab)
+```
+
+$$
+`r xarray(table = tab)`
+$$
