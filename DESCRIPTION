@@ -34,7 +34,7 @@ Imports:
     pacman,
     Rcpp (>= 1.0.1),
     shiny,
-    teachingApps
+    ggplot2
 LinkingTo: Rcpp
 NeedsCompilation: yes
 Archs: i386, x64
