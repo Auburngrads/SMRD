@@ -161,8 +161,8 @@ int lvl,l1,l2,l3;
    ier = 6;
    neval = 0;
    last = 0;
-   result = 0.0e+00;
-   abserr = 0.0e+00;
+   result = 0.0e00;
+   abserr = 0.0e00;
    
 //xx write(6,4332)limit,lenw,epsabs,epsrel;
 //xx 4332 format('in dqagi',2i6,2g15.6);
@@ -176,6 +176,19 @@ if((limit < 1) or (lenw < (limit * 4))) goto line10;
    
    dqagie(f,bound,inf,epsabs,epsrel,limit,result,
           abserr,neval,ier,work,l1,l2,l3,iwork,last);
+   
+   if(debug::kprint >= 4){
+      
+      Rcpp::Rcout << "\nDQAGI AFTER DQAGIE\n" << std::endl;
+      Rcpp::Rcout << "bound  = " << bound << std::endl;
+      Rcpp::Rcout << "epsabs = " << epsabs << std::endl;
+      Rcpp::Rcout << "epsrel = " << epsrel << std::endl;
+      Rcpp::Rcout << "limit  = " << limit << std::endl;
+      Rcpp::Rcout << "result = " << result << std::endl;
+      Rcpp::Rcout << "abserr = " << abserr << std::endl;
+      Rcpp::Rcout << "neval  = " << neval << std::endl;
+      
+   }
    
 // Call error handler if necessary.;
    lvl = 0;
