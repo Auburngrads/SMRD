@@ -217,15 +217,18 @@ Rcpp::NumericVector rlist2(52), res3la(3);
    work.at((l1 - 1) + 0) = 0.1e+01;
    work.at((l2 - 1) + 0) = 0.0e+00;
    work.at((l3 - 1) + 0) = 0.0e+00;
-   iord(0) = 0;
+   iord.at(0) = 0;
    if(debug::kprint > 0){
      
       Rcpp::Rcout << "\nDQAGIE TEST 1\n" << std::endl;
-      Rcpp::Rcout << "(epsabs <= 0.0e+00) = " << (epsabs <= 0.0e+00) << std::endl;
-      Rcpp::Rcout << "(epsrel < std::max(0.5e+02 * epmach,0.5e-28)) = " << (epsrel < std::max(0.5e+02 * epmach,0.5e-28)) << std::endl;
+      Rcpp::Rcout << "epmach = "             << ier    << std::endl;
+      Rcpp::Rcout << "epsabs = "             << epsabs << std::endl;
+      Rcpp::Rcout << "epsrel = "             << epsrel << std::endl;
+      Rcpp::Rcout << "(epsabs <= 0.0e00) = " << (epsabs <= 0.0e00)    << std::endl;
+      Rcpp::Rcout << "(epsrel < std::max(0.5e02 * epmach,0.5e28)) = " << (epsrel < std::max(0.5e+02 * epmach,0.5e-28)) << std::endl;
       
    }
-   if((epsabs <= 0.0e+00) and (epsrel < std::max(0.5e+02 * epmach,0.5e-28))){
+   if((epsabs <= 0.0e00) and (epsrel < std::max(0.5e02 * epmach,0.5e-28))){
      
        ier = 6;
      
@@ -240,10 +243,24 @@ Rcpp::NumericVector rlist2(52), res3la(3);
 // i1 = integral of f over (-infinity,0),;
 // i2 = integral of f over (0,+infinity).;
    boun = bound;
-   if(inf == 2) boun = 0.0e+00;
-   a15 = 0.0e+00;
-   b15 = 0.1e+01;
+   if(inf == 2) boun = 0.0e00;
+   a15 = 0.0e00;
+   b15 = 0.1e01;
    dqk15i(f,boun,inf,a15,b15,result,abserr,defabs,resabs);
+   
+   if(debug::kprint >= 4){
+      
+      Rcpp::Rcout << "\nDQAGIE AFTER DQK15I **1**\n" << std::endl;
+      Rcpp::Rcout << "boun   = " << boun << std::endl;
+      Rcpp::Rcout << "a15    = " << a15   << std::endl;
+      Rcpp::Rcout << "b15    = " << b15 << std::endl;
+      Rcpp::Rcout << "defabs = " << defabs << std::endl;
+      Rcpp::Rcout << "result = " << result << std::endl;
+      Rcpp::Rcout << "abserr = " << abserr << std::endl;
+      Rcpp::Rcout << "resabs = " << resabs << std::endl;
+      
+   }
+
    
 // Test on accuracy
    last = 1;
@@ -256,11 +273,15 @@ Rcpp::NumericVector rlist2(52), res3la(3);
    if(debug::kprint > 0){
      
       Rcpp::Rcout << "\nDQAGIE TEST 2\n" << std::endl;
-      Rcpp::Rcout << "(abserr <= (1.0e+02 * epmach * defabs)) = " << (abserr <= (1.0e+02 * epmach * defabs)) << std::endl;
+      Rcpp::Rcout << "epmach = "                << ier << std::endl;
+      Rcpp::Rcout << "abserr = "             << abserr << std::endl;
+      Rcpp::Rcout << "defabs = "             << defabs << std::endl;
+      Rcpp::Rcout << "errbnd = "             << errbnd << std::endl;
+      Rcpp::Rcout << "(abserr <= (1.0e02 * epmach * defabs)) = " << (abserr <= (1.0e+02 * epmach * defabs)) << std::endl;
       Rcpp::Rcout << "(abserr > errbnd) = " << (abserr > errbnd) << std::endl;
       
    }
-   if((abserr <= (1.0e+02 * epmach * defabs)) and (abserr > errbnd)){
+   if((abserr <= (1.0e02 * epmach * defabs)) and (abserr > errbnd)){
      
        ier = 2;
      
@@ -270,13 +291,15 @@ Rcpp::NumericVector rlist2(52), res3la(3);
    
       if(debug::kprint > 0){
      
-      Rcpp::Rcout << "\nDQAGIE TEST 3\n" << std::endl;
-      Rcpp::Rcout << "ier = "                << ier << std::endl;
-      Rcpp::Rcout << "abserr = "             << abserr << std::endl;
-      Rcpp::Rcout << "(abserr != resabs) = " << (abserr != resabs) << std::endl;
-      Rcpp::Rcout << "(abserr <= errbnd) = " << (abserr <= errbnd) << std::endl;
+         Rcpp::Rcout << "\nDQAGIE TEST 3\n" << std::endl;
+         Rcpp::Rcout << "ier = "                << ier << std::endl;
+         Rcpp::Rcout << "abserr = "             << abserr << std::endl;
+         Rcpp::Rcout << "resabs = "             << resabs << std::endl;
+         Rcpp::Rcout << "errbnd = "             << errbnd << std::endl;
+         Rcpp::Rcout << "(abserr != resabs) = " << (abserr != resabs) << std::endl;
+         Rcpp::Rcout << "(abserr <= errbnd) = " << (abserr <= errbnd) << std::endl;
       
-   }
+      }
    if((ier != 0) or ((abserr <= errbnd) and (abserr != resabs)) or (abserr == 0.0e+00)){
      
        goto line130;
@@ -316,12 +339,39 @@ Rcpp::NumericVector rlist2(52), res3la(3);
       erlast = errmax;
       
       dqk15i(f,boun,inf,a1,b1,area1,error1,resabs,defab1);
+      if(debug::kprint >= 4){
+      
+         Rcpp::Rcout << "\nDQAGIE AFTER DQK15I **2**\n" << std::endl;
+         Rcpp::Rcout << "last   = " << last   << std::endl; 
+         Rcpp::Rcout << "boun   = " << boun   << std::endl;
+         Rcpp::Rcout << "a1     = " << a1     << std::endl;
+         Rcpp::Rcout << "b1     = " << b1     << std::endl;
+         Rcpp::Rcout << "defab1 = " << defab1 << std::endl;
+         Rcpp::Rcout << "area1  = " << area1  << std::endl;
+         Rcpp::Rcout << "error1 = " << error2 << std::endl;
+         Rcpp::Rcout << "resabs = " << resabs << std::endl;
+      
+      }
+
       dqk15i(f,boun,inf,a2,b2,area2,error2,resabs,defab2);
+      if(debug::kprint >= 4){
+      
+         Rcpp::Rcout << "\nDQAGIE AFTER DQK15I **3**\n" << std::endl;
+         Rcpp::Rcout << "last   = " << last   << std::endl; 
+         Rcpp::Rcout << "boun   = " << boun   << std::endl;
+         Rcpp::Rcout << "a2     = " << a2     << std::endl;
+         Rcpp::Rcout << "b2     = " << b2     << std::endl;
+         Rcpp::Rcout << "defab2 = " << defab2 << std::endl;
+         Rcpp::Rcout << "area2  = " << area2  << std::endl;
+         Rcpp::Rcout << "error2 = " << error2 << std::endl;
+         Rcpp::Rcout << "resabs = " << resabs << std::endl;
+      
+      }
       
    // Improve previous approximations to integral and error and test for accuracy
       area12 = area1 + area2;
       erro12 = error1 + error2;
-      errsum = errsum + erro12-errmax;
+      errsum = errsum + erro12 - errmax;
       area = area + area12 - work.at((l2 - 1) + maxerr - 1);
       if((defab1 == error1) or (defab2 == error2)) goto line15;
       if((std::abs(work.at((l2 - 1) + maxerr - 1) - area12) > (0.1e-04 * std::abs(area12))) or (erro12 < (0.99e+00 * errmax))){
@@ -354,6 +404,16 @@ Rcpp::NumericVector rlist2(52), res3la(3);
       }
       
    // Append the newly-created intervals to the list
+      if(debug::kprint > 4){
+         
+         Rcpp::Rcout << "\nDQAGIE: work check\n" << std::endl;
+         Rcpp::Rcout << "last   = " << last   << std::endl;
+         Rcpp::Rcout << "maxerr = " << maxerr << std::endl;
+         Rcpp::Rcout << "l1 = " << l1 << std::endl;
+         Rcpp::Rcout << "l2 = " << l2 << std::endl;
+         Rcpp::Rcout << "l3 = " << l3 << std::endl;
+         
+      }
       if(error2 > error1) goto line20;
       work.at(last - 1) = a2;
       work.at((l1 - 1) + maxerr - 1) = b1;
@@ -411,6 +471,18 @@ Rcpp::NumericVector rlist2(52), res3la(3);
               rlist2.at(numrl2 - 1) = area;
               
               dqelg(numrl2,rlist2,reseps,abseps,res3la,nres);
+              if(debug::kprint >= 4){
+      
+                 Rcpp::Rcout << "\nDQAGIE AFTER DQELG\n" << std::endl;
+                 Rcpp::Rcout << "last   = " << last   << std::endl; 
+                 Rcpp::Rcout << "numrl2 = " << numrl2 << std::endl;
+                 Rcpp::Rcout << "rlist2 = " << rlist2 << std::endl;
+                 Rcpp::Rcout << "abseps = " << abseps << std::endl;
+                 Rcpp::Rcout << "res3la = " << res3la << std::endl;
+                 Rcpp::Rcout << "reseps = " << reseps << std::endl;
+      
+             }
+
               
               ktmin = ktmin + 1;
               if((ktmin > 5) and (abserr < (0.1e-02 * errsum))) ier = 5;
@@ -439,11 +511,11 @@ Rcpp::NumericVector rlist2(52), res3la(3);
               rlist2.at(1) = area;
       
 }
-
+Rcpp::Rcout << "\nHere\n" << std::endl;
 // Set final result and error estimate
    line100: if(abserr == oflow) goto line115;
-            if((ier+ierro) == 0) goto line110;
-            if(ierro == 3) abserr = abserr+correc;
+            if((ier + ierro) == 0) goto line110;
+            if(ierro == 3) abserr = abserr + correc;
             if(ier == 0) ier = 3;
             if((result != 0.0e+00) and (area != 0.0e+00)) goto line105;
             if(abserr > errsum) goto line115;
