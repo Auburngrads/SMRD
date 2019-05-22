@@ -7,7 +7,7 @@
 xarray(table, digits = NULL, matrix = FALSE, ...)
 }
 \arguments{
-\item{table}{A \code{data.table} or \code{matrix} to be converted}
+\item{table}{A \code{data.frame} or \code{matrix} to be converted}
 
 \item{digits}{Sets the number of significant digits for numeric values}
 
