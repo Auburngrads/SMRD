@@ -250,7 +250,7 @@ if((epsabs <= 0.0e+00) and (epsrel < std::max(0.5e+02 * epmach, 0.5e-28))) {
 
 }
 
-if(ier == 6) goto line999;
+if(ier == 6) return;
 
 //           first approximation to the integral
 //           -----------------------------------
@@ -422,13 +422,14 @@ line30: dqpsrt(limit,last,maxerr,errmax,work,l3,iord,nrmax);
         flr = std::floor(limit / 2);
         if(last > (2 + flr)) jupbnd = limit + 3 - last;
 
-        for(int k = id; k < jupbnd; k++) {
+        for(int k = id; k <= jupbnd; k++) {
 
           maxerr = iord.at(nrmax - 1);
           errmax = work.at((l3 - 1) + maxerr - 1);
 //   jump out of do-loop
           if(std::abs(work.at((l1 - 1) + maxerr - 1) - work.at(maxerr - 1)) > small) continue;
           nrmax = nrmax + 1;
+          
         }
 
 //      perform extrapolation.
@@ -491,9 +492,10 @@ line105: if((abserr / std::abs(result)) > (errsum / std::abs(area))) goto line11
 
 line110: if((ksgn == (-1)) and (std::max(std::abs(result),std::abs(area)) <= (defabs * 0.1e-01))) {
 
-         goto line130;
+             goto line130;
 
-}
+         }
+
       if((0.1e-01 > (result / area)) or ((result / area) > 0.1e+03) or (errsum > std::abs(area))) {
 
         ier = 6;
@@ -517,5 +519,6 @@ line130: if(ier > 2) ier = ier - 1;
 
 line140: neval = 42 * last - 21;
 
-line999: return;
+return;
+
 }
