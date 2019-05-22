@@ -53,7 +53,7 @@ void dqpsrt(int &limit,
             int &nrmax){
 
 double errmax,errmin;
-int i = 0,ibeg,ido,isucc,jbnd,jupbn,k;
+int i = 1,ibeg,ido,isucc,jbnd,jupbn,k;
 // Check whether the list contains more than two error estimates
    if(Last > 2) goto line10;
    iord.at(0) = 1;
@@ -121,7 +121,7 @@ for(i = 1; i <= ido; i++){
    
    iord.at(i - 1) = Last;
    goto line90;
-   line80: iord.at(k + 1) = Last;
+   line80: iord.at(k) = Last;
    
 // Set maxerr and ermax
    line90: maxerr = iord.at(nrmax - 1);
