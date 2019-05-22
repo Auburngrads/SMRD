@@ -30,7 +30,7 @@ if(test == 4){
 }
  
 distribution = "weibull"
-number.sim = 50
+number.sim = 200
 escale = 10000
 intercept = T
 if(!exists("kprint")) kprint = 0
