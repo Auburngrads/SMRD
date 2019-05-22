@@ -214,18 +214,12 @@ if(is == 4) goto line13;
 if(is == 5) goto line14;
 if(is == 6) goto line96;
 
-line14: test = powsss(test, "\nLINE 14\n", "f - fa = ", f - fa);
-        if(test > test_max) return;
-
-        if(std::abs(f - fa) < epsilon) goto line16;
+line14: if(std::abs(f - fa) < epsilon) goto line16;
         if(f < fa)       goto line15;
         if(f > fa)       goto line24;
 
 
-line16: test = powsss(test, "\nLINE 16\n", "std::abs(d) - dmax = ", std::abs(d) - dmax);
-        if(test > test_max) return;
-
-        if(std::abs(std::abs(d) - dmax) < epsilon) goto line17;
+line16: if(std::abs(std::abs(d) - dmax) < epsilon) goto line17;
         if(std::abs(d) > dmax) { ier = 1; goto line20; }
 
 line17: d = d + d;
@@ -249,15 +243,11 @@ line23: d = db + db - da;
 line83: d = 0.5 * (da + db - (fa - fb) / (da - db));
         is = 4;
 
-        test = powsss(test, "\nLINE 83\n", "(da - d) * (d - db) = ", (da - d) * (d - db));
-        if(test > test_max) return;
 
         if(std::abs((da - d) * (d - db)) < epsilon) goto line25;
         if(((da - d) * (d - db)) > 0.0) goto line8;
 
 line25: is = 1;
-        test = powsss(test, "\nLINE 25\n", "std::abs(d - db) - ddmax = ", std::abs(d - db) - ddmax);
-        if(test > test_max) return;
 
         if(std::abs(std::abs(d - db) - ddmax) < epsilon) goto line8;
         if(std::abs(d - db) < ddmax) goto line8;
@@ -275,19 +265,13 @@ line26: d = db + dsign(ddmax,(db - da));
         dscale = dscale * 4.0; //factor
         goto line1001;
 
-line265: test = powsss(test, "\nLINE 265\n", "ddmax - dmax = ", ddmax - dmax);
-         if(test > test_max) return;
-
-         if(std::abs(ddmax - dmax) < epsilon) goto line8;
+line265: if(std::abs(ddmax - dmax) < epsilon) goto line8;
          if(ddmax < dmax) goto line8;
 
          ddmax = dmax;
          goto line8;
 
-line13: test = powsss(test, "\nLINE 13\n", "f - fa = ", f - fa);
-        if(test > test_max) return;
-
-        if(std::abs(f - fa) < epsilon) goto line23;
+line13: if(std::abs(f - fa) < epsilon) goto line23;
         if(f > fa) goto line23;
 
 line28: fc = fb;
@@ -297,20 +281,14 @@ line29: fb = f;
         db = d;
         goto line30;
 
-line12: test = powsss(test, "\nLINE 12\n", "f - fb = ", f - fb);
-        if(test > test_max) return;
-
-        if(std::abs(f - fb) < epsilon) goto line28;
+line12: if(std::abs(f - fb) < epsilon) goto line28;
         if(f < fb) goto line28;
 
         fa = f;
         da = d;
         goto line30;
 
-line11: test = powsss(test, "\nLINE 11\n", "f - fb = ", f - fb);
-        if(test > test_max) return;
-
-        if(std::abs(f - fb) < epsilon) goto line10;
+line11: if(std::abs(f - fb) < epsilon) goto line10;
         if(f > fb) goto line10;
 
         fa = fb;
@@ -331,8 +309,6 @@ line10: fc = f;
 line30: a = (db - dc) * (fa - fc);
         b = (dc - da) * (fb - fc);
 
-        test = powsss(test, "\nLINE 30\n", "(a + b) * (da - dc) = ", (a + b) * (da - dc));
-        if(test > test_max) return;
         if(std::abs((a + b) * (da - dc)) < epsilon) goto line33;
         if(((a + b) * (da - dc)) > 0.0) goto line34;
 
@@ -345,8 +321,6 @@ line33: fa = fb;
 line34: d = 0.5 * (a * (db + dc) + b * (da + dc)) / (a + b);
         di = db;
         fi = fb;
-        test = powsss(test, "\nLINE 34\n", "fb - fc = ", fb - fc);
-        if(test > test_max) return;
 
         if(std::abs(fb - fc) < epsilon) goto line44;
         if(fb < fc) goto line44;
@@ -361,19 +335,13 @@ line44: if(itone == 1) goto line86;
 line85: itone = 2;
         goto line45;
 
-line86: test = powsss(test, "\nLINE 86\n", "std::abs(d - di) - dacc = ", std::abs(d - di) - dacc);
-        if(test > test_max) return;
-        if(std::abs(std::abs(d - di) - dacc) < epsilon) goto line41;
+line86: if(std::abs(std::abs(d - di) - dacc) < epsilon) goto line41;
         if(std::abs(d - di) < dacc) goto line41;
 
-        test = powsss(test, "\nLINE 93\n", "std::abs(d - di) - (pz3 * std::abs(d)) = ", std::abs(d - di) - (pz3 * std::abs(d)));
-        if(test > test_max) return;
         if(std::abs(std::abs(d - di) - (pz3 * std::abs(d))) < epsilon) goto line41;
         if(std::abs(d - di) < (pz3 * std::abs(d))) goto line41;
 
-line45: test = powsss(test, "\nLINE 45\n", "(da - dc) * (dc - d) = ", (da - dc) * (dc - d));
-        if(test > test_max) return;
-        if(std::abs((da - dc) * (dc - d)) < epsilon) goto line46;
+line45: if(std::abs((da - dc) * (dc - d)) < epsilon) goto line46;
         if(((da - dc) * (dc - d)) < 0.0) goto line47;
 
 line46: fa = fb;
@@ -383,8 +351,6 @@ line46: fa = fb;
         goto line25;
 
 line47: is = 2;
-        test = powsss(test, "\nLINE 47\n", "(db - d) * (d - dc) = ", (db - d) * (d - dc));
-        if(test > test_max) return;
         if(std::abs((db - d) * (d - dc)) < epsilon) goto line8;
         if(((db - d) * (d - dc)) > 0.0) goto line8;
 
@@ -419,10 +385,7 @@ iline = iline + 1;
 if(itone == 1) goto line55;
 if(itone == 2) goto line38;
 
-line55: test = powsss(test, "\nLINE 55\n", "(fprev - f) - sum = ", (fprev - f) - sum);
-        if(test > test_max) return;
-
-        if(std::abs((fprev - f) - sum) < epsilon) goto line95;
+line55: if(std::abs((fprev - f) - sum) < epsilon) goto line95;
         if((fprev - f) < sum) goto line94;
 
 line95: sum = fprev - f;
@@ -450,16 +413,10 @@ goto line58;
 line96: if(ind == 1) goto line112;
         if(ind == 2) goto line87;
 
-line112: test = powsss(test, "\nLINE 112\n", "fp - f = ", fp - f);
-         if(test > test_max) return;
-
-         if(std::abs(fp - f) < epsilon) goto line37;
+line112: if(std::abs(fp - f) < epsilon) goto line37;
          if(fp < f) goto line37;
 
         d = 2 * (fp + f - 2 * fhold) / std::pow((fp - f),2);
-        test = powsss(test, "\nLINE 91\n", "(d * std::pow((fp - fhold - sum),2)) - sum = ", (d * std::pow((fp - fhold - sum),2)) - sum);
-        if(test > test_max) return;
-
         if(std::abs((d * std::pow((fp - fhold - sum),2)) - sum) < epsilon) goto line37;
         if(((d * std::pow((fp - fhold - sum),2)) - sum) > 0.0) goto line37;
 
@@ -489,9 +446,6 @@ for(int i = 1; i <= n; i++){
 
     ixp = ixp + 1;
     w.at(k - 1) = w.at(ixp - 1);
-    test = powsss(test, "\nLINE 61\n", "aaa - std::abs(w.at(k - 1) / ed.at(i - 1)) = ", aaa - std::abs(w.at(k - 1) / ed.at(i - 1)));
-    if(test > test_max) return;
-
     if(std::abs(aaa - std::abs(w.at(k - 1) / ed.at(i - 1))) < epsilon) goto line67;
     if(aaa > std::abs(w.at(k - 1) / ed.at(i - 1))) goto line67;
 
@@ -532,10 +486,7 @@ line38: aaa = aaa * (1.0 + di);
 line53: if(ind == 1) goto line109;
         if(ind == 2) goto line88;
 
-line109: test = powsss(test, "\nLINE 61\n", "aaa - p1 = ", aaa - p1);
-         if(test > test_max) return;
-
-         if(std::abs(aaa - p1) < epsilon) goto line89;
+line109: if(std::abs(aaa - p1) < epsilon) goto line89;
          if(aaa > p1) goto line76;
 
 line89: if(icon == 1) goto line20;
@@ -568,10 +519,7 @@ nfcc = nfcc + 1;
 ddmag = 0.0;
 goto line108;
 
-line76: test = powsss(test, "\nLINE 76\n", "f - fp = ", f - fp);
-        if(test > test_max) return;
-
-        if(std::abs(f - fp) < epsilon) goto line78;
+line76: if(std::abs(f - fp) < epsilon) goto line78;
         if(f < fp) goto line35;
 
 line78: ier = 0;
@@ -585,9 +533,6 @@ line35: ddmag = 4.0 * std::sqrt(fp - f);
 line108: iterc = iterc + 1;
          // #check to see if the likelihood is changing slowly;
          if(!lstd::g_ltp) goto line2002;
-         test = powsss(test, "\nLINE 108\n", "std::abs(f - fsavq) = ", std::abs(f - fsavq));
-         if(test > test_max) return;
-
          if(std::abs(f - fsavq) > 1) goto line2001;
          lstd::g_ltp = false;
          ier = 0;
@@ -597,9 +542,6 @@ line2001: fsavq = f;
 line2002: if(iterc <= maxit) goto line5;
 
           ier = 2;
-          test = powsss(test, "\nLINE 81\n", "f - fkeep = ", f - fkeep);
-          if(test > test_max) return;
-
           if(std::abs(f - fkeep) < epsilon) goto line20;
           if(f < fkeep) goto line20;
 
@@ -616,9 +558,6 @@ goto line20;
 
 line101: jtl = 1;
          fp = fkeep;
-         test = powsss(test, "\nLINE 101\n", "std::abs(f - fkeep) = ", std::abs(f - fkeep));
-         if(test > test_max) return;
-
          if(std::abs(f - fkeep) < epsilon) goto line78;
          if(f < fkeep)          goto line105;
          if(f > fkeep)          goto line104;
@@ -646,10 +585,7 @@ for(int i = 1; i <= n; i++){
 jtl = 2;
 goto line92;
 
-line106: test = powsss(test, "\nLINE 81\n", "aaa - p1 = ", aaa - p1);
-         if(test > test_max) return;
-
-         if(std::abs(aaa - p1) < epsilon) goto line20;
+line106: if(std::abs(aaa - p1) < epsilon) goto line20;
          if(aaa > p1){
 
             inn = 1;
