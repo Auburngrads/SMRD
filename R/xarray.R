@@ -4,7 +4,7 @@
 #'              return an array class object. This is useful for 
 #'              rendering matrices in rmarkdown documents and
 #'              presentations
-#' @param table A \code{data.table} or \code{matrix} to be converted
+#' @param table A \code{data.frame} or \code{matrix} to be converted
 #' @param digits Sets the number of significant digits for numeric values
 #' @param matrix A \code{logical} indicating if \code{table} is a 
 #'               matrix-class object.
