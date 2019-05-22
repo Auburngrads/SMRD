@@ -13,8 +13,11 @@ Rcpp::List SXCDF(int ndist1,
                  Rcpp::NumericVector w,
                  int num,
                  Rcpp::NumericVector answer,
-                 Rcpp::IntegerVector ier){
+                 Rcpp::IntegerVector ier,
+                 int kprint){
 
+debug::kprint = kprint;
+  
 Rcpp::NumericVector beta0p = clone(beta0);
 Rcpp::NumericVector beta1p = clone(beta1);
 Rcpp::NumericVector xstrp = clone(xstr);
@@ -34,17 +37,17 @@ for(int i = 0; i < num; i++){
   
 }
 
-return Rcpp::List::create(Named("ier") = ier,
+return Rcpp::List::create(Named("ier") = ierp,
                           Named("ndist1") = ndist1,
                           Named("ndist2") = ndist2,
-                          Named("beta0") = beta0,
-                          Named("beta1") = beta1,
-                          Named("xstr") = xstr,
-                          Named("sigma") = sigma,
-                          Named("ugamma") = ugamma,
-                          Named("sgamma") = sgamma,
-                          Named("w") = w,
+                          Named("beta0") = beta0p,
+                          Named("beta1") = beta1p,
+                          Named("xstr") = xstrp,
+                          Named("sigma") = sigmap,
+                          Named("ugamma") = ugammap,
+                          Named("sgamma") = sgammap,
+                          Named("w") = wp,
                           Named("num") = num,
-                          Named("answer") = answer);
+                          Named("answer") = answerp);
   
 }
