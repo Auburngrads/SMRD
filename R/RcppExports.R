@@ -674,8 +674,8 @@ SURLIKE <- function(t, nt, mut1, sigmat1, mut2, sigmat2, mur1, sigmar1, mur2, si
     .Call(`_SMRD2_SURLIKE`, t, nt, mut1, sigmat1, mut2, sigmat2, mur1, sigmar1, mur2, sigmar2, rho, answer, kprint)
 }
 
-SXCDF <- function(ndist1, ndist2, beta0, beta1, xstr, sigma, ugamma, sgamma, w, num, answer, ier) {
-    .Call(`_SMRD2_SXCDF`, ndist1, ndist2, beta0, beta1, xstr, sigma, ugamma, sgamma, w, num, answer, ier)
+SXCDF <- function(ndist1, ndist2, beta0, beta1, xstr, sigma, ugamma, sgamma, w, num, answer, ier, kprint) {
+    .Call(`_SMRD2_SXCDF`, ndist1, ndist2, beta0, beta1, xstr, sigma, ugamma, sgamma, w, num, answer, ier, kprint)
 }
 
 SXPDF3 <- function(ndist1, ndist2, beta0, beta1, xstr, sigma, ugamma, sgamma, w, num, answer, ier, kprint) {
