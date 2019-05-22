@@ -307,7 +307,7 @@ epmach = D1mach(4);
                errbnd = std::max(epsabs,epsrel * std::abs(area));
        
     // Test for roundoff error and eventually set error flag
-       if((iroff1 + iroff2 >= 10) or (iroff3 >= 20)) ier = 2;
+       if(((iroff1 + iroff2) >= 10) or (iroff3 >= 20)) ier = 2;
        if(iroff2 >= 5) ierro = 3;
        
     // Set error flag in the case that the number of subintervals equals limit
