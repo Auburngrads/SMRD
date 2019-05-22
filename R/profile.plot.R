@@ -1,3 +1,53 @@
+#' Title
+#'
+#' @param fitted 
+#' @param profile.title 
+#' @param confidence.interval 
+#' @param conf.level 
+#' @param xlim 
+#' @param ylim 
+#' @param log.axis 
+#' @param variable.name 
+#' @param original.par 
+#' @param add 
+#' @param lty 
+#' @param lwd 
+#' @param print.ci 
+#' @param col 
+#' @param plotem 
+#' @param need.smooth 
+#' @param approx.plot 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' lzbearing.ld <- frame.to.ld(lzbearing, 
+#'                             response.column = 1)
+#' 
+#' gmleprobplot(lzbearing.ld,
+#'              distribution = "egeng",
+#'              xlim = c(10,199),
+#'              ylim = c(.0011,.991),
+#'              compare = c("Weibull","Lognormal","Exponential"))
+#' 
+#' text(2.4969, -1.31908, "EXP")
+#' text(2.50633, -3.4758, "WEIB")
+#' text(2.34606, -5.75833, "EGENG")
+#' text(2.70432, -6.94453, "LOGNOR")
+#' 
+#' tmp <- one.dim.profile(bear.egeng.gmle.out,
+#'                        profile.on.list = 3,
+#'                        range.list = list(c(-1,2.0)),
+#'                        size = 50,
+#'                        save.structures = F)
+#' 
+#' 
+#' profile.plot(tmp, variable.name = "lambda")
+#' }
 profile.plot <-
 function (fitted, profile.title = paste(fitted$subtitle, "\n",
     lplot.type, "Likelihood and ", percent.conf.level(conf.level),
