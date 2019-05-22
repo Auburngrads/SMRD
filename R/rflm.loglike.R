@@ -2,9 +2,16 @@ rflm.loglike <-
 function (thetatran, kprint = 0)
 {
   xcdf <-
-    function (ndist1 = 2, ndist2 = 2, beta0 = 30.27241, beta1 = -5.100121,
-              stress = 270, sigma = 0.2894549, ugamma = 5.365834, sgamma = 0.03140004,
-              w = logb(5000),debug1= F)
+    function (ndist1 = 2, 
+              ndist2 = 2,
+              beta0 = 30.27241, 
+              beta1 = -5.100121,
+              stress = 270, 
+              sigma = 0.2894549, 
+              ugamma = 5.365834, 
+              sgamma = 0.03140004,
+              w = logb(5000),
+              debug1 = F)
     {
       max.length <- max(length(beta0), 
                         length(beta1),
@@ -34,15 +41,24 @@ function (thetatran, kprint = 0)
                     as.double(w), 
                     as.integer(max.length), 
                     answer = double(max.length),
-                    ier = integer(max.length))
+                    ier = integer(max.length),
+                    as.integer(kprint))
       
       return(zout$answer)
       
     }
 
   xpdf <-
-    function (ndist1, ndist2, beta0, beta1, stress, sigma, ugamma,
-              sgamma, w,debug1= F)
+    function (ndist1, 
+              ndist2,
+              beta0, 
+              beta1, 
+              stress, 
+              sigma, 
+              ugamma,
+              sgamma, 
+              w,
+              debug1 = F)
     {
       max.length <- max(length(beta0), 
                         length(beta1),
@@ -59,6 +75,7 @@ function (thetatran, kprint = 0)
       sgamma <- expand.vec(sgamma, max.length)
       stress <- expand.vec(stress, max.length)
       w <- expand.vec(w, max.length)
+      
       if (debug1) browser()
       
       zout <- SXPDF3(as.integer(ndist1), 
@@ -76,6 +93,7 @@ function (thetatran, kprint = 0)
                      as.integer(kprint))
       
       return(zout$answer)
+      
     }
 
     data.ld <- get(envir = .frame0,  "data.ld")
