@@ -36,7 +36,7 @@
 #' 
 #' @author William Q. Meeker, PhD
 #' 
-#' @seealso \code{\link{frame.to.rmd}}, \code{\link{frame.to.ddd}}, \code{\link{surv.to.ld}}, \code{\link{SMRDOptionsDefaults}}
+#' @seealso \code{\link{frame.to.rmd}}, \code{\link{frame.to.ddd}}, \code{\link{SMRDOptionsDefaults}}
 #' 
 #' @examples
 #' \dontrun{
