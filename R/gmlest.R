@@ -54,12 +54,12 @@ function (data.ld,
           maxit = 500, 
           debug1 = F)
 {
-    y <-SMRD2:::Response(data.ld)
+    y <-Response(data.ld)
     ncoly <- ncol(y)
     number.cases <- nrow(y)
-    the.case.weights <- SMRD2:::case.weights(data.ld)
+    the.case.weights <- case.weights(data.ld)
     ny <- ncol(y)
-    the.truncation.codes <- SMRD2:::truncation.codes(data.ld)
+    the.truncation.codes <- truncation.codes(data.ld)
     if (is.null(the.truncation.codes)) {
         ty <- 1
         ncolty <- 0
@@ -67,22 +67,22 @@ function (data.ld,
   
         } else {
           
-        ty <- SMRD2:::truncation.response(data.ld)
+        ty <- truncation.response(data.ld)
         ncolty <- ncol(ty)
     
         }
-    distribution.number <- SMRD2:::numdist(distribution)
+    distribution.number <- numdist(distribution)
     
     if (distribution.number == 14) distribution.number <- 8
     
     cat("dist num =", distribution, distribution.number, "\n")
-    the.censor.codes <- SMRD2:::censor.codes(data.ld)
+    the.censor.codes <- censor.codes(data.ld)
     
     if (length(gamthr) == 1) gamthr <- rep(gamthr, number.cases)
     
     if (length(gamthr) != number.cases) stop("specified offset is the wrong length")
     
-    get.rmodel.info.out <- SMRD2:::get.rmodel.info(distribution, 
+    get.rmodel.info.out <- get.rmodel.info(distribution, 
                                            model, 
                                            explan.vars)
     explan.vars <- get.rmodel.info.out$explan.vars
@@ -96,7 +96,7 @@ function (data.ld,
   
         } else {
           
-        the.xmat <- SMRD2:::xmat(data.ld)
+        the.xmat <- xmat(data.ld)
         ncol.orig.x <- ncol(the.xmat)
         if (is.null(the.xmat)) stop("Explanatory variables requested, but there is no X matrix")
         regression <- T
@@ -120,7 +120,7 @@ function (data.ld,
             }
     
         }
-    zsize <- SMRD2:::GENSIZ(as.integer(model),
+    zsize <- GENSIZ(as.integer(model),
                     as.integer(distribution.number),
                     as.integer(get.rmodel.info.out$kparv),
                     as.integer(get.rmodel.info.out$nrvar),
