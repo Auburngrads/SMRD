@@ -138,17 +138,16 @@ int last,neval;
    passer4::g_ndist1p = ndist1;
    passer4::g_ndist2p = ndist2;
    
-// Find bounds for integrations:
-//The integrand behaves like the conditional pdf of log(life) given;
-//v=log(fatigue limit). With respect to the integrator v, this pdf is;
-//maximum at;
-// vbound=one-dexp(w1/beta11);
-//Points 4 standardard deviations from w1=(w-beta0-beta1*xlog)/sigma are;
-//also taken.;
-//The integration is from -(infinity) to 0. The procedure below checks;
-//if each bound is negative. If all the above bounds are positive, use;
-//dqagi to integrate.;
-// neg = # of bounds below 0;
+// Find bounds for integrations
+////////////////////////////////////////////////////////////////////
+// The integrand behaves like the conditional pdf of log(life) given
+// v = log(fatigue limit). With respect to the integrator v, this pdf is
+// maximum at vbound=one - exp(w1 / beta11).
+// Points 4 standardard deviations from w1 = (w-beta0-beta1*xlog)/sigma 
+// are also taken. The integration is from -(infinity) to 0. The procedure 
+// below checks if each bound is negative. If all the above bounds are positive, 
+// use dqagi to integrate. 
+// neg = # of bounds below 0
 // glimits = vector of sorted bounds;
    neg = 0;
    nzero = 0;
@@ -160,12 +159,12 @@ int last,neval;
    
    if(vbound <= zero) {
      
-     glimits.at(0) = 2.0e00;
+      glimits.at(0) = 2.0e00;
+      neg = neg + 1;
      
    } else {
      
-     neg = neg + 1;
-     glimits.at(0) = std::log(vbound);
+      glimits.at(0) = std::log(vbound);
      
    }
    
@@ -181,10 +180,10 @@ int last,neval;
    if(vbound <= zero) {
      
       glimits.at(1) = 2.0e00;
+      neg = neg + 1;
      
    } else {
       
-      neg = neg + 1;
       glimits.at(1) = std::log(vbound);
      
    }
@@ -201,10 +200,10 @@ int last,neval;
    if(vbound <= zero) {
      
       glimits.at(2) = 2.0e00;
+      neg = neg + 1;
      
    } else {
      
-      neg = neg + 1;
       glimits.at(2) = std::log(vbound);
      
    }
