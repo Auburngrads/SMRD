@@ -288,7 +288,7 @@ asym.sample.size(bulb.plan.values1,
                  quantile.of.interest = 0.1)
 ```
 
-```{r}
+```{r, cache=T}
 mstt1 <- multiple.simulate.type.two(n = c(20,30,40), 
                                     r = c(20,30,40),
                                     distribution = "lognormal",
