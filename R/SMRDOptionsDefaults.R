@@ -1,5 +1,11 @@
+#' Title
+#'
+#' @param ... 
+#'
+#' @return NULL
+#' @export
 SMRDOptionsDefaults <-
-  function ()
+  function (...)
   {
     return(list(SMRD.ConfLevel = 95, 
                 SMRD.DigitsPrinted = 4,
