@@ -116,21 +116,21 @@ function (data.ld,
   
     if (is.null(xlab)) {
       
-        xlab <- SMRD2:::get.time.units(data.ld)
+        xlab <- get.time.units(data.ld)
         if (!is.null(gamthr) && gamthr != 0)
             xlab <- paste(xlab, "-", gamthr)
     }
   
-    cdfest.out <- SMRD2:::cdfest(data.ld, gamthr = gamthr)
-    cdpoints.out <- SMRD2:::cdpoints(cdfest.out)
+    cdfest.out <- cdfest(data.ld, gamthr = gamthr)
+    cdpoints.out <- cdpoints(cdfest.out)
     
-    if(SMRD2:::is.logdist(distribution)) {
+    if(is.logdist(distribution)) {
       
        if(any(Response(data.ld) <= 0)) stop("log-distribution specified but nonpositive response(s) in your life data object.")
       
     }
     
-    mlest.out <- SMRD2:::mlest(data.ld, 
+    mlest.out <- mlest(data.ld, 
                                distribution, 
                                theta.start = theta.start,
                                parameter.fixed = parameter.fixed, 
@@ -140,7 +140,7 @@ function (data.ld,
     
     if(trunc.correct) {
       
-       cdpoints.out <- SMRD2:::truncadj(cdpoints.out, mlest.out,debug1= debug1)
+       cdpoints.out <- truncadj(cdpoints.out, mlest.out,debug1= debug1)
        
     }
     trunc.correct.string <- attr(cdpoints.out, "trunc.correct.string")
