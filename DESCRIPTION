@@ -1,8 +1,8 @@
 Package: SMRD2
 Type: Package
 Title: Statistical Methods For Reliability Data
-Version: 2019.04.29
-Date: 2019-04-29
+Version: 2019.05.22
+Date: 2019-05-22
 Authors@R: c(
     person("Jason", "Freels", 
            email = "auburngrads@live.com", 
@@ -20,7 +20,7 @@ Description: Implements the reliability estimation functions and
 License: GPL (>= 2)
 LazyData: true
 Depends:
-    R (>= 3.6.0)
+    R (>= 3.5.0)
 Imports:
     graphics,
     stats,
@@ -29,11 +29,8 @@ Imports:
     grid,
     survival,
     plot3D,
-    DT,
     xtable,
-    pacman,
     Rcpp (>= 1.0.1),
-    shiny,
     ggplot2
 LinkingTo: Rcpp
 NeedsCompilation: yes
@@ -41,7 +38,8 @@ Archs: i386, x64
 Suggests:
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    DT
 RoxygenNote: 6.1.1
 Encoding: UTF-8
 VignetteBuilder: knitr
