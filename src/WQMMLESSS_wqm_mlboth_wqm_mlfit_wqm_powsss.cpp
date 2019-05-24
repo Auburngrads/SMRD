@@ -4,7 +4,6 @@
 #include <wqmmlesss/wqm_flike.hpp>
 #include <wqmmlesss/wqm_piter.hpp>
 #include <utility/dsign.hpp>
-#include <utility/threecheck.hpp>
 
 using namespace lstd;
 
@@ -74,7 +73,7 @@ Rcpp::LogicalVector CHK;
 // Constants for poweld restart
 double big = 1.0e30;
 double ybar = 0.0, ysd = 0.0;
-double epsilon = 1.0e-40;
+double epsilon = 1.0e-120;
 double dscale = escale;
 double fsavq, ddmag, scer;
 double f, fkeep;
@@ -90,7 +89,6 @@ int ntry = 1, n = 0, nfcc;
 int idirn, iline, ind, inn, itone, iterc, isgrad;
 int j, jj, jjj, jtl = 0, k;
 int ixp = 0, is, maxtry = 100;
-int test = 0, test_max = 1000;
 
 ier = 0;
 
