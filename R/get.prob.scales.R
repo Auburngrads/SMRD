@@ -100,7 +100,7 @@ function (distribution,
     uniform.Percent.tick.labels <- c("0", "10", "20", "30", "40", 
         "50", "60", "70", "80", "90", "100")
     
-    distribution <- SMRD2:::generic.distribution(distribution)
+    distribution <- generic.distribution(distribution)
     if (is.null(prob.range))  prob.range <- range(as.numeric(sev.tick.labels))
     dist.info.out <- dist.info(distribution)
     
