@@ -4,3 +4,8 @@
 ^\.travis\.yml$
 ^.*\.6$
 ^.*\.txt$
+README.Rmd
+README.md
+README_files/
+^doc$
+^Meta$
