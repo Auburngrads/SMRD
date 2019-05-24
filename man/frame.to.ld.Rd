@@ -67,7 +67,7 @@ trun.ld <- frame.to.ld(SMRD2::doatrun,
 }
 }
 \seealso{
-\code{\link{frame.to.rmd}}, \code{\link{frame.to.ddd}}, \code{\link{surv.to.ld}}, \code{\link{SMRDOptionsDefaults}}
+\code{\link{frame.to.rmd}}, \code{\link{frame.to.ddd}}, \code{\link{SMRDOptionsDefaults}}
 }
 \author{
 William Q. Meeker, PhD
