@@ -174,7 +174,7 @@ function (data.ld,
               iervcv = 0)
     
     rvec <- c(0, escale = escale, log.likelihood = 0)
-    zout <- SMRD2:::WQMMLESSS( ivec = as.integer(ivec), 
+    zout <- WQMMLESSS( ivec = as.integer(ivec), 
                       rvec = as.double(rvec),
                       nrow = as.integer(number.cases), 
                       nparm = as.integer(nparm),
