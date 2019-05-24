@@ -8,7 +8,7 @@
 #' @param digits Sets the number of significant digits for numeric values
 #' @param matrix A \code{logical} indicating if \code{table} is a 
 #'               matrix-class object.
-#' @param ... Additional options used in \code{xtable:::print.xtable}
+#' @param ... Additional options used in \code{xtable::print.xtable}
 #' 
 #' @return An printed LaTeX array class object 
 #' @importFrom xtable xtable print.xtable 
