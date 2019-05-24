@@ -10,7 +10,7 @@ function (x, log.of.data, xrange = range(Response(x$data.ld)),
     theta.hat <- x$theta.hat
     sigma <- theta.hat[2]
     if (length(xrange) > 2) {
-        if  (SMRD2:::is.even(SMRD2:::numdist(distribution))) {
+        if  (is.even(numdist(distribution))) {
             ltime <- logb(xrange)
             time <- exp(ltime)
       } else {
@@ -18,7 +18,7 @@ function (x, log.of.data, xrange = range(Response(x$data.ld)),
             time <- ltime
         }
   } else {
-        if  (SMRD2:::is.even(SMRD2:::numdist(distribution))) {
+        if  (is.even(numdist(distribution))) {
             ltime <- seq(logb(xrange[1]), logb(xrange[2]), length = timelen)
             time <- exp(ltime)
       } else {
