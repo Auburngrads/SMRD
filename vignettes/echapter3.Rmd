@@ -108,7 +108,6 @@ plot(Fan.ld,
      shape = c(15))
 ```
 
-
 # Turbine Data Set `turbine`
 
 ```{r}
