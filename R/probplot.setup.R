@@ -41,7 +41,7 @@ function (distribution,
     ylim[1] <- ylim[1] + 1e-12 * ydiff
     ylim[2] <- ylim[2] - 1e-12 * ydiff
     
-    GetAxesRange.out <- SMRD2:::GetAxesRange("probplot.setup", 
+    GetAxesRange.out <- GetAxesRange("probplot.setup", 
                                      x.axis = "xxx",
                                      xlim, 
                                      xlab, 
@@ -53,7 +53,7 @@ function (distribution,
     
     if (is.logical(linear.axes) && linear.axes) linear.axes <- "b"
     
-    get.prob.scales.out <- SMRD2:::get.prob.scales(distribution, 
+    get.prob.scales.out <- get.prob.scales(distribution, 
                                            shape = shape,
                                            prob.range = ylim)
     log.of.data <- get.prob.scales.out$logger
@@ -70,7 +70,7 @@ function (distribution,
                       tick.label.loc[tick.label.loc > ylim[2]]))
     
     probplot.setup.title.out <- 
-      SMRD2:::probplot.setup.title(title.option = title.option,
+      probplot.setup.title(title.option = title.option,
                            my.title = my.title, 
                            sub.title = sub.title, 
                            distribution = get.prob.scales.out$distribution,
@@ -95,13 +95,13 @@ function (distribution,
                            probplot.setup.title.out$top.mar,
                            right.mar) + 0.1)
     
-    ylim <- SMRD2:::pp.quant(yp.range, distribution, shape)
+    ylim <- pp.quant(yp.range, distribution, shape)
     
     if(is.null(hw.xaxis)) {
       
         `if`(log.of.data,
-             data.axes.out <- SMRD2:::logax(xlim[1], xlim[2], ...),
-             data.axes.out <- SMRD2:::linax(xlim))
+             data.axes.out <- logax(xlim[1], xlim[2], ...),
+             data.axes.out <- linax(xlim))
   
       } else {
         
@@ -109,7 +109,7 @@ function (distribution,
     
       }
     
-    xlim <- SMRD2:::pp.data(range(xlim, as.numeric(data.axes.out$ticlab)),
+    xlim <- pp.data(range(xlim, as.numeric(data.axes.out$ticlab)),
                     log.of.data)
     
     if (is.null(hw.yaxis)) {
@@ -146,13 +146,13 @@ function (distribution,
          main = my.title)
     title(xlab = xlab, cex.lab = cex.labs)
     axis(side = 2, 
-         at = SMRD2:::pp.quant(tick.location, distribution,shape), 
+         at = pp.quant(tick.location, distribution,shape), 
          labels = F, 
          tck = 0.01, 
          mgp = c(5, 2.1, 0),
          cex.axis = cex.axis)
     axis(side = 2, 
-         at = SMRD2:::pp.quant(tick.label.loc[in.range], distribution, shape), 
+         at = pp.quant(tick.label.loc[in.range], distribution, shape), 
          labels = format(show.tick.labels[in.range], scientific = T),
          adj = 1, 
          tck = 0.02, 
@@ -160,7 +160,7 @@ function (distribution,
          cex.axis = cex.axis,
          las = 1)
     if (linear.axes == "q" || linear.axes == "b") {
-        lin.prob.axes.out <- SMRD2:::linax(range(SMRD2:::pp.quant(tick.location,
+        lin.prob.axes.out <- linax(range(pp.quant(tick.location,
             distribution, shape)))
         data.tick.location <- as.numeric(lin.prob.axes.out$ticloc)
         data.tick.label.loc <- as.numeric(lin.prob.axes.out$ticlab)
@@ -186,17 +186,17 @@ function (distribution,
     data.tick.location <- as.numeric(data.axes.out$ticloc)
     data.tick.label.loc <- as.numeric(data.axes.out$ticlab)
     axis(side = 1, 
-         at = SMRD2:::pp.data(data.tick.location, log.of.data),
+         at = pp.data(data.tick.location, log.of.data),
          labels = F, 
          tck = 0.01, 
          mgp = c(5, 2.1, 0), 
          cex.axis = cex.axis)
     
-    xlabels <- SMRD2:::vector.power10(data.axes.out$ticlab)
+    xlabels <- vector.power10(data.axes.out$ticlab)
       
       axis(side = 1, 
            adj = 0.5,
-           at = SMRD2:::pp.data(data.tick.label.loc, log.of.data),
+           at = pp.data(data.tick.label.loc, log.of.data),
            labels = format(data.axes.out$ticlab, scientific = T), 
            tck = 0.02, 
            mgp = c(5, 0.5, 0), 
@@ -204,7 +204,7 @@ function (distribution,
 
     if (linear.axes == "t" || linear.axes == "b" && log.of.data) {
         lin.data.axes.out <- 
-          SMRD2:::linax(range(log10(data.tick.location)))
+          linax(range(log10(data.tick.location)))
         lin.data.tick.location <- 
           as.numeric(lin.data.axes.out$ticloc) * 2.302585
         lin.data.tick.label.loc <- 
@@ -227,16 +227,16 @@ function (distribution,
         usr.out <- par("usr")
         yvec.low <- rep(usr.out[3], length(data.tick.location))
         yvec.high <- rep(usr.out[4], length(data.tick.location))
-        matlines(x = rbind(SMRD2:::pp.data(data.tick.location, log.of.data),
+        matlines(x = rbind(pp.data(data.tick.location, log.of.data),
             
-                           y = SMRD2:::pp.data(data.tick.location, log.of.data)), rbind(yvec.low,
+                           y = pp.data(data.tick.location, log.of.data)), rbind(yvec.low,
             yvec.high), col = "darkgray", lty = 3, lwd = 1.5, pch = 1)
         xvec.low <- rep(usr.out[1], length(tick.location))
         xvec.high <- rep(usr.out[2], length(tick.location))
         
         matlines(x = rbind(xvec.low, xvec.high), 
-                 y = rbind(SMRD2:::pp.quant(tick.location,distribution, shape), 
-                           SMRD2:::pp.quant(tick.location, distribution, shape)), 
+                 y = rbind(pp.quant(tick.location,distribution, shape), 
+                           pp.quant(tick.location, distribution, shape)), 
                  col = "darkgray", 
                  lty = 3, 
                  lwd = 1.5, 
@@ -246,13 +246,13 @@ function (distribution,
         yvec.low <- rep(usr.out[3], length(data.tick.label.loc))
         yvec.high <- rep(usr.out[4], length(data.tick.label.loc))
         
-        matlines(x = rbind(SMRD2:::pp.data(data.tick.label.loc, log.of.data),
-            y = SMRD2:::pp.data(data.tick.label.loc, log.of.data)), rbind(yvec.low,
+        matlines(x = rbind(pp.data(data.tick.label.loc, log.of.data),
+            y = pp.data(data.tick.label.loc, log.of.data)), rbind(yvec.low,
             yvec.high), col = "darkgray", lty = 3, lwd = 1.5, pch = 1)
         xvec.low <- rep(usr.out[1], length(tick.label.loc))
         xvec.high <- rep(usr.out[2], length(tick.label.loc))
-        matlines(x = rbind(xvec.low, xvec.high), rbind(SMRD2:::pp.quant(tick.label.loc,
-            distribution, shape), y = SMRD2:::pp.quant(tick.label.loc,
+        matlines(x = rbind(xvec.low, xvec.high), rbind(pp.quant(tick.label.loc,
+            distribution, shape), y = pp.quant(tick.label.loc,
             distribution, shape)), col = "darkgray", lty = 3, lwd = 1.5,
             pch = 1)
     }
@@ -262,7 +262,7 @@ function (distribution,
                line = probplot.setup.title.out$lside.line,
                text = ylab, 
                cex = cex.labs),
-         SMRD2:::add.slope.scale(distribution, 
+         add.slope.scale(distribution, 
                          shape, 
                          draw.line))
 
