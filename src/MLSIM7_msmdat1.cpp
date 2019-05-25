@@ -76,16 +76,16 @@ double pretim;
    
 if(debug::kprint >= 1) {
   
-   Rcpp::Rcout << "\nMSMDAT1**A\n"                            << std::endl;
-   Rcpp::Rcout << "igroup"           << igroup - 1            << std::endl;
-   Rcpp::Rcout << "centim(igroup)"   << centim.at(igroup - 1) << std::endl;
-   Rcpp::Rcout << "prdelt"           << prdelt                << std::endl;
-   Rcpp::Rcout << "pretim"           << pretim                << std::endl;
-   Rcpp::Rcout << "nsamsz(igroup)"   << nsamsz.at(igroup - 1) << std::endl;
-   Rcpp::Rcout << "krfail(igroup)"   << krfail.at(igroup - 1) << std::endl;
-   Rcpp::Rcout << "nmr"              << nmr                   << std::endl;
-   Rcpp::Rcout << "kpred"            << kpred                 << std::endl;
-   Rcpp::Rcout << "kpredt"           << kpredt                << std::endl;
+   Rcpp::Rcout << "\nMSMDAT1**A\n"                             << std::endl;
+   Rcpp::Rcout << "        igroup = " << igroup - 1            << std::endl;
+   Rcpp::Rcout << "centim(igroup) = " << centim.at(igroup - 1) << std::endl;
+   Rcpp::Rcout << "        prdelt = " << prdelt                << std::endl;
+   Rcpp::Rcout << "        pretim = " << pretim                << std::endl;
+   Rcpp::Rcout << "nsamsz(igroup) = " << nsamsz.at(igroup - 1) << std::endl;
+   Rcpp::Rcout << "krfail(igroup) = " << krfail.at(igroup - 1) << std::endl;
+   Rcpp::Rcout << "           nmr = " << nmr                   << std::endl;
+   Rcpp::Rcout << "         kpred = " << kpred                 << std::endl;
+   Rcpp::Rcout << "        kpredt = " << kpredt                << std::endl;
   
 }
   
@@ -93,20 +93,20 @@ kpredt = kpredt + kpred;
 
 if(debug::kprint >= 1) {
   
-   Rcpp::Rcout << "\nMSMDAT1**B\n"                            << std::endl;
-   Rcpp::Rcout << "igroup"           << igroup - 1            << std::endl;
-   Rcpp::Rcout << "iobs"             << iobs - 1              << std::endl;
-   Rcpp::Rcout << "centim(igroup)"   << centim.at(igroup - 1) << std::endl;
-   Rcpp::Rcout << "prdelt"           << prdelt                << std::endl;
-   Rcpp::Rcout << "pretim"           << pretim                << std::endl;
-   Rcpp::Rcout << "nsamsz(igroup)"   << nsamsz.at(igroup - 1) << std::endl;
-   Rcpp::Rcout << "krfail(igroup)"   << krfail.at(igroup - 1) << std::endl;
-   Rcpp::Rcout << "nrleft"           << nrleft                << std::endl;
-   Rcpp::Rcout << "kpred"            << kpred                 << std::endl;
-   Rcpp::Rcout << "kpredt"           << kpredt                << std::endl;
-   Rcpp::Rcout << "nrownw"           << nrownw                << std::endl;
-   Rcpp::Rcout << "theta(0)"         << theta.at(0)           << std::endl;
-   Rcpp::Rcout << "theta(1)"         << theta.at(1)           << std::endl;
+   Rcpp::Rcout << "\nMSMDAT1**B\n"                             << std::endl;
+   Rcpp::Rcout << "        igroup = " << igroup - 1            << std::endl;
+   Rcpp::Rcout << "          iobs = " << iobs - 1              << std::endl;
+   Rcpp::Rcout << "centim(igroup) = " << centim.at(igroup - 1) << std::endl;
+   Rcpp::Rcout << "        prdelt = " << prdelt                << std::endl;
+   Rcpp::Rcout << "        pretim = " << pretim                << std::endl;
+   Rcpp::Rcout << "nsamsz(igroup) = " << nsamsz.at(igroup - 1) << std::endl;
+   Rcpp::Rcout << "krfail(igroup) = " << krfail.at(igroup - 1) << std::endl;
+   Rcpp::Rcout << "        nrleft = " << nrleft                << std::endl;
+   Rcpp::Rcout << "         kpred = " << kpred                 << std::endl;
+   Rcpp::Rcout << "        kpredt = " << kpredt                << std::endl;
+   Rcpp::Rcout << "        nrownw = " << nrownw                << std::endl;
+   Rcpp::Rcout << "      theta(0) = " << theta.at(0)           << std::endl;
+   Rcpp::Rcout << "      theta(1) = " << theta.at(1)           << std::endl;
   
 }
 
