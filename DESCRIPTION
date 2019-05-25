@@ -31,8 +31,10 @@ Imports:
     plot3D,
     xtable,
     Rcpp (>= 1.0.1),
-    ggplot2
-LinkingTo: Rcpp
+    ggplot2,
+    BH
+LinkingTo: Rcpp,
+           BH
 NeedsCompilation: yes
 Archs: i386, x64
 Suggests:
