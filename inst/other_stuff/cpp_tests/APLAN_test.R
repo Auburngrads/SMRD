@@ -1,4 +1,5 @@
 library(SMRD)
+library(SMRD2)
 alt.plan.values <- SMRD:::get.alt.plan.values.from.slope.and.point(
   distribution="Weibull",
   relationship="Arrhenius",
