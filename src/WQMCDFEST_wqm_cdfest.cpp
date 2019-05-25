@@ -110,25 +110,29 @@ int itype;
 
   if(debug::kprint >= 3){
     
-     for(int i = 1; i <= n; i++) {
-       
-         Rcpp::Rcout << "\nWQM_CDFES1 iter = " << i - 1     << std::endl;
-         Rcpp::Rcout << "n = "           << n           << std::endl;
-         Rcpp::Rcout << "ny = "          << ny          << std::endl;
-         Rcpp::Rcout << "nty = "         << nty         << std::endl;
-         Rcpp::Rcout << "nstart = "      << nstart      << std::endl;
-         Rcpp::Rcout << "maxit = "       << maxit       << std::endl;
-         Rcpp::Rcout << "y(i,0) = "      << y.at(i - 1,0)      << std::endl;
-         Rcpp::Rcout << "y(i,ny - 1) = " << y.at(i - 1,ny - 1) << std::endl;
-         Rcpp::Rcout << "codes(i) = "    << codes.at(i - 1)    << std::endl;
-         Rcpp::Rcout << "weight(i) = "   << weight.at(i - 1)   << std::endl;
-
-     }
+     Rcpp::NumericVector ycol0 = y.column(0);
+     Rcpp::NumericVector ycol1 = y.column(ny - 1);
+     Rcpp::Rcout << "\nWQM_CDFES1\n " << std::endl;
+     Rcpp::Rcout << "         n = " << n      << std::endl;
+     Rcpp::Rcout << "        ny = " << ny     << std::endl;
+     Rcpp::Rcout << "       nty = " << nty    << std::endl;
+     Rcpp::Rcout << "    nstart = " << nstart << std::endl;
+     Rcpp::Rcout << "     maxit = " << maxit  << std::endl;
+     Rcpp::Rcout << "     y(,0) = " << ycol0  << std::endl;
+     Rcpp::Rcout << "y(,ny - 1) = " << ycol1  << std::endl;
+     Rcpp::Rcout << "     codes = " << codes  << std::endl;
+     Rcpp::Rcout << "    weight = " << weight << std::endl;
+     
   }
 
  wqm_cdfckd(y,ny,ty,nty,codes,weight,tcodes,n,tol,ier);
   
-  if(debug::kprint > 0) Rcpp::Rcout << "\nafter cdfckd\n" << std::endl;
+  if(debug::kprint > 0) {
+    
+     Rcpp::Rcout << "\nafter cdfckd\n" << std::endl;
+     Rcpp::Rcout << "ier = " << ier << std::endl;
+     
+  }
 
 if(ier <= 0) {
 
