@@ -1,5 +1,6 @@
 library(SMRD)
-test = 5
+library(SMRD2)
+test = 1
 if(test == 1) {
 data.ld <- frame.to.ld(heatexchanger,
                        response.column = c(1,2),
@@ -36,7 +37,7 @@ if(test == 5){
 }
 
 number.sim = 2000
-kprint = 0 
+if(!exists("kprint")) kprint = 0
 maxit = 500 
 max.sim.scratch.space = 1000
 maxmsd = 100
@@ -105,7 +106,7 @@ new = SMRD2:::MLSIM3(y,
                         nty, 
                         matrix(0, nrow = number.cases, ncol = 1), 
                         integer(number.cases), 
-                     gamthr = single(number.cases), 
+                     gamthr = double(number.cases), 
                      as.integer(maxit), 
                      as.integer(kprint), 
                      double(ndscrat), 
