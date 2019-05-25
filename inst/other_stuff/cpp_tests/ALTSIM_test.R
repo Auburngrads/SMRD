@@ -1,16 +1,17 @@
 library(SMRD)
+library(SMRD2)
 accel.var.mat <- cbind(V1=c(1,1,2,2),V2=c(1,2,1,2))
 nsamsz = c(4,4,4,4)
 centim = c(40000,40000,40000,40000)
 theta = c(1,-24,5,1)
 distribution = 'normal'
-number.sim = 10
+number.sim = 2000
 kctype = 1
 escale = 10000
 intercept = T
-kprint = 0
+if(!exists("kprint")) kprint = 0
 maxit = 500
-debug1= F
+debug1 = F
 randomize = T
 number.cases <- sum(nsamsz + 1)
     plan <- list(accel.var.mat = accel.var.mat,
@@ -22,7 +23,7 @@ number.cases <- sum(nsamsz + 1)
     distribution.number <- SMRD:::numdist(distribution)
     if (is.null(accel.var.mat)) {
         accel.var.mat <- 0
-        if (int != 1) stop("must have int=1 if no x matrix")
+        if (int != 1) stop("must have int = 1 if no x matrix")
         param.names <- c("mu", "sigma")
         nter <- 1
         nsubex <- 1
@@ -96,7 +97,7 @@ number.cases <- sum(nsamsz + 1)
                      number.sim = as.integer(number.sim), 
                      iersim = integer(1))
 
-    new <- SMRD2::altsim(x = xmat, 
+    new <- SMRD2:::ALTSIM(x = xmat, 
                              y = y,
                              cen = as.integer(censor.codes),
                              wt = as.integer(case.weights),
