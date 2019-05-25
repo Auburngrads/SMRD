@@ -136,15 +136,15 @@ iobs = nsamsz.at(igroup - 1) + 1;
    }
 // Now record the censoring times, if any
    y.at((nrownw - 1) + (iref - 1),ny - 1) = xcen;
-   cen.at(nrownw - 1 + (iref - 1)) = 2;
-   wt.at(nrownw - 1 + (iref - 1)) = nsamsz.at(igroup - 1) - krfail.at(igroup - 1);
+   cen.at((nrownw - 1) + (iref - 1)) = 2;
+   wt.at((nrownw - 1) + (iref - 1)) = nsamsz.at(igroup - 1) - krfail.at(igroup - 1);
 
    if(debug::kprint >= 4) {
       
       Rcpp::Rcout << "\nSMLDAT**4\n" << std::endl;
-      Rcpp::Rcout << "y = \n" << y   << std::endl;
-      Rcpp::Rcout << "cen = " << cen << std::endl;
-      Rcpp::Rcout << "wt = "  << wt  << std::endl;
+      Rcpp::Rcout << "  y = \n" << y   << std::endl;
+      Rcpp::Rcout << "cen = "   << cen << std::endl;
+      Rcpp::Rcout << " wt = "   << wt  << std::endl;
       
    }
 
