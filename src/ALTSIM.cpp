@@ -79,14 +79,31 @@ debug::kprint = kprint;
   
 bool lcheck;
 Rcpp::List SIMALT;
-int ii,nrowr,iervcv,ierfit;
-int nrownw,kpred,inext;
+int ii,nrowr,nrownw,kpred,inext;
 Rcpp::List ints,doubs,bools,numvec,intvec,nummat,logvec;
-Rcpp::NumericMatrix ipxnew,iptmat,ipvcvb,ipvcvg,ivcvd,ivcvdd;
-Rcpp::NumericVector iprv1,ipdiag,ipthb,ipthg,ipfsd,ipnext;
-Rcpp::NumericVector itd,itf,ied,iw,ivd;
-Rcpp::IntegerVector iir, ijc;
-double xlike;
+// Should give this a junk number below too, probably
+   double xlike = 7777.0e00;
+   int iervcv = 0;
+   int ierfit = 0;
+   Rcpp::NumericMatrix ipxnew(nrow, nter);
+   Rcpp::NumericVector iprv1(nparm);
+   Rcpp::NumericVector ipdiag(nparm);
+   Rcpp::NumericMatrix iptmat(nparm, nparm);
+   Rcpp::NumericVector ipthb(nparm);
+   Rcpp::NumericVector ipthg(nparm);
+   Rcpp::NumericVector ipfsd(nparm);
+   Rcpp::NumericMatrix ipvcvb(nparm, nparm);
+   Rcpp::NumericMatrix ipvcvg(nparm, nparm);
+   Rcpp::NumericVector ipnext(nparm);
+   Rcpp::NumericVector itd(nparm);
+   Rcpp::NumericVector itf(nparm);
+   Rcpp::NumericVector ied(nparm);
+   Rcpp::NumericVector iw(nparm * nparm + 3 * nparm);
+   Rcpp::NumericVector ivd(nparm);
+   Rcpp::NumericMatrix ivcvd(nparm, nparm);
+   Rcpp::NumericMatrix ivcvdd(nparm + 1, nparm + 1);
+   Rcpp::IntegerVector iir(nparm + 1);
+   Rcpp::IntegerVector ijc(nparm + 1);
 
 if(debug::kprint >= 2) {
   
@@ -150,7 +167,7 @@ if(debug::kprint >= 3) {
 
 if((debug::kprint >=3) & ((isim % 50) == 1)){
   
-    Rcpp::Rcout << "Beginning simulation number = " << isim << std::endl;
+    Rcpp::Rcout << "\nBeginning simulation number = " << isim << std::endl;
   
 }
 
@@ -188,30 +205,6 @@ if(debug::kprint >= 2) {
    Rcpp::Rcout << "theta start values = " << theta << std::endl;
 
 }
-
-// Should give this a junk number below too, probably
-   xlike = 7777.0e00;
-   iervcv = 0;
-   ierfit = 0;
-   ipxnew = Rcpp::NumericMatrix(nrow, nter);
-   iprv1 = Rcpp::NumericVector(nparm);
-   ipdiag = Rcpp::NumericVector(nparm);
-   iptmat = Rcpp::NumericMatrix(nparm, nparm);
-   ipthb = Rcpp::NumericVector(nparm);
-   ipthg = Rcpp::NumericVector(nparm);
-   ipfsd = Rcpp::NumericVector(nparm);
-   ipvcvb = Rcpp::NumericMatrix(nparm, nparm);
-   ipvcvg = Rcpp::NumericMatrix(nparm, nparm);
-   ipnext = Rcpp::NumericVector(nparm);
-   itd = Rcpp::NumericVector(nparm);
-   itf = Rcpp::NumericVector(nparm);
-   ied = Rcpp::NumericVector(nparm);
-   iw = Rcpp::NumericVector(nparm * nparm + 3 * nparm);
-   ivd = Rcpp::NumericVector(nparm);
-   ivcvd = Rcpp::NumericMatrix(nparm, nparm);
-   ivcvdd = Rcpp::NumericMatrix(nparm + 1, nparm + 1);
-   iir = Rcpp::IntegerVector(nparm + 1);
-   ijc = Rcpp::IntegerVector(nparm + 1);
 
    wqm_mlboth(x,y,cen,wt,nrownw,nter,ny,nty,ty,tcodes,
               kdist,gamthr,lfix,lcheck,nparm,intcpt,escale,
@@ -274,12 +267,8 @@ for(int iii = 1; iii <= nparm; iii++){
                                 Named("nparm") = nparm,
                                 Named("intcpt") = intcpt,
                                 Named("maxit") = maxit,
-                                Named("numsim") = numsim,
-                                Named("kdist") = kdist,
                                 Named("nrow") = nrow,
                                 Named("nter") = nter,
-                                Named("ny") = ny,
-                                Named("nty") = nty,
                                 Named("nrownw") = nrownw,
                                 Named("kpred") = kpred,
                                 Named("inext") = inext);
@@ -289,11 +278,10 @@ for(int iii = 1; iii <= nparm; iii++){
       
       bools = Rcpp::List::create(Named("lcheck") = lcheck);
       
-      intvec = Rcpp::List::create(Named("tcodes") = tcodes,
-                                  Named("krfail") = krfail,
+      intvec = Rcpp::List::create(Named("krfail") = krfail,
+                                  Named("nsamsz") = nsamsz,
                                   Named("cen") = cen,
-                                  Named("wt") = wt,
-                                  Named("nsamsz") = nsamsz);
+                                  Named("wt") = wt);
       
       numvec = Rcpp::List::create(Named("thetah") = thetah,
                                   Named("fsder") = fsder,
