@@ -87,20 +87,36 @@ Rcpp::List MLSIM7(Rcpp::NumericMatrix x,
 debug::kprint = kprint;
    
 bool lcheck;
-double anslow,ansup,pquan,xlike;
+double anslow,ansup,pquan;
 int nwhich,nvcv,nrownw = 0,nfail;
-int itry2, itry10;
-int iervcv, ierfit, ierror;
-int kpredt;
+int itry2, itry10, ierror, kpredt;
 Rcpp::NumericVector thetamrr = Rcpp::NumericVector(2);
 Rcpp::List ints,doubs,bools,numvec,intvec,nummat,logvec;
-Rcpp::NumericMatrix ipxnew,iptmat,ipvcvb,ipvcvg,ivcvd,ivcvdd;
-Rcpp::NumericVector iprv1,ipdiag,ipthb,ipthg,ipfsd,ipnext;
-Rcpp::NumericVector itd,itf,ied,iw,ivd;
-Rcpp::IntegerVector iir, ijc;
 Rcpp::IntegerVector ikey,ikrevrank,iwtnew;
 Rcpp::IntegerVector irorder,icenstar,icenstarn;
 Rcpp::NumericVector iynew,ixstar,ix,irmdrank;
+double xlike = 7777.0e00;
+int iervcv = 0;
+int ierfit = 0;
+Rcpp::NumericMatrix ipxnew(nrow, nter);
+Rcpp::NumericVector iprv1(nparm);
+Rcpp::NumericVector ipdiag(nparm);
+Rcpp::NumericMatrix iptmat(nparm, nparm);
+Rcpp::NumericVector ipthb(nparm);
+Rcpp::NumericVector ipthg(nparm);
+Rcpp::NumericVector ipfsd(nparm);
+Rcpp::NumericMatrix ipvcvb(nparm, nparm);
+Rcpp::NumericMatrix ipvcvg(nparm, nparm);
+Rcpp::NumericVector ipnext(nparm);
+Rcpp::NumericVector itd(nparm);
+Rcpp::NumericVector itf(nparm);
+Rcpp::NumericVector ied(nparm);
+Rcpp::NumericVector iw(nparm * nparm + 3 * nparm);
+Rcpp::NumericVector ivd(nparm);
+Rcpp::NumericMatrix ivcvd(nparm, nparm);
+Rcpp::NumericMatrix ivcvdd(nparm + 1, nparm + 1);
+Rcpp::IntegerVector iir(nparm + 1);
+Rcpp::IntegerVector ijc(nparm + 1);
 
 if(debug::kprint >= 2) {
   
@@ -193,16 +209,12 @@ if(debug::kprint >= 2) {
 if(debug::kprint >= 2) {
   
    Rcpp::Rcout << "\nSIMDAT**i,y,c,w\n" << std::endl;
-  
-   for(int i = 1; i <= nrownw; i++){
-     
-       Rcpp::Rcout << "i" << i - 1 << std::endl;
-       Rcpp::Rcout << "y(i,1)" << y(i - 1,0) << std::endl;
-       Rcpp::Rcout << "cen(i)" << cen(i - 1) << std::endl;
-       Rcpp::Rcout << "wt(i)" << wt(i - 1) << std::endl;
+   Rcpp::Rcout << "nrownw = " << nrownw << std::endl;
+   Rcpp::Rcout << "  isim = " << isim << std::endl;
+   Rcpp::Rcout << "     y = " << y << std::endl;
+   Rcpp::Rcout << "   cen = " << cen << std::endl;
+   Rcpp::Rcout << "    wt = " << wt << std::endl;
    
-   }
-
 }
 
 // Check to see if there was only one or 0 failures
@@ -249,29 +261,6 @@ if(ierror <= 0) {
    itry2  = 2;
    itry10 = 10;
    // if(itry2 < itry10) goto line1587;
-      xlike = 7777.0e00;
-      iervcv = 0;
-      ierfit = 0;
-      ipxnew = Rcpp::NumericMatrix(nrow, nter);
-      iprv1 = Rcpp::NumericVector(nparm);
-      ipdiag = Rcpp::NumericVector(nparm);
-      iptmat = Rcpp::NumericMatrix(nparm, nparm);
-      ipthb = Rcpp::NumericVector(nparm);
-      ipthg = Rcpp::NumericVector(nparm);
-      ipfsd = Rcpp::NumericVector(nparm);
-      ipvcvb = Rcpp::NumericMatrix(nparm, nparm);
-      ipvcvg = Rcpp::NumericMatrix(nparm, nparm);
-      ipnext = Rcpp::NumericVector(nparm);
-      itd = Rcpp::NumericVector(nparm);
-      itf = Rcpp::NumericVector(nparm);
-      ied = Rcpp::NumericVector(nparm);
-      iw = Rcpp::NumericVector(nparm * nparm + 3 * nparm);
-      ivd = Rcpp::NumericVector(nparm);
-      ivcvd = Rcpp::NumericMatrix(nparm, nparm);
-      ivcvdd = Rcpp::NumericMatrix(nparm + 1, nparm + 1);
-      iir = Rcpp::IntegerVector(nparm + 1);
-      ijc = Rcpp::IntegerVector(nparm + 1);
-
       wqm_mlboth(x,y,cen,wt,nrownw,nter,ny,nty,ty,tcodes,
                  kdist,gamthr,lfix,lcheck,nparm,intcpt,escale,
                  e,maxit,dscrat,iscrat,xlike,devian,
@@ -360,13 +349,13 @@ retmat.at(4,isim - 1) = 1 / thetamrr.at(1);
 line5556: if(debug::kprint >= 1){
   
              Rcpp::Rcout << "\nmlsim7**\n" << std::endl;
-             Rcpp::Rcout << "isim = " << isim - 1 << std::endl;
-             Rcpp::Rcout << "nsimg = " <<  nsimg - 1<< std::endl;  
-             Rcpp::Rcout << "ngroup = " << ngroup  << std::endl;  
-             Rcpp::Rcout << "kpredt = " << kpredt  << std::endl;  
-             Rcpp::Rcout << "nmrvec(0) = " <<  nmrvec.at(0) << std::endl;  
-             Rcpp::Rcout << "retmat(1,nsimg) = " <<  retmat.at(1, nsimg - 1) << std::endl;  
-             Rcpp::Rcout << "retmat(2,nsimg) = " <<  retmat.at(2, nsimg - 1) << std::endl;  
+             Rcpp::Rcout << "           isim = " << isim - 1 << std::endl;
+             Rcpp::Rcout << "          nsimg = " << nsimg - 1<< std::endl;  
+             Rcpp::Rcout << "         ngroup = " << ngroup  << std::endl;  
+             Rcpp::Rcout << "         kpredt = " << kpredt  << std::endl;  
+             Rcpp::Rcout << "      nmrvec(0) = " << nmrvec.at(0) << std::endl;  
+             Rcpp::Rcout << "retmat(1,nsimg) = " << retmat.at(1, nsimg - 1) << std::endl;  
+             Rcpp::Rcout << "retmat(2,nsimg) = " << retmat.at(2, nsimg - 1) << std::endl;  
   
           }
 
@@ -426,13 +415,9 @@ exit: ints = Rcpp::List::create(Named("nsimg") = nsimg,
                                 Named("nparm") = nparm,
                                 Named("intcpt") = intcpt,
                                 Named("maxit") = maxit,
-                                Named("numsim") = numsim,
                                 Named("ngroup") = ngroup,
-                                Named("kdist") = kdist,
                                 Named("nrow") = nrow,
                                 Named("nter") = nter,
-                                Named("ny") = ny,
-                                Named("nty") = nty,
                                 Named("nwhich") = nwhich,
                                 Named("nvcv") = nvcv,
                                 Named("nrownw") = nrownw,
@@ -449,8 +434,6 @@ exit: ints = Rcpp::List::create(Named("nsimg") = nsimg,
       
       intvec = Rcpp::List::create(Named("tcodes") = tcodes,
                                   Named("krfail") = krfail,
-                                  Named("cen") = cen,
-                                  Named("wt") = wt,
                                   Named("nsamsz") = nsamsz, 
                                   Named("nmrvec") = nmrvec);
       
