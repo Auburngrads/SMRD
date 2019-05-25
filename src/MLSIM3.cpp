@@ -217,44 +217,29 @@ exit:
 
 Rcpp::List ints = Rcpp::List::create(Named("nrow") = nrow,
                                      Named("nrowr") = nrowr,
-                                     Named("ny") = ny,
-                                     Named("nty") = nty,
                                      Named("maxit") = maxit,
-                                     Named("kprint") = kprint,
                                      Named("marray") = marray,
-                                     Named("numsim,") = numsim,
                                      Named("numret") = numret,
                                      Named("iersim") = iersim,
-                                     Named("method") = method);
+                                     Named("method") = method,
+                                     Named("iarray") = iarray,
+                                     Named("wtnew") = wtnew);
 
-Rcpp::List doubs = Rcpp::List::create(Named("pchmax") = pchmax);
+Rcpp::List nums = Rcpp::List::create(Named("pchmax") = pchmax,
+                                     Named("gamthr") = gamthr,
+                                     Named("tspass") = tspass,
+                                     Named("y") = y,
+                                     Named("ty") = ty,
+                                     Named("ynew") = ynew,
+                                     Named("retmat") = retmat);
 
 Rcpp::List bools = Rcpp::List::create(Named("lrand")  = lrand,
                                       Named("lcheck") = lcheck,
                                       Named("lsd")    = lsd);
 
-Rcpp::List intvec = Rcpp::List::create(Named("cen") = cen,
-                                       Named("wt") = wt,
-                                       Named("tcodes") = tcodes,
-                                       Named("iscrat") = iscrat,
-                                       Named("iarray") = iarray,
-                                       Named("wtnew") = wtnew);
-
-Rcpp::List numvec = Rcpp::List::create(Named("gamthr") = gamthr,
-                                       Named("dscrat") = dscrat,
-                                       Named("tspass") = tspass);
-
-Rcpp::List nummat = Rcpp::List::create(Named("y") = y,
-                                       Named("ty") = ty,
-                                       Named("ynew") = ynew,
-                                       Named("retmat") = retmat);
-
 return Rcpp::List::create(Named("ints") = ints,
-                          Named("doubs") = doubs,
-                          Named("bools") = bools,
-                          Named("intvec") = intvec,
-                          Named("numvec") = numvec,
-                          Named("nummat") = nummat);
+                          Named("nums") = nums,
+                          Named("bools") = bools);
 
 
 }
