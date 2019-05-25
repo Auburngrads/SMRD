@@ -160,10 +160,10 @@ int last,neval;
    if(vbound <= zero) {
      
       glimits.at(0) = 2.0e00;
-      neg = neg + 1;
      
    } else {
      
+      neg = neg + 1;
       glimits.at(0) = std::log(vbound);
      
    }
@@ -180,10 +180,10 @@ int last,neval;
    if(vbound <= zero) {
      
       glimits.at(1) = 2.0e00;
-      neg = neg + 1;
      
    } else {
       
+      neg = neg + 1;
       glimits.at(1) = std::log(vbound);
      
    }
@@ -200,10 +200,10 @@ int last,neval;
    if(vbound <= zero) {
      
       glimits.at(2) = 2.0e00;
-      neg = neg + 1;
      
    } else {
      
+      neg = neg + 1;
       glimits.at(2) = std::log(vbound);
      
    }
@@ -241,7 +241,8 @@ if(debug::kprint > 1) {
    Rcpp::Rcout << "\nXPDF3 neg = " << neg << std::endl;
   
 }
-if(neg != nzero) {
+
+if(neg == nzero) {
 
    glimits.at(0) = ugamma1 - 4.0e00 * sdgamma;
    glimits.at(1) = ugamma1 + 4.0e00 * sdgamma;
