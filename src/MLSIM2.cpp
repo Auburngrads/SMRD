@@ -93,13 +93,30 @@ Rcpp::List MLSIM2(Rcpp::NumericMatrix x,
                   int iersim){
 
 bool lcheck;
-int ii,nrowr, kount,method;
-int ierfit = 0, iervcv = 0;
-double xlike;
-Rcpp::NumericMatrix ipxnew,iptmat,ipvcvb,ipvcvg,ivcvd,ivcvdd;
-Rcpp::NumericVector iprv1,ipdiag,ipthb,ipthg,ipfsd,ipnext;
-Rcpp::NumericVector itd,itf,ied,iw,ivd;
-Rcpp::IntegerVector iir, ijc;
+int ii,nrowr,kount,method,isim = 0,real_sims =  0;
+// Should give this a junk number below too, probably
+   double xlike = 7777.0e00;
+   int iervcv = 0;
+   int ierfit = 0;
+   Rcpp::NumericMatrix ipxnew(nrow, nter);
+   Rcpp::NumericVector iprv1(nparm);
+   Rcpp::NumericVector ipdiag(nparm);
+   Rcpp::NumericMatrix iptmat(nparm, nparm);
+   Rcpp::NumericVector ipthb(nparm);
+   Rcpp::NumericVector ipthg(nparm);
+   Rcpp::NumericVector ipfsd(nparm);
+   Rcpp::NumericMatrix ipvcvb(nparm, nparm);
+   Rcpp::NumericMatrix ipvcvg(nparm, nparm);
+   Rcpp::NumericVector ipnext(nparm);
+   Rcpp::NumericVector itd(nparm);
+   Rcpp::NumericVector itf(nparm);
+   Rcpp::NumericVector ied(nparm);
+   Rcpp::NumericVector iw(nparm * nparm + 3 * nparm);
+   Rcpp::NumericVector ivd(nparm);
+   Rcpp::NumericMatrix ivcvd(nparm, nparm);
+   Rcpp::NumericMatrix ivcvdd(nparm + 1, nparm + 1);
+   Rcpp::IntegerVector iir(nparm + 1);
+   Rcpp::IntegerVector ijc(nparm + 1);
 
 debug::kprint = kprint;
      
@@ -162,19 +179,21 @@ for(int i = 0; i < nparm; i++){
    if(debug::kprint >= 3){
       
       Rcpp::Rcout << "\nMLSIM2: AFTER SNSET\n" << std::endl;
-      Rcpp::Rcout << "kount = " << kount << std::endl;
-      Rcpp::Rcout << "method = " << method << std::endl;
-      Rcpp::Rcout << "iarray = " << iarray << std::endl;
-      Rcpp::Rcout << "weights = " << wt << std::endl;
-      Rcpp::Rcout << "marray = " << marray << std::endl;
-      Rcpp::Rcout << "iersim = " << iersim << std::endl;
+      Rcpp::Rcout << "kount   = " << kount << std::endl;
+      Rcpp::Rcout << "method  = " << method << std::endl;
+      Rcpp::Rcout << "marray  = " << marray << std::endl;
+      Rcpp::Rcout << "iersim  = " << iersim << std::endl;
+      Rcpp::Rcout << "iarray  = \n" << iarray << std::endl;
+      Rcpp::Rcout << "weights = \n" << wt << std::endl;
       
    }
    
    if(iersim > 2000) goto exit;
    
-for(int isim = 1; isim <= numsim; isim++){
+while(isim < numsim){
 
+      real_sims = real_sims + 1;
+   
     // Print progress information
     if(debug::kprint >= 3){
       
@@ -250,30 +269,6 @@ for(int isim = 1; isim <= numsim; isim++){
       
       }
 
-      // Should give this a junk number below too, probably
-         xlike = 7777.0e00;
-         iervcv = 0;
-         ierfit = 0;
-         ipxnew = Rcpp::NumericMatrix(nrow, nter);
-         iprv1 = Rcpp::NumericVector(nparm);
-         ipdiag = Rcpp::NumericVector(nparm);
-         iptmat = Rcpp::NumericMatrix(nparm, nparm);
-         ipthb = Rcpp::NumericVector(nparm);
-         ipthg = Rcpp::NumericVector(nparm);
-         ipfsd = Rcpp::NumericVector(nparm);
-         ipvcvb = Rcpp::NumericMatrix(nparm, nparm);
-         ipvcvg = Rcpp::NumericMatrix(nparm, nparm);
-         ipnext = Rcpp::NumericVector(nparm);
-         itd = Rcpp::NumericVector(nparm);
-         itf = Rcpp::NumericVector(nparm);
-         ied = Rcpp::NumericVector(nparm);
-         iw = Rcpp::NumericVector(nparm * nparm + 3 * nparm);
-         ivd = Rcpp::NumericVector(nparm);
-         ivcvd = Rcpp::NumericMatrix(nparm, nparm);
-         ivcvdd = Rcpp::NumericMatrix(nparm + 1, nparm + 1);
-         iir = Rcpp::IntegerVector(nparm + 1);
-         ijc = Rcpp::IntegerVector(nparm + 1);
-      
           wqm_mlboth(xnew,ynew,cen,wtnew,nrow,nter,ny,nty,ty,
                      tcodes,kdist,gamthr,lfix,lcheck,nparm,
                      intcpt,escale,e,maxit,dscrat,
@@ -281,28 +276,22 @@ for(int isim = 1; isim <= numsim; isim++){
                      res,fv,ierfit,iervcv,ipxnew,iprv1,ipdiag,iptmat,
                      ipthb,ipthg,ipfsd,ipvcvb,ipvcvg,ipnext,itd,itf,
                      ied,iw,ivd,ivcvd,ivcvdd,iir,ijc);
+      
+   // if there is a problem, print the weights to help diagnose
+      if((iervcv + ierfit) > 0) continue;
+      isim = isim + 1;
+      
+   // Always save thetah and error
+      retmat.at(0,isim - 1) = 10 * iervcv + ierfit;
          
       // Save the results
       
-      // Always save thetah and error
          for(int k = 0; k < nparm; k++){
            
              retmat.at(k + 1,isim - 1) = thetah.at(k);
            
          }
          
-         retmat.at(0,isim - 1) = 10 * iervcv + ierfit;
-         
-      // if( iervcv+ierfit .gt. 0)write(6,4575)(wtnew(iii),iii=1,nrow)
-
-      // if there is a problem, print the weights to help diagnose
-
-      if((iervcv + ierfit) > 0) {
-         
-         Rcpp::warning("\nProblem with updated weights for bootstrap sample\nsimulation number = %i\n Updated weights = %i\nierfit = %i\niervcv = %i", isim,wtnew,ierfit,iervcv);
-         
-      }
-
       // Now check to see what else to save
       if(iret == 1) continue;
       if(iret == 2) goto line1002; // Theta and like
@@ -344,19 +333,15 @@ if(numret != nrowr) iersim = 4;
 
 exit:
 
-Rcpp::List ints = Rcpp::List::create(Named("kdist") = kdist,
-                                     Named("nrow") = nrow,
+Rcpp::List ints = Rcpp::List::create(Named("nrow") = nrow,
                                      Named("nrowr") = nrowr,
                                      Named("nter") = nter,
-                                     Named("ny") = ny,
-                                     Named("nty") = nty,
                                      Named("nparm") = nparm,
                                      Named("intcpt") = intcpt,
                                      Named("maxit") = maxit,
-                                     Named("kprint") = kprint,
                                      Named("marray") = marray,
                                      Named("iret") = iret,
-                                     Named("numsim") = numsim,
+                                     Named("real_sims") = real_sims,
                                      Named("numret") = numret,
                                      Named("iersim") = iersim,
                                      Named("ierfit") = ierfit,
@@ -369,10 +354,7 @@ Rcpp::List doubs = Rcpp::List::create(Named("escale") = escale,
 Rcpp::List bools = Rcpp::List::create(Named("lrand") = lrand,
                                       Named("lcheck") = lcheck);
 
-Rcpp::List intvec = Rcpp::List::create(Named("cen") = cen,
-                                       Named("wt") = wt,
-                                       Named("tcodes") = tcodes,
-                                       Named("iscrat") = iscrat,
+Rcpp::List intvec = Rcpp::List::create(Named("tcodes") = tcodes,
                                        Named("iarray") = iarray,
                                        Named("wtnew") = wtnew,
                                        Named("iir") = iir,
@@ -382,7 +364,6 @@ Rcpp::List numvec = Rcpp::List::create(Named("gamthr") = gamthr,
                                        Named("e") = e,
                                        Named("thetah") = thetah,
                                        Named("fsder") = fsder,
-                                       Named("dscrat") = dscrat,
                                        Named("ipthb") = ipthb,
                                        Named("ipthg") = ipthg,
                                        Named("ipfsd") = ipfsd,
@@ -395,8 +376,7 @@ Rcpp::List numvec = Rcpp::List::create(Named("gamthr") = gamthr,
                                        Named("fv") = fv,
                                        Named("theta") = theta,
                                        Named("iprv1") = iprv1,
-                                       Named("ipdiag") = ipdiag,
-                                       Named("tspass") = tspass);
+                                       Named("ipdiag") = ipdiag);
 
 Rcpp::List nummat = Rcpp::List::create(Named("x") = x,
                                        Named("y") = y,
