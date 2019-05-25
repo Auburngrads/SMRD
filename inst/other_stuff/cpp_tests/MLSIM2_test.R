@@ -1,6 +1,6 @@
 library(SMRD)
 library(SMRD2)
-test = 4
+test = 2
 if(test == 1){
   
    data.ld <- frame.to.ld(lzbearing, response.column = 1) 
@@ -83,7 +83,6 @@ randomize = T
                              max(max.sim.scratch.space, number.cases))
     e = rep(1e-04, number.parameters)
     parameter.fixed = rep(F, number.parameters)
-
     
     if (debug1) browser()
     
@@ -148,8 +147,8 @@ new = SMRD2:::MLSIM2(x = as.matrix(the.xmat),
                      e = as.double(e), 
                      maxit = as.integer(maxit), 
                      kprint = as.integer(kprint), 
-                     dscrat = double(ndscrat), 
-                     iscrat = integer(niscrat), 
+                     dscrat = double(1), 
+                     iscrat = integer(1), 
                      devian = matrix(0, nrow = number.cases, ncol = 3), 
                      thetah = as.double(theta.start), 
                      fsder = double(number.parameters), 
@@ -208,7 +207,7 @@ oldClass(old.results) <- "boot.npar.par.out"
 oldClass(new.results) <- "boot.npar.par.out"
 
 par(mfrow = c(1,2))
-SMRD2:::plot.boot.npar.par.out(old.results)
+SMRD:::plot.boot.npar.par.out(old.results)
 SMRD2:::plot.boot.npar.par.out(new.results)
 par(mfrow = c(1,1))
 
