@@ -1,20 +1,22 @@
 # start with loop.R
+if(!exists("kprint")) kprint = 0
+B = 1
+numsim = B
+
+test = 1
+if(test == 1) {
+    
 p.fail = 0.2
 m = 5
 e.of.r = 4 #c(2, 5, 10, 20, 50, 100)
 beta = 0.8 #c(0.8,1, 1.5, 3)
 mu = 0
-B = 2
-kprint = 0
 debug1 = F
 
 results.list <- list()
 kindex <- 0
 i = 1
 j = 1
-#for (i in 1:length(e.of.r)) {
-   
-#     for (j in 1:length(beta)) {
         
           cat("\ne.of.r=", e.of.r[i], "beta=", beta[j], "\nCensor Scheme:\n")
             censor.scheme <- SMRD:::get.censor.scheme.all(m = m, 
@@ -27,10 +29,42 @@ j = 1
             #print(efail)
             #print(sum(efail))
             #print(censor.scheme)
+            theta = c(mu, 1 / beta[j])
             
+}
+if(test == 2) {
+    
+    p.fail = 0.2
+m = 5
+e.of.r = c(2, 5, 10, 20, 50, 100)
+beta = c(0.8,1, 1.5, 3)
+mu = 0
+debug1 = F
+
+results.list <- list()
+kindex <- 0
+for (i in 1:length(e.of.r)) {
+   
+     for (j in 1:length(beta)) {
+        
+          cat("\ne.of.r=", e.of.r[i], "beta=", beta[j], "\nCensor Scheme:\n")
+            censor.scheme <- SMRD:::get.censor.scheme.all(m = m, 
+                                                   p.fail = p.fail,
+                                                   beta[j], e.of.r[i])
+            
+            assign(envir = .frame0,  inherits = TRUE,"tmp2.censor.scheme", censor.scheme)
+            tmp.censor.scheme <- censor.scheme
+            efail <- censor.scheme$number.units * pweibull(censor.scheme$censor.times, beta[j], scale = 1)
+            #print(efail)
+            #print(sum(efail))
+            #print(censor.scheme)
+            theta = c(mu, 1 / beta[j])
+            
+}
+}
+}
+   
 # onto mlesim.mmr.stagger.R
-numsim = B
-theta = c(mu, 1 / beta[j])
 censor.scheme = censor.scheme
 distribution = "Weibull"
 predict.time.delta = 1
@@ -119,7 +153,7 @@ zout <- .Fortran("mlsim7",
                  nnomle = integer(1), 
                  iersim = integer(1))
         
-new <- SMRD2::mlsim7(x = matrix(0, ncol = nter, nrow = max.number.cases),
+new <- SMRD2:::MLSIM7(x = matrix(0, ncol = nter, nrow = max.number.cases),
                          y = matrix(0, ncol = ny, nrow = max.number.cases), 
                          cen = integer(max.number.cases),
                          wt = integer(max.number.cases), 
@@ -139,8 +173,8 @@ new <- SMRD2::mlsim7(x = matrix(0, ncol = nter, nrow = max.number.cases),
                          e = as.double(e), 
                          maxit = as.integer(maxit),
                          kprint = as.integer(kprint), 
-                         dscrat = double(100 * ndscrat), 
-                         iscrat = integer(100 * niscrat), 
+                         dscrat = double(1), 
+                         iscrat = integer(1), 
                          devian = matrix(0,nrow = max.number.cases, ncol = 3),
                          thetah = double(number.parameters), 
                          fsder = double(number.parameters),
