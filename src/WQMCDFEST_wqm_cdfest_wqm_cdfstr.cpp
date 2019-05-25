@@ -144,12 +144,12 @@ for(int i = 1; i <= n2; i++){
 
    if(debug::kprint >= 10){
      
-      Rcpp::Rcout << "\nReduce\n"    << std::endl;
-      Rcpp::Rcout << "i = "          << i - 1            << std::endl;
-      Rcpp::Rcout << "index = "      << index - 1    << std::endl;
-      Rcpp::Rcout << "ys(index) = "  << ys.at(index - 1) << std::endl;
-      Rcpp::Rcout << "ll = "         << ll           << std::endl;
-      Rcpp::Rcout << "n = "          << n            << std::endl;
+      Rcpp::Rcout << "\nReduce\n"                << std::endl;
+      Rcpp::Rcout << "        i = " << i - 1     << std::endl;
+      Rcpp::Rcout << "    index = " << index - 1 << std::endl;
+      Rcpp::Rcout << "ys(index) = " << ys        << std::endl;
+      Rcpp::Rcout << "       ll = " << ll        << std::endl;
+      Rcpp::Rcout << "        n = " << n         << std::endl;
      
    } 
 
@@ -178,11 +178,11 @@ if(ll) goto line125;
    if(debug::kprint > 3){
      
       Rcpp::Rcout << "\np - q\n"    << std::endl;
-      Rcpp::Rcout << "m = "          << m            << std::endl;
+      Rcpp::Rcout << "     m = " << m            << std::endl;
       Rcpp::Rcout << "ilmark = " << ilmark - 1 << std::endl;
-      Rcpp::Rcout << "index = " << index - 1 << std::endl;
-      Rcpp::Rcout << "p(m) = " << p.at(m - 1) << std::endl;
-      Rcpp::Rcout << "q(m) = " << q.at(m - 1) << std::endl;
+      Rcpp::Rcout << " index = " << index - 1 << std::endl;
+      Rcpp::Rcout << "  p(m) = " << p.at(m - 1) << std::endl;
+      Rcpp::Rcout << "  q(m) = " << q.at(m - 1) << std::endl;
      
    }         
    
