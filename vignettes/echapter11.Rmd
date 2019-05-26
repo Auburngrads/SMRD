@@ -14,7 +14,7 @@ vignette: >
 ---
 
 ```{r, echo=FALSE}
-SMRD2:::vinny()
+SMRD2:::vinny(cache = T)
 library(SMRD2)
 ```
 
@@ -120,13 +120,14 @@ text(2.4969, -1.31908, "EXP")
 text(2.50633, -3.4758, "WEIB")
 text(2.34606, -5.75833, "EGENG")
 text(2.70432, -6.94453, "LOGNOR")
+```
 
+```{r, eval=FALSE}
 tmp <- one.dim.profile(bear.egeng.gmle.out,
                        profile.on.list = 3,
                        range.list = list(c(-1,2.0)),
                        size = 50,
                        save.structures = F)
-
 
 profile.plot(tmp, variable.name = "lambda")
 abline(v = 0, lty = 3)
@@ -161,7 +162,9 @@ one.dim.profile(Fan.egeng.gmle.out,
                 range.list = list(c(-8,2)),
                 size = 50)
 
-profile.plot(Fan.egeng.gmle.outstruct3)
+# need to rename this function to s3 method plot.one.dim.out
+# This is interfering with s3 method stats::profile
+SMRD2:::profile.plot(Fan.egeng.gmle.outstruct3)
 ```
 
 # bisa examples
@@ -256,9 +259,9 @@ gmleprobplot(small.interval(Fan.ld, delta = 0.01),
              my.title = "", 
              cexlab = 1.5)
 
-at7987.sevgets.gmle.out <- gets.mle(at7987.ld, distribution="sev")
+at7987.sevgets.gmle.out <- gets.mle(at7987.ld, distribution = "sev")
 
-at7987.norgets.gmle.out <- gets.mle(at7987.ld, distribution="normal")
+at7987.norgets.gmle.out <- gets.mle(at7987.ld, distribution = "normal")
 
 basic.gmleprobplot(at7987.ld,
                    distribution = "sevgets",
@@ -321,7 +324,7 @@ basic.gmleprobplot(Fan.ld,distribution = "egeng",
 bear.egeng.gmle.out <- egeng.mle(lzbearing.ld)
 
 
-Fan.egeng.gmle.out <- egeng.mle(Fan.ld)
+Fan.weibull.gmle.out <- ls2.mle(Fan.ld, distribution = "weibull")
 
 
 Fan.weibull.gmle.out <-  FillRegion(Fan.weibull.gmle.out,
@@ -332,8 +335,8 @@ Fan.weibull.gmle.out <-  FillRegion(Fan.weibull.gmle.out,
 summary(Fan.weibull.gmle.out.jcr)
 summary(Fan.weibull.gmle.out)
 
-
-mleprobplot(Fan.ld,"Weibull",
+mleprobplot(Fan.ld,
+            distribution = "Weibull",
             xlim = c(200,9999),
             ylim = c(.0031,.49))
 
@@ -577,7 +580,8 @@ LaminatePanel.fit11.out <- rflm.mle(LaminatePanel.ld,
                                     cond.dist = "sev", 
                                     fl.dist = "sev")
 
-plot(LaminatePanel.fit11.out,response.on.yaxis = F)
+plot(LaminatePanel.fit11.out,
+     response.on.yaxis = F)
 
 LaminatePanel.fit11f.out <- rflm.mle(LaminatePanel.ld,
                                      cond.dist = "sev", 
@@ -597,14 +601,13 @@ LaminatePanel.fit12.out <- rflm.mle(LaminatePanel.ld,
 
 print(LaminatePanel.fit12.out)
 
-LaminatePanel.fit21.out <- rflm.mle(LaminatePanel.ld, 
+LaminatePanel.fit12.out <- rflm.mle(LaminatePanel.ld, 
                                     cond.dist = "normal", 
                                     fl.dist = "sev")
 
-print(LaminatePanel.fit21.out)
+print(LaminatePanel.fit12.out)
 
-plot(LaminatePanel.fit21.out, response.on.yaxis = F)
-
+plot(LaminatePanel.fit12.out, response.on.yaxis = F)
 
 LaminatePanel.fit22.out <- rflm.mle(LaminatePanel.ld,
                                     cond.dist = "normal", 
@@ -640,7 +643,7 @@ one.dim.profile(LaminatePanel.fit22.out,
 # inconel superalloy data
 
 ```{r}
-inconelsub <- inconel[inconel$Strain<.007,]
+inconelsub <- inconel[inconel$Strain < 0.007,]
 
 inconel.ld <- frame.to.ld(inconel,
                           response.column = "cycles",
@@ -648,31 +651,30 @@ inconel.ld <- frame.to.ld(inconel,
                           censor.column = "event", 
                           x.column = "strain")
 
-
 censored.data.plot(inconel.ld, 
                    y.axis = "log",
                    response.on.yaxis = F)
 
-inconel.fit11 <-rflm.mle(inconel.ld, 
-                         cond.dist = "sev",
-                         fl.dist = "sev")
+inconel.fit11 <- rflm.mle(inconel.ld, 
+                          cond.dist = "sev",
+                          fl.dist = "sev")
 print(inconel.fit11)
 
 plot(inconel.fit11)
 
-inconel.fit12 <-rflm.mle(inconel.ld, 
-                         cond.dist = "sev",
-                         fl.dist = "normal")
+inconel.fit12 <- rflm.mle(inconel.ld, 
+                          cond.dist = "sev",
+                          fl.dist = "normal")
 print(inconel.fit12)
 
-inconel.fit21 <-rflm.mle(inconel.ld, 
-                         cond.dist = "normal", 
-                         fl.dist = "sev")##
+inconel.fit21 <- rflm.mle(inconel.ld, 
+                          cond.dist = "normal", 
+                          fl.dist = "sev")#
 print(inconel.fit21)
 
-inconel.fit22 <-rflm.mle(inconel.ld, 
-                         cond.dist = "normal", 
-                         fl.dist = "normal")
+inconel.fit22 <- rflm.mle(inconel.ld, 
+                          cond.dist = "normal", 
+                          fl.dist = "normal")
 print(inconel.fit22)
 
 plot(inconel.fit22)
@@ -705,14 +707,14 @@ titanium.fit12 <-rflm.mle(titanium.ld,
 
 print(titanium.fit12)
 
-titanium.fit21 <-rflm.mle(titanium.ld, 
-                          cond.dist = "normal", 
-                          fl.dist = "sev")
+titanium.fit21 <- rflm.mle(titanium.ld, 
+                           cond.dist = "normal", 
+                           fl.dist = "sev")
 print(titanium.fit21)
 
-titanium.fit22 <-rflm.mle(titanium.ld, 
-                          cond.dist = "normal", 
-                          fl.dist = "normal")
+titanium.fit22 <- rflm.mle(titanium.ld, 
+                           cond.dist = "normal", 
+                           fl.dist = "normal")
 print(titanium.fit22)
 plot(titanium.fit22)
 
@@ -724,14 +726,14 @@ plot(titanium.fit22,
 # Concrete Data
 
 ```{r}
-Concrete[1:5,]
+concrete[1:5,]
 
 Concrete.ld <- frame.to.ld(concrete,
-                           response.column = "kcycles",
+                           response.column = "kilocycles",
                            time.units = "Kilocycles",
                            data.title = "Concrete Fatigue Data",
                            xlabel = "Smax-Sfail",
-                           x.column = "StressRatio")
+                           x.column = "ratio")
 
 censored.data.plot(Concrete.ld, 
                    x.axis = "log", 
@@ -769,10 +771,9 @@ plot(Concrete.fit22.out,
 
 # high-cycle fatigue
 
-```{r, eval=FALSE}
+```{r}
 hcf.ld <- frame.to.ld(hcfdata,
                       response.column = "cycles",
-                      #right.censor.names = "0", 
                       data.title = "High Cycle Fatigue Data",
                       censor.column = "event", 
                       x.column = c("swt"))
@@ -810,32 +811,28 @@ hcf.fit22f2 = rflm.mle(hcf.ld,
 
 hcf.fit22f3 = rflm.mle(hcf.ld, 
                        cond.dist = "normal", 
-                       fl.dist = "normal",
+                       fl.dist = "sev",
                        digits = 10,
                        dump = 7,
                        fixed.param.list = list(fixed.parameters = 3,
                                                fixed.parameter.values = 0.00002))
-#likelihood on Alpha chip= -123.2937897 (false convergence messaage,
-#but the gradiant looks fine)
-#likelihood on Wintel chip= -123.29620
-
+# likelihood on Alpha chip= -123.2937897 (false convergence messaage,
+# but the gradiant looks fine)
+# likelihood on Wintel chip= -123.29620
 #
-#notice that as the fixed value of sigma approaches zero, the likelihood
-#in the constrained optimization stops increasing.
+# Notice that as the fixed value of sigma approaches zero, the likelihood
+# in the constrained optimization stops increasing.
 #
+# This indicates a ridge in the likelihood surface.
+# Using the last estimates as starting values for an unconstrained optimization
+# does not yield any improvement, but we get a successful convergence
+# (perhaps we should not) message.
 #
-#This indicates a ridge in the likelihood surface.
-#Using the last estimates as starting values for an unconstrained optimization
-#does not yield any improvement, but we get a successful convergence
-# (perhaps we should not) mesage.
-#
-#
-#the following converges on my Alpha (128 bit double precision arithmetic)
+# The following converges on my Alpha (128 bit double precision arithmetic)
 # but not on Windows (64 bit double precision arithmetic)
 #
 # The Alpha gave a standard error of 0.02538 for an estimate of 2e-05!
 # But no standard error from windows.
-#
 hcf22.fit <- rflm.mle(hcf.ld, 
                       cond.dist = "normal", 
                       fl.dist = "normal",
@@ -857,24 +854,23 @@ plot(hcf22.fit, response.on.yaxis = F)
 
 # This take a while to run, but the result is interesting
 #
-#
 #Warning: with the default size=40, the following command (uses a loop)
 #crashed my windows session as I ran out of RAM (128MB).
 #No problem on my 1GB Alpha. My guess is that it will run ok with 256MB
 #It ran ok (about 15 minutes on my 233MHz) with  size = 20
-#
 censored.data.plot(hcf.ld, 
                    x.axis = "log", 
                    y.axis = "log", 
                    response.on.yaxis = F)
 
-hcf.fit <-rflm.mle(hcf.ld, 
-                   cond.dist = "sev",
-                   fl.dist = "normal")
+hcf.fit <- rflm.mle(hcf.ld, 
+                    cond.dist = "sev",
+                    fl.dist = "normal")
 
 plot(hcf.fit)
+```
 
-
+```{r, eval=FALSE}
 # The following indicates that we will have trouble  
 # identifying sigma from these data
 one.dim.profile(hcf22.fit,
