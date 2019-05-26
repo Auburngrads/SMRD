@@ -165,7 +165,7 @@ summary(BearingCage.boot.p,
 ## Bearing cage -- nonparametric bootstrap
 
 ```{r}
-BearingCage.boot.np <- SMRD2:::nonparametric.bootstrap(BearingCage.ld,
+BearingCage.boot.np <- nonparametric.bootstrap(BearingCage.ld,
                                                number.sim = 20)
 
 plot(BearingCage.boot.np)
