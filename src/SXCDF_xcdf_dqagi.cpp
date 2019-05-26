@@ -190,7 +190,7 @@ if((limit < 1) or (lenw < (limit * 4))) goto line10;
       
    }
    
-// Call error handler if necessary.;
+// Call error handler if necessary.
    lvl = 0;
    line10: if(ier == 6) lvl = 1;
    if((ier != 0) and ((debug::kprint > 0) or (lvl > 0))) {
