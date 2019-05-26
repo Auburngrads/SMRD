@@ -1,3 +1,52 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param cond.dist 
+#' @param fl.dist 
+#' @param theta.start 
+#' @param tran.theta.start 
+#' @param debug1 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' LaminatePanel.ld <- frame.to.ld(laminatepanel,
+#'                                 response.column = "kilocycles",
+#'                                 time.units = "kilocycles",
+#'                                 data.title = "Laminate Panel Fatigue Data",
+#'                                 censor.column = "event", 
+#'                                 x.column = "mpa")
+#' 
+#' censored.data.plot(LaminatePanel.ld, 
+#'                    x.axis = "log", 
+#'                    y.axis = "log",
+#'                    response.on.yaxis = F)
+#' 
+#' censored.data.plot(LaminatePanel.ld)
+#' 
+#' LaminatePanel.fit11.out <- rflm.mle(LaminatePanel.ld,
+#'                                     cond.dist = "sev", 
+#'                                     fl.dist = "sev")
+#' 
+#' plot(LaminatePanel.fit11.out,response.on.yaxis = F)
+#' 
+#' LaminatePanel.fit11f.out <- rflm.mle(LaminatePanel.ld,
+#'                                      cond.dist = "sev", 
+#'                                      fl.dist = "sev",
+#'                                      debug = 1,
+#'                                      fixed.param.list =   
+#'                                      list(fixed.parameters = 3,
+#'                                           fixed.parameter.values = 0.20))
+#' 
+#' plot(LaminatePanel.fit11f.out,
+#'      response.on.yaxis = F)
+#' 
+#' 
+#' }
 rflm.mle <-
 function (data.ld, 
           cond.dist, 
@@ -10,6 +59,7 @@ function (data.ld,
     assign(envir = .frame0,  inherits = TRUE,"iter.count", 0 )
     
     rfl.dist.map <- function(distname) {
+        
         gdistname <- generic.distribution(distname)
         switch(gdistname, sev = {
             return(1)
@@ -18,23 +68,30 @@ function (data.ld,
         }, logistic = {
             return(3)
         }, stop("Distribution name not recognized"))
+        
     }
     
     xmat(data.ld) <- as.matrix(xmat(data.ld))
     the.xvec <- xmat(data.ld)[, 1]
     ccodes <- censor.codes(data.ld)
-    assign(envir = .frame0,  inherits = TRUE,"debug1", debug1)
+    assign(envir = .frame0, inherits = TRUE,"debug1", debug1)
     
     f.tranparam <- function(thetaorig, model) {
+        
         beta0.x <- thetaorig[1] + thetaorig[2] * model$mean.lx
         beta1 <- thetaorig[2]
         log.sigma <- logb(thetaorig[3])
         log.sigma.gamma <- logb(thetaorig[5])
-        mu.gamma.x <- (thetaorig[4] - model$mean.low3rd)/thetaorig[5]
-        thetatran <- c(beta0.x, beta1, log.sigma, mu.gamma.x, 
-            log.sigma.gamma)
+        mu.gamma.x <- (thetaorig[4] - model$mean.low3rd) / thetaorig[5]
+        thetatran <- c(beta0.x, 
+                       beta1, 
+                       log.sigma,
+                       mu.gamma.x, 
+                       log.sigma.gamma)
+        
         names(thetatran) <- model$t.param.names
         return(thetatran)
+        
     }
     
     f.origparam <- function(thetatran, model) {
@@ -62,8 +119,9 @@ function (data.ld,
     
     x.failed <- sort(the.xvec[ccodes == 1])
     mean.lx <- mean(logb(x.failed))
-    low3rd <- logb(x.failed[1:as.integer(length(x.failed)/3)])
+    low3rd <- logb(x.failed[1:as.integer(length(x.failed) / 3)])
     mean.low3rd <- mean(low3rd)
+    
     model <- list(orig.param.names = param.names, 
                   t.param.names = t.param.names,
                   mean.lx = mean(logb(the.xvec)), 
@@ -83,31 +141,34 @@ function (data.ld,
         y.failed <- logb(Response(data.ld))[failed]
         maxx <- logb(min(x.failed))
         minx <- logb(0.75 * min(xvals))
-        mugamma.vec <- seq(minx, minx + 0.99 * (maxx - minx), 
-            length = 20)
+        mugamma.vec <- seq(minx, minx + 0.99 * (maxx - minx), length = 20)
         beta0.vec <- mugamma.vec
         beta1.vec <- mugamma.vec
         sigma.vec <- mugamma.vec
         sdgamma.vec <- mugamma.vec
         mse.vec <- mugamma.vec
+        
         for (i in 1:20) {
+            
             mugamma <- mugamma.vec[i]
             lsout <- lsfit(logb(x.failed - exp(mugamma)), y.failed)
             lin.coefs <- lsout$coef
             beta1.vec[i] <- lin.coefs[2]
             beta0.vec[i] <- lin.coefs[1]
-            mse.vec[i] <- sum((lsout$residuals)^2)/(length(y.failed) - 
-                2)
+            mse.vec[i] <- sum((lsout$residuals)^2)/(length(y.failed) - 2)
             sigma.vec[i] <- sqrt(mse.vec[i])
-            sdgamma.vec[i] <- (logb(min(x.failed)) - mugamma)/2
-            if (sdgamma.vec[i] < 0.25) 
-                sdgamma.vec[i] <- 0.25
-            if (sigma.vec[i] < 0.25) 
-                sigma.vec[i] <- 0.25
+            sdgamma.vec[i] <- (logb(min(x.failed)) - mugamma) / 2
+            if (sdgamma.vec[i] < 0.25) sdgamma.vec[i] <- 0.25
+            if (sigma.vec[i] < 0.25) sigma.vec[i] <- 0.25
+            
         }
         which <- (rank(mse.vec) == 1)
-        theta.start <- c(beta0.vec[which], beta1.vec[which], 
-            sigma.vec[which], mugamma.vec[which], sdgamma.vec[which])
+        theta.start <- c(beta0.vec[which], 
+                         beta1.vec[which], 
+                         sigma.vec[which],
+                         mugamma.vec[which], 
+                         sdgamma.vec[which])
+        
         print(theta.start)
         return(theta.start)
     }
