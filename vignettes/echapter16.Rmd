@@ -24,14 +24,14 @@ library(SMRD2)
 
 ```{r workstation}
 #time.column, ID.column, cost.count.column, event.column
-WorkStation.rdu <- SMRD2:::frame.to.rdu(workstation,
+WorkStation.rdu <- frame.to.rdu(workstation,
                                 ID.column = "station",
                                 time.column = "days",
                                 event.column = "event")
 
 #attr(WorkStation.rdu,"WindowInfo")
 
-WorkStation.mcf <- SMRD2:::mcf(WorkStation.rdu)
+WorkStation.mcf <- mcf(WorkStation.rdu)
 
 #sqrt(WorkStation.mcf$Var)
 
@@ -75,7 +75,7 @@ summary(ValveSeat.rdu)
 
 event.plot(ValveSeat.rdu)
 
-SMRD2:::mcf.plot(ValveSeat.rdu)
+mcf.plot(ValveSeat.rdu)
 ```
 
 ##	locomotive Cylinder replacements
@@ -191,13 +191,13 @@ ar1.plot(halfbeak.rdu,
 fit.power.and.loglin.process(halfbeak.rdu,
                              xlab = "Thousands of Hours of Operation",
                              ylab = "Cumulative Number of Maintenance Actions")
-legend(SMRD:::x.loc(.01),
-       SMRD:::y.loc(.95),
+legend(SMRD2:::x.loc(.01),
+       SMRD2:::y.loc(.95),
        legend = c("Nonparametric MCF estimate",
                   "Log-linear Recurrence Rate NHPP MCF",
                   "Power Recurrence Rate NHPP MCF"),
-       lty=c(1,1,3),
-       lwd=c(3,1,1))
+       lty = c(1,1,3),
+       lwd = c(3,1,1))
 
 
 repair.tsplot(halfbeak.rdu)
@@ -214,19 +214,17 @@ PlotMCFandNHPP(halfbeak.rdu, form = "log linear")
 ```
 
 ```{r}
-### fit.power.process(halfbeak.rdu)
-### fit.loglin.process(halfbeak.rdu)
+fit.power.process(halfbeak.rdu)
+fit.loglin.process(halfbeak.rdu)
 fit.power.and.loglin.process(halfbeak.rdu)
 
-TestWindow(halfbeak[[1]],halfbeak[[2]],halfbeak[[3]],NULL)
+SMRD2:::TestWindow(halfbeak[[1]],halfbeak[[2]],halfbeak[[3]],NULL)
 event.plot(halfbeak.rdu )
 attr(halfbeak.rdu,"WindowInfo")
 
-
-TestWindow(halfbeak[[1]],halfbeak[[2]],halfbeak[[3]],NULL)
+SMRD2:::TestWindow(halfbeak[[1]],halfbeak[[2]],halfbeak[[3]],NULL)
 
 RiskSet(halfbeak.rdu)
-
 
 halfbeak.mcf.out <- mcf(halfbeak.rdu)
 plot(halfbeak.mcf.out )
@@ -301,8 +299,8 @@ ar1.plot(grampus.rdu,
 fit.power.and.loglin.process(grampus.rdu,
                              xlab = "Thousands of Hours of Operation",
                              ylab = "Cumulative Number of Maintenance Actions")
-legend(SMRD:::x.loc(.02), 
-       SMRD:::y.loc(.98),
+legend(SMRD2:::x.loc(.02), 
+       SMRD2:::y.loc(.98),
        legend = c("Nonparametric MCF estimate",
                   "Log-linear Recurrence Rate NHPP MCF",
                   "Power Recurrence Rate NHPP MCF"),
