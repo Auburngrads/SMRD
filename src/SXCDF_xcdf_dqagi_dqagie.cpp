@@ -159,7 +159,7 @@ int id,ierro,iroff1,iroff2,iroff3,jupbnd,ksgn;
 int ktmin,maxerr,nres,nrmax,numrl2;
 bool extrap,noext;
 
-Rcpp::NumericVector rlist2(52), res3la(3);
+Rcpp::NumericVector rlist2(limit), res3la(3);
 
 // The dimension of rlist2 is determined by the value of limexp in subroutine dqelg
 
@@ -318,7 +318,7 @@ Rcpp::NumericVector rlist2(52), res3la(3);
    nrmax = 1;
    nres = 0;
    ktmin = 0;
-   numrl2 = 2;
+   numrl2 = 1;
    extrap = false;
    noext = false;
    ierro = 0;
@@ -469,8 +469,8 @@ Rcpp::NumericVector rlist2(52), res3la(3);
    // Perform extrapolation
       line60: numrl2 = numrl2 + 1;
               rlist2.at(numrl2 - 1) = area;
-              
               dqelg(numrl2,rlist2,reseps,abseps,res3la,nres);
+              
               if(debug::kprint >= 4){
       
                  Rcpp::Rcout << "\nDQAGIE AFTER DQELG\n" << std::endl;
@@ -511,7 +511,7 @@ Rcpp::NumericVector rlist2(52), res3la(3);
               rlist2.at(1) = area;
       
 }
-Rcpp::Rcout << "\nHere\n" << std::endl;
+   
 // Set final result and error estimate
    line100: if(abserr == oflow) goto line115;
             if((ier + ierro) == 0) goto line110;
