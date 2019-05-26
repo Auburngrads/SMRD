@@ -96,12 +96,12 @@ function (thetatran, kprint = 0)
       
     }
 
-    data.ld <- get(envir = .frame0,  "data.ld")
-   debug1<- get(envir = .frame0,  "debug1")
-    model <- get(envir = .frame0,  "model")
+    data.ld <- get(envir = .frame0, "data.ld")
+    debug1 <- get(envir = .frame0, "debug1")
+    model <- get(envir = .frame0, "model")
     f.origparam <- model$f.origparam
-    iter.count <- get(envir = .frame0,  "iter.count") + 1
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", iter.count )
+    iter.count <- get(envir = .frame0, "iter.count") + 1
+    assign(envir = .frame0,  inherits = TRUE, "iter.count", iter.count)
     cond.dist <- model$cond.dist
     fl.dist <- model$fl.dist
     theta <- f.origparam(thetatran, model)
@@ -117,6 +117,7 @@ function (thetatran, kprint = 0)
     failed <- ccodes == 1
     runout <- 0
     if ((iter.count < 4 && debug1 > 1)) browser()
+    
     if (any(censored)) {
       
         y.cens <- y[censored]
