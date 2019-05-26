@@ -40,7 +40,9 @@
 #' 
 #' }
 gets.mle <-
-function (data.ld, distribution, theta.start = NULL) 
+function (data.ld, 
+          distribution, 
+          theta.start = NULL) 
 {
     options(digits = 5)
     f.origparam <- function(thetatran, model) {
@@ -49,8 +51,7 @@ function (data.ld, distribution, theta.start = NULL)
         sigma <- thetatran[3]
         logwp2 <- qgets(model$p2, 0, sigma, 1, distribution = model$sub.distribution)
         logwp1 <- qgets(model$p1, 0, sigma, 1, distribution = model$sub.distribution)
-        alpha <- (logwp2 * logtp1 - logwp1 * logtp2)/(logwp2 - 
-            logwp1)
+        alpha <- (logwp2 * logtp1 - logwp1 * logtp2)/(logwp2 - logwp1)
         varzeta <- (logtp2 - logtp1)/(logwp2 - logwp1)
         thetaorig <- c(alpha, sigma, varzeta)
         names(thetaorig) <- model$orig.param.names
@@ -70,10 +71,13 @@ function (data.ld, distribution, theta.start = NULL)
     p2 <- 0.9 * max(probs)
     orig.param.names <- c("alpha", "sigma", "varzeta")
     t.param.names <- c("logtp1", "logtp2", "sigma")
-    model <- list(p1 = p1, p2 = p2, sub.distribution = distribution, 
-        distribution = paste(generic.distribution(distribution), 
-            "gets", sep = ""))
+    model <- list(p1 = p1, 
+                  p2 = p2, 
+                  sub.distribution = distribution, 
+                  distribution = paste(generic.distribution(distribution), "gets", sep = ""))
+    
     if (is.null(theta.start)) {
+        
         ls.gmle.out <- mlest(data.ld, distribution = distribution)
         alpha <- ls.gmle.out$theta.hat[1]
         varzeta <- ls.gmle.out$theta.hat[2]
@@ -81,11 +85,20 @@ function (data.ld, distribution, theta.start = NULL)
         logtp1 <- qgets(p1, alpha, sigma, varzeta, distribution = model$sub.distribution)
         logtp2 <- qgets(p2, alpha, sigma, varzeta, distribution = model$sub.distribution)
         theta.start <- c(logtp1, logtp2, sigma)
+        
     }
-    gmle.out <- gmle(data.ld = data.ld, log.like = gets.log.like, 
-        theta.start = theta.start, model = model, f.origparam = f.origparam, 
-        t.param.names = t.param.names, orig.param.names = orig.param.names)
+    
+    gmle.out <- gmle(data.ld = data.ld, 
+                     log.like = gets.log.like, 
+                     theta.start = theta.start, 
+                     model = model, 
+                     f.origparam = f.origparam, 
+                     t.param.names = t.param.names, 
+                     orig.param.names = orig.param.names)
+    
     thetainterp <- f.interpparam(gmle.out$origparam)
     gmle.out$thetainterp <- thetainterp
+    
     return(gmle.out)
+    
 }
