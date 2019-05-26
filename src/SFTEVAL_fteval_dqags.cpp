@@ -132,7 +132,7 @@ void dqags(double (*f)(double),
            Rcpp::IntegerVector &iwork,
            Rcpp::NumericVector &work){
   
-int l1,l2,l3;
+int l1,l2,l3,lvl = 0;
 
 // Check validity of limit and lenw
    ier = 6;
@@ -147,17 +147,19 @@ l1 = limit + 1;
 l2 = limit + l1;
 l3 = limit + l2;
 
-
 // Prepare call for dqagse
    dqagse(f,a,b,epsabs,epsrel,limit,result,abserr,neval,
           ier,work,l1,l2,l3,iwork,last);
 
 // Call error handler if necessary
-   line10: if(ier != 0){
-        
-              Rcpp::stop("\nAbnormal return from dqags -- ier = %i",ier);
-                 
-           } 
+   line10: if(ier == 6) lvl = 1;
+   
+   if(ier != 0){
+     
+      if(lvl == 1) Rcpp::stop("\nAbnormal return from dqags -- ier = %i", ier);
+      Rcpp::warning("\nAbnormal return from dqags -- ier = %i", ier);
+     
+   } 
 
 
 return;
