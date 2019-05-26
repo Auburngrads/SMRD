@@ -315,8 +315,6 @@ return;
 
 }
 
-
-
 #include <base/base.hpp>
 #include <sxcdf/rflpdf.hpp>
 
