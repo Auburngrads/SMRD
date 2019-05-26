@@ -110,7 +110,8 @@ plot(Fan.ld,
 
 # Turbine Data Set `turbine`
 
-```{r}
+```{r, eval=FALSE}
+# issues computing sd using Turnbull
 turbine.ld <- frame.to.ld(turbine, 
                           response.column = 1, 
                           censor.column = 2,
