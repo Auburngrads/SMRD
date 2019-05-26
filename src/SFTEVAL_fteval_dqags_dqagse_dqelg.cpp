@@ -76,7 +76,7 @@ oflow = D1mach(2);
 nres = nres + 1;
 abserr = oflow;
 result = epstab.at(n - 1);
-if(n < 3) goto line100;
+if(n < 2) goto line100;
 
 limexp = 50;
 epstab.at(n + 1) = epstab.at(n - 1);
