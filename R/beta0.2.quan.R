@@ -8,7 +8,8 @@ function (ndist1,
           stress, 
           sigma,
           mugamma, 
-          sdgamma) 
+          sdgamma,
+          kprint = 0) 
 {
     bd1 <- bds[1]
     bd2 <- bds[2]
