@@ -1,20 +1,29 @@
 trunc.adj.cdfest.out <-
-function (x, mlest.out,debug1= T,...)
+function (x, 
+          mlest.out,
+          debug1 = T,...)
 {
     right.trun.cond <- x$right.trun.cond
     left.trun.cond <- x$left.trun.cond
     log.of.data <- is.even(numdist(mlest.out$distribution))
+    
     if (debug1) {
+      
         xx <- list(lower = x$p, 
                    upper = x$q,
                    prob = x$prob, 
                    sd = x$sd)
         print(xx)
+        
     }
+    
+    xrange = range(Response(mlest.out$data.ld))
+    
     if (!is.null(left.trun.cond)) {
+      
         plot.quantiles.out <- plot.quantiles(mlest.out, 
                                              conf.level = 0,
-                                             xrange = left.trun.cond, 
+                                             xrange = c(left.trun.cond,xrange[2]), 
                                              plotem = F, 
                                              timelen = 1,
                                              log.of.data = log.of.data)
@@ -33,7 +42,7 @@ function (x, mlest.out,debug1= T,...)
       
         plot.quantiles.out <- plot.quantiles(mlest.out, 
                                              conf.level = 0,
-                                             xrange = right.trun.cond,
+                                             xrange = c(xrange[1],right.trun.cond),
                                              plotem = F, 
                                              timelen = 1,
                                              log.of.data = log.of.data)
