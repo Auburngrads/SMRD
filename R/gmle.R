@@ -75,7 +75,9 @@ function (data.ld,
             t.param <- est.out$x
             grad <- my.gradient(const.log.like, t.param)
             hessian <- my.hessian(const.log.like, t.param)
+            
       } else {
+        
             theta.start <- f.tranparam(theta.start, model)
             est.out <- wqm.nlmin(log.like, 
                                  theta.start, 
@@ -86,11 +88,14 @@ function (data.ld,
             t.param <- est.out$x
             grad <- my.gradient(log.like, t.param)
             hessian <- my.hessian(log.like, t.param)
-        }
+      }
+      
   } else {
+    
         est.out <- em.alg(data.ld, theta.start)
         grad <- my.gradient(log.like, t.param)
         hessian <- my.hessian(log.like, t.param)
+        
     }
 
     `if`(!is.null(fixed.param.list),
@@ -99,19 +104,23 @@ function (data.ld,
     
     ierror <- 0
     
-    if (is.infinite(max.log.like) || any(is.nan(hessian)) ||
-        any(is.na(hessian))) {
+    if (is.infinite(max.log.like) || any(is.nan(hessian)) || any(is.na(hessian))) {
         ierror <- 1
         warning("bad hessian values")
         print(hessian)
         t.vcv <- hessian
         eigen.hessian <- NA
+        
   } else {
+    
         eigen.hessian <- eigen(hessian)
         if (any(eigen.hessian$values <= 0)) {
+          
             ierror <- 1
-            warning("Nonpositive eigenvalues")
-                   }
+            warning("Nonpositive eigenvalues") 
+            
+        }
+        
         t.vcv <- my.solve(hessian)
     }
     if (debug1 > 2 && ierror > 0) {
