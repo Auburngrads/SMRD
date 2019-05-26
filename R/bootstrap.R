@@ -293,7 +293,7 @@ nonparametric.bootstrap <-
         if(zout$ints$iersim > 0) stop("Need more space for observations")
       
     }
-    return.matrix <- t(matrix(zout$nummat$retmat, nrow = number.things.returned))
+    return.matrix <- t(matrix(zout$nums$retmat, nrow = number.things.returned))
     f.hat.star <- return.matrix[, 2:(m + 1)]
     standard.errors <- return.matrix[, (m + 2):(2 * m + 1)]
     ierstuff <- as.integer(return.matrix[, 1] + 0.1)
@@ -380,7 +380,7 @@ boot.npar.npar <-
         if (zout$ints$iersim > 0) stop("Need more space for observations")
       
     }
-    return.matrix <- t(matrix(zout$nummat$retmat, nrow = number.things.returned))
+    return.matrix <- t(matrix(zout$nums$retmat, nrow = number.things.returned))
     f.hat.star <- return.matrix[, 2:(m + 1)]
     standard.errors <- return.matrix[, (m + 2):(2 * m + 1)]
     ierstuff <- as.integer(return.matrix[, 1] + 0.1)
