@@ -176,7 +176,7 @@ double small = 0.0e00,uflow;
 int    id,ierro,iroff1,iroff2,iroff3,jupbnd,ksgn;
 int    ktmin,maxerr,nres,nrmax,numrl2,flr;
 bool   extrap,noext;
-Rcpp::NumericVector res3la(3),rlist2(52);
+Rcpp::NumericVector res3la(3),rlist2(limit);
 
 //            the dimension of rlist2 is determined by the value of
 //            limexp in subroutine dqelg (rlist2 should be of dimension
@@ -294,7 +294,7 @@ errsum = abserr;
 abserr = oflow;
 nrmax = 1;
 nres = 0;
-numrl2 = 2;
+numrl2 = 1;
 ktmin = 0;
 extrap = false;
 noext  = false;
@@ -308,20 +308,17 @@ if(dres >= ((0.1e+01 - 0.5e+02 * epmach) * defabs)) ksgn = 1;
 //     main do-loop
 //     ------------
 
-for(last = 2; last < limit; last++){
+for(last = 2; last <= limit; last++){
 
-//    bisect the subinterval with the nrmax-th largest error
-//    estimate.
-
+//    bisect the subinterval with the nrmax-th largest error estimate.
         a1 = work.at(maxerr - 1);
         b1 = 0.5e+00 * (work.at(maxerr - 1) + work.at((l1 - 1) + maxerr - 1));
         a2 = b1;
         b2 = work.at((l1 - 1) + maxerr - 1);
         erlast = errmax;
         dqk21(f,a1,b1,area1,error1,resabs,defab1);
-
         dqk21(f,a2,b2,area2,error2,resabs,defab2);
-
+        
 //   improve previous approximations to integral
 //   and error and test for accuracy.
 
@@ -342,7 +339,7 @@ for(last = 2; last < limit; last++){
         line15: work.at((l2 - 1) + maxerr - 1) = area1;
                 work.at((l2 - 1) + last - 1)  = area2;
                 errbnd = std::max(epsabs,epsrel * std::abs(area));
-
+                
 //      test for roundoff error and eventually set error flag.
 
         if(((iroff1 + iroff2) >= 10) or (iroff3 >= 20)) ier = 2;
@@ -358,7 +355,7 @@ for(last = 2; last < limit; last++){
 
         if(std::max(std::abs(a1),std::abs(b2)) <= ((0.1e+01 + 0.1e+03 * epmach) * (std::abs(a2) + 0.1e+04 * uflow))) {
 
-          ier = 4;
+           ier = 4;
 
         }
 
@@ -366,7 +363,7 @@ for(last = 2; last < limit; last++){
 
         if(error2 <= error1) {
 
-           work.at(last - 1)   = a2;
+           work.at(last - 1) = a2;
            work.at((l1 - 1) + maxerr - 1) = b1;
            work.at((l1 - 1) + last - 1)   = b2;
            work.at((l3 - 1) + maxerr - 1) = error1;
@@ -376,8 +373,8 @@ for(last = 2; last < limit; last++){
         }
 
         work.at(maxerr - 1) = a2;
-        work.at(last - 1)   = a1;
-        work.at((l1 - 1) + last - 1)   = b1;
+        work.at(last - 1) = a1;
+        work.at((l1 - 1) + last - 1) = b1;
         work.at((l2 - 1) + maxerr - 1) = area2;
         work.at((l2 - 1) + last - 1)   = area1;
         work.at((l3 - 1) + maxerr - 1) = error2;
@@ -388,13 +385,11 @@ for(last = 2; last < limit; last++){
 //     with nrmax-th largest error estimate (to be bisected next).
 
 line30: dqpsrt(limit,last,maxerr,errmax,work,l3,iord,nrmax);
-
+        
 //    jump out of do-loop
       if(errsum <= errbnd) goto line115;
-
 //    jump out of do-loop
       if(ier != 0) goto line100;
-
       if(last == 2) goto line80;
 
       if(noext) continue;
@@ -405,7 +400,7 @@ line30: dqpsrt(limit,last,maxerr,errmax,work,l3,iord,nrmax);
 //    test whether the interval to be bisected next is the
 //    smallest interval.
 
-        if(std::abs(work.at((l1 - 1) + maxerr - 1) - work.at(maxerr - 1)) > small) continue;
+        if(std::abs(work.at((l1 - 1) + maxerr - 1) - work.at(maxerr - 1)) > small) goto line90;
         extrap = true;
         nrmax = 2;
 
@@ -424,10 +419,10 @@ line30: dqpsrt(limit,last,maxerr,errmax,work,l3,iord,nrmax);
 
         for(int k = id; k <= jupbnd; k++) {
 
-          maxerr = iord.at(nrmax - 1);
-          errmax = work.at((l3 - 1) + maxerr - 1);
+            maxerr = iord.at(nrmax - 1);
+            errmax = work.at((l3 - 1) + maxerr - 1);
 //   jump out of do-loop
-          if(std::abs(work.at((l1 - 1) + maxerr - 1) - work.at(maxerr - 1)) > small) continue;
+          if(std::abs(work.at((l1 - 1) + maxerr - 1) - work.at(maxerr - 1)) > small) goto line90;
           nrmax = nrmax + 1;
           
         }
@@ -437,8 +432,8 @@ line30: dqpsrt(limit,last,maxerr,errmax,work,l3,iord,nrmax);
 
 line60: numrl2 = numrl2 + 1;
         rlist2.at(numrl2 - 1) = area;
-
         dqelg(numrl2,rlist2,reseps,abseps,res3la,nres);
+        
         ktmin = ktmin + 1;
 
         if((ktmin > 5) and (abserr < (0.1e-02 * errsum))) ier = 5;
@@ -458,9 +453,7 @@ line60: numrl2 = numrl2 + 1;
 //   prepare bisection of the smallest interval.
 
 line70: if(numrl2 == 1) noext = true;
-
         if(ier == 5) goto line100;
-
         maxerr = iord.at(0);
         errmax = work.at((l3 - 1) + maxerr - 1);
         nrmax = 1;
@@ -473,6 +466,8 @@ line80: small = std::abs(b - a) * 0.375e+00;
         erlarg = errsum;
         ertest = errbnd;
         rlist2.at(1) = area;
+        
+line90: ;
 }
 
 //   set final result and error estimate.
@@ -498,7 +493,7 @@ line110: if((ksgn == (-1)) and (std::max(std::abs(result),std::abs(area)) <= (de
 
       if((0.1e-01 > (result / area)) or ((result / area) > 0.1e+03) or (errsum > std::abs(area))) {
 
-        ier = 6;
+          ier = 6;
 
       }
 
