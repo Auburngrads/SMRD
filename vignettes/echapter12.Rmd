@@ -35,6 +35,7 @@ CondProbInterval2(BearingCage.mlest.weib,
                   age = 50,
                   tL = 50,
                   tU = 350)
+
 CondProbInterval2(BearingCage.mlest.weib,
                   age = 150,
                   tL = 150,
@@ -50,7 +51,7 @@ PredictTable(BearingCage.mlest.weib,
 ```
 
 ```{r}
-SMRD2:::CondProbInterval(mu = 3.7393, 
+CondProbInterval(mu = 3.7393, 
                  sigma = 0.7639,
                  distribution = "lognormal",
                  age = 1,
@@ -67,7 +68,7 @@ DeviceN.ld <- frame.to.ld(devicen,
                           case.weight.column = "counts")
 ```
 
-```{r}
+```{r, eval=FALSE}
 DeviceN.mlest.lnorm <- mlest(DeviceN.ld,
                              dist = "Lognormal")
 
@@ -89,7 +90,7 @@ CondProbInterval2(DeviceN.mlest.lnorm,
                   tU = 3)
 ```
 
-```{r}
+```{r, eval=FALSE}
 DeviceN.mlest.weib <- mlest(DeviceN.ld,
                             dist = "Weibull")
 
@@ -110,10 +111,12 @@ CondProbInterval2(DeviceN.mlest.lnorm,
                   age = 1,
                   tL = 1,
                   tU = 2)
+
 CondProbInterval2(DeviceN.mlest.lnorm,
                   age = 2,
                   tL = 2,
                   tU = 3)
+
 PredictTable(DeviceN.mlest.lnorm,
              FtimeStart = 0,
              FtimeEnd = 1)
@@ -151,6 +154,7 @@ DeviceN.NoEnforce.lnor <-
 
 PlotCumulativePredictTable(DeviceN.NoEnforce.lnor,
                            plot.what = "density")
+
 PlotCumulativePredictTable(DeviceN.NoEnforce.lnor,
                            plot.what="cumulative")
 ```
@@ -163,6 +167,7 @@ DeviceN.Enforce.lnor <-
                          time.increment = 1,
                          number.time.units.ahead = 50,
                          warranty.time = 36)
+
 PlotCumulativePredictTable(DeviceN.Enforce.lnor,
                            plot.what = "density")
 
@@ -184,6 +189,7 @@ PlotCumulativePredictTable(DeviceN.Enforce.lnor,
                            add = TRUE,
                            lty = 3,
                            lwd = 3)
+
 PlotCumulativePredictTable(DeviceN.NoEnforce.lnor,
                            plot.what = "cumulative")
 
