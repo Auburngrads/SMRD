@@ -1,6 +1,6 @@
 library(SMRD)
 library(SMRD2)
-test = 1
+test = 2
 
 if(test == 1){
   
