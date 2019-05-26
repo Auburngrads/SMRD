@@ -140,7 +140,7 @@ function (data.ld,
     
     if(trunc.correct) {
       
-       cdpoints.out <- truncadj(cdpoints.out, mlest.out,debug1= debug1)
+       cdpoints.out <- truncadj(cdpoints.out, mlest.out, debug1 = debug1)
        
     }
     trunc.correct.string <- attr(cdpoints.out, "trunc.correct.string")
