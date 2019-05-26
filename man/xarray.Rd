@@ -14,7 +14,7 @@ xarray(table, digits = NULL, matrix = FALSE, ...)
 \item{matrix}{A \code{logical} indicating if \code{table} is a 
 matrix-class object.}
 
-\item{...}{Additional options used in \code{xtable:::print.xtable}}
+\item{...}{Additional options used in \code{xtable::print.xtable}}
 }
 \value{
 An printed LaTeX array class object
