@@ -1,6 +1,49 @@
+#' Title
+#'
+#' @param grid.list 
+#' @param which 
+#' @param lty 
+#' @param col 
+#' @param do.legend 
+#' @param do.list 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' Snubber.ld <- frame.to.ld(snubber, 
+#'                           response.column = "cycles", 
+#'                           censor.column = "event",
+#'                           time.units = "Cycles",
+#'                           case.weight.column = "count",
+#'                           x.columns = "design")
+#' 
+#' event.plot(Snubber.ld)
+#' summary(Snubber.ld)
+#' 
+#' Snubber.groupi.nor.out <-  groupi.mleprobplot(Snubber.ld,"normal")
+#' 
+#' tmpxx <- groupi.contour(Snubber.ld,
+#'                         "Weibull",
+#'                         the.quantile = 0.1)
+#' 
+#' tmpxx <- groupi.contour(Snubber.ld,
+#'                         "lognormal",
+#'                         the.quantile = 0.1)
+#' 
+#' multiple.profile.plot(tmpxx, which = "x")
+#' multiple.profile.plot(tmpxx, which = "y")
+#' 
+#' }
 multiple.profile.plot <-
-function (grid.list, which, lty = (1:(length(grid.list) + 1))[-2],
-    col = 1:length(grid.list), do.legend = "On plot", do.list = names(grid.list))
+function (grid.list, 
+          which, 
+          lty = (1:(length(grid.list) + 1))[-2],
+          col = 1:length(grid.list), 
+          do.legend = "On plot",
+          do.list = names(grid.list))
 {
     xlim <- NULL
     for (i in 1:length(grid.list)) {
