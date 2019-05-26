@@ -1,3 +1,67 @@
+#' Title
+#'
+#' @param data.ld 
+#' @param distribution 
+#' @param shape 
+#' @param xlab 
+#' @param ylab 
+#' @param xlim 
+#' @param ylim 
+#' @param band.type 
+#' @param conf.level 
+#' @param a.limit 
+#' @param b.limit 
+#' @param interactive 
+#' @param my.title 
+#' @param sub.title 
+#' @param point.cex 
+#' @param how.show.fhat 
+#' @param how.show.interval 
+#' @param grids 
+#' @param title.option 
+#' @param trunc.correct 
+#' @param slope.axis 
+#' @param draw.line 
+#' @param linear.axes 
+#' @param add 
+#' @param pch 
+#' @param plot.censored.ticks 
+#' @param point.pch 
+#' @param debug1 
+#' @param col.points 
+#' @param gamthr 
+#' @param title.line.adj 
+#' @param ... 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' doatrun.ld <- frame.to.ld(doatrun,
+#'                           response.column = c(1,2),
+#'                           censor.column = 3, 
+#'                           case.weight.column = 4,
+#'                           truncation.response.column = 5, 
+#'                           truncation.type.column = 6, 
+#'                           data.title = "DOA Truncated Data", 
+#'                           time.units = "Hours")
+#' 
+#' summary(doatrun.ld)
+#' 
+#' cdfest(doatrun.ld)
+#' 
+#' mlest(doatrun.ld,"Weibull")
+#' 
+#' npprobplot(doatrun.ld,
+#'            distribution = "Weibull")
+#' 
+#' npprobplot(doatrun.ld,
+#'            distribution = "Weibull",
+#'            trunc.correct = F)
+#' 
+#' }
 npprobplot <-
 function (data.ld,
           distribution,
@@ -59,6 +123,7 @@ function (data.ld,
         mlest.out <- mlest(data.ld, 
                            distribution, 
                            gamthr = 0,...)
+        
         trunc.est.ok <- mlest.out$iervcv == 0
         
     }
@@ -68,6 +133,7 @@ function (data.ld,
         cdfest.out <- trunc.adj.cdfest.out(cdfest.out, 
                                            mlest.out,
                                            debug1 = debug1)
+        
         trunc.correct.string <- "\nwith truncation-corrected nonparametric estimate"
   
       } else {
@@ -93,6 +159,7 @@ function (data.ld,
         
         ybandrange <- c(strip.na(bands$lower), 
                         strip.na(bands$upper))
+        
         ybandrange <- range(ybandrange[ybandrange > 0 & ybandrange < 1])
         
         }
