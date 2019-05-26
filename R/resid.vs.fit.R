@@ -38,9 +38,14 @@
 #' 
 #' }
 resid.vs.fit <-
-function (groupm.list, original.par = T, cex = 1, my.title = NULL,
-    grids = F, xlim = c(NA, NA), ylim = c(NA, NA), cex.points = 1,
-    ...)
+function (groupm.list, 
+          original.par = T, 
+          cex = 1, 
+          my.title = NULL,
+          grids = F, 
+          xlim = c(NA, NA), 
+          ylim = c(NA, NA), 
+          cex.points = 1,...)
 {
     groupm.out <- extract.results(groupm.list)
     old.par <- par(mar = c(5, 6, 4, 2) + 0.1)
