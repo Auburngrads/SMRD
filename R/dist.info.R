@@ -1,17 +1,24 @@
 dist.info <-
-function (distribution, allow = F) 
+function (distribution, 
+          allow = F) 
 {
     collapse.distribution <- paste(distribution, collapse = ",")
-    distribution <- generic.distribution(collapse.distribution, 
-        allow = allow)
+    
+    distribution <- generic.distribution(collapse.distribution,
+                                         allow = allow)
     if (is.null(distribution)) {
+        
         take.logs <- "never"
         num.shape.needed <- 0
         formal.name <- collapse.distribution
         shape <- F
         prob.scale <- "sev"
         idist <- 0
-        return(idist, take.logs, num.shape.needed, formal.name)
+        return(list(idist = idist, 
+                    take.logs = take.logs, 
+                    num.shape.needed = num.shape.needed, 
+                    formal.name = formal.name))
+        
     }
     idist <- numdist(distribution)
     switch(distribution, sev = {
@@ -119,6 +126,9 @@ function (distribution, allow = F)
         if (allow) return(list())
         stop("Distribution not recognized")
     })
-    return(list(idist = idist, take.logs = take.logs, num.shape.needed = num.shape.needed, 
-        formal.name = formal.name))
+    
+    return(list(idist = idist, 
+                take.logs = take.logs, 
+                num.shape.needed = num.shape.needed, 
+                formal.name = formal.name))
 }
