@@ -28,6 +28,6 @@ function (x)
             4] * (log.min(wqmf.phibf(z[the.censor.codes == 4,
             2], "sev") - wqmf.phibf(z[the.censor.codes == 4,
             1], "sev"))))
-    return(.Uminus((fail.part + rcensor.part + lcensor.part +
+    return(Uminus((fail.part + rcensor.part + lcensor.part +
         icensor.part)))
 }
