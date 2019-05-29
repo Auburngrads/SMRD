@@ -1,3 +1,4 @@
+#' @export
 marginalize.sim.simulate.alt.out <-
 function (results.object, focus.quantity, focus.quantity.detail,
     x.of.interest = NULL, use.rows = 1:nrow(results.object),...)
