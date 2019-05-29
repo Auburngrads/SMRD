@@ -82,3 +82,37 @@ plot(Fan.ld,
      distribution = "exponential",
      shape = c(15))
 
+## ---- eval=FALSE---------------------------------------------------------
+#  # issues computing sd using Turnbull
+#  turbine.ld <- frame.to.ld(turbine,
+#                            response.column = 1,
+#                            censor.column = 2,
+#                            case.weight.column = 3,
+#                            time.units = "Hundreds of Hours")
+#  
+#  summary(turbine.ld)
+#  
+#  plot(turbine.ld,
+#       ylim = c(0,1),
+#       band.type = 'Pointwise')
+#  
+#  event.plot(turbine.ld)
+#  
+#  plot(turbine.ld,
+#       band.type = "Simultaneous")
+
+## ------------------------------------------------------------------------
+v7tube.ld <- frame.to.ld(v7tube,
+                         response.column = c(1,2),
+                         censor.column = 3, 
+                         case.weight.column = 4,
+                         time.units = "Days")
+
+event.plot(v7tube.ld)
+summary(v7tube.ld)
+
+plot(v7tube.ld)
+
+plot(v7tube.ld,
+     band.type = "Simultaneous")
+
