@@ -32,9 +32,9 @@ function (x, ADDT.plan.values, use.condition, FailLevel,
     transformation.x <- fix.inverse.relationship(ADDT.plan.values$transformation.x)
     transformation.response <- ADDT.plan.values$transformation.response
     theta.hat <- ADDT.plan.values$theta.vec
-    ADDT.model <- .pseudo.model(ADDT.plan.values, ADDT.test.plan = x)
-    gamma.hat <- .f.ADDT.stableparam(theta.hat, model = ADDT.model)
-    theta2.hat <- .f.ADDT.origparam(gamma.hat, model = ADDT.model)
+    ADDT.model <- pseudo.model(ADDT.plan.values, ADDT.test.plan = x)
+    gamma.hat <- f.ADDT.stableparam(theta.hat, model = ADDT.model)
+    theta2.hat <- f.ADDT.origparam(gamma.hat, model = ADDT.model)
     vcv.gamma <- ADDT.vcv(ADDT.plan.values, ADDT.test.plan = x)$the.tran.vcv
     if (T || is.logdist(distribution)) {
         ylab <- "Confidence Interval Precision Factor R           "
