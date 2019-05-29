@@ -9,7 +9,7 @@ function (j, xvec, yvec, imid, jmid)
     for (i in index.list) {
         if (i == imid)
             assign(envir = .frame0,  inherits = TRUE,"theta.start", get(envir = .frame0,  "theta.mid.now"))
-        zz[i] <- .Uminus(func.eval(c(xvec[j], yvec[i])))
+        zz[i] <- Uminus(func.eval(c(xvec[j], yvec[i])))
         if (i == imid)
             assign(envir = .frame0,  inherits = TRUE,"theta.mid.last", get(envir = .frame0,  "theta.start"))
 
