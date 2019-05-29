@@ -7,7 +7,7 @@ function (data.ld, stresses = get.x.markers(data.ld, group.var = group.var),
         data.subset.d <- multiple.get.data.subset(data.ld, stresses[i],
             columns = group.var)
         if (!good.data(data.subset.d, number.needed = 1)) {
-            the.right.stuff <- the.right.stuff & !.right.stuff(data.subset.d)
+            the.right.stuff <- the.right.stuff & !right.stuff(data.subset.d)
         }
     }
     return(get.data.subset(data.ld, the.right.stuff, "Estimable Subsets"))
