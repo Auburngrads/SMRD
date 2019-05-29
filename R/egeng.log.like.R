@@ -55,5 +55,5 @@ function (thetain)
     if ((iter.count < 4 && map.SMRDDebugLevel() >= 5) || map.SMRDDebugLevel() >=
         10)
         browser()
-    return(.Uminus((the.loglike)))
+    return(Uminus((the.loglike)))
 }
