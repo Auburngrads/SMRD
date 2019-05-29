@@ -177,7 +177,7 @@ mcf.plot(halfbeak.rdu,
 interarrival.plot(halfbeak.rdu,
                   xlab = "Thousands of Hours of Operation",
                   ylab = "Thousands of Hours Between Maintenance Actions",
-                  my.title="")
+                  my.title = "")
 
 ar1.plot(halfbeak.rdu,
          xlab = "Lagged Thousands of Hours Between Maintenance Actions",
@@ -214,15 +214,15 @@ PlotMCFandNHPP(halfbeak.rdu, form = "log linear")
 ```
 
 ```{r}
-fit.power.process(halfbeak.rdu)
-fit.loglin.process(halfbeak.rdu)
+#fit.power.process(halfbeak.rdu)
+#fit.loglin.process(halfbeak.rdu)
 fit.power.and.loglin.process(halfbeak.rdu)
 
-SMRD2:::TestWindow(halfbeak[[1]],halfbeak[[2]],halfbeak[[3]],NULL)
+TestWindow(halfbeak[[1]],halfbeak[[2]],halfbeak[[3]],NULL)
 event.plot(halfbeak.rdu )
 attr(halfbeak.rdu,"WindowInfo")
 
-SMRD2:::TestWindow(halfbeak[[1]],halfbeak[[2]],halfbeak[[3]],NULL)
+TestWindow(halfbeak[[1]],halfbeak[[2]],halfbeak[[3]],NULL)
 
 RiskSet(halfbeak.rdu)
 
@@ -395,10 +395,10 @@ plot(HPCRepairs.mcf)
 ##	AMSAAExactFail
 
 ```{r amsaaexactfail, eval=FALSE}
-SMRD2:::TestWindow(amsaaexactfail[[1]],
-                   amsaaexactfail[[2]],
-                   amsaaexactfail[[3]],
-                   NULL)
+TestWindow(amsaaexactfail[[1]],
+           amsaaexactfail[[2]],
+           amsaaexactfail[[3]],
+           NULL)
 
 AMSAAExactFail.rdu <- frame.to.rdu(amsaaexactfail,
                                    ID.column = "vehicle", 
@@ -412,7 +412,7 @@ theta.mat <- matrix(c(1,1,2,2),2,2)
 #theta.mat <- c(1,2)
 loglikeNHPPvec(AMSAAExactFail.rdu, theta.mat, "power.law")
 
-SMRD2:::TestLike(AMSAAExactFail.rdu, theta.mat, "power.law")
+TestLike(AMSAAExactFail.rdu, theta.mat, "power.law")
 
 theta.mat <- matrix(c(.01,.01,.02,.02),2,2)
 loglikeNHPPvec(AMSAAExactFail.rdu, theta.mat, "log.linear")
@@ -423,7 +423,7 @@ RiskSet(AMSAAExactFail.rdu)
 
 plotRiskSet(AMSAAExactFail.rdu,proportion = T)
 
-SMRD2:::get.UnitID(AMSAAExactFail.rdu)
+get.UnitID(AMSAAExactFail.rdu)
 
 mcf(AMSAAExactFail.rdu)
 
