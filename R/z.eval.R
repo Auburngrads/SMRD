@@ -3,7 +3,7 @@ function (gmle.out, profile.setup.out, xlim, ylim, profile.on,
     size = c(10, 10),debug1= 1, alt.max = F)
 {
     is.min <- function (x) { x == min(x) }
-    is.maxele <- function (x) { seq(1:length(x))[is.min(.Uminus(x))][1] }
+    is.maxele <- function (x) { seq(1:length(x))[is.min(Uminus(x))][1] }
     profile.on.pos <- profile.setup.out$profile.on.pos
     h.theta.hat <- profile.setup.out$h.theta.hat
     assign(envir = .frame0,  inherits = TRUE,"profile.on.pos", value = profile.on.pos)
