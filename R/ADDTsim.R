@@ -63,7 +63,7 @@ function (ADDT.test.plan, ADDT.plan.values, number.sim = 3, plotem = F,
         is.null(ADDT.plan.values$sigma.cr))
         competing.risk <- F
     else competing.risk <- T
-    save.Random.seed <- .Random.seed
+    save.Random.seed <- .SMRD.Random.seed()
     ADDT.test.plan <- hframe.to.vframe(ADDT.test.plan)
     distribution <- ADDT.plan.values$distribution
     transformation.time <- ADDT.plan.values$transformation.time
