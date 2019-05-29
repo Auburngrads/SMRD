@@ -26,7 +26,7 @@ function (gmle.out, profile.setup.out, xlim = NULL, profile.on,
         kount <- kount + 1
         if (j == jmid.start)
             assign(envir = .frame0,  inherits = TRUE,"theta.start", h.theta.hat)
-        y[j] <- .Uminus(func.eval(xvec[j]))
+        y[j] <- Uminus(func.eval(xvec[j]))
         if (save.parameter.vectors) {
             parameter.matrix[j, ] <- get(envir = .frame0,  "theta.start")
         }
