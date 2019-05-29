@@ -143,7 +143,7 @@ function (fitted, profile.title = paste(fitted$subtitle, "\n",
         if (confidence.interval) {
             axis.probs <- c(.50, .60, .70, .80, .90, .95, .99)
             axis(side = 4, 
-                 at = exp(.Uminus(qchisq(axis.probs,1))/2), 
+                 at = exp(Uminus(qchisq(axis.probs,1))/2), 
                  labels = paste(spaces, format(axis.probs)),
                  las = 1, 
                  cex.axis = 1,
@@ -153,7 +153,7 @@ function (fitted, profile.title = paste(fitted$subtitle, "\n",
     }
     if (confidence.interval) {
         usr.out <- par("usr")
-        hvalue <- exp(.Uminus(qchisq(conf.level, 1))/2)
+        hvalue <- exp(Uminus(qchisq(conf.level, 1))/2)
         ci <- ci.from.profile(fitted, conf.level)
         if (print.ci)
             message("The approximate ", percent.conf.level(conf.level),
