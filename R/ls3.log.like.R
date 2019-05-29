@@ -81,5 +81,5 @@ function (thetain)
     }
     the.likelihood <- fail.part + rcensor.part + lcensor.part +
         icensor.part - ltrun.part - rtrun.part
-    return(.Uminus((the.likelihood)))
+    return(Uminus((the.likelihood)))
 }
