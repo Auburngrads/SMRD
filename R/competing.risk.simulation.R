@@ -29,7 +29,7 @@ function (mu1 = logb(400), sig1 = 0.3, mu2 = logb(500), sig2 = 1.5,
     if (write.data) {
         data.matrix <- cbind(time = time, mode = mode, codes1 = codes1,
             codes2 = codes2, codesb = codesb)
-        .write.matrix(data.matrix, file = "crisk.dat", append = F)
+        write.matrix(data.matrix, file = "crisk.dat", append = F)
     }
     if (one.plot)
         postscript(file = "tmp.ps", horizontal = T)
