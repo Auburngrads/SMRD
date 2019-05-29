@@ -79,5 +79,5 @@ function (thetain)
             my.title = paste("Iteration", iter.count, "Loglikelihood=",
                 format(the.log.like), "rho=", format(use.rate.model$rho)))
     }
-    return(.Uminus((the.log.like)))
+    return(Uminus((the.log.like)))
 }
