@@ -164,6 +164,6 @@ function (thetatran, kprint = 0)
             sigma, mu.gamma, sigma.gamma)), collapse = " ")))
     }
     
-    return(.Uminus(log.like))
+    return(Uminus(log.like))
     
 }
