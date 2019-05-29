@@ -22,7 +22,7 @@ library(SMRD2)
 
 Use the following for testing
 
-```{r}
+```{r, eval=FALSE}
 SMRDOptions(SMRD.DebugLevel="development")
 ```
 
@@ -54,7 +54,7 @@ InsulationBrkdwn.ADDTpv <-
 print(InsulationBrkdwn.ADDTpv)
 
 InsulationBrkdwn.vADDTplan <-
-  hframe.to.vframe(InsulationBrkdwn.ADDTplan)
+  SMRD2::hframe.to.vframe(InsulationBrkdwn.ADDTplan)
 
 sum(allocation(InsulationBrkdwn.vADDTplan))
 
@@ -79,14 +79,14 @@ evaluate(InsulationBrkdwn.ADDTplan,
          FailLevel = 10,
          quantile.of.interest = c(0.1,.2,.3,.4,.9))
 
-evaluate(ADDT.plan.values = InsulationBrkdwn.ADDTpv,
-         ADDT.test.plan = InsulationBrkdwn.ADDTplan,
+evaluate(InsulationBrkdwn.ADDTplan,
+         ADDT.plan.values = InsulationBrkdwn.ADDTpv,
          use.condition = "150",
          FailLevel = 2,
          quantile.of.interest = c(.05,0.1))
 
-evaluate(InsulationBrkdwn.ADDTpv,
-         InsulationBrkdwn.ADDTplan,
+evaluate(InsulationBrkdwn.ADDTplan,
+         InsulationBrkdwn.ADDTpv,
          use.condition = "150",
          FailLevel = 10,
          quantile.of.interest = 0.2)
@@ -117,7 +117,7 @@ plot(InsulationBrkdwn.test.ADDTplan)
 InsulationBrkdwn.test.ADDTpv <-
   get.ADDT.plan.values(distribution = "normal",
                        transformation.x = "Arrhenius",
-                       transformation.Response = "log",
+                       transformation.response = "log",
                        transformation.time = "linear",
                        beta0 = 2.58850162033243,
                        beta1 = -476873415881.376,
@@ -159,16 +159,14 @@ Filament.ADDTplan <-
                         times = c(1,2,5,10,20,50),
                         time.units = "Weeks")
 
-#define from a frame
-Filament.hframe <- read.table(SplidaDataName("Filament_hframe.txt"),
-                              head = T)
-
-Filament.hframe.ADDTplan  <-
-  get.ADDT.test.plan.hframe(Filament.hframe,                                                      levels.columns = c(1,2),
-                            time.columns = 3:7)
+# Filament.hframe.ADDTplan  <-
+#   get.ADDT.test.plan.hframe(filament,
+#                             levels.columns = c(1,2),
+#                             time.columns = 3:7)
 
 StrengthCompare.ADDTplan <- 
-  get.allocation.matrix(list(DegreesC = c(50,60,70),Type = c("Type1","Type2")),
+  get.allocation.matrix(list(DegreesC = c(50,60,70),
+                             Type = c("Type1","Type2")),
                         times = c(1,2,5,10,20,50),
                         time.units = "Weeks")
 
@@ -181,7 +179,8 @@ marginalize.sim(InsulationBrkdwn.plan.sim.out,
 
 plot.marginals.sim(InsulationBrkdwn.plan.sim.out,
                    focus.quantity = "parameter",
-                   focus.quantity.detail = 1)
+                   focus.quantity.detail = 1,
+                   FailLevel = 4)
 
 plot.marginals.sim(InsulationBrkdwn.plan.sim.out,
                    focus.quantity = "parameter",
@@ -255,13 +254,15 @@ summarize.simultation.results(InsulationBrkdwn.plan.sim.out,
                               focus.quantity.detail2 = 3,
                               x.of.interest2 = NA,
                               FailLevel = 4)
+```
 
+```{r}
 ##	AdhesiveBondB Example
 
 AdhesiveBondB.SEV.ADDTpv <- 
   get.ADDT.plan.values(distribution = "normal",
                        transformation.x = c("Arrhenius"),
-                       transformation.Response = "log",
+                       transformation.response = "log",
                        transformation.time = "Square root",
                        beta0 = 4.471,
                        the.slope = -0.1025,
@@ -282,18 +283,18 @@ AdhesiveBondB.ADDTplan <-
 ADDT.vcv(ADDT.plan.values = AdhesiveBondB.SEV.ADDTpv,
          ADDT.test.plan = hframe.to.vframe(AdhesiveBondB.ADDTplan))
 
-last.out <-evaluate(ADDT.plan.values = AdhesiveBondB.SEV.ADDTpv, 
-                    ADDT.test.plan = AdhesiveBondB.ADDTplan,
-                    quantile.of.interest = c(.1,.5,.9),
-                    use.condition = 25,
-                    FailLevel = 40)
+last.out <- evaluate(AdhesiveBondB.ADDTplan,
+                     ADDT.plan.values = AdhesiveBondB.SEV.ADDTpv, 
+                     quantile.of.interest = c(.1,.5,.9),
+                     use.condition = 25,
+                     FailLevel = 40)
 
 ## two variable example
 
 AdhesiveBondC.ADDTpv <-
   get.ADDT.plan.values(distribution = "sev",
                        transformation.x = c("Arrhenius","Humidity"),
-                       transformation.Response = "log",
+                       transformation.response = "log",
                        transformation.time = "Square root",
                        beta0 = 2.168,
                        the.slope = -0.00709030595,
@@ -402,12 +403,16 @@ ADDT.plot.Deg.v.Time(AdhesiveBondC.sim.out)
 
 ADDT.plot.FracFail.v.Time(AdhesiveBondC.sim.out)
 
+```
+
+
 ## testing multi-accvar functions with one accvar special cases
 
+```{r}
 TestAdhesiveBondB.SEV.ADDTpv <-
   get.ADDT.plan.values(distribution = "sev",
                        transformation.x = "Arrhenius",
-                       transformation.Response = "log",
+                       transformation.response = "log",
                        transformation.time = "Square root",
                        beta0 = 2.168,
                        the.slope = -0.00709030595,
@@ -419,8 +424,8 @@ TestAdhesiveBondB.SEV.ADDTpv <-
                        FailLevel = 2,
                        use.condition = "30")
 
-ADDT.vcv(hframe.to.vframe(AdhesiveBondB.ADDTplan),
-         ADDT.plan.values = AdhesiveBondB.SEV.ADDTpv)
+ADDT.vcv(ADDT.plan.values = AdhesiveBondB.SEV.ADDTpv,
+         SMRD2:::hframe.to.vframe(AdhesiveBondB.ADDTplan))
 
 evaluate(AdhesiveBondB.ADDTplan,
          TestAdhesiveBondB.SEV.ADDTpv,
