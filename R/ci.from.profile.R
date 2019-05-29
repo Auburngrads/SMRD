@@ -2,7 +2,7 @@ ci.from.profile <-
 function (struct1, confidence.level = 0.95)
 {
     is.max <- function (x) { x == max(x) }
-    hvalue <- exp(.Uminus(qchisq(confidence.level, 1))/2)
+    hvalue <- exp(Uminus(qchisq(confidence.level, 1))/2)
     ci <- c(NA, NA)
     struct1.y <- struct1$y
     struct1.x <- struct1$x
