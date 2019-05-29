@@ -155,7 +155,7 @@ bvn.log.like <-
     if (debug1> 0 && iter.count%%10 == 0)
       cat("bvn.log.like", iter.count, format(c(fail.part, rcensor.part,
                                                the.log.like, theta.origparam)), "\n")
-    return(.Uminus((the.log.like)))
+    return(Uminus((the.log.like)))
   }
 
 #
