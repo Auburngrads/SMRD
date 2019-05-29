@@ -6,7 +6,7 @@ function (x, markers, columns = 1:ncol(xmat(x)),...)
     the.attributes$data.title <- paste("subset", paste(markers,
         collapse = ","), the.attributes$data.title)
     the.attributes$residual.rmd <- NULL
-    the.right.stuff <- get.the.right.stuff(x, columns,
+    the.right.stuff <- get.theright.stuff(x, columns,
         markers)
     the.attributes$row.names <- the.attributes$row.names[the.right.stuff]
     if (is.character(x)) {
