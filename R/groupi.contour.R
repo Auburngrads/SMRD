@@ -98,7 +98,7 @@ function (data.ld, distribution, stresses = get.x.markers(data.ld,
     for (i in 1:length(stresses)) {
         data.list.ld <- multiple.get.data.subset(data.ld, stresses[i],
             columns = group.var)
-        the.right.stuff <- .right.stuff(data.list.ld)
+        the.right.stuff <- right.stuff(data.list.ld)
         data.list[[stress.names[i]]] <- data.list.ld
         if (!good.data(data.list.ld)) {
             cat(paste("Skipping", stress.names[i], "because too few failures\n"))
