@@ -1,4 +1,4 @@
-.distnum <-
+distnum <-
 function (number.distribution)
 {
     dist.list <- c("Smallest Extreme Value", "Weibull", "Normal",
