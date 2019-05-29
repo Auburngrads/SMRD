@@ -1,3 +1,4 @@
+#' @export
 marginalize.sim.simulate.ADDT.out <-
 function (results.object, focus.quantity, focus.quantity.detail,
     FailLevel, x.of.interest = NULL, use.rows = 1:nrow(results.object),...)
