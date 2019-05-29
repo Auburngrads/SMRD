@@ -57,5 +57,5 @@ function (thetain)
             fail.part, rcensor.part, lcensor.part, icensor.part)),
             collapse = " ")))
     }
-    return(.Uminus(loglikelihood))
+    return(Uminus(loglikelihood))
 }
