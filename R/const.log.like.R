@@ -7,7 +7,7 @@ function (theta.opt)
     profile.stable.parameters <- get(envir = .frame0,  "profile.stable.parameters")
     profile.on.pos <- get(envir = .frame0,  "profile.on.pos")
     theta <- theta.hold
-    theta[.Uminus(profile.on.pos)] <- theta.opt
+    theta[Uminus(profile.on.pos)] <- theta.opt
     theta.now <- profile.stable.parameters(theta, profile.on)
     return(log.like(theta.now))
 }
