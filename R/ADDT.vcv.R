@@ -131,8 +131,8 @@ function (ADDT.plan.values, ADDT.test.plan)
     tbar <- wmean(time.tran, the.allocations)
     fisher <- matrix(0, number.parameters, number.parameters)
     fisher.orig <- fisher
-    ADDT.model <- .pseudo.model(ADDT.plan.values, ADDT.test.plan)
-    gamma <- .f.ADDT.stableparam(ADDT.plan.values$theta.vec, ADDT.model)
+    ADDT.model <- pseudo.model(ADDT.plan.values, ADDT.test.plan)
+    gamma <- f.ADDT.stableparam(ADDT.plan.values$theta.vec, ADDT.model)
     param.names <- names(gamma)
     gamma1 <- gamma[2]
     gamma2.names <- paste("gamma", 
