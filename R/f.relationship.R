@@ -1,10 +1,8 @@
 f.relationship <-
 function (x, relationship.in) 
 {
-    if (is.null(relationship.in)) 
-        stop("Null relationship*****")
-    if (relationship.in == "") 
-        stop("Zero length character relationship*****")
+    if (is.null(relationship.in)) stop("Null relationship*****")
+    if (relationship.in == "") stop("Zero length character relationship*****")
     relationship <- generic.relationship.name(relationship.in)
     switch(as.character(relationship), invtemp = {
         fx <- 1000/(x + 273.15)
