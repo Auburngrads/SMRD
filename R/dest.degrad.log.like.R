@@ -56,5 +56,5 @@ function (thetain)
             paste(model$t.param.names, collapse = ","), "=", 
             paste(format(thetain), collapse = ",")), "\n")
     }
-    return(.Uminus(the.likelihood))
+    return(Uminus(the.likelihood))
 }
