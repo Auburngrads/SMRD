@@ -20,5 +20,5 @@ function (theta)
     censor.part <- sum(the.case.weights[the.censor.codes == 2] *
         logb(1 - plfp * wqmf.phibf(z[the.censor.codes == 2],
             distribution)))
-    return(.Uminus((fail.part + censor.part)))
+    return(Uminus((fail.part + censor.part)))
 }
