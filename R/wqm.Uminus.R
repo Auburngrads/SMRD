@@ -1,4 +1,4 @@
-.Uminus <-
+Uminus <-
 function (x) 
 {
     x * (-1)
