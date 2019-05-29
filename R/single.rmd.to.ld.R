@@ -155,8 +155,7 @@ function (data.rmd,
                                 as.data.frame(sub.frame[, names(the.x.columns)]),
                                 xlabel)
             
-            residual.frame <- rbind(residual.frame, 
-                                    sub.residual.frame)
+            residual.frame <- rbind(residual.frame, sub.residual.frame)
             
             ls.estimates <- coefficients(ls.fit)
             
@@ -295,8 +294,7 @@ function (data.rmd,
                   adj = 1, at = censor.time)
         }
         
-        if (length(xplotmat) > 0)
-            matlines(xplotmat, yplotmat, lwd = 2)
+        if (length(xplotmat) > 0) matlines(xplotmat, yplotmat, lwd = 2)
     }
     
     dimnames(times) <- list(rep(NULL, nrow(y)), time.units)

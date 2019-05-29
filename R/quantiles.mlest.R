@@ -1,9 +1,13 @@
 #' @export
 quantiles.mlest <-
-function (x, prob.vec = as.numeric(ClistToVec(GetSMRDDefault("SMRD.DefaultQuantileList"))),
-    conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, shape = NULL,
-    digits = GetSMRDDefault("SMRD.DigitsPrinted"), to = 0.999,
-    add.title = NULL, printem = T,...)
+function (x, 
+          prob.vec = as.numeric(ClistToVec(GetSMRDDefault("SMRD.DefaultQuantileList"))),
+          conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, 
+          shape = NULL,
+          digits = GetSMRDDefault("SMRD.DigitsPrinted"), 
+          to = 0.999,
+          add.title = NULL, 
+          printem = T,...)
 {
     data.ld <- x$data.ld
     distribution <- .distnum(numdist(x$distribution))

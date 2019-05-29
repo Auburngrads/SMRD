@@ -36,15 +36,13 @@ bound.roots2 <-
     xfirst <- f(start.value, ...)
     fderiv <- sign(f(start.value + 0.1, ...) - xfirst)
     xfirst <- xfirst * fderiv
-    if (xfirst == 0) 
-      return(c(start.value - 0.1, start.value + 0.1))
+    if (xfirst == 0)  return(c(start.value - 0.1, start.value + 0.1))
     if (xfirst > 0) {
       ubound <- start.value
       repeat {
         start.value <- start.value/2
         xfirst <- f(start.value, ...) * fderiv
-        if (xfirst < 0) 
-          return(c(start.value, ubound))
+        if (xfirst < 0) return(c(start.value, ubound))
       }
     } else {
       lbound <- start.value

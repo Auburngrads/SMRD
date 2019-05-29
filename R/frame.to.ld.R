@@ -99,8 +99,7 @@ function (frame,
               
             the.mode <- "data.frame"
             dynamic.data.object <- F
-            if (!is.data.frame(x = frame))
-                stop("Need to input either a frame that can be read into a data frame")
+            if (!is.data.frame(x = frame)) stop("Need to input either a frame that can be read into a data frame")
         }
     }
     names.the.frame <- names(frame)
@@ -125,10 +124,12 @@ function (frame,
                                                 names.the.frame))
          
     if (missing(truncation.response.column) || is.null(truncation.response.column)) {
-        if (!is.null(truncation.type.column))
-            stop("Must specify truncation response if truncations type is specified")
+      
+        if (!is.null(truncation.type.column)) stop("Must specify truncation response if truncations type is specified")
         truncation.response.column <- NULL
+        
         } else {
+          
         truncation.response.column <- check.column(truncation.response.column,
                                                    ncol.data.mat, 
                                                    names.the.frame, 

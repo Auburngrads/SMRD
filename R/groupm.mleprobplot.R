@@ -63,6 +63,7 @@
 #'                                                distribution = "Lognormal", 
 #'                                                relationship = "Arrhenius", 
 #'                                                ci.list = 6)
+
 #' 
 #' }
 groupm.mleprobplot <-
@@ -74,7 +75,7 @@ function (data.ld,
           ylab = GetSMRDDefault("SMRD.LabelOnYaxis"),
           conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, 
           xlim = c(NA,NA), 
-          ylim = c(NA, NA), 
+          ylim = c(NA,NA), 
           relationship = NULL, 
           power = NULL,
           dump = 0, 
@@ -85,7 +86,7 @@ function (data.ld,
           linear.axes = F, 
           lty = NULL, 
           plot.censored.ticks = F,
-          time.range = c(NA, NA), 
+          time.range = c(NA,NA), 
           shape = NULL, 
           ci.list = NULL, 
           col.ci = 4, 
@@ -120,9 +121,11 @@ the.xmat           <- as.data.frame(the.orig.xmat[, group.var, drop = F])
 reduced.xmat.names <- dimnames(the.xmat)[[2]]
     
 if (is.null(relationship)) {
+  
     group.var.numeric <- unlist(lapply(the.xmat, is.numeric))
     relationship <- rep("linear", length = length(group.var))
     relationship[!group.var.numeric] <- "class"
+    
 }
     
 relationship.sanity(the.xmat, relationship)
@@ -130,9 +133,11 @@ relationship <- set.relationship.power(relationship, power)
 names(relationship) <- reduced.xmat.names
     
 for (i in 1:ncol(the.xmat)) {
+  
     if (generic.relationship.name(relationship[i]) == "class") {
         the.xmat[, i] <- as.factor(the.xmat[, i])
     }
+  
 }
 
 dimnames(the.xmat)[[2]] <- reduced.xmat.names
@@ -143,7 +148,8 @@ assign(envir = .frame0,
     
 if (is.null(formula)) formula <- get.default.formula(the.xmat, 
                                                      relationship)
-Terms <-terms(formula)
+Terms <- terms(formula)
+
 the.data.frame <- data.frame(Response = rep(1, nrow(the.xmat)),
                              the.xmat)
     
@@ -356,9 +362,11 @@ if (i <= length(stresses)) {
   
     cdfest.out <- cdfest(data.subset.ld)
     if (length(cdfest.out$q) > 0) {
+      
         cdpoints.out <- cdpoints(cdfest.out)
         trunc.correct <- (!is.null(cdfest.out$left.trun.cond) ||
                       !is.null(cdfest.out$right.trun.cond)) && trunc.correct
+        
     if (trunc.correct) {
       
         mlest.subset.out <- mlest(data.subset.ld, distribution)
@@ -392,6 +400,7 @@ upper.quantile.max <- max(upper.quantile, upper.quantile.max)
 the.quantiles      <- quantiles.mlest(mlest.dummy,
                                       printem = F, 
                                       to = upper.quantile)[, "Quanhat"]
+
 xlim.quant.now <- range(the.quantiles)
 xlim.quant     <- range(xlim.quant, xlim.quant.now)
 xtvna          <- is.na(time.range)
@@ -540,12 +549,10 @@ f.plot.censored.ticks(data.ld,
 pch.done <- -pch
 pch.done[1:length(stresses)] <- -pch.done[1:length(stresses)]
 
-stresses.plus <- switch.units(stresses.plus)
-
 if (do.legend == "On plot" && plotem) {
     legend(x.loc(0.003), 
            y.loc(0.994), 
-           legend = parse(text = stresses.plus),
+           legend = parse(text = switch.units(stresses.plus, colnames(xmat(data.ld)))),
            cex = 1, 
            bty = "n", 
            col = col.fhat.vec, 
@@ -564,7 +571,7 @@ if (do.legend == "New page" && plotem) {
          yaxt = "n")
    legend(x.loc(0.003), 
           y.loc(0.994), 
-          legend = parse(text = stresses.plus),
+          legend = parse(text = switch.units(stresses.plus,colnames(xmat(data.ld)))),
           cex = 1, 
           bty = "n", 
           col = col.fhat.vec, 

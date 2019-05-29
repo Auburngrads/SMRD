@@ -13,7 +13,7 @@ switch(frame.type[1],
        frame.centered = { 
          
           response.column <- attr(data.d, "response.column")
-          if (is.character(data.d) && length(data.d == 1)) data.d <- get(envir = .frame0, inherits = TRUE, data.d)
+          if (is.character(data.d) && length(data.d == 1)) data.d <- get(envir = .frame0, "data.d")
           the.response <- as.matrix(data.d[, response.column])
           col.names <- dimnames(data.d)[[2]]
           names(col.names) <- col.names
@@ -26,12 +26,8 @@ switch(frame.type[1],
         
     }, unfolded = {
       
-          response.column <- attr(data.d, "time.column")
-          if (is.character(data.d) && length(data.d == 1)) data.d <- get(envir = .frame0, inherits = TRUE, data.d)
-          the.response <- as.matrix(data.d[, response.column])
-          col.names <- dimnames(data.d)[[2]]
-          names(col.names) <- col.names
-          dimnames(the.response) <- list(NULL, col.names[response.column])
+          the.response <- data.d$y
+          if (is.null(the.response)) the.response <- data.d$Response
         
     }, {
         stop("Corrupted data frame")

@@ -1,5 +1,5 @@
 #' @export
-simulate.ALT.test.plan <-
+simulate.alt.test.plan <-
 function (object, nsim = 10, seed = NULL, ALT.plan.values, use.conditions, quantile.list = c(0.1,
     0.5, 0.9), ylim = c(NA, NA), xlim = c(NA, NA), my.title = NULL,
     title.option = GetSMRDDefault("SMRD.TitleOption"), grids = F, numplotsim = 50,

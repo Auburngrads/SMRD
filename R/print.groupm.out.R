@@ -14,7 +14,7 @@ function (x, stress.state = NULL,...)
            param.correl.matrix = parameter.correlation.matrix, 
            mle.param = ml.parameter.estimates)
   
-  stresses<-x$groupm.out$stress.names
+  stresses <- x$groupm.out$stress.names
   stress.frame<-data.frame(stresses)
   colnames(stress.frame)<-""
   stress.mat<-matrix(stresses)
@@ -32,7 +32,7 @@ function (x, stress.state = NULL,...)
   print(stress.frame)
   
   cat("\n")
-  stress.state <- as.numeric(readline(prompt = "Which stress state do you want? "))
+  stress.state <- as.numeric(readline(prompt = "For which stress state would like print a summary?\nEntering 0 will return a summary of the full data\n"))
   
   }
   
@@ -41,5 +41,7 @@ function (x, stress.state = NULL,...)
   return( print(x[[stress.mat[stress.state]]]) )
     
   }
+  
   if (stress.state==0) { zz }
+  
 }

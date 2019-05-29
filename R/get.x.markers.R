@@ -5,7 +5,8 @@ function (data.ld,
           long = F, 
           collapse.on = ";", 
           do.order = T, 
-          include.complete = F)
+          include.complete = F,
+          for.legend = F)
 {
     `if`(long && GetSMRDDefault("SMRD.long.names"),
          long <- T,
@@ -32,7 +33,7 @@ function (data.ld,
             the.column <- the.xmat[, i]
             if (is.numeric(the.column)) {
           
-               decimal.digits <- max(nchar(abs(the.column) - floor(abs(the.column))) - 2,0)
+               decimal.digits <- max(nchar(prettyNum(abs(the.column) - floor(abs(the.column)))) - 2,0)
                `if`(is.integer(the.column),
                     the.xmat[, i] <- the.column,
                     the.xmat[, i] <- sprintf(fmt = paste0('%#.',decimal.digits,'f'), 
@@ -45,7 +46,7 @@ function (data.ld,
           apply(the.xmat[order.vec, group.var, drop = F], 
                 1, 
                 paste, 
-                sep = "~", 
+                sep = `if`(for.legend,"~",""), 
                 collapse = collapse.on,
                 the.names)
         
@@ -54,7 +55,7 @@ function (data.ld,
               apply(the.xmat[, group.var, drop = F], 
                     1, 
                     paste, 
-                    sep = "~", 
+                    sep = `if`(for.legend,"~",""), 
                     collapse = collapse.on,
                     the.names)
         
@@ -96,8 +97,7 @@ function (data.ld,
     the.strings <- vector.strip.blanks(the.strings)
     attr(the.strings, "the.names") <- the.names
     
-    if (include.complete)
-        complete.list(the.strings) <- the.complete.list
+    if (include.complete) complete.list(the.strings) <- the.complete.list
     
     return(the.strings)
 }

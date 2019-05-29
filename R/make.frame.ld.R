@@ -11,18 +11,17 @@ function (y,
           data.title = "No title",
           data.note = "")
 {
-    response.column <- as.matrix(y)
+    y <- as.matrix(y)
     
     if (is.null(time.units)) time.units <- "Time"
     
-    if (ncol(response.column) == 2) {
-      
-        colnames(response.column) <- paste(c("lower","upper"), time.units)
-  
-        } else {
-          
-        colnames(response.column) <- time.units
-    }
+    `if`(ncol(y) == 2,
+         dimnames(y) <- list(rep(NULL, nrow(y)), 
+                            paste(c("lower", "upper"), time.units)),
+         dimnames(y) <- list(rep(NULL, nrow(y)), time.units))
+    
+    response.column <- vector.strip.blanks(dimnames(y)[[2]], 
+                                           FillChar = ".")
     
     if (length(the.censor.codes) > 0) {
       
@@ -32,8 +31,10 @@ function (y,
             
       } else {
         
-            censor.column <- as.matrix(the.censor.codes)
-            colnames(censor.column) <- "Status"
+            the.censor.codes <- as.matrix(the.censor.codes)
+            dimnames(the.censor.codes) <- list(rep(NULL, nrow(the.censor.codes)), "Status")
+            censor.column <- "Status"
+            
       }
       
   } else {
@@ -49,8 +50,10 @@ function (y,
             
       } else {
         
-            case.weight.column <- as.matrix(the.case.weights)
-            colnames(case.weight.column) <- "Weights"
+            the.case.weights <- as.matrix(the.case.weights)
+            dimnames(the.case.weights) <- list(rep(NULL, nrow(the.case.weights)),"Weights")
+            case.weight.column <- "Weights"
+            
       }
       
   } else {
@@ -60,8 +63,8 @@ function (y,
   }
     if (length(the.xmat) > 0) {
       
-        x.columns <- as.data.frame(the.xmat)
-        colnames(x.columns) <- dimnames(the.xmat)[[2]]
+        the.xmat <- as.data.frame(the.xmat)
+        x.columns <- dimnames(the.xmat)[[2]]
         
         } else {
           
@@ -71,8 +74,8 @@ function (y,
     
     if (length(the.failure.modes) > 0) {
       
-        failure.mode.column <- as.matrix(the.failure.modes)
-        colnames(failure.mode.column) <- "Mode"
+        the.failure.modes <- as.matrix(the.failure.modes)
+        failure.mode.column <- dimnames(the.failure.modes)[[2]]
         
         } else {
           
@@ -82,50 +85,50 @@ function (y,
     
     if (length(ty) > 0) {
       
-        if (length(the.truncation.codes) == 0)
-            stop("Truncation times given withour truncation codes")
+        if (length(the.truncation.codes) == 0) stop("Truncation times given withour truncation codes")
       
-        truncation.response.column <- as.matrix(ty)
+        ty <- as.matrix(ty)
         
         if (ncol(ty) == 2) {
           
-            colnames(truncation.response.column) <- paste(c("lower","upper"), "Trun")
-      
-            } else {
-              
-            colnames(truncation.response.column) <- "Trun"
-        
-            }
-        
-        truncation.type.column <- as.matrix(the.truncation.codes)
-        colnames(truncation.type.column) <- "TrunCode"
-  
+            dimnames(ty) <- list(rep(NULL, nrow(ty)), paste(c("lower", "upper"), "Trun"))
+            
         } else {
           
-        if (length(the.truncation.codes) > 0)
-            stop("Truncation codes given withour truncation times")
+            dimnames(ty) <- list(rep(NULL, nrow(ty)), "Trun")
+            
+        }
+        
+        truncation.response.column <- dimnames(ty)[[2]]
+        the.truncation.codes <- as.matrix(the.truncation.codes)
+        dimnames(the.truncation.codes) <- list(rep(NULL, nrow(the.truncation.codes)), "TrunCode")
+        truncation.type.column <- "TrunCode"
+        
+    } else {
+      
+        if (length(the.truncation.codes) > 0) stop("Truncation codes given withour truncation times")
         truncation.type.column <- NULL
         truncation.response.column <- NULL
-  
-        }
+        
+    }   
     
     the.frame <- my.data.frame(y, 
-                               censor.column, 
-                               case.weight.column,
-                               failure.mode.column, 
-                               x.columns, 
-                               truncation.response.column, 
-                               truncation.type.column)
+                               the.censor.codes, 
+                               the.case.weights,
+                               the.failure.modes, 
+                               the.xmat, 
+                               the.truncation.codes, 
+                               ty)
     
     the.frame.ld <- 
       frame.to.ld(the.frame, 
-                  response.column = colnames(response.column),
-                  censor.column = colnames(censor.column), 
-                  case.weight.column = colnames(case.weight.column),
-                  failure.mode.column = colnames(failure.mode.column), 
+                  response.column = response.column,
+                  censor.column = censor.column, 
+                  case.weight.column = case.weight.column,
+                  failure.mode.column = failure.mode.column, 
                   x.columns = x.columns,
-                  truncation.response.column = colnames(truncation.response.column),
-                  truncation.type.column = colnames(truncation.type.column), 
+                  truncation.response.column = truncation.response.column,
+                  truncation.type.column = truncation.type.column, 
                   time.units = time.units, 
                   data.title = data.title, 
                   data.note = data.note, 

@@ -36,7 +36,7 @@ function (data.ld,
     if (is.null(model$f.tranparam)) model$f.tranparam <- f.tranparam
     assign(envir = .frame0,  inherits = TRUE,"log.like", log.like)
     assign(envir = .frame0,  inherits = TRUE,"model", model)
-    if (!exists("debug1")) assign(envir = .frame0,  inherits = TRUE,"debug1", debug1)
+    if (!exists("debug1", envir = .frame0)) assign(envir = .frame0, inherits = TRUE,"debug1", debug1)
     
     if (map.SMRDDebugLevel() >= 4) {
       

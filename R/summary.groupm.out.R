@@ -1,7 +1,7 @@
 #' @export
 summary.groupm.out <-
-function (object, ...)
+function (object,...)
 {
-    print(object)
+    print(object,...)
     invisible()
 }

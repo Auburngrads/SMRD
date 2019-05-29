@@ -3,14 +3,11 @@ function (data.ld)
 {
     if ((is.data.frame(x = data.ld) || is.character(x = data.ld))) {
       
-        if (!is.null(attr(data.ld, "response")) || !is.null(attr(data.ld,
-            "response.column")))
-            return("frame.centered")
+        if (!is.null(attr(data.ld, "response")) || !is.null(attr(data.ld, "response.column"))) return("frame.centered")
       
     }
   
-    if (!any(is.na(match(c("frame", "response.column", "data.title"),
-        names(data.ld))))) {
+    if (!any(is.na(match(c("frame", "response.column", "data.title"), names(data.ld))))) {
       
         if (is.onlist("life.data", oldClass(data.ld)))
             warning("List-centered data objects are deprecated---consider remaking")

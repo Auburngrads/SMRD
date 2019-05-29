@@ -5,22 +5,30 @@ function (x, FailLevel, use.condition, time.vec = NULL,
     to = 0.999, add.title = NULL, printem = T,...)
 {
     distribution <- x$model$distribution
-    distribution.string <- paste("Dead-on-Arrival-", distribution,
-        sep = "")
+    distribution.string <- paste("Dead-on-Arrival-", 
+                                 distribution,
+                                 sep = "")
+    
     if (is.null(time.vec) || any(time.vec == Inf)) {
-        time.vec <- get.time.vector(x, distribution = distribution,
-            number = 10)
+        time.vec <- get.time.vector(x, 
+                                    distribution = distribution,
+                                    number = 10)
     }
     func.call <- match.call()
     use.condition <- string.to.frame(use.condition)
     results <- fx.ADDT.life.failure.probability(theta.hat = x$origparam,
-        time.vec = time.vec, distribution = distribution, FailLevel = FailLevel,
-        xuse = use.condition, transformation.response = x$model$transformation.response,
-        transformation.x = x$model$transformation.x,
-        transformation.time = x$model$transformation.time)
+                                                time.vec = time.vec, 
+                                                distribution = distribution, 
+                                                FailLevel = FailLevel,
+                                                xuse = use.condition, 
+                                                transformation.response = x$model$transformation.response,
+                                                transformation.x = x$model$transformation.x,
+                                                transformation.time = x$model$transformation.time)
+    
     conf.char <- percent.conf.level(conf.level)
     conf.int.title <- paste("\nPointwise Approximate ", conf.char,
-        " Confidence Intervals", sep = "")
+                            " Confidence Intervals", sep = "")
+    
     the.xmat <- xmat(x$data.ld)
     the.time.units <- get.time.units(x$data.ld)
     my.title <- paste(get.data.title(x$data.ld),
