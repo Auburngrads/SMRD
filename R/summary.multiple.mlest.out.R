@@ -39,7 +39,7 @@ function (object, weibull.traditional = T, sum.likelihood = T,
         group.var <- extra.stuff$group.var
         theta.hat <- mlest.out$theta.hat
         se.musig <- sqrt(diag(mlest.out$vcv.matrix))
-        if (weibull.traditional && .distnum(numdist(distribution)) ==
+        if (weibull.traditional && distnum(numdist(distribution)) ==
             "Weibull") {
             eta <- exp(theta.hat[1])
             beta <- 1/theta.hat[2]
@@ -56,7 +56,7 @@ function (object, weibull.traditional = T, sum.likelihood = T,
     if (is.R())
         group.var.label <- "Group"
     else group.var.label <- paste(xlabel[group.var], collapse = ", ")
-    if (weibull.traditional && .distnum(numdist(the.distribution)) ==
+    if (weibull.traditional && distnum(numdist(the.distribution)) ==
         "Weibull") {
         the.dimnames <- list(as.character(1:length(object)),
             c(group.var.label, "Log likelihood", "eta", "se_eta",
