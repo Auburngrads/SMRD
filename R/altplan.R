@@ -84,7 +84,7 @@ function (alt.plan.values,
     the.plan <- get.alt.test.plan.direct(accel.variable.levels = f.relationshipinv(xu + zout$numvec$fpp * (xh - xu), relationship), 
                                          number.of.units = allocation,
                                          censor.times = rep(censor.time, number.levels), 
-                                         accelvar.names = .InsertPeriods(alt.plan.values$accelvar.units),
+                                         accelvar.names = InsertPeriods(alt.plan.values$accelvar.units),
                                          describe.string = describe.string)
     
     return(the.plan)
