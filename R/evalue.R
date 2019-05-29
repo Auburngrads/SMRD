@@ -4,7 +4,7 @@ function (a = 0.1, b = 0.9, conf.level = 0.95)
     tail <- (1 - conf.level)/2
     evaluef <- function(x, tail, a, b) {
         tmp <- ((1 - a) * b)/(a * (1 - b))
-        ans <- (x * exp(.Uminus((x^2))/2) * logb(tmp))/5.01325651 - 
+        ans <- (x * exp(Uminus((x^2))/2) * logb(tmp))/5.01325651 - 
             tail
         return(ans)
     }
