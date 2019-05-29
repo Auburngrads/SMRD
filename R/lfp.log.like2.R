@@ -23,5 +23,5 @@ function (theta)
         logb(1 - plfp * wqmf.phibf(z[the.censor.codes == 2],
             distribution)))
     print(paste("in lfp", mu, sigma, plfp, fail.part + censor.part))
-    return(.Uminus((fail.part + censor.part)))
+    return(Uminus((fail.part + censor.part)))
 }
