@@ -16,6 +16,7 @@ CondProbInterval2(BearingCage.mlest.weib,
                   age = 50,
                   tL = 50,
                   tU = 350)
+
 CondProbInterval2(BearingCage.mlest.weib,
                   age = 150,
                   tL = 150,
@@ -25,18 +26,4 @@ CondProbInterval2(BearingCage.mlest.weib,
 PredictTable(BearingCage.mlest.weib,
              FtimeStart = 0, 
              FtimeEnd = 300)
-
-## ------------------------------------------------------------------------
-SMRD2:::CondProbInterval(mu = 3.7393, 
-                 sigma = 0.7639,
-                 distribution = "lognormal",
-                 age = 1,
-                 tL = 1,
-                 tU = 36)
-
-## ------------------------------------------------------------------------
-DeviceN.ld <- frame.to.ld(devicen,
-                          response.column = "months", 
-                          censor.column = "event",
-                          case.weight.column = "counts")
 
