@@ -23,7 +23,7 @@ library(SMRD2)
 Use the following for testing
 
 ```{r, eval=FALSE}
-SMRDOptions(SMRD.DebugLevel="development")
+SMRDOptions(SMRD.DebugLevel = "development")
 ```
 
 ##	InsulationBrkdwn example
@@ -54,7 +54,7 @@ InsulationBrkdwn.ADDTpv <-
 print(InsulationBrkdwn.ADDTpv)
 
 InsulationBrkdwn.vADDTplan <-
-  SMRD2::hframe.to.vframe(InsulationBrkdwn.ADDTplan)
+  hframe.to.vframe(InsulationBrkdwn.ADDTplan)
 
 sum(allocation(InsulationBrkdwn.vADDTplan))
 
@@ -177,41 +177,41 @@ marginalize.sim(InsulationBrkdwn.plan.sim.out,
                 x.of.interest = "150",
                 FailLevel = 4)
 
-plot.marginals.sim(InsulationBrkdwn.plan.sim.out,
-                   focus.quantity = "parameter",
-                   focus.quantity.detail = 1,
-                   FailLevel = 4)
+SMRD2:::plot.marginals.sim(InsulationBrkdwn.plan.sim.out,
+                           focus.quantity = "parameter",
+                           focus.quantity.detail = 1,
+                           FailLevel = 4)
 
-plot.marginals.sim(InsulationBrkdwn.plan.sim.out,
-                   focus.quantity = "parameter",
-                   focus.quantity.detail = 1,
-                   plot.type = "density")
+SMRD2:::plot.marginals.sim(InsulationBrkdwn.plan.sim.out,
+                           focus.quantity = "parameter",
+                           focus.quantity.detail = 1,
+                           plot.type = "density",
+                           FailLevel = 4)
 
+SMRD2:::plot.marginals.sim(InsulationBrkdwn.plan.sim.out,
+                           focus.quantity = "quantile",
+                           focus.quantity.detail = 0.1,
+                           x.of.interest = "150",
+                           plot.type = "density",
+                           FailLevel = 4)
 
-plot.marginals.sim(InsulationBrkdwn.plan.sim.out,
-                   focus.quantity = "quantile",
-                   focus.quantity.detail = 0.1,
-                   x.of.interest = "150",
-                   plot.type = "density",
-                   FailLevel = 4)
+SMRD2:::plot.joint.sim(InsulationBrkdwn.plan.sim.out, 
+                       focus.quantity1 = "quantile",
+                       focus.quantity.detail1 = 0.1,
+                       x.of.interest1 = "150",
+                       focus.quantity2 = "parameter",
+                       focus.quantity.detail2 = 3,
+                       x.of.interest2 = NA,
+                       FailLevel = 4)
 
-plot.joint.sim(InsulationBrkdwn.plan.sim.out, 
-               focus.quantity1 = "quantile",
-               focus.quantity.detail1 = 0.1,
-               x.of.interest1 = "150",
-               focus.quantity2 = "parameter",
-               focus.quantity.detail2 = 3,
-               x.of.interest2 = NA,
-               FailLevel = 4)
-
-plot.joint.and.marginals.sim(InsulationBrkdwn.plan.sim.out, 
-                             focus.quantity1 = "quantile",
-                             focus.quantity.detail1 = 0.1,
-                             x.of.interest1 = "150",
-                             focus.quantity2 = "parameter",
-                             focus.quantity.detail2 = 3,
-                             x.of.interest2 = NA,
-                             FailLevel = 4)
+SMRD2:::plot.joint.and.marginals.sim(InsulationBrkdwn.plan.sim.out, 
+                                     focus.quantity1 = "quantile",
+                                     focus.quantity.detail1 = 0.1,
+                                     x.of.interest1 = "150",
+                                     focus.quantity2 = "parameter",
+                                     focus.quantity.detail2 = 3,
+                                     x.of.interest2 = NA,
+                                     FailLevel = 4)
 
 summarize.simultation.results(InsulationBrkdwn.plan.sim.out, 
                               "Marginal only", 
@@ -258,7 +258,6 @@ summarize.simultation.results(InsulationBrkdwn.plan.sim.out,
 
 ```{r}
 ##	AdhesiveBondB Example
-
 AdhesiveBondB.SEV.ADDTpv <- 
   get.ADDT.plan.values(distribution = "normal",
                        transformation.x = c("Arrhenius"),
@@ -335,11 +334,13 @@ plot(AdhesiveBondC.ADDTplan,
      quantile.of.interest = 0.2)
 
 AdhesiveBondC.vframe <- hframe.to.vframe(AdhesiveBondC.ADDTplan)
+```
 
+```{r}
 AdhesiveBondC.sim.out <- 
   simulate(AdhesiveBondC.ADDTplan, 
            ADDT.plan.values = AdhesiveBondC.ADDTpv, 
-           number.sim = 50,
+           number.sim = 10,
            plotem = 4)
 
 summarize.simultation.results(AdhesiveBondC.sim.out, 
@@ -425,7 +426,7 @@ TestAdhesiveBondB.SEV.ADDTpv <-
                        use.condition = "30")
 
 ADDT.vcv(ADDT.plan.values = AdhesiveBondB.SEV.ADDTpv,
-         SMRD2:::hframe.to.vframe(AdhesiveBondB.ADDTplan))
+         hframe.to.vframe(AdhesiveBondB.ADDTplan))
 
 evaluate(AdhesiveBondB.ADDTplan,
          TestAdhesiveBondB.SEV.ADDTpv,
