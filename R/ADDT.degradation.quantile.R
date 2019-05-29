@@ -18,7 +18,7 @@ function (p, distribution, xuse.tran, time.tran, theta.hat)
         ncol = 1)
     slope <- theta.hat["beta1"] * exp(beta.x)
     intercept <- theta.hat["beta0"]
-    answers <- intercept + slope * time.tran + quant(p, distribution) * 
+    answers <- intercept + as.vector(slope) * time.tran + quant(p, distribution) * 
         theta.hat["sigma"]
     return(answers)
 }
