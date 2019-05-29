@@ -66,14 +66,13 @@ Resistor.ld <- rmd.to.ld(Resistor.rmd,
 ```{r}
 SMRD2:::plot.rmd.residual(Resistor.ld)
 
-
 trellis.plot(Resistor.rmd,
              order.groups = F,
              outer.plot = F)
+
 trellis.plot(Resistor.rmd,
              order.groups = F,
              outer.plot = T)
-
 
 ## summarize the data
 
