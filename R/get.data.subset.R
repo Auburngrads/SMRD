@@ -16,7 +16,7 @@ function (data.ld, the.right.stuff, markers = NULL)
         censor.codes(data.ld) <- NULL
     data.title(data.ld) <- paste(get.data.title(data.ld), "subset",
         paste(markers, collapse = " "))
-    .right.stuff(data.ld) <- the.right.stuff
+    right.stuff(data.ld) <- the.right.stuff
     oldClass(data.ld) <- get.life.data.class(data.ld)
     MysetOldClass(attr(data.ld, "class"))
     return(data.ld)
