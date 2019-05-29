@@ -43,9 +43,9 @@ evaluate.ADDT.test.plan <-
     }
     transformation.response <- ADDT.plan.values$transformation.response
     theta.hat <- ADDT.plan.values$theta.vec
-    ADDT.model <- .pseudo.model(ADDT.plan.values, x)
-    gamma.hat <- .f.ADDT.stableparam(theta.hat, model = ADDT.model)
-    theta2.hat <- .f.ADDT.origparam(gamma.hat, model = ADDT.model)
+    ADDT.model <- pseudo.model(ADDT.plan.values, x)
+    gamma.hat <- f.ADDT.stableparam(theta.hat, model = ADDT.model)
+    theta2.hat <- f.ADDT.origparam(gamma.hat, model = ADDT.model)
     if (map.SMRDDebugLevel() >= 4) {
       cat("\nin evaluate.x t,g,t2=\n", format(theta.hat),
           "\n", format(theta2.hat), "\n", format(gamma.hat),
