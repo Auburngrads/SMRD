@@ -65,7 +65,7 @@ function (data.ld,
             assign(envir = .frame0,  inherits = TRUE,"profile.stable.parameters", value = profile.stable.parameters)
             theta.start <- f.tranparam(theta.start, model)
             assign(envir = .frame0,  inherits = TRUE,"theta.hold", value = theta.start)
-            theta.opt <- theta.start[.Uminus(fixed.parameters)]
+            theta.opt <- theta.start[Uminus(fixed.parameters)]
             est.out <- wqm.nlmin(const.log.like, 
                                  theta.opt, 
                                  max.fcal = max.fcal,
@@ -99,8 +99,8 @@ function (data.ld,
     }
 
     `if`(!is.null(fixed.param.list),
-         max.log.like <- .Uminus(const.log.like(t.param)),
-         max.log.like <- .Uminus(log.like(t.param)))
+         max.log.like <- Uminus(const.log.like(t.param)),
+         max.log.like <- Uminus(log.like(t.param)))
     
     ierror <- 0
     
