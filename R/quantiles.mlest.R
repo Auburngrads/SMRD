@@ -10,7 +10,7 @@ function (x,
           printem = T,...)
 {
     data.ld <- x$data.ld
-    distribution <- .distnum(numdist(x$distribution))
+    distribution <- distnum(numdist(x$distribution))
     if (any(prob.vec >= 1) || any(prob.vec <= 0)) {
         warning("probabilities for quantiles outside 0-1 removed from list")
         prob.vec <- prob.vec[prob.vec > 0 & prob.vec < 1]
