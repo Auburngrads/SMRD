@@ -1030,7 +1030,7 @@ summary.boot.npar.npar.out <-
             ccorrect = T, cum.method = NULL,...)
   {
     is.min <- function (x) { x == min(x) }
-    is.maxele <- function (x) { seq(1:length(x))[is.min(.Uminus(x))][1] }
+    is.maxele <- function (x) { seq(1:length(x))[is.min(Uminus(x))][1] }
     
     wqm.hist <-
       function (x, breaks = "Sturges", freq = NULL, include.lowest = TRUE,
