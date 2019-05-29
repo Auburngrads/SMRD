@@ -25,9 +25,10 @@ library(SMRD2)
 Get the adheisive bond planning values from simple user-specified information
 
 ```{r}
-AdhesiveBond.Weibull.altpv <- get.alt.plan.values.from.slope.and.point(distribution = "Weibull",
-                                                                       relationship = "Arrhenius", 
-                                                                       accelvar.units = c("DegreesC"),
+AdhesiveBond.Weibull.altpv <-
+  get.alt.plan.values.from.slope.and.point(distribution = "Weibull",
+                                           relationship = "Arrhenius",
+                                           accelvar.units = c("DegreesC"),
                                                                        time.units = "Days", 
                                                                        censor.time = 183,
                                                                        probs = c(.001), 
@@ -36,44 +37,57 @@ AdhesiveBond.Weibull.altpv <- get.alt.plan.values.from.slope.and.point(distribut
                                                                        beta = 1.667)
 
 print(AdhesiveBond.Weibull.altpv)
+```
+
 
 ## specify some test plans
 
-AdhesiveBond0.altplan <- get.alt.test.plan.direct(accel.variable.levels = c(80,100,120),
-                                                  number.of.units = c(100,100,100),
-                                                  censor.times = c(243,243,243))
+```{r}
+AdhesiveBond0.altplan <-
+  get.alt.test.plan.direct(accel.variable.levels = c(80,100,120),
+                           number.of.units = c(100,100,100),
+                           censor.times = c(243,243,243))
 
-AdhesiveBond1.altplan <- get.alt.test.plan.direct(accel.variable.levels = c(78,98,120),
-                                                  number.of.units = c(155,60,84),
-                                                  censor.times = c(183,183,183))
+AdhesiveBond1.altplan <-
+  get.alt.test.plan.direct(accel.variable.levels = c(78,98,120),
+                           number.of.units = c(155,60,84),
+                           censor.times = c(183,183,183))
 
-AdhesiveBond2.altplan <- get.alt.test.plan.direct(accel.variable.levels = c(80,100,120),
-                                                  number.of.units = c(212,88,0),
-                                                  censor.times = c(243,243,243))
+AdhesiveBond2.altplan <-
+  get.alt.test.plan.direct(accel.variable.levels = c(80,100,120),
+                           number.of.units = c(212,88,0),
+                           censor.times = c(243,243,243))
 
-AdhesiveBond3.altplan <- get.alt.test.plan.direct(accel.variable.levels = c(80,100,120),
-                                                  number.of.units = c(150,60,90),
-                                                  censor.times = c(243,243,243))
+AdhesiveBond3.altplan <-
+  get.alt.test.plan.direct(accel.variable.levels = c(80,100,120),
+                           number.of.units = c(150,60,90),
+                           censor.times = c(243,243,243))
 
 ## optimum plan
 
-AdhesiveBond4.altplan <- get.alt.test.plan.direct(accel.variable.levels = c(95,120),
-                                                  number.of.units = c(212,88),
-                                                  censor.times = c(183,183))
+AdhesiveBond4.altplan <-
+  get.alt.test.plan.direct(accel.variable.levels = c(95,120),
+                           number.of.units = c(212,88),
+                           censor.times = c(183,183))
+
+print(AdhesiveBond1.altplan)
+```
+
 
 ## the following illustrates the frame method of input
-
+```{r}
 AdhesiveBond2.frame <- data.frame(DegreesC = c(80,100,120),
                                   SampleSize = c(150,60,90),
                                   CensorTimes = c(243,243,243))
 
-AdhesiveBond2.altplan <- get.alt.test.plan.frame(AdhesiveBond2.frame,
-                                                 levels.columns = "DegreesC", 
-                                                 censor.column = "CensorTimes",
-                                                 allocation.column = "SampleSize",
-                                                 describe.string = "AdhesiveBond Test Plan")
+AdhesiveBond2.altplan <- 
+  get.alt.test.plan.frame(AdhesiveBond2.frame,
+                          levels.columns = "DegreesC", 
+                          censor.column = "CensorTimes",
+                          allocation.column = "SampleSize",
+                          describe.string = "AdhesiveBond Test Plan")
 
-print(AdhesiveBond1.altplan)
+print(AdhesiveBond2.altplan)
 ```
 
 Make a schematic plot of the model and the test plan
@@ -111,9 +125,9 @@ names(AdhesiveBond.Weibull.altpv)
 Evaluate the test plan with simulation and large-sample approx
 
 ```{r}
-simulate.ALT.test.plan(AdhesiveBond1.altplan,
-                       AdhesiveBond.Weibull.altpv,
-                       use.condition = 50)
+simulate(AdhesiveBond1.altplan,
+         ALT.plan.values = AdhesiveBond.Weibull.altpv,
+         use.condition = 50)
 
 unfold(AdhesiveBond1.altplan, 
        AdhesiveBond.Weibull.altpv, 
@@ -128,24 +142,25 @@ evaluate(AdhesiveBond1.altplan,
 Evaluate the the other test plans
 
 ```{r}
-simulate.ALT.test.plan(AdhesiveBond2.altplan, 
-                       AdhesiveBond.Weibull.altpv,
-                       use.condition = 50,
-                       show.detail.on = 5)
+simulate(AdhesiveBond2.altplan, 
+         ALT.plan.values = AdhesiveBond.Weibull.altpv,
+         use.condition = 50,
+         show.detail.on = 5)
 
-simulate.ALT.test.plan(AdhesiveBond2.altplan,
-                       AdhesiveBond.Weibull.altpv,
-                       number.sim = 100,
-                       use.condition = 50)
+simulate(AdhesiveBond2.altplan,
+         ALT.plan.values = AdhesiveBond.Weibull.altpv,
+         number.sim = 100,
+         use.condition = 50)
 
 evaluate(AdhesiveBond2.altplan, 
          AdhesiveBond.Weibull.altpv,
          use.condition = 50,
          quantile.of.interest = 0.1)
 
-AdhesiveBond3.sim.out <- simulate.ALT.test.plan(AdhesiveBond3.altplan, 
-                                                AdhesiveBond.Weibull.altpv,
-                                                use.condition = 50)
+AdhesiveBond3.sim.out <- 
+  simulate(AdhesiveBond3.altplan,
+           ALT.plan.values = AdhesiveBond.Weibull.altpv,
+           use.condition = 50)
 
 ALT.plot.time.v.x(AdhesiveBond3.sim.out,
                   x.of.interest = c(45))
@@ -158,30 +173,33 @@ evaluate(AdhesiveBond3.altplan,
          use.condition = 50,
          quantile.of.interest = 0.1)
 
-plot.vpm.vs.size(vpm.vec = c(100, 150, 200), size.vec = c(1, 2, 3))
+SMRD2:::plot.vpm.vs.size(vpm.vec = c(100, 150, 200), 
+                         size.vec = c(1, 2, 3))
 
-
-plot.volt.vs.size(volts.vec = c(100, 200, 300), size.vec = c(1, 2,3))
+SMRD2:::plot.volt.vs.size(volts.vec = c(100, 200, 300), 
+                          size.vec = c(1, 2, 3))
 ```
 
 ##	DeviceA example
 
 ```{r}
-DeviceA.altpv <- get.alt.plan.values.from.slope.and.point(distribution = "Lognormal",
-                                                          slope = 0.63,
-                                                          relationship = "Arrhenius", 
-                                                          time.units = "Hours",
-                                                          censor.time = 5000,
-                                                          probs = 0.5469, 
-                                                          accelvar = 60, 
-                                                          sigma = 0.98,
-                                                          use.conditions = 10)
+DeviceA.altpv <- 
+  get.alt.plan.values.from.slope.and.point(distribution = "Lognormal",
+                                           slope = 0.63,
+                                           relationship = "Arrhenius",
+                                           time.units = "Hours",
+                                           censor.time = 5000,
+                                           probs = 0.5469, 
+                                           accelvar = 60,
+                                           sigma = 0.98,
+                                           use.conditions = 10)
 
 print(DeviceA1.altplan)
 
-DeviceA1.altplan <- get.alt.test.plan.direct(accel.variable.levels = c(10,40,60,80),
-                                             number.of.units = c(30,100,20,15),
-                                             censor.time =  c(5000,5000,5000,5000))
+DeviceA1.altplan <- 
+  get.alt.test.plan.direct(accel.variable.levels = c(10,40,60,80),
+                           number.of.units = c(30,100,20,15),
+                           censor.time =  c(5000,5000,5000,5000))
 
 print(DeviceA1.altplan)
 
@@ -190,9 +208,10 @@ simulate(DeviceA1.altplan,
          nsim = 100,
          use.condition = 10)
 
-DeviceA2.altplan <- get.alt.test.plan.direct(accel.variable.levels = c(10,40,50,60,70,80),
-                                             number.of.units = c(30,27,27,27,27,27),
-                                             censor.time =  c(5000,5000,5000,5000,5000,5000))
+DeviceA2.altplan <- 
+  get.alt.test.plan.direct(accel.variable.levels = c(10,40,50,60,70,80),
+                           number.of.units = c(30,27,27,27,27,27),
+                           censor.time = c(5000,5000,5000,5000,5000,5000))
 
 print(DeviceA2.altplan)
 
@@ -219,7 +238,7 @@ evaluate(altplan(AdhesiveBond.Weibull.altpv,
                  highest.condition = 120,
                  censor.time = 183, 
                  quantile = 0.1,
-                 sample.size=300), 
+                 sample.size = 300), 
          AdhesiveBond.Weibull.altpv,
          use.condition = 50, 
          quantile.of.interest = 0.1)
@@ -274,36 +293,43 @@ plot(AdhesiveBond.Weibull.421.altplan,
      AdhesiveBond.Weibull.altpv,
      use.condition = 50)
 
-DeviceA.Sim.out <- simulate.ALT.test.plan(ALT.test.plan = DeviceA2.altplan,
-                                          ALT.plan.values = DeviceA.altpv,
-                                          number.sim = 10,
-                                          use.condition = 10)
+DeviceA.Sim.out <- 
+  simulate(DeviceA2.altplan,
+           ALT.plan.values = DeviceA.altpv,
+           nsim = 10,
+           use.condition = 10)
 
-DeviceA.Sim.out500 <- simulate.ALT.test.plan(ALT.test.plan = DeviceA2.altplan,
-                                             ALT.plan.values = DeviceA.altpv,
-                                             number.sim = 500,
-                                             use.condition = 10)
+DeviceA.Sim.out500 <- 
+  simulate(DeviceA2.altplan,
+           ALT.plan.values = DeviceA.altpv,
+           nsim = 500,
+           use.condition = 10)
 
 marginalize.sim(DeviceA.Sim.out, 
                 focus.quantity = "parameter",
                 focus.quantity.detail = 1,
                 x.of.interest = 50)
+
 marginalize.sim(DeviceA.Sim.out, 
                 focus.quantity = "parameter",
                 focus.quantity.detail = 2,
                 x.of.interest = 50)
+
 marginalize.sim(DeviceA.Sim.out, 
                 focus.quantity ="parameter",
                 focus.quantity.detail = 3,
                 x.of.interest = 50)
+
 marginalize.sim(DeviceA.Sim.out, 
                 focus.quantity = "parameter",
                 focus.quantity.detail = "sigma",
                 x.of.interest = 50)
+
 marginalize.sim(DeviceA.Sim.out, 
                 focus.quantity = "quantile",
                 focus.quantity.detail = 0.1,
                 x.of.interest = 50)
+
 marginalize.sim(DeviceA.Sim.out, 
                 focus.quantity = "failure probability",
                 focus.quantity.detail = 4268.884,
@@ -325,7 +351,8 @@ plot.joint.sim(DeviceA.Sim.out, focus.quantity1 = "quantile",
                focus.quantity.detail2 = 3,
                x.of.interest2 = NA)
 
-plot.joint.and.marginals.sim(DeviceA.Sim.out, focus.quantity1 = "quantile",
+plot.joint.and.marginals.sim(DeviceA.Sim.out, 
+                             focus.quantity1 = "quantile",
                              focus.quantity.detail1 = 0.1,
                              x.of.interest1 = 50,
                              focus.quantity2 = "parameter",
@@ -333,7 +360,8 @@ plot.joint.and.marginals.sim(DeviceA.Sim.out, focus.quantity1 = "quantile",
                              x.of.interest2 = NA)
 
 summarize.simultation.results(DeviceA.Sim.out, 
-                              "Marginal only", focus.quantity1 = "quantile",
+                              "Marginal only", 
+                              focus.quantity1 = "quantile",
                               focus.quantity.detail1 = 0.1,
                               x.of.interest1 = 50,
                               focus.quantity2 = "parameter",
@@ -341,7 +369,8 @@ summarize.simultation.results(DeviceA.Sim.out,
                               x.of.interest2 = NA)
 
 summarize.simultation.results(DeviceA.Sim.out, 
-                              "Marginal only", focus.quantity1 = "quantile",
+                              "Marginal only", 
+                              focus.quantity1 = "quantile",
                               focus.quantity.detail1 = 0.1,
                               x.of.interest1 = 50,
                               focus.quantity2 = "parameter",
@@ -369,7 +398,6 @@ summarize.simultation.results(DeviceA.Sim.out,
                               x.of.interest2=NA)
 ```
 
-
 ##	two variable alt planning examples 
 
 These methods also apply for tests with more than two variables)
@@ -391,15 +419,16 @@ DeviceR.Weibull.altpv  <-
 print(DeviceR.Weibull.altpv)
 ```
 
-
 Define two-variable ALT test plans
 
 ```{r}
-DeviceR.altplan <- get.alt.test.plan.direct(accel.variable.levels = cbind(c(80,80,120,120),c(50,80,50,80)),
-                                            number.of.units = c(10,10,10,10),
-                                            censor.times = c(365,365,365,365),
-                                            accelvar.names = c("DegreesC","RH"),
-                                            describe.string = "DeviceR Simple Plan")
+DeviceR.altplan <- 
+  get.alt.test.plan.direct(accel.variable.levels = cbind(c(80,80,120,120),
+                                                         c(50,80,50,80)),
+                           number.of.units = c(10,10,10,10),
+                           censor.times = c(365,365,365,365),
+                           accelvar.names = c("DegreesC","RH"),
+                           describe.string = "DeviceR Simple Plan")
 
 print(DeviceR.altplan)
 ```
@@ -435,25 +464,32 @@ DeviceR.sim.out <- ALTsim(DeviceR.altplan,
 
 ##	simulate the ALT plans and plot summary
 
-DeviceR.sim.out <- simulate.ALT.test.plan(DeviceR.altplan, 
-                                          DeviceR.Weibull.altpv, number.sim = 400,
-                                          show.detail.on = 5)
+DeviceR.sim.out <- simulate(DeviceR.altplan, 
+                            DeviceR.Weibull.altpv, 
+                            nsim = 400,
+                            show.detail.on = 5)
 
-DeviceR.sim.out <- simulate.ALT.test.plan(DeviceR.altplan, 
-                                          DeviceR.Weibull.altpv, number.sim = 400,
-                                          show.detail.on = 0)
+DeviceR.sim.out <- simulate(DeviceR.altplan,
+                            DeviceR.Weibull.altpv, 
+                            nsim = 400,
+                            show.detail.on = 0)
 
 ##	plot the ALT simulation results
 
 ALT.plot.time.v.x(DeviceR.sim.out)
 
-ALT.plot.time.v.x(DeviceR.sim.out, focus.variable = 2)
+ALT.plot.time.v.x(DeviceR.sim.out, 
+                  focus.variable = 2)
 
-ALT.plot.time.v.x(DeviceR.sim.out,x.of.interest = c(25,10),xlim = c(20,80))
+ALT.plot.time.v.x(DeviceR.sim.out,
+                  x.of.interest = c(25,10),
+                  xlim = c(20,80))
 
 ALT.plot.FracFail.v.Time(DeviceR.sim.out)
 
-ALT.plot.FracFail.v.Time(DeviceR.sim.out,x.of.interest = c(25,10),xlim=c(100,10000))
+ALT.plot.FracFail.v.Time(DeviceR.sim.out,
+                         x.of.interest = c(25,10),
+                         xlim=c(100,10000))
 
 ##	look at joint and marginal disributions of focus quantities
 
@@ -517,7 +553,8 @@ NelsonInsulation.Weibull.altpv  <-
                                            relationship = c("log","log"),
                                            accelvar.units = c("vpm","cm"),
                                            time.units = "Hours", 
-                                           censor.time = 1000, probs = c(1.8e-6),
+                                           censor.time = 1000, 
+                                           probs = c(1.8e-6),
                                            accelvar = c(80,.266), 
                                            beta = 1/.6734, 
                                            use.conditions = c(80,.266))
@@ -525,11 +562,12 @@ NelsonInsulation.Weibull.altpv  <-
 print(NelsonInsulation.Weibull.altpv)
 
 ##	define two-variable ALT test plans
-
+levels = cbind(c(120,120,120,150,150,150,175,175,175,200,200,200),
+               c(.163,.266,.355,.163,.266,.355,.163,.266,.355,.163,.266,.355))
+units = c(11,18,11,8,14,8,8,14,8,11,18,11)
 NelsonInsulation.altplan <- 
-  get.alt.test.plan.direct(accel.variable.levels = cbind(c(120,120,120,150,150,150,175,175,175,200,200,200),
-                                                         c(.163,.266,.355,.163,.266,.355,.163,.266,.355,.163,.266,.355)),
-                           number.of.units = c(11,18,11,8,14,8,8,14,8,11,18,11),
+  get.alt.test.plan.direct(accel.variable.levels = levels,
+                           number.of.units = units,
                            censor.times = rep(1000,12),
                            accelvar.names = c("Volts per mm","Thick"),
                            describe.string = "NelsonInsulation Factorial Plan")
@@ -565,7 +603,8 @@ plot.alt.sample.size(NelsonInsulation.altplan,
 
 
 NelsonInsulation.sim.out <- ALTsim(NelsonInsulation.altplan, 
-                                   NelsonInsulation.Weibull.altpv, number.sim = 400,
+                                   NelsonInsulation.Weibull.altpv,
+                                   number.sim = 400,
                                    show.detail.on = 1)
 
 ALT.plot.time.v.x(NelsonInsulation.sim.out)
@@ -576,7 +615,8 @@ ALT.plot.time.v.x(NelsonInsulation.sim.out,
 
 ALT.plot.FracFail.v.Time(NelsonInsulation.sim.out)
 
-ALT.plot.FracFail.v.Time(NelsonInsulation.sim.out,x.of.interest = c(25,10), 
+ALT.plot.FracFail.v.Time(NelsonInsulation.sim.out,
+                         x.of.interest = c(25,10), 
                          xlim = c(100,10000))
 
 summarize.simultation.results(NelsonInsulation.sim.out, 
