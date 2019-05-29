@@ -14,13 +14,14 @@ function (results.object, focus.quantity, focus.quantity.detail,
     explan.vars <- "accel.var"
     regr.param <- 1:(length(model$orig.param.names) - 1)
     sigma.param <- length(model$orig.param.names)
-    if (!is.null(explan.vars) && is.onlist(focus.quantity, c("Parameter",
-        "parameter"))) {
+    if (!is.null(explan.vars) && !is.onlist(focus.quantity, c("Parameter", "parameter"))) {
+        
         x.of.interest <- string.to.frame(x.of.interest)
         x.of.interest.info <- paste(" at", paste(format(x.of.interest),
-            accelvar.units, collapse = ","))
-        FailLevelDef <- paste(" for a failure def of", FailLevel,
-            get.response.units(plan.values))
+                                                 accelvar.units, collapse = ","))
+        FailLevelDef <- paste(" for a failure def of", 
+                              FailLevel,get.response.units(plan.values))
+        
     }
     parameter.type <- "real"
     uber.results.object <- matrix(results.object[1:nrow(results.object),
