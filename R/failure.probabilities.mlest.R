@@ -12,7 +12,7 @@ function (x,
           number = 10,...)
 {
     data.ld <- x$data.ld
-    distribution <- .distnum(numdist(x$distribution))
+    distribution <- distnum(numdist(x$distribution))
 
     old <- options(digits = digits)
     on.exit(options(old))
