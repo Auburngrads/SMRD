@@ -1,4 +1,4 @@
-.write.matrix <-
+write.matrix <-
 function (my.matrix, file = "", append = F, include.names = T,
     include.row.names = F, digits = 4, sep = " ")
 {
@@ -19,7 +19,7 @@ function (my.matrix, file = "", append = F, include.names = T,
             as.data.frame(my.matrix))
     my.matrix <- as.matrix(my.matrix)
     my.matrix <- matrix(format(my.matrix, digits = digits), ncol = ncol(my.matrix))
-    .my.write(t(my.matrix), file = file, ncolumns = ncol(my.matrix),
+    my.write(t(my.matrix), file = file, ncolumns = ncol(my.matrix),
         append = appendx, sep = sep)
     invisible()
 }
