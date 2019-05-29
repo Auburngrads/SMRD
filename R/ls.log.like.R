@@ -45,6 +45,6 @@ function (thetain)
             4] * (log.min(wqmf.phibf(z[the.censor.codes == 4,
             2], distribution) - wqmf.phibf(z[the.censor.codes ==
             4, 1], distribution))))
-    return(.Uminus((fail.part + rcensor.part + lcensor.part +
+    return(Uminus((fail.part + rcensor.part + lcensor.part +
         icensor.part)))
 }
