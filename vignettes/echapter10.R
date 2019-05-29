@@ -219,33 +219,6 @@ asym.sample.size(bulb.plan.values1,
                  HalfWidth = 50,
                  quantile.of.interest = 0.1)
 
-## ---- cache=T------------------------------------------------------------
-mstt1 <- multiple.simulate.type.two(n = c(20,30,40), 
-                                    r = c(20,30,40),
-                                    distribution = "lognormal",
-                                    number.sim = 1000)
-
-plot(mstt1, qprob = 0.9)
-plot(mstt1, qprob = 0.8)
-plot(mstt1, qprob = 0.5)
-
-
-mstt2 <- multiple.simulate.type.two(n = c(20,30,40), 
-                                    r = c(10,15,20),
-                                    distribution = "lognormal",
-                                    number.sim = 1000)
-
-plot(mstt2, qprob = 0.9)
-plot(mstt2, qprob = 0.8)
-plot(mstt2, qprob = 0.5, grids = T)
-
-mstt3 <- multiple.simulate.type.two(n = c(24,28,33), 
-                                    r = c(24,28,33),
-                                    distribution = "normal", 
-                                    number.sim = 1000)
-
-plot(mstt3, qprob = 0.9)
-
 ## ------------------------------------------------------------------------
 SMRD2:::plot.prob.cs.type2("lognormal", 
                             k = 2,
