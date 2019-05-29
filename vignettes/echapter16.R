@@ -4,14 +4,14 @@ library(SMRD2)
 
 ## ----workstation---------------------------------------------------------
 #time.column, ID.column, cost.count.column, event.column
-WorkStation.rdu <- SMRD2:::frame.to.rdu(workstation,
+WorkStation.rdu <- frame.to.rdu(workstation,
                                 ID.column = "station",
                                 time.column = "days",
                                 event.column = "event")
 
 #attr(WorkStation.rdu,"WindowInfo")
 
-WorkStation.mcf <- SMRD2:::mcf(WorkStation.rdu)
+WorkStation.mcf <- mcf(WorkStation.rdu)
 
 #sqrt(WorkStation.mcf$Var)
 
@@ -49,7 +49,7 @@ summary(ValveSeat.rdu)
 
 event.plot(ValveSeat.rdu)
 
-SMRD2:::mcf.plot(ValveSeat.rdu)
+mcf.plot(ValveSeat.rdu)
 
 ## ----cylinder------------------------------------------------------------
 Cylinder.rdu <- frame.to.rdu(cylinder,
@@ -150,13 +150,13 @@ ar1.plot(halfbeak.rdu,
 fit.power.and.loglin.process(halfbeak.rdu,
                              xlab = "Thousands of Hours of Operation",
                              ylab = "Cumulative Number of Maintenance Actions")
-legend(SMRD:::x.loc(.01),
-       SMRD:::y.loc(.95),
+legend(SMRD2:::x.loc(.01),
+       SMRD2:::y.loc(.95),
        legend = c("Nonparametric MCF estimate",
                   "Log-linear Recurrence Rate NHPP MCF",
                   "Power Recurrence Rate NHPP MCF"),
-       lty=c(1,1,3),
-       lwd=c(3,1,1))
+       lty = c(1,1,3),
+       lwd = c(3,1,1))
 
 
 repair.tsplot(halfbeak.rdu)
