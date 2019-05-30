@@ -1,5 +1,5 @@
 #' @importFrom lattice strip.default panel.grid panel.xyplot 
-#' @importFrom lattice trellis.par.get panel.superpose xyplot
+#' @importFrom lattice trellis.par.get panel.superpose xyplot Rows
 #' @importFrom nlme getGroupsFormula
 wqm.plot.nfnGroupedData <-
 function (x, 
@@ -121,7 +121,7 @@ function (x,
         if (key && (!is.null(Inner) && (lInn <- length(levInn)) > 1)) {
           
             lInn <- min(c(lInn, length(trll.set[["lty"]])))
-            args[["key"]] <- list(lines = Rows(trellis.par.get("superpose.line"),
+            args[["key"]] <- list(lines = lattice::Rows(trellis.par.get("superpose.line"),
                 1:lInn), text = list(levels = levInn), columns = lInn)
         }
       
