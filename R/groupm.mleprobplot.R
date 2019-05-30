@@ -552,7 +552,7 @@ pch.done[1:length(stresses)] <- -pch.done[1:length(stresses)]
 if (do.legend == "On plot" && plotem) {
     legend(x.loc(0.003), 
            y.loc(0.994), 
-           legend = parse(text = switch.units(stresses.plus, colnames(xmat(data.ld)))),
+           legend = parse(text = switch.units(stresses.plus, data.ld)),
            cex = 1, 
            bty = "n", 
            col = col.fhat.vec, 
@@ -571,7 +571,7 @@ if (do.legend == "New page" && plotem) {
          yaxt = "n")
    legend(x.loc(0.003), 
           y.loc(0.994), 
-          legend = parse(text = switch.units(stresses.plus,colnames(xmat(data.ld)))),
+          legend = parse(text = switch.units(stresses.plus,data,ld)),
           cex = 1, 
           bty = "n", 
           col = col.fhat.vec, 
