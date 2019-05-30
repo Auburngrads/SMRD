@@ -1,6 +1,16 @@
 switch.units <- 
-function(units,unit.names) 
+function(units,data.d) 
 {
+  
+  if(any(is.onlist(class(data.d), "multiple.failure.mode.life.data"))){
+    
+     unit.names <- names(data.d)
+     
+  }
+  
+  `if`(is.onlist(class(data.d)[[1]], "multiple.life.data"),
+       unit.names <- as.vector(attr(data.d[[1]],"x.columns")),
+       unit.names <- as.vector(attr(data.d,"x.columns")))
   
   for(i in 1:length(unit.names)){
     
@@ -18,7 +28,7 @@ function(units,unit.names)
   units <- gsub("farenheit","F^o", units)
   units <- gsub("kelvin","K",      units)
   units <- gsub("rankine","R",     units)
-  units <- gsub(";", "~~",          units)
+  units <- gsub(";", "~~",         units)
   
   invisible(units)
 }
