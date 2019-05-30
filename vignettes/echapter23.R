@@ -15,3 +15,42 @@ Insulation.ddd <- frame.to.ddd(insulation,
 
 print(Insulation.ddd)
 
+## ------------------------------------------------------------------------
+plot(Insulation.ddd,
+     transformation.Response = "log",
+     transformation.time = "linear")
+
+tmp <- groupi.Dest.Degrad.indivplots(Insulation.ddd,
+                                     transformation.response = "log", 
+                                     transformation.time = "linear",
+                                     distribution = "normal")
+
+groupi.Dest.Degrad.oneplot(Insulation.ddd,
+                           transformation.response = "log", 
+                           transformation.time = "linear",
+                           distribution="normal")
+
+## ------------------------------------------------------------------------
+groupm.Dest.Degrad(Insulation.ddd, 
+                   distribution = "normal",
+                   transformation.response = "log10",
+                   transformation.x = "invtemp",
+                   transformation.time = "linear")
+
+
+groupm.Dest.Degrad(Insulation.ddd, 
+                   distribution = "normal",
+                   transformation.response = "log",
+                   transformation.x = "arrhenius",
+                   transformation.time = "linear")
+
+## ------------------------------------------------------------------------
+Insulation.groupi.Dest.Degrad <- 
+  groupi.Dest.Degrad(Insulation.ddd,
+                     distribution = "normal",
+                     transformation.response = "log",
+                     transformation.time = "sqrt")
+
+plot(Insulation.groupi.Dest.Degrad,
+     transformation.x = "Arrhenius")
+
