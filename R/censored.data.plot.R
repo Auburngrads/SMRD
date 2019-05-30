@@ -88,7 +88,8 @@ function (data.ld,
           y.axis = "linear", 
           my.title = NULL,
           ylab = get.time.units(data.ld), 
-          xlab = NULL, cex = par()$cex, 
+          xlab = NULL, 
+          cex = par()$cex, 
           cex.labs = par()$cex.lab,
           cex.points = 1.2, 
           add = F, 
@@ -115,7 +116,7 @@ function (data.ld,
          var.number <- match(explan.var, xmat.names),
          var.number <- explan.var)
     
-    x.name <- names(get.xlabel(data.ld)[var.number])
+    x.name <- get.xlabel(data.ld)[var.number]
     if (is.null(xlab)) {
         if (generic.relationship.name(x.axis.name) == "Box-Cox") {
             the.power <- attr(x.axis.name, "the.power")
