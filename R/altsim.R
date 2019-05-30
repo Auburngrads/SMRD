@@ -352,7 +352,7 @@ ALTsim <-
         groupm.results <- groupm.mleprobplot(data.ld, distribution = distribution,
                                              relationship = orig.relationship, new.data = string.to.frame(paste(use.conditions,
                                                                                                                 collapse = ";")))
-        print(groupm.results)
+        print(groupm.results,0)
       }
     if (as.numeric(show.detail.on) > 0) {
       assign(envir = .frame0,  inherits = TRUE,"last.sim.ALT.ld", data.ld)
