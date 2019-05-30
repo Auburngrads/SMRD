@@ -189,7 +189,7 @@ if(printem) {
                the.mean <- apply(the.xmat[, numeric.columns,drop = F], 2, mean)
                the.sd <- sqrt(apply(the.xmat[, numeric.columns, drop = F], 2, var))
                the.cv <- the.sd/the.mean
-               predictors <- names(get.x.columns(data.ld)[numeric.columns])
+               predictors <- get.x.columns(data.ld)[numeric.columns]
                xsummary <- data.frame(predictors,
                                       apply(the.xmat[, numeric.columns,drop = F], 2, min), 
                                       apply(the.xmat[, numeric.columns,drop = F], 2, max), 
