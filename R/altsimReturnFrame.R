@@ -109,10 +109,10 @@ function (accel.var.mat,
     niscrat <- 2 * (number.parameters + 1)
     
     if(debug1) browser()
-    zout <- ALTSIM(x = xmat, 
+    zout <- ALTSIM(x = the.xmat, 
                    y = y,
-                   cen = as.integer(censor.codes),
-                   wt = as.integer(case.weights),
+                   cen = as.integer(the.censor.codes),
+                   wt = as.integer(the.case.weights),
                    nrow = as.integer(number.cases), 
                    nter = as.integer(nter),
                    ny = as.integer(ny), 
