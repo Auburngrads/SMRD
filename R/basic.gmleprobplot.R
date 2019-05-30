@@ -157,9 +157,9 @@ function (data.ld, distribution, plot.dist, xlab = get.time.units(data.ld),
             upper <- fhat/(fhat + (1 - fhat)/wvec)
         }, lr.approx = {
             pgenmax.rev <- function(theta, tvec, gmle.out) {
-                f.origparam <- gmle.out$model$f.origparam
+                F.origparam <- gmle.out$model$f.origparam
                 distribution <- gmle.out$model$distribution
-                pgenmax(tvec, distribution, f.origparam(theta,
+                pgenmax(tvec, distribution, F.origparam(theta,
                   gmle.out$model))
             }
             lrci.stuff <- Fr.conf(pgenmax.rev, 
