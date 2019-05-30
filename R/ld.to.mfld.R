@@ -34,29 +34,29 @@ function (data.ld,
           
             y[!this.one, c(1, 2)] <- 
               switch(censored.in.interval, 
-                     average    = { (y[!this.one, 1] + y[!this.one, 2])/2 }, 
-                     logaverage = { exp((logb(y[!this.one, 1]) + logb(y[!this.one, 2]))/2) }, 
+                     average    = { (y[!this.one, 1] + y[!this.one, 2]) / 2 }, 
+                     logaverage = { exp((logb(y[!this.one, 1]) + logb(y[!this.one, 2])) / 2) }, 
                      upper      = { y[!this.one, 2] }, 
                      lower      = { y[!this.one, 1] })
+            
         }
+        
         data.title <- paste(get.data.title(data.ld), 
                             unique.modes[i],
                             "Failure Mode")
-        time.units = as.character(colnames(Response(data.ld)))
-        the.xmat = xmat(data.ld)
-        xlabel = get.xlabel(data.ld)
+        
         xx.ld <- make.frame.ld(y = y, 
                                the.censor.codes = the.censor.codes,
                                the.case.weights = the.case.weights, 
-                               data.title = data.title,
-                               time.units = time.units, 
-                               the.xmat = the.xmat,
-                               xlabel = xlabel, 
-                               the.truncation.codes = the.truncation.codes, 
-                               ty = NULL)
+                               data.title = data.title, 
+                               time.units = get.time.units(data.ld), 
+                               the.xmat = xmat(data.ld),
+                               xlabel = get.xlabel(data.ld))
         
         multiple.d.list[[unique.modes[i]]] <- xx.ld
+        
     }
+    
     oldClass(multiple.d.list) <- "multiple.failure.mode.life.data"
     attr(multiple.d.list, "data.ld") <- data.ld
     return(multiple.d.list)
