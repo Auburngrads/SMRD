@@ -1,6 +1,6 @@
 #' @export
 plot.ADDT.test.plan <-
-function (x,...)
+function (x,which,...)
 {
   AT.levels <-
     function (ADDT.test.plan)
@@ -19,16 +19,16 @@ function (x,...)
     the.times <- times(x)
     the.levels <- AT.levels(x)
     
-    if (ncol(the.levels) > 1) {
-        cat("No plot for multiple variable plans\n")
+    if (ncol(the.levels) > 1 && (missing(which) || is.null(which))) {
+        cat("No plot created for multiple variable plans.\n\nProceeding with first variable:", colnames(the.levels)[1],"\n")
         invisible(NULL)
     }
     
     plot.paper(xlim = range(the.times), 
-               ylim = range(the.levels[[1]]),
+               ylim = range(the.levels[[which]]),
                x.axis = "linear", 
                y.axis = "linear", 
-               ylab = names(the.levels),
+               ylab = names(the.levels)[which],
                xlab = dimnames(the.times)[2][1], 
                cex = 1.5, 
                cex.labs = 1.5,
@@ -37,7 +37,7 @@ function (x,...)
     ntimes <- ncol(the.times)
     
     text((the.times[, 1] + the.times[, ntimes]) / 2, 
-         the.levels[[1]],
+         the.levels[[which]],
          the.allocations[[1]])
     
     invisible()
