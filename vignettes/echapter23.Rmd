@@ -25,7 +25,6 @@ library(SMRD2)
 
 ```{r}
 ## create the ddd data object
-
 Insulation.ddd <- frame.to.ddd(insulation,
                                response.column = 3, 
                                time.column = 1,
@@ -150,8 +149,8 @@ AdhesiveStrength.gmle <- dest.degrad.mle(AdhesiveStrength.ddd,
                                          transformation.x = "arrhenius", 
                                          transformation.time = "linear")
 
-get.sub.model.dest.degrad.mle.out(AdhesiveStrength.gmle,
-                                  c(50,60,70))
+get.sub.model(AdhesiveStrength.gmle,
+              c(50,60,70))
 
 plot(AdhesiveStrength.ddd,
      transformation.response = "linear")
