@@ -71,7 +71,7 @@ superalloy.ld <- frame.to.ld(superalloy,
 summary(superalloy.ld)
 
 censored.data.plot(superalloy.ld, 
-                   explan.var = 3)
+                   explan.var = 1)
 
 censored.data.plot(superalloy.ld, 
                    explan.var = 3,
