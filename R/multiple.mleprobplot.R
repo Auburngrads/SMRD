@@ -307,8 +307,7 @@ function (data.list,
             }
         }
         plotted <- plotted & plotem
-        do.list[plotted] <- switch.units(do.list[plotted],
-                                         unit.names = colnames(xmat(data.list[[1]])))
+        do.list[plotted] <- switch.units(do.list[plotted], data.list)
         
         if (do.legend == "On plot" && any(plotted)) {
           
