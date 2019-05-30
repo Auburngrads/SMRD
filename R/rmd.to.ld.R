@@ -65,8 +65,11 @@ function (data.rmd,
     Unit.marker <- data.rmd[[the.unit.column]]
     time.column <- attr(data.rmd, "time.column")
     
-    if (all(oldClass(data.rmd) != "repeated.measures.data"))
+    if (all(oldClass(data.rmd) != "repeated.measures.data")){
+      
         stop(paste(deparse(substitute(data.rmd)), "is not a repeated measures data set"))
+      
+    }
     
     if (is.null(get.x.columns(data.rmd)) || any(is.na(group.var))) {
         return(single.rmd.to.ld(data.rmd, 
