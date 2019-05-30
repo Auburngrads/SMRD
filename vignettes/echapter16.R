@@ -136,7 +136,7 @@ mcf.plot(halfbeak.rdu,
 interarrival.plot(halfbeak.rdu,
                   xlab = "Thousands of Hours of Operation",
                   ylab = "Thousands of Hours Between Maintenance Actions",
-                  my.title="")
+                  my.title = "")
 
 ar1.plot(halfbeak.rdu,
          xlab = "Lagged Thousands of Hours Between Maintenance Actions",
@@ -170,4 +170,368 @@ milhbk189.test(halfbeak.rdu)
 
 PlotMCFandNHPP(halfbeak.rdu, form = "power rule")
 PlotMCFandNHPP(halfbeak.rdu, form = "log linear")
+
+## ------------------------------------------------------------------------
+#fit.power.process(halfbeak.rdu)
+#fit.loglin.process(halfbeak.rdu)
+fit.power.and.loglin.process(halfbeak.rdu)
+
+TestWindow(halfbeak[[1]],halfbeak[[2]],halfbeak[[3]],NULL)
+event.plot(halfbeak.rdu )
+attr(halfbeak.rdu,"WindowInfo")
+
+TestWindow(halfbeak[[1]],halfbeak[[2]],halfbeak[[3]],NULL)
+
+RiskSet(halfbeak.rdu)
+
+halfbeak.mcf.out <- mcf(halfbeak.rdu)
+plot(halfbeak.mcf.out )
+fit.power.and.loglin.process(halfbeak.rdu)
+
+NHPP.mle(halfbeak.rdu,
+         form = "power rule")
+NHPP.mle(halfbeak.rdu,
+         form = "log linear")
+
+PlotMCFandNHPP(halfbeak.rdu,
+               form = "log linear")
+PlotMCFandNHPP(halfbeak.rdu,
+               form = "power rule")
+
+## ----grampus-------------------------------------------------------------
+grampus.rdu <- frame.to.rdu(grampus, 
+                            time.column = c(2), 
+                            event.column = 3,
+                            data.title = "Grampus Data", 
+                            ID.column = 1, 
+                            time.units ="Thousands of Hours of Operation")
+
+summary(grampus.rdu)
+
+event.plot(grampus.rdu)
+print(mcf(grampus.rdu))
+
+mcf(grampus.rdu)
+
+mcf.plot(grampus.rdu)
+
+interarrival.times(grampus.rdu)
+repair.tsplot(grampus.rdu)
+interarrival.plot(grampus.rdu)
+ar1.plot(grampus.rdu)
+
+renewal.plots(grampus.rdu)
+milhbk189.test(grampus.rdu)
+lewis.robinson.test(grampus.rdu)
+laplace.test(grampus.rdu)
+
+PlotMCFandNHPP(grampus.rdu,form="power rule")
+PlotMCFandNHPP(grampus.rdu,form="log linear")
+
+fit.power.and.loglin.process(grampus.rdu)
+
+## ----grampus2------------------------------------------------------------
+mleprobplot(interarrival.times(grampus.rdu),"Weibull")
+
+mcf.plot(grampus.rdu,
+         xlab = "Thousands of Hours of Operation",
+         ylab = "Cumulative Number of Maintenance Actions")
+
+interarrival.plot(grampus.rdu,
+                  xlab = "Thousands of Hours of Operation",
+                  ylab = "Thousands of Hours Between Maintenance Actions",
+                  my.title = "")
+
+ar1.plot(grampus.rdu,
+         xlab = "Lagged Thousands of Hours Between Maintenance Actions",
+         ylab = "Thousands of Hours Between Maintenance Actions",
+         my.title = "")
+
+fit.power.and.loglin.process(grampus.rdu,
+                             xlab = "Thousands of Hours of Operation",
+                             ylab = "Cumulative Number of Maintenance Actions")
+legend(SMRD2:::x.loc(.02), 
+       SMRD2:::y.loc(.98),
+       legend = c("Nonparametric MCF estimate",
+                  "Log-linear Recurrence Rate NHPP MCF",
+                  "Power Recurrence Rate NHPP MCF"),
+       lty=c(1,1,3),
+       lwd=c(3,1,1))
+
+lewis.robinson.test(grampus.rdu)
+
+## ----machineh------------------------------------------------------------
+MachineH.rdu <- frame.to.rdu(machineh,
+                             ID.column = "unit", 
+                             time.column = "hours",
+                             event.column = "event", 
+                             cost.count.column = "cost", 
+                             data.title = "Earth-Moving Machine Repair Labor Hours", 
+                             time.units = "Hours of Operation")
+
+event.plot(MachineH.rdu,
+           my.title = "", 
+           xlab = "Hours of Operation", 
+           which.system.to.plot = 1:23,
+           ylab = "Machine Number")
+
+
+mcf.plot(MachineH.rdu, 
+         ylab = "Mean Cumulative Number of Labor Hours",
+         plot.seg = T)
+
+event.plot(MachineH.rdu)
+attr(MachineH.rdu,"WindowInfo")
+
+MachineH.mcf <- mcf(MachineH.rdu)
+plot(MachineH.mcf)
+PlotMCFandNHPP(MachineH.rdu, form = "power rule")
+
+## ----r4490---------------------------------------------------------------
+R4490.rdu <- frame.to.rdu(r4490,
+                          ID.column = "vin",
+                          time.column = "days" , 
+                          cost.count.column = "costcount" ,
+                          event.column = "code")
+
+attr(R4490.rdu,"WindowInfo")
+
+event.plot(R4490.rdu)
+R4490.mcf <- mcf(R4490.rdu)
+plot(R4490.mcf)
+
+## ---- eval=FALSE---------------------------------------------------------
+#  R4490.nhpp.out <- PlotMCFandNHPP(R4490.rdu, form = "power rule")
+#  
+#  one.dim.profile(R4490.nhpp.out,
+#                  size = 5,
+#                  save.s = T)
+#  
+#  two.dim.profile(R4490.nhpp.out,
+#                  profile.on.list = NULL,
+#                  which = c(1,2),
+#                  size = c(5,5))
+#  
+#  profile.contour(R4490.nhpp.outstruct1x2,
+#                  transformationy = "log",
+#                  variable.namey = "sigma",
+#                  variable.namex = "mu",
+#                  v = c(0.001, 0.01, .1,0.2, 0.4, 0.7, 0.9) )
+
+## ----hpcrepairs----------------------------------------------------------
+HPCRepairs.rdu <- frame.to.rdu(hpcrepairs,
+                               ID.column = "system", 
+                               time.column = "months" , 
+                               event.column = "event")
+
+attr(HPCRepairs.rdu,"WindowInfo")
+
+PlotMCFandNHPP(HPCRepairs.rdu,
+               form = "power rule")
+
+HPCRepairs.mcf <- mcf(HPCRepairs.rdu)
+plot(HPCRepairs.mcf)
+
+## ----amsaaexactfail, eval=FALSE------------------------------------------
+#  TestWindow(amsaaexactfail[[1]],
+#             amsaaexactfail[[2]],
+#             amsaaexactfail[[3]],
+#             NULL)
+#  
+#  AMSAAExactFail.rdu <- frame.to.rdu(amsaaexactfail,
+#                                     ID.column = "vehicle",
+#                                     time.column = "miles" ,
+#                                     event.column = "event")
+#  
+#  names(attributes(AMSAAExactFail.rdu))
+#  
+#  # testing the loglikelihood
+#  theta.mat <- matrix(c(1,1,2,2),2,2)
+#  #theta.mat <- c(1,2)
+#  loglikeNHPPvec(AMSAAExactFail.rdu, theta.mat, "power.law")
+#  
+#  TestLike(AMSAAExactFail.rdu, theta.mat, "power.law")
+#  
+#  theta.mat <- matrix(c(.01,.01,.02,.02),2,2)
+#  loglikeNHPPvec(AMSAAExactFail.rdu, theta.mat, "log.linear")
+#  
+#  attr(AMSAAExactFail.rdu,"WindowInfo")
+#  
+#  RiskSet(AMSAAExactFail.rdu)
+#  
+#  plotRiskSet(AMSAAExactFail.rdu,proportion = T)
+#  
+#  get.UnitID(AMSAAExactFail.rdu)
+#  
+#  mcf(AMSAAExactFail.rdu)
+#  
+#  event.plot(AMSAAExactFail.rdu)
+#  
+#  plotRiskSet(AMSAAExactFail.rdu,proportion = T)
+#  
+#  plot(mcf(AMSAAExactFail.rdu))
+#  
+#  PlotMCFandNHPP(AMSAAExactFail.rdu,
+#                 form = "log linear")
+#  
+#  AMSAAExactFail.nhpp.out <-
+#    PlotMCFandNHPP(AMSAAExactFail.rdu,
+#                   form = "power rule")
+#  
+#  one.dim.profile(AMSAAExactFail.nhpp.out,
+#                  size = 5,
+#                  save.s = T)
+
+## ----amsaawindow1, eval=FALSE--------------------------------------------
+#  AMSAAWindow1.rdu <- frame.to.rdu(amsaawindow1,
+#                                   ID.column ="vehicle",
+#                                   time.column ="miles",
+#                                   event.column = "event")
+#  
+#  attr(AMSAAWindow1.rdu,"WindowInfo")
+#  
+#  event.plot(AMSAAWindow1.rdu)
+#  
+#  RiskSet(AMSAAWindow1.rdu, JustEvent=F)
+#  plotRiskSet(AMSAAWindow1.rdu)
+#  plotRiskSet(AMSAAWindow1.rdu,proportion=T)
+#  
+#  plot(mcf(AMSAAWindow1.rdu))
+#  
+#  PlotMCFandNHPP(AMSAAWindow1.rdu,form = "log linear")
+#  
+#  AMSAAWindow1.nhpp.out<-
+#    PlotMCFandNHPP(AMSAAWindow1.rdu,
+#                   form = "power rule")
+#  
+#  one.dim.profile(AMSAAWindow1.nhpp.out,
+#                  size = 5,
+#                  save.s = T)
+
+## ----amsaawindow2, eval=FALSE--------------------------------------------
+#  AMSAAWindow2.rdu <- frame.to.rdu(amsaawindow2,
+#                                   ID.column = "vehicle",
+#                                   time.column = "miles" ,
+#                                   event.column = "event")
+#  
+#  attr(AMSAAWindow2.rdu,"WindowInfo")
+#  
+#  event.plot(AMSAAWindow2.rdu)
+#  
+#  RiskSet(AMSAAWindow2.rdu)
+#  RiskSet(AMSAAWindow2.rdu, JustEvent=F)
+#  plotRiskSet(AMSAAWindow2.rdu)
+#  plotRiskSet(AMSAAWindow2.rdu,proportion=T)
+#  mcf(AMSAAWindow2.rdu)
+#  
+#  
+#  plot(mcf(AMSAAWindow2.rdu))
+
+## ---- eval=FALSE---------------------------------------------------------
+#  PlotMCFandNHPP(AMSAAWindow2.rdu,
+#                 form = "log linear")
+#  
+#  AMSAAWindow2.nhpp.out <-  PlotMCFandNHPP(AMSAAWindow2.rdu,
+#                                           form = "power rule")
+#  
+#  one.dim.profile(AMSAAWindow2.nhpp.out,
+#                  size = 5,
+#                  save.s = T)
+#  
+#  two.dim.profile(AMSAAWindow2.nhpp.out,
+#                  profile.on.list = NULL,
+#                  which = c(1,2),
+#                  size = c(5,5))
+#  
+#  profile.contour(AMSAAWindow2.nhpp.outstruct1x2,
+#                  transformationy = "log",
+#                  variable.namey = "sigma",
+#                  variable.namex = "mu",
+#                  v = c(0.001, 0.01, 0.1, 0.2, 0.4, 0.7, 0.9))
+#  
+#  AMSAAWindow2.nhpp.loglin.out <-
+#    PlotMCFandNHPP(AMSAAWindow2.rdu,
+#                   form = "log linear")
+#  
+#  two.dim.profile(AMSAAWindow2.nhpp.loglin.out,
+#                  which = c(1,2),
+#                  size = c(9,9))
+#  
+#  two.dim.profile(AMSAAWindow2.nhpp.loglin.out,
+#                  profile.on.list = NULL,
+#                  which = c(1,2),
+#                  size = c(5,5),
+#                  range.list = list(c(1.6,2.4),c(.00010,.00016)))
+#  
+#  profile.contour(AMSAAWindow2.nhpp.loglin.outstruct1x2,
+#                  transformationy = "log",
+#                  variable.namey = "sigma",
+#                  variable.namex = "mu",
+#                  v = c(0.001, 0.01, .1,0.2, 0.4, 0.7, 0.9) )
+
+## ---- eval=FALSE---------------------------------------------------------
+#  test.rdu <- frame.to.rdu(test,
+#                           ID.column = "Unit",
+#                           time.column = "Hours",
+#                           event.column = "Event",
+#                           data.title = "Test Data",
+#                           time.units = "Thousands of Hours of Operation")
+#  
+#  summary(test.rdu)
+#  
+#  event.plot(test.rdu)
+#  
+#  event.plot(test.rdu)
+#  print(mcf(test.rdu))
+#  mcf.plot(test.rdu)
+#  interarrival.times(test.rdu)
+#  
+#  mcf.plot(test.rdu,
+#           xlab="Thousands of Hours of Operation",
+#           ylab="Cumulative Number of Maintenance Actions")
+#  
+#  interarrival.plot(test.rdu,
+#                    xlab = "Thousands of Hours of Operation",
+#                    ylab = "Thousands of Hours Between Maintenance Actions",
+#                    my.title = "")
+#  
+#  ar1.plot(test.rdu,
+#           xlab = "Lagged Thousands of Hours Between Maintenance Actions",
+#           ylab = "Thousands of Hours Between Maintenance Actions")
+#  
+#  ar1.plot(test.rdu,
+#           xlab = "Lagged Thousands of Hours Between Maintenance Actions",
+#           ylab = "Thousands of Hours Between Maintenance Actions",
+#           plot.acf = T)
+#  
+#  fit.power.and.loglin.process(test.rdu,
+#                               xlab = "Thousands of Hours of Operation",
+#                               ylab = "Cumulative Number of Mx Actions")
+#  legend(1.55474,
+#         63.7603,
+#         legend = c("Nonparametric MCF estimate",
+#                    "Log-linear Recurrence Rate NHPP MCF",
+#                    "Power Recurrence Rate NHPP MCF"),
+#         lty = c(1,1,3),
+#         lwd = c(3,1,1))
+#  
+#  
+#  repair.tsplot(test.rdu)
+#  interarrival.plot(test.rdu)
+#  ar1.plot(test.rdu)
+#  
+#  renewal.plots(test.rdu)
+#  laplace.test(test.rdu)
+#  lewis.robinson.test(test.rdu)
+#  milhbk189.test(test.rdu)
+#  dump(c("loglikeNHPP",
+#         "TestLike",
+#         "Sxloglikenhpp",
+#         "flogrecurrate",
+#         "fmcfdiff",
+#         "flogrecurratepower",
+#         "flogrecurrateloglin",
+#         "fmcf",
+#         "fmcfpower",
+#         "fmcfloglin"),"nhpp.q")
 
