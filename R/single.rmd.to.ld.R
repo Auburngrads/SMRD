@@ -25,17 +25,17 @@ function (data.rmd,
     Unit.marker <- data.rmd[[unit.column]]
     xlabel <- attr(data.rmd, "xlabel")
 
-    add.to.data.frame <- 
-      function (input.frame, 
-                new.object, 
+    add.to.data.frame <-
+      function (input.frame,
+                new.object,
                 new.name = deparse(substitute(new.object)))
       {
         if (is.null(new.object)) {
-          
+
           return(input.frame)
-          
+
         } else {
-          
+
           the.names <- c(names(input.frame), new.name)
           input.frame <- data.frame(input.frame, new.object)
           names(input.frame) <- the.names
@@ -77,7 +77,7 @@ function (data.rmd,
     
     `if`(is.null(the.x.columns),
          the.xmat <- NULL,
-         the.xmat <- frame.rmd[names(the.x.columns)])
+         the.xmat <- frame.rmd[the.x.columns])
     
     if (!is.null(the.xmat)) {
         ncol.the.xmat <- ncol(the.xmat)
@@ -149,11 +149,13 @@ function (data.rmd,
                          TranTime = x, 
                          Unit = sub.frame[[unit.column]])
             
-            if (!is.null(the.x.columns))
-                sub.residual.frame <- 
-              add.to.data.frame(sub.residual.frame,
-                                as.data.frame(sub.frame[, names(the.x.columns)]),
-                                xlabel)
+            if (!is.null(the.x.columns)) {
+              
+                sub.residual.frame <- add.to.data.frame(sub.residual.frame,
+                                                        as.data.frame(sub.frame[, the.x.columns]),
+                                                        xlabel)
+              
+            }
             
             residual.frame <- rbind(residual.frame, sub.residual.frame)
             
@@ -222,7 +224,7 @@ function (data.rmd,
             paste(bad.list, collapse = ","), "\n\n"))
     }
     
-    good.ones <- is.onlist(unique.units, bad.list)
+    good.ones <- !is.onlist(unique.units, bad.list)
     need.to.drop <- is.na(yplotmat[1, ]) | is.na(times)
     if (any(!need.to.drop)) {
         yplotmat <- yplotmat[, !need.to.drop, drop = F]
