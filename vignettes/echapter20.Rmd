@@ -194,7 +194,7 @@ DeviceA.altpv <-
                                            sigma = 0.98,
                                            use.conditions = 10)
 
-print(DeviceA1.altplan)
+print(DeviceA.altpv)
 
 DeviceA1.altplan <- 
   get.alt.test.plan.direct(accel.variable.levels = c(10,40,60,80),
@@ -219,7 +219,11 @@ simulate(DeviceA2.altplan,
          ALT.plan.values = DeviceA.altpv, 
          nsim = 100, 
          use.condition = 10)
+```
 
+Can't find this function
+
+```{r, eval=FALSE}
 ## generate ALT plans
 
 hold.altplan("Weibull",
@@ -229,7 +233,9 @@ hold.altplan("Weibull",
              iopta = 3, 
              iopts = 2,
              pifix = 0)
+```
 
+```{r}
 print(AdhesiveBond.Weibull.altpv)
 
 evaluate(altplan(AdhesiveBond.Weibull.altpv,
@@ -244,12 +250,13 @@ evaluate(altplan(AdhesiveBond.Weibull.altpv,
          quantile.of.interest = 0.1)
 
 
-AdhesiveBond.Weibull.optc.altplan <- altplan(AdhesiveBond.Weibull.altpv,
-                                             "Optimized compromise",
-                                             use.condition = 50, 
-                                             highest.condition = 120,
-                                             censor.time = 250, 
-                                             quantile = 0.1)
+AdhesiveBond.Weibull.optc.altplan <-
+  altplan(AdhesiveBond.Weibull.altpv,
+          "Optimized compromise",
+          use.condition = 50,
+          highest.condition = 120,
+          censor.time = 250,
+          quantile = 0.1)
 
 evaluate(altplan(AdhesiveBond.Weibull.altpv,
                  "Equal expected",
@@ -261,12 +268,13 @@ evaluate(altplan(AdhesiveBond.Weibull.altpv,
          use.condition = 50,
          quantile.of.interest = 0.1)
 
-AdhesiveBond.Weibull.421.altplan <- altplan(AdhesiveBond.Weibull.altpv,
-                                            "421",
-                                            use.condition = 50, 
-                                            highest.condition = 120,
-                                            censor.time = 250,
-                                            quantile = 0.1)
+AdhesiveBond.Weibull.421.altplan <-
+  altplan(AdhesiveBond.Weibull.altpv,
+          "421",
+          use.condition = 50,
+          highest.condition = 120,
+          censor.time = 250,
+          quantile = 0.1)
 
 evaluate(altplan(AdhesiveBond.Weibull.altpv,
                  "Traditional", 
@@ -344,7 +352,8 @@ plot.marginals.sim(DeviceA.Sim.out,
                    focus.quantity.detail = 1,
                    plot.type = "density")
 
-plot.joint.sim(DeviceA.Sim.out, focus.quantity1 = "quantile",
+plot.joint.sim(DeviceA.Sim.out, 
+               focus.quantity1 = "quantile",
                focus.quantity.detail1 = 0.1,
                x.of.interest1 = 50,
                focus.quantity2 = "parameter",
@@ -446,9 +455,11 @@ evaluate(DeviceR.altplan, DeviceR.Weibull.altpv,quantile.of.interest=c(.1,.5))
 sample size needed for a given value of R
 
 ```{r}
-plot(DeviceR.altplan)
+plot(DeviceR.altplan,
+     DeviceR.Weibull.altpv)
 
-plot.alt.sample.size(DeviceR.altplan, DeviceR.Weibull.altpv)
+SMRD2:::plot.alt.sample.size(DeviceR.altplan,
+                             DeviceR.Weibull.altpv)
 
 ## simulate the ALT plans with option to see detail on some experiments
 
@@ -464,15 +475,19 @@ DeviceR.sim.out <- ALTsim(DeviceR.altplan,
 
 ##	simulate the ALT plans and plot summary
 
-DeviceR.sim.out <- simulate(DeviceR.altplan, 
-                            DeviceR.Weibull.altpv, 
-                            nsim = 400,
-                            show.detail.on = 5)
+DeviceR.sim.out <- 
+  simulate(DeviceR.altplan, 
+           ALT.plan.values = DeviceR.Weibull.altpv,
+           nsim = 400,
+           use.conditions = "80;50",
+           show.detail.on = 5)
 
-DeviceR.sim.out <- simulate(DeviceR.altplan,
-                            DeviceR.Weibull.altpv, 
-                            nsim = 400,
-                            show.detail.on = 0)
+DeviceR.sim.out <- 
+  simulate(DeviceR.altplan,
+           ALT.plan.values = DeviceR.Weibull.altpv,
+           nsim = 400,
+           use.conditions = "80;50",
+           show.detail.on = 0)
 
 ##	plot the ALT simulation results
 
