@@ -3,9 +3,10 @@ SMRD2:::vinny()
 library(SMRD2)
 
 ## ------------------------------------------------------------------------
-AdhesiveBond.Weibull.altpv <- get.alt.plan.values.from.slope.and.point(distribution = "Weibull",
-                                                                       relationship = "Arrhenius", 
-                                                                       accelvar.units = c("DegreesC"),
+AdhesiveBond.Weibull.altpv <-
+  get.alt.plan.values.from.slope.and.point(distribution = "Weibull",
+                                           relationship = "Arrhenius",
+                                           accelvar.units = c("DegreesC"),
                                                                        time.units = "Days", 
                                                                        censor.time = 183,
                                                                        probs = c(.001), 
@@ -16,27 +17,85 @@ AdhesiveBond.Weibull.altpv <- get.alt.plan.values.from.slope.and.point(distribut
 print(AdhesiveBond.Weibull.altpv)
 
 ## ------------------------------------------------------------------------
-AdhesiveBond0.altplan <- get.alt.test.plan.direct(accel.variable.levels = c(80,100,120),
-                                                  number.of.units = c(100,100,100),
-                                                  censor.times = c(243,243,243))
+AdhesiveBond0.altplan <-
+  get.alt.test.plan.direct(accel.variable.levels = c(80,100,120),
+                           number.of.units = c(100,100,100),
+                           censor.times = c(243,243,243))
 
-AdhesiveBond1.altplan <- get.alt.test.plan.direct(accel.variable.levels = c(78,98,120),
-                                                  number.of.units = c(155,60,84),
-                                                  censor.times = c(183,183,183))
+AdhesiveBond1.altplan <-
+  get.alt.test.plan.direct(accel.variable.levels = c(78,98,120),
+                           number.of.units = c(155,60,84),
+                           censor.times = c(183,183,183))
 
-AdhesiveBond2.altplan <- get.alt.test.plan.direct(accel.variable.levels = c(80,100,120),
-                                                  number.of.units = c(212,88,0),
-                                                  censor.times = c(243,243,243))
+AdhesiveBond2.altplan <-
+  get.alt.test.plan.direct(accel.variable.levels = c(80,100,120),
+                           number.of.units = c(212,88,0),
+                           censor.times = c(243,243,243))
 
-AdhesiveBond3.altplan <- get.alt.test.plan.direct(accel.variable.levels = c(80,100,120),
-                                                  number.of.units = c(150,60,90),
-                                                  censor.times = c(243,243,243))
+AdhesiveBond3.altplan <-
+  get.alt.test.plan.direct(accel.variable.levels = c(80,100,120),
+                           number.of.units = c(150,60,90),
+                           censor.times = c(243,243,243))
 
 ## optimum plan
 
-AdhesiveBond4.altplan <- get.alt.test.plan.direct(accel.variable.levels = c(95,120),
-                                                  number.of.units = c(212,88),
-                                                  censor.times = c(183,183))
+AdhesiveBond4.altplan <-
+  get.alt.test.plan.direct(accel.variable.levels = c(95,120),
+                           number.of.units = c(212,88),
+                           censor.times = c(183,183))
 
 print(AdhesiveBond1.altplan)
+
+## ------------------------------------------------------------------------
+AdhesiveBond2.frame <- data.frame(DegreesC = c(80,100,120),
+                                  SampleSize = c(150,60,90),
+                                  CensorTimes = c(243,243,243))
+
+AdhesiveBond2.altplan <- 
+  get.alt.test.plan.frame(AdhesiveBond2.frame,
+                          levels.columns = "DegreesC", 
+                          censor.column = "CensorTimes",
+                          allocation.column = "SampleSize",
+                          describe.string = "AdhesiveBond Test Plan")
+
+print(AdhesiveBond2.altplan)
+
+## ------------------------------------------------------------------------
+plot(AdhesiveBond1.altplan,
+     ALT.plan.values = AdhesiveBond.Weibull.altpv,
+     use.condition = 50)
+
+plot(AdhesiveBond2.altplan,
+     ALT.plan.values = AdhesiveBond.Weibull.altpv,
+     use.condition = 50)
+
+plot(AdhesiveBond3.altplan,
+     ALT.plan.values = AdhesiveBond.Weibull.altpv,
+     use.condition = 50)
+
+## ------------------------------------------------------------------------
+ALT.vcv(AdhesiveBond1.altplan,
+        ALT.plan.values = AdhesiveBond.Weibull.altpv)
+
+evaluate(AdhesiveBond1.altplan,
+         ALT.plan.values = AdhesiveBond.Weibull.altpv,
+         quantile.of.interest = 0.5,
+         use.condition = 50)
+
+names(AdhesiveBond1.altplan)
+names(AdhesiveBond.Weibull.altpv)
+
+## ------------------------------------------------------------------------
+simulate(AdhesiveBond1.altplan,
+         ALT.plan.values = AdhesiveBond.Weibull.altpv,
+         use.condition = 50)
+
+unfold(AdhesiveBond1.altplan, 
+       AdhesiveBond.Weibull.altpv, 
+       use.condition = 50)
+
+evaluate(AdhesiveBond1.altplan, 
+         AdhesiveBond.Weibull.altpv,
+         use.condition = 50,
+         quantile.of.interest = 0.5)
 
