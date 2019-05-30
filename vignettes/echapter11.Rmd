@@ -37,7 +37,6 @@ gmleprobplot(LocomotiveControl.ld,
              ylim = c(.0011,.991))
 ```
 
-
 These examples can take longer to run
 
 ```{r}
@@ -125,7 +124,7 @@ text(2.70432, -6.94453, "LOGNOR")
 ```{r, eval=FALSE}
 tmp <- one.dim.profile(bear.egeng.gmle.out,
                        profile.on.list = 3,
-                       range.list = list(c(-1,2.0)),
+                       range.list = list(c(-1,3.0)),
                        size = 50,
                        save.structures = F)
 
@@ -164,7 +163,7 @@ one.dim.profile(Fan.egeng.gmle.out,
 
 # need to rename this function to s3 method plot.one.dim.out
 # This is interfering with s3 method stats::profile
-SMRD2:::profile.plot(Fan.egeng.gmle.outstruct3)
+profile.plot(Fan.egeng.gmle.outstruct3)
 ```
 
 # bisa examples
@@ -360,10 +359,14 @@ basic.gmleprobplot(Fan.ld,
                    conlev = 0.95,
                    ciMethod = "lr.approx",
                    length.time.vec = 30)
+```
 
+Issues with this code chunk don't know where the function `f.phibf` is.
+
+```{r, eval=FALSE}
 fcn = function(theta,time,distribution){
   
-      SMRD2:::f.phibf((log(time)-theta[1]) / exp(theta[2]),
+      f.phibf((log(time)-theta[1]) / exp(theta[2]),
                       distribution = "Weibull")
   
 }
@@ -378,21 +381,25 @@ Fr.conf(fcn,
         gmle.out = Fan.weibull.gmle.out,  
         ptwise = T, 
         extrapolate = T)
+```
 
+```{r}
+Fan.weibull.gmle.out <- ls.mle(Fan.ld,
+                               distribution = "Weibull")
 
-Fan.weibull.gmle.out <- ls.mle(Fan.ld,distribution="Weibull")
-
-###### work on this: Fan.lev.gmle.out <- ls.mle(Fan.ld,distribution="lev")
+Fan.lev.gmle.out <- ls.mle(Fan.ld,
+                           distribution = "lev")
 names(Fan.weibull.gmle.out)
 
-Fan.weibull.gmle.out <- FillRegion(Fan.weibull.gmle.out,
-                                   nbound = 4,
-                                   iter = 500, 
-                                   cull = 2)
+ Fan.weibull.gmle.out <- FillRegion(Fan.weibull.gmle.out,
+                                    nbound = 4,
+                                    iter = 500, 
+                                    cull = 2)
 
 summary(Fan.weibull.gmle.out.jcr)
 
-mleprobplot(Fan.ld, distribution = "Lognormal")
+mleprobplot(Fan.ld, 
+            distribution = "Lognormal")
 
 basic.gmleprobplot(Fan.ld,
                    distribution = "Weibull",
@@ -400,7 +407,7 @@ basic.gmleprobplot(Fan.ld,
                    xxx.mle.out = Fan.weibull.gmle.out,
                    my.title = "",
                    cexlab = 1.5,
-                   conlev = 0.95,
+                   conf.level = 0.95,
                    ciMethod = "lr.approx",
                    length.time.vec = 20)
 
@@ -417,16 +424,23 @@ basic.gmleprobplot(Fan.ld,
                    ciMethod = "lr.approx",
                    length.time.vec = 20)
 
+BearingCage.ld <- frame.to.ld(bearingcage,
+                              response.column = 1, 
+                              censor.column = 2, 
+                              case.weight.column = 3,
+                              time.units = "Hours")
+
+summary(BearingCage.ld)
 
 BearingCage.weibull.gmle.out <- ls.mle(BearingCage.ld,
                                        distribution = "Weibull")
 
 names(BearingCage.weibull.gmle.out)
 
-BearingCage.weibull.gmle.out.jcr <-  FillRegion(BearingCage.weibull.gmle.out,
-                                                nbound = 4,
-                                                iter = 500,
-                                                cull = 2)
+BearingCage.weibull.gmle.out.jcr <- FillRegion(BearingCage.weibull.gmle.out,
+                                               nbound = 4,
+                                               iter = 500,
+                                               cull = 2)
 
 summary(BearingCage.weibull.gmle.out.jcr)
 
