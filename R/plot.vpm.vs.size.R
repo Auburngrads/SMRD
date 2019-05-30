@@ -1,7 +1,9 @@
 #' @export
 plot.vpm.vs.size <-
-function (x = c(100, 150, 200), size.vec = c(1, 2, 3),
-    use.conditions = c(50.1),...)
+function (x = c(100, 150, 200), 
+          size.vec = c(1, 2, 3),
+          use.conditions = c(50.1),
+          debug1 = F,...)
 {
     old.par <- par(mfrow = c(1, 2), oma = c(0, 0, 4, 0), pty = "s",
         mar = c(5.1, 5.1, 6.1, 4.1))
@@ -10,7 +12,7 @@ function (x = c(100, 150, 200), size.vec = c(1, 2, 3),
         par(new = F)
     })
     char.list <- expand.grid(vpm = x, size = size.vec)
-    browser()
+    if(debug1) browser()
     vpm <- char.list[, 1]
     size <- char.list[, 2]
     volts <- vpm * size
