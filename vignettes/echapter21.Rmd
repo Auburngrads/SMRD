@@ -49,10 +49,10 @@ plot(Resistor.rmd,
 names(Resistor.rmd)
 
 Resistor.ld1 <- rmd.to.ld(Resistor.rmd, 
-                         fail.level = 5, 
-                         subset = "hours > 0.6",
-                         censor.time = 35,
-                         x.axis = "sqrt")
+                          fail.level = 5, 
+                          subset = "hours > 0.6",
+                          censor.time = 35,
+                          x.axis = "sqrt")
 
 SMRD2:::plot.rmd.average(Resistor.rmd) #issue
 SMRD2:::plot.rmd.residual(Resistor.ld1) #issue
@@ -92,7 +92,8 @@ Resistor.groupm.out <- groupm.mleprobplot(Resistor.ld,
                                           relationship  = "Arrhenius",
                                           ci.list = 1)
 
-plot(Resistor.groupm.out,censor.time = 8000)
+plot(Resistor.groupm.out,
+     censor.time = 8000)
 ```
 
 ##  MetalWear example
