@@ -189,7 +189,7 @@ SMRD2:::resid.vs.explan(ZelenCap.groupm.out1,
 SMRD2:::resid.vs.explan(ZelenCap.groupm.out1,
                         x.to.plot = 2)
 
-#resid.probplot(ZelenCap.groupm.out1)
+SMRD2:::resid.probplot(ZelenCap.groupm.out1)
 ```
 
 ## Fitting to `celsius` only
@@ -198,7 +198,7 @@ SMRD2:::resid.vs.explan(ZelenCap.groupm.out1,
 ZelenCap.groupm.out2 <-
   groupm.mleprobplot(ZelenCap.ld,
                      distribution = "Lognormal",
-                     formula= Location ~ + g(celsius),
+                     formula= Location ~ g(celsius),
                      relationship = c("arrhenius", "log"))
 
 ```
@@ -209,7 +209,7 @@ ZelenCap.groupm.out2 <-
 ZelenCap.groupm.out3 <-
   groupm.mleprobplot(ZelenCap.ld,
                      distribution = "Lognormal",
-                     formula= Location ~ + g(volts),
+                     formula= Location ~ g(volts),
                      relationship = c("arrhenius", "log"))
 ```
 
@@ -219,12 +219,12 @@ ZelenCap.groupm.out3 <-
 ZelenCap.groupm.out4 <-
   groupm.mleprobplot(ZelenCap.ld,
                      distribution = "normal",
-                     formula = Location ~ + g(celsius) +  g(volts))
+                     formula = Location ~ g(celsius) +  g(volts))
 
 ZelenCap.groupm.out5 <-
   groupm.mleprobplot(ZelenCap.ld,
                      distribution = "normal",
-                     formula= Location ~  +  g(volts) + g(celsius))
+                     formula= Location ~ g(volts) + g(celsius))
 ```
 
 ## Fitting to `volts` and `celsius` with interaction
@@ -242,7 +242,7 @@ ZelenCap.groupm.out6 <-
 ZelenCap.groupm.out7 <-
   groupm.mleprobplot(ZelenCap.ld,
                      distribution = "Lognormal",
-                     relationship=c("arrhenius","log"))
+                     relationship = c("arrhenius","log"))
 ```
 
 
@@ -251,7 +251,7 @@ ZelenCap.groupm.out3 <-
   groupm.mleprobplot(ZelenCap.ld, 
                      distribution = "Lognormal", 
                      relationship = c("linear", "linear"), 
-                     formula = Location ~ + g(volts) + g(celsius) + g(volts):g(celsius))
+                     formula = Location ~ g(volts) + g(celsius) + g(volts):g(celsius))
 ```
 
 ```{r, eval=FALSE}
@@ -265,7 +265,7 @@ quantiles(ZelenCap.groupm.out3,
 failure.probabilities(ZelenCap.groupm.out3,
                       new.data = "165;188")
 
-resid.vs.explan.multiple(ZelenCap.groupm.out3)
+SMRD2:::resid.vs.explan.multiple(ZelenCap.groupm.out3)
 residual.plots(ZelenCap.groupm.out3)
 ```
 
