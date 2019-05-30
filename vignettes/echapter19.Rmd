@@ -395,7 +395,7 @@ Tantalum.groupm.weib <-
 
 ## classh insulation example 
 
-Do have this data set
+Don't have this data set
 
 ```{r, eval=FALSE}
 classh.turn.ld <- frame.to.ld(classh,
