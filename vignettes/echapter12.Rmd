@@ -105,8 +105,7 @@ CondProbInterval2(DeviceN.mlest.weib,
                   tU = 36)
 ```
 
-
-```{r}
+```{r, eval=FALSE}
 CondProbInterval2(DeviceN.mlest.lnorm,
                   age = 1,
                   tL = 1,
@@ -145,7 +144,7 @@ PredictTable(DeviceN.mlest.weib,
 
 # No warranty enforcement
 
-```{r}
+```{r, eval=FALSE}
 DeviceN.NoEnforce.lnor <- 
   CumulativePredictTable(DeviceN.mlest.lnorm,
                          time.increment = 1,
@@ -161,7 +160,7 @@ PlotCumulativePredictTable(DeviceN.NoEnforce.lnor,
 
 # Strict warranty enforcement
 
-```{r}
+```{r, eval=FALSE}
 DeviceN.Enforce.lnor <-
   CumulativePredictTable(DeviceN.mlest.lnorm,
                          time.increment = 1,
@@ -179,7 +178,7 @@ PlotCumulativePredictTable(DeviceN.Enforce.lnor,
 
 # Strict vs. no warranty enforcement (lognormal distribution)
 
-```{r}
+```{r, eval=FALSE}
 PlotCumulativePredictTable(DeviceN.NoEnforce.lnor,
                            plot.what = "density",
                            ylim = c(0,10000))
@@ -201,7 +200,7 @@ PlotCumulativePredictTable(DeviceN.Enforce.lnor,
 ```
 # No warranty enforcement
 
-```{r}
+```{r, eval=FALSE}
 DeviceN.NoEnforce.weib <-
   CumulativePredictTable(DeviceN.mlest.weib,
                          time.increment = 1,
@@ -217,7 +216,7 @@ PlotCumulativePredictTable(DeviceN.NoEnforce.weib,
 
 # Strict warranty enforcement
 
-```{r}
+```{r,eval=FALSE}
 DeviceN.Enforced.weib <-
   CumulativePredictTable(DeviceN.mlest.weib,
                          time.increment = 1,
@@ -233,7 +232,7 @@ PlotCumulativePredictTable(DeviceN.Enforced.weib,
 
 # Strict vs. no warranty enforcement (Weibull distribution)
 
-```{r}
+```{r,eval=FALSE}
 PlotCumulativePredictTable(DeviceN.NoEnforce.weib,
                            plot.what = "density",
                            ylim = c(0,NA))
