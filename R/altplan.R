@@ -1,3 +1,86 @@
+#' Title
+#'
+#' @param alt.plan.values 
+#' @param plan.type 
+#' @param use.condition 
+#' @param highest.condition 
+#' @param censor.time 
+#' @param quantile 
+#' @param xihold 
+#' @param pifix 
+#' @param pmlim 
+#' @param kprint 
+#' @param method 
+#' @param sample.size 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' AdhesiveBond.Weibull.altpv <-
+#'   get.alt.plan.values.from.slope.and.point(distribution = "Weibull",
+#'                                            relationship = "Arrhenius",
+#'                                            accelvar.units = c("DegreesC"),
+#'                                            time.units = "Days", 
+#'                                            censor.time = 183,
+#'                                            probs = c(.001), 
+#'                                            accelvar = c(50),
+#'                                            slope = 0.726, 
+#'                                            beta = 1.667)
+#' 
+#' print(AdhesiveBond.Weibull.altpv)
+#' 
+#' evaluate(altplan(AdhesiveBond.Weibull.altpv,
+#'                  "Optimum",
+#'                  use.condition = 50, 
+#'                  highest.condition = 120,
+#'                  censor.time = 183, 
+#'                  quantile = 0.1,
+#'                  sample.size = 300), 
+#'          AdhesiveBond.Weibull.altpv,
+#'          use.condition = 50, 
+#'          quantile.of.interest = 0.1)
+#' 
+#' 
+#' AdhesiveBond.Weibull.optc.altplan <-
+#'   altplan(AdhesiveBond.Weibull.altpv,
+#'           "Optimized compromise",
+#'           use.condition = 50,
+#'           highest.condition = 120,
+#'           censor.time = 250,
+#'           quantile = 0.1)
+#' 
+#' evaluate(altplan(AdhesiveBond.Weibull.altpv,
+#'                  "Equal expected",
+#'                  use.condition = 50,
+#'                  highest.condition = 120,
+#'                  censor.time = 250,
+#'                  quantile = 0.1),
+#'          AdhesiveBond.Weibull.altpv,
+#'          use.condition = 50,
+#'          quantile.of.interest = 0.1)
+#' 
+#' AdhesiveBond.Weibull.421.altplan <-
+#'   altplan(AdhesiveBond.Weibull.altpv,
+#'           "421",
+#'           use.condition = 50,
+#'           highest.condition = 120,
+#'           censor.time = 250,
+#'           quantile = 0.1)
+#' 
+#' evaluate(altplan(AdhesiveBond.Weibull.altpv,
+#'                  "Traditional", 
+#'                  use.condition = 50,
+#'                  highest.condition = 120,
+#'                  censor.time = 250,
+#'                  quantile = 0.1), 
+#'          AdhesiveBond.Weibull.altpv,
+#'          use.condition = 50, 
+#'          quantile.of.interest = 0.1)
+#' 
+#' }
 altplan <-
 function (alt.plan.values, 
           plan.type, 
