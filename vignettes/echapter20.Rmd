@@ -29,12 +29,12 @@ AdhesiveBond.Weibull.altpv <-
   get.alt.plan.values.from.slope.and.point(distribution = "Weibull",
                                            relationship = "Arrhenius",
                                            accelvar.units = c("DegreesC"),
-                                                                       time.units = "Days", 
-                                                                       censor.time = 183,
-                                                                       probs = c(.001), 
-                                                                       accelvar = c(50),
-                                                                       slope = 0.726, 
-                                                                       beta = 1.667)
+                                           time.units = "Days", 
+                                           censor.time = 183,
+                                           probs = c(.001), 
+                                           accelvar = c(50),
+                                           slope = 0.726, 
+                                           beta = 1.667)
 
 print(AdhesiveBond.Weibull.altpv)
 ```
@@ -343,24 +343,24 @@ marginalize.sim(DeviceA.Sim.out,
                 focus.quantity.detail = 4268.884,
                 x.of.interest = 50)
 
-plot.marginals.sim(DeviceA.Sim.out,
-                   focus.quantity = "parameter",
-                   focus.quantity.detail = 1)
+SMRD2:::plot.marginals.sim(DeviceA.Sim.out,
+                           focus.quantity = "parameter",
+                           focus.quantity.detail = 1)
 
-plot.marginals.sim(DeviceA.Sim.out,
-                   focus.quantity = "parameter",
-                   focus.quantity.detail = 1,
-                   plot.type = "density")
+SMRD2:::plot.marginals.sim(DeviceA.Sim.out,
+                           focus.quantity = "parameter",
+                           focus.quantity.detail = 1,
+                           plot.type = "density")
 
-plot.joint.sim(DeviceA.Sim.out, 
-               focus.quantity1 = "quantile",
-               focus.quantity.detail1 = 0.1,
-               x.of.interest1 = 50,
-               focus.quantity2 = "parameter",
-               focus.quantity.detail2 = 3,
-               x.of.interest2 = NA)
+SMRD2:::plot.joint.sim(DeviceA.Sim.out, 
+                       focus.quantity1 = "quantile",
+                       focus.quantity.detail1 = 0.1,
+                       x.of.interest1 = 50,
+                       focus.quantity2 = "parameter",
+                       focus.quantity.detail2 = 3,
+                       x.of.interest2 = NA)
 
-plot.joint.and.marginals.sim(DeviceA.Sim.out, 
+SMRD2:::plot.joint.and.marginals.sim(DeviceA.Sim.out, 
                              focus.quantity1 = "quantile",
                              focus.quantity.detail1 = 0.1,
                              x.of.interest1 = 50,
@@ -479,14 +479,12 @@ DeviceR.sim.out <-
   simulate(DeviceR.altplan, 
            ALT.plan.values = DeviceR.Weibull.altpv,
            nsim = 400,
-           use.conditions = "80;50",
            show.detail.on = 5)
 
 DeviceR.sim.out <- 
   simulate(DeviceR.altplan,
            ALT.plan.values = DeviceR.Weibull.altpv,
            nsim = 400,
-           use.conditions = "80;50",
            show.detail.on = 0)
 
 ##	plot the ALT simulation results
@@ -504,7 +502,7 @@ ALT.plot.FracFail.v.Time(DeviceR.sim.out)
 
 ALT.plot.FracFail.v.Time(DeviceR.sim.out,
                          x.of.interest = c(25,10),
-                         xlim=c(100,10000))
+                         xlim = c(100,10000))
 
 ##	look at joint and marginal disributions of focus quantities
 
@@ -613,8 +611,8 @@ evaluate(NelsonInsulation.altplan,
 
 ##	sample size needed for a given value of R
 
-plot.alt.sample.size(NelsonInsulation.altplan,
-                     NelsonInsulation.Weibull.altpv)
+SMRD2:::plot.alt.sample.size(NelsonInsulation.altplan,
+                             NelsonInsulation.Weibull.altpv)
 
 
 NelsonInsulation.sim.out <- ALTsim(NelsonInsulation.altplan, 
