@@ -68,7 +68,7 @@ function (data.ld,
          the.column <- the.xmat[, i]
          if (is.numeric(the.column)) {
           
-             the.xmat[, i] <- signif(the.column, 4)
+             the.xmat[, i] <- signif(as.numeric(prettyNum(the.column)), 4)
           
         }
     }
