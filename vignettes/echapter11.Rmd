@@ -163,7 +163,7 @@ one.dim.profile(Fan.egeng.gmle.out,
 
 # need to rename this function to s3 method plot.one.dim.out
 # This is interfering with s3 method stats::profile
-profile.plot(Fan.egeng.gmle.outstruct3)
+SMRD2:::profile.plot(Fan.egeng.gmle.outstruct3)
 ```
 
 # bisa examples
@@ -473,7 +473,7 @@ basic.gmleprobplot(BearingCage.ld,
                    ylim = c(.00031,.19), 
                    time.vec = log.seq(200,10000,20))
 
-profile.plot(Fr.profile(fcn <- function(x){x[1]},
+SMRD2:::profile.plot(Fr.profile(fcn <- function(x){x[1]},
                         BearingCage.weibull.gmle.out))
 
 tmppro <- Fr.profile(fcn <- function(x){x[1]}, 
@@ -489,7 +489,7 @@ vchan.functions <- c("Fr.profile",
                      "basic.gmleprobplot",
                      "gmleprobplot")
 
-profile.plot(tmppro)
+SMRD2:::profile.plot(tmppro)
 
 do.profile.plot(BearingCage.weibull.gmle.out,
                 parameter = "log(scale)")
@@ -645,7 +645,7 @@ one.dim.profile(LaminatePanel.fit22.out,
                 range.list = list(c(-35,0)), 
                 save.parameter.vectors = T)
 
-profile.plot(LaminatePanel.fit22.outstruct3)
+SMRD2:::profile.plot(LaminatePanel.fit22.outstruct3)
 
 one.dim.profile(LaminatePanel.fit22.out,
                 profile.on.list = 5,
@@ -892,7 +892,7 @@ one.dim.profile(hcf22.fit,
                 size = 20, 
                 range.list = list(c(-10,0)))
 
-profile.plot(hcf22.fitstruct3)
+SMRD2:::profile.plot(hcf22.fitstruct3)
 
 #check
 xcdf(1, 2, 29, -5, 270 ,  .36, 5.3, .020,6.0,1,0.0,0 )
