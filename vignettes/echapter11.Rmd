@@ -299,7 +299,7 @@ basic.gmleprobplot(AlloyC.ld,
                    plot.dist = "sev")
 ```
 
-Begin to fill region for lr confidence intervals. The code in the following chunk is experimental
+Begin to fill region for lr confidence intervals. The code in the following three chunks is experimental
 
 ```{r, eval=FALSE}
 Fan.egeng.gmle.out <- FillRegion(Fan.egeng.gmle.out,
@@ -361,12 +361,12 @@ basic.gmleprobplot(Fan.ld,
                    length.time.vec = 30)
 ```
 
-Issues with this code chunk don't know where the function `f.phibf` is.
+Issues with this code chunk.
 
 ```{r, eval=FALSE}
 fcn = function(theta,time,distribution){
   
-      f.phibf((log(time)-theta[1]) / exp(theta[2]),
+      SMRD2:::wqmf.phibf((log(time)-theta[1]) / exp(theta[2]),
                       distribution = "Weibull")
   
 }
@@ -383,7 +383,7 @@ Fr.conf(fcn,
         extrapolate = T)
 ```
 
-```{r}
+```{r,eval=FALSE}
 Fan.weibull.gmle.out <- ls.mle(Fan.ld,
                                distribution = "Weibull")
 
@@ -621,7 +621,8 @@ LaminatePanel.fit12.out <- rflm.mle(LaminatePanel.ld,
 
 print(LaminatePanel.fit12.out)
 
-plot(LaminatePanel.fit12.out, response.on.yaxis = F)
+plot(LaminatePanel.fit12.out, 
+     response.on.yaxis = F)
 
 LaminatePanel.fit22.out <- rflm.mle(LaminatePanel.ld,
                                     cond.dist = "normal", 
