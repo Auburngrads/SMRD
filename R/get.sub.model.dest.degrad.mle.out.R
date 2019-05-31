@@ -26,6 +26,8 @@
 #' get.sub.model.dest.degrad.mle.out(AdhesiveStrength.gmle,c(50,60,70))
 #' 
 #' 
+#' # Or more simply
+#' get.sub.model(AdhesiveStrength.gmle,c(50,60,70))
 #' 
 #' }
 get.sub.model.dest.degrad.mle.out <-
