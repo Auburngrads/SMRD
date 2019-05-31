@@ -67,9 +67,16 @@ function (ALT.test.plan, ALT.plan.values)
     sigma <- theta.vec[length(theta.vec)]
     distribution <- ALT.plan.values$distribution
     relationship <- ALT.plan.values$relationship
-    if (length(relationship) != number.accelerators)
-        stop(paste("length(relationship)=", , " != number.accelerators=",
-            number.accelerators, collapse = ","))
+    
+    if (length(relationship) != number.accelerators) {
+      
+        stop("\nlength(relationship) {",
+                   length(relationship),
+                   "} != number.accelerators {",
+            number.accelerators,"}")
+      
+    }
+    
     the.allocations <- allocation(ALT.test.plan)[, 1]
     x.tran <- levels
     for (i in 1:number.accelerators) {
@@ -110,9 +117,15 @@ function (ALT.test.plan, ALT.plan.values)
     }
     dimnames(fisher) <- list(param.names, param.names)
     the.vcv <- my.solve(fisher/sigma^2)
-    plan.table <- data.frame(levels, cbind(n = the.allocations,
-        ctime = ALT.test.plan$censor.times, zeta = round(std.cen,
-            2), p = fail.prob, efail = round(the.allocations *
-            fail.prob, 2)))
-    return(list(the.fim = fisher, the.vcv = the.vcv, plan.table = plan.table))
+    plan.table <- data.frame(levels, 
+                             cbind(n = the.allocations,
+                                   ctime = ALT.test.plan$censor.times, 
+                                   zeta = round(std.cen,2), 
+                                   p = fail.prob, 
+                                   efail = round(the.allocations *fail.prob, 2)))
+    
+    return(list(the.fim = fisher, 
+                the.vcv = the.vcv, 
+                plan.table = plan.table))
+    
 }
