@@ -57,7 +57,7 @@ summary(ld.to.mfld(DeviceG.ld))
 ```{r}
 par(mfrow = c(1,2))
 mfmi.mleprobplot(DeviceG.ld, distribution = "weibull") 
-mfmi.mleprobplot(DeviceG.ld, distribution = "lognormal") 
+mfmc.mleprobplot(DeviceG.ld, distribution = "lognormal") 
 par(mfrow = c(1,1))
 ```
 
