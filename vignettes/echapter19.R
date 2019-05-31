@@ -2,3 +2,482 @@
 SMRD2:::vinny()
 library(SMRD2)
 
+## ------------------------------------------------------------------------
+DeviceA.ld <- frame.to.ld(devicea, 
+                          data.title = "Device-A ALT Results",
+                          response.column = 1,
+                          time.units = "Hours",
+                          censor.column = 2,
+                          case.weight.column = 3,
+                          x.columns = 4, 
+                          xlab = "Degrees C")
+
+print(DeviceA.ld)
+summary(DeviceA.ld)
+
+censored.data.plot(DeviceA.ld)
+
+censored.data.plot(DeviceA.ld, 
+                   y.axis ="log", 
+                   x.axis = "Arrhenius")
+
+groupi.mleprobplot(DeviceA.ld, 
+                   distribution = "Weibull")
+
+four.groupi.mleprobplot(DeviceA.ld)
+
+DeviceA.weib.groupi <- 
+  groupi.mleprobplot(DeviceA.ld,
+                     distribution = "Weibull")
+
+print(DeviceA.weib.groupi)
+summary(DeviceA.weib.groupi)
+
+DeviceA.lognor.groupi <- 
+  groupi.mleprobplot(DeviceA.ld,
+                     distribution = "Lognormal")
+
+summary(DeviceA.lognor.groupi)
+
+failure.probabilities(DeviceA.lognor.groupi)
+quantiles(DeviceA.lognor.groupi)
+
+four.groupm.mleprobplot(DeviceA.ld, 
+                        relationship = "Arrhenius")
+
+DeviceA.lognor.groupm <- 
+  groupm.mleprobplot(DeviceA.ld, 
+                     distribution = "Lognormal", 
+                     relationship = "Arrhenius")
+
+failure.probabilities(DeviceA.lognor.groupm, 
+                      new.data = 10)
+
+quantiles(DeviceA.lognor.groupm, 
+          new.data = "10")
+
+plot(DeviceA.lognor.groupm)
+
+## or, more specifically to get quantiles at 60 degrees C,
+
+quantiles(DeviceA.lognor.groupm, 
+          new.data = 60)
+
+## failure probabilities at 60 and 10 degrees C,
+
+failure.probabilities(DeviceA.lognor.groupm, 
+                      new.data = 60, 
+                      time = c(1000,2000,5000,10000,20000,50000))
+
+failure.probabilities(DeviceA.lognor.groupm, 
+                      new.data = 10, 
+                      time = c(1000,2000,5000,10000,20000,50000))
+
+plot(DeviceA.lognor.groupm, 
+     censor.time = 5000, 
+     quant.lines = c(.01,.05,.1))
+
+quantiles(DeviceA.lognor.groupm, 
+          new.data = 60, 
+          to = 0.2)
+
+failure.probabilities(DeviceA.lognor.groupm, 
+                      new.data = 60, 
+                      time.vec = c(10000,100000))
+
+failure.probabilities(DeviceA.lognor.groupm, 
+                      new.data = 60, 
+                      time.vec = c(500,600,700,800,900,1000))
+
+## plot with a confidence interval for 10 degrees
+
+DeviceA.groupm.mleprobplot <- 
+  groupm.mleprobplot(DeviceA.ld,
+                     distribution = "Lognormal",
+                     relationship = "Arrhenius",
+                     ci.list = 1)
+
+print(DeviceA.groupm.mleprobplot,
+      print.vcv = T,
+      stress.state = 0)
+
+## fix the activation energy to EA=.72
+
+groupm.mleprobplot(DeviceA.ld, 
+                   distribution = "Lognormal", 
+                   relationship = "Arrhenius", 
+                   ci.list = 1,
+                   theta.start = c(-13, 0.72, 0.99), 
+                   parameter.fixed = c(F, T, F))
+
+## ------------------------------------------------------------------------
+mylarpoly.ld <- frame.to.ld(mylarpoly,
+                            response.column = 1,
+                            x.column = 2, 
+                            data.title = "Mylar-Polyurethane Insulating Structure", 
+                            time.units = "Minutes", 
+                            xlab = "kV/mm")
+
+mylarsub.ld <- frame.to.ld(mylarsub,
+                           response.column = 1,
+                           x.column = 2,
+                           data.title = "Mylar-Polyurethane Insulating Structure", 
+                           time.units = "Minutes", 
+                           xlab = "kV/mm")
+
+print(mylarpoly.ld)
+summary(mylarpoly.ld)
+
+censored.data.plot(mylarpoly.ld, 
+                   x.axis = "log", 
+                   y.axis = "log")
+
+mylarpoly.lognor.groupi <- 
+  groupi.mleprobplot(mylarpoly.ld,
+                     distribution = "Lognormal")
+
+text(-1.06459, -1.74056,"361.4 kV/mm")
+text(2.23807, -2.1,"219.0")
+text(3.88939, -2.1,"157.1")
+text(5.23223, -2.1,"122.4")
+text(6.90171, -2.1,"100.3")
+
+summary(mylarpoly.lognor.groupi,
+        stress.state = 0)
+
+mylarsub.lognor.groupm <- 
+  groupm.mleprobplot(mylarsub.ld,
+                     distribution = "Lognormal",
+                     relationship = c("log"),
+                     new.data = c(50))
+
+text(2.50825, -2.27,"219.0")
+text(3.83294, -2.27,"157.1")
+text(4.84914, -2.27,"122.4")
+text(5.95607, -2.27,"100.3")
+text(9.56722, -2.26083,"50 kV/mm")
+
+print(mylarsub.lognor.groupm,
+      stress.state = 0)
+
+summary(mylarsub.lognor.groupm,
+        stress.state = 0)
+
+plot(mylarsub.lognor.groupm)
+
+plot(mylarsub.lognor.groupm, 
+     data.ld = mylarpoly.ld, 
+     add.density.at = 50,
+     xlim = c(31,400))
+
+quantiles(mylarsub.lognor.groupm, 
+          new.data = 60, 
+          to = 0.2)
+
+failure.probabilities(mylarsub.lognor.groupm,
+                      new.data = 60)
+
+failure.probabilities(mylarsub.lognor.groupm, 
+                      new.data = 60, 
+                      time.vec = c(10,1000))
+
+
+failure.probabilities(mylarsub.lognor.groupm, 
+                      new.data = 50)
+
+quantiles(mylarsub.lognor.groupm, 
+          new.data = 50,
+          to = 0.2)
+
+mylarpoly.lognor.groupm <- 
+  groupm.mleprobplot(mylarpoly.ld,
+                     distribution = "Lognormal",
+                     relationship = "class")
+
+## example of bad model
+
+mylarpoly.lognor.groupm <- 
+  groupm.mleprobplot(mylarpoly.ld,
+                     distribution = "Lognormal",
+                     relationship = "log")
+
+plot(mylarpoly.lognor.groupm)
+
+mylarsub.lognor.groupm <- 
+  groupm.mleprobplot(mylarsub.ld,
+                     distribution = "Lognormal",
+                     relationship = "log")
+
+summary(mylarsub.lognor.groupm,
+        stress.state = 0)
+
+quantiles(mylarsub.lognor.groupm, 
+          new.data = 50,
+          to = 0.2)
+
+mylarpoly.lognor.groupm <- 
+  groupm.mleprobplot(mylarpoly.ld, 
+                     distribution = "Lognormal",
+                     relationship = "log")
+
+summary(mylarpoly.lognor.groupm,
+        stress.state = 0)
+
+quantiles(mylarpoly.lognor.groupm, 
+          new.data = 50,
+          to = 0.2)
+
+failure.probabilities(mylarpoly.lognor.groupm, 
+                      new.data = 50)
+
+plot(mylarpoly.lognor.groupm, 
+     add.density.at = 50,
+     xlim = c(31,400), 
+     ylim=c(.1,10^8))
+
+plot(mylarsub.lognor.groupm,
+     data.ld = mylarpoly.ld, 
+     add.density.at = 50, 
+     xlim = c(31,400), 
+     ylim = c(.1,10^8))
+
+
+## make a model plot with detailed control of the x axis
+
+plot(mylarsub.lognor.groupm,
+     data.ld = mylarpoly.ld,
+     density.at = c(100.3,122.4,157.1,219,50),
+     title.option = 'blank',
+     xlab = 'kV/mm', 
+     hw.xaxis = list(ticlab = c(" 40", "100", "200","300", "400"),
+                     ticloc = c(" 40", " 50", " 60", " 70", " 80", " 90", "100", "120", "140", "160","180", "200", "250","300","350", "400")))
+
+## ------------------------------------------------------------------------
+ICDevice2.ld <- frame.to.ld(icdevice2, 
+                            response.column = c(1,2),
+                            censor.column = 3,
+                            case.weight.column = 4,
+                            x.column = 5,  
+                            data.title = "New Technology Device ALT", 
+                            xlabel = "Degrees C", 
+                            time.units = "Hours")
+
+groupi.mleprobplot(ICDevice2.ld, 
+                   distribution = "Lognormal")
+
+ICDevice02.groupm.lognor <- 
+  groupm.mleprobplot(ICDevice2.ld,
+                     distribution = "Lognormal",
+                     relationship = "Arrhenius",
+                     ci.list = 6)
+
+plot(ICDevice02.groupm.lognor,
+     censor.time = 2304, 
+     quant.lines = c(.01,0.1, .5))
+
+quantiles(ICDevice02.groupm.lognor, 
+          new.data = 100,
+          to = 0.2)
+
+failure.probabilities(ICDevice02.groupm.lognor, 
+                      new.data = 100, 
+                      time.vec = c(500,1000))
+
+ICDevice2.groupm.lognor.ea <- 
+  groupm.mleprobplot(ICDevice2.ld,
+                     distribution = "Lognormal",
+                     relationship = "Arrhenius",
+                     ci.list = 6,
+                     new.data = 100,
+                     theta.start = c(-10.2, 0.8, 0.5),
+                     parameter.fixed = c(F, T, F))
+
+quantiles(ICDevice2.groupm.lognor.ea,
+          new.data = 100,
+          to = 0.2)
+
+failure.probabilities(ICDevice2.groupm.lognor.ea, 
+                      new.data = 100,
+                      time.vec = c(500,1000))
+
+plot(ICDevice2.groupm.lognor.ea, 
+     censor.time = 2304,
+     quant.lines = c(.01,0.1, .5))
+
+## ------------------------------------------------------------------------
+Tantalum.ld <- frame.to.ld(tantalum, 
+                           response.column = 1,
+                           censor.column = 2, 
+                           case.weight.column = 3, 
+                           x.column = c(4, 5), 
+                           data.title = "Tantalum Capacitor Data", 
+                           time.units = "Hours", 
+                           xlabel = c("Volts","DegreesC"))
+
+summary(Tantalum.ld)
+
+design.plot(Tantalum.ld)
+text(35.5864, 93.0106,"4/1000",cex = 1.2)
+text(40.6815, 93.0106,"4/200",cex = 1.2)
+text(46.5611, 93.0106,"2/50",cex = 1.2)
+text(51.5986, 93.0106,"4/53 ",cex = 1.2)
+text(46.3883, 53.8499,"6/502",cex = 1.2)
+text(56.9744, 53.8499,"1/50",cex = 1.2)
+text(46.4459, 10.737,"1/175",cex = 1.2)
+text(62.4743,  10.737,"18/174",cex = 1.2)
+title(main = "Tantalum Accelerated Life Test  Setup")
+
+groupi.Tantalum <- 
+  groupi.mleprobplot(Tantalum.ld,
+                     distribution = "Weibull",
+                     group = c(1, 2))
+
+summary(groupi.Tantalum)
+
+Tantalum.groupm.weib <- 
+  groupm.mleprobplot(Tantalum.ld, 
+                     group.var = c(1,2),
+                     distribution = "Weibull",
+                     relationship  = c("log","Arrhenius"))
+
+summary(Tantalum.groupm.weib,
+        stress.state = 0)
+
+## doing a conditional model plot
+plot(Tantalum.groupm.weib, 
+     fixed.other.values = "30",
+     focus.variable = "celsius")
+
+plot(Tantalum.groupm.weib, 
+     focus.variable = "volts", 
+     fixed.other.values = 40)
+
+failure.probabilities(Tantalum.groupm.weib, 
+                      new.data = "35;85" )
+
+quantiles(Tantalum.groupm.weib, 
+          new.data = "35;85" )
+
+Tantalum.groupm.weib <- 
+  groupm.mleprobplot(Tantalum.ld,
+                     group.var = c(1,2), 
+                     distribution = "Weibull", 
+                     relationship = c("log","Arrhenius"), 
+                     formula = Location ~ + g(volts) +  g(celsius) + g(volts):g(celsius))
+
+## ---- eval=FALSE---------------------------------------------------------
+#  classh.turn.ld <- frame.to.ld(classh,
+#                                response.column = "Turn.hours",
+#                                censor.column = "Turn.censor",
+#                                x.columns = "Temp",
+#                                data.title = "Class H Turn Failures")
+#  
+#  summary(classh.turn.ld)
+#  
+#  ## analyze the classh.turn failure-times
+#  
+#  censored.data.plot(classh.turn.ld,
+#                     y.axis = "log",
+#                     x.axis = "Arrhenius")
+#  
+#  classh.turn.groupi <-
+#    groupi.mleprobplot(classh.turn.ld,
+#                       distribution = "Lognormal")
+#  
+#  summary(classh.turn.groupi)
+#  
+#  classh.turn.groupm <-
+#    groupm.mleprobplot(classh.turn.ld,
+#                       distribution = "Lognormal",
+#                       relationship = "Arrhenius")
+#  
+#  summary(classh.turn.groupm)
+#  
+#  plot(classh.turn.groupm)
+#  plot(classh.turn.groupm,
+#       density.at = c(180,190,200,220,240,260),
+#       censor.time = 12000,
+#       quant.lines = c(.01,.1,.5))
+#  
+#  quantiles(classh.turn.groupm,
+#            new.data = 180)
+#  
+#  failure.probabilities(classh.turn.groupm,
+#                        new.data = 180)
+#  
+#  ## get and analyze the ground failures
+#  
+#  classh.ground.ld <- frame.to.ld(classh,	
+#                                  response.column = "Ground.hours",
+#                                  censor.column = "Ground.censor",
+#                                  x.columns = "Temp",
+#                                  data.title = "Class H Ground Failures")
+#  
+#  summary(classh.ground.ld)
+#  
+#  ## analyze the classh.ground failure-times
+#  
+#  censored.data.plot(classh.ground.ld,
+#                     y.axis = "log",
+#                     relationships = "Arrhenius")
+#  
+#  classh.ground.groupi <-
+#    groupi.mleprobplot(classh.ground.ld,
+#                       distribution = "Lognormal")
+#  
+#  summary(classh.ground.groupi)
+#  
+#  classh.ground.groupm <-
+#    groupm.mleprobplot(classh.ground.ld,
+#                       distribution = "Lognormal",
+#                       relationship = "Arrhenius")
+#  
+#  summary(classh.ground.groupm)
+#  
+#  plot(classh.ground.groupm)
+#  
+#  ## get and analyze the phase failures
+#  
+#  classh.phase.ld <- frame.to.ld(classh,
+#                                 response.column = "Phase.hours",
+#                                 censor.column = "Phase.censor",
+#                                 x.columns = "Temp",
+#                                 data.title = "Class H Phase Failures")
+#  
+#  print(classh.phase.ld)
+#  
+#  summary(classh.phase.ld)
+#  
+#  censored.data.plot(classh.phase.ld,
+#                     y.axis = "log",
+#                     relationships = "Arrhenius")
+#  
+#  classh.phase.groupi <-
+#    groupi.mleprobplot(classh.phase.ld,
+#                       distribution = "Lognormal")
+#  
+#  summary(classh.phase.groupi)
+#  
+#  classh.phase.groupm <-
+#    groupm.mleprobplot(classh.phase.ld,
+#                       distribution = "Lognormal",
+#                       relationship = "Arrhenius")
+#  
+#  summary(classh.phase.groupm)
+#  
+#  plot(classh.phase.groupm)
+#  
+#  quantiles(classh.phase.groupm,
+#            new.data = 180)
+#  
+#  failure.probabilities(classh.phase.groupm,
+#                        new.data = 180)
+#  
+#  AlloyZ.groupm <-
+#    groupm.mleprobplot(AlloyZ.ld,
+#                       distribution = "Weibull",
+#                       relationship = "Log")
+#  
+#  plot(AlloyZ.groupm,
+#       density.at = c(20,50,100,200))
+
