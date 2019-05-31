@@ -1,10 +1,24 @@
 single.plot.groupm.Dest.Degrad.out <-
-function (groupm.Dest.Degrad.out, FailLevel, quant.lines.levels = c(0.1, 
-    0.5, 0.9), y.axis, density.at, ylim = c(NA, NA), xlim = c(NA, 
-    NA), my.title = NULL, title.option = GetSMRDDefault("SMRD.TitleOption"), censor.time = NULL, 
-    cex = 1, xlab = NULL, ylab = NULL, lwd = 2, grids = F, add = F, 
-    response.on.yaxis = T, the.censor.codes = NULL, plot.quant.labels = T, 
-    nxpoints = 200, ...) 
+function (groupm.Dest.Degrad.out,
+          FailLevel, 
+          quant.lines.levels = c(0.1, 0.5, 0.9), 
+          y.axis, 
+          density.at, 
+          ylim = c(NA,NA), 
+          xlim = c(NA,NA), 
+          my.title = NULL, 
+          title.option = GetSMRDDefault("SMRD.TitleOption"), 
+          censor.time = NULL,
+          cex = 1, 
+          xlab = NULL, 
+          ylab = NULL, 
+          lwd = 2, 
+          grids = F, 
+          add = F,
+          response.on.yaxis = T,
+          the.censor.codes = NULL,
+          plot.quant.labels = T,
+          nxpoints = 200,...) 
 {
     func.call <- match.call()
     transformation.time <- groupm.Dest.Degrad.out$model$transformation.time
