@@ -160,8 +160,7 @@ function (data.ddd, distribution, transformation.response, transformation.x,
                 collapse = ","), "\n")
         }
         grad.problem <- any(abs(gmle.out$grad) > 0.1)
-        if (!is.na(grad.problem) && !grad.problem)
-            break
+        if (!is.na(grad.problem) && !grad.problem) break
         print(gmle.out)
     }
     gmle.out$thetainterp <- gmle.out$origparam
