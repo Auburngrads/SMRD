@@ -1,16 +1,16 @@
 switch.units <- 
 function(units,data.d) 
 {
-  
-  if(any(is.onlist(class(data.d), "multiple.failure.mode.life.data"))){
+ 
+  `if`(is.onlist(class(data.d)[[1]], "multiple.life.data"),
+       unit.names <- as.vector(attr(data.d[[1]],"x.columns")),
+       unit.names <- as.vector(attr(data.d,"x.columns")))
+   
+  if(is.onlist(class(data.d)[[1]], "multiple.failure.mode.life.data")){
     
      unit.names <- names(data.d)
      
   }
-  
-  `if`(is.onlist(class(data.d)[[1]], "multiple.life.data"),
-       unit.names <- as.vector(attr(data.d[[1]],"x.columns")),
-       unit.names <- as.vector(attr(data.d,"x.columns")))
   
   for(i in 1:length(unit.names)){
     
