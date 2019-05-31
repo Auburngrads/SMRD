@@ -1,6 +1,6 @@
 #' @export
 plot.ADDT.test.plan <-
-function (x,which,...)
+function (x,which = 1,...)
 {
   AT.levels <-
     function (ADDT.test.plan)
