@@ -3,7 +3,7 @@ function (log.like,
           theta.start, 
           dump, 
           max.fcal = 900, 
-          max.iter = 150,
+          max.iter = 300,
           rfc.tol = 1e-10, 
           xc.tol = 1e-10)
 {
