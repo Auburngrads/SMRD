@@ -4,7 +4,6 @@ library(SMRD2)
 
 ## ------------------------------------------------------------------------
 ## create the ddd data object
-
 Insulation.ddd <- frame.to.ddd(insulation,
                                response.column = 3, 
                                time.column = 1,
@@ -53,4 +52,22 @@ Insulation.groupi.Dest.Degrad <-
 
 plot(Insulation.groupi.Dest.Degrad,
      transformation.x = "Arrhenius")
+
+## ------------------------------------------------------------------------
+Insulation.groupm.Dest.Degrad <-
+  groupm.Dest.Degrad(Insulation.ddd,
+                     distribution = "normal", 
+                     transformation.response = "log",
+                     transformation.x = "arrhenius", 
+                     transformation.time = "sqrt")
+
+Insulation.groupm.Dest.Degrad <- 
+  groupm.Dest.Degrad(Insulation.ddd,
+                     distribution = "normal",
+                     transformation.response = "log",
+                     transformation.x = "arrhenius",
+                     transformation.time = "sqrt",
+                     new.data = c("150,260"))
+
+residual.plots(Insulation.groupm.Dest.Degrad)
 
