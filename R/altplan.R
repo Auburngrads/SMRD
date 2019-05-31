@@ -159,7 +159,8 @@ function (alt.plan.values,
                   double(maxstress),
                   double(maxstress), 
                   double(1), 
-                  as.integer(kprint))
+                  as.integer(kprint),
+                  integer(1))
     
     allocation <- floor(zout$numvec$pip * sample.size)
     allocation[1] <- sample.size - sum(allocation[-1])
