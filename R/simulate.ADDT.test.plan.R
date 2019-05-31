@@ -43,9 +43,13 @@ function (object, nsim = 3, seed = NULL, ADDT.plan.values, use.conditions, FailL
     sim.data.title <- paste("Simulated Data based on", plan.string,
         plan.values.string)
     ADDTsim.full.out <- ADDTsim(ADDT.plan.values = ADDT.plan.values,
-        ADDT.test.plan = object, number.sim = nsim,
-        plotem = plotem, xlim = xlim, ylim = ylim,
-        sim.data.title = sim.data.title)
+                                ADDT.test.plan = object, 
+                                number.sim = nsim,
+                                plotem = plotem, 
+                                xlim = xlim, 
+                                ylim = ylim,
+                                sim.data.title = sim.data.title)
+    
     attr(ADDTsim.full.out, "title") <- my.title
     attr(ADDTsim.full.out, "plan.string") <- plan.string
     attr(ADDTsim.full.out, "plan.values.string") <- plan.values.string
