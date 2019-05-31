@@ -73,19 +73,45 @@
 #' 
 #' }
 basic.gmleprobplot <-
-function (data.ld, distribution, plot.dist, xlab = get.time.units(data.ld),
-    xlim = c(NA, NA), ylim = c(NA, NA), time.range = c(NA,
-        NA), conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
-    interactive = T, original.par = F, mle.quantiles = T, my.title = NULL,
-    type = "y", cex = 1, cex.points = 1.2, cexlab = 1, sub.title = "",
-    grids = F, linear.axes = F, slope.axis = F, print.table = F,
-    title.option = GetSMRDDefault("SMRD.TitleOption"), ylab = GetSMRDDefault("SMRD.LabelOnYaxis"),
-    trunc.correct = T, add = F, plot.censored.ticks = F, pch = 16,
-    lty = c(3, 4, 5, 6, 7), lwd = c(2, 2, 2, 2, 2), length.time.vec = 100,
-    compare.dists = NULL, col.ci = 4, lwd.ci = 2, xxx.mle.out = NULL,
-    ciMethod = "normal.approx", extrapolate.ci = F, band.type = "p",
-    ...)
+function (data.ld, 
+          distribution, 
+          plot.dist, 
+          xlab = get.time.units(data.ld),
+          xlim = c(NA, NA),
+          ylim = c(NA, NA),
+          time.range = c(NA,NA),
+          conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
+          interactive = T, 
+          original.par = F, 
+          mle.quantiles = T, 
+          my.title = NULL,
+          type = "y",
+          cex = 1, 
+          cex.points = 1.2, 
+          cexlab = 1, 
+          sub.title = "",
+          grids = F, 
+          linear.axes = F, 
+          slope.axis = F, 
+          print.table = F,
+          title.option = GetSMRDDefault("SMRD.TitleOption"), 
+          ylab = GetSMRDDefault("SMRD.LabelOnYaxis"),
+          trunc.correct = T, 
+          add = F, 
+          plot.censored.ticks = F, 
+          pch = 16,
+          lty = c(3, 4, 5, 6, 7), 
+          lwd = c(2, 2, 2, 2, 2), 
+          length.time.vec = 100,
+          compare.dists = NULL, 
+          col.ci = 4, 
+          lwd.ci = 2, 
+          xxx.mle.out = NULL,
+          ciMethod = "normal.approx", 
+          extrapolate.ci = F, 
+          band.type = "p",...)
 {
+    
     if (missing(plot.dist) || is.null(plot.dist)) {
         
         `if`(is.onlist(generic.distribution(distribution), c("exponential","sev", "normal", "logistic", "lognormal", "weibull","loglogistic")),
@@ -118,6 +144,7 @@ function (data.ld, distribution, plot.dist, xlab = get.time.units(data.ld),
         gmle.out <- general.dist.mle2(data.ld, distribution = distribution)
         
     }
+    
     return.gmle.out <- gmle.out
     theta <- gmle.out$origparam
     ybandrange <- NULL
@@ -183,19 +210,27 @@ function (data.ld, distribution, plot.dist, xlab = get.time.units(data.ld),
     
     `if`(!add,
          log.of.data <- probplot.setup(distribution = plot.dist,
-            xlim = range(xlim), ylim = ylim, my.title = my.title,
-            sub.title = sub.title, cex = cex, cexlab = cexlab,
-            grids = grids, linear.axes = linear.axes, title.option = title.option,
-            slope.axis = slope.axis, ylab = ylab, xlab = xlab,
-            title.line.adj = -2, ...),
-         log.of.data <- get.prob.scales(plot.dist, shape = NULL,
-            prob.range = ylim)$logger)
+                                       xlim = range(xlim),
+                                       ylim = ylim, 
+                                       my.title = my.title,
+                                       sub.title = sub.title, 
+                                       cex = cex, cexlab = cexlab,
+                                       grids = grids, 
+                                       linear.axes = linear.axes, 
+                                       title.option = title.option,
+                                       slope.axis = slope.axis, 
+                                       ylab = ylab, xlab = xlab,
+                                       title.line.adj = -2, ...),
+         log.of.data <- get.prob.scales(plot.dist, 
+                                        shape = NULL,
+                                        prob.range = ylim)$logger)
     
     if (type != "n")
         points.default(pp.data(cdpoints.out$yplot, log.of.data),
                        quant(cdpoints.out$pplot, plot.dist), 
                        cex = cex.points,
                        pch = pch)
+    
     if (mle.quantiles) {
         
         lines(pp.data(time.vec, log.of.data), 
@@ -263,6 +298,7 @@ function (data.ld, distribution, plot.dist, xlab = get.time.units(data.ld),
                   col = idist + 1)
             
         }
+        
         if (!is.null(compare.dists)) {
             
             legend(x.loc(0.01), 
@@ -276,6 +312,7 @@ function (data.ld, distribution, plot.dist, xlab = get.time.units(data.ld),
         }
         
     }
+    
     attr(return.gmle.out, "bands.list") <- bands.list
     return(return.gmle.out)
 }
