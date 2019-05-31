@@ -204,7 +204,6 @@ print(Insulation.test.ddd)
 
 ```{r}
 ## plot the data
-
 plot(Insulation.test.ddd,
      transformation.response = "log",
      transformation.time = "linear")
