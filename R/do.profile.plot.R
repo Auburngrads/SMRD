@@ -1,3 +1,43 @@
+#' Title
+#'
+#' @param gmle.out 
+#' @param parameter 
+#' @param original.parameter 
+#' @param quantile 
+#' @param failure.probability.at 
+#'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' 
+#' BearingCage.ld <- frame.to.ld(bearingcage,
+#'                               response.column = 1, 
+#'                               censor.column = 2, 
+#'                               case.weight.column = 3,
+#'                               time.units = "Hours")
+#' 
+#' summary(BearingCage.ld)
+#' 
+#' BearingCage.weibull.gmle.out <- ls.mle(BearingCage.ld,
+#'                                        distribution = "Weibull")
+#' 
+#' names(BearingCage.weibull.gmle.out)
+#' 
+#' do.profile.plot(BearingCage.weibull.gmle.out,
+#'                 parameter = "log(scale)")
+#' 
+#' do.profile.plot(BearingCage.weibull.gmle.out,
+#'                 original.parameter = "scale")
+#' 
+#' do.profile.plot(BearingCage.weibull.gmle.out,
+#'                 quantile = 0.1)
+#' 
+#' do.profile.plot(BearingCage.weibull.gmle.out,
+#'                 failure.probability = 5000)
+#' 
+#' }
 do.profile.plot <-
 function (gmle.out, parameter, original.parameter, quantile, 
     failure.probability.at) 
