@@ -14,7 +14,7 @@ function (results.object, focus.quantity, focus.quantity.detail,
     explan.vars <- "accel.var"
     regr.param <- 1:(length(model$orig.param.names) - 1)
     sigma.param <- length(model$orig.param.names)
-    if (!is.null(explan.vars) && !is.onlist(focus.quantity, c("Parameter", "parameter"))) {
+    if (!is.null(explan.vars) && is.onlist(focus.quantity, c("Parameter", "parameter"))) {
         
         x.of.interest <- string.to.frame(x.of.interest)
         x.of.interest.info <- paste(" at", paste(format(x.of.interest),
@@ -30,7 +30,7 @@ function (results.object, focus.quantity, focus.quantity.detail,
     switch(focus.quantity, Quantile = , quantile = {
         p.for.quantile <- focus.quantity.detail
         the.marginal <- apply(uber.results.object[, 1:length(model$orig.param.names),
-            drop = F], 1, fx.ADDT.life.quantile, p = p.for.quantile,
+            drop = F], 1, SMRD2:::fx.ADDT.life.quantile, p = p.for.quantile,
             distribution = model$distribution, FailLevel = FailLevel,
             xuse = x.of.interest, transformation.response = model$transformation.response,
             transformation.x = model$transformation.x, transformation.time = model$transformation.time)
@@ -40,7 +40,7 @@ function (results.object, focus.quantity, focus.quantity.detail,
     }, `failure probability` = , `Failure probability` = {
         y.for.failure.prob <- focus.quantity.detail
         the.marginal <- apply(uber.results.object[, 1:length(model$orig.param.names),
-            drop = F], 1, fx.ADDT.life.failure.probability, time.vec = y.for.failure.prob,
+            drop = F], 1, SMRD2:::fx.ADDT.life.failure.probability, time.vec = y.for.failure.prob,
             distribution = model$distribution, FailLevel = FailLevel,
             xuse = x.of.interest, transformation.response = model$transformation.response,
             transformation.x = model$transformation.x, transformation.time = model$transformation.time)
