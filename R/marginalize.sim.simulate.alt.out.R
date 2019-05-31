@@ -17,7 +17,7 @@ function (results.object, focus.quantity, focus.quantity.detail,
         nrow = nrow(results.object), byrow = F)
     dimnames(uber.results.object) <- dimnames(results.object)
     sigma.param <- length(explan.vars) + 2
-    if (!is.null(explan.vars) && is.onlist(focus.quantity, c("Parameter",
+    if (!is.null(explan.vars) && !is.onlist(focus.quantity, c("Parameter",
         "parameter"))) {
         if (is.character(x.of.interest))
             x.of.interest <- string.to.frame(x.of.interest)
