@@ -99,3 +99,90 @@ evaluate(AdhesiveBond1.altplan,
          use.condition = 50,
          quantile.of.interest = 0.5)
 
+## ------------------------------------------------------------------------
+simulate(AdhesiveBond2.altplan, 
+         ALT.plan.values = AdhesiveBond.Weibull.altpv,
+         use.condition = 50,
+         show.detail.on = 5)
+
+simulate(AdhesiveBond2.altplan,
+         ALT.plan.values = AdhesiveBond.Weibull.altpv,
+         number.sim = 100,
+         use.condition = 50)
+
+evaluate(AdhesiveBond2.altplan, 
+         AdhesiveBond.Weibull.altpv,
+         use.condition = 50,
+         quantile.of.interest = 0.1)
+
+AdhesiveBond3.sim.out <- 
+  simulate(AdhesiveBond3.altplan,
+           ALT.plan.values = AdhesiveBond.Weibull.altpv,
+           use.condition = 50)
+
+ALT.plot.time.v.x(AdhesiveBond3.sim.out,
+                  x.of.interest = c(45))
+
+ALT.plot.FracFail.v.Time(AdhesiveBond3.sim.out,
+                         x.of.interest = c(45))
+
+evaluate(AdhesiveBond3.altplan, 
+         AdhesiveBond.Weibull.altpv,
+         use.condition = 50,
+         quantile.of.interest = 0.1)
+
+SMRD2:::plot.vpm.vs.size(vpm.vec = c(100, 150, 200), 
+                         size.vec = c(1, 2, 3))
+
+SMRD2:::plot.volt.vs.size(volts.vec = c(100, 200, 300), 
+                          size.vec = c(1, 2, 3))
+
+## ------------------------------------------------------------------------
+DeviceA.altpv <- 
+  get.alt.plan.values.from.slope.and.point(distribution = "Lognormal",
+                                           slope = 0.63,
+                                           relationship = "Arrhenius",
+                                           time.units = "Hours",
+                                           censor.time = 5000,
+                                           probs = 0.5469, 
+                                           accelvar = 60,
+                                           sigma = 0.98,
+                                           use.conditions = 10)
+
+print(DeviceA.altpv)
+
+DeviceA1.altplan <- 
+  get.alt.test.plan.direct(accel.variable.levels = c(10,40,60,80),
+                           number.of.units = c(30,100,20,15),
+                           censor.time =  c(5000,5000,5000,5000))
+
+print(DeviceA1.altplan)
+
+simulate(DeviceA1.altplan,
+         ALT.plan.values = DeviceA.altpv, 
+         nsim = 100,
+         use.condition = 10)
+
+DeviceA2.altplan <- 
+  get.alt.test.plan.direct(accel.variable.levels = c(10,40,50,60,70,80),
+                           number.of.units = c(30,27,27,27,27,27),
+                           censor.time = c(5000,5000,5000,5000,5000,5000))
+
+print(DeviceA2.altplan)
+
+simulate(DeviceA2.altplan,
+         ALT.plan.values = DeviceA.altpv, 
+         nsim = 100, 
+         use.condition = 10)
+
+## ---- eval=FALSE---------------------------------------------------------
+#  ## generate ALT plans
+#  
+#  hold.altplan("Weibull",
+#               a = -4,
+#               b1 = -10,
+#               perc = 0.1,
+#               iopta = 3,
+#               iopts = 2,
+#               pifix = 0)
+
