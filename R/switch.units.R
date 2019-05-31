@@ -29,6 +29,7 @@ function(units,data.d)
   units <- gsub("kelvin","K",      units)
   units <- gsub("rankine","R",     units)
   units <- gsub(";", "~~",         units)
+  units <- gsub("([[:punct:]]|[[:space:]])per([[:punct:]]|[[:space:]])", "/",units)
   
   invisible(units)
 }
