@@ -216,28 +216,6 @@ Many applications force users to recode these events
 
 ## `SMRD` Default Event Definitions
 
-    ## Registered S3 methods overwritten by 'ggplot2':
-    ##   method         from 
-    ##   [.quosures     rlang
-    ##   c.quosures     rlang
-    ##   print.quosures rlang
-
-    ## Registered S3 method overwritten by 'SMRD':
-    ##   method     from 
-    ##   print.ecdf stats
-
-    ## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
-
-<!--html_preserve-->
-
-<div id="htmlwidget-4d98b3d2dccae02eab62" class="datatables html-widget" style="width:100%;height:auto;">
-
-</div>
-
-<script type="application/json" data-for="htmlwidget-4d98b3d2dccae02eab62">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],["event","exact","d","dead","died","f","fail","failed","failure","report","repair","repaired","replaced","replacement","1","","","","",""],["l","l-censored","left-censored","left","leftcensored","start","mstart","3","","","","","","","","","","","",""],["a","alive","c","censor","censored","end","mend","noreport","r","r-censored","right-censored","removed","right","rightcensored","s","survived","survive","suspend","suspended","2"],["b","bin","i","interval","i-censored","intervalcensored","interval-censored","4","","","","","","","","","","","",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Failed<\/th>\n      <th>Left-censored<\/th>\n      <th>Right-censored<\/th>\n      <th>Interval-censored<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}],"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
-
-<!--/html_preserve-->
-
 ## `SMRD` Package Features | Easily Access Data from Multiple Sources
 
   - `SMRD` includes over 120 fully-documented datasets
@@ -306,13 +284,15 @@ code in documents & presentations
 DT::datatable(shockabsorber, options = list(pageLength = 6))
 ```
 
+    PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
+
 <!--html_preserve-->
 
-<div id="htmlwidget-59440c84fe8ee8f891fa" class="datatables html-widget" style="width:100%;height:auto;">
+<div id="htmlwidget-9cd5365a3281a3ec4314" class="datatables html-widget" style="width:100%;height:auto;">
 
 </div>
 
-<script type="application/json" data-for="htmlwidget-59440c84fe8ee8f891fa">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38"],[6700,6950,7820,8790,9120,9660,9820,11310,11690,11850,11880,12140,12200,12870,13150,13330,13470,14040,14300,17520,17540,17890,18450,18960,18980,19410,20100,20100,20150,20320,20900,22700,23490,26510,27410,27490,27890,28100],["Mode1","Censored","Censored","Censored","Mode2","Censored","Censored","Censored","Censored","Censored","Censored","Censored","Mode1","Censored","Mode2","Censored","Censored","Censored","Mode1","Mode1","Censored","Censored","Censored","Censored","Censored","Censored","Mode2","Censored","Censored","Censored","Mode2","Mode1","Censored","Mode1","Censored","Mode1","Censored","Censored"],["Failure","Censored","Censored","Censored","Failure","Censored","Censored","Censored","Censored","Censored","Censored","Censored","Failure","Censored","Failure","Censored","Censored","Censored","Failure","Failure","Censored","Censored","Censored","Censored","Censored","Censored","Failure","Censored","Censored","Censored","Failure","Failure","Censored","Failure","Censored","Failure","Censored","Censored"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>miles<\/th>\n      <th>mode<\/th>\n      <th>event<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":6,"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-9cd5365a3281a3ec4314">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38"],[6700,6950,7820,8790,9120,9660,9820,11310,11690,11850,11880,12140,12200,12870,13150,13330,13470,14040,14300,17520,17540,17890,18450,18960,18980,19410,20100,20100,20150,20320,20900,22700,23490,26510,27410,27490,27890,28100],["Mode1","Censored","Censored","Censored","Mode2","Censored","Censored","Censored","Censored","Censored","Censored","Censored","Mode1","Censored","Mode2","Censored","Censored","Censored","Mode1","Mode1","Censored","Censored","Censored","Censored","Censored","Censored","Mode2","Censored","Censored","Censored","Mode2","Mode1","Censored","Mode1","Censored","Mode1","Censored","Censored"],["Failure","Censored","Censored","Censored","Failure","Censored","Censored","Censored","Censored","Censored","Censored","Censored","Failure","Censored","Failure","Censored","Censored","Censored","Failure","Failure","Censored","Censored","Censored","Censored","Censored","Censored","Failure","Censored","Censored","Censored","Failure","Failure","Censored","Failure","Censored","Failure","Censored","Censored"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>miles<\/th>\n      <th>mode<\/th>\n      <th>event<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":6,"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 <!--/html_preserve-->
 
