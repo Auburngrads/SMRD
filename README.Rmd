@@ -5,6 +5,8 @@ date: "<br/>`r format(Sys.Date(), '%m %B %Y')`"
 output: 
   github_document:
     html_preview: false
+keep_md: yes
+always_allow_html: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -294,7 +296,7 @@ simple.contour(shock.ld, distribution = 'sev', show.confidence = F, zoom = 1.75)
 
 ## ML Estimate Table | Generate tables automatically
 
-```{r, echo=TRUE,results='hide'}
+```{r, echo=TRUE,results='hide',eval=c(1)}
 tab <- print(mlest(shock.ld, distribution = 'weibull'))$mle
 xarray(table = tab)
 ```
