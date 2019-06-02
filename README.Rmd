@@ -11,6 +11,7 @@ always_allow_html: yes
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(SMRD)
 ```
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN status](https://www.r-pkg.org/badges/version/SMRD2)](https://cran.r-project.org/package=SMRD2)
@@ -150,8 +151,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## `SMRD` Default Event Definitions
 
-```{r, echo=FALSE}
-library(SMRD)
+```{r, echo=FALSE,eval=FALSE}
 fail <- strsplit(SMRDOptionsDefaults()$SMRD.F,  split = ',')[[1]]
 left <- strsplit(SMRDOptionsDefaults()$SMRD.Lc, split = ',')[[1]]
 righ <- strsplit(SMRDOptionsDefaults()$SMRD.Rc, split = ',')[[1]]
