@@ -129,20 +129,24 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## `SMRD` Package Features | Minimal data pre-processing through flexible event definitions
 
-- Organizations often use different terms to describe the same event
+<ul>
+<li>Organizations often use different terms to describe the same event</li>
 
-    + 'Failure' = 'Failed' = 'Fail' = 'dead' = 'died'
-    + 'right' = 'rcensored' = 'suspended' = 'alive'
-    + 'left' = 'doa' = 'lcensored'
-    + 'interval' = 'int' = 'icensored' = 'grouped'
+<ul>
+ <li>'Failure' = 'Failed' = 'Fail' = 'dead' = 'died'</li>
+ <li>'right' = 'rcensored' = 'suspended' = 'alive'</li>
+ <li>'left' = 'doa' = 'lcensored'</li>
+ <li>'interval' = 'int' = 'icensored' = 'grouped'</li>
+</ul>
 
-- Many applications force users to recode these events
+<li>Many applications force users to recode these events</li>
 
-- `SMRD` allows for flexible event definitions to utilize the data as-is
+<li>`SMRD` allows for flexible event definitions to utilize the data as-is</li>
 
-- <focus>Event definitions can even be mixed</focus>
+<li><focus>Event definitions can even be mixed</focus></li>
 
-- `SMRD` event definitions easily mapped to `survival` numeric definitions
+<li>`SMRD` event definitions easily mapped to `survival` numeric definitions</li>
+</ul>
 
 ## `SMRD` Default Event Definitions
 
