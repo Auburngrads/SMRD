@@ -79,7 +79,7 @@ status](https://travis-ci.org/Auburngrads/SMRD2.svg?branch=master)](https://trav
   - Packages bundle together code, data, documentation, and tests to
     easily share analysis methods with others
 
-  - Currently 14289 packages are available on the Comprehensive R
+  - Currently 14278 packages are available on the Comprehensive R
     Archive Network ([CRAN](https://cran.r-project.org))
 
   - Many more available from the
@@ -216,6 +216,10 @@ Many applications force users to recode these events
 
 ## `SMRD` Default Event Definitions
 
+\[
+\begin{array}{rllll}   \hline  & Failed & Left-censored & Right-censored & Interval-censored \\    \hline 1 & event & l & a & b \\    2 & exact & l-censored & alive & bin \\    3 & d & left-censored & c & i \\    4 & dead & left & censor & interval \\    5 & died & leftcensored & censored & i-censored \\    6 & f & start & end & intervalcensored \\    7 & fail & mstart & mend & interval-censored \\    8 & failed & 3 & noreport & 4 \\    9 & failure &  & r &  \\    10 & report &  & r-censored &  \\    11 & repair &  & right-censored &  \\    12 & repaired &  & removed &  \\    13 & replaced &  & right &  \\    14 & replacement &  & rightcensored &  \\    15 & 1 &  & s &  \\    16 &  &  & survived &  \\    17 &  &  & survive &  \\    18 &  &  & suspend &  \\    19 &  &  & suspended &  \\    20 &  &  & 2 &  \\     \hline \end{array} 
+\]
+
 ## `SMRD` Package Features | Easily Access Data from Multiple Sources
 
   - `SMRD` includes over 120 fully-documented datasets
@@ -281,20 +285,12 @@ code in documents & presentations
 <!-- end list -->
 
 ``` r
-DT::datatable(shockabsorber, options = list(pageLength = 6))
+xarray(shockabsorber)
 ```
 
-    PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
-
-<!--html_preserve-->
-
-<div id="htmlwidget-9cd5365a3281a3ec4314" class="datatables html-widget" style="width:100%;height:auto;">
-
-</div>
-
-<script type="application/json" data-for="htmlwidget-9cd5365a3281a3ec4314">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38"],[6700,6950,7820,8790,9120,9660,9820,11310,11690,11850,11880,12140,12200,12870,13150,13330,13470,14040,14300,17520,17540,17890,18450,18960,18980,19410,20100,20100,20150,20320,20900,22700,23490,26510,27410,27490,27890,28100],["Mode1","Censored","Censored","Censored","Mode2","Censored","Censored","Censored","Censored","Censored","Censored","Censored","Mode1","Censored","Mode2","Censored","Censored","Censored","Mode1","Mode1","Censored","Censored","Censored","Censored","Censored","Censored","Mode2","Censored","Censored","Censored","Mode2","Mode1","Censored","Mode1","Censored","Mode1","Censored","Censored"],["Failure","Censored","Censored","Censored","Failure","Censored","Censored","Censored","Censored","Censored","Censored","Censored","Failure","Censored","Failure","Censored","Censored","Censored","Failure","Failure","Censored","Censored","Censored","Censored","Censored","Censored","Failure","Censored","Censored","Censored","Failure","Failure","Censored","Failure","Censored","Failure","Censored","Censored"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>miles<\/th>\n      <th>mode<\/th>\n      <th>event<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":6,"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
-
-<!--/html_preserve-->
+\[
+\begin{array}{rrll}   \hline  & miles & mode & event \\    \hline 1 & 6700 & Mode1 & Failure \\    2 & 6950 & Censored & Censored \\    3 & 7820 & Censored & Censored \\    4 & 8790 & Censored & Censored \\    5 & 9120 & Mode2 & Failure \\    6 & 9660 & Censored & Censored \\    7 & 9820 & Censored & Censored \\    8 & 11310 & Censored & Censored \\    9 & 11690 & Censored & Censored \\    10 & 11850 & Censored & Censored \\    11 & 11880 & Censored & Censored \\    12 & 12140 & Censored & Censored \\    13 & 12200 & Mode1 & Failure \\    14 & 12870 & Censored & Censored \\    15 & 13150 & Mode2 & Failure \\    16 & 13330 & Censored & Censored \\    17 & 13470 & Censored & Censored \\    18 & 14040 & Censored & Censored \\    19 & 14300 & Mode1 & Failure \\    20 & 17520 & Mode1 & Failure \\    21 & 17540 & Censored & Censored \\    22 & 17890 & Censored & Censored \\    23 & 18450 & Censored & Censored \\    24 & 18960 & Censored & Censored \\    25 & 18980 & Censored & Censored \\    26 & 19410 & Censored & Censored \\    27 & 20100 & Mode2 & Failure \\    28 & 20100 & Censored & Censored \\    29 & 20150 & Censored & Censored \\    30 & 20320 & Censored & Censored \\    31 & 20900 & Mode2 & Failure \\    32 & 22700 & Mode1 & Failure \\    33 & 23490 & Censored & Censored \\    34 & 26510 & Mode1 & Failure \\    35 & 27410 & Censored & Censored \\    36 & 27490 & Mode1 & Failure \\    37 & 27890 & Censored & Censored \\    38 & 28100 & Censored & Censored \\     \hline \end{array} 
+\]
 
 ## Creating `life.data` Objects
 
@@ -382,7 +378,7 @@ simple.contour(shock.ld, distribution = 'sev', show.confidence = F, zoom = 1.75)
 
 ``` r
 tab <- print(mlest(shock.ld, distribution = 'weibull'))$mle
-## xarray(table = tab)
+xarray(table = tab)
 ```
 
 \[
