@@ -216,10 +216,6 @@ Many applications force users to recode these events
 
 ## `SMRD` Default Event Definitions
 
-\[
-\begin{array}{rllll}   \hline  & Failed & Left-censored & Right-censored & Interval-censored \\    \hline 1 & event & l & a & b \\    2 & exact & l-censored & alive & bin \\    3 & d & left-censored & c & i \\    4 & dead & left & censor & interval \\    5 & died & leftcensored & censored & i-censored \\    6 & f & start & end & intervalcensored \\    7 & fail & mstart & mend & interval-censored \\    8 & failed & 3 & noreport & 4 \\    9 & failure &  & r &  \\    10 & report &  & r-censored &  \\    11 & repair &  & right-censored &  \\    12 & repaired &  & removed &  \\    13 & replaced &  & right &  \\    14 & replacement &  & rightcensored &  \\    15 & 1 &  & s &  \\    16 &  &  & survived &  \\    17 &  &  & survive &  \\    18 &  &  & suspend &  \\    19 &  &  & suspended &  \\    20 &  &  & 2 &  \\     \hline \end{array} 
-\]
-
 ## `SMRD` Package Features | Easily Access Data from Multiple Sources
 
   - `SMRD` includes over 120 fully-documented datasets
@@ -285,12 +281,50 @@ code in documents & presentations
 <!-- end list -->
 
 ``` r
-xarray(shockabsorber)
+shockabsorber
 ```
 
-\[
-\begin{array}{rrll}   \hline  & miles & mode & event \\    \hline 1 & 6700 & Mode1 & Failure \\    2 & 6950 & Censored & Censored \\    3 & 7820 & Censored & Censored \\    4 & 8790 & Censored & Censored \\    5 & 9120 & Mode2 & Failure \\    6 & 9660 & Censored & Censored \\    7 & 9820 & Censored & Censored \\    8 & 11310 & Censored & Censored \\    9 & 11690 & Censored & Censored \\    10 & 11850 & Censored & Censored \\    11 & 11880 & Censored & Censored \\    12 & 12140 & Censored & Censored \\    13 & 12200 & Mode1 & Failure \\    14 & 12870 & Censored & Censored \\    15 & 13150 & Mode2 & Failure \\    16 & 13330 & Censored & Censored \\    17 & 13470 & Censored & Censored \\    18 & 14040 & Censored & Censored \\    19 & 14300 & Mode1 & Failure \\    20 & 17520 & Mode1 & Failure \\    21 & 17540 & Censored & Censored \\    22 & 17890 & Censored & Censored \\    23 & 18450 & Censored & Censored \\    24 & 18960 & Censored & Censored \\    25 & 18980 & Censored & Censored \\    26 & 19410 & Censored & Censored \\    27 & 20100 & Mode2 & Failure \\    28 & 20100 & Censored & Censored \\    29 & 20150 & Censored & Censored \\    30 & 20320 & Censored & Censored \\    31 & 20900 & Mode2 & Failure \\    32 & 22700 & Mode1 & Failure \\    33 & 23490 & Censored & Censored \\    34 & 26510 & Mode1 & Failure \\    35 & 27410 & Censored & Censored \\    36 & 27490 & Mode1 & Failure \\    37 & 27890 & Censored & Censored \\    38 & 28100 & Censored & Censored \\     \hline \end{array} 
-\]
+``` 
+   miles     mode    event
+1   6700    Mode1  Failure
+2   6950 Censored Censored
+3   7820 Censored Censored
+4   8790 Censored Censored
+5   9120    Mode2  Failure
+6   9660 Censored Censored
+7   9820 Censored Censored
+8  11310 Censored Censored
+9  11690 Censored Censored
+10 11850 Censored Censored
+11 11880 Censored Censored
+12 12140 Censored Censored
+13 12200    Mode1  Failure
+14 12870 Censored Censored
+15 13150    Mode2  Failure
+16 13330 Censored Censored
+17 13470 Censored Censored
+18 14040 Censored Censored
+19 14300    Mode1  Failure
+20 17520    Mode1  Failure
+21 17540 Censored Censored
+22 17890 Censored Censored
+23 18450 Censored Censored
+24 18960 Censored Censored
+25 18980 Censored Censored
+26 19410 Censored Censored
+27 20100    Mode2  Failure
+28 20100 Censored Censored
+29 20150 Censored Censored
+30 20320 Censored Censored
+31 20900    Mode2  Failure
+32 22700    Mode1  Failure
+33 23490 Censored Censored
+34 26510    Mode1  Failure
+35 27410 Censored Censored
+36 27490    Mode1  Failure
+37 27890 Censored Censored
+38 28100 Censored Censored
+```
 
 ## Creating `life.data` Objects
 
@@ -377,10 +411,11 @@ simple.contour(shock.ld, distribution = 'sev', show.confidence = F, zoom = 1.75)
 ## ML Estimate Table | Generate tables automatically
 
 ``` r
-tab <- print(mlest(shock.ld, distribution = 'weibull'))$mle
-xarray(table = tab)
+(tab <- print(mlest(shock.ld, distribution = 'weibull'))$mle)
 ```
 
-\[
-\begin{array}{rrrrr}   \hline  & MLE & Std.Err. & 95\% Lower & 95\% Upper \\    \hline mu & 10.23 & 0.11 & 10.01 & 10.45 \\    sigma & 0.32 & 0.07 & 0.20 & 0.50 \\    Weibull (eta) & 27718.72 & 3046.02 & 22347.77 & 34380.49 \\    Weibull (beta) & 3.16 & 0.73 & 2.01 & 4.97 \\     \hline \end{array} 
-\]
+    ##                       MLE   Std.Err.  95% Lower  95% Upper
+    ## mu             1.0230e+01 1.0989e-01    10.0145 1.0445e+01
+    ## sigma          3.1641e-01 7.3165e-02     0.2011 4.9783e-01
+    ## Weibull (eta)  2.7719e+04 3.0460e+03 22347.7684 3.4380e+04
+    ## Weibull (beta) 3.1605e+00 7.3082e-01     2.0087 4.9726e+00
