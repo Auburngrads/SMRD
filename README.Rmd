@@ -151,7 +151,7 @@ library(SMRD)
 
 ## `SMRD` Default Event Definitions
 
-```{r, echo=FALSE,eval=FALSE}
+```{r, echo=FALSE, results='hide'}
 fail <- strsplit(SMRDOptionsDefaults()$SMRD.F,  split = ',')[[1]]
 left <- strsplit(SMRDOptionsDefaults()$SMRD.Lc, split = ',')[[1]]
 righ <- strsplit(SMRDOptionsDefaults()$SMRD.Rc, split = ',')[[1]]
@@ -170,8 +170,12 @@ colnames(dats) <- c('Failed',
                     'Left-censored',
                     'Right-censored',
                     'Interval-censored') 
-DT::datatable(dats, options = list(pageLength = 8))
+xarray(dats)
 ```
+
+$$
+`r xarray(dats)`
+$$
 
 ## `SMRD` Package Features | Easily Access Data from Multiple Sources
 
@@ -224,9 +228,13 @@ __Literate programming:__ integrating text with snippets of executable code in d
 
 - This example demonstrates some of the `SMRD` functions to analyze the shockabsorber dataset used throughout the text
 
-```{r, comment=NA}
-DT::datatable(shockabsorber, options = list(pageLength = 6))
+```{r, comment=NA, results='hide'}
+xarray(shockabsorber)
 ```
+
+$$
+`r xarray(shockabsorber)`
+$$
 
 ## Creating `life.data` Objects
 
@@ -300,7 +308,7 @@ simple.contour(shock.ld, distribution = 'sev', show.confidence = F, zoom = 1.75)
 
 ## ML Estimate Table | Generate tables automatically
 
-```{r, echo=TRUE,results='hide',eval=c(1)}
+```{r, echo=TRUE,results='hide'}
 tab <- print(mlest(shock.ld, distribution = 'weibull'))$mle
 xarray(table = tab)
 ```
