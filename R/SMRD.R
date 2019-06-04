@@ -18,5 +18,5 @@
 #' speed up your workflow. The presentation concludes with a discussion on what improvements
 #' still need to be made prior to publishing the package on the CRAN
 #' 
-#' @useDynLib SMRD2, .registration = TRUE
+#' @useDynLib SMRD, .registration = TRUE
 NULL
