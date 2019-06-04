@@ -1,7 +1,7 @@
 ---
-title: "`r SMRD2:::info('book')`"
-subtitle: "`r SMRD2:::info('chapter11')`"
-author: "`r SMRD2:::info('authors')`"
+title: "`r SMRD:::info('book')`"
+subtitle: "`r SMRD:::info('chapter11')`"
+author: "`r SMRD:::info('authors')`"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -14,8 +14,8 @@ vignette: >
 ---
 
 ```{r, echo=FALSE}
-SMRD2:::vinny(cache = T)
-library(SMRD2)
+SMRD:::vinny(cache = T)
+library(SMRD)
 ```
 
 # In This Vignette...
@@ -163,7 +163,7 @@ one.dim.profile(Fan.egeng.gmle.out,
 
 # need to rename this function to s3 method plot.one.dim.out
 # This is interfering with s3 method stats::profile
-SMRD2:::profile.plot(Fan.egeng.gmle.outstruct3)
+SMRD:::profile.plot(Fan.egeng.gmle.outstruct3)
 ```
 
 # bisa examples
@@ -366,7 +366,7 @@ Issues with this code chunk.
 ```{r, eval=FALSE}
 fcn = function(theta,time,distribution){
   
-      SMRD2:::wqmf.phibf((log(time)-theta[1]) / exp(theta[2]),
+      SMRD:::wqmf.phibf((log(time)-theta[1]) / exp(theta[2]),
                       distribution = "Weibull")
   
 }
@@ -473,7 +473,7 @@ basic.gmleprobplot(BearingCage.ld,
                    ylim = c(.00031,.19), 
                    time.vec = log.seq(200,10000,20))
 
-SMRD2:::profile.plot(Fr.profile(fcn <- function(x){x[1]},
+SMRD:::profile.plot(Fr.profile(fcn <- function(x){x[1]},
                         BearingCage.weibull.gmle.out))
 
 tmppro <- Fr.profile(fcn <- function(x){x[1]}, 
@@ -489,7 +489,7 @@ vchan.functions <- c("Fr.profile",
                      "basic.gmleprobplot",
                      "gmleprobplot")
 
-SMRD2:::profile.plot(tmppro)
+SMRD:::profile.plot(tmppro)
 
 do.profile.plot(BearingCage.weibull.gmle.out,
                 parameter = "log(scale)")
@@ -646,7 +646,7 @@ one.dim.profile(LaminatePanel.fit22.out,
                 range.list = list(c(-35,0)), 
                 save.parameter.vectors = T)
 
-SMRD2:::profile.plot(LaminatePanel.fit22.outstruct3)
+SMRD:::profile.plot(LaminatePanel.fit22.outstruct3)
 
 one.dim.profile(LaminatePanel.fit22.out,
                 profile.on.list = 5,
@@ -893,7 +893,7 @@ one.dim.profile(hcf22.fit,
                 size = 20, 
                 range.list = list(c(-10,0)))
 
-SMRD2:::profile.plot(hcf22.fitstruct3)
+SMRD:::profile.plot(hcf22.fitstruct3)
 
 #check
 xcdf(1, 2, 29, -5, 270 ,  .36, 5.3, .020,6.0,1,0.0,0 )
