@@ -1,7 +1,7 @@
 ---
-title: "`r SMRD2:::info('book')`"
-subtitle: "`r SMRD2:::info('chapter8')`"
-author: "`r SMRD2:::info('authors')`"
+title: "`r SMRD:::info('book')`"
+subtitle: "`r SMRD:::info('chapter8')`"
+author: "`r SMRD:::info('authors')`"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -14,8 +14,8 @@ vignette: >
 ---
 
 ```{r, echo=FALSE}
-SMRD2:::vinny()
-library(SMRD2)
+SMRD:::vinny()
+library(SMRD)
 ```
 
 # Shockabsorber Data Set - Both Failure Modes
