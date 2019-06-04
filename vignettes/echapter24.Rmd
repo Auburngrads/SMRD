@@ -1,7 +1,7 @@
 ---
-title: "`r SMRD2:::info('book')`"
-subtitle: "`r SMRD2:::info('chapter24')`"
-author: "`r SMRD2:::info('authors')`"
+title: "`r SMRD:::info('book')`"
+subtitle: "`r SMRD:::info('chapter24')`"
+author: "`r SMRD:::info('authors')`"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -14,8 +14,8 @@ vignette: >
 ---
 
 ```{r, echo=FALSE}
-SMRD2:::vinny()
-library(SMRD2)
+SMRD:::vinny()
+library(SMRD)
 ```
 
 # In This Vignette - Planning Destructive Accelerated Degradation Tests
@@ -177,25 +177,25 @@ marginalize.sim(InsulationBrkdwn.plan.sim.out,
                 x.of.interest = "150",
                 FailLevel = 4)
 
-SMRD2:::plot.marginals.sim(InsulationBrkdwn.plan.sim.out,
+SMRD:::plot.marginals.sim(InsulationBrkdwn.plan.sim.out,
                            focus.quantity = "parameter",
                            focus.quantity.detail = 1,
                            FailLevel = 4)
 
-SMRD2:::plot.marginals.sim(InsulationBrkdwn.plan.sim.out,
+SMRD:::plot.marginals.sim(InsulationBrkdwn.plan.sim.out,
                            focus.quantity = "parameter",
                            focus.quantity.detail = 1,
                            plot.type = "density",
                            FailLevel = 4)
 
-SMRD2:::plot.marginals.sim(InsulationBrkdwn.plan.sim.out,
+SMRD:::plot.marginals.sim(InsulationBrkdwn.plan.sim.out,
                            focus.quantity = "quantile",
                            focus.quantity.detail = 0.1,
                            x.of.interest = "150",
                            plot.type = "density",
                            FailLevel = 4)
 
-SMRD2:::plot.joint.sim(InsulationBrkdwn.plan.sim.out, 
+SMRD:::plot.joint.sim(InsulationBrkdwn.plan.sim.out, 
                        focus.quantity1 = "quantile",
                        focus.quantity.detail1 = 0.1,
                        x.of.interest1 = "150",
@@ -204,7 +204,7 @@ SMRD2:::plot.joint.sim(InsulationBrkdwn.plan.sim.out,
                        x.of.interest2 = NA,
                        FailLevel = 4)
 
-SMRD2:::plot.joint.and.marginals.sim(InsulationBrkdwn.plan.sim.out, 
+SMRD:::plot.joint.and.marginals.sim(InsulationBrkdwn.plan.sim.out, 
                                      focus.quantity1 = "quantile",
                                      focus.quantity.detail1 = 0.1,
                                      x.of.interest1 = "150",
