@@ -47,7 +47,7 @@
 #'  
 #' # Example with censoring and truncation
 #'                            
-#' trun.ld <- frame.to.ld(SMRD2::doatrun,
+#' trun.ld <- frame.to.ld(doatrun,
 #'                        response.column = c(1,2),
 #'                        censor.column = 3,
 #'                        case.weight.column = 4,
