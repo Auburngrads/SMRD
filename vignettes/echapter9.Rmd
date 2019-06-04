@@ -1,7 +1,7 @@
 ---
-title: "`r SMRD2:::info('book')`"
-subtitle: "`r SMRD2:::info('chapter9')`"
-author: "`r SMRD2:::info('authors')`"
+title: "`r SMRD:::info('book')`"
+subtitle: "`r SMRD:::info('chapter9')`"
+author: "`r SMRD:::info('authors')`"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -14,8 +14,8 @@ vignette: >
 ---
 
 ```{r, echo=FALSE}
-SMRD2:::vinny()
-library(SMRD2)
+SMRD:::vinny()
+library(SMRD)
 ```
 
 # In This Vignette...
@@ -117,7 +117,7 @@ plot(ShockAbsorber.boot.np)
 summary(ShockAbsorber.boot.np, 
         compare = T)
 
-SMRD2:::compare.summary.boot.npar.npar.out(ShockAbsorber.boot.np)
+SMRD:::compare.summary.boot.npar.npar.out(ShockAbsorber.boot.np)
 ```
 
 ```{r}
@@ -128,7 +128,7 @@ plot(ShockAbsorber.boot.np2)
 
 summary(ShockAbsorber.boot.np2)
 
-SMRD2:::compare.summary.boot.npar.npar.out(ShockAbsorber.boot.np2)
+SMRD:::compare.summary.boot.npar.npar.out(ShockAbsorber.boot.np2)
 ```
 
 ## Bearing cage  -- parametric bootstrap
@@ -172,7 +172,7 @@ plot(BearingCage.boot.np)
 
 summary(BearingCage.boot.np)
 
-SMRD2:::compare.summary.boot.npar.npar.out(BearingCage.boot.np)
+SMRD:::compare.summary.boot.npar.npar.out(BearingCage.boot.np)
 ```
 
 ## Bulb -- parametric bootstrap
@@ -215,7 +215,7 @@ plot(bulb.boot.np)
 summary(bulb.boot.np,
         time.index = 200)
 
-SMRD2:::compare.summary.boot.npar.npar.out(bulb.boot.np,
+SMRD:::compare.summary.boot.npar.npar.out(bulb.boot.np,
                                    time.index = 200)
 ```
 
