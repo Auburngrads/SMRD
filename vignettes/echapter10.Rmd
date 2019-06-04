@@ -1,7 +1,7 @@
 ---
-title: "`r SMRD2:::info('book')`"
-subtitle: "`r SMRD2:::info('chapter10')`"
-author: "`r SMRD2:::info('authors')`"
+title: "`r SMRD:::info('book')`"
+subtitle: "`r SMRD:::info('chapter10')`"
+author: "`r SMRD:::info('authors')`"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -14,8 +14,8 @@ vignette: >
 ---
 
 ```{r, echo=FALSE}
-SMRD2:::vinny()
-library(SMRD2)
+SMRD:::vinny()
+library(SMRD)
 ```
 
 # In This Vignette...
@@ -319,25 +319,25 @@ plot(mstt3, qprob = 0.9)
 The following are for testing only and actual simulations should use at least 2000 trials
 
 ```{r}
-SMRD2:::plot.prob.cs.type2("lognormal", 
+SMRD:::plot.prob.cs.type2("lognormal", 
                             k = 2,
                             n = c(5,10,20),
                             r = c(3,6,12), 
                             number.sim = 100)
 
-SMRD2:::plot.prob.cs.type2("loglogistic", 
+SMRD:::plot.prob.cs.type2("loglogistic", 
                            k = 2,
                            n = c(5,10,20),
                            r = c(3,6,12), 
                            number.sim = 100)
 
-SMRD2:::plot.prob.cs.type2("weibull", 
+SMRD:::plot.prob.cs.type2("weibull", 
                            k = 2,
                            n = c(5,10,20),
                            r = c(3,6,12), 
                            number.sim = 100)
 
-SMRD2:::plot.prob.cs.type2("frechet", 
+SMRD:::plot.prob.cs.type2("frechet", 
                            k = 2,
                            n = c(5,10,20),
                            r = c(3,6,12),
