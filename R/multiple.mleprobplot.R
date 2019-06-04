@@ -126,7 +126,7 @@ function (data.list,
           data.name <- do.list[i]
           data.subset.ld <- data.list[[do.list[i]]]
           parametric.list[[data.name]] <- NA
-          if (!SMRD2:::good.data(data.subset.ld, check.level = check.level)) {
+          if (!good.data(data.subset.ld, check.level = check.level)) {
             
             cat(paste("\nSkipping", 
                       data.name, 
@@ -144,7 +144,7 @@ function (data.list,
         }
         
         plotted[i] <- T
-        cdpoints.out <- SMRD2:::cdpoints(cdfest.out)
+        cdpoints.out <- cdpoints(cdfest.out)
         
         trunc.correct <- (!is.null(cdfest.out$left.trun.cond) ||
             !is.null(cdfest.out$right.trun.cond)) && trunc.correct
@@ -153,7 +153,7 @@ function (data.list,
         
         number.good.parametric <- number.good.parametric + 1
         if (trunc.correct) {
-            cdpoints.out <- SMRD2:::truncadj(cdpoints.out, 
+            cdpoints.out <- truncadj(cdpoints.out, 
                                      mlest.out,
                                      debug1= debug1)
             
@@ -167,7 +167,7 @@ function (data.list,
         nonparametric.list[[data.name]] <- cdpoints.out
         
         if (mlest.out$iervcv > 0) {
-            if (SMRD2:::is.DebugOn()) {
+            if (is.DebugOn()) {
                 file.name <- paste("ProblemData", floor(runif(1) *
                   1e+07), ".ld", sep = "")
                 assign(envir = .frame0,  inherits = TRUE,file.name, data.subset.ld)
@@ -181,14 +181,14 @@ function (data.list,
             }
         }
         mlest.out$title <- paste(mlest.out$title, data.name)
-        if (SMRD2:::map.SMRDDebugLevel() >= 4) {
+        if (map.SMRDDebugLevel() >= 4) {
             cat("dev in multiple.mleprobplot: data.name,names(data.list),ci.list,names(data.list)[ci.list]\n")
             print(data.name)
             print(names(data.list)[ci.list])
             print(names(data.list))
             print(ci.list)
         }
-        `if`(SMRD2:::is.onlist(data.name, names(data.list)[ci.list]),
+        `if`(is.onlist(data.name, names(data.list)[ci.list]),
              conf.level.send <- conf.level,
              conf.level.send <- 0)
         
@@ -212,7 +212,7 @@ function (data.list,
         if (any(xtvna)) time.range.now[xtvna] <- range(the.quantiles)[xtvna]
         
         time.range.all <- range(time.range.all, time.range.now)
-        bands <- SMRD2:::get.parametric.bands.zhat(mlest.out, 
+        bands <- get.parametric.bands.zhat(mlest.out, 
                                            conf.level = conf.level.send,
                                            xlim = time.range.now)
         mlest.out$bands <- bands
@@ -238,9 +238,9 @@ function (data.list,
         for (i in 1:length(do.list)) {
           
             data.subset.ld <- data.list[[do.list[i]]]
-            if (SMRD2:::good.data(data.subset.ld))
+            if (good.data(data.subset.ld))
                 xlim.new <- range(xlim.new, 
-                                  SMRD2:::get.time.range(data.subset.ld, distribution))
+                                  get.time.range(data.subset.ld, distribution))
             
         }
       
