@@ -29,12 +29,12 @@
 #' @param nrowr number of rows being returned in retmat
 #' @param iersim > 0 if data space too small
 ALTSIM <- function(x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, xnew, ynew, centim, acvar, nsubex, nacvar, nsamsz, krfail, kctype, retmat, numret, numsim, iersim) {
-    .Call(`_SMRD2_ALTSIM`, x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, xnew, ynew, centim, acvar, nsubex, nacvar, nsamsz, krfail, kctype, retmat, numret, numsim, iersim)
+    .Call(`_SMRD_ALTSIM`, x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, xnew, ynew, centim, acvar, nsubex, nacvar, nsamsz, krfail, kctype, retmat, numret, numsim, iersim)
 }
 
 #' Simulate the alt data
 wqm_simalt <- function(theta, nparm, intcpt, nsamsz, krfail, kctype, centim, acvar, nsubex, nacvar, kdist, x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, nrownw, iersim, kprint) {
-    .Call(`_SMRD2_wqm_simalt`, theta, nparm, intcpt, nsamsz, krfail, kctype, centim, acvar, nsubex, nacvar, kdist, x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, nrownw, iersim, kprint)
+    .Call(`_SMRD_wqm_simalt`, theta, nparm, intcpt, nsamsz, krfail, kctype, centim, acvar, nsubex, nacvar, kdist, x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, nrownw, iersim, kprint)
 }
 
 #' Generate accelerated life test plans with specified characteristics.
@@ -85,21 +85,21 @@ wqm_simalt <- function(theta, nparm, intcpt, nsamsz, krfail, kctype, centim, acv
 #'                 2 xm=(xl+xh)/2 if fm>pmlim and fm=pmlim otherwise
 #'                 3 float                 
 APLAN <- function(ap, b1p, b2p, thet1p, pvalp, knownp, idistp, ioptsp, ioptap, ioptmp, pifixp, zholdp, pmlimp, zp, pip, fpp, pqp, var, iprinp, ier) {
-    .Call(`_SMRD2_APLAN`, ap, b1p, b2p, thet1p, pvalp, knownp, idistp, ioptsp, ioptap, ioptmp, pifixp, zholdp, pmlimp, zp, pip, fpp, pqp, var, iprinp, ier)
+    .Call(`_SMRD_APLAN`, ap, b1p, b2p, thet1p, pvalp, knownp, idistp, ioptsp, ioptap, ioptmp, pifixp, zholdp, pmlimp, zp, pip, fpp, pqp, var, iprinp, ier)
 }
 
 #' Fix lower cdf confidence limits to be monotone
 #' 
 #' @name bfixl
 BFIXL <- function(vec) {
-    .Call(`_SMRD2_BFIXL`, vec)
+    .Call(`_SMRD_BFIXL`, vec)
 }
 
 #' Fix upper cdf confidence limits to be monotone
 #' 
 #' @name bfixu
 BFIXU <- function(vec) {
-    .Call(`_SMRD2_BFIXU`, vec)
+    .Call(`_SMRD_BFIXU`, vec)
 }
 
 #'  #***see comments at top of genmax for description of the first
@@ -165,7 +165,7 @@ BFIXU <- function(vec) {
 #'  #
 #'  #xup(nargv)    (O)  upper confidence bound
 GENFUN <- function(kmod, kdist, ilabp, ilabd, theta, thetas, kodet, ifix, nparm, npard, y, ncoly, nrownw, x, ncolx, codes, weight, ty, ncolty, tcodes, kprint, kparv, nrvar, mrelat, nrelat, mnrvar, conlev, kodef, fargv, nargv, kfuncp, kpopu, kpoint, vcvs, fest, std_err, xlow, xup, nxd, intd, ipxcd, irelad, ier, llog, kmodp, maxpd, nregr, kmccde, pfail, npardm, nnum, kparm, iup, nterd) {
-    .Call(`_SMRD2_GENFUN`, kmod, kdist, ilabp, ilabd, theta, thetas, kodet, ifix, nparm, npard, y, ncoly, nrownw, x, ncolx, codes, weight, ty, ncolty, tcodes, kprint, kparv, nrvar, mrelat, nrelat, mnrvar, conlev, kodef, fargv, nargv, kfuncp, kpopu, kpoint, vcvs, fest, std_err, xlow, xup, nxd, intd, ipxcd, irelad, ier, llog, kmodp, maxpd, nregr, kmccde, pfail, npardm, nnum, kparm, iup, nterd)
+    .Call(`_SMRD_GENFUN`, kmod, kdist, ilabp, ilabd, theta, thetas, kodet, ifix, nparm, npard, y, ncoly, nrownw, x, ncolx, codes, weight, ty, ncolty, tcodes, kprint, kparv, nrvar, mrelat, nrelat, mnrvar, conlev, kodef, fargv, nargv, kfuncp, kpopu, kpoint, vcvs, fest, std_err, xlow, xup, nxd, intd, ipxcd, irelad, ier, llog, kmodp, maxpd, nregr, kmccde, pfail, npardm, nnum, kparm, iup, nterd)
 }
 
 #' New version that sends down arrays instead of pointers!!
@@ -327,7 +327,7 @@ GENFUN <- function(kmod, kdist, ilabp, ilabd, theta, thetas, kodet, ifix, nparm,
 #'  #      except that double precision is used except when data is to
 #'  #      be taken from the worksheet.
 GENMAX <- function(kmod, kdist, theta, thetas, kodet, ifix, nparm, npard, y, ncoly, nrownw, x, ncolx, codes, weight, ty, ncolty, tcodes, kprint, kparv, nrvar, mrelat, nrelat, mnrvar, xlogl, yhat, resid, vcvs, vcv, r, start, lstar, conlev, ilabp, ilabd, ier, nxd, intd, ipxcd, irelad, fstder, nregr, kcentr, kpoint, ifit, kgtall, llog, kmodp, maxit, pest, epsx, npardm, nnum, kparm, iup, nterd, maxpd, pfail, kmccde, nstart, maxmsd, tol, lsd, pchmax) {
-    .Call(`_SMRD2_GENMAX`, kmod, kdist, theta, thetas, kodet, ifix, nparm, npard, y, ncoly, nrownw, x, ncolx, codes, weight, ty, ncolty, tcodes, kprint, kparv, nrvar, mrelat, nrelat, mnrvar, xlogl, yhat, resid, vcvs, vcv, r, start, lstar, conlev, ilabp, ilabd, ier, nxd, intd, ipxcd, irelad, fstder, nregr, kcentr, kpoint, ifit, kgtall, llog, kmodp, maxit, pest, epsx, npardm, nnum, kparm, iup, nterd, maxpd, pfail, kmccde, nstart, maxmsd, tol, lsd, pchmax)
+    .Call(`_SMRD_GENMAX`, kmod, kdist, theta, thetas, kodet, ifix, nparm, npard, y, ncoly, nrownw, x, ncolx, codes, weight, ty, ncolty, tcodes, kprint, kparv, nrvar, mrelat, nrelat, mnrvar, xlogl, yhat, resid, vcvs, vcv, r, start, lstar, conlev, ilabp, ilabd, ier, nxd, intd, ipxcd, irelad, fstder, nregr, kcentr, kpoint, ifit, kgtall, llog, kmodp, maxit, pest, epsx, npardm, nnum, kparm, iup, nterd, maxpd, pfail, kmccde, nstart, maxmsd, tol, lsd, pchmax)
 }
 
 #' Compute the sizes of parameter vectors
@@ -424,7 +424,7 @@ GENMAX <- function(kmod, kdist, theta, thetas, kodet, ifix, nparm, npard, y, nco
 #'              }
 #'          }
 GENSIZ <- function(kmod, kdist, kparv, nrvar, mrelat, nrelat, mnrvar, ncolx, kprint, nparm, npard, ier, nxd, intd, ipxcd, irelad, ilabp, ilabd, nregr, kgtall, llog, kmodp, npardm, nnum, kparm, iup, nterd, maxpd) {
-    .Call(`_SMRD2_GENSIZ`, kmod, kdist, kparv, nrvar, mrelat, nrelat, mnrvar, ncolx, kprint, nparm, npard, ier, nxd, intd, ipxcd, irelad, ilabp, ilabd, nregr, kgtall, llog, kmodp, npardm, nnum, kparm, iup, nterd, maxpd)
+    .Call(`_SMRD_GENSIZ`, kmod, kdist, kparv, nrvar, mrelat, nrelat, mnrvar, ncolx, kprint, nparm, npard, ier, nxd, intd, ipxcd, irelad, ilabp, ilabd, nregr, kgtall, llog, kmodp, npardm, nnum, kparm, iup, nterd, maxpd)
 }
 
 #' Meeker-LuValle Model 1
@@ -435,7 +435,7 @@ GENSIZ <- function(kmod, kdist, kparv, nrvar, mrelat, nrelat, mnrvar, ncolx, kpr
 #'              to Meeker-LuValle Model 1 different 
 #'              rate parameter at each time interval
 MLMOD1 <- function(times, number_times, a2_init, a2_limit, rate, rate_factor, a2) {
-    .Call(`_SMRD2_MLMOD1`, times, number_times, a2_init, a2_limit, rate, rate_factor, a2)
+    .Call(`_SMRD_MLMOD1`, times, number_times, a2_init, a2_limit, rate, rate_factor, a2)
 }
 
 #'                     method 2
@@ -485,23 +485,23 @@ MLMOD1 <- function(times, number_times, a2_init, a2_limit, rate, rate_factor, a2
 #'   need to send down data space big enough to cover all data situations
 #'
 MLSIM2 <- function(x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, iarray, marray, wtnew, xnew, ynew, iret, retmat, numsim, numret, tspass, lrand, iersim) {
-    .Call(`_SMRD2_MLSIM2`, x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, iarray, marray, wtnew, xnew, ynew, iret, retmat, numsim, numret, tspass, lrand, iersim)
+    .Call(`_SMRD_MLSIM2`, x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, iarray, marray, wtnew, xnew, ynew, iret, retmat, numsim, numret, tspass, lrand, iersim)
 }
 
 MLSIM3 <- function(y, cen, wt, nrow, ny, nty, ty, tcodes, gamthr, maxit, kprint, dscrat, iscrat, scrat, p, q, prob, sd, m, pnew, qnew, prbnew, sdnew, iarray, marray, wtnew, ynew, retmat, numsim, numret, tspass, lrand, iersim) {
-    .Call(`_SMRD2_MLSIM3`, y, cen, wt, nrow, ny, nty, ty, tcodes, gamthr, maxit, kprint, dscrat, iscrat, scrat, p, q, prob, sd, m, pnew, qnew, prbnew, sdnew, iarray, marray, wtnew, ynew, retmat, numsim, numret, tspass, lrand, iersim)
+    .Call(`_SMRD_MLSIM3`, y, cen, wt, nrow, ny, nty, ty, tcodes, gamthr, maxit, kprint, dscrat, iscrat, scrat, p, q, prob, sd, m, pnew, qnew, prbnew, sdnew, iarray, marray, wtnew, ynew, retmat, numsim, numret, tspass, lrand, iersim)
 }
 
 MLSIM6 <- function(x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, krfail, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, retmat, numsim, prdelt, ngroup, centim, nsamsz, nmrvec, nsimg, numret, nnomle, iersim) {
-    .Call(`_SMRD2_MLSIM6`, x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, krfail, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, retmat, numsim, prdelt, ngroup, centim, nsamsz, nmrvec, nsimg, numret, nnomle, iersim)
+    .Call(`_SMRD_MLSIM6`, x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, krfail, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, retmat, numsim, prdelt, ngroup, centim, nsamsz, nmrvec, nsimg, numret, nnomle, iersim)
 }
 
 MLSIM7 <- function(x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, krfail, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, retmat, numsim, prdelt, ngroup, centim, nsamsz, nmrvec, nsimg, numret, nnomle, iersim) {
-    .Call(`_SMRD2_MLSIM7`, x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, krfail, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, retmat, numsim, prdelt, ngroup, centim, nsamsz, nmrvec, nsimg, numret, nnomle, iersim)
+    .Call(`_SMRD_MLSIM7`, x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, krfail, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, retmat, numsim, prdelt, ngroup, centim, nsamsz, nmrvec, nsimg, numret, nnomle, iersim)
 }
 
 MLSIM8 <- function(x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, krfail, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, retmat, numsim, prdelt, ngroup, centim, nsamsz, nmrvec, nsimg, numret, nnomle, iersim) {
-    .Call(`_SMRD2_MLSIM8`, x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, krfail, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, retmat, numsim, prdelt, ngroup, centim, nsamsz, nmrvec, nsimg, numret, nnomle, iersim)
+    .Call(`_SMRD_MLSIM8`, x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix, krfail, nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah, fsder, vcv, r, res, fv, theta, retmat, numsim, prdelt, ngroup, centim, nsamsz, nmrvec, nsimg, numret, nnomle, iersim)
 }
 
 #'  Compute the nonparametric estimate of the
@@ -533,7 +533,7 @@ MLSIM8 <- function(x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr
 #'         xmuhat(nfailt)   estimate of mu at each failure time
 #'         varxmu(nfailt)   estimate of var(muhat) at each failure time
 NPSYS <- function(itime, isys, icodes, weight, nobs, nfailt, nsys, utime, iusys, ctime, dead, idelta, dsum, idlsum, dbar, varsum, xmuhat, varxmu, kprint) {
-    .Call(`_SMRD2_NPSYS`, itime, isys, icodes, weight, nobs, nfailt, nsys, utime, iusys, ctime, dead, idelta, dsum, idlsum, dbar, varsum, xmuhat, varxmu, kprint)
+    .Call(`_SMRD_NPSYS`, itime, isys, icodes, weight, nobs, nfailt, nsys, utime, iusys, ctime, dead, idelta, dsum, idlsum, dbar, varsum, xmuhat, varxmu, kprint)
 }
 
 #'  Compute empirical the predictive distributions 
@@ -549,7 +549,7 @@ NPSYS <- function(itime, isys, icodes, weight, nobs, nfailt, nsys, utime, iusys,
 #' @param sigma The sigma* values from the posterior sample
 #' @param nsim The value M*
 POSTKP <- function(kord, nsamsz, xltime, ntvec, xmu, sigma, nsim, kdist, pdf, cdf) {
-    .Call(`_SMRD2_POSTKP`, kord, nsamsz, xltime, ntvec, xmu, sigma, nsim, kdist, pdf, cdf)
+    .Call(`_SMRD_POSTKP`, kord, nsamsz, xltime, ntvec, xmu, sigma, nsim, kdist, pdf, cdf)
 }
 
 #' Compute empirical the predictive distributions 
@@ -564,14 +564,14 @@ POSTKP <- function(kord, nsamsz, xltime, ntvec, xmu, sigma, nsim, kdist, pdf, cd
 #' @param sigma The sigma* values from the posterior sample
 #' @param nsim The value M*
 POSTPR <- function(xltime, ntvec, xmu, sigma, nsim, kdist, pdf, cdf) {
-    .Call(`_SMRD2_POSTPR`, xltime, ntvec, xmu, sigma, nsim, kdist, pdf, cdf)
+    .Call(`_SMRD_POSTPR`, xltime, ntvec, xmu, sigma, nsim, kdist, pdf, cdf)
 }
 
 #' Does good stuff
 #' 
 #' @name prcs
 PRCS <- function(zmax, z1, nsim, dvec, answer, nd) {
-    .Call(`_SMRD2_PRCS`, zmax, z1, nsim, dvec, answer, nd)
+    .Call(`_SMRD_PRCS`, zmax, z1, nsim, dvec, answer, nd)
 }
 
 #' Compute the risk set for a recurrence process within 
@@ -602,88 +602,88 @@ PRCS <- function(zmax, z1, nsim, dvec, answer, nd) {
 #'         
 #' @details Wrapper for wqm_riskset        
 RISKSET <- function(muniqrecurr, tuniq, nwindows, twindowsl, twindowsu, wcounts, iordl, iordu, delta, kdebug, iscrat) {
-    .Call(`_SMRD2_RISKSET`, muniqrecurr, tuniq, nwindows, twindowsl, twindowsu, wcounts, iordl, iordu, delta, kdebug, iscrat)
+    .Call(`_SMRD_RISKSET`, muniqrecurr, tuniq, nwindows, twindowsl, twindowsu, wcounts, iordl, iordu, delta, kdebug, iscrat)
 }
 
 #' Wrapper for mapping beta to a quantile??? not clear why needed
 SBQ <- function(ndist1, ndist2, stress, alpha, beta0, beta1, sigma, ugamma, sdgamma, bd1, bd2, quan, kprint) {
-    .Call(`_SMRD2_SBQ`, ndist1, ndist2, stress, alpha, beta0, beta1, sigma, ugamma, sdgamma, bd1, bd2, quan, kprint)
+    .Call(`_SMRD_SBQ`, ndist1, ndist2, stress, alpha, beta0, beta1, sigma, ugamma, sdgamma, bd1, bd2, quan, kprint)
 }
 
 #' Compute the probability that a bivariate normal with mean vectorc
 SBVN <- function(ah, ak, xmu1, xmu2, v1, v2, c12, prob, n, kprint) {
-    .Call(`_SMRD2_SBVN`, ah, ak, xmu1, xmu2, v1, v2, c12, prob, n, kprint)
+    .Call(`_SMRD_SBVN`, ah, ak, xmu1, xmu2, v1, v2, c12, prob, n, kprint)
 }
 
 #' compute the vector of nhpp mcf values
 #' @name sfmcf
 SFMCF <- function(time, kform, theta, ntimes, answer) {
-    .Call(`_SMRD2_SFMCF`, time, kform, theta, ntimes, answer)
+    .Call(`_SMRD_SFMCF`, time, kform, theta, ntimes, answer)
 }
 
 #' Does good stuff
 #' @name sfteval
 SFTEVAL <- function(kdmod, xmu2, sig2, xmu3, sig3, rho, df, d0, sfact, tf, number, answer, ier, kprint) {
-    .Call(`_SMRD2_SFTEVAL`, kdmod, xmu2, sig2, xmu3, sig3, rho, df, d0, sfact, tf, number, answer, ier, kprint)
+    .Call(`_SMRD_SFTEVAL`, kdmod, xmu2, sig2, xmu3, sig3, rho, df, d0, sfact, tf, number, answer, ier, kprint)
 }
 
 #' R interface for GENG cdf;
 #' @name sgpdfl
 SGPDFL <- function(tvec, gamme, maxlen, answer) {
-    .Call(`_SMRD2_SGPDFL`, tvec, gamme, maxlen, answer)
+    .Call(`_SMRD_SGPDFL`, tvec, gamme, maxlen, answer)
 }
 
 #' R interface for GENG cdf
 #' 
 #' @name sgquan
 SGQUAN <- function(pvec, gamme, maxlen, answer) {
-    .Call(`_SMRD2_SGQUAN`, pvec, gamme, maxlen, answer)
+    .Call(`_SMRD_SGQUAN`, pvec, gamme, maxlen, answer)
 }
 
 #' Compute a vector of NHPP log likelihood values 
 #' corresponding to a thetav matrix
 #' @name sloglikenhpp
 SLOGLIKENHPP <- function(time, ntimes, recurrcosts, timel, timeu, kwcount, nwindows, kform, thetav, nparm, ntheta, answer) {
-    .Call(`_SMRD2_SLOGLIKENHPP`, time, ntimes, recurrcosts, timel, timeu, kwcount, nwindows, kform, thetav, nparm, ntheta, answer)
+    .Call(`_SMRD_SLOGLIKENHPP`, time, ntimes, recurrcosts, timel, timeu, kwcount, nwindows, kform, thetav, nparm, ntheta, answer)
 }
 
 #' Does good stuff
 #' @name slsinf
 SLSINF <- function(idist, itype, zlv, zrv, f11, f12, f22, nrows, ifault, irow) {
-    .Call(`_SMRD2_SLSINF`, idist, itype, zlv, zrv, f11, f12, f22, nrows, ifault, irow)
+    .Call(`_SMRD_SLSINF`, idist, itype, zlv, zrv, f11, f12, f22, nrows, ifault, irow)
 }
 
 #' R interface for GENG cdf;
 #' @name spgeng
 SPGENG <- function(tvec, gamme, maxlen, answer) {
-    .Call(`_SMRD2_SPGENG`, tvec, gamme, maxlen, answer)
+    .Call(`_SMRD_SPGENG`, tvec, gamme, maxlen, answer)
 }
 
 #' R interface for gng log(1-cdf)
 SPMLGENG <- function(tvec, gamme, maxlen, answer) {
-    .Call(`_SMRD2_SPMLGENG`, tvec, gamme, maxlen, answer)
+    .Call(`_SMRD_SPMLGENG`, tvec, gamme, maxlen, answer)
 }
 
 #' Vector version of urlike for R calling
 SSFT2GR1 <- function(t, nt, r1log, mut2, sigmat2, mur1, sigmar1, mur2, sigmar2, rho, answer, kprint, ier) {
-    .Call(`_SMRD2_SSFT2GR1`, t, nt, r1log, mut2, sigmat2, mur1, sigmar1, mur2, sigmar2, rho, answer, kprint, ier)
+    .Call(`_SMRD_SSFT2GR1`, t, nt, r1log, mut2, sigmat2, mur1, sigmar1, mur2, sigmar2, rho, answer, kprint, ier)
 }
 
 #' Vector version of urlike for Splus calling
 SURLIKE <- function(t, nt, mut1, sigmat1, mut2, sigmat2, mur1, sigmar1, mur2, sigmar2, rho, answer, kprint) {
-    .Call(`_SMRD2_SURLIKE`, t, nt, mut1, sigmat1, mut2, sigmat2, mur1, sigmar1, mur2, sigmar2, rho, answer, kprint)
+    .Call(`_SMRD_SURLIKE`, t, nt, mut1, sigmat1, mut2, sigmat2, mur1, sigmar1, mur2, sigmar2, rho, answer, kprint)
 }
 
 SXCDF <- function(ndist1, ndist2, beta0, beta1, xstr, sigma, ugamma, sgamma, w, num, answer, ier, kprint) {
-    .Call(`_SMRD2_SXCDF`, ndist1, ndist2, beta0, beta1, xstr, sigma, ugamma, sgamma, w, num, answer, ier, kprint)
+    .Call(`_SMRD_SXCDF`, ndist1, ndist2, beta0, beta1, xstr, sigma, ugamma, sgamma, w, num, answer, ier, kprint)
 }
 
 SXPDF3 <- function(ndist1, ndist2, beta0, beta1, xstr, sigma, ugamma, sgamma, w, num, answer, ier, kprint) {
-    .Call(`_SMRD2_SXPDF3`, ndist1, ndist2, beta0, beta1, xstr, sigma, ugamma, sgamma, w, num, answer, ier, kprint)
+    .Call(`_SMRD_SXPDF3`, ndist1, ndist2, beta0, beta1, xstr, sigma, ugamma, sgamma, w, num, answer, ier, kprint)
 }
 
 VAVAR <- function(idist, nrows, zc, ze, avar) {
-    .Call(`_SMRD2_VAVAR`, idist, nrows, zc, ze, avar)
+    .Call(`_SMRD_VAVAR`, idist, nrows, zc, ze, avar)
 }
 
 #' Vectorized version ov svar1
@@ -692,7 +692,7 @@ VAVAR <- function(idist, nrows, zc, ze, avar) {
 #' (usually set to zero for design stress)
 #' this a wrap for a call from splus
 VVAR1 <- function(param, z, pi, zivar, npar, nplan, nlev, perc, idist, knownt, fret, varret, iprint) {
-    .Call(`_SMRD2_VVAR1`, param, z, pi, zivar, npar, nplan, nlev, perc, idist, knownt, fret, varret, iprint)
+    .Call(`_SMRD_VVAR1`, param, z, pi, zivar, npar, nplan, nlev, perc, idist, knownt, fret, varret, iprint)
 }
 
 #' Compute Nonparametric CDF Estimates
@@ -779,43 +779,43 @@ VVAR1 <- function(param, z, pi, zivar, npar, nplan, nlev, perc, idist, knownt, f
 #'  \code{iprint = 0} for no debug output, if > 0 dump setup and every iprint iteration,
 #'  \code{iprint = 1} gives the maximum amount of output, \code{iprint = 10} is a good choice to debug
 WQMCDFEST <- function(y, ny, codes, weight, ty, nty, tcodes, n, nstart, dscrat, scrat, iscrat, kprint, maxit, tol, maxmsd, p, q, prob, sd, m, pchmax, lsd, ier) {
-    .Call(`_SMRD2_WQMCDFEST`, y, ny, codes, weight, ty, nty, tcodes, n, nstart, dscrat, scrat, iscrat, kprint, maxit, tol, maxmsd, p, q, prob, sd, m, pchmax, lsd, ier)
+    .Call(`_SMRD_WQMCDFEST`, y, ny, codes, weight, ty, nty, tcodes, n, nstart, dscrat, scrat, iscrat, kprint, maxit, tol, maxmsd, p, q, prob, sd, m, pchmax, lsd, ier)
 }
 
 #' Wrapper for wqm_cpoints
 #' @details Need wrapper to be able to call from 
 #'          debugging mail program
 WQMCPOINTS <- function(y, ny, codes, codes2, weight, weight2, ty, nty, tcodes, n, nstart, dscrat, scrat, iscrat, iprint, maxit, tol, maxmsd, p, q, prob, sd, m, pchmax, lsd, ier, ilcv, iucv, iltv, iutv, iorder, xlcen, xrcen, fail, xltru, xrtru, ys, pgrad, s, probd) {
-    .Call(`_SMRD2_WQMCPOINTS`, y, ny, codes, codes2, weight, weight2, ty, nty, tcodes, n, nstart, dscrat, scrat, iscrat, iprint, maxit, tol, maxmsd, p, q, prob, sd, m, pchmax, lsd, ier, ilcv, iucv, iltv, iutv, iorder, xlcen, xrcen, fail, xltru, xrtru, ys, pgrad, s, probd)
+    .Call(`_SMRD_WQMCPOINTS`, y, ny, codes, codes2, weight, weight2, ty, nty, tcodes, n, nstart, dscrat, scrat, iscrat, iprint, maxit, tol, maxmsd, p, q, prob, sd, m, pchmax, lsd, ier, ilcv, iucv, iltv, iutv, iorder, xlcen, xrcen, fail, xltru, xrtru, ys, pgrad, s, probd)
 }
 
 #' Wrap for wqm_flike to vectorize the 
 #' computation of the likelihood
 WQMEVLIKE <- function(xold, y, cen, wt, ty, tcodes, gamthr, nrow, ny, nty, nparm, intcpt, nter, thetav, lfix, ntheta, fpfxxx, upcen, kdist, thetb, thetg, xnew, diag, tmat, rv1, vcvg, kprinp, xlike, ier) {
-    .Call(`_SMRD2_WQMEVLIKE`, xold, y, cen, wt, ty, tcodes, gamthr, nrow, ny, nty, nparm, intcpt, nter, thetav, lfix, ntheta, fpfxxx, upcen, kdist, thetb, thetg, xnew, diag, tmat, rv1, vcvg, kprinp, xlike, ier)
+    .Call(`_SMRD_WQMEVLIKE`, xold, y, cen, wt, ty, tcodes, gamthr, nrow, ny, nty, nparm, intcpt, nter, thetav, lfix, ntheta, fpfxxx, upcen, kdist, thetb, thetg, xnew, diag, tmat, rv1, vcvg, kprinp, xlike, ier)
 }
 
 WQMMLESSS <- function(ivec, rvec, nrow, nparm, x, y, cen, wt, msftgm, ty, tcodes, lfix, e, dscrat, iscrat, theta, fsder, vcv, r, res, fv, dev, ipxnew, iprv1, ipdiag, iptmat, ipthb, ipthg, ipfsd, ipvcvb, ipvcvg, ipnext, itd, itf, ied, iw, ivd, ivcvd, ivcvdd, iir, ijc) {
-    .Call(`_SMRD2_WQMMLESSS`, ivec, rvec, nrow, nparm, x, y, cen, wt, msftgm, ty, tcodes, lfix, e, dscrat, iscrat, theta, fsder, vcv, r, res, fv, dev, ipxnew, iprv1, ipdiag, iptmat, ipthb, ipthg, ipfsd, ipvcvb, ipvcvg, ipnext, itd, itf, ied, iw, ivd, ivcvd, ivcvdd, iir, ijc)
+    .Call(`_SMRD_WQMMLESSS`, ivec, rvec, nrow, nparm, x, y, cen, wt, msftgm, ty, tcodes, lfix, e, dscrat, iscrat, theta, fsder, vcv, r, res, fv, dev, ipxnew, iprv1, ipdiag, iptmat, ipthb, ipthg, ipfsd, ipvcvb, ipvcvg, ipnext, itd, itf, ied, iw, ivd, ivcvd, ivcvdd, iir, ijc)
 }
 
 WQMMRR2 <- function(y, cen, wt, iscrat, rscrat, nrownw, thetamrr) {
-    .Call(`_SMRD2_WQMMRR2`, y, cen, wt, iscrat, rscrat, nrownw, thetamrr)
+    .Call(`_SMRD_WQMMRR2`, y, cen, wt, iscrat, rscrat, nrownw, thetamrr)
 }
 
 #' Wrapper for wqm_points
 WQMPOINTS <- function(q, p, prob, sd, lsd, m, yplot, pplot, sdplot, mplot) {
-    .Call(`_SMRD2_WQMPOINTS`, q, p, prob, sd, lsd, m, yplot, pplot, sdplot, mplot)
+    .Call(`_SMRD_WQMPOINTS`, q, p, prob, sd, lsd, m, yplot, pplot, sdplot, mplot)
 }
 
 WQMSPHIALL <- function(phib, phibm, phis, phip, n, z, idist) {
-    .Call(`_SMRD2_WQMSPHIALL`, phib, phibm, phis, phip, n, z, idist)
+    .Call(`_SMRD_WQMSPHIALL`, phib, phibm, phis, phip, n, z, idist)
 }
 
 #' Computes the sample MCF and its robust sample 
 #' variance. Created by Huaiqing Wu & William Q. 
 #' Meeker, Iowa State University
 XXMCF <- function(numrecurr, timeofrecurr, krecurrid, dcost, muniqrecurr, tuniq, apoint, lnumrecurr, delta, nunitsgroups, wpoint, nwindows, twindowsl, twindowsu, wcounts, inwindowj, muhat, varhat, dbar, iordl, iordu, iorder, iscrat, kdebug) {
-    .Call(`_SMRD2_XXMCF`, numrecurr, timeofrecurr, krecurrid, dcost, muniqrecurr, tuniq, apoint, lnumrecurr, delta, nunitsgroups, wpoint, nwindows, twindowsl, twindowsu, wcounts, inwindowj, muhat, varhat, dbar, iordl, iordu, iorder, iscrat, kdebug)
+    .Call(`_SMRD_XXMCF`, numrecurr, timeofrecurr, krecurrid, dcost, muniqrecurr, tuniq, apoint, lnumrecurr, delta, nunitsgroups, wpoint, nwindows, twindowsl, twindowsu, wcounts, inwindowj, muhat, varhat, dbar, iordl, iordu, iorder, iscrat, kdebug)
 }
 
