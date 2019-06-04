@@ -1,7 +1,7 @@
 ---
-title: "`r SMRD2:::info('book')`"
-subtitle: "`r SMRD2:::info('chapter14')`"
-author: "`r SMRD2:::info('authors')`"
+title: "`r SMRD:::info('book')`"
+subtitle: "`r SMRD:::info('chapter14')`"
+author: "`r SMRD:::info('authors')`"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -14,8 +14,8 @@ vignette: >
 ---
 
 ```{r, echo = FALSE}
-SMRD2:::vinny()
-library(SMRD2)
+SMRD:::vinny()
+library(SMRD)
 ```
 
 # In This Vignette...
@@ -328,7 +328,7 @@ summarize.posterior.or.prior(prior.and.post2.bcage,
 
 prior.and.post3.bcage <- make.small.posterior.object(prior.and.post2.bcage)
 
-SMRD2:::plot.prediction(prior.and.post2.bcage, 
+SMRD:::plot.prediction(prior.and.post2.bcage, 
                 time.range = log(c(500,20000000)),
                 xlab = "Hours")
 ```
@@ -336,7 +336,7 @@ SMRD2:::plot.prediction(prior.and.post2.bcage,
 The plotting functions below can take a long time
 
 ```{r}
-SMRD2:::plot.prediction.order(x = 1,
+SMRD:::plot.prediction.order(x = 1,
                       nsamsize = 3,
                       prior.and.post2.bcage,
                       time.range = log(c(50,200000)),
@@ -344,7 +344,7 @@ SMRD2:::plot.prediction.order(x = 1,
 ```
 
 ```{r}
-SMRD2:::plot.prediction.order(x = 1,
+SMRD:::plot.prediction.order(x = 1,
                       nsamsize = 50,
                       prior.and.post2.bcage,
                       time.range = log(c(10,100000)),
