@@ -1,7 +1,7 @@
 ---
-title: "`r SMRD2:::info('book')`"
-subtitle: "`r SMRD2:::info('chapter20')`"
-author: "`r SMRD2:::info('authors')`"
+title: "`r SMRD:::info('book')`"
+subtitle: "`r SMRD:::info('chapter20')`"
+author: "`r SMRD:::info('authors')`"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -14,8 +14,8 @@ vignette: >
 ---
 
 ```{r, echo=FALSE}
-SMRD2:::vinny()
-library(SMRD2)
+SMRD:::vinny()
+library(SMRD)
 ```
 
 # In This Vignette - Planning Accelerated Life Tests
@@ -173,10 +173,10 @@ evaluate(AdhesiveBond3.altplan,
          use.condition = 50,
          quantile.of.interest = 0.1)
 
-SMRD2:::plot.vpm.vs.size(vpm.vec = c(100, 150, 200), 
+SMRD:::plot.vpm.vs.size(vpm.vec = c(100, 150, 200), 
                          size.vec = c(1, 2, 3))
 
-SMRD2:::plot.volt.vs.size(volts.vec = c(100, 200, 300), 
+SMRD:::plot.volt.vs.size(volts.vec = c(100, 200, 300), 
                           size.vec = c(1, 2, 3))
 ```
 
@@ -343,16 +343,16 @@ marginalize.sim(DeviceA.Sim.out,
                 focus.quantity.detail = 4268.884,
                 x.of.interest = 50)
 
-SMRD2:::plot.marginals.sim(DeviceA.Sim.out,
+SMRD:::plot.marginals.sim(DeviceA.Sim.out,
                            focus.quantity = "parameter",
                            focus.quantity.detail = 1)
 
-SMRD2:::plot.marginals.sim(DeviceA.Sim.out,
+SMRD:::plot.marginals.sim(DeviceA.Sim.out,
                            focus.quantity = "parameter",
                            focus.quantity.detail = 1,
                            plot.type = "density")
 
-SMRD2:::plot.joint.sim(DeviceA.Sim.out, 
+SMRD:::plot.joint.sim(DeviceA.Sim.out, 
                        focus.quantity1 = "quantile",
                        focus.quantity.detail1 = 0.1,
                        x.of.interest1 = 50,
@@ -360,7 +360,7 @@ SMRD2:::plot.joint.sim(DeviceA.Sim.out,
                        focus.quantity.detail2 = 3,
                        x.of.interest2 = NA)
 
-SMRD2:::plot.joint.and.marginals.sim(DeviceA.Sim.out, 
+SMRD:::plot.joint.and.marginals.sim(DeviceA.Sim.out, 
                              focus.quantity1 = "quantile",
                              focus.quantity.detail1 = 0.1,
                              x.of.interest1 = 50,
@@ -458,7 +458,7 @@ sample size needed for a given value of R
 plot(DeviceR.altplan,
      DeviceR.Weibull.altpv)
 
-SMRD2:::plot.alt.sample.size(DeviceR.altplan,
+SMRD:::plot.alt.sample.size(DeviceR.altplan,
                              DeviceR.Weibull.altpv)
 
 ## simulate the ALT plans with option to see detail on some experiments
@@ -611,7 +611,7 @@ evaluate(NelsonInsulation.altplan,
 
 ##	sample size needed for a given value of R
 
-SMRD2:::plot.alt.sample.size(NelsonInsulation.altplan,
+SMRD:::plot.alt.sample.size(NelsonInsulation.altplan,
                              NelsonInsulation.Weibull.altpv)
 
 
