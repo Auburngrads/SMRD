@@ -1,7 +1,7 @@
 ---
-title: "`r SMRD2:::info('book')`"
-subtitle: "`r SMRD2:::info('chapter17')`"
-author: "`r SMRD2:::info('authors')`"
+title: "`r SMRD:::info('book')`"
+subtitle: "`r SMRD:::info('chapter17')`"
+author: "`r SMRD:::info('authors')`"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -14,8 +14,8 @@ vignette: >
 ---
 
 ```{r, echo=FALSE}
-SMRD2:::vinny()
-library(SMRD2)
+SMRD:::vinny()
+library(SMRD)
 ```
 
 # In This Vignette...
@@ -48,13 +48,13 @@ comptime.mlest.out2 <- groupm.mleprobplot(comptime.ld,
                                           group.var = 1, 
                                           relationship = "linear")
 
-SMRD2:::resid.vs.order(comptime.mlest.out)
+SMRD:::resid.vs.order(comptime.mlest.out)
 
-SMRD2:::resid.vs.fit(comptime.mlest.out)
+SMRD:::resid.vs.fit(comptime.mlest.out)
 
-SMRD2:::resid.vs.explan(comptime.mlest.out)
+SMRD:::resid.vs.explan(comptime.mlest.out)
 
-SMRD2:::resid.probplot(comptime.mlest.out)
+SMRD:::resid.probplot(comptime.mlest.out)
 
 plot(comptime.mlest.out, 
      density.at = c(1, 3, 5))
@@ -179,17 +179,17 @@ ZelenCap.groupm.out1 <-
   groupm.mleprobplot(ZelenCap.ld,
                      distribution = "Weibull")
 
-SMRD2:::resid.vs.order(ZelenCap.groupm.out1)
+SMRD:::resid.vs.order(ZelenCap.groupm.out1)
 
-SMRD2:::resid.vs.fit(ZelenCap.groupm.out1)
+SMRD:::resid.vs.fit(ZelenCap.groupm.out1)
 
-SMRD2:::resid.vs.explan(ZelenCap.groupm.out1,
+SMRD:::resid.vs.explan(ZelenCap.groupm.out1,
                         x.to.plot = 1)
 
-SMRD2:::resid.vs.explan(ZelenCap.groupm.out1,
+SMRD:::resid.vs.explan(ZelenCap.groupm.out1,
                         x.to.plot = 2)
 
-SMRD2:::resid.probplot(ZelenCap.groupm.out1)
+SMRD:::resid.probplot(ZelenCap.groupm.out1)
 ```
 
 ## Fitting to `celsius` only
@@ -265,7 +265,7 @@ quantiles(ZelenCap.groupm.out3,
 failure.probabilities(ZelenCap.groupm.out3,
                       new.data = "165;188")
 
-SMRD2:::resid.vs.explan.multiple(ZelenCap.groupm.out3)
+SMRD:::resid.vs.explan.multiple(ZelenCap.groupm.out3)
 residual.plots(ZelenCap.groupm.out3)
 ```
 
