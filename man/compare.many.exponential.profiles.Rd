@@ -4,8 +4,8 @@
 \alias{compare.many.exponential.profiles}
 \title{Title}
 \usage{
-compare.many.exponential.profiles(theta = 5, sample.size = 10,
-  number.simulation = 10, profile.title = NULL)
+\method{compare}{many.exponential.profiles}(theta = 5,
+  sample.size = 10, number.simulation = 10, profile.title = NULL)
 }
 \arguments{
 \item{theta}{}
