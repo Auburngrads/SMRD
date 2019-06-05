@@ -1,0 +1,453 @@
+---
+title: "`r SMRD:::info('book')`"
+subtitle: "`r SMRD:::info('chapter24')`"
+author: "`r SMRD:::info('authors')`"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    css: smrd.css
+    fig_caption: yes
+---
+
+```{r, echo=FALSE}
+SMRD:::vinny()
+library(SMRD)
+```
+
+# In This Vignette - Planning Destructive Accelerated Degradation Tests
+
+Use the following for testing
+
+```{r, eval=FALSE}
+SMRDOptions(SMRD.DebugLevel = "development")
+```
+
+##	InsulationBrkdwn example
+
+```{r}
+InsulationBrkdwn.ADDTplan <- 
+  get.allocation.matrix(list(DegreesC = c(180,225,250,275)),
+                        times = c(1,2,4,8,16,32,48,64),
+                        time.units = "Weeks",
+                        reps = 4)
+
+plot(InsulationBrkdwn.ADDTplan)
+
+InsulationBrkdwn.ADDTpv <- 
+  get.ADDT.plan.values(distribution = "normal",
+                       transformation.x = "Arrhenius",
+                       transformation.response = "log", 
+                       transformation.time = "linear",
+                       beta0 = 2.58850162033243,
+                       beta1 = -476873415881.376,
+                       beta2 = 1.41806367703643,
+                       sigma = 0.172609,
+                       time.units = "Weeks",
+                       response.units = "Volts", 
+                       FailLevel = 10,
+                       use.condition = 100)
+
+print(InsulationBrkdwn.ADDTpv)
+
+InsulationBrkdwn.vADDTplan <-
+  hframe.to.vframe(InsulationBrkdwn.ADDTplan)
+
+sum(allocation(InsulationBrkdwn.vADDTplan))
+
+names(InsulationBrkdwn.ADDTpv)
+
+InsulationBrkdwn.plan.sim.out <- 
+  simulate(InsulationBrkdwn.ADDTplan,
+           nsim = 5,
+           ADDT.plan.values = InsulationBrkdwn.ADDTpv)
+
+ADDT.plot.time.v.x(InsulationBrkdwn.plan.sim.out)
+
+ADDT.plot.Deg.v.Time(InsulationBrkdwn.plan.sim.out)
+ADDT.plot.FracFail.v.Time(InsulationBrkdwn.plan.sim.out)
+
+ADDT.vcv(InsulationBrkdwn.ADDTpv,
+         hframe.to.vframe(InsulationBrkdwn.ADDTplan))
+
+evaluate(InsulationBrkdwn.ADDTplan,
+         ADDT.plan.values = InsulationBrkdwn.ADDTpv,
+         use.condition = "150",
+         FailLevel = 10,
+         quantile.of.interest = c(0.1,.2,.3,.4,.9))
+
+evaluate(InsulationBrkdwn.ADDTplan,
+         ADDT.plan.values = InsulationBrkdwn.ADDTpv,
+         use.condition = "150",
+         FailLevel = 2,
+         quantile.of.interest = c(.05,0.1))
+
+evaluate(InsulationBrkdwn.ADDTplan,
+         InsulationBrkdwn.ADDTpv,
+         use.condition = "150",
+         FailLevel = 10,
+         quantile.of.interest = 0.2)
+
+plot(InsulationBrkdwn.ADDTplan,
+     ADDT.plan.values = InsulationBrkdwn.ADDTpv,
+     use.condition = "150",
+     FailLevel = 10,
+     quantile.of.interest = 0.2)
+
+##	Large-Sample example as a check
+
+InsulationBrkdwn.test.ADDTplan <- 
+  get.allocation.matrix(list(DegreesC = c(180,225,250,275)),
+                        times = c(1,2,4,8,16,32,48,64),
+                        time.units = "Weeks",
+                        reps = 400)
+
+print(InsulationBrkdwn.test.ADDTplan)
+plot(InsulationBrkdwn.test.ADDTplan)
+
+#     Interpretation parameter MLEs
+#      beta0       beta1 beta2  sigma
+#      2.589 -4.769e+011 1.418 0.1726
+```
+
+```{r}
+InsulationBrkdwn.test.ADDTpv <-
+  get.ADDT.plan.values(distribution = "normal",
+                       transformation.x = "Arrhenius",
+                       transformation.response = "log",
+                       transformation.time = "linear",
+                       beta0 = 2.58850162033243,
+                       beta1 = -476873415881.376,
+                       beta2 = 1.41806367703643,
+                       sigma = 0.172609,
+                       time.units = "Weeks",
+                       response.units = "Volts",
+                       use.condition = 50)
+
+ADDT.vcv(ADDT.plan.values = InsulationBrkdwn.ADDTpv,
+         ADDT.test.plan = hframe.to.vframe(InsulationBrkdwn.ADDTplan))
+
+evaluate(InsulationBrkdwn.test.ADDTplan,
+         ADDT.plan.values = InsulationBrkdwn.test.ADDTpv,
+         use.condition = "150",
+         FailLevel = 10,
+         quantile.of.interest = c(0.1,.2,.3,.4,.9))
+
+evaluate(InsulationBrkdwn.test.ADDTplan,
+         ADDT.plan.values = InsulationBrkdwn.test.ADDTpv,
+         use.condition = "150",
+         FailLevel = 2,
+         quantile.of.interest = c(.05,0.1))
+
+evaluate(InsulationBrkdwn.test.ADDTplan,
+         ADDT.plan.values = InsulationBrkdwn.test.ADDTpv,
+         use.condition = "150",
+         FailLevel = 10,
+         quantile.of.interest = c(.2,.3,.4,.9))
+
+BondTest.ADDTplan <-
+  get.allocation.matrix(list(DegreesC = c(50,80,100,120)),
+                        times = c(1,2,4,8,16,32,48,64),
+                        time.units = "Weeks",
+                        reps = 10)
+
+Filament.ADDTplan <- 
+  get.allocation.matrix(list(volts = c(5,10),DegreesC = c(40,50,60)),
+                        times = c(1,2,5,10,20,50),
+                        time.units = "Weeks")
+
+# Filament.hframe.ADDTplan  <-
+#   get.ADDT.test.plan.hframe(filament,
+#                             levels.columns = c(1,2),
+#                             time.columns = 3:7)
+
+StrengthCompare.ADDTplan <- 
+  get.allocation.matrix(list(DegreesC = c(50,60,70),
+                             Type = c("Type1","Type2")),
+                        times = c(1,2,5,10,20,50),
+                        time.units = "Weeks")
+
+## summarize simulation results
+marginalize.sim(InsulationBrkdwn.plan.sim.out, 
+                focus.quantity = "failure probability",
+                focus.quantity.detail = 14914.9,
+                x.of.interest = "150",
+                FailLevel = 4)
+
+SMRD:::plot.marginals.sim(InsulationBrkdwn.plan.sim.out,
+                           focus.quantity = "parameter",
+                           focus.quantity.detail = 1,
+                           FailLevel = 4)
+
+SMRD:::plot.marginals.sim(InsulationBrkdwn.plan.sim.out,
+                           focus.quantity = "parameter",
+                           focus.quantity.detail = 1,
+                           plot.type = "density",
+                           FailLevel = 4)
+
+SMRD:::plot.marginals.sim(InsulationBrkdwn.plan.sim.out,
+                           focus.quantity = "quantile",
+                           focus.quantity.detail = 0.1,
+                           x.of.interest = "150",
+                           plot.type = "density",
+                           FailLevel = 4)
+
+SMRD:::plot.joint.sim(InsulationBrkdwn.plan.sim.out, 
+                       focus.quantity1 = "quantile",
+                       focus.quantity.detail1 = 0.1,
+                       x.of.interest1 = "150",
+                       focus.quantity2 = "parameter",
+                       focus.quantity.detail2 = 3,
+                       x.of.interest2 = NA,
+                       FailLevel = 4)
+
+SMRD:::plot.joint.and.marginals.sim(InsulationBrkdwn.plan.sim.out, 
+                                     focus.quantity1 = "quantile",
+                                     focus.quantity.detail1 = 0.1,
+                                     x.of.interest1 = "150",
+                                     focus.quantity2 = "parameter",
+                                     focus.quantity.detail2 = 3,
+                                     x.of.interest2 = NA,
+                                     FailLevel = 4)
+
+summarize.simultation.results(InsulationBrkdwn.plan.sim.out, 
+                              "Marginal only", 
+                              focus.quantity1 = "quantile",
+                              focus.quantity.detail1 = 0.1,
+                              x.of.interest1 = "150",
+                              focus.quantity2 = "parameter",
+                              focus.quantity.detail2 = 3,
+                              x.of.interest2 = NA,
+                              FailLevel = 4)
+
+summarize.simultation.results(InsulationBrkdwn.plan.sim.out, 
+                              "Marginal only", 
+                              focus.quantity1 = "quantile",
+                              focus.quantity.detail1 = 0.1,
+                              x.of.interest1 = "150",
+                              focus.quantity2 = "parameter",
+                              focus.quantity.detail2 = 3,
+                              x.of.interest2 = NA,
+                              plot.type = "density",
+                              FailLevel = 4)
+
+summarize.simultation.results(InsulationBrkdwn.plan.sim.out,
+                              "Joint and Marginal",
+                              focus.quantity1 = "quantile",
+                              focus.quantity.detail1 = 0.1,
+                              x.of.interest1 = "150",
+                              focus.quantity2 = "parameter",
+                              focus.quantity.detail2 = 3,
+                              x.of.interest2 = NA,
+                              plot.type = "density",
+                              FailLevel = 4)
+
+summarize.simultation.results(InsulationBrkdwn.plan.sim.out, 
+                              "Joint only", 
+                              focus.quantity1 = "quantile",
+                              focus.quantity.detail1 = 0.1,
+                              x.of.interest1 = "150",
+                              focus.quantity2 = "parameter",
+                              focus.quantity.detail2 = 3,
+                              x.of.interest2 = NA,
+                              FailLevel = 4)
+```
+
+```{r}
+##	AdhesiveBondB Example
+AdhesiveBondB.SEV.ADDTpv <- 
+  get.ADDT.plan.values(distribution = "normal",
+                       transformation.x = c("Arrhenius"),
+                       transformation.response = "log",
+                       transformation.time = "Square root",
+                       beta0 = 4.471,
+                       the.slope = -0.1025,
+                       slope.at = c(50),
+                       beta2 = c(0.6364),
+                       sigma = 0.158,
+                       time.units = "Weeks",
+                       response.units = "Newtons",
+                       FailLevel = 40,
+                       use.condition = "25")
+
+AdhesiveBondB.ADDTplan <- 
+  get.allocation.matrix(list(DegreesC = c(25,50,60,70)),
+                        times = c(0,2,4,6,12,16),
+                        time.units = "Weeks",
+                        reps = 6)
+
+ADDT.vcv(ADDT.plan.values = AdhesiveBondB.SEV.ADDTpv,
+         ADDT.test.plan = hframe.to.vframe(AdhesiveBondB.ADDTplan))
+
+last.out <- evaluate(AdhesiveBondB.ADDTplan,
+                     ADDT.plan.values = AdhesiveBondB.SEV.ADDTpv, 
+                     quantile.of.interest = c(.1,.5,.9),
+                     use.condition = 25,
+                     FailLevel = 40)
+
+## two variable example
+
+AdhesiveBondC.ADDTpv <-
+  get.ADDT.plan.values(distribution = "sev",
+                       transformation.x = c("Arrhenius","Humidity"),
+                       transformation.response = "log",
+                       transformation.time = "Square root",
+                       beta0 = 2.168,
+                       the.slope = -0.00709030595,
+                       slope.at = c(30,50),
+                       beta2 = c(0.6666,.2),
+                       sigma = 0.1807,
+                       time.units = "Weeks",
+                       response.units = "Pounds",
+                       FailLevel = 2,
+                       use.condition = "30;50")
+
+AdhesiveBondC.ADDTplan <-
+  get.allocation.matrix(list(DegreesC = c(40,50,60),RH = c(20,80)),
+                        times = c(1,2,5,10,20,50),
+                        time.units = "Weeks",
+                        reps = 6)
+
+tmp.pmodel <- 
+  pseudo.model(ADDT.plan.values = AdhesiveBondC.ADDTpv,
+               ADDT.test.plan = hframe.to.vframe(AdhesiveBondC.ADDTplan))
+
+f.ADDT.stableparam(AdhesiveBondC.ADDTpv$theta.vec, 
+                   tmp.pmodel)
+
+f.ADDT.origparam(f.ADDT.stableparam(AdhesiveBondC.ADDTpv$theta.vec, tmp.pmodel), tmp.pmodel)
+
+## f.analorigparmvcv exercised in the following
+
+ADDT.vcv(ADDT.plan.values = AdhesiveBondC.ADDTpv,
+         ADDT.test.plan = hframe.to.vframe(AdhesiveBondC.ADDTplan))
+
+evaluate(AdhesiveBondC.ADDTplan,
+         ADDT.plan.values = AdhesiveBondC.ADDTpv,
+         quantile.of.interest = c(0.1,.2,.3,.4,.9))
+
+plot(AdhesiveBondC.ADDTplan,
+     ADDT.plan.values = AdhesiveBondC.ADDTpv,
+     quantile.of.interest = 0.2)
+
+AdhesiveBondC.vframe <- hframe.to.vframe(AdhesiveBondC.ADDTplan)
+```
+
+```{r}
+AdhesiveBondC.sim.out <- 
+  simulate(AdhesiveBondC.ADDTplan, 
+           ADDT.plan.values = AdhesiveBondC.ADDTpv, 
+           number.sim = 10,
+           plotem = 4)
+
+summarize.simultation.results(AdhesiveBondC.sim.out, 
+                              "Joint and Marginal", 
+                              focus.quantity1 = "quantile",
+                              focus.quantity.detail1 = 0.1,
+                              x.of.interest1 = "60;20",
+                              focus.quantity2 = "parameter",
+                              focus.quantity.detail2 = 3,
+                              x.of.interest2 = NA,
+                              plot.type = "density",
+                              FailLevel = 4)
+
+summarize.simultation.results(AdhesiveBondC.sim.out, 
+                              "Marginal only",
+                              focus.quantity1 = "quantile",
+                              focus.quantity.detail1 = 0.1, 
+                              x.of.interest1 = "60;20",
+                              focus.quantity2 = "parameter",
+                              focus.quantity.detail2 = 3,
+                              x.of.interest2 = NA,
+                              FailLevel = 4)
+
+summarize.simultation.results(AdhesiveBondC.sim.out, 
+                              "Marginal only", 
+                              focus.quantity1 = "quantile",
+                              focus.quantity.detail1 = 0.1, 
+                              x.of.interest1 = "60;20",
+                              focus.quantity2 = "parameter",
+                              focus.quantity.detail2 = 1,
+                              x.of.interest2 = NA,
+                              plot.type = "density",
+                              FailLevel = 4)
+
+summarize.simultation.results(AdhesiveBondC.sim.out, 
+                              "Joint and Marginal", 
+                              focus.quantity1 = "quantile",
+                              focus.quantity.detail1 = 0.1,
+                              x.of.interest1 = "60;20",
+                              focus.quantity2 = "parameter",
+                              focus.quantity.detail2 = 2,
+                              x.of.interest2 = NA,
+                              plot.type = "density",
+                              FailLevel = 4)
+
+summarize.simultation.results(AdhesiveBondC.sim.out, 
+                              "Joint only", 
+                              focus.quantity1 = "quantile",
+                              focus.quantity.detail1 = 0.1,
+                              x.of.interest1 = "60;20",
+                              focus.quantity2 = "parameter",
+                              focus.quantity.detail2 = 4,
+                              x.of.interest2 = NA,
+                              FailLevel = 4)
+
+ADDT.plot.time.v.x(AdhesiveBondC.sim.out)
+
+ADDT.plot.time.v.x(AdhesiveBondC.sim.out,focus.variable = 2)
+
+ADDT.plot.Deg.v.Time(AdhesiveBondC.sim.out)
+
+ADDT.plot.FracFail.v.Time(AdhesiveBondC.sim.out)
+
+```
+
+
+## testing multi-accvar functions with one accvar special cases
+
+```{r}
+TestAdhesiveBondB.SEV.ADDTpv <-
+  get.ADDT.plan.values(distribution = "sev",
+                       transformation.x = "Arrhenius",
+                       transformation.response = "log",
+                       transformation.time = "Square root",
+                       beta0 = 2.168,
+                       the.slope = -0.00709030595,
+                       slope.at = 30,
+                       beta2 = 0.6666,
+                       sigma = 0.1807,
+                       time.units = "Weeks",
+                       response.units = "Pounds",
+                       FailLevel = 2,
+                       use.condition = "30")
+
+ADDT.vcv(ADDT.plan.values = AdhesiveBondB.SEV.ADDTpv,
+         hframe.to.vframe(AdhesiveBondB.ADDTplan))
+
+evaluate(AdhesiveBondB.ADDTplan,
+         TestAdhesiveBondB.SEV.ADDTpv,
+         quantile.of.interest = c(0.1,.2,.3,.4,.9))
+
+AdhesiveBondB.plan.sim.out <- 
+  simulate(AdhesiveBondB.ADDTplan,
+           ADDT.plan.values = AdhesiveBondB.SEV.ADDTpv,
+           number.sim = 6,
+           plotem = 5)
+
+summarize.simultation.results(AdhesiveBondB.plan.sim.out, 
+                              "Joint and Marginal", 
+                              focus.quantity1 = "quantile",
+                              focus.quantity.detail1 = 0.1,
+                              x.of.interest1 = "50",
+                              focus.quantity2 = "parameter",
+                              focus.quantity.detail2 = 3,
+                              x.of.interest2 = NA,
+                              plot.type = "density",
+                              FailLevel = 4)
+
+ADDT.plot.time.v.x(AdhesiveBondB.plan.sim.out)
+
+ADDT.plot.Deg.v.Time(AdhesiveBondB.plan.sim.out)
+
+ADDT.plot.FracFail.v.Time(AdhesiveBondB.plan.sim.out)
+```
