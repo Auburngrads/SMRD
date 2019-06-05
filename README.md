@@ -3,13 +3,6 @@
 Jason K. Freels, William Q. Meeker, and Luis A. Escobar
 <br/>06 June 2019
 
-<style>
-  details summary{
-   font-size: 20pt !important;
-   font-weight: bold !important;
-  }
-</style>
-
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN
@@ -19,7 +12,7 @@ status](https://travis-ci.org/Auburngrads/SMRD2.svg?branch=master)](https://trav
 
 <details>
   
-<summary style="font-size: 29pt; font-weight: bold;">Overview</summary>
+<summary style="font-size: 20pt !important; font-weight: bold !important;">Overview</summary>
 
   - ***Statistical Methods for Reliability Data*** (Meeker & Escobar) is
     a foundational text for analyzing failure-time and survival data
