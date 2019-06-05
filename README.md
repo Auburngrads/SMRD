@@ -10,6 +10,8 @@ status](https://www.r-pkg.org/badges/version/SMRD2)](https://cran.r-project.org/
 [![Travis build
 status](https://travis-ci.org/Auburngrads/SMRD2.svg?branch=master)](https://travis-ci.org/Auburngrads/SMRD2)
 
+<details>
+  
 ## Overview
 
   - ***Statistical Methods for Reliability Data*** (Meeker & Escobar) is
@@ -27,14 +29,9 @@ status](https://travis-ci.org/Auburngrads/SMRD2.svg?branch=master)](https://trav
       - Analyzing industry and, laboratory test data
       - Simplify reliability/survivability instruction in the classroom
 
-## The ***SMRD*** Toolkit
-
-<details>
- <summary>This is big stuff</summary>
-  <div>
-    This is more stuff inside
-    </div>
 </details>
+
+<summary>## The ***SMRD*** Toolkit</summary>
 
 1.  R Package `SMRD`
     
@@ -56,7 +53,8 @@ status](https://travis-ci.org/Auburngrads/SMRD2.svg?branch=master)](https://trav
         apps
       - Automatic generation of assigments and solutions for ***SMRD***
         exercises
-
+        
+</details>
 # Background | The R Languange & R Packages
 
 ## The R Project for Statistical Computing
