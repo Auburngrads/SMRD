@@ -3,6 +3,13 @@
 Jason K. Freels, William Q. Meeker, and Luis A. Escobar
 <br/>06 June 2019
 
+<style>
+  summary{
+   font-size: 20pt !important;
+   font-weight: bold !important;
+  }
+</style>
+
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN
