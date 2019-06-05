@@ -70,16 +70,18 @@ info <- function(info,...) {
   return(INFO)
 }
 
-vinny <- function(fw = 6, fh = 4,...)  {
+vinny <- function(fw = 8, fh = 6,...)  {
   
-  vign <-  function() {
+  vign <- function() {
     
-    knitr::opts_chunk$set(message = FALSE,
-                          warning = FALSE,
-                          fig.align = 'center',
-                          fig.width = fw,
-                          fig.height = fh,
-                          comment = NA,...)
-    }
+          knitr::opts_chunk$set(message = FALSE,
+                                warning = FALSE,
+                                fig.align = 'center',
+                                fig.width = fw,
+                                fig.height = fh,
+                                comment = NA,...)
+  }
+  
   vign()
+  
 }
