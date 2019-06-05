@@ -4,7 +4,7 @@ Jason K. Freels, William Q. Meeker, and Luis A. Escobar
 <br/>06 June 2019
 
 <style>
-  summary{
+  details summary{
    font-size: 20pt !important;
    font-weight: bold !important;
   }
