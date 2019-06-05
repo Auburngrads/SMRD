@@ -12,7 +12,7 @@ status](https://travis-ci.org/Auburngrads/SMRD2.svg?branch=master)](https://trav
 
 <details>
   
-<summary style="font-size: 20pt !important; font-weight: bold !important;">Overview</summary>
+<summary style="font-size: 20pt !important;">Overview</summary>
 
   - ***Statistical Methods for Reliability Data*** (Meeker & Escobar) is
     a foundational text for analyzing failure-time and survival data
