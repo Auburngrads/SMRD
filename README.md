@@ -29,6 +29,13 @@ status](https://travis-ci.org/Auburngrads/SMRD2.svg?branch=master)](https://trav
 
 ## The ***SMRD*** Toolkit
 
+<details>
+ <summary>This is big stuff</summary>
+  <div>
+    This is more stuff inside
+    </div>
+</details>
+
 1.  R Package `SMRD`
     
       - Implements methods from the text to reproduce results from the
