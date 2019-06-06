@@ -1,16 +1,16 @@
 test_cpp <- T
-library(SMRD)
+library(smrdfortran)
 DATA <- lzbearing
 lz.ld <- frame.to.ld(DATA, response.column = 1)
 
 cdfest.out = cdfest(lz.ld)
 band.type = 'pointwise'
-conf.level = GetSMRDDefault("SMRD.ConfLevel")/100
+conf.level = GetsmrdfortranDefault("smrdfortran.ConfLevel")/100
 a.limit = 0.001
 b.limit = 0.999
 mono.tran = T
 
-  cdpoints.out <- SMRD:::cdpoints(cdfest.out)
+  cdpoints.out <- smrdfortran:::cdpoints(cdfest.out)
   ok <- cdpoints.out$sdplot > 0
   times <- cdpoints.out$yplot[ok]
   fhat.point <- cdpoints.out$pplot
@@ -25,7 +25,7 @@ mono.tran = T
   switch(casefold(band.type), s = , simultaneous = {
   band.type <- "Simultaneous"
     bands.over <- kx > a.limit & kx < b.limit
-    zvalue <- SMRD:::evalue(a = a.limit, b = b.limit, conf.level = conf.level)
+    zvalue <- smrdfortran:::evalue(a = a.limit, b = b.limit, conf.level = conf.level)
   }, `Point-wise` = , pointwise = , p = , `point-wise` = {
     band.type <- "Pointwise"
     bands.over <- kx > 0 & kx < 1
@@ -46,8 +46,8 @@ mono.tran = T
     uppeR <- plogis(qlogis(dist.probs) + zvalue * stderrq)
 
             if (mono.tran) {
-        loweR[!is.na(lower)] <- SMRD:::mono.lower(loweR[!is.na(loweR)])
-        uppeR[!is.na(upper)] <- SMRD:::mono.upper(uppeR[!is.na(uppeR)])
+        loweR[!is.na(lower)] <- smrdfortran:::mono.lower(loweR[!is.na(loweR)])
+        uppeR[!is.na(upper)] <- smrdfortran:::mono.upper(uppeR[!is.na(uppeR)])
             }
 
 
