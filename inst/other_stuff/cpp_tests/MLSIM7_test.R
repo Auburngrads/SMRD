@@ -19,7 +19,7 @@ i = 1
 j = 1
         
           cat("\ne.of.r=", e.of.r[i], "beta=", beta[j], "\nCensor Scheme:\n")
-            censor.scheme <- SMRD:::get.censor.scheme.all(m = m, 
+            censor.scheme <- smrdfortran:::get.censor.scheme.all(m = m, 
                                                    p.fail = p.fail,
                                                    beta[j], e.of.r[i])
             
@@ -48,7 +48,7 @@ for (i in 1:length(e.of.r)) {
      for (j in 1:length(beta)) {
         
           cat("\ne.of.r=", e.of.r[i], "beta=", beta[j], "\nCensor Scheme:\n")
-            censor.scheme <- SMRD:::get.censor.scheme.all(m = m, 
+            censor.scheme <- smrdfortran:::get.censor.scheme.all(m = m, 
                                                    p.fail = p.fail,
                                                    beta[j], e.of.r[i])
             
@@ -76,11 +76,11 @@ debug1 = debug1
 randomize = T
 
     censor.times <- censor.scheme$censor.times
-    tr.censor.times <- ifelse(SMRD:::is.logdist(distribution), 
+    tr.censor.times <- ifelse(smrdfortran:::is.logdist(distribution), 
                               logb(censor.times),
                               censor.times)
     
-    pfail.vec <- SMRD:::wqmf.phibf((tr.censor.times - theta[1])/theta[2],distribution)
+    pfail.vec <- smrdfortran:::wqmf.phibf((tr.censor.times - theta[1])/theta[2],distribution)
     efail <- sum(censor.scheme$number.units * pfail.vec)
     sdfail <- sqrt(efail)
     number.intervals <- length(censor.scheme[[1]])
@@ -90,13 +90,13 @@ randomize = T
     ny <- 1
     nter <- 1
     int <- 1
-    distribution.number <- SMRD:::numdist(distribution)
+    distribution.number <- smrdfortran:::numdist(distribution)
     param.names <- c("mu", "sigma")
     number.parameters <- 2
     e = rep(1e-04, number.parameters)
     parameter.fixed = rep(F, number.parameters)
 
-    if (SMRD:::generic.distribution(distribution) == "exponential") {
+    if (smrdfortran:::generic.distribution(distribution) == "exponential") {
         distribution.number <- 2
         theta.start[number.parameters] <- 1
         parameter.fixed[number.parameters] <- T
@@ -153,7 +153,7 @@ zout <- .Fortran("mlsim7",
                  nnomle = integer(1), 
                  iersim = integer(1))
         
-new <- SMRD2:::MLSIM7(x = matrix(0, ncol = nter, nrow = max.number.cases),
+new <- SMRD:::MLSIM7(x = matrix(0, ncol = nter, nrow = max.number.cases),
                          y = matrix(0, ncol = ny, nrow = max.number.cases), 
                          cen = integer(max.number.cases),
                          wt = integer(max.number.cases), 
