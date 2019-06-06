@@ -1,4 +1,4 @@
-library(SMRD)
+library(smrdfortran)
 testnum = 3
 
 if(testnum == 1) {
@@ -42,7 +42,7 @@ if(testnum == 3){
               failure.mode.column = 2,
               case.weight.column = 3)
 
-SMRD2:::mfm.to.ld(ConnectionStrength.ld)
+SMRD:::mfm.to.ld(ConnectionStrength.ld)
 
 data.ld <- ConnectionStrength.Bond.ld
   
@@ -61,9 +61,9 @@ debug1 = F
 y <- Response(data.ld)
 ncoly <- ncol(y)
 number.cases <- nrow(y)
-the.case.weights <- SMRD:::case.weights(data.ld)
+the.case.weights <- smrdfortran:::case.weights(data.ld)
 ny <- ncol(y)
-the.truncation.codes <- SMRD:::truncation.codes(data.ld)
+the.truncation.codes <- smrdfortran:::truncation.codes(data.ld)
 if (is.null(the.truncation.codes)) {
   ty <- 1
   ncolty <- 0
@@ -71,22 +71,22 @@ if (is.null(the.truncation.codes)) {
 
 } else {
 
-  ty <- SMRD:::truncation.response(data.ld)
+  ty <- smrdfortran:::truncation.response(data.ld)
   ncolty <- ncol(ty)
 
 }
-distribution.number <- SMRD:::numdist(distribution)
+distribution.number <- smrdfortran:::numdist(distribution)
 
   if (distribution.number == 14) distribution.number <- 8
 
   cat("dist num =", distribution, distribution.number, "\n")
-    the.censor.codes <- SMRD:::censor.codes(data.ld)
+    the.censor.codes <- smrdfortran:::censor.codes(data.ld)
 
     if (length(gamthr) == 1) gamthr <- rep(gamthr, number.cases)
 
       if (length(gamthr) != number.cases) stop("specified offset is the wrong length")
 
-        get.rmodel.info.out <- SMRD:::get.rmodel.info(distribution,
+        get.rmodel.info.out <- smrdfortran:::get.rmodel.info(distribution,
                                                model,
                                                explan.vars)
         explan.vars <- get.rmodel.info.out$explan.vars
@@ -150,7 +150,7 @@ old   <- .Fortran("gensiz",
                       ipe = integer(1),
                       iis = integer(200))
 
-new <- SMRD2:::GENSIZ(as.integer(model),
+new <- SMRD:::GENSIZ(as.integer(model),
                   as.integer(distribution.number),
                   as.integer(get.rmodel.info.out$kparv),
                   as.integer(get.rmodel.info.out$nrvar),
