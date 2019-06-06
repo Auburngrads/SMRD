@@ -1,5 +1,5 @@
+library(smrdfortran)
 library(SMRD)
-library(SMRD2)
 test = 2
 
 if(test == 1){
@@ -53,13 +53,13 @@ if(!exists("kprint")) kprint = 0
 
       max.length <- max(length(beta0), length(beta1), length(sigma),
                         length(ugamma), length(sgamma), length(stress), length(w))
-      beta0  <- SMRD2:::expand.vec(beta0, max.length)
-      beta1  <- SMRD2:::expand.vec(beta1, max.length)
-      sigma  <- SMRD2:::expand.vec(sigma, max.length)
-      ugamma <- SMRD2:::expand.vec(ugamma, max.length)
-      sgamma <- SMRD2:::expand.vec(sgamma, max.length)
-      stress <- SMRD2:::expand.vec(stress, max.length)
-      w      <- SMRD2:::expand.vec(w, max.length)
+      beta0  <- SMRD:::expand.vec(beta0, max.length)
+      beta1  <- SMRD:::expand.vec(beta1, max.length)
+      sigma  <- SMRD:::expand.vec(sigma, max.length)
+      ugamma <- SMRD:::expand.vec(ugamma, max.length)
+      sgamma <- SMRD:::expand.vec(sgamma, max.length)
+      stress <- SMRD:::expand.vec(stress, max.length)
+      w      <- SMRD:::expand.vec(w, max.length)
       if (debug1) browser()
       zout <- .Fortran("sxpdf3", as.integer(ndist1), as.integer(ndist2),
                        as.double(beta0), as.double(beta1), as.double(stress),
@@ -67,7 +67,7 @@ if(!exists("kprint")) kprint = 0
                        as.double(w), as.integer(max.length), answer = double(max.length),
                        ier = integer(max.length))
       
-      new = SMRD2:::SXPDF3(as.integer(ndist1),
+      new = SMRD:::SXPDF3(as.integer(ndist1),
                            as.integer(ndist2),
                            as.double(beta0),
                            as.double(beta1),
