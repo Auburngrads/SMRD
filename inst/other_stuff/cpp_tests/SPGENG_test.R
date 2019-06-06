@@ -4,7 +4,7 @@ pegeng_test <- function(q = 1,
                         delta = 1,
                         old_way = T) {
   
-  library(SMRD)
+  library(smrdfortran)
   
   q <- logb(q)
   distribution = "dummy"
@@ -12,10 +12,10 @@ pegeng_test <- function(q = 1,
   
   distdummy <- distribution
   maxlen <- max(length(q), length(mu), length(delta), length(sigma))
-  q     <- SMRD:::expand.vec(q, maxlen)
-  mu    <- SMRD:::expand.vec(mu, maxlen)
-  delta <- SMRD:::expand.vec(delta, maxlen)
-  sigma <- SMRD:::expand.vec(sigma, maxlen)
+  q     <- smrdfortran:::expand.vec(q, maxlen)
+  mu    <- smrdfortran:::expand.vec(mu, maxlen)
+  delta <- smrdfortran:::expand.vec(delta, maxlen)
+  sigma <- smrdfortran:::expand.vec(sigma, maxlen)
   logsigma <- logb(sigma)
   xk <- rep(0, maxlen)
   sqrtxk <- rep(0, maxlen)
@@ -47,7 +47,7 @@ pegeng_test <- function(q = 1,
     old <- .Fortran("spgeng", as.double(q), as.double(gammemat), 
                     as.integer(maxlen), answer = double(maxlen))
     
-    new <- SMRD2::spgeng(as.double(q), 
+    new <- SMRD::spgeng(as.double(q), 
                             as.matrix(gammemat), 
                             as.integer(maxlen), 
                             answer = double(maxlen))
