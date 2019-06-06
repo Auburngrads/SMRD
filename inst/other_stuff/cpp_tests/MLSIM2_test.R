@@ -1,5 +1,5 @@
+library(smrdfortran)
 library(SMRD)
-library(SMRD2)
 test = 2
 if(test == 1){
   
@@ -44,8 +44,8 @@ randomize = T
          tspass <- runif(33),
          tspass <- seq(0.1, 0.4, length = 33))
     
-    the.censor.codes <- SMRD2:::censor.codes(data.ld)
-    the.case.weights <- SMRD2:::case.weights(data.ld)
+    the.censor.codes <- SMRD:::censor.codes(data.ld)
+    the.case.weights <- SMRD:::case.weights(data.ld)
     nty <- 0
     nter <- 1
     int <- 1
@@ -55,11 +55,11 @@ randomize = T
     
     theta.start <- mlest.out$theta.hat
     theta.hat <- theta.start
-    distribution.number <- SMRD2:::numdist(distribution)
+    distribution.number <- SMRD:::numdist(distribution)
     param.names <- c("mu", "sigma")
     number.parameters <- 2
     
-    if (SMRD2:::generic.distribution(distribution) == "exponential") {
+    if (SMRD:::generic.distribution(distribution) == "exponential") {
       
        distribution.number <- 2
        parameter.fixed[number.parameters] <- T
@@ -69,7 +69,7 @@ randomize = T
     iret <- 3
     number.things.returned <- number.parameters + ((number.parameters) * 
                                                      (number.parameters + 1))/2 + 2
-    y <- SMRD2:::Response(data.ld)
+    y <- SMRD:::Response(data.ld)
     ny <- ncol(y)
     number.cases <- length(the.case.weights)
     the.xmat <- matrix(1, nrow = number.cases, ncol = 1)
@@ -128,7 +128,7 @@ randomize = T
                      lrand = as.logical(randomize), 
                      iersim = integer(1))
     
-new = SMRD2:::MLSIM2(x = as.matrix(the.xmat), 
+new = SMRD:::MLSIM2(x = as.matrix(the.xmat), 
                      y = as.matrix(y), 
                      cen = as.integer(the.censor.codes), 
                      wt = as.integer(the.case.weights), 
@@ -179,7 +179,7 @@ new.ierstuff <- as.integer(new.return.matrix[, 1])
 old.vcv <- old.return.matrix[, (number.parameters + 3):(number.parameters + ((number.parameters) * (number.parameters + 1))/2 + 2)]
 new.vcv <- new.return.matrix[, (number.parameters + 3):(number.parameters + ((number.parameters) * (number.parameters + 1))/2 + 2)]
 
-    if (SMRD:::generic.distribution(distribution) == "exponential") {
+    if (smrdfortran:::generic.distribution(distribution) == "exponential") {
         old.theta.hat.star[, 1] <- exp(old.theta.hat.star[, 1])
         new.theta.hat.star[, 1] <- exp(new.theta.hat.star[, 1])
         theta.hat[1] <- exp(theta.hat[1])
@@ -207,7 +207,7 @@ oldClass(old.results) <- "boot.npar.par.out"
 oldClass(new.results) <- "boot.npar.par.out"
 
 par(mfrow = c(1,2))
-SMRD:::plot.boot.npar.par.out(old.results)
-SMRD2:::plot.boot.npar.par.out(new.results)
+smrdfortran:::plot.boot.npar.par.out(old.results)
+SMRD:::plot.boot.npar.par.out(new.results)
 par(mfrow = c(1,1))
 
