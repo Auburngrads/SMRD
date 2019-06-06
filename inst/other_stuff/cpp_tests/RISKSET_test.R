@@ -1,6 +1,6 @@
+library(smrdfortran)
 library(SMRD)
-library(SMRD2)
-data.rdu <- SMRD2:::frame.to.rdu(r4490,
+data.rdu <- SMRD:::frame.to.rdu(r4490,
                          time.column = 2,
                          cost.count.column = 4,
                          ID.column = 1,
@@ -39,7 +39,7 @@ oldrs <- .Fortran("riskset",
                   kdebug1= as.integer(kdebug1), 
                   iscrat = integer(length(WindowInfo$WindowL)))
 
-newrs <- SMRD2:::RISKSET(muniqrecurr = as.integer(length(tuniq)),
+newrs <- SMRD:::RISKSET(muniqrecurr = as.integer(length(tuniq)),
                         tuniq = as.double(tuniq), 
                         nwindows = as.integer(length(WindowInfo$WindowU)),
                         twindowsl = as.double(WindowInfo$WindowL), 
