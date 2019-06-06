@@ -78,18 +78,26 @@ double pdk = 0;
 for(int k = 1; k <= m; k++){
 
     pdk  = probd.at(k - 1);
-    if(pdk > small) nnzs = m;
+    if(pdk > small) continue;
     nnzs = nnzs - 1;
 
 }
 
 nnzs = nnzs - 1;
 
+if(debug::kprint >= 5){
+   
+   Rcpp::Rcout << "\nCDFESI BEFORE CDFZS\n" << std::endl;
+   Rcpp::Rcout << "  nnzs = " << nnzs   << std::endl;
+   Rcpp::Rcout << "maxmsd = " << maxmsd << std::endl;
+   
+}
+
 if((nnzs <= 0) or (nnzs > maxmsd)) {
-
-  wqm_cdfzs(m, ier, sd, nnzs, maxmsd);
-  return;
-
+   
+   wqm_cdfzs(m, ier, sd, nnzs, maxmsd);
+   return;
+   
 }
 
 mnzs = (nnzs + 1) * nnzs / 2;

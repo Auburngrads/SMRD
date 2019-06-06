@@ -4,7 +4,7 @@ int kindex(int k1,
            int l1,
            std::string chk){
 
-  int OUT = l1 + (k1 - 1) * std::floor(k1 / 2);
+  int OUT = l1 + (k1 - 1) * k1 / 2;
   
   if(debug::kprint >= 10){
     
@@ -40,16 +40,31 @@ void wqm_cdffac(int &il,
 double ss, factr, pdl;
 int nx,n1,nn1,ilx,iux,index;
 
-if((ltrunc) and (nty == 0)) return;
+if(debug::kprint >= 10){
+  
+   Rcpp::Rcout << "\nCDFFAC**0**\n" << std::endl;
+   Rcpp::Rcout << "ltrunc = " << ltrunc << std::endl;
+   Rcpp::Rcout << "   nty = " << nty    << std::endl;
+  
+}
+
+if((ltrunc) and (nty == 0)) { return; }
 
 // Compute factor
    ss = zero;
 
 for(int j = il; j <= iu; j++){ ss = ss + probd.at(j - 1); }
 
+if(debug::kprint >= 6){
+  
+   Rcpp::Rcout << "\nCDFFAC**1**\n" << std::endl;
+   Rcpp::Rcout << "ss = " << ss << std::endl;
+  
+}
+
 if(ss == zero) return;
 
-factr = wt / std::pow(ss,2);
+factr = (double)wt / std::pow(ss,2);
 
 // When computing the censoring (truncation) factor, the factor is
 // added to (subtracted from) the information matrix
@@ -67,10 +82,10 @@ if(il != 1) {
       for(int l = 1; l <= n1; l++){
       
           pdl = probd.at(l - 1);
-          if(pdl <= small) continue;
-          nx = nx + 1;
+          if(pdl > small) nx = nx + 1;
       
       }
+      
 }
 
 ilx = nx + 1;
@@ -82,8 +97,7 @@ ilx = nx + 1;
    for(int l = il; l <= iu; l++) {
    
        pdl = probd.at(l - 1);
-       if(pdl <= small) continue;
-       nx = nx + 1;
+       if(pdl > small) nx = nx + 1;
    
    }
 
@@ -100,7 +114,7 @@ for(int k = ilx; k <= iux; k++){
 
            index = kindex(k,l,"In loop k-l");
            f.at(index - 1) = f.at(index - 1) + factr;
-           continue;
+           goto line88;
 
         line50: if(l == nn1) goto line60; 
       
@@ -118,14 +132,18 @@ for(int k = ilx; k <= iux; k++){
         
         }
         
-        continue;
+        goto line88;
         
         line60: for(int kk = 1; kk <= mnzs; kk++){
           
                     f.at(kk - 1) = f.at(kk - 1) + factr;
           
                 }
+        
+    line88:;
+        
     }
+    
 }
 
 return;

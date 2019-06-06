@@ -161,8 +161,7 @@ if(((maxiuc + 1) >= minilc) and ((llcen) and (lrcen))){
 // reverse plest.
 if(!lrtru) {
   
-   wqm_plestx(xltru,fail,xlcen,xrcen,m,maxiuc,minilc,0,
-              prob,sd);
+   wqm_plestx(xltru,fail,xlcen,xrcen,m,maxiuc,minilc,0,prob,sd);
 
 // if there was left truncation, then there 
 // cannot be left censoring so skip reverse plest
@@ -190,8 +189,7 @@ if(!lrtru) {
 // if no right censoring, then we want to go all the way in reverse
    if(!lrcen) minilc = m + 1;
 
-   wqm_plestx(xrtru,fail,xrcen,xlcen,m,maxiuc,minilc,1,
-              prob,sd);
+   wqm_plestx(xrtru,fail,xrcen,xlcen,m,maxiuc,minilc,1,prob,sd);
 
    if(debug::kprint > 4){
       

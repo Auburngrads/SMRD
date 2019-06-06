@@ -10,11 +10,12 @@ void wqm_cdfmat(Rcpp::NumericVector &f,
                 int &m,
                 int &nnzs){
 
+if(debug::kprint <= 1) return;
+  
 int ixl = 0, ixu = 0,ic = 0;
 Rcpp::NumericVector out;
 double pdi;
-  
-if(debug::kprint <= 1) return;
+
 if(nnzs == 0) return;
 
 for(int i = 1; i <= mm1; i++){

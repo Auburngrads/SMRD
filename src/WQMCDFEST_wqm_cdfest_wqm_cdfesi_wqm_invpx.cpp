@@ -13,12 +13,10 @@ void wqm_invpx(Rcpp::NumericVector &f,
                int &ier){
 
 double tol = 0.0625e00;
-double x,test,sum,relz;
+double x,test,sum,relz = tol / (float)n;
 int ipndex = 1;
-int ipind1,nm1,index,jndex,jindex;
-int jl,indlow,jm1,jndlow;
+int ipind1,nm1,index;
 
-relz = tol / n;
 ier = 0;
 
 for(int i = 1; i <= n; i++){
@@ -80,15 +78,15 @@ index = 1;
 for(int i = 1; i <= nm1; i++){
     
     ipind1 = i + 1;
-    jm1 = i;
-    jndex = index;
+    int jm1 = i;
+    int jndex = index;
     
     for(int j = ipind1; j <= n; j++){
         
         sum = zero;
-        indlow = index;
-        jindex = jndex + i;
-        jl = jindex;
+        int indlow = index;
+        int jindex = jndex + i;
+        int jl = jindex;
      
         for(int l = i; l <= jm1; l++){
      
@@ -99,7 +97,7 @@ for(int i = 1; i <= nm1; i++){
         }
      
         jndex = jndex + j;
-        f.at(jindex - 1) = -1.0e00 * f.at(jndex - 1) * sum;
+        f.at(jindex - 1) = -1 * f.at(jndex - 1) * sum;
         jm1 = j;
      
     }
@@ -120,15 +118,15 @@ index = 0;
 
 for(int i = 1; i <= n; i++){
 
-    jndex = index;
+    int jndex = index;
 
     for(int j = i; j <= n; j++){
 
         sum = zero;
-        jindex = jndex + i;
-        indlow = jindex;
+        int jindex = jndex + i;
+        int indlow = jindex;
         jndex = jndex + j;
-        jndlow = jndex;
+        int jndlow = jndex;
 
         for(int l = j; l <= n; l++){
            

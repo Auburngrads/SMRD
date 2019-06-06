@@ -207,9 +207,9 @@ if(nstart <= 0) {
 
 lsd = false;
 
-wqm_cdfema(weight,codes,ilcv,iucv,iltv,iutv,pgrad,
-           prob,s,probd,n,m,nty,nstart,maxit,tol,
-           pchmax);
+ wqm_cdfema(weight,codes,ilcv,iucv,iltv,iutv,pgrad,
+            prob,s,probd,n,m,nty,nstart,maxit,tol,
+            pchmax);
         
 //  Call the information matrix standard error routine
     wqm_cdfesi(weight,ilcv,iucv,iltv,iutv,probd,

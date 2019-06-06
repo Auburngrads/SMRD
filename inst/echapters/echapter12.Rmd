@@ -64,7 +64,7 @@ DeviceN.ld <- frame.to.ld(devicen,
                           case.weight.column = "counts")
 ```
 
-```{r, eval=FALSE}
+```{r}
 DeviceN.mlest.lnorm <- mlest(DeviceN.ld,
                              dist = "Lognormal")
 
@@ -86,7 +86,7 @@ CondProbInterval2(DeviceN.mlest.lnorm,
                   tU = 3)
 ```
 
-```{r, eval=FALSE}
+```{r}
 DeviceN.mlest.weib <- mlest(DeviceN.ld,
                             dist = "Weibull")
 
@@ -101,7 +101,7 @@ CondProbInterval2(DeviceN.mlest.weib,
                   tU = 36)
 ```
 
-```{r, eval=FALSE}
+```{r}
 CondProbInterval2(DeviceN.mlest.lnorm,
                   age = 1,
                   tL = 1,
@@ -140,7 +140,7 @@ PredictTable(DeviceN.mlest.weib,
 
 # No warranty enforcement
 
-```{r, eval=FALSE}
+```{r}
 DeviceN.NoEnforce.lnor <- 
   CumulativePredictTable(DeviceN.mlest.lnorm,
                          time.increment = 1,
@@ -156,7 +156,7 @@ PlotCumulativePredictTable(DeviceN.NoEnforce.lnor,
 
 # Strict warranty enforcement
 
-```{r, eval=FALSE}
+```{r}
 DeviceN.Enforce.lnor <-
   CumulativePredictTable(DeviceN.mlest.lnorm,
                          time.increment = 1,
@@ -174,7 +174,7 @@ PlotCumulativePredictTable(DeviceN.Enforce.lnor,
 
 # Strict vs. no warranty enforcement (lognormal distribution)
 
-```{r, eval=FALSE}
+```{r}
 PlotCumulativePredictTable(DeviceN.NoEnforce.lnor,
                            plot.what = "density",
                            ylim = c(0,10000))
@@ -196,7 +196,7 @@ PlotCumulativePredictTable(DeviceN.Enforce.lnor,
 ```
 # No warranty enforcement
 
-```{r, eval=FALSE}
+```{r}
 DeviceN.NoEnforce.weib <-
   CumulativePredictTable(DeviceN.mlest.weib,
                          time.increment = 1,
@@ -212,7 +212,7 @@ PlotCumulativePredictTable(DeviceN.NoEnforce.weib,
 
 # Strict warranty enforcement
 
-```{r,eval=FALSE}
+```{r}
 DeviceN.Enforced.weib <-
   CumulativePredictTable(DeviceN.mlest.weib,
                          time.increment = 1,
@@ -228,7 +228,7 @@ PlotCumulativePredictTable(DeviceN.Enforced.weib,
 
 # Strict vs. no warranty enforcement (Weibull distribution)
 
-```{r,eval=FALSE}
+```{r}
 PlotCumulativePredictTable(DeviceN.NoEnforce.weib,
                            plot.what = "density",
                            ylim = c(0,NA))
