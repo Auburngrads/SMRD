@@ -1,5 +1,5 @@
+library(smrdfortran)
 library(SMRD)
-library(SMRD2)
 test = 5
 if(test == 1) {
 data.ld <- frame.to.ld(heatexchanger,
@@ -18,7 +18,7 @@ if(test == 3) {
 }
 if(test == 4) {
   
-data.ld <- frame.to.ld(SMRD2::doatrun,
+data.ld <- frame.to.ld(doatrun,
                        response.column = c(1,2),
                        censor.column = 3,
                        case.weight.column = 4,
@@ -60,13 +60,13 @@ maxmsd = 200
 start.values = NULL # is this needed
 debug1 = F
 
-  y <- SMRD2:::Response(data.ld)
-  the.case.weights <- SMRD2:::case.weights(data.ld)
+  y <- SMRD:::Response(data.ld)
+  the.case.weights <- SMRD:::case.weights(data.ld)
 
   if (is.null(start.values)) nstart <- 0 # what if not null?
   number.cases <- nrow(y)
     ny <- ncol(y)
-    the.censor.codes <- SMRD2:::censor.codes(data.ld)
+    the.censor.codes <- SMRD:::censor.codes(data.ld)
 
     if (length(gamthr) == 1)
       gamthr <- rep(gamthr, number.cases)
@@ -82,7 +82,7 @@ debug1 = F
           number.observations <- sum(the.case.weights[the.censor.codes > 0])
           left.trun.cond <- NULL
         right.trun.cond <- NULL
-        the.truncation.codes <- SMRD2:::truncation.codes(data.ld)
+        the.truncation.codes <- SMRD:::truncation.codes(data.ld)
 
           if (is.null(the.truncation.codes)) {
 
@@ -92,7 +92,7 @@ debug1 = F
 
           } else {
 
-            ty <- SMRD2:::truncation.response(data.ld)
+            ty <- SMRD:::truncation.response(data.ld)
             nty <- ncol(ty)
             if (all(the.truncation.codes == 3))
               left.trun.cond <- min(ty[the.truncation.codes == 3, 1])
@@ -131,7 +131,7 @@ niscrat <- 6 * number.cases + 7
                      lsd = integer(1),
                      ier = integer(1))
 
-new = SMRD2:::WQMCDFEST(y,
+new = SMRD:::WQMCDFEST(y,
                    as.integer(ny),
                    as.integer(the.censor.codes),
                    as.integer(the.case.weights),
