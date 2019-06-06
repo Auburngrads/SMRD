@@ -1,10 +1,10 @@
+library(smrdfortran)
 library(SMRD)
-library(SMRD2)
 testnum = 2
 if(testnum == 1){
-ld <- SMRD::frame.to.ld(lzbearing, response.column = 1)
+ld <- smrdfortran::frame.to.ld(lzbearing, response.column = 1)
 
-gmlest.out <- SMRD::mlest(ld, distribution = "weibull")
+gmlest.out <- smrdfortran::mlest(ld, distribution = "weibull")
 gmlest.out$model = 0
 
 }
@@ -15,7 +15,7 @@ ld <- frame.to.ld(superalloy,
                      censor.column = 2,
                      case.weight.column = 3,
                      x.columns = c(4,5,6))
-gmlest.out <- SMRD2:::mlest(ld, distribution = "weibull",
+gmlest.out <- SMRD:::mlest(ld, distribution = "weibull",
                           explan.vars = c(2,3))
 gmlest.out$model = 0
     
@@ -25,7 +25,7 @@ fargv = NULL
 kpopu = 0
 kpoint = 0
 if(!exists("kprint")) kprint = 0 
-conf.level = GetSMRDDefault("SMRD.ConfLevel") / 100
+conf.level = GetsmrdfortranDefault("smrdfortran.ConfLevel") / 100
 debug1 = F
 
     data.ld <- gmlest.out$data.ld
@@ -36,9 +36,9 @@ debug1 = F
     y <- Response(data.ld)
     ncoly <- ncol(y)
     number.cases <- nrow(y)
-    the.case.weights <- SMRD:::case.weights(data.ld)
+    the.case.weights <- smrdfortran:::case.weights(data.ld)
     ny <- ncol(y)
-    the.truncation.codes <- SMRD:::truncation.codes(data.ld)
+    the.truncation.codes <- smrdfortran:::truncation.codes(data.ld)
     
     if (is.null(the.truncation.codes)) {
         ty <- 1
@@ -47,14 +47,14 @@ debug1 = F
         
     } else {
         
-        ty <- SMRD:::truncation.response(data.ld)
+        ty <- smrdfortran:::truncation.response(data.ld)
         ncolty <- ncol(ty)
         
     }
     if(is.null(model)) model = 0
-    distribution.number <- SMRD:::numdist(gmlest.out$distribution)
-    the.censor.codes <- SMRD:::censor.codes(data.ld)
-    get.rmodel.info.out <- SMRD:::get.rmodel.info(distribution, 
+    distribution.number <- smrdfortran:::numdist(gmlest.out$distribution)
+    the.censor.codes <- smrdfortran:::censor.codes(data.ld)
+    get.rmodel.info.out <- smrdfortran:::get.rmodel.info(distribution, 
                                            model,
                                            explan.vars)
     
@@ -177,7 +177,7 @@ debug1 = F
                      xlow = double(length(fargv)),
                      xup = double(length(fargv)))
 
-    new <- SMRD2:::GENFUN(as.integer(model), 
+    new <- SMRD:::GENFUN(as.integer(model), 
                    as.integer(distribution.number),
                    ilabp = integer(8 * nparm), 
                    ilabd = integer(8 * nparm),
