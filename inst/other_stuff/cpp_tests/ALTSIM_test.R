@@ -1,5 +1,5 @@
+library(smrdfortran)
 library(SMRD)
-library(SMRD2)
 accel.var.mat <- cbind(V1=c(1,1,2,2),V2=c(1,2,1,2))
 nsamsz = c(4,4,4,4)
 centim = c(40000,40000,40000,40000)
@@ -20,7 +20,7 @@ number.cases <- sum(nsamsz + 1)
     nty <- 0
     `if`(intercept, int <- 1, int <- 0)
     theta.hat <- theta
-    distribution.number <- SMRD:::numdist(distribution)
+    distribution.number <- smrdfortran:::numdist(distribution)
     if (is.null(accel.var.mat)) {
         accel.var.mat <- 0
         if (int != 1) stop("must have int = 1 if no x matrix")
@@ -35,7 +35,7 @@ number.cases <- sum(nsamsz + 1)
         nter <- ncol(accel.var.mat) + int
     }
     number.parameters <- nter + 1
-    if (SMRD:::generic.distribution(distribution) == "exponential") {
+    if (smrdfortran:::generic.distribution(distribution) == "exponential") {
         distribution.number <- 2
         parameter.fixed[number.parameters] <- T
         number.parametersx <- number.parameters - 1
@@ -97,7 +97,7 @@ number.cases <- sum(nsamsz + 1)
                      number.sim = as.integer(number.sim), 
                      iersim = integer(1))
 
-    new <- SMRD2:::ALTSIM(x = xmat, 
+    new <- SMRD:::ALTSIM(x = xmat, 
                              y = y,
                              cen = as.integer(censor.codes),
                              wt = as.integer(case.weights),
