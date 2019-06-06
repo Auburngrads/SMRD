@@ -1,4 +1,4 @@
-library(SMRD)
+library(smrdfortran)
 p <- c(1:100)/100
 mu  = 10.5
 sigma = 0.25
@@ -9,10 +9,10 @@ delta = .5
 smalldelta = 0.001 
 
   maxlen <- max(length(p), length(mu), length(delta), length(sigma))
-  p     <- SMRD:::expand.vec(p, maxlen)
-  mu    <- SMRD:::expand.vec(mu, maxlen)
-  sigma <- SMRD:::expand.vec(sigma, maxlen)
-  delta <- SMRD:::expand.vec(delta, maxlen)
+  p     <- smrdfortran:::expand.vec(p, maxlen)
+  mu    <- smrdfortran:::expand.vec(mu, maxlen)
+  sigma <- smrdfortran:::expand.vec(sigma, maxlen)
+  delta <- smrdfortran:::expand.vec(delta, maxlen)
   logsigma <- logb(sigma)
   xk <- rep(0, maxlen)
   sqrtxk <- rep(0, maxlen)
@@ -29,7 +29,7 @@ smalldelta = 0.001
   zout <- .Fortran("sgquan", as.double(p), as.double(gammemat), 
                    as.integer(maxlen), answer = double(maxlen))
   
-new <- SMRD2::sgquan(as.double(p), 
+new <- SMRD::sgquan(as.double(p), 
                         as.matrix(gammemat), 
                         as.integer(maxlen), 
                         answer = double(maxlen))
