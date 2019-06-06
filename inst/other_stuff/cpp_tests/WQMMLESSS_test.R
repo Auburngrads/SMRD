@@ -1,5 +1,5 @@
+library(smrdfortran)
 library(SMRD)
-library(SMRD2)
 test = 6
 if(test == 1){
   
@@ -53,10 +53,10 @@ intercept = T
 if(!exists("kprint")) kprint = 0
 maxit = 500
 debug1 = F 
-likelihood.method = SMRD2:::GetSMRDDefault("SMRD.likelihood.method")
+likelihood.method = SMRD:::GetsmrdfortranDefault("smrdfortran.likelihood.method")
 
 
-    the.xmat <- SMRD2:::xmat(data.ld)
+    the.xmat <- SMRD:::xmat(data.ld)
     #if(!is.null(the.xmat)) explan.vars = seq(1:ncol(xmat(data.ld)))
     
     if (!is.null(the.xmat) && is.null(dimnames(the.xmat)[[2]])) {
@@ -67,14 +67,14 @@ likelihood.method = SMRD2:::GetSMRDDefault("SMRD.likelihood.method")
         warning("No dimnames in xmat --- set to V1,...Vp")
     }
     
-    yresp               <- SMRD2:::Response(data.ld)
+    yresp               <- SMRD:::Response(data.ld)
     number.cases        <- nrow(yresp)
     nyresp              <- ncol(yresp)
-    the.case.weights    <- SMRD2:::case.weights(data.ld)
-    the.censor.codes    <- SMRD2:::censor.codes(data.ld)
-    distribution.number <- SMRD2:::numdist(distribution)
-    truncation.codes    <- SMRD2:::truncation.codes(data.ld)
-    tyresp              <- SMRD2:::truncation.response(data.ld)
+    the.case.weights    <- SMRD:::case.weights(data.ld)
+    the.censor.codes    <- SMRD:::censor.codes(data.ld)
+    distribution.number <- SMRD:::numdist(distribution)
+    truncation.codes    <- SMRD:::truncation.codes(data.ld)
+    tyresp              <- SMRD:::truncation.response(data.ld)
     
     if (!is.null(truncation.codes) && !is.null(tyresp)) {
       
@@ -102,13 +102,13 @@ likelihood.method = SMRD2:::GetSMRDDefault("SMRD.likelihood.method")
         if (is.null(theta.start)) theta.start <- rep(NA, nparm)
         
         `if`(any(is.na(theta.start)),
-             theta.start.comp <- SMRD2:::theta.start.est(data.ld, distribution),
+             theta.start.comp <- SMRD:::theta.start.est(data.ld, distribution),
              theta.start.comp <- theta.start)
         
       } else {
         
         regression  <- T
-        the.xmat    <- SMRD2:::Check.xmat(the.xmat, explan.vars, number.cases)
+        the.xmat    <- SMRD:::Check.xmat(the.xmat, explan.vars, number.cases)
         RegrNames   <- dimnames(the.xmat)[[2]][explan.vars]
         col.of.ones <- all(abs(the.xmat[, 1] - 1) < 1e-10)
         
@@ -127,7 +127,7 @@ likelihood.method = SMRD2:::GetSMRDDefault("SMRD.likelihood.method")
         if (is.null(theta.start)) theta.start <- rep(NA, nparm)
         
         `if`(is.null(theta.start) || any(is.na(theta.start)),
-             theta.start.comp <- SMRD2:::mlest.start.values(data.ld, 
+             theta.start.comp <- SMRD:::mlest.start.values(data.ld, 
                                                     distribution = distribution,
                                                     intercept = intercept),
              theta.start.comp <- theta.start)
@@ -154,7 +154,7 @@ if (any(startna)) theta.start[startna] <- theta.start.comp[startna]
     mathsoft.gamthr <- rep(0, nrow(yresp))
     relationship <- attr(data.ld, "the.relationships")
     
-    if (SMRD2:::is.logdist(distribution)) {
+    if (SMRD:::is.logdist(distribution)) {
       
         non.pos.resp <- yresp[, 1] <= 0
         
@@ -168,17 +168,17 @@ if (any(startna)) theta.start[startna] <- theta.start.comp[startna]
     if (is.null(parameter.fixed)) parameter.fixed <- rep(F, nparm)
     
     if (regression) {
-        is.eyring <- !is.null(relationship) && any(SMRD2:::multiple.generic.relationship.name(relationship) ==
+        is.eyring <- !is.null(relationship) && any(SMRD:::multiple.generic.relationship.name(relationship) ==
             "Eyring")
         if (any(is.eyring)) {
-            eyring.relationship <- SMRD2:::subscript.relationship(relationship,
+            eyring.relationship <- SMRD:::subscript.relationship(relationship,
                 is.eyring)
             if (length(eyring.relationship) > 1)
                 stop(paste("More than one Eyring relationship:",
                   paste(relationship, collapse = ", ")))
             eyring.index <- (1:length(is.eyring))[is.eyring] +
                 intercept.increment
-            tempk <- SMRD2:::f.relationshipinv(the.xmat[, eyring.index],
+            tempk <- SMRD:::f.relationshipinv(the.xmat[, eyring.index],
                 eyring.relationship) + 273.16
             eyring.power <- attr(relationship, "the.power")[is.eyring]
             correction <- -log(tempk) * eyring.power
@@ -191,7 +191,7 @@ if (any(startna)) theta.start[startna] <- theta.start.comp[startna]
         }
     }
     dummy <- the.censor.codes
-    if (SMRD2:::generic.distribution(distribution) == "exponential") {
+    if (SMRD:::generic.distribution(distribution) == "exponential") {
         distribution.number <- 2
         theta.start[nparm] <- 1
         parameter.fixed[nparm] <- T
@@ -234,7 +234,7 @@ if (any(startna)) theta.start[startna] <- theta.start.comp[startna]
                      residuals = single(nyresp * number.cases),
                      fitted.values.and.deviance = single(4 * number.cases))
 
-new = SMRD2:::WQMMLESSS(  ivec = as.integer(ivec), 
+new = SMRD:::WQMMLESSS(  ivec = as.integer(ivec), 
                       rvec = as.double(rvec),
                       nrow = as.integer(number.cases), 
                       nparm = as.integer(nparm),
