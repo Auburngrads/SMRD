@@ -1,4 +1,4 @@
-library(SMRD)
+library(smrdfortran)
 
 distribution = 'exponential'
 n = 100
@@ -12,7 +12,7 @@ number.sim = 10
 kprint = 0
 debug1 = F
 
-altsim.out <- SMRD:::altsim(rbind(0, diag(k - 1)),
+altsim.out <- smrdfortran:::altsim(rbind(0, diag(k - 1)),
                      rep(n, k), rep(r, k),
                      theta = c(rep(0, k), 1),
                      distribution = distribution,
@@ -45,7 +45,7 @@ zout <- .Fortran("prcs",
 old.return <- list(dvec = zout$dvec,
                    prob = zout$answer)
 
-cout <- SMRD2::PRCS(zmax, 
+cout <- SMRD::PRCS(zmax, 
                     z1 = theta.hat[,1], 
                     nsim = nrow(theta.hat),
                     dvec = dvec, 
