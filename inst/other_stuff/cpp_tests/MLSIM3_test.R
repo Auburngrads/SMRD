@@ -1,5 +1,5 @@
+library(smrdfortran)
 library(SMRD)
-library(SMRD2)
 test = 1
 if(test == 1) {
 data.ld <- frame.to.ld(heatexchanger,
@@ -18,7 +18,7 @@ if(test == 3) {
 }
 if(test == 4) {
   
-data.ld <- frame.to.ld(SMRD::doatrun,
+data.ld <- frame.to.ld(smrdfortran::doatrun,
                        response.column = c(1,2),
                        censor.column = 3,
                        case.weight.column = 4,
@@ -49,8 +49,8 @@ randomize = !T
          tspass <- seq(0.1, 0.4, length = 33))
     
     nty <- 0
-    the.censor.codes <- SMRD:::censor.codes(data.ld)
-    the.case.weights <- SMRD:::case.weights(data.ld)
+    the.censor.codes <- smrdfortran:::censor.codes(data.ld)
+    the.case.weights <- smrdfortran:::case.weights(data.ld)
     y <-Response(data.ld)
     ny <- ncol(y)
     number.cases <- length(the.case.weights)
@@ -98,7 +98,7 @@ randomize = !T
                      as.logical(randomize), 
                      iersim = integer(1))
 
-new = SMRD2:::MLSIM3(y, 
+new = SMRD:::MLSIM3(y, 
                         the.censor.codes, 
                         the.case.weights,
                         number.cases, 
@@ -160,6 +160,6 @@ new.results <- list(cdfest.out = cdfest.out,
 oldClass(new.results) <- "boot.npar.npar.out"
 
 par(mfrow = c(1,2))
-SMRD:::plot.boot.npar.npar.out(old.results)
-SMRD:::plot.boot.npar.npar.out(new.results)
+smrdfortran:::plot.boot.npar.npar.out(old.results)
+smrdfortran:::plot.boot.npar.npar.out(new.results)
 par(mfrow = c(1,1))
