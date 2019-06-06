@@ -1,8 +1,8 @@
-library(SMRD)
+library(smrdfortran)
 z = seq(0.1,0.9,0.1)
 distribution = 'sev' 
 
-  idist <- SMRD:::numdist(distribution)
+  idist <- smrdfortran:::numdist(distribution)
   if (idist < 1 || idist > 8) 
     stop("Distribution must be sev, normal, logistic, or lev or corresponding log location-scale")
     length.z <- length(z)
@@ -10,7 +10,7 @@ old <- .Fortran("wqm_phiall", phib = double(length.z), phibm = double(length.z),
                  phis = double(length.z), phip = double(length.z), 
                  as.double(z), as.integer(idist))
 
-new <- SMRD2:::wqmsphiall(double(length.z), 
+new <- SMRD:::wqmsphiall(double(length.z), 
                                  double(length.z), 
                                  double(length.z), 
                                  double(length.z), 
