@@ -1,6 +1,6 @@
+library(smrdfortran)
 library(SMRD)
-library(SMRD2)
-alt.plan.values <- SMRD:::get.alt.plan.values.from.slope.and.point(
+alt.plan.values <- smrdfortran:::get.alt.plan.values.from.slope.and.point(
   distribution="Weibull",
   relationship="Arrhenius",
   accelvar.units=c("DegreesC"),
@@ -24,8 +24,8 @@ method = NULL
 
   number.levels <- 3
   eta <- logb(censor.time)
-  xu <- SMRD:::f.relationship(use.condition, alt.plan.values$relationship)
-  xh <- SMRD:::f.relationship(highest.condition, alt.plan.values$relationship)
+  xu <- smrdfortran:::f.relationship(use.condition, alt.plan.values$relationship)
+  xh <- smrdfortran:::f.relationship(highest.condition, alt.plan.values$relationship)
   a <- (eta - (alt.plan.values$theta.vec["beta0"] + alt.plan.values$theta.vec["beta"] *
     xu))/alt.plan.values$sigma
   b1 <- (alt.plan.values$theta.vec["beta"] * (xh - xu))/alt.plan.values$sigma
@@ -62,7 +62,7 @@ method = NULL
     stop(paste("plan type not recognized", plan.type))
   })
   
-  idist <- SMRD:::numdist(alt.plan.values$distribution)
+  idist <- smrdfortran:::numdist(alt.plan.values$distribution)
   idist.single <- floor((idist + 1)/2)
   relationship <- alt.plan.values$relationship
   maxstress <- 3
@@ -76,7 +76,7 @@ zout <- .Fortran("aplan", a = as.double(a), b1 = as.double(b1),
                  xi = double(maxstress), pi = double(maxstress), fp = double(maxstress),
                  pq = double(maxstress), var = double(1), kprint)
 
-new = SMRD2:::APLAN(as.double(a), 
+new = SMRD:::APLAN(as.double(a), 
                   as.double(b1),
                   as.double(b2), 
                   as.double(theta), 
