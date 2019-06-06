@@ -1,4 +1,4 @@
-library(SMRD)
+library(smrdfortran)
 tvec = c(1:10)
 r1log = .5
 mut2 = 4
