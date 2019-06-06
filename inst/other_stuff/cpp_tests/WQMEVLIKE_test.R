@@ -1,4 +1,4 @@
-library(SMRD)
+library(smrdfortran)
 test = 5
 #Start with get.big.posterior
 if(test == 1) {
@@ -59,7 +59,7 @@ number.in.init.prior = number.needed
   
     number.in.old.post <- 0
     distribution <- attr(specifications.for.prior, "distribution")
-    initial.prior <- SMRD:::make.prior(specifications.for.prior, 
+    initial.prior <- smrdfortran:::make.prior(specifications.for.prior, 
                                 number.in.init.prior)
 
 # Moving to compute.posterior
@@ -76,18 +76,18 @@ prior.temp$xs <- data.ld[,x.columns]
 if (!is.null(explan.vars)) {
   
     relationships <- 
-      SMRD:::set.relationship.power(prior.temp$relationships, power)
+      smrdfortran:::set.relationship.power(prior.temp$relationships, power)
     x.columns <- attr(data.ld, "x.columns")
     
     for (i in explan.vars) {
       
-        the.relationship <- SMRD:::subscript.relationship(relationships, i)
+        the.relationship <- smrdfortran:::subscript.relationship(relationships, i)
         
         data.ld[, x.columns[i]] <- 
-          SMRD:::f.relationship(data.ld[, x.columns[i]], the.relationship)
+          smrdfortran:::f.relationship(data.ld[, x.columns[i]], the.relationship)
         
         prior.temp$xs[i] <- 
-          SMRD:::f.relationship(prior.temp$xs[i], the.relationship)
+          smrdfortran:::f.relationship(prior.temp$xs[i], the.relationship)
         
     }
     
@@ -95,7 +95,7 @@ if (!is.null(explan.vars)) {
 
 mlest.out <- mlest(data.ld, distribution, explan.vars = explan.vars)
 xs.plus <- c(prior.temp$xs[explan.vars], 
-             SMRD:::quant(prior.temp$p, distribution))
+             smrdfortran:::quant(prior.temp$p, distribution))
 
 `if`(!is.null(explan.vars),
      col.use <- c((explan.vars + 1), ncol(prior.temp$prior)),
@@ -113,23 +113,23 @@ gamthr = 0
 intercept = T
 kprint = 0
 debug1 = F 
-likelihood.method = GetSMRDDefault("SMRD.likelihood.method")
+likelihood.method = GetsmrdfortranDefault("smrdfortran.likelihood.method")
 
-    y <- SMRD:::Response(data.ld)
+    y <- smrdfortran:::Response(data.ld)
     ntheta <- nrow(theta)
     number.cases <- nrow(y)
     ny <- ncol(y)
     nty <- 0
-    distribution.number <- SMRD:::numdist(distribution)
-    the.case.weights    <- SMRD:::case.weights(data.ld)
-    the.censor.codes    <- SMRD:::censor.codes(data.ld)
+    distribution.number <- smrdfortran:::numdist(distribution)
+    the.case.weights    <- smrdfortran:::case.weights(data.ld)
+    the.censor.codes    <- smrdfortran:::censor.codes(data.ld)
     
     if (length(gamthr) == 1) gamthr <- rep(gamthr, number.cases)
     
     if (length(gamthr) != number.cases) stop("specified offset is the wrong length")
     
-    the.truncation.codes <- SMRD:::truncation.codes(data.ld)
-    ty <- SMRD:::truncation.response(data.ld)
+    the.truncation.codes <- smrdfortran:::truncation.codes(data.ld)
+    ty <- smrdfortran:::truncation.response(data.ld)
     
     if (!is.null(the.truncation.codes) && !is.null(ty)) {
       
@@ -152,7 +152,7 @@ likelihood.method = GetSMRDDefault("SMRD.likelihood.method")
       
     } else {
           
-        the.xmat <- SMRD:::xmat(data.ld)
+        the.xmat <- smrdfortran:::xmat(data.ld)
         if (is.null(the.xmat)) stop("Explanatory variables requested, but there is no X matrix")
         regression <- T
         if (nrow(the.xmat) != number.cases) {
@@ -192,7 +192,7 @@ likelihood.method = GetSMRDDefault("SMRD.likelihood.method")
     if (!is.matrix(theta)) stop("Input theta must be a matrix")
     if (ncol(theta) != nparm) stop("Wrong number of theta columns")
     
-    old <- .Fortran("SMRD2", 
+    old <- .Fortran("SMRD", 
                      as.single(as.matrix(the.xmat)), 
                      as.single(y),
                      as.single(the.censor.codes), 
@@ -223,7 +223,7 @@ likelihood.method = GetSMRDDefault("SMRD.likelihood.method")
                      xlike = double(ntheta), 
                      ierr = integer(1))
   
-    new <- SMRD2::WQMEVLIKE( 
+    new <- SMRD::WQMEVLIKE( 
                      as.matrix(the.xmat), 
                      y,
                      as.integer(the.censor.codes), 
