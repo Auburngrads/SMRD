@@ -14,9 +14,11 @@ SMRD:::vinny()
 library(SMRD)
 ```
 
-# In This Vignette...
+# In This echapter...
 
-An overview of `life.data` objects
+An overview of the `SMRD` package features
+
+An overview of working with `life.data` objects
 
 - Creating `life.data` objects with `frame.to.ld()`
 
@@ -24,12 +26,79 @@ An overview of `life.data` objects
 
 - Plotting `life.data` objects
 
-# Leiblien-Zelen Data Set `lzbearing`
+## `SMRD` Package Features 
+
+SMRD is designed to easily return estimation/prediction results for many types of failure data
+
+- Multiple failure events
+- Censored data (right, left, and interval censoring)
+- Truncated data (right, left, and interval truncation)
+- Failure data with explanatory variables (failure-time regression)
+- Repeated measures degradation data (linear & non-linear mixed effects)
+- Repairable system failure data (recurring events)
+- Physical/performance degradation data
+- Failure data with prior information (Bayesian reliability)
+- Reliability growth test data
+- Reliability test simulations
+
+`SMRD` facilitates minimal data pre-processing through flexible event definitions
+
+- Organizations often use different terms to describe the same event
+
+    + 'Failure' = 'Failed' = 'Fail' = 'dead' = 'died'</li>
+    + 'right' = 'rcensored' = 'suspended' = 'alive'
+    + 'left' = 'doa' = 'lcensored'
+    + 'interval' = 'int' = 'icensored' = 'grouped'
+
+- Many applications use ambiguous numerical codes to represent these events
+
+    + Often, the numerical event codes used by one software package don't coincide with those used by other packages
+    + `SMRD` allows for flexible event definitions to utilize the data as-is
+    + <focus>Event definitions can even be mixed</focus>
+    + `SMRD` event definitions easily mapped to `survival` numeric definitions
+
+The table below shows the default `SMRD` default event definitions
+
+```{r}
+fail <- strsplit(SMRDOptionsDefaults()$SMRD.F,  split = ',')[[1]]
+left <- strsplit(SMRDOptionsDefaults()$SMRD.Lc, split = ',')[[1]]
+righ <- strsplit(SMRDOptionsDefaults()$SMRD.Rc, split = ',')[[1]]
+intv <- strsplit(SMRDOptionsDefaults()$SMRD.Ic, split = ',')[[1]]
+lengths <- lapply(X = list(fail,left,righ,intv), 
+                  FUN = function(x) length(x))
+
+Length <- max(unlist(lengths))
+
+fails <- c(fail, rep('', Length-length(fail)))
+lefts <- c(left, rep('', Length-length(left)))
+righs <- c(righ, rep('', Length-length(righ)))
+intvs <- c(intv, rep('', Length-length(intv)))
+dats <- data.frame(fails,lefts,righs,intvs)
+colnames(dats) <- c('Failed', 
+                    'Left-censored',
+                    'Right-censored',
+                    'Interval-censored') 
+DT::datatable(dats, options = list(pageLength = 20))
+```
+
+`SMRD` includes over 100 datasets
+
+- Many of these data sets still need to be documented
+
+- A list of these data sets is returned using `data(package = "SMRD")`
+
+- Likewise, the names and descriptions of the data sets is shown in the table below
+
+```{r}
+DT::datatable(as.data.frame(data(package = 'SMRD')$results[,c(-2)]))
+```
+
+# Analyzing the Leiblien-Zelen Data Set `lzbearing`
 
 Overview of the data set 
 
-- Complete data set 23 observations 
-Most basic
+- Complete data set 23 observations
+- Most basic of the data sets included in the package
 
 ```{r}
 DT::datatable(lzbearing, options = list(pageLength = 8))
@@ -55,7 +124,77 @@ print(lzbearing.ld)
 plot(lzbearing.ld, distribution = "weibull")
 ```
 
-## Nelson's Super-Alloy Data Set `superalloy`
+Many other plots and numerical results can also be easily returned as shown in the next example
+
+- Plots
+
+    + Nonparametric CDF plots 
+    + Parametric CDF plots
+    + ML CDF and hazard plots
+    + Explanatory variable plots
+    + Multi-failure mode plots
+    + Relative likelihood surfaces
+    + Relative likelihood curves
+
+- Numerical results 
+
+    + $F(t)$ at specified values of $t$
+    + $h(t)$ at specified values of $t$
+    + $t^{-1}(p)$ at specified values of $p$
+    + ML parameter estimates and standard errors
+    + Logit and log transformed confidence intervals (pointwise and simultaneous)
+
+# Example: Analyzing the `shockabsorber` dataset
+
+## Dataset: `shockabsorber`
+
+- This example demonstrates some of the `SMRD` functions to analyze the shockabsorber dataset used throughout the text
+
+```{r, comment=NA}
+shockabsorber
+```
+
+- Creating the `life.data` object
+
+```{r, echo=TRUE}
+shock.ld <- frame.to.ld(frame = shockabsorber,
+                        response.column = 1,
+                        failure.mode.column = 2,
+                        censor.column = 3,
+                        time.units = 'Kilometers')
+```
+
+- Nonparametric & Parametric CDF plots
+
+```{r, echo=-1, fig.align='center', fig.width=10}
+par(mfrow = c(1,2), bg = NA)
+plot(shock.ld)
+plot(shock.ld, distribution = 'lognormal')
+```
+
+- Maximum likelihood plots $F(t)$ \& $h(t)$
+
+```{r, echo=-1, fig.width=10, fig.align='center'}
+par(mfrow = c(1,2), bg = NA)
+mlehazplot(shock.ld,  distribution = 'lognormal', param.loc = 'topleft')
+mleprobplot(shock.ld, distribution = 'weibull', param.loc = 'topleft')
+```
+
+- Relative likelihood surface plots
+
+```{r, echo=-1, fig.width=10, fig.align='center'}
+par(mfrow = c(1,2), bg = NA, las = 1)
+simple.contour(shock.ld, distribution = 'sev', threeD = T, original.par = F)
+simple.contour(shock.ld, distribution = 'sev', show.confidence = F, zoom = 1.75)
+```
+
+- Maximum likelihood estimate results
+
+```{r, echo=TRUE}
+(print(mlest(shock.ld, distribution = 'weibull')))
+```
+
+# Example: Nelson's Super-Alloy Data Set `superalloy`
 
 ```{r}
 superalloy.ld <- frame.to.ld(superalloy,
