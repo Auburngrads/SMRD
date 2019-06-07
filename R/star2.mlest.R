@@ -226,22 +226,28 @@ function (data.ld,
         warning(paste("mlest estimation warning\n",
                       "ierfit = ", ierfit, "\n", 
                       "iervcv = ", iervcv, "\n",
-                      "Check for extreme outlier or other mismatch between model and data"))
+                      "Check for extreme outlier or other mismatch between model and data\n"))
       
         if (T || map.SMRDDebugLevel() >= 4) {
           
-            cat("First derivatives of the loglikelihood = ", 
-                paste(zout$numvec$fsder, collapse = ","), "\n")
+            message("\nFirst derivatives of the loglikelihood = ", 
+                    paste(zout$numvec$fsder, collapse = ","), "\n")
             file.name <- paste("ProblemData", floor(runif(1) * 1e+07), ".ld", sep = "")
+            
             if (map.SMRDDebugLevel() >= 4) {
+              
                 assign(envir = .frame0,  inherits = TRUE,file.name, data.ld)
                 cat("\nCheck stored data in", file.name, "\n")
+                
             }
+            
             cat("\nStart values\n")
             print(theta.start)
             print(theta.start.comp)
         }
+      
     }
+    
     if (map.SMRDDebugLevel() >= 6) {
         cat("\nStart values after fit\n")
         print(theta.start)
