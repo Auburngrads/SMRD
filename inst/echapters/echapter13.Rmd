@@ -15,7 +15,7 @@ SMRD:::vinny()
 library(SMRD)
 ```
 
-# In This Vignette...
+# In this echapter...
 
 Analyze the `gaaslaser` dataset
 
