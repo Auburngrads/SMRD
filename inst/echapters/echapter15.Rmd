@@ -14,7 +14,7 @@ SMRD:::vinny()
 library(SMRD)
 ```
 
-# In This Vignette...
+# In this echapter...
 
 ```{r}
 component.effect(parallel = TRUE)
