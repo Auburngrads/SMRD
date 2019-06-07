@@ -14,7 +14,7 @@ SMRD:::vinny()
 library(SMRD)
 ```
 
-# In This Vignette...
+# In this echapter...
 
 
 ##	Nelson's Insulation Breakdown degradation data
