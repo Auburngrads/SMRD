@@ -14,7 +14,7 @@ SMRD:::vinny()
 library(SMRD)
 ```
 
-# In This Vignette - Planning Destructive Accelerated Degradation Tests
+# In this echapter - Planning Destructive Accelerated Degradation Tests
 
 Use the following for testing
 
