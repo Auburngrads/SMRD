@@ -14,7 +14,7 @@ SMRD:::vinny()
 library(SMRD)
 ```
 
-# In This Vignette - Planning Accelerated Life Tests
+# In this echapter - Planning Accelerated Life Tests
 
 ## AdhesiveBond example
 
