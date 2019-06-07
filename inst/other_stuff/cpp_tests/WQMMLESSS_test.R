@@ -1,6 +1,6 @@
 library(smrdfortran)
 library(SMRD)
-test = 6
+test = 5
 if(test == 1){
   
    data.ld <- frame.to.ld(lzbearing, response.column = 1) 
