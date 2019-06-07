@@ -3,6 +3,7 @@
 #' @param chapter \code{numeric} Which chapter to run. Should be a value between 1 and 24
 #' 
 #' @importFrom rmarkdown render
+#' @import DT
 #'
 #' @export
 echapter <- function(chapter){
