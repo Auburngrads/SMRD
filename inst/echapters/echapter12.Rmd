@@ -14,7 +14,7 @@ SMRD:::vinny()
 library(SMRD)
 ```
 
-# In This Vignette...
+# In this echapter...
 
 ```{r}
 BearingCage.ld <- frame.to.ld(bearingcage,
