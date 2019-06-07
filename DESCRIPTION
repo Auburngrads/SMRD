@@ -16,7 +16,7 @@ Authors@R: c(
 Maintainer: Jason Freels <auburngrads@live.com>   
 Description: Implements the reliability estimation functions and 
     data sets for use with the text "Statistical Methods for 
-    Reliability Data" Copyright 1998 by Meeker & Escobar.
+    Reliability Data" by Meeker & Escobar, Copyright 1998.
 License: GPL (>= 2)
 LazyData: true
 Depends:
@@ -33,15 +33,17 @@ Imports:
     Rcpp (>= 1.0.1),
     ggplot2,
     BH,
-    rmarkdown
+    rmarkdown,
+    DT
 LinkingTo: Rcpp,
            BH
 NeedsCompilation: yes
 Archs: i386, x64
 Suggests:
     testthat,
-    knitr,
-    DT
+    knitr
 RoxygenNote: 6.1.1
 Encoding: UTF-8
 VignetteBuilder: knitr
+URL: https://github.com/Auburngrads/SMRD2
+BugReports: https://github.com/Auburngrads/SMRD2/issues
