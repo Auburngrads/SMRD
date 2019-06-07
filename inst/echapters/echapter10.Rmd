@@ -14,7 +14,7 @@ SMRD:::vinny()
 library(SMRD)
 ```
 
-# In This Vignette...
+# In this echapter...
 
 
 # Get Planning Values by Specifying a Point and a Slope
