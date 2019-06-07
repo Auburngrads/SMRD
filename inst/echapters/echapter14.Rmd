@@ -14,7 +14,7 @@ SMRD:::vinny()
 library(SMRD)
 ```
 
-# In This Vignette...
+# In this echapter...
 
 Specify prior distribution characteristics for the bearing cage data using a diffuse quantile and a diffuse sigma
 
