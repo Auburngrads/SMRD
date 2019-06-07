@@ -8,7 +8,15 @@
 \description{
 Implements the reliability estimation functions and 
     data sets for use with the text "Statistical Methods for 
-    Reliability Data" Copyright 1998 by Meeker & Escobar.
+    Reliability Data" by Meeker & Escobar, Copyright 1998.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/Auburngrads/SMRD2}
+  \item Report bugs at \url{https://github.com/Auburngrads/SMRD2/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Jason Freels \email{auburngrads@live.com}
