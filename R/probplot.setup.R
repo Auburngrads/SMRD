@@ -56,7 +56,9 @@ function (distribution,
     get.prob.scales.out <- get.prob.scales(distribution, 
                                            shape = shape,
                                            prob.range = ylim)
+    
     log.of.data <- get.prob.scales.out$logger
+    
     tick.label.loc <- as.numeric(get.prob.scales.out$tick.labels)
     tick.location <- as.numeric(get.prob.scales.out$tick.location)
     
@@ -69,16 +71,17 @@ function (distribution,
                   min(max(tick.label.loc), 
                       tick.label.loc[tick.label.loc > ylim[2]]))
     
-    probplot.setup.title.out <- 
+    probplot.setup.title.out <-
       probplot.setup.title(title.option = title.option,
-                           my.title = my.title, 
-                           sub.title = sub.title, 
+                           my.title = my.title,
+                           sub.title = sub.title,
                            distribution = get.prob.scales.out$distribution,
                            shape = shape)
     
-    if ((title.option == "paper" || title.option == "paper2") &&
-        grids != 0) {
+    if ((title.option == "paper" || title.option == "paper2") && grids != 0) {
+      
         grids <- 2
+        
     }
     
     `if`(linear.axes == "q" || linear.axes == "b",
@@ -143,7 +146,7 @@ function (distribution,
          type = "n",
          cex.axis = cex.axis, 
          cex.lab = cex.labs,
-         main = my.title)
+         main = `if`(T,"",my.title))
     title(xlab = xlab, cex.lab = cex.labs)
     axis(side = 2, 
          at = pp.quant(tick.location, distribution,shape), 
@@ -268,11 +271,11 @@ function (distribution,
 
      title.line <- probplot.setup.title.out$title.line + title.line.adj
     
-      mtext(side = 3, 
-            line = title.line, 
-            outer = F, 
-            text = probplot.setup.title.out$new.title,
-            cex = cex.title)
+      mtext(side = 3,
+           line = title.line,
+           outer = F,
+           text = probplot.setup.title.out$new.title,
+           cex = cex.title)
 
     CheckPrintDataName()
     return(log.of.data)

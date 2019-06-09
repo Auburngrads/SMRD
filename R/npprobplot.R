@@ -116,7 +116,9 @@ function (data.ld,
     }
     
     default.title <- get.data.title(data.ld)
+    
     there.is.truncation <- F
+    
     if (trunc.correct && (!is.null(cdfest.out$left.trun.cond) || !is.null(cdfest.out$right.trun.cond))) {
       
         there.is.truncation <- T
@@ -185,6 +187,7 @@ function (data.ld,
                 "Confidence Bands", trunc.correct.string),
             my.title <- paste(default.title, "\n", "Nonparametric CDF Estimate", 
                 trunc.correct.string))
+      
     }
  
     if(!add) {
@@ -203,6 +206,7 @@ function (data.ld,
                                      linear.axes = linear.axes,
                                      ylab = ylab, 
                                      title.line.adj = title.line.adj, ...)
+       
      } else {
     
        log.of.data <- get.prob.scales(distribution = distribution,

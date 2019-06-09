@@ -149,35 +149,36 @@ function (data.ld,
     if (band.type == "none") band.type <- "pointwise"
     time.units <- get.time.units(rlist$data.ld)
     line1 <- paste("Nonparametric estimates from", get.data.title(rlist$data.ld), sep = " ")
-    rlist$p[rlist$p < 0] <- 0
+    rlistp <- rlist$p
+    rlistp[rlistp < 0] <- 0
     the.bands <- list()
     conf.char <- percent.conf.level(conf.level)
     extra.names <- NULL
     if (!is.null(rlist$sd)) {
-        
-        extra.names <- c("SE_Fhat", 
+
+        extra.names <- c("SE_Fhat",
                          paste(conf.char, "Lower"),
                          paste(conf.char, "Upper"))
-        
-        the.bands <- get.npbands(rlist, 
-                                 band.type, 
+
+        the.bands <- get.npbands(rlist,
+                                 band.type,
                                  conf.level = conf.level,
-                                 how.show.interval = "step.fun", 
+                                 how.show.interval = "step.fun",
                                  a.limit = a.limit,
                                  b.limit = b.limit)
-        
+
         line2 <- paste(" with approximate ", paste(100 * conf.level,
             "%", sep = "")," ", band.type, " confidence intervals.", sep = "")
     }
     the.text  <- paste(line1, line2, sep = "")
-    the.table <- cbind(rlist$p, 
-                       rlist$q, 
-                       rlist$prob, 
-                       rlist$sd, 
+    the.table <- cbind(rlistp,
+                       rlist$q,
+                       rlist$prob,
+                       rlist$sd,
                        the.bands$lower,
                        the.bands$upper)
-    
-    colnames(the.table) <- c(paste(time.units, "-lower", sep = ""), 
+
+    colnames(the.table) <- c(paste(time.units, "-lower", sep = ""),
                              paste(time.units, "-upper", sep = ""), "Fhat", extra.names)
     rlist$text  <- the.text
     rlist$table <- the.table

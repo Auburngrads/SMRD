@@ -121,7 +121,7 @@ summary(lzbearing.ld)
 
 print(lzbearing.ld)
 
-plot(lzbearing.ld, distribution = "weibull")
+plot(lzbearing.ld, distribution = "lognormal")
 ```
 
 Many other plots and numerical results can also be easily returned as shown in the next example
