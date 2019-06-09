@@ -25,26 +25,29 @@ function (data.ld,
     number.code2 <- the.case.weights[the.censor.codes == 2]
     number.code4 <- the.case.weights[the.censor.codes == 4]
     number.code3 <- the.case.weights[the.censor.codes == 3]
-    if (length(number.code1) > 0 && length(number.code3) + length(number.code4) == 
-        0) {
-        check.failures <- number.failures.needed + number.needed - 
-            1
-        if (length(number.code2) == 0) 
-            conclusion <- length(number.code1) >= check.failures
-        else conclusion <- length(number.code1) >= check.failures - 
-            1
+    if (length(number.code1) > 0 && length(number.code3) + length(number.code4) == 0) {
+      
+        check.failures <- number.failures.needed + number.needed - 1
+        
+        `if`(length(number.code2) == 0,
+             conclusion <- length(number.code1) >= check.failures,
+             conclusion <- length(number.code1) >= check.failures - 1)
+        
   } else {
-        check.failures <- number.failures.needed + number.needed - 
-            1
-        number.cells <- length(number.code1) + length(number.code2) + 
-            length(number.code3) + length(number.code4)
-        if (length(number.code3) > 0) 
-            count.left <- 1
-        else count.left <- 0
+    
+        check.failures <- number.failures.needed + number.needed - 1
+        number.cells <- length(number.code1) + length(number.code2) + length(number.code3) + length(number.code4)
+        
+        `if`(length(number.code3) > 0,
+             count.left <- 1,
+             count.left <- 0)
+        
         number.failures <- sum(number.code1) + count.left + sum(number.code4)
-        conclusion <- number.cells > number.cells.needed && number.failures > 
-            check.failures
+        conclusion <- number.cells > number.cells.needed && number.failures > check.failures
+        
         attr(conclusion, "check.level") <- check.level
         return(conclusion)
-    }
+        
+  }
+    
 }
