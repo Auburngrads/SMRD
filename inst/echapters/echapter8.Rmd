@@ -264,7 +264,7 @@ bulb.ld <- frame.to.ld(bulb,
                        data.title = "Bulb Data",
                        time.units = "Hours")
 
-mlest(bulb.ld,"lognormal")
+mlest(bulb.ld,"weibull")
 
 simple.contour(bulb.ld,"normal", quantile = .5)
 ```
