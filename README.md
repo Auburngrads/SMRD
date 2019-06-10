@@ -1,14 +1,18 @@
 :package: SMRD: Statistical Methods for Reliability Data
 ================
 Jason K. Freels, William Q. Meeker, and Luis A. Escobar
-<br/>07 June 2019
+<br/>10 June 2019
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/SMRD2)](https://cran.r-project.org/package=SMRD2)
+status](https://www.r-pkg.org/badges/version/SMRD)](https://cran.r-project.org/package=SMRD)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/Auburngrads/SMRD?branch=master&svg=true)](https://ci.appveyor.com/project/Auburngrads/SMRD)
 [![Travis build
-status](https://travis-ci.org/Auburngrads/SMRD2.svg?branch=master)](https://travis-ci.org/Auburngrads/SMRD2)
+status](https://travis-ci.org/Auburngrads/SMRD.svg?branch=master)](https://travis-ci.org/Auburngrads/SMRD)
+[![Codecov test
+coverage](https://codecov.io/gh/Auburngrads/SMRD/branch/master/graph/badge.svg)](https://codecov.io/gh/Auburngrads/SMRD?branch=master)
 
 ## Background
 
@@ -48,7 +52,7 @@ devtools::install_github("Auburngrads/SMRD")
 Please note that this package is currently experimental and is under
 very active development. If you encounter any problems or unexpected
 behaviours, please create a
-<a target="" href="https://github.com/Auburngrads/SMRD2/issues">**new
+<a target="" href="https://github.com/Auburngrads/SMRD/issues">**new
 issue**</a> and include a reporducible example.
 
 ## Getting started
@@ -67,11 +71,11 @@ SMRD::echapter(chapter = 1)
 There are a number of remaining tasks to be completed before publishing
 <b>(% complete)</b>
 
-  - <a target="" href="https://github.com/Auburngrads/SMRD2/projects/1">**Update
+  - <a target="" href="https://github.com/Auburngrads/SMRD/projects/1">**Update
     older R & S-Plus idioms to modern equivalents**</a>
-  - <a target="" href="https://github.com/Auburngrads/SMRD2/projects/1">**Update
+  - <a target="" href="https://github.com/Auburngrads/SMRD/projects/1">**Update
     graphics objects**</a>
-  - <a target="" href="https://github.com/Auburngrads/SMRD2/projects/1">**Document
+  - <a target="" href="https://github.com/Auburngrads/SMRD/projects/1">**Document
     datasets and exported functions**</a>
-  - <a target="" href="https://github.com/Auburngrads/SMRD2/projects/2">**Update
+  - <a target="" href="https://github.com/Auburngrads/SMRD/projects/2">**Update
     for modern use-cases - literate programming/interactivity**</a>

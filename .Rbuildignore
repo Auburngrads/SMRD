@@ -9,3 +9,4 @@ README.md
 README_files/
 ^doc$
 ^Meta$
+^codecov\.yml$

@@ -1,8 +1,8 @@
 Package: SMRD
 Type: Package
 Title: Statistical Methods For Reliability Data
-Version: 2019.06.06
-Date: 2019-06-06
+Version: 2019.06.10
+Date: 2019-06-10
 Authors@R: c(
     person("Jason", "Freels", 
            email = "auburngrads@live.com", 
