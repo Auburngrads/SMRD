@@ -1,3 +1,5 @@
+# nocov start
+
 .onLoad <- function(libname, pkgname) {
 
   .frame0 <<- new.env() 
@@ -7,6 +9,21 @@
 .onUnload <- function (libpath) {
   library.dynam.unload("SMRD", libpath)
 }
+
+.onAttach = function(libname, pkgname) {
+  # Runs when attached to search() path such as by library() or require()
+  if (!interactive()) return()
+  v = packageVersion("SMRD")
+  br = read.dcf(system.file("DESCRIPTION", package="SMRD"), fields = c("BugReports"))
+ 
+    packageStartupMessage("SMRD (version ", v, ") is experimental software under active development\n\n",
+                          "If you encounter any errors or unexpected problems\n",
+                          "please submit an issue at: ", br[1L],
+                          "\n\nThe best way to start using SMRD is check out the echapters",
+                          "\n\nFor example: echapter(chapter = 1)")
+    
+}
+
 
 info <- function(info,...) {
 
@@ -85,3 +102,5 @@ vinny <- function(fw = 8, fh = 6,...)  {
   vign()
   
 }
+
+# nocov end
