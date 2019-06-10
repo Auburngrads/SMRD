@@ -17,7 +17,7 @@ coverage](https://codecov.io/gh/Auburngrads/SMRD/branch/master/graph/badge.svg)]
 ## Background
 
 Since its initial publication,
-<a target=' 'href='https://www.amazon.com/Statistical-Methods-Reliability-William-Meeker/dp/0471143286'>**Statistical
+<a target="" href="https://www.amazon.com/Statistical-Methods-Reliability-William-Meeker/dp/0471143286">**Statistical
 Methods for Reliability Data**</a> has remained a foundational text for
 analyzing time-to-failure (survival) data. Along with the first edition
 of the text, the authors provided an S-Plus software package, called
@@ -69,16 +69,14 @@ SMRD::echapter(chapter = 1)
 ## Getting involved
 
 There are a number of tasks that need to be completed before publishing.
-These issues can be broken down into five main project areas. The links
+These issues can be broken down into four main project areas. The links
 below show the current issues that exist within these areas.
 
   - <a target="" href="https://github.com/Auburngrads/SMRD/projects/1">**Update
-    older R & S-Plus idioms to modern equivalents**</a>
-  - <a target="" href="https://github.com/Auburngrads/SMRD/projects/3">**Update
     graphics objects**</a>
   - <a target="" href="https://github.com/Auburngrads/SMRD/projects/4">**Document
     datasets and functions**</a>
   - <a target="" href="https://github.com/Auburngrads/SMRD/projects/2">**Update
     for modern use-cases - literate programming/interactivity**</a>
-  - <a target="" href="https://github.com/Auburngrads/SMRD/projects/5">**Improve/update
+  - <a target="" href="https://github.com/Auburngrads/SMRD/projects/3">**Improve/update
     implementation of statistical methods**</a>

@@ -21,7 +21,7 @@ library(SMRD)
 
 ## Background
 
-Since its initial publication, <a target=' 'href='https://www.amazon.com/Statistical-Methods-Reliability-William-Meeker/dp/0471143286'>**Statistical Methods for Reliability Data**</a> has remained a foundational text for analyzing time-to-failure (survival) data.  Along with the first edition of the text, the authors provided an S-Plus software package, called [**SPLIDA**](http://www.public.iastate.edu/~splida/')  (**S**-**P**lus **LI**fe **D**ata **A**nalysis), to help readers utilize the methods for industry data.  
+Since its initial publication, <a target="" href="https://www.amazon.com/Statistical-Methods-Reliability-William-Meeker/dp/0471143286">**Statistical Methods for Reliability Data**</a> has remained a foundational text for analyzing time-to-failure (survival) data.  Along with the first edition of the text, the authors provided an S-Plus software package, called [**SPLIDA**](http://www.public.iastate.edu/~splida/')  (**S**-**P**lus **LI**fe **D**ata **A**nalysis), to help readers utilize the methods for industry data.  
 
 Today, R has supplanted S and S-Plus as the most popular statistical computing language in the world.  In response to this shift, Meeker began an effort to translate **SPLIDA** into R under the name **RSplida**. However, RSplida couldn't be installed as a traditional R package and was difficult to use with modern IDE's.  In 2015, Freels partnered with Meeker to restructure and modernize RSplida into this R package **SMRD**, with the aim of publishing to the <a target="" href="https://cran.r-project.org">**CRAN**</a>.
 

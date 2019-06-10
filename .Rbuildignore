@@ -3,7 +3,6 @@
 ^appveyor\.yml$
 ^\.travis\.yml$
 ^.*\.6$
-^.*\.txt$
 README.Rmd
 README.md
 README_files/
