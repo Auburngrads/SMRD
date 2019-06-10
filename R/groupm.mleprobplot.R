@@ -234,7 +234,8 @@ mlest.out <- mlest(data.ld,
                    parameter.fixed = parameter.fixed,
                    kprint = dump, 
                    send.col.ones = T, 
-                   intercept = F,...)
+                   intercept = F,
+                   embedded = T,...)
 
 xmat(data.ld) <- the.xmat
 mlest.out$relationship <- relationship
