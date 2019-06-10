@@ -1,35 +1,54 @@
 get.parametric.bands.zhat <-
-function (mlest.out, xlim = range(Response(mlest.out$data.ld)), 
-    conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, number.times = 50, mono.tran = F, 
-    shape = NULL, need.list = T) 
+function (mlest.out, 
+          xlim = range(Response(mlest.out$data.ld)), 
+          conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
+          number.times = 50, 
+          mono.tran = F, 
+          shape = NULL, 
+          need.list = T) 
 {
     distribution <- mlest.out$distribution
     zvalue <- qnorm(1 - (1 - conf.level)/2)
     theta.hat <- mlest.out$theta.hat
     sigmahat <- theta.hat[2]
+    
     if (need.list) {
+      
         if (is.logdist(distribution)) {
-            ltimes <- seq(logb(xlim[1]), logb(xlim[2]), 
-                length = number.times)
+          
+            ltimes <- seq(logb(xlim[1]), 
+                          logb(xlim[2]), 
+                          length = number.times)
             times <- exp(ltimes)
+            
       } else {
-            ltimes <- seq(xlim[1], xlim[2], length = number.times)
+        
+            ltimes <- seq(xlim[1], 
+                          xlim[2], 
+                          length = number.times)
             times <- ltimes
-        }
+      }
+      
   } else {
+    
         if (is.logdist(distribution)) {
+          
             ltimes <- logb(xlim)
             times <- exp(ltimes)
+            
       } else {
+        
             ltimes <- xlim
             times <- ltimes
-        }
-    }
-    if (generic.distribution(distribution) == "exponential") {
-        evdistribution <- "Weibull"
-  } else {
-        evdistribution <- distribution
-    }
+            
+      }
+    
+  }
+    
+    `if`(generic.distribution(distribution) == "exponential",
+         evdistribution <- "Weibull",
+         evdistribution <- distribution)
+    
     zhat <- (ltimes - theta.hat[1])/sigmahat
     fhat.orig <- wqmf.phibf(zhat, evdistribution)
     zhatgood <- fhat.orig > 0 & fhat.orig < 1
