@@ -45,5 +45,5 @@ Suggests:
 RoxygenNote: 6.1.1
 Encoding: UTF-8
 VignetteBuilder: knitr
-URL: https://github.com/Auburngrads/SMRD2
-BugReports: https://github.com/Auburngrads/SMRD2/issues
+URL: https://github.com/Auburngrads/SMRD
+BugReports: https://github.com/Auburngrads/SMRD/issues
