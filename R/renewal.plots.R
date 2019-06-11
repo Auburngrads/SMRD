@@ -1,7 +1,8 @@
 #' Title
 #'
 #' @param data.rdu 
-#' @param my.title 
+#' @param my.title
+#' @param which
 #'
 #' @return NULL
 #' @export
@@ -20,12 +21,37 @@
 #' 
 #' }
 renewal.plots <-
-function (data.rdu, my.title = NULL) 
+function (data.rdu, 
+          my.title = NULL, 
+          which = NULL) 
 {
-    repair.tsplot(data.rdu)
-    pause()
-    interarrival.plot(data.rdu)
-    pause()
-    ar1.plot(data.rdu)
+    
+    if(!is.null(which) && (which < 0 || which > 3)){
+        
+        stop("which must be NULL or an integer in [1,3]")
+        
+    }
+    
+    if(is.null(which) || which == 1) {
+        
+       repair.tsplot(data.rdu, my.title = my.title)
+       if(is.null(which)) pause()
+    
+    }
+    
+    if(is.null(which) || which == 2) {
+        
+       interarrival.plot(data.rdu, my.title = my.title)
+       if(is.null(which)) pause()
+    
+    }
+    
+    if(is.null(which) || which == 3) {
+        
+       ar1.plot(data.rdu, my.title = my.title)
+        
+    }
+    
     invisible()
+    
 }
