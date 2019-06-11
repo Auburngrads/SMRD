@@ -4,12 +4,14 @@
 \alias{renewal.plots}
 \title{Title}
 \usage{
-renewal.plots(data.rdu, my.title = NULL)
+renewal.plots(data.rdu, my.title = NULL, which = NULL)
 }
 \arguments{
-\item{data.rdu}{}
+\item{data.rdu}{A repeated data unit class object}
 
-\item{my.title}{}
+\item{my.title}{A \code{character}-string to serve as the title for the plots produced}
+
+\item{which}{A length-1 integer vector}
 }
 \description{
 Title

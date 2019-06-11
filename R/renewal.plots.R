@@ -1,8 +1,8 @@
 #' Title
 #'
-#' @param data.rdu 
-#' @param my.title
-#' @param which
+#' @param data.rdu A repeated data unit class object
+#' @param my.title A \code{character}-string to serve as the title for the plots produced
+#' @param which A length-1 integer vector
 #'
 #' @return NULL
 #' @export
@@ -25,6 +25,12 @@ function (data.rdu,
           my.title = NULL, 
           which = NULL) 
 {
+    
+    if(!is.null(which) && length(which) > 1) {
+        
+        stop("Argument which must be a length 1 integer vector")
+        
+    }
     
     if(!is.null(which) && (which < 0 || which > 3)){
         
