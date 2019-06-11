@@ -1,18 +1,19 @@
 #' Title
 #'
-#' @param data.ld 
-#' @param distribution 
-#' @param relationship.parameters 
-#' @param explan.vars 
-#' @param gamthr 
-#' @param theta.start 
-#' @param parameter.fixed 
-#' @param intercept 
-#' @param kprint 
-#' @param maxit 
-#' @param debug1 
-#' @param genforce 
-#' @param ... 
+#' ☺@param data.ld
+#' ☺@param distribution
+#' ☺@param relationship.parameters
+#' ☺@param explan.vars
+#' ☺@param gamthr
+#' ☺@param theta.start
+#' ☺@param parameter.fixed
+#' ☺@param intercept
+#' ☺@param kprint
+#' ☺@param maxit
+#' ☺@param debug1
+#' ☺@param genforce
+#' ☺@param embedded
+#' ☺@param ...
 #'
 #' @return NULL
 #' @export
