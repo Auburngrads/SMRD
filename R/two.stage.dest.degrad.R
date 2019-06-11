@@ -43,9 +43,11 @@ function (trans.data.ddd,
                             the.case.weights = case.weights(trans.data.ddd)[the.ones],
                             the.xmat = xmat.time, 
                             time.units = get.time.units(trans.data.ddd))
+            
             mlest.out <- mlest(tmp.data, 
                                distribution = distribution,
-                               explan.vars = 1)
+                               explan.vars = 1,
+                               embedded = T)
             
             se.slope[k] <- sqrt(mlest.out$vcv.matrix[2, 2])
             if (debug1 > 3)
@@ -70,9 +72,11 @@ function (trans.data.ddd,
     length(sample.size) <- k
     slope.lower <- rep(NA, k)
     slope.upper <- rep(NA, k)
-    if (all(slope > 0) || all(slope < 0))
-        the.kodet <- 2
-    else the.kodet <- 1
+    
+    `if`(all(slope > 0) || all(slope < 0),
+         the.kodet <- 2,
+         the.kodet <- 1)
+    
     the.kodet <- 2
     for (i in 1:k) {
         the.ci <- compute.confidence.interval(slope[i], se.slope[i],
@@ -83,11 +87,11 @@ function (trans.data.ddd,
     slopes.gt.0 <- slope > 0
     frac.gt.0 <- length(slope[slopes.gt.0])/length(slope)
     average.slope <- median(slope)
-    if (frac.gt.0 > 0.5) {
-        increasing <- T
-  } else {
-        increasing <- F
-    }
+    
+    `if`(frac.gt.0 > 0.5,
+         increasing <- T,
+         increasing <- F)
+    
     if (increasing) {
         ok.values <- slope > 0
         sign.factor <- 1
@@ -100,28 +104,39 @@ function (trans.data.ddd,
     the.done.list <- the.done.list[ok.values]
     ok.x.values <- x.values[ok.values, , drop = F]
     if (debug1> 4) {
+      
         cat("ok.x.values   \n")
         print(ok.x.values)
         cat("ok.slope   \n")
         print(ok.slope)
     }
+    
     if (nrow(ok.x.values) > ncol(ok.x.values)) {
+      
         fit.out <- lm(logb(sign.factor * ok.slope) ~ ok.x.values)
         the.coeficients <- summary(fit.out)$coefficients
         dimnames(the.coeficients) <- list(NULL, NULL)
         sigma.pooled <- sqrt(sigma2/(sum(sample.size) - k))
-        return.vector <- c(mean(intercept[ok.values]), sign.factor *
-            exp(the.coeficients[, 1][1]), the.coeficients[, 1][-1],
-            sigma = sigma.pooled)
-        beta2.names <- paste("beta", seq(2, ncol(ok.x.values) +
-            1), sep = "")
+        return.vector <- c(mean(intercept[ok.values]), 
+                           sign.factor * exp(the.coeficients[, 1][1]), 
+                           the.coeficients[, 1][-1],
+                           sigma = sigma.pooled)
+        
+        beta2.names <- paste("beta", 
+                             seq(2, ncol(ok.x.values) + 1), 
+                             sep = "")
+        
         the.names <- c("beta0", "beta1", beta2.names, "sigma")
         names(return.vector) <- the.names
+        
   } else {
+    
         warning(paste("Two-stage starting value algorithm failed! Bad model/data specification?",
             "\nSlopes=", paste(format(slope), collapse = ",")))
         return.vector <- NULL
-    }
+        
+  }
+    
     attr(return.vector, "slope.computed.list") <- the.slope.computed.list
     attr(return.vector, "done.list") <- the.done.list
     attr(return.vector, "increasing") <- increasing

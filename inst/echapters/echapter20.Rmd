@@ -141,7 +141,7 @@ Evaluate the the other test plans
 simulate(AdhesiveBond2.altplan, 
          ALT.plan.values = AdhesiveBond.Weibull.altpv,
          use.condition = 50,
-         show.detail.on = 50)
+         show.detail.on = 5)
 
 simulate(AdhesiveBond2.altplan,
          ALT.plan.values = AdhesiveBond.Weibull.altpv,
