@@ -5,7 +5,10 @@
 \title{Generate a CDF estimate}
 \usage{
 cdfest(data.ld, gamthr = 0, kprint = 0, maxit = 5e+05, tol = 0.001,
-  maxmsd = 200, start.values = NULL, debug1 = F)
+  maxmsd = 200, start.values = NULL, debug1 = F,
+  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
+  band.type = "pointwise", a.limit = 0.001, b.limit = 0.999,
+  digits = GetSMRDDefault("SMRD.DigitsPrinted"), quote = T, ...)
 }
 \arguments{
 \item{data.ld}{}
@@ -23,16 +26,27 @@ cdfest(data.ld, gamthr = 0, kprint = 0, maxit = 5e+05, tol = 0.001,
 \item{start.values}{}
 
 \item{debug1}{}
-}
-\value{
-A formal S4 object of class CDFEST with slot \code{list}
+
+\item{conf.level}{}
+
+\item{band.type}{}
+
+\item{a.limit}{}
+
+\item{b.limit}{}
+
+\item{digits}{}
+
+\item{quote}{}
+
+\item{...}{}
 }
 \description{
 Generate a CDF estimate
 }
 \examples{
 \dontrun{
-lz.ld <- life_data(lzbearing, response.column = 1)
+lz.ld <- frame.to.ld(lzbearing, response.column = 1)
 lz.cd <- cdfest(lz.ld, distribution = 'weibull')
 lz.cd
 }

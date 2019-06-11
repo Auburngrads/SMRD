@@ -8,17 +8,23 @@
 #' @param maxmsd 
 #' @param start.values 
 #' @param debug1 
+#' @param conf.level 
+#' @param band.type 
+#' @param a.limit 
+#' @param b.limit 
+#' @param digits 
+#' @param quote 
+#' @param ... 
 #'
-#' @return A formal S4 object of class CDFEST with slot \code{list}
+#' @return NULL
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' lz.ld <- life_data(lzbearing, response.column = 1)
+#' lz.ld <- frame.to.ld(lzbearing, response.column = 1)
 #' lz.cd <- cdfest(lz.ld, distribution = 'weibull')
 #' lz.cd
 #' }
-
 cdfest <-
 function (data.ld, 
           gamthr = 0, 
