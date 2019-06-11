@@ -17,7 +17,7 @@
   br = read.dcf(system.file("DESCRIPTION", package="SMRD"), fields = c("BugReports"))
  
     packageStartupMessage("SMRD (version ", v, ") is experimental software under active development\n\n",
-                          "If you encounter any errors or unexpected problems\n",
+                          "If you encounter unexpected errors or problems\n",
                           "please submit an issue at: ", br[1L],
                           "\n\nThe best way to start using SMRD is check out the echapters",
                           "\n\nFor example: echapter(chapter = 1)")
