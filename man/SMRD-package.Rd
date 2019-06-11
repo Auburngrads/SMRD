@@ -13,8 +13,8 @@ Implements the reliability estimation functions and
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/Auburngrads/SMRD2}
-  \item Report bugs at \url{https://github.com/Auburngrads/SMRD2/issues}
+  \item \url{https://github.com/Auburngrads/SMRD}
+  \item Report bugs at \url{https://github.com/Auburngrads/SMRD/issues}
 }
 
 }
