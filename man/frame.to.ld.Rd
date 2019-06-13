@@ -2,7 +2,7 @@
 % Please edit documentation in R/frame.to.ld.R
 \name{frame.to.ld}
 \alias{frame.to.ld}
-\title{Create a \code{life.data} object from a \code{data.frame}}
+\title{Generate a \code{life.data} object}
 \usage{
 frame.to.ld(frame, response.column, censor.column, case.weight.column,
   failure.mode.column, truncation.type.column, truncation.response.column,
@@ -13,7 +13,7 @@ frame.to.ld(frame, response.column, censor.column, case.weight.column,
 \arguments{
 \item{frame}{A \code{data.frame} class object.}
 
-\item{response.column}{The numeric index or name (as a character string) of the column(s) in \code{frame} containing the responses.
+\item{response.column}{The column(s) in \code{frame} containing the responses (given as numeric column indices or as a character string including the column names).
 
 For reliability data, responses are often the amount of usage (measured in time, distance, cycles) that are recorded when an event occurred.
 
@@ -46,8 +46,11 @@ In practice, several different labels are used to refer to differnt types of cen
 
 \item{residual.rmd}{}
 }
+\value{
+A \code{life.data} class object
+}
 \description{
-Create a \code{life.data} object from a \code{data.frame}
+Generate a \code{life.data} object
 }
 \examples{
 \dontrun{

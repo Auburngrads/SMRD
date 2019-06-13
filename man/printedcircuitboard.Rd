@@ -18,7 +18,7 @@ Meeker, W. Q., and LuValle, M. J. (1995),
         Technometrics, \bold{37}, 133-146.
 }
 \description{
-Meeker and LuValle give data from an accelerated life test on failure of 
+Meeker and LuValle (1995) give data from an accelerated life test on failure of 
              printed circuit boards. The purpose of the experiment was to study the 
              effect of the stresses on the failure-time distribution and to predict 
              reliability under normal operating conditions. More specifically, the 
@@ -35,24 +35,3 @@ Meeker and LuValle give data from an accelerated life test on failure of
              determining the effects of temperature, relative humidity, and electric field 
              on the reliability of printed circuit boards.
 }
-\seealso{
-Other data-done: \code{\link{alloya}},
-  \code{\link{at7987}}, \code{\link{bearingcage}},
-  \code{\link{berkson20}}, \code{\link{bleed}},
-  \code{\link{ceramicbearing}}, \code{\link{cirpack6}},
-  \code{\link{comptime}}, \code{\link{computerlab}},
-  \code{\link{cylinder}}, \code{\link{devicea}},
-  \code{\link{deviceb}}, \code{\link{devicec}},
-  \code{\link{deviceg}}, \code{\link{fan}},
-  \code{\link{gaaslaser}}, \code{\link{grampus}},
-  \code{\link{grids1}}, \code{\link{halfbeak}},
-  \code{\link{heatexchanger}}, \code{\link{lfp1370}},
-  \code{\link{lfptrun100}}, \code{\link{lzbearing}},
-  \code{\link{metalwear}}, \code{\link{mylarsub}},
-  \code{\link{nicdbattery}}, \code{\link{piccioto}},
-  \code{\link{resistor2}}, \code{\link{resistor}},
-  \code{\link{superalloy}}, \code{\link{tantalum}},
-  \code{\link{turbine}}, \code{\link{v7tube}},
-  \code{\link{valveseat}}, \code{\link{zelencap}}
-}
-\concept{data-done}

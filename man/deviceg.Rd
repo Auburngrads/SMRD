@@ -14,31 +14,9 @@ Meeker W.Q. and Escobar L.A. (1998) Statistical Methods for Reliability Data, Ne
 }
 \description{
 Thirty (30) samples of a device that was part of a power generation system were tested as part of a field tracking study 
-             for up to 300 thousand cycles. The devices under test were installed in typical service environments and at the occurence 
+             for up to 300 kilocycles. The devices under test were installed in typical service environments and at the occurence 
              of a failure, the observed number of cycles and the type of failure were recorded. 
              Surge failures, which predominated early in the device life-cycle, were caused by an accumulation of randomly occurring 
              damage from power-line voltage spikes during electric storms resulting in failure of a particular unprotected electronic 
              component. Wearout failures resulted from normal product wear and began to appear after 100 thousand cycles of use.
 }
-\seealso{
-Other data-done: \code{\link{alloya}},
-  \code{\link{at7987}}, \code{\link{bearingcage}},
-  \code{\link{berkson20}}, \code{\link{bleed}},
-  \code{\link{ceramicbearing}}, \code{\link{cirpack6}},
-  \code{\link{comptime}}, \code{\link{computerlab}},
-  \code{\link{cylinder}}, \code{\link{devicea}},
-  \code{\link{deviceb}}, \code{\link{devicec}},
-  \code{\link{fan}}, \code{\link{gaaslaser}},
-  \code{\link{grampus}}, \code{\link{grids1}},
-  \code{\link{halfbeak}}, \code{\link{heatexchanger}},
-  \code{\link{lfp1370}}, \code{\link{lfptrun100}},
-  \code{\link{lzbearing}}, \code{\link{metalwear}},
-  \code{\link{mylarsub}}, \code{\link{nicdbattery}},
-  \code{\link{piccioto}},
-  \code{\link{printedcircuitboard}},
-  \code{\link{resistor2}}, \code{\link{resistor}},
-  \code{\link{superalloy}}, \code{\link{tantalum}},
-  \code{\link{turbine}}, \code{\link{v7tube}},
-  \code{\link{valveseat}}, \code{\link{zelencap}}
-}
-\concept{data-done}

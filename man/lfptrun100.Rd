@@ -15,29 +15,19 @@
 Meeker, W. Q. (1987), Limited failure population life tests: application to integrated circuit reliability, Technometrics, 29, 51-65.
 }
 \description{
-The primary purpose of this experiment was to estimate the proportion of defective units being manufactured in the current production process and to estimate the amount of 'burn-in' time that would be required to remove most of the defective units from the product population.  The reliability engineers were also interested in whether it might be possible to get the needed information about the state of the production process, in the future, using much shorter tests (say 200 or 300 hours).\\  The event column indicates that these data are singly right censored at 1370 hours.  However, the presence of ties indicates that the data are inspection times, and are thus interval censored observations.
+The primary purpose of this experiment was to estimate the proportion of 
+             defective units being manufactured in the current production process and 
+             to estimate the amount of 'burn-in' time that would be required to remove 
+             most of the defective units from the product population.  The engineers 
+             involved in the experiment were also interested in whether it might be 
+             possible to get the needed information about the state of the production process. 
+             In the future, using much shorter tests (say 200 or 300 hours).
+}
+\details{
+The \code{event} column indicates that these data are singly right censored at 1370 hours.
+         However, the presence of ties indicates that the data are actually inspection times which 
+         perhaps should have been recorded as interval censored observations.
 }
 \seealso{
 \code{\link{lfp1370}}
-
-Other data-done: \code{\link{alloya}},
-  \code{\link{at7987}}, \code{\link{bearingcage}},
-  \code{\link{berkson20}}, \code{\link{bleed}},
-  \code{\link{ceramicbearing}}, \code{\link{cirpack6}},
-  \code{\link{comptime}}, \code{\link{computerlab}},
-  \code{\link{cylinder}}, \code{\link{devicea}},
-  \code{\link{deviceb}}, \code{\link{devicec}},
-  \code{\link{deviceg}}, \code{\link{fan}},
-  \code{\link{gaaslaser}}, \code{\link{grampus}},
-  \code{\link{grids1}}, \code{\link{halfbeak}},
-  \code{\link{heatexchanger}}, \code{\link{lfp1370}},
-  \code{\link{lzbearing}}, \code{\link{metalwear}},
-  \code{\link{mylarsub}}, \code{\link{nicdbattery}},
-  \code{\link{piccioto}},
-  \code{\link{printedcircuitboard}},
-  \code{\link{resistor2}}, \code{\link{resistor}},
-  \code{\link{superalloy}}, \code{\link{tantalum}},
-  \code{\link{turbine}}, \code{\link{v7tube}},
-  \code{\link{valveseat}}, \code{\link{zelencap}}
 }
-\concept{data-done}

@@ -33,25 +33,3 @@ Bearing cages are used in ball bearing assemblies to ensure that the
          ball bearings do not drift out of position relative to the other ball 
          bearings during use.
 }
-\seealso{
-Other data-done: \code{\link{alloya}},
-  \code{\link{at7987}}, \code{\link{berkson20}},
-  \code{\link{bleed}}, \code{\link{ceramicbearing}},
-  \code{\link{cirpack6}}, \code{\link{comptime}},
-  \code{\link{computerlab}}, \code{\link{cylinder}},
-  \code{\link{devicea}}, \code{\link{deviceb}},
-  \code{\link{devicec}}, \code{\link{deviceg}},
-  \code{\link{fan}}, \code{\link{gaaslaser}},
-  \code{\link{grampus}}, \code{\link{grids1}},
-  \code{\link{halfbeak}}, \code{\link{heatexchanger}},
-  \code{\link{lfp1370}}, \code{\link{lfptrun100}},
-  \code{\link{lzbearing}}, \code{\link{metalwear}},
-  \code{\link{mylarsub}}, \code{\link{nicdbattery}},
-  \code{\link{piccioto}},
-  \code{\link{printedcircuitboard}},
-  \code{\link{resistor2}}, \code{\link{resistor}},
-  \code{\link{superalloy}}, \code{\link{tantalum}},
-  \code{\link{turbine}}, \code{\link{v7tube}},
-  \code{\link{valveseat}}, \code{\link{zelencap}}
-}
-\concept{data-done}

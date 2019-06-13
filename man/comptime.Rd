@@ -14,31 +14,9 @@
 Meeker W.Q. and Escobar L.A. (1998) Statistical Methods for Reliability Data, New York, NY; John Wiley & Sons.
 }
 \description{
-Dataset containing the amount of time required to execute a 
-             particular computer program on a multiuser computer system.
+Meeker and Escobar report the amount of time required for a Unix computer
+             to execute a particular computer program on a multiuser computer system.
              The response (execution) times are a function of the total
              system load, which was obtained using the Unix \code{uptime}
              command.
 }
-\seealso{
-Other data-done: \code{\link{alloya}},
-  \code{\link{at7987}}, \code{\link{bearingcage}},
-  \code{\link{berkson20}}, \code{\link{bleed}},
-  \code{\link{ceramicbearing}}, \code{\link{cirpack6}},
-  \code{\link{computerlab}}, \code{\link{cylinder}},
-  \code{\link{devicea}}, \code{\link{deviceb}},
-  \code{\link{devicec}}, \code{\link{deviceg}},
-  \code{\link{fan}}, \code{\link{gaaslaser}},
-  \code{\link{grampus}}, \code{\link{grids1}},
-  \code{\link{halfbeak}}, \code{\link{heatexchanger}},
-  \code{\link{lfp1370}}, \code{\link{lfptrun100}},
-  \code{\link{lzbearing}}, \code{\link{metalwear}},
-  \code{\link{mylarsub}}, \code{\link{nicdbattery}},
-  \code{\link{piccioto}},
-  \code{\link{printedcircuitboard}},
-  \code{\link{resistor2}}, \code{\link{resistor}},
-  \code{\link{superalloy}}, \code{\link{tantalum}},
-  \code{\link{turbine}}, \code{\link{v7tube}},
-  \code{\link{valveseat}}, \code{\link{zelencap}}
-}
-\concept{data-done}

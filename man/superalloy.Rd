@@ -19,32 +19,10 @@ Nelson, W. (1990),
         New York, NY; John Wiley \& Sons.
 }
 \description{
-Nelson presents and analyzes life data from a strain-controlled, low-cycle fatigue test performed on 26 cylindrical 
+Nelson (1990) presents and analyzes life data from a strain-controlled, low-cycle fatigue test performed on 26 cylindrical 
              specimens of a nickel-base superalloy. Four of the specimens were removed from the test before failure.
              In addition to recording the number of cycles to failure, the level of pseudostress (Young's modulus 
              times strain) was also measured.  The initial purpose of Nelson's analysis was to estimate the curve 
              giving the number of cycles at which .1\% of the population of such specimens would fail, as a function 
              of pseudostress.
 }
-\seealso{
-Other data-done: \code{\link{alloya}},
-  \code{\link{at7987}}, \code{\link{bearingcage}},
-  \code{\link{berkson20}}, \code{\link{bleed}},
-  \code{\link{ceramicbearing}}, \code{\link{cirpack6}},
-  \code{\link{comptime}}, \code{\link{computerlab}},
-  \code{\link{cylinder}}, \code{\link{devicea}},
-  \code{\link{deviceb}}, \code{\link{devicec}},
-  \code{\link{deviceg}}, \code{\link{fan}},
-  \code{\link{gaaslaser}}, \code{\link{grampus}},
-  \code{\link{grids1}}, \code{\link{halfbeak}},
-  \code{\link{heatexchanger}}, \code{\link{lfp1370}},
-  \code{\link{lfptrun100}}, \code{\link{lzbearing}},
-  \code{\link{metalwear}}, \code{\link{mylarsub}},
-  \code{\link{nicdbattery}}, \code{\link{piccioto}},
-  \code{\link{printedcircuitboard}},
-  \code{\link{resistor2}}, \code{\link{resistor}},
-  \code{\link{tantalum}}, \code{\link{turbine}},
-  \code{\link{v7tube}}, \code{\link{valveseat}},
-  \code{\link{zelencap}}
-}
-\concept{data-done}

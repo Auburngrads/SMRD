@@ -16,31 +16,9 @@ Davis, D. J. (1952) An analysis of some failure data,
         Journal of the American Statistical Association, \bold{47}, 113-150.
 }
 \description{
-Although solid-state electronics has made vacuum tubes obsolete for most applications, such tubes are still 
-             widely used in the output stage of high-power transmitters. Davis presents life data (1952) for a certain kind 
+Although solid-state electronics have made vacuum tubes obsolete for most applications, such tubes are still 
+             widely used in the output stage of high-power transmitters. Davis (1952) presents life data for a certain kind 
              of transmitter vacuum tube (designated as "V7" within a particular transmitter design).  For this dataset, and in 
              many practical situations, the exact failure times were not reported. Instead the data only contain the number of 
              failures observed within each inspection interval.
 }
-\seealso{
-Other data-done: \code{\link{alloya}},
-  \code{\link{at7987}}, \code{\link{bearingcage}},
-  \code{\link{berkson20}}, \code{\link{bleed}},
-  \code{\link{ceramicbearing}}, \code{\link{cirpack6}},
-  \code{\link{comptime}}, \code{\link{computerlab}},
-  \code{\link{cylinder}}, \code{\link{devicea}},
-  \code{\link{deviceb}}, \code{\link{devicec}},
-  \code{\link{deviceg}}, \code{\link{fan}},
-  \code{\link{gaaslaser}}, \code{\link{grampus}},
-  \code{\link{grids1}}, \code{\link{halfbeak}},
-  \code{\link{heatexchanger}}, \code{\link{lfp1370}},
-  \code{\link{lfptrun100}}, \code{\link{lzbearing}},
-  \code{\link{metalwear}}, \code{\link{mylarsub}},
-  \code{\link{nicdbattery}}, \code{\link{piccioto}},
-  \code{\link{printedcircuitboard}},
-  \code{\link{resistor2}}, \code{\link{resistor}},
-  \code{\link{superalloy}}, \code{\link{tantalum}},
-  \code{\link{turbine}}, \code{\link{valveseat}},
-  \code{\link{zelencap}}
-}
-\concept{data-done}

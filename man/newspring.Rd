@@ -43,12 +43,12 @@ Other data-notdone: \code{\link{adhesivebondc}},
   \code{\link{luminosity}}, \code{\link{machineh}},
   \code{\link{mechanicalswitch}},
   \code{\link{multiplefail}}, \code{\link{parta}},
-  \code{\link{pipelinethickness}}, \code{\link{pmax}},
-  \code{\link{prob3_5}}, \code{\link{riverchem}},
-  \code{\link{shelflifea}}, \code{\link{testdadtplan}},
-  \code{\link{titanium2}}, \code{\link{titanium}},
-  \code{\link{tractorbreaks}}, \code{\link{turbinedevice}},
-  \code{\link{vehiclemotor}},
+  \code{\link{piccioto}}, \code{\link{pipelinethickness}},
+  \code{\link{pmax}}, \code{\link{prob3_5}},
+  \code{\link{riverchem}}, \code{\link{shelflifea}},
+  \code{\link{testdadtplan}}, \code{\link{titanium2}},
+  \code{\link{titanium}}, \code{\link{tractorbreaks}},
+  \code{\link{turbinedevice}}, \code{\link{vehiclemotor}},
   \code{\link{voltageendurance}}, \code{\link{workstation}}
 }
 \concept{data-notdone}

@@ -17,7 +17,7 @@ Abernethy, R. B., Breneman, J. E., Medlin, C. H., and Reinman, G. L., (1983)
 }
 \description{
 Abernethy, Breneman, Medlin, and Reinman give failure and 
-             running time for 2256 bleed systems operating at several 
+             running times for 2256 bleed systems operating at several 
              geographically separated bases. They observed a change in 
              the probability plot before and after 600 of operation.  
              Further examination showed that 9 of the 19 failures occurred 
@@ -30,25 +30,3 @@ Abernethy, Breneman, Medlin, and Reinman give failure and
              salt air (Base D was near the ocean). A change in maintenance 
              procedures there solved the dominant bleed system reliability problem.
 }
-\seealso{
-Other data-done: \code{\link{alloya}},
-  \code{\link{at7987}}, \code{\link{bearingcage}},
-  \code{\link{berkson20}}, \code{\link{ceramicbearing}},
-  \code{\link{cirpack6}}, \code{\link{comptime}},
-  \code{\link{computerlab}}, \code{\link{cylinder}},
-  \code{\link{devicea}}, \code{\link{deviceb}},
-  \code{\link{devicec}}, \code{\link{deviceg}},
-  \code{\link{fan}}, \code{\link{gaaslaser}},
-  \code{\link{grampus}}, \code{\link{grids1}},
-  \code{\link{halfbeak}}, \code{\link{heatexchanger}},
-  \code{\link{lfp1370}}, \code{\link{lfptrun100}},
-  \code{\link{lzbearing}}, \code{\link{metalwear}},
-  \code{\link{mylarsub}}, \code{\link{nicdbattery}},
-  \code{\link{piccioto}},
-  \code{\link{printedcircuitboard}},
-  \code{\link{resistor2}}, \code{\link{resistor}},
-  \code{\link{superalloy}}, \code{\link{tantalum}},
-  \code{\link{turbine}}, \code{\link{v7tube}},
-  \code{\link{valveseat}}, \code{\link{zelencap}}
-}
-\concept{data-done}

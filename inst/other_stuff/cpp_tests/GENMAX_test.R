@@ -1,4 +1,5 @@
 library(smrdfortran)
+library(SMRD)
 testnum = 3
 if(testnum == 1) {
 lz.ld <- frame.to.ld(superalloy,
@@ -61,9 +62,9 @@ debug1 = F
   y <-Response(data.ld)
   ncoly <- ncol(y)
   number.cases <- nrow(y)
-  the.case.weights <- smrdfortran:::case.weights(data.ld)
+  the.case.weights <- SMRD:::case.weights(data.ld)
   ny <- ncol(y)
-  the.truncation.codes <- smrdfortran:::truncation.codes(data.ld)
+  the.truncation.codes <- SMRD:::truncation.codes(data.ld)
   if (is.null(the.truncation.codes)) {
     ty <- 1
     ncolty <- 0
@@ -71,16 +72,16 @@ debug1 = F
 
   } else {
 
-    ty <- smrdfortran:::truncation.response(data.ld)
+    ty <- SMRD:::truncation.response(data.ld)
     ncolty <- ncol(ty)
 
   }
-  distribution.number <- smrdfortran:::numdist(distribution)
+  distribution.number <- SMRD:::numdist(distribution)
 
     if (distribution.number == 14) distribution.number <- 8
 
     cat("dist num =", distribution, distribution.number, "\n")
-      the.censor.codes <- smrdfortran:::censor.codes(data.ld)
+      the.censor.codes <- SMRD:::censor.codes(data.ld)
 
       if (length(gamthr) == 1)
         gamthr <- rep(gamthr, number.cases)
@@ -88,7 +89,7 @@ debug1 = F
         if (length(gamthr) != number.cases)
           stop("specified offset is the wrong length")
 
-          get.rmodel.info.out <- smrdfortran:::get.rmodel.info(distribution,
+          get.rmodel.info.out <- SMRD:::get.rmodel.info(distribution,
                                                  model,
                                                  explan.vars)
           explan.vars <- get.rmodel.info.out$explan.vars
@@ -102,7 +103,7 @@ debug1 = F
 
           } else {
 
-            the.xmat <- smrdfortran:::xmat(data.ld)
+            the.xmat <- SMRD:::xmat(data.ld)
             ncol.orig.x <- ncol(the.xmat)
             if (is.null(the.xmat))
               stop("Explanatory variables requested, but there is no X matrix")

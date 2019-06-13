@@ -22,29 +22,10 @@ Nelson, W. (1995) Confidence limits for recurrence data - applied to cost or num
 \description{
 Nelson and Doganaksoy report the age when a valve seat replacement occurred across a fleet of 41 diesel 
              engines. For each engine, the number of days when a replacement event occured were recorded along with the number of 
-             days when the observational period ended. The data were recorded to answer the questions (1) Does the replacement rate increased with age?
-             (2) How many replacement valves will be needed in some future period of time? and (3) Can valve life in these 
-             systems be modeled as a superimposed renewal process?
+             days when the observational period ended. The data were recorded to answer the following questions:
+             \describe{ 
+             {1}{Does the replacement rate increased with age?}
+             {2}{How many replacement valves will be needed in some future period of time?}
+             {3}{Can valve life in these systems be modeled as a superimposed renewal process?}
+             }
 }
-\seealso{
-Other data-done: \code{\link{alloya}},
-  \code{\link{at7987}}, \code{\link{bearingcage}},
-  \code{\link{berkson20}}, \code{\link{bleed}},
-  \code{\link{ceramicbearing}}, \code{\link{cirpack6}},
-  \code{\link{comptime}}, \code{\link{computerlab}},
-  \code{\link{cylinder}}, \code{\link{devicea}},
-  \code{\link{deviceb}}, \code{\link{devicec}},
-  \code{\link{deviceg}}, \code{\link{fan}},
-  \code{\link{gaaslaser}}, \code{\link{grampus}},
-  \code{\link{grids1}}, \code{\link{halfbeak}},
-  \code{\link{heatexchanger}}, \code{\link{lfp1370}},
-  \code{\link{lfptrun100}}, \code{\link{lzbearing}},
-  \code{\link{metalwear}}, \code{\link{mylarsub}},
-  \code{\link{nicdbattery}}, \code{\link{piccioto}},
-  \code{\link{printedcircuitboard}},
-  \code{\link{resistor2}}, \code{\link{resistor}},
-  \code{\link{superalloy}}, \code{\link{tantalum}},
-  \code{\link{turbine}}, \code{\link{v7tube}},
-  \code{\link{zelencap}}
-}
-\concept{data-done}

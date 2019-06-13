@@ -15,31 +15,9 @@ Kalkanis, G., and Rosso, E. (1989),
         Nuclear Instruments and Methods in Physics Research, \bold{A281}, 489-496.
 }
 \description{
-Kalkanis and Rosso present data generated from an accelerated life test performed on a 
+Kalkanis and Rosso (1989) present data generated from an accelerated life test performed on a 
              special type of mylar-polyurethane insulation used in high-performance electro-magnets.
              The data give the time to dielectric breakdown of units tested at 100.3, 122.4, 157.1, 
              219.0, and 361.4 kV/mm.  The purpose of the experiment was to evaluate the reliability 
              of the insulating structure and to estimate the life distribution at system design voltages.
 }
-\seealso{
-Other data-done: \code{\link{alloya}},
-  \code{\link{at7987}}, \code{\link{bearingcage}},
-  \code{\link{berkson20}}, \code{\link{bleed}},
-  \code{\link{ceramicbearing}}, \code{\link{cirpack6}},
-  \code{\link{comptime}}, \code{\link{computerlab}},
-  \code{\link{cylinder}}, \code{\link{devicea}},
-  \code{\link{deviceb}}, \code{\link{devicec}},
-  \code{\link{deviceg}}, \code{\link{fan}},
-  \code{\link{gaaslaser}}, \code{\link{grampus}},
-  \code{\link{grids1}}, \code{\link{halfbeak}},
-  \code{\link{heatexchanger}}, \code{\link{lfp1370}},
-  \code{\link{lfptrun100}}, \code{\link{lzbearing}},
-  \code{\link{metalwear}}, \code{\link{nicdbattery}},
-  \code{\link{piccioto}},
-  \code{\link{printedcircuitboard}},
-  \code{\link{resistor2}}, \code{\link{resistor}},
-  \code{\link{superalloy}}, \code{\link{tantalum}},
-  \code{\link{turbine}}, \code{\link{v7tube}},
-  \code{\link{valveseat}}, \code{\link{zelencap}}
-}
-\concept{data-done}

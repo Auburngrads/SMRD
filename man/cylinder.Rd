@@ -25,27 +25,5 @@ Cylinders in a type of diesel engine can develop leaks or have low compression.
          Cylinders are inspected at times of convenience, along with other usual engine maintenance operations. 
          Faulty cylinders are replaced by a rebuilt cylinder.  More than one cylinder could be replaced at an inspection.  
          Management needed to know if the company should perform preventive replacement of cylinders before they develop 
-         low compression.
+         low compression failures.
 }
-\seealso{
-Other data-done: \code{\link{alloya}},
-  \code{\link{at7987}}, \code{\link{bearingcage}},
-  \code{\link{berkson20}}, \code{\link{bleed}},
-  \code{\link{ceramicbearing}}, \code{\link{cirpack6}},
-  \code{\link{comptime}}, \code{\link{computerlab}},
-  \code{\link{devicea}}, \code{\link{deviceb}},
-  \code{\link{devicec}}, \code{\link{deviceg}},
-  \code{\link{fan}}, \code{\link{gaaslaser}},
-  \code{\link{grampus}}, \code{\link{grids1}},
-  \code{\link{halfbeak}}, \code{\link{heatexchanger}},
-  \code{\link{lfp1370}}, \code{\link{lfptrun100}},
-  \code{\link{lzbearing}}, \code{\link{metalwear}},
-  \code{\link{mylarsub}}, \code{\link{nicdbattery}},
-  \code{\link{piccioto}},
-  \code{\link{printedcircuitboard}},
-  \code{\link{resistor2}}, \code{\link{resistor}},
-  \code{\link{superalloy}}, \code{\link{tantalum}},
-  \code{\link{turbine}}, \code{\link{v7tube}},
-  \code{\link{valveseat}}, \code{\link{zelencap}}
-}
-\concept{data-done}

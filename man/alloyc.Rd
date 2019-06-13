@@ -17,6 +17,6 @@ Meeker W.Q. and Escobar L.A., Statistical Methods for Reliability Data, New York
 \description{
 These data resulted from a test that was conducted to obtain information on the strength of an alloy produced by 
              an alternate process.  The designation for the alloy was not provided and is only referred to as "Alloy C".  Specimens
-             of the alloy were subjected to various levels of constant stress, measured in ksi (1 ksi = 1000 psi).  The dataset 
+             of the alloy were subjected to different levels of constant stress, measured in ksi (1 ksi = 1000 psi).  The data set 
              includes the number of failed specimens observed in each interval of applied stress.
 }

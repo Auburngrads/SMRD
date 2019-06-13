@@ -34,7 +34,6 @@ NULL
 #' 
 #' @docType data
 #' @name alloya
-#' @family data-done
 #' @format  A \code{data.frame} with 262 rows and 3 variables
 #' \tabular{rlll}{
 #'   [, 1] \tab inches \tab Crack length observed at \code{megacycles} \tab \bold{Numeric}\cr
@@ -68,7 +67,7 @@ NULL
 #' @source Meeker W.Q. and Escobar L.A., Statistical Methods for Reliability Data, New York, NY; John Wiley & Sons. \bold{276}
 #' @description These data resulted from a test that was conducted to obtain information on the strength of an alloy produced by 
 #'              an alternate process.  The designation for the alloy was not provided and is only referred to as "Alloy C".  Specimens
-#'              of the alloy were subjected to various levels of constant stress, measured in ksi (1 ksi = 1000 psi).  The dataset 
+#'              of the alloy were subjected to different levels of constant stress, measured in ksi (1 ksi = 1000 psi).  The data set 
 #'              includes the number of failed specimens observed in each interval of applied stress. 
 NULL
 
@@ -157,7 +156,6 @@ NULL
 #' Fatigue life test (alloy T7987)
 #' 
 #' @docType data
-#' @family data-done
 #' @name at7987
 #' @format A \code{data.frame} with 68 rows and 3 variables:
 #' \tabular{rlll}{
@@ -170,14 +168,13 @@ NULL
 #'              designated as T-7987. In this test, 72 specimens were subjected 
 #'              to an unreported load spectrum. The number of cycles at which a 
 #'              specimen failed was recorded (rounded to the nearest thousand cycles).
-#'              Of the 72 units tested, 67 failures were observed and 5 units were right 
+#'              Of the 72 units tested, 67 units failures were observed and 5 units were right 
 #'              censored at 300 kilocycles.
 NULL
 
 #' \eqn{\alpha}-particle emissions of Americurium-241
 #'
 #' @docType data
-#' @family data-done
 #' @name berkson20
 #' @name berkson200
 #' @name berkson2000
@@ -227,7 +224,6 @@ NULL
 #' Bleed system reliability data 
 #'
 #' @docType data
-#' @family data-done
 #' @name bleed
 #' @format A \code{data.frame} with 60 rows and 4 variables:
 #' \tabular{rlll}{
@@ -239,7 +235,7 @@ NULL
 #' @source Abernethy, R. B., Breneman, J. E., Medlin, C. H., and Reinman, G. L., (1983) 
 #'         Weibull Analysis Handbook, Air Force Wright Aeronautical Laboratories Technical Report AFWAL-TR-83-2079
 #' @description Abernethy, Breneman, Medlin, and Reinman give failure and 
-#'              running time for 2256 bleed systems operating at several 
+#'              running times for 2256 bleed systems operating at several 
 #'              geographically separated bases. They observed a change in 
 #'              the probability plot before and after 600 of operation.  
 #'              Further examination showed that 9 of the 19 failures occurred 
@@ -269,7 +265,6 @@ NULL
 #' Large system bearing cage fracture test 
 #'
 #' @docType data
-#' @family data-done
 #' @name bearingcage
 #' @description Ball bearing assembly failure data   
 #' @format A \code{data.frame} with 25 rows and 3 variables:
@@ -331,7 +326,6 @@ NULL
 #' Rolling contact fatigue of ceramic ball bearings
 #' 
 #' @docType data
-#' @family data-done
 #' @name ceramicbearing   
 #' @format A \code{data.frame} with 69 rows and 5 variables:
 #' \tabular{rlll}{
@@ -344,10 +338,9 @@ NULL
 #' @source McCool, J. I. (1980), 
 #'         Confidence limits for Weibull regression with censored data, 
 #'         IEEE Transactions on Reliability, \bold{R-29}, 145-150.
-#' @description McCool gives the results of a life test 
-#'              on rolling contact fatigue of ceramic 
-#'              ball bearings. Ten specimens were tested
-#'              at each of 4 levels of stress. 
+#' @description McCool gives the results of a rolling contact fatigue test of ceramic 
+#'              ball bearings. Ten specimens were tested across four levels of stress 
+#'              measured in kilo-Newtons (1 kN = 1000 N). 
 NULL
 
 #' #####
@@ -413,7 +406,6 @@ NULL
 #' Computer program execution time data 
 #' 
 #' @docType data
-#' @family data-done
 #' @name comptime   
 #' @format A \code{data.frame} with 17 rows and 3 variables:
 #' \tabular{rlll}{
@@ -422,8 +414,8 @@ NULL
 #'   [, 3] \tab seconds \tab Execution time observed at \code{load} \tab \bold{Numeric}
 #'    }
 #' @source Meeker W.Q. and Escobar L.A. (1998) Statistical Methods for Reliability Data, New York, NY; John Wiley & Sons.
-#' @description Dataset containing the amount of time required to execute a 
-#'              particular computer program on a multiuser computer system.
+#' @description Meeker and Escobar report the amount of time required for a Unix computer
+#'              to execute a particular computer program on a multiuser computer system.
 #'              The response (execution) times are a function of the total
 #'              system load, which was obtained using the Unix \code{uptime}
 #'              command. 
@@ -432,7 +424,6 @@ NULL
 #' Computer lab reliability data 
 #' 
 #' @docType data
-#' @family data-done
 #' @name computerlab   
 #' @format A \code{data.frame} with 101 rows and 3 variables:
 #' \tabular{rlll}{
@@ -444,7 +435,7 @@ NULL
 #' @description A small un-monitored computer laboratory contains 10 networked
 #'              microcomputers. Users who notice a hardware or software problem with
 #'              a computer are supposed to report the problem to a technician who
-#'              will fix the problem.  This dataset includes the days in which trouble 
+#'              will fix the problem.  This data set includes the days in which trouble 
 #'              calls were received, for each computer. Most of the trouble
 #'              reports were easy to address (replace a defective mouse, reboot
 #'              the computer, remake the computer's file system from the server, remove
@@ -471,7 +462,6 @@ NULL
 #' Circuit pack field tracking study 
 #' 
 #' @docType data
-#' @family data-done
 #' @name cirpack6   
 #' @format A \code{data.frame} with 27 rows and 7 variables:
 #' \tabular{rlll}{
@@ -498,8 +488,8 @@ NULL
 #'              containing defective components. Failures during the first 
 #'              1000 hours of burn-in were not recorded. This is the reason 
 #'              for the unknown entries in the table and for having information 
-#'              out to 11,000 hours for Vendor 2.  These data are for the first 
-#'              failure in a position; information on circuit packs replaced 
+#'              out to 11,000 hours for Vendor 2.  The data are for the first 
+#'              failure in a position. Information on circuit packs replaced 
 #'              after initial failure in a position was not part of the study.
 NULL
 
@@ -535,7 +525,6 @@ NULL
 #' Diesel engine cylinder replacements 
 #' 
 #' @docType data
-#' @family data-done
 #' @name cylinder   
 #' @format A \code{data.frame} with 276 rows and 4 variables:
 #' \tabular{rlll}{
@@ -553,13 +542,12 @@ NULL
 #'          Cylinders are inspected at times of convenience, along with other usual engine maintenance operations. 
 #'          Faulty cylinders are replaced by a rebuilt cylinder.  More than one cylinder could be replaced at an inspection.  
 #'          Management needed to know if the company should perform preventive replacement of cylinders before they develop 
-#'          low compression.
+#'          low compression failures.
 NULL
 
 #' Temperature-accelerated life test data 
 #'
 #' @docType data
-#' @family data-done
 #' @name devicea   
 #' @format A \code{data.frame} with 37 rows and 4 variables:
 #' \tabular{rlll}{
@@ -581,7 +569,6 @@ NULL
 #' Power output degradation in integrated circuit devices
 #'
 #' @docType data
-#' @family data-done
 #' @name deviceb   
 #' @format A \code{data.frame} with 570 rows and 4 variables:
 #' \tabular{rlll}{
@@ -608,7 +595,6 @@ NULL
 #' Integrated circuit accelerated life test data
 #'
 #' @docType data
-#' @family data-done
 #' @name devicec   
 #' @format A \code{data.frame} with 26 rows and 4 variables:
 #' \tabular{rlll}{
@@ -651,7 +637,6 @@ NULL
 #' Field tracking study with multiple failure modes
 #'
 #' @docType data
-#' @family data-done
 #' @name deviceg
 #' @format A \code{data.frame} with 30 rows and 2 variables:
 #' \tabular{rlll}{
@@ -660,7 +645,7 @@ NULL
 #'    }
 #' @source Meeker W.Q. and Escobar L.A. (1998) Statistical Methods for Reliability Data, New York, NY; John Wiley & Sons.
 #' @description Thirty (30) samples of a device that was part of a power generation system were tested as part of a field tracking study 
-#'              for up to 300 thousand cycles. The devices under test were installed in typical service environments and at the occurence 
+#'              for up to 300 kilocycles. The devices under test were installed in typical service environments and at the occurence 
 #'              of a failure, the observed number of cycles and the type of failure were recorded. 
 #'              Surge failures, which predominated early in the device life-cycle, were caused by an accumulation of randomly occurring 
 #'              damage from power-line voltage spikes during electric storms resulting in failure of a particular unprotected electronic 
@@ -780,7 +765,6 @@ NULL
 #' Diesel generator fan failures 
 #' 
 #' @docType data
-#' @family data-done
 #' @name fan  
 #' @format A \code{data.frame} with 37 rows and 3 variables:
 #' \tabular{rlll}{
@@ -817,7 +801,6 @@ NULL
 #' Gallium-Arsenic Laser Degradation Test 
 #' 
 #' @docType data
-#' @family data-done
 #' @name gaaslaser
 #' @format A \code{data.frame} with 255 rows and 3 variables:
 #' \tabular{rlll}{
@@ -840,7 +823,6 @@ NULL
 #' Unscheduled maintenance actions for the U.S.S. Grampus 
 #'
 #' @docType data
-#' @family data-done
 #' @name grampus   
 #' @format A \code{data.frame} with 57 rows and 3 variables:
 #' \tabular{rlll}{
@@ -852,8 +834,8 @@ NULL
 #'         Testing adequacy of the Weibull and loglinear rate models for a Poisson Process,
 #'         Technometrics, 22, 195-199  
 #' @source Ascher, H. and Feingold, H. (1984), Repairable Systems Reliability, New York, NY; Marcel Dekker
-#' @description Lee presents a dataset containing the times (in thousands of operating hours) of unscheduled maintenance actions on the 
-#'              number 4 diesel engine of the U.S.S. Grampus. The dataset contains observations for the first 16,000 hours of operation.  
+#' @description Lee (1980) presents a dataset containing the times (in thousands of operating hours) of unscheduled maintenance actions on the 
+#'              number 4 diesel engine of the U.S.S. Grampus. The data contain observations of maintenance actions for the first 16,000 hours of operation.  
 #'              The observations in this dataset should be treated as is they were observed from a single system, since information as 
 #'              to which component in the engine failed was not included. The unscheduled maintenance actions were caused by either system 
 #'              failures or by events that indicated that a system failure was imminent. Such maintenance actions are inconvenient and 
@@ -882,7 +864,6 @@ NULL
 #' Unscheduled maintenance actions for the U.S.S. Halfbeak 
 #'
 #' @docType data
-#' @family data-done
 #' @name halfbeak   
 #' @format A \code{data.frame} with 73 rows and 3 variables:
 #' \tabular{rlll}{
@@ -891,7 +872,7 @@ NULL
 #'   [, 3] \tab event \tab Event observed at \code{hours} (Start/Report/End)  \tab \bold{Categoric}
 #'    }
 #' @source Ascher, H. and Feingold, H. (1984), Repairable Systems Reliability, New York, NY; Marcel Dekker
-#' @description Ascher and Feingold present a dataset containing unscheduled maintenance actions for the U.S.S. Halfbeak number 4 main 
+#' @description Ascher and Feingold (1984) present a dataset containing unscheduled maintenance actions for the U.S.S. Halfbeak number 4 main 
 #'              propulsion diesel engine over 25,518 operating hours. For each observation, an event was recorded as either \code{start} 
 #'              (denotes the start of the observational period), \code{end} (denotes the end of the observational period), or \code{report}
 #'              (denoting that an unscheduled maintenance action was reported). The data were analyzed to determine if the system was 
@@ -937,7 +918,6 @@ NULL
 #' Nuclear power plant heat exchanger tube crack data 
 #' 
 #' @docType data
-#' @family data-done
 #' @name heatexchanger
 #' @format A \code{data.frame} with 9 rows and 5 variables:
 #' \tabular{rlll}{
@@ -1069,7 +1049,6 @@ NULL
 #' Integrated circuit life test 
 #'
 #' @docType data
-#' @family data-done
 #' @name lfp1370  
 #' @format A \code{data.frame} with 22 rows and 3 variables:
 #' \tabular{rlll}{
@@ -1078,14 +1057,23 @@ NULL
 #'   [, 3] \tab count \tab Number of events observed at \code{hours} \tab \bold{Numeric}
 #'   }
 #' @source Meeker, W. Q. (1987), Limited failure population life tests: application to integrated circuit reliability, Technometrics, 29, 51-65.
-#' @description The primary purpose of this experiment was to estimate the proportion of defective units being manufactured in the current production process and to estimate the amount of 'burn-in' time that would be required to remove most of the defective units from the product population.  The reliability engineers were also interested in whether it might be possible to get the needed information about the state of the production process, in the future, using much shorter tests (say 200 or 300 hours).\\  The event column indicates that these data are singly right censored at 1370 hours.  However, the presence of ties indicates that the data are inspection times, and are thus interval censored observations.
+#' @description The primary purpose of this experiment was to estimate the proportion of 
+#'              defective units being manufactured in the current production process and 
+#'              to estimate the amount of 'burn-in' time that would be required to remove 
+#'              most of the defective units from the product population.  The engineers 
+#'              involved in the experiment were also interested in whether it might be 
+#'              possible to get the needed information about the state of the production process. 
+#'              In the future, using much shorter tests (say 200 or 300 hours).
+#'              
+#' @details The \code{event} column indicates that these data are singly right censored at 1370 hours.
+#'          However, the presence of ties indicates that the data are actually inspection times which 
+#'          perhaps should have been recorded as interval censored observations.
 #' @seealso \code{\link{lfptrun100}}
 NULL
 
 #' Integrated circuit life test (truncated) 
 #'
 #' @docType data
-#' @family data-done
 #' @name lfptrun100
 #' @format A \code{data.frame} with 28 rows and 34variables:
 #' \tabular{rlll}{
@@ -1095,7 +1083,17 @@ NULL
 #'   [, 4] \tab truntype \tab Truncation type \code{hours} \tab \bold{Categoric}
 #'   }
 #' @source Meeker, W. Q. (1987), Limited failure population life tests: application to integrated circuit reliability, Technometrics, 29, 51-65.
-#' @description The primary purpose of this experiment was to estimate the proportion of defective units being manufactured in the current production process and to estimate the amount of 'burn-in' time that would be required to remove most of the defective units from the product population.  The reliability engineers were also interested in whether it might be possible to get the needed information about the state of the production process, in the future, using much shorter tests (say 200 or 300 hours).\\  The event column indicates that these data are singly right censored at 1370 hours.  However, the presence of ties indicates that the data are inspection times, and are thus interval censored observations.
+#' @description The primary purpose of this experiment was to estimate the proportion of 
+#'              defective units being manufactured in the current production process and 
+#'              to estimate the amount of 'burn-in' time that would be required to remove 
+#'              most of the defective units from the product population.  The engineers 
+#'              involved in the experiment were also interested in whether it might be 
+#'              possible to get the needed information about the state of the production process. 
+#'              In the future, using much shorter tests (say 200 or 300 hours).
+#'              
+#' @details The \code{event} column indicates that these data are singly right censored at 1370 hours.
+#'          However, the presence of ties indicates that the data are actually inspection times which 
+#'          perhaps should have been recorded as interval censored observations.
 #' @seealso \code{\link{lfp1370}}
 NULL
 
@@ -1133,15 +1131,18 @@ NULL
 #' Ball bearing fatigue test data
 #' 
 #' @docType data
-#' @family data-done
 #' @name lzbearing  
 #' @format A \code{data.frame} with 23 rows and 1 variable:
 #' \tabular{rlll}{
 #'   [, 1] \tab megacycles \tab Accumulated cycles at failure (in millions) \tab \bold{Numeric}
 #'  }
 #' @source Lawless, J. F. (1982), Statistical Models and Methods for Lifetime Data, New York, NY; Wiley & Sons
-#' @description The ball bearings came from four different major bearing companies. There was disagreement in the industry on the appropriate parameter values to use to describe the relationship between fatigue life and stress loading. The main objective of the study was to estimate values of the parameters in the equation relating bearing life to load.
-"lzbearing"
+#' @description The ball bearings came from four different major bearing companies. 
+#'              There was disagreement in the industry as to the appropriate parameter 
+#'              values to use to describe the relationship between fatigue life and stress 
+#'              loading. The main objective of the study was to estimate values of the parameters 
+#'              in the equation relating bearing life to load.
+NULL
 
 #' Earth-moving machine maintenance  
 #'
@@ -1176,9 +1177,7 @@ NULL
 #' Metal alloy sliding wear resistance test 
 #' 
 #' @docType data
-#' @family data-done
 #' @name metalwear
-#' @family data-done   
 #' @format A \code{data.frame} with 96 rows and 4 variables:
 #' \tabular{rlll}{
 #'   [, 1] \tab microns \tab Specimen thickness \tab \bold{Numeric}\cr
@@ -1217,7 +1216,6 @@ NULL
 #' 
 #' @rdname mylarpoly
 #' @docType data
-#' @family data-done
 #' @name mylarsub
 #' @name mylarpoly   
 #' @format A \code{data.frame} with 46 rows and 2 variables:
@@ -1228,7 +1226,7 @@ NULL
 #' @source Kalkanis, G., and Rosso, E. (1989),
 #'         The inverse power law model for the lifetime of a mylar-polyurethane laminated DC HV insulating structure, 
 #'         Nuclear Instruments and Methods in Physics Research, \bold{A281}, 489-496.
-#' @description Kalkanis and Rosso present data generated from an accelerated life test performed on a 
+#' @description Kalkanis and Rosso (1989) present data generated from an accelerated life test performed on a 
 #'              special type of mylar-polyurethane insulation used in high-performance electro-magnets.
 #'              The data give the time to dielectric breakdown of units tested at 100.3, 122.4, 157.1, 
 #'              219.0, and 361.4 kV/mm.  The purpose of the experiment was to evaluate the reliability 
@@ -1256,7 +1254,6 @@ NULL
 #' Accelerated test of spacecraft battery cell data
 #'
 #' @docType data
-#' @family data-done
 #' @name nicdbattery
 #' @format A \code{data.frame} with 87 rows and 10 variables:
 #' \tabular{rlll}{
@@ -1275,7 +1272,7 @@ NULL
 #'         Accelerated Test Program for Sealed Nickel--Cadmium Spacecraft Batteries/Cells,
 #'         Technical Report WQEC/C 79-145. Available from the Department of the Navy, 
 #'         Naval Weapons Support Center, Weapons Quality Engineering Center, Crane, IN 47522.
-#' @description Brown and Mains present the results of an extensive experiment to evaluate 
+#' @description Brown and Mains (1979) present the results of an extensive experiment to evaluate 
 #'              the long-term performance of rechargable nickel-cadmium battery cells that 
 #'              were to be used in spacecraft. The study used 8 experimental factors. The 
 #'              first five factors are environmental or accelerating factors (set to higher 
@@ -1319,7 +1316,7 @@ NULL
 #' Tensile Fatigue Test of Polyester/Viscose Yarn 
 #'
 #' @docType data
-#' @family data-done
+#' @family data-notdone
 #' @rdname piccioto
 #' @name piccioto
 #' @name piccioto2
@@ -1334,7 +1331,9 @@ NULL
 #'         Tensile Fatigue Characteristics of a Sized Polyester/Viscose Yarn and Their Effect on Weaving Performance. 
 #'         A thesis submitted to the Graduate Faculty of North Carolina State University at Raleigh in partial fulfillment of the requirements for the Degree of Master of Science. 
 #'         Department of Textile Technology.
-#' @description Picciotto includes the \code{length} and \code{kcycles} columns.  picciotto2 is a subset of the picciotto data set, including only the units for which \code{length = 30,60, or 90}.  picciotto3 mirrors picciotto2 but assumes that the test conlcuded at 100 kilocycles
+#' @description Picciotto includes the \code{length} and \code{kcycles} columns.  
+#'              picciotto2 is a subset of the picciotto data set, including only the units for which \code{length = 30,60, or 90}.  
+#'              picciotto3 mirrors picciotto2 but assumes that the test conlcuded at 100 kilocycles
 NULL
 
 #' ##### 
@@ -1389,7 +1388,6 @@ NULL
 #' Printed circuit board accelerated life test 
 #'
 #' @docType data
-#' @family data-done
 #' @name printedcircuitboard   
 #' @format A \code{data.frame} with 140 rows and 5 variables:
 #' \tabular{rlll}{
@@ -1402,7 +1400,7 @@ NULL
 #' @source Meeker, W. Q., and LuValle, M. J. (1995), 
 #'         An accelerated life test model based on reliability kinetics, 
 #'         Technometrics, \bold{37}, 133-146.
-#' @description Meeker and LuValle give data from an accelerated life test on failure of 
+#' @description Meeker and LuValle (1995) give data from an accelerated life test on failure of 
 #'              printed circuit boards. The purpose of the experiment was to study the 
 #'              effect of the stresses on the failure-time distribution and to predict 
 #'              reliability under normal operating conditions. More specifically, the 
@@ -1479,7 +1477,6 @@ NULL
 #' Carbon-Film Resistor Accelerated Degradation Test 
 #'
 #' @docType data
-#' @family data-done
 #' @name resistor   
 #' @format A \code{data.frame} with 116 rows and 4 variables:
 #' \tabular{rlll}{
@@ -1500,14 +1497,14 @@ NULL
 #'              can cause reduced product performance or even cause system failures.  The test was run at high levels 
 #'              of temperature to accelerate the chemical degradation process and obtain degradation data more quickly.
 #'              
-#'              The \code{resistor} dataset presents the percent change in resistance measured throughout the test, 
-#'              while the \code{resistor2} dataset presents the absolute value of resistance measure during the test.
+#'              This dataset presents the percent change in resistance measured throughout the test, 
+#'              while the \code{\link{resistor2}} dataset presents the absolute value of resistance measure during the test.
+#' @seealso \code{\link{resistor2}}
 NULL
 
 #' Carbon-Film Resistor Accelerated Degradation Test
 #'
 #' @docType data
-#' @family data-done
 #' @name resistor2
 #' @format A \code{data.frame} with 145 rows and 4 variables:
 #' \tabular{rlll}{
@@ -1528,8 +1525,9 @@ NULL
 #'              can cause reduced product performance or even cause system failures.  The test was run at high levels 
 #'              of temperature to accelerate the chemical degradation process and obtain degradation data more quickly.
 #'              
-#'              The \code{resistor} dataset presents the percent change in resistance measured throughout the test, 
-#'              while the \code{resistor2} dataset presents the absolute value of resistance measure during the test.
+#'              The \code{\link{resistor}} dataset presents the percent change in resistance measured throughout the test, 
+#'              while this dataset presents the absolute value of resistance measure during the test.
+#' @seealso \code{\link{resistor}}
 NULL
 
 #' ##### 
@@ -1622,7 +1620,6 @@ NULL
 #' Nickel-based Superalloy Fatigue Test
 #'
 #' @docType data
-#' @family data-done
 #' @name superalloy
 #' @format A \code{data.frame} with 23 rows and 6 variables:
 #' \tabular{rlll}{
@@ -1636,7 +1633,7 @@ NULL
 #' @source Nelson, W. (1990), 
 #'         Accelerated Testing: Statistical Models, Test Plans, and Data Analyses, 
 #'         New York, NY; John Wiley \& Sons.
-#' @description Nelson presents and analyzes life data from a strain-controlled, low-cycle fatigue test performed on 26 cylindrical 
+#' @description Nelson (1990) presents and analyzes life data from a strain-controlled, low-cycle fatigue test performed on 26 cylindrical 
 #'              specimens of a nickel-base superalloy. Four of the specimens were removed from the test before failure.
 #'              In addition to recording the number of cycles to failure, the level of pseudostress (Young's modulus 
 #'              times strain) was also measured.  The initial purpose of Nelson's analysis was to estimate the curve 
@@ -1647,7 +1644,6 @@ NULL
 #' Electrolytic capacitor accelerated life test data
 #'
 #' @docType data
-#' @family data-done
 #' @name tantalum
 #' @format A \code{data.frame} with 48 rows and 5 variables:
 #' \tabular{rlll}{
@@ -1660,7 +1656,7 @@ NULL
 #' @source Singpurwalla, N. D., Castellino, V. C., and Goldschen, D. Y. (1975),
 #'         Inference from accelerated life tests using Eyring type re-parameterizations,  
 #'         Naval Research Logistics Quarterly, \bold{22}, 289-296.
-#' @description Singpurwalla, Castellino, and Goldschen present temperature/voltage accelerated life test data on tantalum 
+#' @description Singpurwalla, Castellino, and Goldschen (1975) present temperature/voltage accelerated life test data on tantalum 
 #'              electrolytic capacitors. The tests were conducted at temperature/voltage combinations that were nonrectangular 
 #'              and with unequal allocations of units.
 NULL
@@ -1745,7 +1741,6 @@ NULL
 #' Turbine wheel crack initiation data
 #'
 #' @docType data
-#' @family data-done
 #' @name turbine
 #' @format A \code{data.frame} with 21 rows and 3 variables:
 #' \tabular{rlll}{
@@ -1754,7 +1749,7 @@ NULL
 #'   [, 3] \tab count \tab Number of events observed at \code{hours} \tab \bold{Numeric}
 #'    }
 #' @source Nelson, W.	(1982) Applied Life Data Analysis, New York, NY: John Wiley \& Sons.
-#' @description Nelson describes a study to estimate the 
+#' @description Nelson (1982) describes a study to estimate the 
 #'              distribution of time to crack initiation for turbine 
 #'              wheels.  Each of 432 wheels were inspected once to 
 #'              determine if it had started to crack or not.  At the 
@@ -1789,7 +1784,6 @@ NULL
 #' Transmitter vacuum tube life test data
 #'
 #' @docType data
-#' @family data-done
 #' @name v7tube
 #' @format A \code{data.frame} with 5 rows and 4 variables:
 #' \tabular{rlll}{
@@ -1800,8 +1794,8 @@ NULL
 #'    }
 #' @source Davis, D. J. (1952) An analysis of some failure data, 
 #'         Journal of the American Statistical Association, \bold{47}, 113-150.
-#' @description Although solid-state electronics has made vacuum tubes obsolete for most applications, such tubes are still 
-#'              widely used in the output stage of high-power transmitters. Davis presents life data (1952) for a certain kind 
+#' @description Although solid-state electronics have made vacuum tubes obsolete for most applications, such tubes are still 
+#'              widely used in the output stage of high-power transmitters. Davis (1952) presents life data for a certain kind 
 #'              of transmitter vacuum tube (designated as "V7" within a particular transmitter design).  For this dataset, and in 
 #'              many practical situations, the exact failure times were not reported. Instead the data only contain the number of 
 #'              failures observed within each inspection interval.
@@ -1827,7 +1821,6 @@ NULL
 #' Diesel engine valve seat data
 #'
 #' @docType data
-#' @family data-done
 #' @name valveseat
 #' @format A \code{data.frame} with 89 rows and 3 variables:
 #' \tabular{rlll}{
@@ -1843,9 +1836,12 @@ NULL
 #'         Technometrics, \bold{37}, 147-157.
 #' @description Nelson and Doganaksoy report the age when a valve seat replacement occurred across a fleet of 41 diesel 
 #'              engines. For each engine, the number of days when a replacement event occured were recorded along with the number of 
-#'              days when the observational period ended. The data were recorded to answer the questions (1) Does the replacement rate increased with age?
-#'              (2) How many replacement valves will be needed in some future period of time? and (3) Can valve life in these 
-#'              systems be modeled as a superimposed renewal process?
+#'              days when the observational period ended. The data were recorded to answer the following questions:
+#'              \describe{ 
+#'              {1}{Does the replacement rate increased with age?}
+#'              {2}{How many replacement valves will be needed in some future period of time?}
+#'              {3}{Can valve life in these systems be modeled as a superimposed renewal process?}
+#'              }
 NULL
 
 #' #####
@@ -1895,7 +1891,6 @@ NULL
 #' Glass capacitor accelerated life test data
 #'
 #' @docType data
-#' @family data-done
 #' @name zelencap
 #' @format A \code{data.frame} with 40 rows and 5 variables:
 #' \tabular{rlll}{

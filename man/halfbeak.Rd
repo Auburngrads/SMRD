@@ -14,31 +14,9 @@
 Ascher, H. and Feingold, H. (1984), Repairable Systems Reliability, New York, NY; Marcel Dekker
 }
 \description{
-Ascher and Feingold present a dataset containing unscheduled maintenance actions for the U.S.S. Halfbeak number 4 main 
+Ascher and Feingold (1984) present a dataset containing unscheduled maintenance actions for the U.S.S. Halfbeak number 4 main 
              propulsion diesel engine over 25,518 operating hours. For each observation, an event was recorded as either \code{start} 
              (denotes the start of the observational period), \code{end} (denotes the end of the observational period), or \code{report}
              (denoting that an unscheduled maintenance action was reported). The data were analyzed to determine if the system was 
              deteriorating (unscheduled maintenance actions were being reported more frequently as the system ages)
 }
-\seealso{
-Other data-done: \code{\link{alloya}},
-  \code{\link{at7987}}, \code{\link{bearingcage}},
-  \code{\link{berkson20}}, \code{\link{bleed}},
-  \code{\link{ceramicbearing}}, \code{\link{cirpack6}},
-  \code{\link{comptime}}, \code{\link{computerlab}},
-  \code{\link{cylinder}}, \code{\link{devicea}},
-  \code{\link{deviceb}}, \code{\link{devicec}},
-  \code{\link{deviceg}}, \code{\link{fan}},
-  \code{\link{gaaslaser}}, \code{\link{grampus}},
-  \code{\link{grids1}}, \code{\link{heatexchanger}},
-  \code{\link{lfp1370}}, \code{\link{lfptrun100}},
-  \code{\link{lzbearing}}, \code{\link{metalwear}},
-  \code{\link{mylarsub}}, \code{\link{nicdbattery}},
-  \code{\link{piccioto}},
-  \code{\link{printedcircuitboard}},
-  \code{\link{resistor2}}, \code{\link{resistor}},
-  \code{\link{superalloy}}, \code{\link{tantalum}},
-  \code{\link{turbine}}, \code{\link{v7tube}},
-  \code{\link{valveseat}}, \code{\link{zelencap}}
-}
-\concept{data-done}

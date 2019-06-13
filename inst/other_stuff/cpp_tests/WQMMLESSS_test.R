@@ -1,6 +1,6 @@
 library(smrdfortran)
 library(SMRD)
-test = 5
+test = 7
 if(test == 1){
   
    data.ld <- frame.to.ld(lzbearing, response.column = 1) 
@@ -43,6 +43,13 @@ if(test == 6){
                          case.weight.column = 3,
                          time.units = "Hours")
 }
+if(test == 7) {
+data.ld <- frame.to.ld(superalloy,
+                     response.column = 1,
+                     censor.column = 2,
+                     case.weight.column = 3,
+                     x.columns = c(4,5,6))
+}
 
 distribution = 'lognormal' 
 explan.vars = NULL
@@ -53,7 +60,7 @@ intercept = T
 if(!exists("kprint")) kprint = 0
 maxit = 500
 debug1 = F 
-likelihood.method = SMRD:::GetsmrdfortranDefault("smrdfortran.likelihood.method")
+likelihood.method = SMRD:::GetSMRDDefault("smrdfortran.likelihood.method")
 
 
     the.xmat <- SMRD:::xmat(data.ld)

@@ -27,28 +27,9 @@ Samples of carbon-film resistors were tested at each of three levels of temperat
              can cause reduced product performance or even cause system failures.  The test was run at high levels 
              of temperature to accelerate the chemical degradation process and obtain degradation data more quickly.
              
-             The \code{resistor} dataset presents the percent change in resistance measured throughout the test, 
-             while the \code{resistor2} dataset presents the absolute value of resistance measure during the test.
+             The \code{\link{resistor}} dataset presents the percent change in resistance measured throughout the test, 
+             while this dataset presents the absolute value of resistance measure during the test.
 }
 \seealso{
-Other data-done: \code{\link{alloya}},
-  \code{\link{at7987}}, \code{\link{bearingcage}},
-  \code{\link{berkson20}}, \code{\link{bleed}},
-  \code{\link{ceramicbearing}}, \code{\link{cirpack6}},
-  \code{\link{comptime}}, \code{\link{computerlab}},
-  \code{\link{cylinder}}, \code{\link{devicea}},
-  \code{\link{deviceb}}, \code{\link{devicec}},
-  \code{\link{deviceg}}, \code{\link{fan}},
-  \code{\link{gaaslaser}}, \code{\link{grampus}},
-  \code{\link{grids1}}, \code{\link{halfbeak}},
-  \code{\link{heatexchanger}}, \code{\link{lfp1370}},
-  \code{\link{lfptrun100}}, \code{\link{lzbearing}},
-  \code{\link{metalwear}}, \code{\link{mylarsub}},
-  \code{\link{nicdbattery}}, \code{\link{piccioto}},
-  \code{\link{printedcircuitboard}},
-  \code{\link{resistor}}, \code{\link{superalloy}},
-  \code{\link{tantalum}}, \code{\link{turbine}},
-  \code{\link{v7tube}}, \code{\link{valveseat}},
-  \code{\link{zelencap}}
+\code{\link{resistor}}
 }
-\concept{data-done}

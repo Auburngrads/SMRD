@@ -18,28 +18,6 @@ A test was conducted to assess the fatigue life of an alloy,
              designated as T-7987. In this test, 72 specimens were subjected 
              to an unreported load spectrum. The number of cycles at which a 
              specimen failed was recorded (rounded to the nearest thousand cycles).
-             Of the 72 units tested, 67 failures were observed and 5 units were right 
+             Of the 72 units tested, 67 units failures were observed and 5 units were right 
              censored at 300 kilocycles.
 }
-\seealso{
-Other data-done: \code{\link{alloya}},
-  \code{\link{bearingcage}}, \code{\link{berkson20}},
-  \code{\link{bleed}}, \code{\link{ceramicbearing}},
-  \code{\link{cirpack6}}, \code{\link{comptime}},
-  \code{\link{computerlab}}, \code{\link{cylinder}},
-  \code{\link{devicea}}, \code{\link{deviceb}},
-  \code{\link{devicec}}, \code{\link{deviceg}},
-  \code{\link{fan}}, \code{\link{gaaslaser}},
-  \code{\link{grampus}}, \code{\link{grids1}},
-  \code{\link{halfbeak}}, \code{\link{heatexchanger}},
-  \code{\link{lfp1370}}, \code{\link{lfptrun100}},
-  \code{\link{lzbearing}}, \code{\link{metalwear}},
-  \code{\link{mylarsub}}, \code{\link{nicdbattery}},
-  \code{\link{piccioto}},
-  \code{\link{printedcircuitboard}},
-  \code{\link{resistor2}}, \code{\link{resistor}},
-  \code{\link{superalloy}}, \code{\link{tantalum}},
-  \code{\link{turbine}}, \code{\link{v7tube}},
-  \code{\link{valveseat}}, \code{\link{zelencap}}
-}
-\concept{data-done}

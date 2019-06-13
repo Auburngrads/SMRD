@@ -24,7 +24,7 @@ Brown, H. M., and Mains D. E (1979)
         Naval Weapons Support Center, Weapons Quality Engineering Center, Crane, IN 47522.
 }
 \description{
-Brown and Mains present the results of an extensive experiment to evaluate 
+Brown and Mains (1979) present the results of an extensive experiment to evaluate 
              the long-term performance of rechargable nickel-cadmium battery cells that 
              were to be used in spacecraft. The study used 8 experimental factors. The 
              first five factors are environmental or accelerating factors (set to higher 
@@ -35,25 +35,3 @@ Brown and Mains present the results of an extensive experiment to evaluate
              was tested at a combination of factor levels determined according to a central 
              composite experimental plan.
 }
-\seealso{
-Other data-done: \code{\link{alloya}},
-  \code{\link{at7987}}, \code{\link{bearingcage}},
-  \code{\link{berkson20}}, \code{\link{bleed}},
-  \code{\link{ceramicbearing}}, \code{\link{cirpack6}},
-  \code{\link{comptime}}, \code{\link{computerlab}},
-  \code{\link{cylinder}}, \code{\link{devicea}},
-  \code{\link{deviceb}}, \code{\link{devicec}},
-  \code{\link{deviceg}}, \code{\link{fan}},
-  \code{\link{gaaslaser}}, \code{\link{grampus}},
-  \code{\link{grids1}}, \code{\link{halfbeak}},
-  \code{\link{heatexchanger}}, \code{\link{lfp1370}},
-  \code{\link{lfptrun100}}, \code{\link{lzbearing}},
-  \code{\link{metalwear}}, \code{\link{mylarsub}},
-  \code{\link{piccioto}},
-  \code{\link{printedcircuitboard}},
-  \code{\link{resistor2}}, \code{\link{resistor}},
-  \code{\link{superalloy}}, \code{\link{tantalum}},
-  \code{\link{turbine}}, \code{\link{v7tube}},
-  \code{\link{valveseat}}, \code{\link{zelencap}}
-}
-\concept{data-done}
