@@ -1,7 +1,7 @@
-#' Create a \code{life.data} object from a \code{data.frame} 
+#' Generate a \code{life.data} object  
 #'
 #' @param frame  A \code{data.frame} class object.
-#' @param response.column The numeric index or name (as a character string) of the column(s) in \code{frame} containing the responses.  
+#' @param response.column The column(s) in \code{frame} containing the responses (given as numeric column indices or as a character string including the column names).  
 #'    
 #'    For reliability data, responses are often the amount of usage (measured in time, distance, cycles) that are recorded when an event occurred.
 #'    
@@ -38,6 +38,7 @@
 #' 
 #' @seealso \code{\link{frame.to.rmd}}, \code{\link{frame.to.ddd}}, \code{\link{SMRDOptionsDefaults}}
 #' 
+#' @return A \code{life.data} class object
 #' @examples
 #' \dontrun{
 #' # lzbearing data set
