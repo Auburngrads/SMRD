@@ -70,7 +70,7 @@ void gmfit1(int &ifit,
             int &nrownw,
             int &ier){
    
-double dersm = 1.0e-2,tol1 = 1.0e-02,tol2 = 1.0e-08;
+double dersm = 1.0e-2,tol1 = 1.0e-05,tol2 = 1.0e-08;
 double stepmx,eps,dermx,vvtol = 1.0e-12;
 int ierv = 0, ierd = 0, ierp = 0;
 int iprpow,ktrcde,nparmm,irank;
@@ -93,6 +93,7 @@ double ktt_out;
       Rcpp::Rcout << "ilabp = " << ilabp << std::endl;
       Rcpp::Rcout << "thetas = " << thetas << std::endl;
       Rcpp::Rcout << "thetat = " << thetat << std::endl;
+      Rcpp::Rcout << "  ifit = " << ifit << std::endl;
       
    }
    
@@ -140,7 +141,7 @@ xlogl = -1 * ktt_out;
 line102: if(debug::kprint >= 3){
    
             Rcpp::Rcout << "\nGMFIT1**2**\n" << std::endl;
-            Rcpp::Rcout << "ilabp = " << ilabp << std::endl;
+            Rcpp::Rcout << " ilabp = " << ilabp << std::endl;
             Rcpp::Rcout << "thetat = " << thetat << std::endl;
             
          }
@@ -167,7 +168,7 @@ line102: if(debug::kprint >= 3){
    if(debug::kprint >= 3){
       
       Rcpp::Rcout << "\nGMFIT1**3**\n" << std::endl;
-      Rcpp::Rcout << "ilabp = " << ilabp << std::endl;
+      Rcpp::Rcout << " ilabp = " << ilabp << std::endl;
       Rcpp::Rcout << "thetas = " << thetas << std::endl;
                
    }
@@ -178,9 +179,9 @@ line102: if(debug::kprint >= 3){
    if(debug::kprint >= 3){
       
       Rcpp::Rcout << "\nGMFIT1: values of epsx/eps for finite differences\n" << std::endl;
-      Rcpp::Rcout << "eps = "  << eps  << std::endl;
-      Rcpp::Rcout << "epsx = " << epsx << std::endl;
-      Rcpp::Rcout << "ilabp = " << ilabp << std::endl;
+      Rcpp::Rcout << "   eps = "  << eps  << std::endl;
+      Rcpp::Rcout << "  epsx = " << epsx << std::endl;
+      Rcpp::Rcout << " ilabp = " << ilabp << std::endl;
       Rcpp::Rcout << "thetas = " << thetas << std::endl;
       Rcpp::Rcout << "thetat = " << thetat << std::endl;
                
@@ -192,10 +193,10 @@ line102: if(debug::kprint >= 3){
    if(debug::kprint >= 3){
       
       Rcpp::Rcout << "\nGMFIT1**4**\n" << std::endl;
-      Rcpp::Rcout << "ilabp = " << ilabp << std::endl;
+      Rcpp::Rcout << " ilabp = " << ilabp << std::endl;
       Rcpp::Rcout << "thetas = " << thetas << std::endl;
       Rcpp::Rcout << "thetat = " << thetat << std::endl;
-      Rcpp::Rcout << "delta = " << delta << std::endl;
+      Rcpp::Rcout << " delta = " << delta << std::endl;
                
    }
 
@@ -206,17 +207,17 @@ line102: if(debug::kprint >= 3){
    
 // Get the maximum of the absolute values of the first derivatives
    dermx = std::max(std::abs(vmax(fstder,nparm)),std::abs(vmin(fstder,nparm)));
-   if((debug::kprint >= 2) and (dermx < dersm)){
+   if((debug::kprint >= 2) or (dermx >= dersm)){
       
        Rcpp::Rcout << "\nGMFIT1: first derivatives of the log likelihood" << std::endl;
        Rcpp::Rcout << "fstder = " << fstder << std::endl;
        
    }
    
-   vcvs = Rcpp::NumericMatrix(nparm,nparm);
+  vcvs = Rcpp::NumericMatrix(nparm,nparm);
    
 // Check the size of the first derivatives
-   if(dermx <= dersm) {
+   if(dermx > dersm) {
       
       ierd = 1;
       Rcpp::warning("\nDerivatives of the loglikelihood are not close to 0\nvariance-covariance matrix and normal theory confidence limits have no meaning\n");
@@ -243,6 +244,13 @@ line102: if(debug::kprint >= 3){
    matsqu(vcvss,kodet,nparm,nparm);
    if(debug::kprint >= 3) preign(vcvss,nparmm,nparm);
    
+   if(debug::kprint >= 3){
+      
+      Rcpp::Rcout << "\nGMFIT1: after matsqu 1\n" << std::endl;
+      Rcpp::Rcout << "vcvss = " << vcvss << std::endl;
+      Rcpp::Rcout << " vcvs = " << vcvs << std::endl;
+      
+   }
 // Compute the hessian in terms of the untrans param
 // looks at kodet to get info on fixed parameters
    unfixv(vcvs,fstder,thetas,kodet,nparm,nparm);
@@ -260,6 +268,14 @@ line102: if(debug::kprint >= 3){
    vcvss = clone(vcvs);
    matsqu(vcvss,kodet,nparm,nparm);
    if(debug::kprint >= 3) preign(vcvss,nparmm,nparm);
+   
+   if(debug::kprint >= 3){
+      
+      Rcpp::Rcout << "\nGMFIT1: after matsqu 2\n" << std::endl;
+      Rcpp::Rcout << "vcvss = " << vcvss << std::endl;
+      Rcpp::Rcout << " vcvs = " << vcvs << std::endl;
+      
+   }
    
 // Invert the squished fisher information matrix
    dinvv(vcvss,nparmm,vvtol,irank,nparm);

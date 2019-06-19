@@ -10,14 +10,11 @@ double fdup(double t,
             int kode){
 
 double f_dup;
-int kodep;
+int kodep = kode + 1;
    
-f_dup = t;
-kodep = kode + 1;
-
 if(ktrcde == 0) kodep = 2;
 
-if(kodep == 1){};
+if(kodep == 1){ f_dup = t; };
 
 if(kodep == 2){ f_dup = t + s; }
 

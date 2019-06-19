@@ -89,13 +89,13 @@ xflll = xflll / two;
 
 goto line136;
 
-fargsmm = Rcpp::List::create(Named("lt") = tmms,
-                             Named("ln") = n);
+line135: fargsmm = Rcpp::List::create(Named("lt") = tmms,
+                                      Named("ln") = n);
 
-flist = func(fargsmm);
-fout = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
-
-line135: tfuns = fout * two;
+         flist = func(fargsmm);
+         fout = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
+         
+         tfuns = fout * two;
 
 line136: for(int i = 1; i <= n; i++){
    
@@ -156,41 +156,37 @@ for(int j = 1; j <= n; j++){
                                                Named("lt") = tmms,
                                                Named("ln") = n);
                   flist  = func(fargsmm);
-                  fout   = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
+                  funcmm = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
                   weight = Rcpp::as<int>(Rcpp::as<List>(flist)["weight"]);
-                  funcmm = fout;
                   
                   sett(tmps);
                   fargsmp = Rcpp::List::create(Named("lk") = k,
                                                Named("lt") = tmps,
                                                Named("ln") = n);
                   flist  = func(fargsmp);
-                  fout   = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
+                  funcmp = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
                   weight = Rcpp::as<int>(Rcpp::as<List>(flist)["weight"]);
-                  funcmp = fout;
                   
                   sett(tpms);
                   fargspm = Rcpp::List::create(Named("lk") = k,
                                                Named("lt") = tpms,
                                                Named("ln") = n);
                   flist  = func(fargspm);
-                  fout   = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
+                  funcpm = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
                   weight = Rcpp::as<int>(Rcpp::as<List>(flist)["weight"]);
-                  funcpm = fout;
                   
                   sett(tpps);
                   fargspp = Rcpp::List::create(Named("lk") = k,
                                                Named("lt") = tpps,
                                                Named("ln") = n);
                   flist  = func(fargspp);
-                  fout   = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
+                  funcpp = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
                   weight = Rcpp::as<int>(Rcpp::as<List>(flist)["weight"]);
-                  funcpp = fout;
                   
-                  exadd(-weight * funcmm,accum);
+                  exadd(-1 * weight * funcmm,accum);
                   exadd( weight * funcmp,accum);
                   exadd( weight * funcpm,accum);
-                  exadd(-weight * funcpp,accum);
+                  exadd(-1 * weight * funcpp,accum);
                   xmmlll = xmmlll + weight * funcmm;
                   xmplll = xmplll + weight * funcmp;
                   xpmlll = xpmlll + weight * funcpm;
@@ -203,41 +199,47 @@ for(int j = 1; j <= n; j++){
            if(debug::kprint >= 4){
              
               Rcpp::Rcout << "\nHMAT**4**+ TOP\n" << std::endl;
-              Rcpp::Rcout << "i = " << i - 1 << std::endl;
-              Rcpp::Rcout << "j = " << j - 1 << std::endl;
+              Rcpp::Rcout << "     i = " << i - 1 << std::endl;
+              Rcpp::Rcout << "     j = " << j - 1 << std::endl;
               Rcpp::Rcout << "v(i,j) = " << v.at(i - 1,j - 1) << std::endl;
-              Rcpp::Rcout << "d12 = " << d12 << std::endl;
+              Rcpp::Rcout << "   d12 = " << d12 << std::endl;
+              Rcpp::Rcout << "weight = " << weight << std::endl;
               Rcpp::Rcout << "xpplll = " << xpplll << std::endl;
               Rcpp::Rcout << "xmplll = " << xmplll << std::endl;
               Rcpp::Rcout << "xpmlll = " << xpmlll << std::endl;
               Rcpp::Rcout << "xmmlll = " << xmmlll << std::endl;
-              Rcpp::Rcout << "accum = " << accum << std::endl;
+              Rcpp::Rcout << " accum = " << accum << std::endl;
+              Rcpp::Rcout << "funcpp = " << funcpp << std::endl;
+              Rcpp::Rcout << "funcmp = " << funcmp << std::endl;
+              Rcpp::Rcout << "funcpm = " << funcpm << std::endl;
+              Rcpp::Rcout << "funcmm = " << funcmm << std::endl;
              
            }     
            
            goto line126;
            
-           fargsmm = Rcpp::List::create(Named("lt") = tmm,
-                                        Named("ln") = n);
-           flist   = func(fargsmm);
-           foutmm  = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
-
-           fargsmp = Rcpp::List::create(Named("lt") = tmp,
-                                        Named("ln") = n);
-           flist   = func(fargsmp);
-           foutmp  = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
-
-           fargspm = Rcpp::List::create(Named("lt") = tpm,
-                                        Named("ln") = n);
-           flist   = func(fargspm);
-           foutpm  = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
-
-           fargspp = Rcpp::List::create(Named("lt") = tpp,
-                                        Named("ln") = n);
-           flist   = func(fargspp);
-           foutpp  = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
-
-           line125: v.at(i - 1,j - 1) = -1 * (foutmm - foutmp - foutpm + foutpp) / d12;
+           line125: fargsmm = Rcpp::List::create(Named("lt") = tmm,
+                                                 Named("ln") = n);
+                    flist   = func(fargsmm);
+                    foutmm  = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
+        
+                    fargsmp = Rcpp::List::create(Named("lt") = tmp,
+                                                 Named("ln") = n);
+                    flist   = func(fargsmp);
+                    foutmp  = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
+        
+                    fargspm = Rcpp::List::create(Named("lt") = tpm,
+                                                 Named("ln") = n);
+                    flist   = func(fargspm);
+                    foutpm  = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
+        
+                    fargspp = Rcpp::List::create(Named("lt") = tpp,
+                                                 Named("ln") = n);
+                    flist   = func(fargspp);
+                    foutpp  = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
+        
+                    v.at(i - 1,j - 1) = -1 * (foutmm - foutmp - foutpm + foutpp) / d12;
+                    
            line126: if(debug::kprint >= 4){
              
                        Rcpp::Rcout << "\nHMAT1**4** TOP\n" << std::endl;
@@ -249,6 +251,10 @@ for(int j = 1; j <= n; j++){
                        Rcpp::Rcout << "deltaj = " << deltaj << std::endl;
                        Rcpp::Rcout << "thetai = " << thetai << std::endl;
                        Rcpp::Rcout << "thetaj = " << thetaj << std::endl;
+                       Rcpp::Rcout << "foutpp = " << foutpp << std::endl;
+                       Rcpp::Rcout << "foutmp = " << foutmp << std::endl;
+                       Rcpp::Rcout << "foutpm = " << foutpm << std::endl;
+                       Rcpp::Rcout << "foutmm = " << foutmm << std::endl;
              
                     }
            
@@ -323,24 +329,26 @@ for(int j = 1; j <= n; j++){
          Rcpp::Rcout << "xflll = " << xflll << std::endl;
          Rcpp::Rcout << "xmmlll = " << xmmlll << std::endl;
          Rcpp::Rcout << "accum = " << accum << std::endl;
+         Rcpp::Rcout << "funcpp = " << funcpp << std::endl;
+         Rcpp::Rcout << "funcmp = " << funcmp << std::endl;
+         Rcpp::Rcout << "funcpm = " << funcpm << std::endl;
+         Rcpp::Rcout << "funcmm = " << funcmm << std::endl;
              
       }     
 
       goto line1126;
       
-      fargsmm = Rcpp::List::create(Named("lt") = tmm,
-                                   Named("ln") = n);
-      flist   = func(fargsmm);
-      foutmm  = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
-      
-      fargspp = Rcpp::List::create(Named("lt") = tpp,
-                                   Named("ln") = n);
-      flist   = func(fargspp);
-      foutpp  = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
-      
-
-
-      line1125: v.at(j - 1,j - 1) = -1 * (foutmm - tfuns + foutpp) / d12;
+      line1125: fargsmm = Rcpp::List::create(Named("lt") = tmm,
+                                             Named("ln") = n);
+                flist   = func(fargsmm);
+                foutmm  = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
+                
+                fargspp = Rcpp::List::create(Named("lt") = tpp,
+                                             Named("ln") = n);
+                flist   = func(fargspp);
+                foutpp  = Rcpp::as<double>(Rcpp::as<List>(flist)["val"]);
+          
+                v.at(j - 1,j - 1) = -1 * (foutmm - tfuns + foutpp) / d12;
       
       line1126: if(debug::kprint >= 4){
              
@@ -350,6 +358,8 @@ for(int j = 1; j <= n; j++){
                    Rcpp::Rcout << "npoint = " << npoint << std::endl;
                    Rcpp::Rcout << "deltaj = " << deltaj << std::endl;
                    Rcpp::Rcout << "thetaj = " << thetaj << std::endl;
+                   Rcpp::Rcout << "foutpp = " << foutpp << std::endl;
+                   Rcpp::Rcout << "foutmm = " << foutmm << std::endl;
              
                 }
       

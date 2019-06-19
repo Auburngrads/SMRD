@@ -77,7 +77,7 @@ for(int i = 1; i <= n; i++){
     if(deltai < small) goto line126;
     
     tdelt = two * deltai;
-    tm.at(i - 1) = fdup(thetai,-deltai,ktrcde,kodet.at(i - 1));
+    tm.at(i - 1) = fdup(thetai,-1 * deltai,ktrcde,kodet.at(i - 1));
     tp.at(i - 1) = fdup(thetai,deltai,ktrcde,kodet.at(i - 1));
     
     if(npoint == 0) goto line125;
@@ -115,17 +115,18 @@ for(int i = 1; i <= n; i++){
               xmlll = xmlll + weight * funcm;
               xplll = xplll + weight * funcp;
 
-              exadd(-weight * funcp,accum);
-              exadd( weight * funcm,accum);
+              exadd((-1 * weight * funcp),accum);
+              exadd(( 1 * weight * funcm),accum);
               acct = accum.at(0) + accum.at(1);
 
               if(debug::kprint >= 9){
 
                  Rcpp::Rcout << "\nGVEC**8**\n" << std::endl;
-                 Rcpp::Rcout << "funcp = " << funcp << std::endl;
-                 Rcpp::Rcout << "funcm = " << funcm << std::endl;
-                 Rcpp::Rcout << "accum = " << accum << std::endl;
-                 Rcpp::Rcout << "acct = " << acct << std::endl;
+                 Rcpp::Rcout << " funcp = " << funcp << std::endl;
+                 Rcpp::Rcout << " funcm = " << funcm << std::endl;
+                 Rcpp::Rcout << " accum = " << accum << std::endl;
+                 Rcpp::Rcout << "  acct = " << acct << std::endl;
+                 Rcpp::Rcout << "weight = " << weight << std::endl;
 
               }
 
@@ -137,7 +138,7 @@ for(int i = 1; i <= n; i++){
                  Rcpp::Rcout << "\nGVEC1**9**\n" << std::endl;
                  Rcpp::Rcout << "xmlll = " << xmlll << std::endl;
                  Rcpp::Rcout << "xplll = " << xplll << std::endl;
-                 Rcpp::Rcout << "diff = "  << Diff << std::endl;
+                 Rcpp::Rcout << " diff = " << Diff << std::endl;
                  Rcpp::Rcout << "diff2 = " << Diff2 << std::endl;
 
               }
@@ -149,13 +150,13 @@ for(int i = 1; i <= n; i++){
        if(debug::kprint >= 4){
 
           Rcpp::Rcout << "\nGVEC1**4**\n" << std::endl;
-          Rcpp::Rcout << "i = "     << i - 1 << std::endl;
+          Rcpp::Rcout << "    i = "     << i - 1 << std::endl;
           Rcpp::Rcout << "tdelt = " << tdelt << std::endl;
           Rcpp::Rcout << "xmlll = " << xmlll << std::endl;
           Rcpp::Rcout << "xplll = " << xplll << std::endl;
           Rcpp::Rcout << "tdelt = " << tdelt << std::endl;
           Rcpp::Rcout << "accum = " << accum << std::endl;
-          Rcpp::Rcout << "d(i) = "  << d.at(i - 1) << std::endl;
+          Rcpp::Rcout << " d(i) = "  << d.at(i - 1) << std::endl;
 
        }
 
@@ -176,13 +177,13 @@ line125: fargsp  = Rcpp::List::create(Named("lt") = tp,
 line126: if(debug::kprint >= 4){
    
             Rcpp::Rcout << "\nGVEC1**5**\n" << std::endl;
-            Rcpp::Rcout << "i = "        << i - 1 << std::endl;
+            Rcpp::Rcout << "       i = " << i - 1 << std::endl;
             Rcpp::Rcout << "kodet(i) = " << kodet.at(i - 1) << std::endl;
             Rcpp::Rcout << "npoint = "   << npoint << std::endl;
             Rcpp::Rcout << "ktrcde = "   << ktrcde << std::endl;
             Rcpp::Rcout << "deltai = "   << deltai << std::endl;
             Rcpp::Rcout << "thetai = "   << thetai << std::endl;
-            Rcpp::Rcout << "d(i) = "     << d.at(i - 1) << std::endl;
+            Rcpp::Rcout << "  d(i) = "   << d.at(i - 1) << std::endl;
    
          }
 

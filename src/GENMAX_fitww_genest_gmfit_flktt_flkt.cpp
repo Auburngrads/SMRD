@@ -25,37 +25,23 @@ double fl_kt;
    Rcpp::NumericVector igamme = Rcpp::NumericVector(genx03::g_ngame);
 
 // Go to get the likelihood value and its weight
-   Rcpp::NumericMatrix IPY = clone(genx01::g_ipy);
-   Rcpp::IntegerVector IPCODE = clone(genx01::g_ipcode);
-   Rcpp::IntegerVector IPWEIG = clone(genx01::g_ipweig);
-   Rcpp::NumericMatrix IPTY = clone(genx01::g_ipty);
-   Rcpp::IntegerVector IPTC = clone(genx01::g_iptc);
-   Rcpp::IntegerVector IPINOW = clone(genx01::g_ipinow);
-
-   fl_kt = flkt1(kpnow,
+    fl_kt = flkt1(kpnow,
                  genx07::g_kmod,
                  genx07::g_kdist,
                  weigi,
                  thetas,
                  nparm,
-                 IPY,
+                 genx01::g_ipy,
                  genx00::g_ncoly,
                  genx00::g_nrownw,
-                 IPCODE,
-                 IPWEIG,
+                 genx01::g_ipcode,
+                 genx01::g_ipweig,
                  genx00::g_ncolty,
-                 IPTY,
-                 IPTC,
+                 genx01::g_ipty,
+                 genx01::g_iptc,
                  igamme,
-                 IPINOW,
+                 genx01::g_ipinow,
                  genx03::g_ngame);
-   
-   genx01::g_ipy = clone(IPY);
-   genx01::g_ipcode = clone(IPCODE);
-   genx01::g_ipweig = clone(IPWEIG);
-   genx01::g_ipty = clone(IPTY);
-   genx01::g_iptc = clone(IPTC);
-   genx01::g_ipinow = clone(IPINOW);
    
    return Rcpp::List::create(Named("val") = fl_kt,
                              Named("weight") = genx01::g_ipweig.at(kpnow - 1));

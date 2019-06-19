@@ -1,14 +1,13 @@
 library(smrdfortran)
 library(SMRD)
-testnum = 3
-if(testnum == 1) {
-lz.ld <- frame.to.ld(superalloy,
+test = 5
+if(test == 1) {
+data.ld <- frame.to.ld(superalloy,
                      response.column = 1,
                      censor.column = 2,
                      case.weight.column = 3,
                      x.columns = c(4,5,6))
-data.ld <- lz.ld
-distribution = "Weibull"
+distribution = "weibull"
 theta.start = NULL
 explan.vars = list(mu.relat = c(2,3),
                    sigma.relat = c(2))
@@ -19,13 +18,12 @@ model = 0
 
 }
 
-if(testnum == 2) {
-lz.ld <- frame.to.ld(superalloy,
+if(test == 2) {
+data.ld <- frame.to.ld(superalloy,
                      response.column = 1,
                      censor.column = 2,
                      case.weight.column = 3,
                      x.columns = c(4,5,6))
-data.ld <- lz.ld
 distribution = "weibull"
 theta.start = NULL
 explan.vars = list(mu.relat = c(2,3))
@@ -35,13 +33,38 @@ prob.relat = NULL
 model = 0
 
 }
-if(testnum == 3) {
-lz.ld <- frame.to.ld(superalloy,
+if(test == 3) {
+data.ld <- frame.to.ld(superalloy,
                      response.column = 1,
                      censor.column = 2,
                      case.weight.column = 3,
                      x.columns = c(4,5,6))
-data.ld <- lz.ld
+distribution = "weibull"
+theta.start = NULL
+explan.vars = NULL
+mu.relat = NULL
+sigma.relat = NULL
+prob.relat = NULL
+model = 0
+
+}
+if(test == 4) {
+data.ld <- frame.to.ld(lzbearing,
+                     response.column = 1)
+distribution = "lognormal"
+theta.start = NULL
+explan.vars = NULL
+mu.relat = NULL
+sigma.relat = NULL
+prob.relat = NULL
+model = 0
+
+}
+if(test == 5) {
+data.ld <- frame.to.ld(heatexchanger,
+                       response.column = c(1,2),
+                       censor.column = 3,
+                       case.weight.column = 4)
 distribution = "weibull"
 theta.start = NULL
 explan.vars = NULL
@@ -66,9 +89,9 @@ debug1 = F
   ny <- ncol(y)
   the.truncation.codes <- SMRD:::truncation.codes(data.ld)
   if (is.null(the.truncation.codes)) {
-    ty <- 1
+    ty <- rep(1,number.cases)
     ncolty <- 0
-    the.truncation.codes <- 1
+    the.truncation.codes <- rep(1,number.cases)
 
   } else {
 

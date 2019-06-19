@@ -29,7 +29,12 @@ thetas = Rcpp::as<NumericVector>(Rcpp::as<List>(args)["lt"]);
    ptgame(thetas);
    rgamme(genx08::g_kpoint,thetas,ipgame);
    
-   if(genx08::g_pest <= zero) return ipgame.at(0);
+   if(genx08::g_pest <= zero) {
+      
+      val = ipgame.at(0);
+      goto exit;
+      
+   }
    
 // cxx#  if(lupest.eq.0)go to 50
 // cxx#  scale=one
@@ -51,7 +56,7 @@ thetas = Rcpp::as<NumericVector>(Rcpp::as<List>(args)["lt"]);
                llogn,
                genx08::g_pest);
    
-   return Rcpp::List::create(Named("val") = val);
+   exit: return Rcpp::List::create(Named("val") = val);
   
 }
 

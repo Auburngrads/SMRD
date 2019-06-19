@@ -234,6 +234,14 @@ int kmccde,kmodp,llog,nregr;
    
    gmfit(ifit,thetas,kodet,maxit,fstder,ipplab,xlogl,
          nparm,vcvs,r,escale,epsx,nrownw,ier);
+   
+   if(debug::kprint > 7){
+      
+      Rcpp::Rcout << "\nAFTER GMFIT\n" << std::endl;
+      Rcpp::Rcout << "vcvs = \n" << vcvs << std::endl;
+      Rcpp::Rcout << "   r = \n" << r << std::endl;
+      
+   }
 
 // Find residuals and yhat
    mlrsd(ipy,ncoly,nrownw,thetas,kdist,resid,yhat);

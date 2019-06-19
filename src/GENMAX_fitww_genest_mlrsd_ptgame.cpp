@@ -36,7 +36,7 @@ Rcpp::List IPXCG = clone(genx20::g_ipxcg);
           if(debug::kprint >= 5){
              
              Rcpp::Rcout << "\nPTGAME BEFORE RGAMI\n" << std::endl;
-             Rcpp::Rcout << "igam = " << igam << std::endl;
+             Rcpp::Rcout << "igam = " << igam - 1 << std::endl;
              Rcpp::Rcout << "nxg(igam) = " << NXG.at(igam - 1) << std::endl;
              Rcpp::Rcout << "nterg = " << NTERG << std::endl;
              Rcpp::Rcout << "intg(igam) = " << INTG.at(igam - 1) << std::endl;

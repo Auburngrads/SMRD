@@ -13,7 +13,7 @@ void pargen(Rcpp::NumericVector &theta,
 double per = 100 * conlev;
 double s = 0.0e00, xlow = 0.0e00,xu = 0.0e00;
   
-Rcpp::Rcout << "\nmodel parameter" << per << "% confidence limits\n" << std::endl;
+Rcpp::Rcout << "\nmodel parameter " << per << "% confidence limits\n" << std::endl;
      
 // Get parameter confidence interval and print in table
    for(int j = 1; j <= nparm; j++){

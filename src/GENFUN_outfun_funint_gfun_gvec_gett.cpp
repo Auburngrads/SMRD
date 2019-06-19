@@ -17,9 +17,9 @@ void gett(Rcpp::NumericVector &t,
       ptgame(ts);
   
 // Set the gamma stuff in gamms and move to the end of ts for save
-   for(int i = genx07::g_nparm; i <= genx07::g_nparm + genx03::g_ngame; i++){
+   for(int i = 1; i <= genx03::g_ngame; i++){
         
-       ts.at(i - 1) = genx21::g_gamms.at(i - 1);
+       ts.at(genx07::g_nparm + i - 1) = genx21::g_gamms.at(i - 1);
         
    }
 
@@ -37,9 +37,9 @@ using namespace genx07;
 
 void sett(Rcpp::NumericVector &ts){
 
-     for(int i = genx07::g_nparm; i <= genx07::g_nparm + genx03::g_ngame; i++){
+     for(int i = 1; i <= genx03::g_ngame; i++){
         
-         genx21::g_gamms.at(i - 1) = ts.at(i - 1);
+         genx21::g_gamms.at(i - 1) = ts.at(genx07::g_nparm + i - 1);
         
      }
   
