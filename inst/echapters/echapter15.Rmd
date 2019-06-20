@@ -159,7 +159,7 @@ mlest(ConnectionStrength.Bond.ld ,
 
 # the following causes R to crash---using genmax
 
-```{r, eval=FALSE}
+```{r}
 gmlest(ConnectionStrength.Bond.ld , 
        distribution = "normal")
 ```

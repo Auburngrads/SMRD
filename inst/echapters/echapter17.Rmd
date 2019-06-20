@@ -284,7 +284,7 @@ censored.data.plot(superalloy.ld)
 
 The following code is used to fit a regression model with a non-constant variance where the 2nd and 3rd col of the model matrix are `LogStress` and `LogStress2`.  Note that this is not working right now and may cause R to crash - not clear why.
 
-```{r, eval=FALSE}
+```{r}
 gmlest(superalloy.ld,
        dist = "Weibull",
        explan.vars = list(mu.relat = c(2,3),
