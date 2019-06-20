@@ -61,7 +61,7 @@ for(int i = 1; i <= n; i++){
               
            }
            
-      theta.at(i - 1) = fdup(thetai,-deltai,ktrcde,kodet.at(i - 1));
+      theta.at(i - 1) = fdup(thetai,-1 * deltai,ktrcde,kodet.at(i - 1));
       fargs = Rcpp::List::create(Named("lt") = theta,
                                  Named("ln") = n);
       flist = func(fargs);

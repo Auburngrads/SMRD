@@ -104,7 +104,7 @@ function (data.ld,
                 " is wrong"))
         uniq.explan.vars <- unique(get.rmodel.info.out$mrelat)
         
-        if (any(uniq.explan.vars<=0)) stop("Negative or 0 explanatory variables column specified")
+        #if (any(uniq.explan.vars<=0)) stop("Negative or 0 explanatory variables column specified")
         
         if (max(uniq.explan.vars) > ncol(the.xmat)) stop("Specified explanatory variable column greater than number of columns in X matrix")
         
@@ -222,7 +222,7 @@ function (data.ld,
                     intd = as.integer(rep(1000,5)),
                     ipxcd = list(0,0,0,0,0),
                     irelad = as.integer(rep(1,5)),
-                    fstder = double(12),
+                    fstder = double(nparm),
                     nregr = as.integer(0), 
                     kcentr = as.integer(1), 
                     kpoint = as.integer(0), 
@@ -231,7 +231,7 @@ function (data.ld,
                     llog   = as.integer(0), 
                     kmodp  = as.integer(0),
                     maxit  = as.integer(50),
-                    pest = as.double(1.0), 
+                    pest = as.double(0), 
                     epsx = as.double(1.0e-10),
                     npardm = as.integer(5),
                     nnum = as.integer(0),
@@ -265,7 +265,7 @@ function (data.ld,
     time.units<-attr(data.ld, "time.units")
     if (regression) {
         fitted.values <- zout$nummat$yhat
-        residuals <- matrix(zout$nummat$residuals, ncol = ncoly)
+        residuals <- matrix(zout$nummat$resid, ncol = ncoly)
         the.list <- list(data.ld = data.ld, 
                          model = model, 
                          distribution = distribution,
@@ -300,7 +300,7 @@ function (data.ld,
         
       }
     
-    oldClass(the.list) <- "mlest"
+    oldClass(the.list) <- "gmlest"
     return(the.list)
     
 }

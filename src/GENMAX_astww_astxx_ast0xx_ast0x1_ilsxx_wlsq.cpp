@@ -24,7 +24,7 @@ void wlsq(Rcpp::NumericMatrix &y,
 Rcpp::NumericVector iyfix = Rcpp::NumericVector(npoint);
 Rcpp::IntegerVector iic   = Rcpp::IntegerVector(idim);
 Rcpp::IntegerVector ijc   = Rcpp::IntegerVector(idim);
-Rcpp::NumericVector ibeta = Rcpp::NumericVector(idim);
+Rcpp::NumericVector ibeta = Rcpp::NumericVector(nter);
 int nparm = nter + 1;
 
 wlsq1(y,weight,x,nter,npoint,theta,kodet,

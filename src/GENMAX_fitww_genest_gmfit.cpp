@@ -202,7 +202,12 @@ line102: if(debug::kprint >= 3){
 
 // Compute and print the first derivatives
 // In finding the derivatives, use the thetas routine with unfix conv in gett
-   fstder = Rcpp::NumericVector(nparm);
+   for(int i = 1; i <= nparm; i++){
+      
+       fstder.at(i - 1) = 0.0e00;
+      
+   }
+   
    gvec(flkt,nrownw,thetat,delta,nparm,ktrcde,kodet,fstder);
    
 // Get the maximum of the absolute values of the first derivatives
@@ -214,7 +219,15 @@ line102: if(debug::kprint >= 3){
        
    }
    
-  vcvs = Rcpp::NumericMatrix(nparm,nparm);
+   for(int i = 1; i <= nparm; i++){
+      
+       for(int j = 1; j <= nparm; j++){
+          
+           vcvs.at(i - 1, j - 1) = 0.0e00;
+          
+       }
+       
+   }
    
 // Check the size of the first derivatives
    if(dermx > dersm) {
@@ -294,8 +307,6 @@ line102: if(debug::kprint >= 3){
       
       ierv = 1;
       Rcpp::warning("\nGMFIT1: irank (%i) != nparmm (%i) (error code: -8080)",irank,nparmm);
-      //Rcpp::Rcout << "irank = " << irank << std::endl;
-      //Rcpp::Rcout << "nparmm = " << nparmm << std::endl;
       
    }
    
