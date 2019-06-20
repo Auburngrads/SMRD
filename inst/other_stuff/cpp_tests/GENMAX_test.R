@@ -1,6 +1,6 @@
 library(smrdfortran)
 library(SMRD)
-test = 5
+test = 1
 if(test == 1) {
 data.ld <- frame.to.ld(superalloy,
                      response.column = 1,

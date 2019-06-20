@@ -216,10 +216,10 @@ Rcpp::List ints,doubs,intvec,numvec,nummat;
    if(debug::kprint >= 4) {
       
       Rcpp::Rcout << "\nGENFUN AFTER SETUP\n" << std::endl;
-      Rcpp::Rcout << "ier = " << ier << std::endl;
-      Rcpp::Rcout << "theta = " << theta << std::endl;
+      Rcpp::Rcout << "   ier = " << ier << std::endl;
+      Rcpp::Rcout << " theta = " << theta << std::endl;
       Rcpp::Rcout << "thetas = " << thetas << std::endl;
-      Rcpp::Rcout << "nargv = " << nargv << std::endl;
+      Rcpp::Rcout << " nargv = " << nargv << std::endl;
       
    }
    
@@ -237,10 +237,10 @@ Rcpp::List ints,doubs,intvec,numvec,nummat;
    if(debug::kprint > 3) {
       
       Rcpp::Rcout << "\nGENFUN**2**\n" << std::endl;
-      Rcpp::Rcout << "fest = " << fest << std::endl;
+      Rcpp::Rcout << "  fest = " << fest << std::endl;
       Rcpp::Rcout << "stderr = " << std_err << std::endl;
-      Rcpp::Rcout << "xlow = " << xlow << std::endl;
-      Rcpp::Rcout << "xup = " << xup << std::endl;
+      Rcpp::Rcout << "  xlow = " << xlow << std::endl;
+      Rcpp::Rcout << "   xup = " << xup << std::endl;
       
    } 
    
@@ -250,7 +250,8 @@ Rcpp::List ints,doubs,intvec,numvec,nummat;
    
          doubs = Rcpp::List::create(Named("epsx") = epsx);
          
-         intvec = Rcpp::List::create(Named("codes") = codes);
+         intvec = Rcpp::List::create(Named("codes") = codes,
+                                     Named("kodet") = kodet);
          
          numvec = Rcpp::List::create(Named("fest") = fest,
                                      Named("stderr") = std_err,

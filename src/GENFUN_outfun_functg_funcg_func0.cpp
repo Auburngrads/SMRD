@@ -47,7 +47,7 @@ int ier = 0,kfunca;
 // Population quantiles
    if(kfunca == 2){
      
-      if((funarg < zero) or (funarg >= one)) {
+      if((funarg <= zero) or (funarg >= one)) {
         
           Rcpp::stop("\nFUNARG ERROR IN FUNC0 -- funarg = %f",funarg);
         
@@ -89,12 +89,12 @@ if(debug::kprint >= 6){
   
    Rcpp::Rcout << "\nFUNC0**6**\n" << std::endl;
    Rcpp::Rcout << "kfuncf = " << kfuncf << std::endl;
-   Rcpp::Rcout << "kdist = " << kdist << std::endl;
-   Rcpp::Rcout << "llog = " << llog << std::endl;
-   Rcpp::Rcout << "func0 = " << func_0 << std::endl;
+   Rcpp::Rcout << " kdist = " << kdist << std::endl;
+   Rcpp::Rcout << "  llog = " << llog << std::endl;
+   Rcpp::Rcout << " func0 = " << func_0 << std::endl;
    Rcpp::Rcout << "funarg = " << funarg << std::endl;
-   Rcpp::Rcout << "scale = " << scale << std::endl;
-   Rcpp::Rcout << "gamme = " << gamme << std::endl;
+   Rcpp::Rcout << " scale = " << scale << std::endl;
+   Rcpp::Rcout << " gamme = " << gamme << std::endl;
   
 }
 

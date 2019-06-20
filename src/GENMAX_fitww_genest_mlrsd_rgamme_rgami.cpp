@@ -41,7 +41,7 @@ if(debug::kprint >= 7){
    
    Rcpp::Rcout << "\nRGAMI**1**\n" << std::endl;
    Rcpp::Rcout << "kpnow = " << kpnow << std::endl;
-   Rcpp::Rcout << "igam = " << igam << std::endl;
+   Rcpp::Rcout << "igam = " << igam - 1 << std::endl;
    Rcpp::Rcout << "nxg = " << nxg << std::endl;
    Rcpp::Rcout << "nterg = " << nterg << std::endl;
    Rcpp::Rcout << "intg = " << intg << std::endl;
@@ -103,7 +103,11 @@ if(debug::kprint >= 7){
                  ipxcg,nterg,intg,irelag);
       
       // Fill gamme with default zeros in case shape=0 first time around
-         wqm_filld(zero,gamme,igam,5);
+         for(int i = 0; i < 5; i++){
+            
+             gamme.at(igam + i - 1) = zero;
+         }
+         
          gamme.at(igam - 1) = tmp;
          
       // If shape paraqmeter is 0., xk=infinity so use asymptotic results

@@ -1,31 +1,20 @@
 library(smrdfortran)
 library(SMRD)
-testnum = 2
-if(testnum == 1){
-ld <- smrdfortran::frame.to.ld(lzbearing, response.column = 1)
+test = 1
 
-gmlest.out <- smrdfortran::mlest(ld, distribution = "weibull")
-gmlest.out$model = 0
+if(test == 1){
+    
+    root = here::here()
+    source(file.path(root, "inst","other_stuff","cpp_tests","superalloy_gmlest.R"))
 
 }
-if(testnum == 2){
-    
-ld <- frame.to.ld(superalloy,
-                     response.column = 1,
-                     censor.column = 2,
-                     case.weight.column = 3,
-                     x.columns = c(4,5,6))
-gmlest.out <- SMRD:::mlest(ld, distribution = "weibull",
-                          explan.vars = c(2,3))
-gmlest.out$model = 0
-    
-}
+
 kfunc = 2
 fargv = NULL
 kpopu = 0
 kpoint = 0
 if(!exists("kprint")) kprint = 0 
-conf.level = GetsmrdfortranDefault("smrdfortran.ConfLevel") / 100
+conf.level = SMRD:::GetSMRDDefault("SMRD.ConfLevel") / 100
 debug1 = F
 
     data.ld <- gmlest.out$data.ld
@@ -33,12 +22,12 @@ debug1 = F
     model <- gmlest.out$model
     explan.vars <- gmlest.out$explan.vars
     kfuncp <- 10 * kpopu + kfunc
-    y <- Response(data.ld)
+    y <- SMRD:::Response(data.ld)
     ncoly <- ncol(y)
     number.cases <- nrow(y)
-    the.case.weights <- smrdfortran:::case.weights(data.ld)
+    the.case.weights <- SMRD:::case.weights(data.ld)
     ny <- ncol(y)
-    the.truncation.codes <- smrdfortran:::truncation.codes(data.ld)
+    the.truncation.codes <- SMRD:::truncation.codes(data.ld)
     
     if (is.null(the.truncation.codes)) {
         ty <- 1
@@ -47,14 +36,14 @@ debug1 = F
         
     } else {
         
-        ty <- smrdfortran:::truncation.response(data.ld)
+        ty <- SMRD:::truncation.response(data.ld)
         ncolty <- ncol(ty)
         
     }
     if(is.null(model)) model = 0
-    distribution.number <- smrdfortran:::numdist(gmlest.out$distribution)
-    the.censor.codes <- smrdfortran:::censor.codes(data.ld)
-    get.rmodel.info.out <- smrdfortran:::get.rmodel.info(distribution, 
+    distribution.number <- SMRD:::numdist(gmlest.out$distribution)
+    the.censor.codes    <- SMRD:::censor.codes(data.ld)
+    get.rmodel.info.out <- SMRD:::get.rmodel.info(distribution, 
                                            model,
                                            explan.vars)
     
@@ -171,7 +160,7 @@ debug1 = F
                      as.integer(kfuncp),
                      as.integer(kpopu),
                      as.integer(kpoint),
-                     as.double(gmlest.out$vcv),
+                     as.double(gmlest.out$vcv.matrix),
                      fest = double(length(fargv)),
                      stderr = double(length(fargv)),
                      xlow = double(length(fargv)),
@@ -210,7 +199,7 @@ debug1 = F
                    as.integer(kfuncp), 
                    as.integer(kpopu),
                    as.integer(kpoint), 
-                   as.matrix(gmlest.out$vcv),
+                   as.matrix(gmlest.out$vcv.matrix),
                    fest = double(length(fargv)), 
                    std_err = double(length(fargv)),
                    xlow = double(length(fargv)), 

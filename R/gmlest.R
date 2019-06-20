@@ -247,7 +247,7 @@ function (data.ld,
                     lsd = as.integer(1),
                     pchmax = as.double(0))
     
-    if(zout$ints1$ier > 0) warning(paste("Genmax error messages estimation/vcv",zout$ier))
+    if(zout$ints1$ier > 0) warning(paste("Genmax error messages estimation/vcv",zout$ints1$ier))
     
     log.likelihood <- zout$doubs$xlogl
     thetas.hat <- zout$numvec$thetas

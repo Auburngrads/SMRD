@@ -25,10 +25,10 @@ if(debug::kprint >= 5){
   
    Rcpp::Rcout << "\nINTGEN**5**\n" << std::endl;
    Rcpp::Rcout << "kodet = " << kodet << std::endl;
-   Rcpp::Rcout << "t = " << t << std::endl;
-   Rcpp::Rcout << "v = " << v << std::endl;
-   Rcpp::Rcout << "s = " << s << std::endl;
-   Rcpp::Rcout << "zval = " << zval << std::endl;
+   Rcpp::Rcout << "    t = " << t << std::endl;
+   Rcpp::Rcout << "    v = " << v << std::endl;
+   Rcpp::Rcout << "    s = " << s << std::endl;
+   Rcpp::Rcout << " zval = " << zval << std::endl;
   
 }
 

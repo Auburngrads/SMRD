@@ -65,9 +65,14 @@ double df_bx1 = 0.0e00;
 if(debug::kprint >= 4){
    
    Rcpp::Rcout << "\nDFBX1\n" << std::endl;
-   Rcpp::Rcout << "x = " << x << std::endl;
-   Rcpp::Rcout << "xbaru = " << xbaru << std::endl;
-   Rcpp::Rcout << "sd = " << sd << std::endl;
+   Rcpp::Rcout << " kpnow = " << kpnow << std::endl;
+   Rcpp::Rcout << "  intg = " << intg << std::endl;
+   Rcpp::Rcout << "irelag = " << irelag << std::endl;
+   Rcpp::Rcout << "ipcolx = " << ipcolx << std::endl;
+   Rcpp::Rcout << "ipthta = " << ipthta << std::endl;
+   Rcpp::Rcout << "     x = " << x << std::endl;
+   Rcpp::Rcout << " xbaru = " << xbaru << std::endl;
+   Rcpp::Rcout << "    sd = " << sd << std::endl;
    Rcpp::Rcout << "thetas = " << thetas << std::endl;
    
 }
@@ -92,11 +97,16 @@ if(kpnow < 0) {
 if(kpnow == 0){
    
    df_bx1 = zero;
-   wqm_filld(zero,xsave,1,nterg);
+   
+   for(int i = 1; i <= nterg; i++){
+      
+       xsave.at(i - 1) = zero;
+      
+   }
    
    if(intg != 0){
       
-      df_bx1 = thetas.at(0);
+      df_bx1 = thetas.at(ipthta - 1);
       xsave.at(0) = one;
    
    }
@@ -105,7 +115,7 @@ if(kpnow == 0){
    
 if(kpnow > 0){
    
-   for(j = 1; j <= nterg; j++){
+   for(int j = 1; j <= nterg; j++){
       
        // Pick out x columns used in the current relationship, put in xsave
        // icolpx(1)=0 if there is an intercept
@@ -133,8 +143,6 @@ if(debug::kprint >= 9){
    Rcpp::Rcout << "dfbx1 = " << df_bx1 << std::endl;
    Rcpp::Rcout << "xsave = " << xsave << std::endl;
    Rcpp::Rcout << "thetas = " << thetas << std::endl;
-   Rcpp::Rcout << "j = " << j - 1 << std::endl;
-   //Rcpp::Rcout << "x(kpnow,j) = " << x.at(kpnow - 1,j - 1) << std::endl;
    
 }
    

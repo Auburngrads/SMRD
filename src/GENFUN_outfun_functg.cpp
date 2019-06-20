@@ -17,6 +17,13 @@ Rcpp::List functg(Rcpp::List args){
 Rcpp::NumericVector thetas;
 
 thetas = Rcpp::as<NumericVector>(Rcpp::as<List>(args)["lt"]);
+
+if(debug::kprint >= 7){
+   
+   Rcpp::Rcout << "\nFUNCTG thetas check\n" << std::endl;
+   Rcpp::Rcout << "thetas = " << thetas << std::endl;
+   
+}
    
 double fun_ctg;
   

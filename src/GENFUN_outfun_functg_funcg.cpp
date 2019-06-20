@@ -48,12 +48,12 @@ if(kmodp == 6)  fun_cg = func0(gamme,ngame,kdist,kfuncf,llog,funarg);
 if(debug::kprint >= 7) {
   
    Rcpp::Rcout << "\nEND OF FUNCG\n" << std::endl;
-   Rcpp::Rcout << "gamme = " << gamme << std::endl;
-   Rcpp::Rcout << "ngame = " << ngame << std::endl;
-   Rcpp::Rcout << "kmod = " << kmod << std::endl;
-   Rcpp::Rcout << "kdist = " << kdist << std::endl;
+   Rcpp::Rcout << " gamme = " << gamme << std::endl;
+   Rcpp::Rcout << " ngame = " << ngame << std::endl;
+   Rcpp::Rcout << "  kmod = " << kmod << std::endl;
+   Rcpp::Rcout << " kdist = " << kdist << std::endl;
    Rcpp::Rcout << "kfuncf = " << kfuncf << std::endl;
-   Rcpp::Rcout << "llog = " << llog << std::endl;
+   Rcpp::Rcout << "  llog = " << llog << std::endl;
    Rcpp::Rcout << "funarg = " << funarg << std::endl;
    Rcpp::Rcout << "fun_cg = " << fun_cg << std::endl;
   

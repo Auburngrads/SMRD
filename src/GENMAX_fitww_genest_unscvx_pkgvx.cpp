@@ -28,7 +28,7 @@ g1 = Rcpp::NumericVector(nparm,zero);
    for(int j = 2; j <= nterg; j++){
       
        jj = icolx.at(j - 1) + 1;
-       g1.at(inthet + j - 2) = -1 * xbaru.at(jj - 1);
+       g1.at((inthet - 1) + j - 2) = -1 * xbaru.at(jj - 1);
        
    }
    

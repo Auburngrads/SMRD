@@ -104,11 +104,11 @@ double epsx,funarg;
    if(debug::kprint >= 4) {
       
       Rcpp::Rcout << "\nOUTFUN AFTER SETUP\n" << std::endl;
-      Rcpp::Rcout << "ier = " << ier << std::endl;
+      Rcpp::Rcout << "   ier = " << ier << std::endl;
       Rcpp::Rcout << "kpoint = " << kpoint << std::endl;
-      Rcpp::Rcout << "kpopu = " << kpopu << std::endl;
+      Rcpp::Rcout << " kpopu = " << kpopu << std::endl;
       Rcpp::Rcout << "kfuncp = " << kfuncp << std::endl;
-      Rcpp::Rcout << "nargv = " << nargv << std::endl;
+      Rcpp::Rcout << " nargv = " << nargv << std::endl;
       
    }
   

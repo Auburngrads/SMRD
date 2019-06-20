@@ -79,12 +79,16 @@ Rcpp::List fargs,flist;
       
    } 
    
-   wqm_filld(0.0e00,vhold,1,nparm);
+   for(int k = 1; k <= nparm; k++){
+      
+       vhold.at(k - 1) = 0.0e00;
+      
+   }
    
 // Get the variance first
    for(int i = 1; i <= nparm; i++){
       
-       for(int j  =1; j <= nparm; j++){
+       for(int j = 1; j <= nparm; j++){
           
            vhold.at(0) = vhold.at(0) + grad.at(i - 1) * grad.at(j - 1) * vcv.at(i - 1,j - 1);
           

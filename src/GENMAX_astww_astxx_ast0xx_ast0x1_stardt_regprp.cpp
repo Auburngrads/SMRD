@@ -38,7 +38,12 @@ if(ipard != 1) {
    goto line199;
 
 // No intercept--fill all with ttrans estimate
-   line45: wqm_filld(estp,thetas,index,nxd.at(ipard - 1));
+   line45: for(int i = 0; i < nxd.at(ipard - 1); i++){
+      
+               thetas.at(index + i - 1) = estp;
+      
+           }
+   
            goto line199;
 
 line50: thetas.at(index - 1) = est;

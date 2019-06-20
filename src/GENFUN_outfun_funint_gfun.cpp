@@ -74,9 +74,9 @@ Rcpp::List fargs,flist;
    if(debug::kprint >= 4){
       
       Rcpp::Rcout << "\nGFUN1 check \n" << std::endl;
-      Rcpp::Rcout << "ltp = " << genx04::g_ltp << std::endl;
-      Rcpp::Rcout << "ngame = " << genx03::g_ngame << std::endl;
-      Rcpp::Rcout << "nparm = " << nparm << std::endl;
+      Rcpp::Rcout << "   ltp = " << genx04::g_ltp << std::endl;
+      Rcpp::Rcout << " ngame = " << genx03::g_ngame << std::endl;
+      Rcpp::Rcout << " nparm = " << nparm << std::endl;
       Rcpp::Rcout << "thetas = " << thetas << std::endl;
       
    }

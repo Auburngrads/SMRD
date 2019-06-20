@@ -23,7 +23,7 @@ Const = 0.0e00;
 for(int j = nstart; j <= nter; j++){
    
     jj = icolx.at(j - 1) + 1;
-    theta.at((point - 1) + j - 1) = theta.at((point - 1) + j - 1) / sd.at(jj - 1);
+    theta.at((point - 1) + j - 1) = thetas.at((point - 1) + j - 1) / sd.at(jj - 1);
     xbaru = xbar.at(jj - 1);
     if(iscd.at(j - 1) == 0) xbaru = 0.0;
     
@@ -51,7 +51,7 @@ for(int j = nstart; j <= nter; j++){
       
 }
 
-if(intcpt == 1) theta.at((point - 1) + 0) = theta.at((point - 1) + 0) - Const;
+if(intcpt == 1) theta.at((point - 1) + 0) = thetas.at((point - 1) + 0) - Const;
 if((debug::kprint < 4) or (intcpt == 0)) return;
 xbaru = 1.0;
 j = 1;
