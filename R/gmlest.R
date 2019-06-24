@@ -75,7 +75,7 @@ function (data.ld,
     
     if (distribution.number == 14) distribution.number <- 8
     
-    cat("dist num =", distribution, distribution.number, "\n")
+    #cat("dist num =", distribution, distribution.number, "\n")
     the.censor.codes <- censor.codes(data.ld)
     
     if (length(gamthr) == 1) gamthr <- rep(gamthr, number.cases)

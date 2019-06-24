@@ -9,21 +9,37 @@ mlest(data.ld, distribution, relationship.parameters = 1,
   parameter.fixed = NULL, intercept = T, kprint = 0, maxit = 500,
   debug1 = F, genforce = F, embedded = F, ...)
 }
+\arguments{
+\item{data.ld}{}
+
+\item{distribution}{}
+
+\item{relationship.parameters}{}
+
+\item{explan.vars}{}
+
+\item{gamthr}{}
+
+\item{theta.start}{}
+
+\item{parameter.fixed}{}
+
+\item{intercept}{}
+
+\item{kprint}{}
+
+\item{maxit}{}
+
+\item{debug1}{}
+
+\item{genforce}{}
+
+\item{embedded}{}
+
+\item{...}{}
+}
 \description{
-☺@param data.ld
-☺@param distribution
-☺@param relationship.parameters
-☺@param explan.vars
-☺@param gamthr
-☺@param theta.start
-☺@param parameter.fixed
-☺@param intercept
-☺@param kprint
-☺@param maxit
-☺@param debug1
-☺@param genforce
-☺@param embedded
-☺@param ...
+Title
 }
 \examples{
 \dontrun{
