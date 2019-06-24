@@ -1,4 +1,4 @@
-pacman::p_load(teachingApps)
+library(teachingApps)
 library(SMRD)
 
 ShockAbsorber.ld <- frame.to.ld(shockabsorber,

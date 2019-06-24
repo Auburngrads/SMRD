@@ -1,2 +1,2 @@
-pacman::p_load(teachingApps)
+library(teachingApps)
 library(SMRD)

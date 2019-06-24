@@ -1,6 +1,6 @@
 par(family = "serif", font = 2)
 
-pacman::p_load(teachingApps)
+library(teachingApps)
 library(SMRD)
 
 ShockAbsorber.ld <- 

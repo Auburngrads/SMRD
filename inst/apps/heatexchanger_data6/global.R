@@ -1,4 +1,4 @@
-pacman::p_load(teachingApps)
+library(teachingApps)
 library(SMRD)
 
 HeatExchanger.ld <- frame.to.ld(SMRD::heatexchanger,
