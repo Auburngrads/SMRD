@@ -22,7 +22,7 @@ library(SMRD)
 zoom <- 1.5
 
 Berkson200.ld <- 
-frame.to.ld(SMRD::berkson200a,
+frame.to.ld(SMRD::berkson200,
             response.column = c(1,2), 
             censor.column = 3,
             case.weight.column = 4)
