@@ -34,16 +34,20 @@ Imports:
     ggplot2,
     BH,
     rmarkdown,
-    DT
+    DT,
+    teachingApps,
+    shiny,
+    utils
 LinkingTo: Rcpp,
            BH
 NeedsCompilation: yes
 Archs: i386, x64
 Suggests:
-    testthat,
+    testthat (>= 2.1.0),
     knitr
 RoxygenNote: 6.1.1
 Encoding: UTF-8
 VignetteBuilder: knitr
 URL: https://github.com/Auburngrads/SMRD
 BugReports: https://github.com/Auburngrads/SMRD/issues
+SystemRequirements: pandoc (>= 1.12.3)

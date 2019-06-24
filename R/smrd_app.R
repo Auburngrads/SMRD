@@ -17,13 +17,11 @@
 #' @importFrom utils View
 #' @importFrom teachingApps add_options
 #' @importFrom shiny shinyAppDir
-#' @import pacman
 #' @return A printed shiny app
 #' @export
 #' @details The \code{teachingApps} package provides an infrastructure 
 #'    that allows users to dynamically change the appearance and function of
-#'    shiny apps. R users a familiar with writing functions to dynamically alter 
-#'    some output - in this case the output is a app.  Normally, 
+#'    shiny apps. 
 #'
 #' @seealso \code{link{create_logo}}
 #' @seealso \code{link{add_logo}}
