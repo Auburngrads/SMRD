@@ -65,7 +65,29 @@ data.ld <- frame.to.ld(heatexchanger,
                        response.column = c(1,2),
                        censor.column = 3,
                        case.weight.column = 4)
-distribution = "weibull"
+distribution = "generalized gamma"
+theta.start = NULL
+explan.vars = NULL
+mu.relat = NULL
+sigma.relat = NULL
+prob.relat = NULL
+model = 0
+
+}
+if(test == 6){
+  ConnectionStrength.ld <- 
+  frame.to.ld(connectionstrength,
+              response.column = 1,
+              failure.mode.column = 2,
+              case.weight.column = 3)
+
+
+mfm.to.ld(ConnectionStrength.ld)
+
+  data.ld <- ConnectionStrength.Bond.ld
+  
+  
+distribution = "normal"
 theta.start = NULL
 explan.vars = NULL
 mu.relat = NULL
@@ -268,7 +290,7 @@ if(F) {
                      llog   = as.integer(0), 
                      kmodp  = as.integer(0),
                      maxit  = as.integer(50),
-                     pest = as.double(1.0), 
+                     pest = double(1), 
                      epsx = as.double(1.0e-10),
                      npardm = as.integer(5),
                      nnum = as.integer(0),
