@@ -144,22 +144,22 @@ for(int j = 1; j <= npard; j++){
   
     int nterd = nxd.at(j - 1) + intd.at(j - 1);
   
-    Rcpp::Rcout << "j = " << j - 1       << std::endl;
-    Rcpp::Rcout << "nxd(j) = "           << nxd.at(j - 1)    << std::endl;
-    Rcpp::Rcout << "intd(j) = "          << intd.at(j - 1)   << std::endl;
-    Rcpp::Rcout << "nterd = "            << nterd        << std::endl;
-    Rcpp::Rcout << "igtyd(j) = "         << igtyd.at(j - 1)  << std::endl;
-    Rcpp::Rcout << "irelad(j) = "        << irelad.at(j - 1) << std::endl;
+    Rcpp::Rcout << "        j = " << j - 1            << std::endl;
+    Rcpp::Rcout << "   nxd(j) = " << nxd.at(j - 1)    << std::endl;
+    Rcpp::Rcout << "  intd(j) = " << intd.at(j - 1)   << std::endl;
+    Rcpp::Rcout << "    nterd = " << nterd            << std::endl;
+    Rcpp::Rcout << " igtyd(j) = " << igtyd.at(j - 1)  << std::endl;
+    Rcpp::Rcout << "irelad(j) = " << irelad.at(j - 1) << std::endl;
 
 }
 
 for(int j = 1; j <= ngame; j++){
   
     Rcpp::Rcout << "\nPROEX1 **4** j = " << j - 1        << std::endl;
-    Rcpp::Rcout << "nxg(j) = "           << nxg.at(j - 1)    << std::endl;
-    Rcpp::Rcout << "intg(j) = "          << intg.at(j - 1)   << std::endl;
-    Rcpp::Rcout << "nterg(j) = "         << nterg.at(j - 1)  << std::endl;
-    Rcpp::Rcout << "igtyg(j) = "         << igtyg.at(j - 1)  << std::endl;
+    Rcpp::Rcout << "   nxg(j) = "           << nxg.at(j - 1)    << std::endl;
+    Rcpp::Rcout << "  intg(j) = "          << intg.at(j - 1)   << std::endl;
+    Rcpp::Rcout << " nterg(j) = "         << nterg.at(j - 1)  << std::endl;
+    Rcpp::Rcout << " igtyg(j) = "         << igtyg.at(j - 1)  << std::endl;
     Rcpp::Rcout << "irelag(j) = "        << irelag.at(j - 1) << std::endl;
     Rcpp::Rcout << "ipthet(j) = "        << ipthet.at(j - 1) << std::endl;
 
@@ -168,7 +168,7 @@ for(int j = 1; j <= ngame; j++){
 for(int j = 1; j <= nparm; j++){
   
     Rcpp::Rcout << "\nPROEX1 **4** j = " << j - 1        << std::endl;
-    Rcpp::Rcout << "ifix(j) = "          << ifix.at(j - 1)   << std::endl;
+    Rcpp::Rcout << " ifix(j) = "          << ifix.at(j - 1)   << std::endl;
     Rcpp::Rcout << "kodet(j) = "         << kodet.at(j - 1)  << std::endl;
 
 }
@@ -186,15 +186,15 @@ for(int j = 1; j <= nparm; j++){
    
       for(int ik = 1; ik <= ngame; ik++){
      
-       if(ipxcg[ik - 1] != R_NilValue) {
+          if(ipxcg[ik - 1] != R_NilValue) {
       
-          SEXP l = ipxcg[ik - 1]; Rcpp::IntegerVector y(l);
-          Rcpp::Rcout << "i = " << ik - 1 << std::endl;
-          Rcpp::Rcout << "ipxcg(i) = " << y << std::endl;
+             SEXP l = ipxcg[ik - 1]; Rcpp::IntegerVector y(l);
+             Rcpp::Rcout << "i = " << ik - 1 << std::endl;
+             Rcpp::Rcout << "ipxcg(i) = " << y << std::endl;
      
-   }
-   }
-      
+          }
+          
+      }
 }
 
 return;
