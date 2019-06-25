@@ -59,8 +59,7 @@ function (x,
     
     if (is.logdist(distribution)) {
         zero.time <- time == 0
-        if (any(zero.time))
-            warning("A specified time value is 0")
+        if (any(zero.time)) warning("A specified time value is 0")
         the.time <- logb(time[!zero.time])
   
         } else {
@@ -72,16 +71,18 @@ function (x,
     z <- (the.time - theta.hat[1])/sigma
     log.haz.fun <- wqmf.phisl(z, evdistribution) - wqmf.phibml(z,
         evdistribution) - logb(sigma)
-    if (is.logdist(distribution)) {
-        log.haz.fun <- log.haz.fun - the.time
-    }
+    
+    if (is.logdist(distribution)) log.haz.fun <- log.haz.fun - the.time
+    
     haz.fun <- exp(log.haz.fun)
+    
     if (conf.level > 0.1) {
+      
         omega <- wqmf.phip(z, evdistribution)/wqmf.phis(z, evdistribution) +
             exp(wqmf.phisl(z, evdistribution) - wqmf.phibml(z,
                 evdistribution))
         zmat <- cbind(-omega/sigma, -(omega * z + 1)/sigma)
-        varz <- diag(zmat %*% x$vcv %*% t(zmat))
+        varz <- diag(zmat %*% x$vcv.matrix %*% t(zmat))
         stderrq <- sqrt(varz)
         lower <- exp(log.haz.fun - zvalue * stderrq)
         upper <- exp(log.haz.fun + zvalue * stderrq)
@@ -91,13 +92,13 @@ function (x,
         upper <- upper * 10^9
         haz.fun <- haz.fun * 10^9
     }
-    if (is.null(xlab))
-        xlab <- get.time.units(x$data.ld)
+    if (is.null(xlab)) xlab <- get.time.units(x$data.ld)
     ylab <- ifelse(fits, "Fit Rate", "Hazard Function")
     yrna <- is.na(ylim)
-    if (any(yrna))
-        ylim[yrna] <- range(strip.na(c(haz.fun, lower, upper)))[yrna]
+    if (any(yrna)) ylim[yrna] <- range(strip.na(c(haz.fun, lower, upper)))[yrna]
+    
     if (plotem) {
+      
         plot.paper(xlim, 
                    ylim, 
                    ylab = ylab, 
@@ -122,6 +123,7 @@ function (x,
                   col = col.ci, 
                   lty = 3, 
                   lwd = lwd.ci)
+            
         }
     }
     the.table <- cbind(Time = the.time, 

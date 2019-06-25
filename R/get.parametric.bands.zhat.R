@@ -65,7 +65,7 @@ function (mlest.out,
     zhatmat <- cbind(1, zhat)
     the.order <- order(times)
     if (conf.level > 0.1) {
-        varzhat <- diag(zhatmat %*% mlest.out$vcv %*% t(zhatmat))/(sigmahat^2)
+        varzhat <- diag(zhatmat %*% mlest.out$vcv.matrix %*% t(zhatmat))/(sigmahat^2)
         negative.varzhat <- varzhat < 0
         if (any(negative.varzhat)) {
             warning("Negative varinaces detected in get.parametric.bands.\nCheck for lack of proper convergence, possibly caused by a poor data/model specification.\nConfidence intervals will not be plotted.")
@@ -89,8 +89,12 @@ function (mlest.out,
         stderror.f <- NULL
     }
     bands.over <- rep(T, length(fhat))
-    return.list <- list(times = times, fhat = fhat, stderror.f = stderror.f, 
-        lower = lower, upper = upper, bands.over = bands.over, 
-        band.type = band.type)
+    return.list <- list(times = times, 
+                        fhat = fhat, 
+                        stderror.f = stderror.f, 
+                        lower = lower, 
+                        upper = upper, 
+                        bands.over = bands.over, 
+                        band.type = band.type)
     return(return.list)
 }
