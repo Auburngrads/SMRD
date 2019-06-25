@@ -176,7 +176,7 @@ line14: if(std::abs(f - fa) == 0) goto line16;
         if(f > fa)       goto line24;
         
 line16: if(std::abs(std::abs(d) - dmax) == 0) goto line17;
-        if(std::abs(d) > dmax) { ier = 1; goto line18; }
+        if(std::abs(d) > dmax)                goto line18; 
         
 line17: d = d + d;
         goto line8;
@@ -524,7 +524,7 @@ goto line108;
 line76: if(std::abs(f - fp) == 0) goto line78;
         if(f < fp) goto line35;
         
-line78: if((emin > 1.0e-05) or (debug::kprint >= 3)) {
+line78: if((emin > 1.0e-05) and (debug::kprint >= 3)) {
   
             Rcpp::warning("powelm: accuracy may be limited by noise in the log likelihood function");
   
