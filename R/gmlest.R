@@ -247,7 +247,7 @@ function (data.ld,
                     lsd = as.integer(1),
                     pchmax = as.double(0))
     
-    if(zout$ints1$ier > 0) warning(paste("Genmax error messages estimation/vcv",zout$ints1$ier))
+    if(zout$ints1$ier > 0) warning(paste("Genmax error messages estimation/vcv",zout$ints1$ier,"\n"))
     
     log.likelihood <- zout$doubs$xlogl
     thetas.hat <- zout$numvec$thetas
@@ -263,7 +263,9 @@ function (data.ld,
     dimnames(correlation.matrix) <- matnames
     dimnames(vcv.matrix) <- matnames
     time.units<-attr(data.ld, "time.units")
+    
     if (regression) {
+      
         fitted.values <- zout$nummat$yhat
         residuals <- matrix(zout$nummat$resid, ncol = ncoly)
         the.list <- list(data.ld = data.ld, 
@@ -282,6 +284,7 @@ function (data.ld,
                          fitted.values = fitted.values,
                          get.rmodel.info.out = get.rmodel.info.out, 
                          time.units = time.units)
+        
       } else {
         
         the.list <- list(data.ld = data.ld, 
