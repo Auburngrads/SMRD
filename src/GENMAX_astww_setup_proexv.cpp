@@ -23,12 +23,12 @@ void proexv(Rcpp::IntegerVector &nxd,
             Rcpp::IntegerVector &kodet,
             Rcpp::IntegerVector &ifix){
 
- Rcpp::IntegerVector NXG    = Rcpp::IntegerVector(nxd.size());
- Rcpp::IntegerVector INTG   = Rcpp::IntegerVector(nxd.size());
- Rcpp::IntegerVector NTERG  = Rcpp::IntegerVector(nxd.size());
- Rcpp::IntegerVector IRELAG = Rcpp::IntegerVector(nxd.size());
- Rcpp::IntegerVector IPTHET = Rcpp::IntegerVector(nxd.size());
- Rcpp::IntegerVector IGTYG  = Rcpp::IntegerVector(nxd.size());
+ Rcpp::IntegerVector NXG    = clone(genx20::g_nxg);
+ Rcpp::IntegerVector INTG   = clone(genx20::g_intg);
+ Rcpp::IntegerVector NTERG  = clone(genx20::g_nterg);
+ Rcpp::IntegerVector IRELAG = clone(genx21::g_irelag);
+ Rcpp::IntegerVector IPTHET = clone(genx21::g_ipthet);
+ Rcpp::IntegerVector IGTYG  = clone(genx21::g_igtyg);
  Rcpp::List IPXCG = Rcpp::List(5);
         
  proex1(nxd,intd,ipxcd,irelad,igtyd,imarkd,npard,
