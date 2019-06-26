@@ -60,11 +60,11 @@ intercept = T
 if(!exists("kprint")) kprint = 0
 maxit = 500
 debug1 = F 
-likelihood.method = SMRD:::GetSMRDDefault("smrdfortran.likelihood.method")
+likelihood.method = SMRD:::GetSMRDDefault("SMRD.likelihood.method")
 
 
     the.xmat <- SMRD:::xmat(data.ld)
-    #if(!is.null(the.xmat)) explan.vars = seq(1:ncol(xmat(data.ld)))
+    if(!is.null(the.xmat)) explan.vars = seq(1:ncol(xmat(data.ld)))
     
     if (!is.null(the.xmat) && is.null(dimnames(the.xmat)[[2]])) {
       
@@ -80,17 +80,17 @@ likelihood.method = SMRD:::GetSMRDDefault("smrdfortran.likelihood.method")
     the.case.weights    <- SMRD:::case.weights(data.ld)
     the.censor.codes    <- SMRD:::censor.codes(data.ld)
     distribution.number <- SMRD:::numdist(distribution)
-    truncation.codes    <- SMRD:::truncation.codes(data.ld)
+    the.truncation.codes    <- SMRD:::truncation.codes(data.ld)
     tyresp              <- SMRD:::truncation.response(data.ld)
     
-    if (!is.null(truncation.codes) && !is.null(tyresp)) {
+    if (!is.null(the.truncation.codes) && !is.null(tyresp)) {
       
         ntyresp <- ncol(tyresp)
         
     } else {
   
         ntyresp <- 0
-        truncation.codes <- rep(1, length(the.censor.codes))
+        the.truncation.codes <- rep(1, length(the.censor.codes))
         tyresp <- rep(0, length(the.censor.codes))
     }
     
@@ -229,7 +229,7 @@ if (any(startna)) theta.start[startna] <- theta.start.comp[startna]
                      yresp = as.single(yresp),
                      as.single(c(the.censor.codes, the.case.weights, mathsoft.gamthr)),
                      tyresp = as.single(tyresp),
-                     truncation.codes = as.single(truncation.codes),
+                     truncation.codes = as.single(the.truncation.codes),
                      parameter.fixed = as.logical(parameter.fixed),
                      e = as.single(e),
                      ndscrat = double(ndscrat),
@@ -251,7 +251,7 @@ new = SMRD:::WQMMLESSS(  ivec = as.integer(ivec),
                       wt =  as.double(the.case.weights), 
                       msftgm = as.double(mathsoft.gamthr),
                       ty = as.matrix(tyresp), 
-                      tcodes = as.double(truncation.codes),
+                      tcodes = as.double(the.truncation.codes),
                       lfix = as.logical(parameter.fixed), 
                       e = as.double(e),
                       dscrat = double(ndscrat), 

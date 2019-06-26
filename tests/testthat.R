@@ -1,4 +1,4 @@
 library(testthat)
-library(SMRD2)
+library(SMRD)
 
-test_check("SMRD2")
+test_check("SMRD")

@@ -24,7 +24,7 @@ data.ld <- frame.to.ld(superalloy,
                      censor.column = 2,
                      case.weight.column = 3,
                      x.columns = c(4,5,6))
-distribution = "gamma"
+distribution = "norgets"
 theta.start = NULL
 explan.vars = list(mu.relat = c(2,3))
 mu.relat = NULL
@@ -65,7 +65,7 @@ data.ld <- frame.to.ld(heatexchanger,
                        response.column = c(1,2),
                        censor.column = 3,
                        case.weight.column = 4)
-distribution = "generalized gamma"
+distribution = "weibull"
 theta.start = NULL
 explan.vars = NULL
 mu.relat = NULL
