@@ -54,7 +54,6 @@ Rcpp::List FL;
 // Constants for poweld restart
 double big = 1.0e30;
 double ybar = 0.0, ysd = 0.0;
-double epsilon = 1.0e-12;
 double dscale = escale;
 double fsavq, ddmag, scer;
 double f, fkeep;
@@ -69,7 +68,7 @@ double aaa = 0.0e00;
 int ntry = 1, n = 0, nfcc;
 int idirn, iline, ind, inn, itone, iterc, isgrad;
 int j, jj, jjj, jtl = 0, k;
-int ixp = 0, is, maxtry = 100;
+int ixp = 0, is, maxtry = 19;
 
 ier = 0;
 
@@ -93,6 +92,12 @@ if(!lfix.at(nparm - 1)) ed.at(n - 1) = e.at(nparm - 1);
 // #poweld restart here;
 line1001: lstd::g_ltp = ltpp;
           fsavq = 1.0e35;
+          if(debug::kprint >= 1){
+            
+             Rcpp::Rcout << "\npowsss\n" << std::endl;
+             Rcpp::Rcout << "iter = " << iterc << std::endl;
+            
+          }
           ddmag = p1 * dscale;
           scer = pz5 / dscale;
           jj = n * n + n;
@@ -153,11 +158,9 @@ line7: dmax = w.at(iline - 1);
        dmag = std::max(dmag,20.0 * dacc);
        ddmax = 10.0 * dmag;
 
-if(itone == 1) goto line70;
-if(itone == 2) goto line70;
 if(itone == 3) goto line71;
 
-line70: dl = 0.0;
+        dl = 0.0;
         d = dmag;
         fprev = f;
         is = 5;
@@ -182,7 +185,6 @@ FL = wqm_flike(y,xnew,cen,wt,nty,ty,tcodes,nrow,nter,ny,
 
 f     = Rcpp::as<double>(Rcpp::as<List>(FL)["flike"]);
 //thetb = Rcpp::as<Rcpp::NumericVector>(Rcpp::as<List>(FLIKE)["thetb"]);
-
 
 nfcc = nfcc + 1;
 
@@ -222,9 +224,8 @@ line23: d = db + db - da;
 line83: d = 0.5 * (da + db - (fa - fb) / (da - db));
         is = 4;
 
-
-        if(std::abs((da - d) * (d - db)) == 0) goto line25;
-        if(((da - d) * (d - db)) > 0.0) goto line8;
+        if(std::abs((da - d) * (d - db)) == 0) goto line8;
+        if(((da - d) * (d - db)) > 0) goto line8;
 
 line25: is = 1;
 
@@ -235,11 +236,16 @@ line26: d = db + dsign(ddmax,(db - da));
         is = 1;
         ddmax = ddmax + ddmax;
         ddmag = ddmag + ddmag;
-        // #trap runaway problem and try restart;
+        // Trap runaway problem and try restart
         if((std::abs(ddmag) < big) and (std::abs(ddmax) < big)) goto line265;
-        // #check number of restarts;
+        // Check number of restarts
         if(ntry > maxtry) goto line995;
-        // #try again;
+        // Try again
+        if(debug::kprint >= 1){
+          
+           Rcpp::Rcout << "\npowsss: Poor starting values - Powell restart number\n" << ntry << std::endl;
+          
+        }
         ntry = ntry + 1;
         dscale = dscale * 4.0; //factor
         goto line1001;
@@ -289,7 +295,7 @@ line30: a = (db - dc) * (fa - fc);
         b = (dc - da) * (fb - fc);
 
         if(std::abs((a + b) * (da - dc)) == 0) goto line33;
-        if(((a + b) * (da - dc)) > 0.0) goto line34;
+        if(((a + b) * (da - dc)) > 0) goto line34;
 
 line33: fa = fb;
         da = db;
@@ -321,7 +327,7 @@ line86: if(std::abs(std::abs(d - di) - dacc) == 0) goto line41;
         if(std::abs(d - di) < (pz3 * std::abs(d))) goto line41;
 
 line45: if(std::abs((da - dc) * (dc - d)) == 0) goto line46;
-        if(((da - dc) * (dc - d)) < 0.0) goto line47;
+        if(((da - dc) * (dc - d)) < 0) goto line47;
 
 line46: fa = fb;
         da = db;
@@ -331,7 +337,7 @@ line46: fa = fb;
 
 line47: is = 2;
         if(std::abs((db - d) * (d - dc)) == 0) goto line8;
-        if(((db - d) * (d - dc)) > 0.0) goto line8;
+        if(((db - d) * (d - dc)) > 0) goto line8;
 
         is = 3;
         goto line8;
@@ -397,7 +403,7 @@ line112: if(std::abs(fp - f) == 0) goto line37;
 
         d = 2 * (fp + f - 2 * fhold) / std::pow((fp - f),2);
         if(std::abs((d * std::pow((fp - fhold - sum),2)) - sum) == 0) goto line37;
-        if(((d * std::pow((fp - fhold - sum),2)) - sum) > 0.0) goto line37;
+        if(((d * std::pow((fp - fhold - sum),2)) - sum) > 0) goto line37;
 
 line87: j = jtl * n + 1;
         if(j > jj) goto line61;
