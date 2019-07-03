@@ -43,34 +43,37 @@ void ptpar(int &kdnow,
    if(debug::kprint >= 5){
       
       Rcpp::Rcout << "\nPTPAR AFTER GSPLIT\n" << std::endl;
-      Rcpp::Rcout << "kdnow = " << kdnow - 1 << std::endl;
+      Rcpp::Rcout << "       kdnow = " << kdnow - 1 << std::endl;
       Rcpp::Rcout << "igtyd(kdnow) = " << igtyd.at(kdnow - 1) << std::endl;
-      Rcpp::Rcout << "igsave = " << igsave << std::endl;
-      Rcpp::Rcout << "igkode = " << igkode << std::endl;
-      Rcpp::Rcout << "iglab = " << iglab << std::endl;
-      Rcpp::Rcout << "ignext = " << ignext << std::endl;
-      Rcpp::Rcout << "itnext = " << itnext << std::endl;
-      Rcpp::Rcout << "nxg = " << nxg << std::endl;
-      Rcpp::Rcout << "nxd = " << nxd << std::endl;
-      Rcpp::Rcout << "nterg = " << nterg << std::endl;
-      Rcpp::Rcout << "kodet = " << kodet << std::endl;
-      Rcpp::Rcout << "intg = " << intg << std::endl;
-      Rcpp::Rcout << "ipthet = " << ipthet << std::endl;
-      Rcpp::Rcout << "irelag = " << irelag << std::endl;
-      Rcpp::Rcout << "kodet = " << kodet << std::endl;
+      Rcpp::Rcout << "      igsave = " << igsave << std::endl;
+      Rcpp::Rcout << "      igkode = " << igkode << std::endl;
+      Rcpp::Rcout << "       iglab = " << iglab << std::endl;
+      Rcpp::Rcout << "      ignext = " << ignext << std::endl;
+      Rcpp::Rcout << "      itnext = " << itnext << std::endl;
+      Rcpp::Rcout << "         nxg = " << nxg << std::endl;
+      Rcpp::Rcout << "         nxd = " << nxd << std::endl;
+      Rcpp::Rcout << "       nterg = " << nterg << std::endl;
+      Rcpp::Rcout << "       kodet = " << kodet << std::endl;
+      Rcpp::Rcout << "        intg = " << intg << std::endl;
+      Rcpp::Rcout << "      ipthet = " << ipthet << std::endl;
+      Rcpp::Rcout << "      irelag = " << irelag << std::endl;
+      Rcpp::Rcout << "       kodet = " << kodet << std::endl;
       
    }
    
-// copy over nx so that we know what to do in gtgame
-   filli(nxd.at(kdnow - 1),nxg,ignext,igsave);
-
-// fill others with zeros
-   filli(0,nterg ,ignext,igsave);
-   filli(0,intg  ,ignext,igsave);
-   filli(0,igtyg ,ignext,igsave);
-   filli(0,ipthet,ignext,igsave);
-   filli(0,irelag,ignext,igsave);
-//   filli(0,ipxcg ,ignext,igsave);
+   for(int i = 1; i <= igsave; i++){
+      
+       // copy over nx so that we know what to do in gtgame
+          nxg.at((ignext - 1) + (i - 1)) = nxd.at(kdnow - 1);
+      
+       // fill others with zeros
+          nterg.at((ignext - 1) + i - 1) = 0;
+          intg.at((ignext - 1) + i - 1) = 0;
+          igtyg.at((ignext - 1) + i - 1) = 0;
+          ipthet.at((ignext - 1) + i - 1) = 0;
+          irelag.at((ignext - 1) + i - 1) = 0;
+      
+   }
 
 // Copy over the useful information
    nxg.at(ignext - 1) = nxd.at(kdnow - 1);
@@ -84,7 +87,15 @@ void ptpar(int &kdnow,
    kodet.at(itnext - 1)  = igkode;
 
 // If this is a variable with explanatory variables, set all kodet=1
-   if(nxg.at(ignext - 1) > 0) filli(1,kodet,itnext,nterg.at(ignext - 1));
+   if(nxg.at(ignext - 1) > 0) {
+      
+      for(int j = 1; j <= nterg.at(ignext - 1); j++){
+         
+          kodet.at((itnext - 1) + (j - 1)) = 1;
+         
+      }
+      
+   }
 
 // Make sure that we have a constant if no explanatory variables
    if(nxd.at(kdnow - 1) == 0) intd.at(kdnow - 1) = 1;
