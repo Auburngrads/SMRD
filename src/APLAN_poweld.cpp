@@ -18,7 +18,7 @@ void poweld(Rcpp::NumericVector &x,
             int &ier){
 
 // dimension w n*n+3n
-Rcpp::NumericVector w = Rcpp::NumericVector(100);
+Rcpp::NumericVector w = Rcpp::NumericVector(n * n + 3 * n);
 double pz3 = 0.03e00,pz5 = 0.05e00,p1 = 0.1e00;
 double big = 1.0e30,aaa = 0.0e00;
 double emin,dscale,scer,a,b;
