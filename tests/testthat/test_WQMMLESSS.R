@@ -53,7 +53,7 @@ xnew.end = 0;
 rv1.end = xnew.end + number.cases*nter
 diag.end = rv1.end + nparm
 tmat.end = diag.end + nparm
-thetb.end = tmat.end + nparm * 2
+thetb.end = tmat.end + nparm ** 2
 thetg.end = thetb.end + nparm
 fsder.end = thetg.end + nparm
 vcv.end = fsder.end + nparm
@@ -62,7 +62,7 @@ itd.end = vcvg.end + nparm ** 2
 itf.end = itd.end + nparm
 ied.end = itf.end + nparm
 iw.end = ied.end + nparm
-ivd.end = iw.end + nparm*nparm+3*nparm
+ivd.end = iw.end + nparm*nparm+3*nparm+1
 ivcvd.end = ivd.end + nparm
 ivcvdd.end = ivcvd.end + nparm ** 2
 
@@ -121,10 +121,10 @@ test_that(desc = "deviance",
          code = expect_lt(max(abs(zout$fitted[-(1:number.cases)] - new$nummat$dev)),1e-2))
 
 test_that(desc = "fitted values",
-         code = expect_lt(max(abs(zout$fitted[1:number.cases] - new$numvec$fv)),1e-2))
+         code = expect_lt(max(abs((zout$fitted[1:number.cases] - new$numvec$fv) / zout$fitted[1:number.cases])),1e-2))
 
 test_that(desc = "resids",
-         code = expect_lt(max(abs(zout$residuals - new$nummat$res)), 1e-2))
+         code = expect_lt(max(abs((matrix(zout$residuals,ncol = nyresp, byrow = F) - new$nummat$res) / matrix(zout$residuals,ncol = nyresp, byrow = F))), 1e-2))
 
 test_that(desc = "correl",
          code = expect_lt(max(abs(zout$correl - new$nummat$r)), 1e-2))
