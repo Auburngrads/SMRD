@@ -177,15 +177,15 @@ line200: flkt_1 = usrlik(thetas,nparm,kdist,kmod,yl,yu,
 line199: if(debug::kprint >= 6){
    
             Rcpp::Rcout << "\nFLKT1**6**\n" << std::endl;
-            Rcpp::Rcout << "flkt1 = " << flkt_1 << std::endl;
-            Rcpp::Rcout << "kpnow = " << kpnow << std::endl;
-            Rcpp::Rcout << "kmod = " << kmod << std::endl;
-            Rcpp::Rcout << "kdist = " << kdist << std::endl;
+            Rcpp::Rcout << " flkt1 = " << flkt_1 << std::endl;
+            Rcpp::Rcout << " kpnow = " << kpnow << std::endl;
+            Rcpp::Rcout << "  kmod = " << kmod << std::endl;
+            Rcpp::Rcout << " kdist = " << kdist << std::endl;
             Rcpp::Rcout << "kccode = " << kccode << std::endl;
             Rcpp::Rcout << "ktcode = " << ktcode << std::endl;
-            Rcpp::Rcout << "yl = " << yl << std::endl;
-            Rcpp::Rcout << "yu = " << yu << std::endl;
-            Rcpp::Rcout << "weigi = " << weigi << std::endl;
+            Rcpp::Rcout << "    yl = " << yl << std::endl;
+            Rcpp::Rcout << "    yu = " << yu << std::endl;
+            Rcpp::Rcout << " weigi = " << weigi << std::endl;
 
          }
 

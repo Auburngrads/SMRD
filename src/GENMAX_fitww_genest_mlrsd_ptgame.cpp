@@ -36,16 +36,16 @@ Rcpp::List IPXCG = clone(genx20::g_ipxcg);
           if(debug::kprint >= 5){
              
              Rcpp::Rcout << "\nPTGAME BEFORE RGAMI\n" << std::endl;
-             Rcpp::Rcout << "igam = " << igam - 1 << std::endl;
-             Rcpp::Rcout << "nxg(igam) = " << NXG.at(igam - 1) << std::endl;
-             Rcpp::Rcout << "nterg = " << NTERG << std::endl;
+             Rcpp::Rcout << "      igam = " << igam - 1 << std::endl;
+             Rcpp::Rcout << " nxg(igam) = " << NXG.at(igam - 1) << std::endl;
+             Rcpp::Rcout << "     nterg = " << NTERG << std::endl;
              Rcpp::Rcout << "intg(igam) = " << INTG.at(igam - 1) << std::endl;
-             Rcpp::Rcout << "xpoint = " << xpoint << std::endl;
-             Rcpp::Rcout << "ipthet = " << IPTHET << std::endl;
-             Rcpp::Rcout << "igtyg = " << IGTYG << std::endl;
-             Rcpp::Rcout << "irelag = " << IRELAG << std::endl;
-             Rcpp::Rcout << "thetas = " << thetas << std::endl;
-             Rcpp::Rcout << "gamms = " << GAMMS << std::endl;
+             Rcpp::Rcout << "    xpoint = " << xpoint << std::endl;
+             Rcpp::Rcout << "    ipthet = " << IPTHET << std::endl;
+             Rcpp::Rcout << "     igtyg = " << IGTYG << std::endl;
+             Rcpp::Rcout << "    irelag = " << IRELAG << std::endl;
+             Rcpp::Rcout << "    thetas = " << thetas << std::endl;
+             Rcpp::Rcout << "     gamms = " << GAMMS << std::endl;
              
           }
  
@@ -70,7 +70,7 @@ if(debug::kprint >= 6){
    
    Rcpp::Rcout << "\nPTGAME**6**\n" << std::endl;
    Rcpp::Rcout << "thetas = " << thetas << std::endl;
-   Rcpp::Rcout << "gamms = " << genx21::g_gamms << std::endl;
+   Rcpp::Rcout << " gamms = " << genx21::g_gamms << std::endl;
    
 }
 

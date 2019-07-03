@@ -99,14 +99,15 @@ for(int j = 1; j <= nparm; j++){
     
     if(debug::kprint >= 3){
       
+       Rcpp::NumericVector vcvd_coljj = vcvd.column(jj - 1);
        Rcpp::Rcout << "\nVERRCK**3**\n" << std::endl;
-       Rcpp::Rcout << "j = " << j << std::endl;
-       Rcpp::Rcout << "jj = " << jj << std::endl;
-       Rcpp::Rcout << "lfix(j) = "      << lfix.at(j - 1) << std::endl;
-       Rcpp::Rcout << "fsderd(j) = "    << fsderd.at(j - 1) << std::endl;
+       Rcpp::Rcout << "           j = " << j - 1 << std::endl;
+       Rcpp::Rcout << "          jj = " << jj - 1 << std::endl;
+       Rcpp::Rcout << "     lfix(j) = " << lfix.at(j - 1) << std::endl;
+       Rcpp::Rcout << "   fsderd(j) = " << fsderd.at(j - 1) << std::endl;
        Rcpp::Rcout << "vcvdd(jj,jj) = " << vcvdd.at(jj - 1,jj - 1) << std::endl;
-       Rcpp::Rcout << "vcvd(kk,jj) = "  << vcvd.at(kk - 1, jj - 1) << std::endl;
-       Rcpp::Rcout << "nparmm = "       << nparmm << std::endl;
+       Rcpp::Rcout << "   vcvd(,jj) = " << vcvd_coljj << std::endl;
+       Rcpp::Rcout << "      nparmm = " << nparmm << std::endl;
       
     }
   

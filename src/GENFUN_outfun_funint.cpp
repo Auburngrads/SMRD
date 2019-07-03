@@ -27,14 +27,14 @@ void funint(Rcpp::List (*func)(Rcpp::List),
    if(debug::kprint >= 5){
       
       Rcpp::Rcout << "\nFUNINT AFTER GFUN\n" << std::endl;
-      Rcpp::Rcout << "thetas = " << thetas << std::endl;
-      Rcpp::Rcout << "vcvs = " << vcvs << std::endl;
-      Rcpp::Rcout << "kodet = " << kodet << std::endl;
-      Rcpp::Rcout << "nparm = " << nparm << std::endl;
-      Rcpp::Rcout << "igsd = " << igsd << std::endl;
-      Rcpp::Rcout << "fest = " << fest << std::endl;
-      Rcpp::Rcout << "vest = " << vest << std::endl;
-      Rcpp::Rcout << "epsx = " << epsx << std::endl;
+      Rcpp::Rcout << "thetas = "   << thetas << std::endl;
+      Rcpp::Rcout << "  vcvs = \n" << vcvs << std::endl;
+      Rcpp::Rcout << " kodet = "   << kodet << std::endl;
+      Rcpp::Rcout << " nparm = "   << nparm << std::endl;
+      Rcpp::Rcout << "  igsd = "   << igsd << std::endl;
+      Rcpp::Rcout << "  fest = "   << fest << std::endl;
+      Rcpp::Rcout << "  vest = "   << vest << std::endl;
+      Rcpp::Rcout << "  epsx = "   << epsx << std::endl;
       
    }
    

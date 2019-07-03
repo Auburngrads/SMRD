@@ -61,11 +61,11 @@ if(debug::kprint >= 9) {
    Rcpp::Rcout << "\nDINVX**1**\n"   << std::endl;
    Rcpp::Rcout << "imax = " << imax  << std::endl;
    Rcpp::Rcout << "jmax = " << jmax  << std::endl;
-   Rcpp::Rcout << "jc = "   << ir    << std::endl;
-   Rcpp::Rcout << "ir = "   << jc    << std::endl;
+   Rcpp::Rcout << "  jc = "   << ir    << std::endl;
+   Rcpp::Rcout << "  ir = "   << jc    << std::endl;
    Rcpp::Rcout << "temp = " << temp  << std::endl;
-   Rcpp::Rcout << "tol = "  << tol   << std::endl;
-   Rcpp::Rcout << "nr = "   << nr    << std::endl;
+   Rcpp::Rcout << " tol = "  << tol   << std::endl;
+   Rcpp::Rcout << "  nr = "   << nr    << std::endl;
    Rcpp::Rcout << "ntp1 = " << ntp1  << std::endl;
 
 }
@@ -77,7 +77,7 @@ if(temp <= tol) goto line610;
 for(int j = 1; j <= ntc; j++){
 
     tx = a.at(is - 1,j - 1);
-    a.at(is - 1,j - 1) = a(imax - 1,j - 1);
+    a.at(is - 1,j - 1) = a.at(imax - 1,j - 1);
     a.at(imax - 1,j - 1) = tx;
 
 }
@@ -212,8 +212,8 @@ if(debug::kprint >= 9) {
 
    Rcpp::Rcout << "\nDINVX**7**\n" << std::endl;
    Rcpp::Rcout << "vcv = \n" << a  << std::endl;
-   Rcpp::Rcout << "ir = \n" << ir  << std::endl;
-   Rcpp::Rcout << "jc = \n" << jc  << std::endl;
+   Rcpp::Rcout << " ir = "   << ir  << std::endl;
+   Rcpp::Rcout << " jc = "   << jc  << std::endl;
 
 }
 

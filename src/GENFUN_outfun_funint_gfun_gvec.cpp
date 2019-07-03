@@ -179,11 +179,11 @@ line126: if(debug::kprint >= 4){
             Rcpp::Rcout << "\nGVEC1**5**\n" << std::endl;
             Rcpp::Rcout << "       i = " << i - 1 << std::endl;
             Rcpp::Rcout << "kodet(i) = " << kodet.at(i - 1) << std::endl;
-            Rcpp::Rcout << "npoint = "   << npoint << std::endl;
-            Rcpp::Rcout << "ktrcde = "   << ktrcde << std::endl;
-            Rcpp::Rcout << "deltai = "   << deltai << std::endl;
-            Rcpp::Rcout << "thetai = "   << thetai << std::endl;
-            Rcpp::Rcout << "  d(i) = "   << d.at(i - 1) << std::endl;
+            Rcpp::Rcout << "  npoint = "   << npoint << std::endl;
+            Rcpp::Rcout << "  ktrcde = "   << ktrcde << std::endl;
+            Rcpp::Rcout << "  deltai = "   << deltai << std::endl;
+            Rcpp::Rcout << "  thetai = "   << thetai << std::endl;
+            Rcpp::Rcout << "    d(i) = "   << d.at(i - 1) << std::endl;
    
          }
 

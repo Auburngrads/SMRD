@@ -32,19 +32,19 @@ void sclp(int &ipoint,
          if(debug::kprint >= 5) {
            
            Rcpp::Rcout << "\nsclp**5**\n" << std::endl;
-           Rcpp::Rcout << "j = " << j - 1 << std::endl;
+           Rcpp::Rcout << "       j = " << j - 1 << std::endl;
            Rcpp::Rcout << "icolx(j) = " << icolx.at(j - 1) << std::endl;
-           Rcpp::Rcout << "iscd(j) = " << iscd.at(j - 1) <<  std::endl;
-           Rcpp::Rcout << "Int = " << Int << std::endl;
-           Rcpp::Rcout << "nter = " <<  nter << std::endl;
-           Rcpp::Rcout << "nstart = " <<  nstart << std::endl;
-           Rcpp::Rcout << "theta = " <<  theta << std::endl;
-           Rcpp::Rcout << "thetas = " << thetas <<  std::endl;
-           Rcpp::Rcout << "xbar(j) = " << xbar.at(j - 1) <<  std::endl;
-           Rcpp::Rcout << "xbaru = " << xbaru <<  std::endl;
-           Rcpp::Rcout << "sd(j) = " << sd.at(j - 1) <<  std::endl;
-           Rcpp::Rcout << "Const = " << Const <<  std::endl;
-           Rcpp::Rcout << "ipoint = " << ipoint <<  std::endl;
+           Rcpp::Rcout << " iscd(j) = " << iscd.at(j - 1) <<  std::endl;
+           Rcpp::Rcout << "     Int = " << Int << std::endl;
+           Rcpp::Rcout << "    nter = " <<  nter << std::endl;
+           Rcpp::Rcout << "  nstart = " <<  nstart << std::endl;
+           Rcpp::Rcout << "   theta = " <<  theta << std::endl;
+           Rcpp::Rcout << "  thetas = " << thetas <<  std::endl;
+           Rcpp::Rcout << " xbar(j) = " << xbar.at(j - 1) <<  std::endl;
+           Rcpp::Rcout << "   xbaru = " << xbaru <<  std::endl;
+           Rcpp::Rcout << "   sd(j) = " << sd.at(j - 1) <<  std::endl;
+           Rcpp::Rcout << "   Const = " << Const <<  std::endl;
+           Rcpp::Rcout << "  ipoint = " << ipoint <<  std::endl;
            
          }
         
@@ -60,16 +60,16 @@ if(debug::kprint >= 5) {
  
    Rcpp::Rcout << "\nsclp**5**\n" << std::endl;
    Rcpp::Rcout << "icolx(0) = " << icolx.at(0) << std::endl;
-   Rcpp::Rcout << "iscd(0) = " << iscd.at(0) <<  std::endl;
-   Rcpp::Rcout << "Int = " << Int << std::endl;
-   Rcpp::Rcout << "nter = " <<  nter << std::endl;
-   Rcpp::Rcout << "nstart = " <<  nstart << std::endl;
-   Rcpp::Rcout << "theta = " <<  theta << std::endl;
-   Rcpp::Rcout << "thetas = " << thetas <<  std::endl;
-   Rcpp::Rcout << "xbar(0) = " << xbar.at(0) <<  std::endl;
-   Rcpp::Rcout << "xbaru = " << xbaru <<  std::endl;
-   Rcpp::Rcout << "sd(0) = " << sd.at(0) <<  std::endl;
-   Rcpp::Rcout << "Const = " << Const <<  std::endl;
+   Rcpp::Rcout << " iscd(0) = " << iscd.at(0) <<  std::endl;
+   Rcpp::Rcout << "     Int = " << Int << std::endl;
+   Rcpp::Rcout << "    nter = " <<  nter << std::endl;
+   Rcpp::Rcout << "  nstart = " <<  nstart << std::endl;
+   Rcpp::Rcout << "   theta = " <<  theta << std::endl;
+   Rcpp::Rcout << "  thetas = " << thetas <<  std::endl;
+   Rcpp::Rcout << " xbar(0) = " << xbar.at(0) <<  std::endl;
+   Rcpp::Rcout << "   xbaru = " << xbaru <<  std::endl;
+   Rcpp::Rcout << "   sd(0) = " << sd.at(0) <<  std::endl;
+   Rcpp::Rcout << "   Const = " << Const <<  std::endl;
    
 }
 

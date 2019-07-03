@@ -24,8 +24,11 @@ thetat = Rcpp::as<NumericVector>(Rcpp::as<List>(fargs)["lt"]);
 // Grab space for the untransformed thetas values that we will compute
    Rcpp::NumericVector ithets = Rcpp::NumericVector(genx07::g_nparm);
    
-   fl_ktt = flktt1(thetat,ithets,genx03::g_ipkode,genx01::g_ipinow,
-                   genx07::g_nparm,genx00::g_npoint);
+   fl_ktt = flktt1(thetat,ithets,
+                   genx03::g_ipkode,
+                   genx01::g_ipinow,
+                   genx07::g_nparm,
+                   genx00::g_npoint);
    
 return Rcpp::List::create(Named("val") = fl_ktt);
 
@@ -48,7 +51,7 @@ double flktt1(Rcpp::NumericVector thetat,
    
 Rcpp::NumericVector accum = Rcpp::NumericVector(2);
 double fact,fl_ktt1;
-int kpnow = 1,weigi;
+int weigi;
 Rcpp::List fargs,flist;
    
 if(debug::kprint >= 7){
@@ -72,7 +75,7 @@ if(debug::kprint >= 7){
    if(npoint == 0) goto line23;
    
 // Loop over the rows in the data matrix
-   for(kpnow = 1; kpnow <= npoint; kpnow++){
+   for(int kpnow = 1; kpnow <= npoint; kpnow++){
       
        // Skip observatiuon that is not in
           if(innow.at(kpnow - 1) == 0) continue;
@@ -95,7 +98,7 @@ if(debug::kprint >= 7){
    fl_ktt1 = accum.at(0) + accum.at(1);
    goto line24;
    
-line23: fargs = Rcpp::List::create(Named("lk") = kpnow,
+line23: fargs = Rcpp::List::create(Named("lk") = 1,
                                    Named("lt") = thetas,
                                    Named("ln") = nparm);
           flist = flkt(fargs);

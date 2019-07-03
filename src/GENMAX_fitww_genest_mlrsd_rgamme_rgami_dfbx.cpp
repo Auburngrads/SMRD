@@ -33,7 +33,12 @@ double df_bx;
       
    }
    
-   df_bx = dfbx1(kpnow,genx05::g_ipx,genx05::g_ipxbru,genx05::g_ipsd,ipxcg,genx00::g_nrownw,
+   df_bx = dfbx1(kpnow,
+                 genx05::g_ipx,
+                 genx05::g_ipxbru,
+                 genx05::g_ipsd,
+                 ipxcg,
+                 genx00::g_nrownw,
                  irelag,nterg,intg,thetas,ipthta,ixsave);
    
 return df_bx;
@@ -135,13 +140,13 @@ if(kpnow > 0){
 if(debug::kprint >= 9){
    
    Rcpp::Rcout << "\nDFBX**9**\n" << std::endl;
-   Rcpp::Rcout << "kpnow = " << kpnow - 1 << std::endl;
+   Rcpp::Rcout << " kpnow = " << kpnow - 1 << std::endl;
    Rcpp::Rcout << "nrownw = " << nrownw << std::endl;
    Rcpp::Rcout << "irelag = " << irelag << std::endl;
-   Rcpp::Rcout << "nterg = " << nterg << std::endl;
-   Rcpp::Rcout << "intg = " << intg << std::endl;
-   Rcpp::Rcout << "dfbx1 = " << df_bx1 << std::endl;
-   Rcpp::Rcout << "xsave = " << xsave << std::endl;
+   Rcpp::Rcout << " nterg = " << nterg << std::endl;
+   Rcpp::Rcout << "  intg = " << intg << std::endl;
+   Rcpp::Rcout << " dfbx1 = " << df_bx1 << std::endl;
+   Rcpp::Rcout << " xsave = " << xsave << std::endl;
    Rcpp::Rcout << "thetas = " << thetas << std::endl;
    
 }

@@ -48,17 +48,17 @@ Rcpp::NumericVector GAMMS = clone(genx21::g_gamms);
                 if(debug::kprint >= 5){
                    
                    Rcpp::Rcout << "\nRGAMME BEFORE RGAMI\n" << std::endl;
-                   Rcpp::Rcout << "kpnow = " << kpnow << std::endl;
-                   Rcpp::Rcout << "igam = " << igam << std::endl;
-                   Rcpp::Rcout << "nxg(igam) = " << NXG.at(igam - 1) << std::endl;
-                   Rcpp::Rcout << "nterg(igam) = " << NTERG.at(igam - 1) << std::endl;
-                   Rcpp::Rcout << "intg(igam) = " << INTG.at(igam - 1) << std::endl;
-                   Rcpp::Rcout << "xcols = " << xcols << std::endl;
+                   Rcpp::Rcout << "       kpnow = " << kpnow << std::endl;
+                   Rcpp::Rcout << "        igam = " << igam << std::endl;
+                   Rcpp::Rcout << "   nxg(igam) = " << NXG.at(igam - 1) << std::endl;
+                   Rcpp::Rcout << " nterg(igam) = " << NTERG.at(igam - 1) << std::endl;
+                   Rcpp::Rcout << "  intg(igam) = " << INTG.at(igam - 1) << std::endl;
+                   Rcpp::Rcout << "       xcols = " << xcols << std::endl;
                    Rcpp::Rcout << "ipthet(igam) = " << IPTHET.at(igam - 1) << std::endl;
-                   Rcpp::Rcout << "igtyg(igam) = " << IGTYG.at(igam - 1) << std::endl;
+                   Rcpp::Rcout << " igtyg(igam) = " << IGTYG.at(igam - 1) << std::endl;
                    Rcpp::Rcout << "irelag(igam) = " << IRELAG.at(igam - 1) << std::endl;
-                   Rcpp::Rcout << "thetas = " << thetas << std::endl;
-                   Rcpp::Rcout << "gamme = " << gamme << std::endl;
+                   Rcpp::Rcout << "      thetas = " << thetas << std::endl;
+                   Rcpp::Rcout << "       gamme = " << gamme << std::endl;
                    
                 }
                 
@@ -87,8 +87,8 @@ Rcpp::NumericVector GAMMS = clone(genx21::g_gamms);
    if(debug::kprint >= 7){
       
       Rcpp::Rcout << "\nRGAMME**7**\n"   << std::endl;
-      Rcpp::Rcout << "kpnow = " << kpnow << std::endl;
-      Rcpp::Rcout << "gamme = " << gamme << std::endl;
+      Rcpp::Rcout << " kpnow = " << kpnow << std::endl;
+      Rcpp::Rcout << " gamme = " << gamme << std::endl;
       Rcpp::Rcout << "thetas = " << thetas << std::endl;
       
    }

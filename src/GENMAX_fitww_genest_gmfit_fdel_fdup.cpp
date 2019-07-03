@@ -30,10 +30,10 @@ if(debug::kprint >= 2){
    
    Rcpp::Rcout << "\nFDUP**6**\n" << std::endl;
    Rcpp::Rcout << "ktrcde = " << ktrcde << std::endl;
-   Rcpp::Rcout << "kode = " << kode << std::endl;
-   Rcpp::Rcout << "t = " << t << std::endl;
-   Rcpp::Rcout << "s = " << s << std::endl;
-   Rcpp::Rcout << "f_dup = " << f_dup << std::endl;
+   Rcpp::Rcout << "  kode = " << kode << std::endl;
+   Rcpp::Rcout << "     t = " << t << std::endl;
+   Rcpp::Rcout << "     s = " << s << std::endl;
+   Rcpp::Rcout << " f_dup = " << f_dup << std::endl;
    
 }
 

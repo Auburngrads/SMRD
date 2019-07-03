@@ -28,9 +28,9 @@ void powprn(int &iterc,
      
       Rcpp::Rcout << "\nPOWELL LINE: 556 (POWPRN)\n" << std::endl;
       Rcpp::Rcout << "iterc = " << iterc << std::endl;
-      Rcpp::Rcout << "nfcc = " << nfcc << std::endl;
+      Rcpp::Rcout << " nfcc = " << nfcc << std::endl;
       Rcpp::Rcout << "fmval = " << fmval << std::endl;
-      Rcpp::Rcout << "x = " << ist << std::endl;
+      Rcpp::Rcout << "    x = " << ist << std::endl;
      
    }
         

@@ -151,18 +151,18 @@ double epsx,funarg;
                 if(debug::kprint >= 3){
                    
                    Rcpp::Rcout << "\nOUTFUN BEFORE FUNINT\n"           << std::endl;
-                   Rcpp::Rcout << "i = "          << i - 1             << std::endl;
-                   Rcpp::Rcout << "kodef = "      << kodef             << std::endl;
-                   Rcpp::Rcout << "conlev = "     << conlev            << std::endl;
-                   Rcpp::Rcout << "thetas = "     << thetas            << std::endl;
-                   Rcpp::Rcout << "vcvs = "       << vcvs              << std::endl;
-                   Rcpp::Rcout << "kodet = "      << kodet             << std::endl;
-                   Rcpp::Rcout << "nparm = "      << nparm             << std::endl;
-                   Rcpp::Rcout << "epsx = "       << epsx              << std::endl;
-                   Rcpp::Rcout << "fest(i) = "    << fest.at(i - 1)    << std::endl;
-                   Rcpp::Rcout << "std_err(i) = " << std_err.at(i - 1) << std::endl;
-                   Rcpp::Rcout << "xlow(i) = "    << xlow.at(i - 1)    << std::endl;
-                   Rcpp::Rcout << "xup(i) = "     << xup.at(i - 1)     << std::endl;
+                   Rcpp::Rcout << "         i = "   << i - 1             << std::endl;
+                   Rcpp::Rcout << "     kodef = "   << kodef             << std::endl;
+                   Rcpp::Rcout << "    conlev = "   << conlev            << std::endl;
+                   Rcpp::Rcout << "    thetas = "   << thetas            << std::endl;
+                   Rcpp::Rcout << "      vcvs = \n" << vcvs              << std::endl;
+                   Rcpp::Rcout << "     kodet = "   << kodet             << std::endl;
+                   Rcpp::Rcout << "     nparm = "   << nparm             << std::endl;
+                   Rcpp::Rcout << "      epsx = "   << epsx              << std::endl;
+                   Rcpp::Rcout << "   fest(i) = "   << fest.at(i - 1)    << std::endl;
+                   Rcpp::Rcout << "std_err(i) = "   << std_err.at(i - 1) << std::endl;
+                   Rcpp::Rcout << "   xlow(i) = "   << xlow.at(i - 1)    << std::endl;
+                   Rcpp::Rcout << "    xup(i) = "   << xup.at(i - 1)     << std::endl;
                    
                 }
                 

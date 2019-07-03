@@ -25,6 +25,13 @@ void distxx(int &kmod,
             int &kmodp,
             int &ier){
 
+  
+for(int k = 1; k <= maxpn; k++){
+  
+    ipmark.at(k - 1) = 0;
+  
+}
+
 npard = 0;
 
 // Set llog marker to take logs if kdist is even
@@ -142,13 +149,13 @@ if(debug::kprint >= 4){
    for(int i = 0; i < npard; i++){
      
        Rcpp::Rcout << "\nDISTXX iter = " << i << std::endl;
-       Rcpp::Rcout << "kdist = "         << kdist << std::endl;
-       Rcpp::Rcout << "kmod = "          << kmod  << std::endl;
-       Rcpp::Rcout << "kmodp = "         << kmodp << std::endl;
-       Rcpp::Rcout << "npard = "         << npard << std::endl;
-       Rcpp::Rcout << "igtyd(i) = "      << ipgty.at(i) << std::endl;
-       Rcpp::Rcout << "ipmark(i) = "     << ipmark.at(i) << std::endl;
-       Rcpp::Rcout << "maxpn = "         << maxpn << std::endl;
+       Rcpp::Rcout << "    kdist = " << kdist << std::endl;
+       Rcpp::Rcout << "     kmod = " << kmod  << std::endl;
+       Rcpp::Rcout << "    kmodp = " << kmodp << std::endl;
+       Rcpp::Rcout << "    npard = " << npard << std::endl;
+       Rcpp::Rcout << " igtyd(i) = " << ipgty.at(i) << std::endl;
+       Rcpp::Rcout << "ipmark(i) = " << ipmark.at(i) << std::endl;
+       Rcpp::Rcout << "    maxpn = " << maxpn << std::endl;
      
    }
    

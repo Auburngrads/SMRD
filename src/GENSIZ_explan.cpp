@@ -36,15 +36,15 @@ if(debug::kprint >= 4){
    }
   
    Rcpp::Rcout << "\nEXPLAN START\n" << std::endl;
-   Rcpp::Rcout << "nnum = "  << nnum << std::endl;
-   Rcpp::Rcout << "iup = "   << iup << std::endl;
-   Rcpp::Rcout << "kparm = " << kparm << std::endl;
-   Rcpp::Rcout << "kparv = " << kparv << std::endl;
-   Rcpp::Rcout << "nxd = "   << nxd << std::endl;
-   Rcpp::Rcout << "intd = "  << intd << std::endl;
-   Rcpp::Rcout << "irel = "  << irelad << std::endl;
-   Rcpp::Rcout << "nrvar = "  << nrvar << std::endl;
-   Rcpp::Rcout << "ncolx = "  << ncolx << std::endl;
+   Rcpp::Rcout << "  nnum = "  << nnum << std::endl;
+   Rcpp::Rcout << "   iup = "   << iup << std::endl;
+   Rcpp::Rcout << " kparm = " << kparm << std::endl;
+   Rcpp::Rcout << " kparv = " << kparv << std::endl;
+   Rcpp::Rcout << "   nxd = "   << nxd << std::endl;
+   Rcpp::Rcout << "  intd = "  << intd << std::endl;
+   Rcpp::Rcout << "  irel = "  << irelad << std::endl;
+   Rcpp::Rcout << " nrvar = "  << nrvar << std::endl;
+   Rcpp::Rcout << " ncolx = "  << ncolx << std::endl;
    Rcpp::Rcout << "nrelat = "  << nrelat << std::endl;
   
 }
@@ -176,15 +176,15 @@ if(debug::kprint >= 4){
 exit:  if(debug::kprint >= 4){
   
           Rcpp::Rcout << "\nEXPLAN: EXIT\n" << std::endl;
-          Rcpp::Rcout << "nnum = "  << nnum << std::endl;
-          Rcpp::Rcout << "iup = "   << iup << std::endl;
-          Rcpp::Rcout << "kparm = " << kparm << std::endl;
-          Rcpp::Rcout << "kparv = " << kparv << std::endl;
-          Rcpp::Rcout << "nxd = "   << nxd << std::endl;
-          Rcpp::Rcout << "intd = "  << intd << std::endl;
-          Rcpp::Rcout << "irel = "  << irelad << std::endl;
-          Rcpp::Rcout << "nrvar = "  << nrvar << std::endl;
-          Rcpp::Rcout << "ncolx = "  << ncolx << std::endl;
+          Rcpp::Rcout << "  nnum = "  << nnum << std::endl;
+          Rcpp::Rcout << "   iup = "   << iup << std::endl;
+          Rcpp::Rcout << " kparm = " << kparm << std::endl;
+          Rcpp::Rcout << " kparv = " << kparv << std::endl;
+          Rcpp::Rcout << "   nxd = "   << nxd << std::endl;
+          Rcpp::Rcout << "  intd = "  << intd << std::endl;
+          Rcpp::Rcout << "  irel = "  << irelad << std::endl;
+          Rcpp::Rcout << " nrvar = "  << nrvar << std::endl;
+          Rcpp::Rcout << " ncolx = "  << ncolx << std::endl;
           Rcpp::Rcout << "nrelat = "  << nrelat << std::endl;
          
        }

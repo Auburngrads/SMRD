@@ -41,9 +41,9 @@ int nparmp = nparm + 1;
 if(debug::kprint > 0) {
   
    Rcpp::Rcout << "\nVARCOV\n"        << std::endl;
-   Rcpp::Rcout << "thetg = " << thetg << std::endl;
+   Rcpp::Rcout << " thetg = " << thetg << std::endl;
    Rcpp::Rcout << "fsderd = " << fsderd << std::endl;
-   Rcpp::Rcout << "vcvg = \n" << vcvg << std::endl;
+   Rcpp::Rcout << "  vcvg = \n" << vcvg << std::endl;
         
 }
 
@@ -175,35 +175,36 @@ for(int i = 1; i <= nrow; i++){
                   if((j == nparm) and (k == nparm)) s = s3;
                   vcvd.at(k - 1,j - 1) = vcvd.at(k - 1,j - 1) + xj * xk * wti * s;
                
+                  if(debug::kprint >= 4){
+                    
+                     Rcpp::Rcout << "\nVARCO1**4**\n" << std::endl;
+                     Rcpp::Rcout << "        j = " << j - 1 << std::endl;
+                     Rcpp::Rcout << "        k = " << k - 1 << std::endl;
+                     Rcpp::Rcout << " thetg(j) = " << thetg.at(j - 1) << std::endl;
+                     Rcpp::Rcout << " thetg(k) = " << thetg.at(k - 1) << std::endl;
+                     Rcpp::Rcout << "        s = " << s << std::endl;
+                     Rcpp::Rcout << "    sfder = " << sfder << std::endl;
+                     Rcpp::Rcout << "fsderd(j) = " << fsderd.at(j - 1) << std::endl;
+                     Rcpp::Rcout << "vcvd(k,j) = " << vcvd.at(k - 1,j - 1) << std::endl;
+                     
+                  }
+               
                }
-          
-               if(debug::kprint >= 4){
-                 
-                  Rcpp::Rcout << "\nVARCO1**4**\n" << std::endl;
-                  Rcpp::Rcout << "j = " << j - 1 << std::endl;
-                  Rcpp::Rcout << "k = " << k - 1 << std::endl;
-                  Rcpp::Rcout << "thetg(j) = " << thetg.at(j - 1) << std::endl;
-                  Rcpp::Rcout << "thetg(k) = " << thetg.at(k - 1) << std::endl;
-                  Rcpp::Rcout << "s = " << s << std::endl;
-                  Rcpp::Rcout << "sfder = " << sfder << std::endl;
-                  Rcpp::Rcout << "fsderd(j) = " << fsderd.at(j - 1) << std::endl;
-                  Rcpp::Rcout << "vcvd(k,j) = " << vcvd.at(k - 1,j - 1) << std::endl;
-                  
-               }     
+               
             }
     }
     
     if(debug::kprint >= 3) {
       
        Rcpp::Rcout << "\nVARCO1**3**\n" << std::endl;
-       Rcpp::Rcout << "i = " << i << std::endl;
-       Rcpp::Rcout << "itype = " << itype << std::endl;
+       Rcpp::Rcout << "     i = " << i << std::endl;
+       Rcpp::Rcout << " itype = " << itype << std::endl;
        Rcpp::Rcout << "ittype = " << ittype << std::endl;
       
     }
 }
 
-// divide by the scale factor sigma2 and eliminate zero rows/cols;
+// Divide by the scale factor sigma2 and eliminate zero rows/cols
 jj = 0;
 
 for(int j = 1; j <= nparm; j++){

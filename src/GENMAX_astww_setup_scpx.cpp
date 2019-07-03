@@ -16,14 +16,18 @@ void scpx(Rcpp::NumericVector &theta,
  
  if(debug::kprint >= 4) {
     
-    Rcpp::Rcout << "\nSCPX START\n" << std::endl;
+    Rcpp::Rcout << "\nSCPX START\n"                << std::endl;
     Rcpp::Rcout << "ipthet = " << genx21::g_ipthet << std::endl;
-    Rcpp::Rcout << "ngame = " << genx03::g_ngame << std::endl;
-    Rcpp::Rcout << "nterg = " << genx20::g_nterg << std::endl;
-    Rcpp::Rcout << "nxg = " << genx20::g_nxg << std::endl;
-    Rcpp::Rcout << "nparm = " << genx07::g_nparm << std::endl;
-    Rcpp::Rcout << "thetas = " << thetas << std::endl;
-    Rcpp::Rcout << "theta = " << theta << std::endl;
+    Rcpp::Rcout << " ngame = " << genx03::g_ngame  << std::endl;
+    Rcpp::Rcout << " nterg = " << genx20::g_nterg  << std::endl;
+    Rcpp::Rcout << "   nxg = " << genx20::g_nxg    << std::endl;
+    Rcpp::Rcout << "  intg = " << genx20::g_intg   << std::endl;
+    Rcpp::Rcout << "  ipsd = " << genx05::g_ipsd   << std::endl;
+    Rcpp::Rcout << "ipiscd = " << genx05::g_ipiscd << std::endl;
+    Rcpp::Rcout << "ipxbru = " << genx05::g_ipxbru << std::endl;
+    Rcpp::Rcout << " nparm = " << genx07::g_nparm  << std::endl;
+    Rcpp::Rcout << "thetas = " << thetas           << std::endl;
+    Rcpp::Rcout << " theta = " << theta            << std::endl;
     
  }
  
@@ -73,20 +77,20 @@ for(int igame = 1; igame <= genx03::g_ngame; igame++){
 
 line21: if(debug::kprint >= 4) {
   
-           Rcpp::Rcout << "\nscpx**4**\n"                               << std::endl;
-           Rcpp::Rcout << "igame = "    << igame - 1                    << std::endl;
-           Rcpp::Rcout << "ipthet = "   << IPTHET.at(igame - 1) << std::endl;
-           Rcpp::Rcout << "intg = "     << INTG.at(igame - 1)   << std::endl;
-           Rcpp::Rcout << "nxg = "      << NXG.at(igame - 1)    << std::endl;
-           Rcpp::Rcout << "nterg = "    << NTERG.at(igame - 1)  << std::endl;
-           Rcpp::Rcout << "theta = "    << theta                        << std::endl;
-           Rcpp::Rcout << "thetas = "   << thetas                       << std::endl;
+           Rcpp::Rcout << "\nscpx**4**\n"                     << std::endl;
+           Rcpp::Rcout << " igame = " << igame - 1            << std::endl;
+           Rcpp::Rcout << "ipthet = " << IPTHET.at(igame - 1) << std::endl;
+           Rcpp::Rcout << "  intg = " << INTG.at(igame - 1)   << std::endl;
+           Rcpp::Rcout << "   nxg = " << NXG.at(igame - 1)    << std::endl;
+           Rcpp::Rcout << " nterg = " << NTERG.at(igame - 1)  << std::endl;
+           Rcpp::Rcout << " theta = " << theta                << std::endl;
+           Rcpp::Rcout << "thetas = " << thetas               << std::endl;
 
            if(IPXCG[igame - 1] != R_NilValue) {
-      
+
               SEXP l = IPXCG[igame - 1]; Rcpp::IntegerVector y(l);
               Rcpp::Rcout << "ipxcg(igame) = " << y << std::endl;
-     
+
            }
 
         }
@@ -105,10 +109,10 @@ if(debug::kprint >= 4) {
   
    for(int i = 1; i <= genx07::g_nparm; i++){
      
-       Rcpp::Rcout << "\nscpx**END**\n"  << std::endl;
-       Rcpp::Rcout << "i = " << i - 1  << std::endl;
-       Rcpp::Rcout << "theta(i) = "    << theta.at(i - 1) << std::endl;
-       Rcpp::Rcout << "thetas(i) = "   << thetas.at(i - 1) << std::endl;
+       Rcpp::Rcout << "\nscpx**END**\n"                  << std::endl;
+       Rcpp::Rcout << "        i = " << i - 1            << std::endl;
+       Rcpp::Rcout << " theta(i) = " << theta.at(i - 1)  << std::endl;
+       Rcpp::Rcout << "thetas(i) = " << thetas.at(i - 1) << std::endl;
      
    }
   

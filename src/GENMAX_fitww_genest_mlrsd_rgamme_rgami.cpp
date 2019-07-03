@@ -40,17 +40,17 @@ int ier = 0;
 if(debug::kprint >= 7){
    
    Rcpp::Rcout << "\nRGAMI**1**\n" << std::endl;
-   Rcpp::Rcout << "kpnow = " << kpnow << std::endl;
-   Rcpp::Rcout << "igam = " << igam - 1 << std::endl;
-   Rcpp::Rcout << "nxg = " << nxg << std::endl;
-   Rcpp::Rcout << "nterg = " << nterg << std::endl;
-   Rcpp::Rcout << "intg = " << intg << std::endl;
-   Rcpp::Rcout << "ipxcg = " << ipxcg << std::endl;
+   Rcpp::Rcout << " kpnow = " << kpnow << std::endl;
+   Rcpp::Rcout << "  igam = " << igam - 1 << std::endl;
+   Rcpp::Rcout << "   nxg = " << nxg << std::endl;
+   Rcpp::Rcout << " nterg = " << nterg << std::endl;
+   Rcpp::Rcout << "  intg = " << intg << std::endl;
+   Rcpp::Rcout << " ipxcg = " << ipxcg << std::endl;
    Rcpp::Rcout << "ipthta = " << ipthta << std::endl;
    Rcpp::Rcout << "igtype = " << igtype << std::endl;
    Rcpp::Rcout << "irelag = " << irelag << std::endl;
    Rcpp::Rcout << "thetas = " << thetas << std::endl;
-   Rcpp::Rcout << "gamme = " << gamme << std::endl;
+   Rcpp::Rcout << " gamme = " << gamme << std::endl;
    
 }
 
@@ -103,9 +103,10 @@ if(debug::kprint >= 7){
                  ipxcg,nterg,intg,irelag);
       
       // Fill gamme with default zeros in case shape=0 first time around
-         for(int i = 0; i < 5; i++){
+         for(int i = 1; i <= 5; i++){
             
-             gamme.at(igam + i - 1) = zero;
+             gamme.at((igam - 1) + (i - 1)) = zero;
+            
          }
          
          gamme.at(igam - 1) = tmp;
@@ -127,15 +128,15 @@ if(debug::kprint >= 7){
 if(debug::kprint >= 6){
    
    Rcpp::Rcout << "\nRGAMI**2**\n" << std::endl;
-   Rcpp::Rcout << "kpnow = " << kpnow << std::endl;
-   Rcpp::Rcout << "igam = " << igam << std::endl;
-   Rcpp::Rcout << "nxg = " << nxg << std::endl;
-   Rcpp::Rcout << "nterg = " << nterg << std::endl;
-   Rcpp::Rcout << "intg = " << intg << std::endl;
-   Rcpp::Rcout << "ipxcg = " << ipxcg << std::endl;
-   Rcpp::Rcout << "ipthta = " << ipthta << std::endl;
-   Rcpp::Rcout << "igtype = " << igtype << std::endl;
-   Rcpp::Rcout << "irelag = " << irelag << std::endl;
+   Rcpp::Rcout << "      kpnow = " << kpnow << std::endl;
+   Rcpp::Rcout << "       igam = " << igam - 1 << std::endl;
+   Rcpp::Rcout << "        nxg = " << nxg << std::endl;
+   Rcpp::Rcout << "      nterg = " << nterg << std::endl;
+   Rcpp::Rcout << "       intg = " << intg << std::endl;
+   Rcpp::Rcout << "      ipxcg = " << ipxcg << std::endl;
+   Rcpp::Rcout << "     ipthta = " << ipthta << std::endl;
+   Rcpp::Rcout << "     igtype = " << igtype << std::endl;
+   Rcpp::Rcout << "     irelag = " << irelag << std::endl;
    Rcpp::Rcout << "gamme(igam) = " << gamme.at(igam - 1) << std::endl;
 
 }

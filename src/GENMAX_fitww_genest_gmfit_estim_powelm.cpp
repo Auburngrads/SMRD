@@ -26,7 +26,8 @@ void powelm(Rcpp::NumericVector &x,
             int &ier){
 
 double pz3 = 0.03e00,pz5 = 0.05e00,p1 = 0.1e00;
-double big = 1.0e30,aaa = 0.0e00;
+double big = 1.0e40,aaa = 0.0e00;
+double epsilon = 1e-30;
 double emin,dscale,scer,a,b;
 double sum,fkeep,fp,fa,fprev,fmval;
 int maxtry = 5,iprxxx,ipline;
@@ -134,7 +135,7 @@ line8: ddhh = dd;
       if(debug::kprint >= 4) {
         
          Rcpp::Rcout << "\nPOWELM CHECK\n" << std::endl;
-         Rcpp::Rcout << "dd = "   << dd    << std::endl;
+         Rcpp::Rcout << "  dd = " << dd    << std::endl;
          Rcpp::Rcout << "diff = " << diff  << std::endl;
         
       }
@@ -209,7 +210,7 @@ line83: d = 0.5 * (da + db - (fa - fb) / (da - db));
         is = 4;
 
         if(std::abs((da - d) * (d - db)) == 0) goto line8;
-        if(((da - d) * (d - db)) > 0.0) goto line8;
+        if(((da - d) * (d - db)) > 0) goto line8;
         
 line25: is = 1;
 
@@ -228,7 +229,11 @@ line26: d = db + dsign(ddmax,(db - da));
         if(ntry > maxtry) goto line993;
         
         // Try again
-        Rcpp::warning("\npowelm restart number = %i", ntry);
+        if(debug::kprint > 0) {
+          
+           Rcpp::warning("\npowelm restart number = %i\nddmax = %f\nddmag = %f", ntry,ddmax,ddmag);
+          
+        }
         ntry = ntry + 1;
         dscale = dscale * 4.0; //factor
         goto line1001;
@@ -278,7 +283,7 @@ line30: a = (db - dc) * (fa - fc);
         b = (dc - da) * (fb - fc);
 
         if(std::abs((a + b) * (da - dc)) == 0) goto line33;
-        if(((a + b) * (da - dc)) > 0.0) goto line34;
+        if(((a + b) * (da - dc)) > 0) goto line34;
 
 line33: fa = fb;
         da = db;
@@ -309,7 +314,7 @@ line86: if(std::abs(std::abs(d - di) - dacc) == 0) goto line41;
         if(std::abs(d - di) < (pz3 * std::abs(d))) goto line41;
         
 line45: if(std::abs((da - dc) * (dc - d)) == 0) goto line46;
-        if(((da - dc) * (dc - d)) < 0.0) goto line47;
+        if(((da - dc) * (dc - d)) < 0) goto line47;
 
 line46: fa = fb;
         da = db;
@@ -319,7 +324,7 @@ line46: fa = fb;
 
 line47: is = 2;
         if(std::abs((db - d) * (d - dc)) == 0) goto line8;
-        if(((db - d) * (d - dc)) > 0.0) goto line8;
+        if(((db - d) * (d - dc)) > 0) goto line8;
 
         is = 3;
         goto line8;
@@ -329,7 +334,7 @@ line41: f = fi;
         dd = std::sqrt(std::abs((dc - db) * (dc - da) * (da - db) / (a + b)));
         
         // Fit to keep from dividing by 0 when dd ends up being 0;
-        if(!(dd > 0.0)) dd = 1.0e-10;
+        if(!(dd > 0)) dd = 1.0e-10;
 
         for(int i = 1; i <= n; i++){
         
@@ -349,23 +354,23 @@ line50: if(ipline == 1) goto line556;
           
            Rcpp::Rcout << "\npoweld **50**\n" << std::endl;
            Rcpp::Rcout << "iterc = " << iterc << std::endl;
-           Rcpp::Rcout << "nfcc = " << nfcc << std::endl;
-           Rcpp::Rcout << "f = " << f << std::endl;
-           Rcpp::Rcout << "x = " << x << std::endl;
+           Rcpp::Rcout << " nfcc = " << nfcc << std::endl;
+           Rcpp::Rcout << "    f = " << f << std::endl;
+           Rcpp::Rcout << "    x = " << x << std::endl;
           
         }
         
         goto line557;
         
-line556: fmval = -f;
+line556: fmval = -1 * f;
          powprn(iterc,nfcc,fmval,x,n);
          if(debug::kprint > 0){
           
            Rcpp::Rcout << "\npoweld **556**\n" << std::endl;
            Rcpp::Rcout << "iterc = " << iterc << std::endl;
-           Rcpp::Rcout << "nfcc = " << nfcc << std::endl;
-           Rcpp::Rcout << "f = " << f << std::endl;
-           Rcpp::Rcout << "x = " << x << std::endl;
+           Rcpp::Rcout << " nfcc = " << nfcc << std::endl;
+           Rcpp::Rcout << "    f = " << f << std::endl;
+           Rcpp::Rcout << "    x = " << x << std::endl;
           
         }
          
@@ -375,8 +380,8 @@ line557: if(iprxxx == 1) goto line51;
 line51:  if(itone == 1) goto line55;
          if(itone == 2) goto line38;
 
-line55: if(std::abs((fprev - f) - sum) == 0) goto line95;
-        if((fprev - f) < sum) goto line94;
+line55: if(std::abs(fprev - f - sum) == 0) goto line95;
+        if((fprev - f - sum) < 0) goto line94;
 
 line95: sum = fprev - f;
         jtl = iline;
@@ -409,7 +414,7 @@ line112: if(std::abs(fp - f) == 0) goto line37;
          d = 2 * (fp + f - 2 * fhold) / std::pow((fp - f),2);
 
          if(std::abs((d * std::pow((fp - fhold - sum),2)) - sum) == 0) goto line37;
-         if(((d * std::pow((fp - fhold - sum),2)) - sum) > 0.0) goto line37;
+         if(        ((d * std::pow((fp - fhold - sum),2)) - sum) > 0 ) goto line37;
 
 line87: j = jtl * n + 1;
         if(j > jj) goto line61;
@@ -439,7 +444,7 @@ for(int i = 1; i <= n; i++){
     w.at(k - 1) = w.at(krxp - 1);
 
     if(std::abs(aaa - std::abs(w.at(k - 1) / e.at(i - 1))) == 0) goto line67;
-    if(aaa > std::abs(w.at(k - 1) / e.at(i - 1))) goto line67;
+    if(         aaa > std::abs(w.at(k - 1) / e.at(i - 1))) goto line67;
 
     aaa = std::abs(w.at(k - 1) / e.at(i - 1));
 
@@ -452,12 +457,12 @@ for(int i = 1; i <= n; i++){
 if((aaa <= 0.0e00) and (debug::kprint >= 2)){
   
     Rcpp::Rcout << "\n ***pxxx-***error***\n" << std::endl;
-    Rcpp::Rcout << "n = " << n << std::endl;
-    Rcpp::Rcout << "k = " << k << std::endl;
+    Rcpp::Rcout << "   n = " << n << std::endl;
+    Rcpp::Rcout << "   k = " << k << std::endl;
     Rcpp::Rcout << "krxp = " << krxp << std::endl;
     Rcpp::Rcout << "w(k) = " << w.at(k - 1) << std::endl;
     Rcpp::Rcout << "e(n) = " << e.at(n - 1) << std::endl;
-    Rcpp::Rcout << "aaa = " << aaa << std::endl;
+    Rcpp::Rcout << " aaa = " << aaa << std::endl;
   
 }
 
@@ -475,7 +480,7 @@ for(int i = 1; i <= n; i++){
     krxp = krxp + 1;
     x.at(i - 1) = x.at(i - 1) - w.at(krxp - 1);
     if(std::abs((aaa * std::abs(e.at(i - 1))) - std::abs(w.at(krxp - 1))) == 0) continue;
-    if((aaa * std::abs(e.at(i - 1))) > std::abs(w.at(krxp - 1))) continue;
+    if(         (aaa * std::abs(e.at(i - 1))) > std::abs(w.at(krxp - 1))) continue;
 
     aaa = std::abs(w.at(krxp - 1) / e.at(i - 1));
 
@@ -524,7 +529,7 @@ goto line108;
 line76: if(std::abs(f - fp) == 0) goto line78;
         if(f < fp) goto line35;
         
-line78: if((emin > 1.0e-05) and (debug::kprint >= 3)) {
+line78: if((emin > 1.0e-05) or (debug::kprint >= 3)) {
   
             Rcpp::warning("powelm: accuracy may be limited by noise in the log likelihood function");
   

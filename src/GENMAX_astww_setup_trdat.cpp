@@ -43,11 +43,12 @@ for(int j = 1; j <= ncolxp; j++){
   
    if(debug::kprint >= 4) {
      
-      Rcpp::Rcout << "\nTRDAT**4** j = " << j - 1 << std::endl;
-      Rcpp::Rcout << "iscd(j) = "  << iscd.at(j - 1) << std::endl;
-      Rcpp::Rcout << "xbar(j) = "  << xbar.at(j - 1) << std::endl;
+      Rcpp::Rcout << "\nTRDAT**4**"                   << std::endl;
+      Rcpp::Rcout << "       j = " << j - 1           << std::endl;
+      Rcpp::Rcout << " iscd(j) = " << iscd.at(j - 1)  << std::endl;
+      Rcpp::Rcout << " xbar(j) = " << xbar.at(j - 1)  << std::endl;
       Rcpp::Rcout << "xbaru(j) = " << xbaru.at(j - 1) << std::endl;
-      Rcpp::Rcout << "sd(j) = "    << sd.at(j - 1) << std::endl;
+      Rcpp::Rcout << "   sd(j) = " << sd.at(j - 1)    << std::endl;
      
    }
      
