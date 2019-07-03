@@ -1,5 +1,5 @@
 library(smrdfortran)
-testnum = 3
+testnum = 2
 
 if(testnum == 1) {
 
@@ -9,7 +9,7 @@ lz.ld <- frame.to.ld(superalloy,
                      case.weight.column = 3,
                      x.columns = c(4,5,6))
 data.ld <- lz.ld
-distribution = 'gamma'
+distribution = 'weibull'
 theta.start = NULL
 explan.vars = c(1,2,3)
 mu.relat = NULL
@@ -26,12 +26,11 @@ lz.ld <- frame.to.ld(superalloy,
                      case.weight.column = 3,
                      x.columns = c(4,5,6))
 data.ld <- lz.ld
-distribution = "Weibull"
+distribution = "generalized gamma"
 theta.start = NULL
 explan.vars = list(mu.relat = c(2,3),
-                   sigma.relat = c(2),
-                   prob.relat = c(1))
-model = 1
+                   sigma.relat = c(2))
+model = 0
   
 }
 if(testnum == 3){

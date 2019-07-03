@@ -203,7 +203,7 @@ if (any(startna)) theta.start[startna] <- theta.start.comp[startna]
         theta.start[nparm] <- 1
         parameter.fixed[nparm] <- T
     }
-    ndscrat <- nparm * number.cases + 5 * nparm * nparm + 12 * nparm + 1
+    ndscrat <- nparm * number.cases + 5 * nparm * nparm + 12 * nparm + 1 + 2 * nparm
     niscrat <- 2 * (nparm + 1)
     
     ivec <- c(number.case = number.cases, 
@@ -280,46 +280,46 @@ new = SMRD:::WQMMLESSS(  ivec = as.integer(ivec),
                       ivd = double(nparm),
                       ivcvd = matrix(0, nrow = nparm, ncol = nparm),
                       ivcvdd = matrix(0, nrow = nparm + 1, ncol = nparm + 1),
-                      iir = double(nparm + 1),
-                      ijc = double(nparm + 1))
-#cat("xnew"); xnew.end = 0;
-#             zout$ndscrat[(xnew.end + 1):(number.cases*nter)] - new$nummat$ipxnew[1:(number.cases*nter)]
-#cat("rv1") ; rv1.end = xnew.end + number.cases*nter
-#             zout$ndscrat[(rv1.end + 1):(rv1.end + nparm)] - new$numvec$iprv1
-#cat("diag"); diag.end = rv1.end + nparm
-#             zout$ndscrat[(diag.end + 1):(diag.end + nparm)] - new$numvec$ipdiag
-#cat("tmat"); tmat.end = diag.end + nparm
-#             zout$ndscrat[(tmat.end + 1):(tmat.end + nparm * 2)] - new$nummat$iptmat[1:(nparm * 2)]
-#cat("thetb"); thetb.end = tmat.end + nparm * 2
-#              zout$ndscrat[(thetb.end + 1):(thetb.end + nparm)] - new$numvec$ipthb
-#cat("thetg"); thetg.end = thetb.end + nparm
-#              zout$ndscrat[(thetg.end + 1):(thetg.end + nparm)] - new$numvec$ipthg
-#cat("fsder"); fsder.end = thetg.end + nparm
-#              zout$ndscrat[(fsder.end + 1):(fsder.end + nparm)] - new$numvec$fsder
-#cat("vcv")  ; vcv.end = fsder.end + nparm
-#              zout$ndscrat[(vcv.end + 1):(vcv.end + nparm ** 2)] - new$nummat$vcv[1:(nparm ** 2)]
-#cat("vcvg") ; vcvg.end = vcv.end + nparm ** 2
-#              zout$ndscrat[(vcvg.end + 1):(vcvg.end + nparm ** 2)] - new$nummat$ipvcvg[1:(nparm ** 2)]
-#cat("itd");  itd.end = vcvg.end + nparm ** 2
-#             zout$ndscrat[(itd.end + 1):(itd.end + nparm)] - new$numvec$itd
-#cat("itf");  itf.end = itd.end + nparm
-#             zout$ndscrat[(itf.end + 1):(itf.end + nparm)] - new$numvec$itf
-#cat("ied");  ied.end = itf.end + nparm
-#             zout$ndscrat[(ied.end + 1):(ied.end + nparm)] - new$numvec$ied
-#cat("iw");  iw.end = ied.end + nparm
-#            zout$ndscrat[(iw.end + 1):(iw.end + nparm*nparm+3*nparm)] - new$numvec$iw
-#cat("ivd") ;  ivd.end = iw.end + nparm*nparm+3*nparm
-#              zout$ndscrat[(ivd.end + 1):(ivd.end + nparm)] - new$numvec$ivd
-#cat("ivcvd");  ivcvd.end = ivd.end + nparm
-#               zout$ndscrat[(ivcvd.end + 1):(ivcvd.end + nparm ** 2)] - new$nummat$ivcvd[1:(nparm ** 2)]
-#cat("ivcvdd"); ivcvdd.end = ivcvd.end + nparm ** 2
-#               zout$ndscrat[(ivcvdd.end + 1):(ivcvdd.end + (nparm + 1) ** 2)] - new$nummat$ivcvdd[1:((nparm + 1) ** 2)]
-#cat("theta"); zout$theta - new$numvec$theta
-#cat("devian"); zout$fitted[-(1:number.cases)] - new$nummat$dev
-#cat("fitted"); zout$fitted[1:number.cases] - new$numvec$fv
-#cat("resids"); zout$residuals - new$nummat$res
-#cat("correl"); zout$correl - new$nummat$r
-#cat("yresp");  zout$yresp - new$nummat$y
-#cat("xlike");  zout$rvec[3] - new$doubs$xlike
-#cat("ierfit");  zout$ivec[11] - new$ints$ierfit
-#cat("iervcv");  zout$ivec[12] - new$ints$iervcv
+                      iir = integer(nparm + 1),
+                      ijc = integer(nparm + 1))
+cat("xnew"); xnew.end = 0;
+            zout$ndscrat[(xnew.end + 1):(number.cases*nter)] - new$nummat$ipxnew[1:(number.cases*nter)]
+cat("rv1") ; rv1.end = xnew.end + number.cases*nter
+            zout$ndscrat[(rv1.end + 1):(rv1.end + nparm)] - new$numvec$iprv1
+cat("diag"); diag.end = rv1.end + nparm
+            zout$ndscrat[(diag.end + 1):(diag.end + nparm)] - new$numvec$ipdiag
+cat("tmat"); tmat.end = diag.end + nparm
+            zout$ndscrat[(tmat.end + 1):(tmat.end + nparm * 2)] - new$nummat$iptmat[1:(nparm * 2)]
+cat("thetb"); thetb.end = tmat.end + nparm ** 2
+             zout$ndscrat[(thetb.end + 1):(thetb.end + nparm)] - new$numvec$ipthb
+cat("thetg"); thetg.end = thetb.end + nparm
+             zout$ndscrat[(thetg.end + 1):(thetg.end + nparm)] - new$numvec$ipthg
+cat("fsder"); fsder.end = thetg.end + nparm
+             zout$ndscrat[(fsder.end + 1):(fsder.end + nparm)] - new$numvec$fsder
+cat("vcv")  ; vcv.end = fsder.end + nparm
+             zout$ndscrat[(vcv.end + 1):(vcv.end + nparm ** 2)] - new$nummat$vcv[1:(nparm ** 2)]
+cat("vcvg") ; vcvg.end = vcv.end + nparm ** 2
+             zout$ndscrat[(vcvg.end + 1):(vcvg.end + nparm ** 2)] - new$nummat$ipvcvg[1:(nparm ** 2)]
+cat("itd");  itd.end = vcvg.end + nparm ** 2
+            zout$ndscrat[(itd.end + 1):(itd.end + nparm)] - new$numvec$itd
+cat("itf");  itf.end = itd.end + nparm
+            zout$ndscrat[(itf.end + 1):(itf.end + nparm)] - new$numvec$itf
+cat("ied");  ied.end = itf.end + nparm
+            zout$ndscrat[(ied.end + 1):(ied.end + nparm)] - new$numvec$ied
+cat("iw");  iw.end = ied.end + nparm
+           zout$ndscrat[(iw.end + 1):(iw.end + nparm*nparm+3*nparm)] - new$numvec$iw
+cat("ivd") ;  ivd.end = iw.end + nparm*nparm+3*nparm+1
+             zout$ndscrat[(ivd.end + 1):(ivd.end + nparm)] - new$numvec$ivd
+cat("ivcvd");  ivcvd.end = ivd.end + nparm
+              zout$ndscrat[(ivcvd.end + 1):(ivcvd.end + nparm ** 2)] - new$nummat$ivcvd[1:(nparm ** 2)]
+cat("ivcvdd"); ivcvdd.end = ivcvd.end + nparm ** 2
+              zout$ndscrat[(ivcvdd.end + 1):(ivcvdd.end + (nparm + 1) ** 2)] - new$nummat$ivcvdd[1:((nparm + 1) ** 2)]
+cat("theta"); zout$theta - new$numvec$theta
+cat("devian"); zout$fitted[-(1:number.cases)] - new$nummat$dev
+cat("fitted"); max(abs((zout$fitted[1:number.cases] - new$numvec$fv) / zout$fitted[1:number.cases]))
+cat("resids"); (matrix(zout$residuals,ncol = nyresp, byrow = F) - new$nummat$res) / matrix(zout$residuals,ncol = nyresp, byrow = F)
+cat("correl"); zout$correl - new$nummat$r
+cat("yresp");  zout$yresp - new$nummat$y
+cat("xlike");  zout$rvec[3] - new$doubs$xlike
+cat("ierfit");  zout$ivec[11] - new$ints$ierfit
+cat("iervcv");  zout$ivec[12] - new$ints$iervcv

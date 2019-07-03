@@ -1,13 +1,13 @@
 library(smrdfortran)
 library(SMRD)
-test = 2
+test = 3
 if(test == 1) {
 data.ld <- frame.to.ld(superalloy,
                      response.column = 1,
                      censor.column = 2,
                      case.weight.column = 3,
                      x.columns = c(4,5,6))
-distribution = "weibull"
+distribution = "sev"
 theta.start = NULL
 explan.vars = list(mu.relat = c(2,3),
                    sigma.relat = c(2))
@@ -24,7 +24,7 @@ data.ld <- frame.to.ld(superalloy,
                      censor.column = 2,
                      case.weight.column = 3,
                      x.columns = c(4,5,6))
-distribution = "norgets"
+distribution = "gamma"
 theta.start = NULL
 explan.vars = list(mu.relat = c(2,3))
 mu.relat = NULL
@@ -39,9 +39,9 @@ data.ld <- frame.to.ld(superalloy,
                      censor.column = 2,
                      case.weight.column = 3,
                      x.columns = c(4,5,6))
-distribution = "weibull"
+distribution = "normal"
 theta.start = NULL
-explan.vars = NULL
+explan.vars = list(mu.relat = c(2,3))
 mu.relat = NULL
 sigma.relat = NULL
 prob.relat = NULL
@@ -51,7 +51,7 @@ model = 0
 if(test == 4) {
 data.ld <- frame.to.ld(lzbearing,
                      response.column = 1)
-distribution = "lognormal"
+distribution = "generalized gamma"
 theta.start = NULL
 explan.vars = NULL
 mu.relat = NULL
@@ -65,7 +65,7 @@ data.ld <- frame.to.ld(heatexchanger,
                        response.column = c(1,2),
                        censor.column = 3,
                        case.weight.column = 4)
-distribution = "weibull"
+distribution = "generalized gamma"
 theta.start = NULL
 explan.vars = NULL
 mu.relat = NULL
@@ -368,6 +368,6 @@ new <- SMRD:::GENMAX(as.integer(model),
              kmccde = as.integer(0),
              nstart = as.integer(0),
              maxmsd = as.integer(0),
-             tol    = as.double(1.0e-2),
+             tol    = as.double(1.0e-5),
              lsd = as.integer(1),
              pchmax = as.double(0))

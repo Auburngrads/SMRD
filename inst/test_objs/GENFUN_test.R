@@ -5,7 +5,7 @@ test = 1
 if(test == 1){
     
     root = here::here()
-    source(file.path(root, "inst","other_stuff","cpp_tests","superalloy_gmlest.R"))
+    source(file.path(root, "inst","test_objs","superalloy_gmlest.R"))
 
 }
 
