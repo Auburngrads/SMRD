@@ -27,9 +27,8 @@ txkm = Rcpp::NumericVector::create(-18.9e00,-18.9e00,
                                     -7.9e00, -7.9e00,
                                    -18.9e00,-18.9e00);
 
-if(debug::kprint >= 4) Rcpp::Rcout << "\nltp check2\n" << std::endl;
 if(genx04::g_ltp == 0)    goto line1001;
-if(debug::kprint >= 4) Rcpp::Rcout << "\nltp check2\n" << std::endl;
+
 if(z > xkp.at(kdist - 1)) goto line1002;
 if(z > xkm.at(kdist - 1)) goto line1001;
 
