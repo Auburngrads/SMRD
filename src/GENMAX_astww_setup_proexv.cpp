@@ -29,7 +29,7 @@ void proexv(Rcpp::IntegerVector &nxd,
  Rcpp::IntegerVector IRELAG = clone(genx21::g_irelag);
  Rcpp::IntegerVector IPTHET = clone(genx21::g_ipthet);
  Rcpp::IntegerVector IGTYG  = clone(genx21::g_igtyg);
- Rcpp::List IPXCG = Rcpp::List(5);
+ Rcpp::List IPXCG = clone(genx20::g_ipxcg);
         
  proex1(nxd,intd,ipxcd,irelad,igtyd,imarkd,npard,
         nregr,NXG,NTERG,INTG,IPXCG,IRELAG,IGTYG,
@@ -174,26 +174,26 @@ for(int j = 1; j <= nparm; j++){
 }
 
    for(int ik = 1; ik <= npard; ik++){
-     
+
        if(ipxcd[ik - 1] != R_NilValue) {
-      
+
           SEXP l = ipxcd[ik - 1]; Rcpp::IntegerVector y(l);
           Rcpp::Rcout << "i = " << ik - 1 << std::endl;
           Rcpp::Rcout << "ipxcd(i) = " << y << std::endl;
-     
+
    }
    }
-   
+
       for(int ik = 1; ik <= ngame; ik++){
-     
+
           if(ipxcg[ik - 1] != R_NilValue) {
-      
+
              SEXP l = ipxcg[ik - 1]; Rcpp::IntegerVector y(l);
              Rcpp::Rcout << "i = " << ik - 1 << std::endl;
              Rcpp::Rcout << "ipxcg(i) = " << y << std::endl;
-     
+
           }
-          
+
       }
 }
 
