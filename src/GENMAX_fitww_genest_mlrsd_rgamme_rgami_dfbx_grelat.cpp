@@ -34,7 +34,7 @@ if(irelag == 2){
    //xerr(8976);
    
    // Dummy for now
-      g_relat = beta.at(0);
+      g_relat = beta.at(ipthta - 1);
 
 }
 
@@ -43,7 +43,7 @@ if(irelag == 3){
    //xerr(8976);
    
    // Dummy for now
-      g_relat = beta.at(0);
+      g_relat = beta.at(ipthta - 1);
 
 }
 
