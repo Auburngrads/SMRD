@@ -79,7 +79,7 @@ double genx16::g_sigmah;
 Rcpp::IntegerVector genx20::g_nxg(20);
 Rcpp::IntegerVector genx20::g_nterg(20);
 Rcpp::IntegerVector genx20::g_intg(20);
-Rcpp::List genx20::g_ipxcg(5);
+Rcpp::List genx20::g_ipxcg(20);
 
 Rcpp::NumericVector genx21::g_gamms(20);
 Rcpp::IntegerVector genx21::g_ipthet(20);
