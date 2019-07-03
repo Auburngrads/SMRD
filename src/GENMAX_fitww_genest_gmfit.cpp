@@ -70,7 +70,7 @@ void gmfit1(int &ifit,
             int &nrownw,
             int &ier){
    
-double dersm = 1.0e-2,tol1 = 1.0e-05,tol2 = 1.0e-08;
+double dersm = 1.0e-2,tol1 = 1.0e-10,tol2 = 1.0e-20;
 double stepmx,eps,dermx,vvtol = 1.0e-12;
 int ierv = 0, ierd = 0, ierp = 0;
 int iprpow,ktrcde,nparmm,irank;
@@ -90,7 +90,7 @@ double ktt_out;
    if(debug::kprint >= 3){
       
       Rcpp::Rcout << "\nGMFIT1**1**\n" << std::endl;
-      Rcpp::Rcout << "ilabp = " << ilabp << std::endl;
+      Rcpp::Rcout << " ilabp = " << ilabp << std::endl;
       Rcpp::Rcout << "thetas = " << thetas << std::endl;
       Rcpp::Rcout << "thetat = " << thetat << std::endl;
       Rcpp::Rcout << "  ifit = " << ifit << std::endl;
@@ -246,7 +246,7 @@ line102: if(debug::kprint >= 3){
    if(debug::kprint >= 3){
       
       Rcpp::Rcout << "\nGMFIT1: fisher matrix of thetat\n" << std::endl;
-      Rcpp::Rcout << "vcvs = " << vcvs << std::endl;
+      Rcpp::Rcout << "  vcvs = \n" << vcvs << std::endl;
       Rcpp::Rcout << "thetas = " << thetas << std::endl;
       Rcpp::Rcout << "thetat = " << thetat << std::endl;
       
@@ -260,8 +260,8 @@ line102: if(debug::kprint >= 3){
    if(debug::kprint >= 3){
       
       Rcpp::Rcout << "\nGMFIT1: after matsqu 1\n" << std::endl;
-      Rcpp::Rcout << "vcvss = " << vcvss << std::endl;
-      Rcpp::Rcout << " vcvs = " << vcvs << std::endl;
+      Rcpp::Rcout << "vcvss = \n" << vcvss << std::endl;
+      Rcpp::Rcout << " vcvs = \n" << vcvs << std::endl;
       
    }
 // Compute the hessian in terms of the untrans param
@@ -271,7 +271,7 @@ line102: if(debug::kprint >= 3){
    if(debug::kprint >= 3){
       
       Rcpp::Rcout << "\nGMFIT1: fisher matrix of thetas without percentile fix\n" << std::endl;
-      Rcpp::Rcout << "vcvs = " << vcvs << std::endl;
+      Rcpp::Rcout << "  vcvs = \n" << vcvs << std::endl;
       Rcpp::Rcout << "thetas = " << thetas << std::endl;
       Rcpp::Rcout << "thetat = " << thetat << std::endl;
       
@@ -285,8 +285,8 @@ line102: if(debug::kprint >= 3){
    if(debug::kprint >= 3){
       
       Rcpp::Rcout << "\nGMFIT1: after matsqu 2\n" << std::endl;
-      Rcpp::Rcout << "vcvss = " << vcvss << std::endl;
-      Rcpp::Rcout << " vcvs = " << vcvs << std::endl;
+      Rcpp::Rcout << "vcvss = \n" << vcvss << std::endl;
+      Rcpp::Rcout << " vcvs = \n" << vcvs << std::endl;
       
    }
    
@@ -299,7 +299,7 @@ line102: if(debug::kprint >= 3){
    if(debug::kprint >= 3){
       
       Rcpp::Rcout << "\nGMFIT1: vcv of thetas without percentile fix\n" << std::endl;
-      Rcpp::Rcout << "vcvs = " << vcvs << std::endl;
+      Rcpp::Rcout << "vcvs = \n" << vcvs << std::endl;
       
    }
    
@@ -316,7 +316,7 @@ line102: if(debug::kprint >= 3){
       if(debug::kprint >= 3){
          
          Rcpp::Rcout << "\nGMFIT1:  expanded vcvs without percentile fix\n" << std::endl;
-         Rcpp::Rcout << "vcvs = " << vcvs << std::endl;
+         Rcpp::Rcout << "vcvs = \n" << vcvs << std::endl;
          
       }
       
@@ -327,7 +327,7 @@ line102: if(debug::kprint >= 3){
    if(debug::kprint >= 3){
          
       Rcpp::Rcout << "\nGMFIT1:  expanded vcvs percentile fix\n" << std::endl;
-      Rcpp::Rcout << "vcvs = " << vcvs << std::endl;
+      Rcpp::Rcout << "  vcvs = \n" << vcvs << std::endl;
       Rcpp::Rcout << "thetas = " << thetas << std::endl;
       Rcpp::Rcout << "thetat = " << thetat << std::endl;
          
