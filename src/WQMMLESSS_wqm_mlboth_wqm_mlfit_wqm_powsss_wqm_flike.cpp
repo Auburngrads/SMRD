@@ -38,7 +38,7 @@ if(MOD_2(kdist,2)) leven = true;
 double flikes = -1.0e15;
 double sigmal = thetg.at(nparm - 1);
 
-if(std::abs(sigmal) <= dmaxx) {
+if(!((sigmal < (-1 * dmaxx)) or (sigmal > dmaxx))) {
 
     sigma = std::exp(sigmal);
     flikes = 0.0e00;
@@ -69,14 +69,14 @@ if(std::abs(sigmal) <= dmaxx) {
          if(nty > 0) {
 
             trl = (ty.at(i - 1,0) - xmu) / sigma;
-            //trl = wqm_ztran(trl,kdist);
+            trl = wqm_ztran(trl,kdist);
 
             ittype = tcodes.at(i - 1);
 
             if(ittype == 4){
 
                tru = (ty.at(i - 1,1) - xmu) / sigma;
-               //tru = wqm_ztran(tru,kdist);
+               tru = wqm_ztran(tru,kdist);
 
             }
 
@@ -101,11 +101,11 @@ if(debug::kprint >= 4) {
       wqm_combet(thetg,diag,tmat,nparm,thetb);
       thetb.at(0) = thetb.at(0) - upcen * sigma;
   
-      Rcpp::Rcout << "\nEND OF WQM_FLIKE\n"    << std::endl;
-      Rcpp::Rcout << "flikes = "   << flikes      << std::endl;
-      Rcpp::Rcout << "thetb(0) = " << thetb.at(0) << std::endl;
-      Rcpp::Rcout << "nter = "     << nter        << std::endl;
-      Rcpp::Rcout << "sigma = "    << sigma       << std::endl;
+      Rcpp::Rcout << "\nEND OF WQM_FLIKE\n"  << std::endl;
+      Rcpp::Rcout << "flikes = "   << flikes << std::endl;
+      Rcpp::Rcout << " thetb = "   << thetb  << std::endl;
+      Rcpp::Rcout << "  nter = "   << nter   << std::endl;
+      Rcpp::Rcout << " sigma = "   << sigma  << std::endl;
   
 }
 
