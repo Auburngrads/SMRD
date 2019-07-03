@@ -108,9 +108,6 @@ ier = 0;
 //  If we subtract out an offset/threshold, everything else is
 //  done with the new response
 
-Rcpp::NumericMatrix Y  = clone(y);
-Rcpp::NumericMatrix TY = clone(ty);
-
 if(mod2(kdist,2)) wqm_tran(y,cen,wt,nrow,ny,gamthr,false,ltr3,ier); 
 
 // Just do the offset thing
@@ -129,7 +126,6 @@ if(debug::kprint >= 2) {
    bool check = mod2(kdist,2);
    Rcpp::Rcout << "\nMLFI1 **1**\n" << std::endl;
    Rcpp::Rcout << "y = \n" << y << std::endl;
-   Rcpp::Rcout << "Y = \n" << Y << std::endl;
    Rcpp::Rcout << "ltr3 = " << ltr3 << std::endl;
    Rcpp::Rcout << "check = " << check << std::endl;
   
@@ -205,9 +201,6 @@ for(int i = 1; i <= nrow; i++){
     }
 
   }
-
-// y = clone(Y);
-// ty = clone(TY);
 
 return;
 
