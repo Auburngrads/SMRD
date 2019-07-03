@@ -88,7 +88,7 @@ Rcpp::List fargs,flist;
    fest = fout;
    
    Rcpp::Rcout << "fest = " << fest << std::endl;
-// If we do not need a standatrd error, we are done
+// If we do not need a standard error, we are done
    if(igsd == 0) return;
    
 // Find a reasonable delta vector
