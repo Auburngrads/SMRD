@@ -25,17 +25,17 @@ double by,sig,cot,s,c,bki,bmi;
 double bik,bim,dik,dim;
 double bmax,bm;
   
-for(int i = 0; i < n; i++){
+for(int i = 1; i <= n; i++){
   
-    for(int j = 0; j < n; j++){
+    for(int j = 1; j <= n; j++){
       
         if(i == j) {
           
-           d.at(i,i) = one;
+           d.at(i - 1,i - 1) = one;
            
          } else {
         
-           d.at(i,j) = zero;
+           d.at(i - 1,j - 1) = zero;
           
         }
         
@@ -68,8 +68,8 @@ for(int k = 1; k <= nn; k++){
         
           bki = b.at(k - 1,i - 1);
           bmi = b.at(m - 1,i - 1);
-          b.at(k - 1,i - 1) =     c * bki + s * bmi;
-          b.at(m - 1,i - 1) = -1* s * bki + c * bmi;
+          b.at(k - 1,i - 1) =      c * bki + s * bmi;
+          b.at(m - 1,i - 1) = -1 * s * bki + c * bmi;
           
       }
       
@@ -101,6 +101,7 @@ for(int i = 1; i <= nn; i++){
         if(bmax < bm) bmax = bm;
         
     }
+    
 }
 
 if(bmax > xtol) {
