@@ -39,13 +39,13 @@ for(int iplan = 1; iplan <= nplan; iplan++){
 if(debug::kprint > 1){
   
    Rcpp::Rcout << "\nVVAR1**1\n" << std::endl;
-   Rcpp::Rcout << "iplan = "       << iplan << std::endl;
-   Rcpp::Rcout << "nlev = "        << nlev << std::endl;
-   Rcpp::Rcout << "a = "           << a << std::endl;
-   Rcpp::Rcout << "b1 = "          << b1 << std::endl;
-   Rcpp::Rcout << "b2 = "          << b2 << std::endl;
-   Rcpp::Rcout << "thet1 = "       << thet1 << std::endl;
-   Rcpp::Rcout << "zivar = "       << zivar << std::endl;
+   Rcpp::Rcout << "      iplan = " << iplan << std::endl;
+   Rcpp::Rcout << "       nlev = " << nlev << std::endl;
+   Rcpp::Rcout << "          a = " << a << std::endl;
+   Rcpp::Rcout << "         b1 = " << b1 << std::endl;
+   Rcpp::Rcout << "         b2 = " << b2 << std::endl;
+   Rcpp::Rcout << "      thet1 = " << thet1 << std::endl;
+   Rcpp::Rcout << "      zivar = " << zivar << std::endl;
    Rcpp::Rcout << "perc(iplan) = " << perc.at(iplan - 1) << std::endl;
   
 }
@@ -55,9 +55,9 @@ if(debug::kprint > 1){
 
    if(debug::kprint > 1) {
      
-      Rcpp::Rcout << "\npi = \n" << pi << std::endl;
-      Rcpp::Rcout << "z = \n"    << z  << std::endl;
-      Rcpp::Rcout << "index = "  << index << std::endl;
+      Rcpp::Rcout << "\n pi = \n" << pi    << std::endl;
+      Rcpp::Rcout << "    z = \n" << z     << std::endl;
+      Rcpp::Rcout << "index = "   << index << std::endl;
      
    }
    
@@ -67,7 +67,7 @@ if(debug::kprint > 1){
    
    if(debug::kprint > 1) {
      
-      Rcpp::Rcout << "\niplan = "         << iplan - 1            << std::endl;
+      Rcpp::Rcout << "\n      iplan = " << iplan - 1            << std::endl;
       Rcpp::Rcout << "varret(iplan) = " << varret.at(iplan - 1) << std::endl;
      
    }      
@@ -232,16 +232,16 @@ if(knownt == 3){
 if(debug::kprint > 1){
   
    Rcpp::Rcout << "\nVAR1**1\n" << std::endl;
-   Rcpp::Rcout << "i = "      << i - 1 << std::endl;
-   Rcpp::Rcout << "idist = "  << idist << std::endl;
-   Rcpp::Rcout << "zz = "     << zz << std::endl;
-   Rcpp::Rcout << "f11 = "    << f11 << std::endl;
-   Rcpp::Rcout << "f12 = "    << f12 << std::endl;
-   Rcpp::Rcout << "f22 = "    << f22 << std::endl;
-   Rcpp::Rcout << "thet1 = "  << thet1 << std::endl;
-   Rcpp::Rcout << "rho = "    << rho << std::endl;
-   Rcpp::Rcout << "z(i) = "   << z.at(index + i - 1) << std::endl;
-   Rcpp::Rcout << "pi(i) = "  << pi.at(index + i - 1) << std::endl;
+   Rcpp::Rcout << "     i = " << i - 1 << std::endl;
+   Rcpp::Rcout << " idist = " << idist << std::endl;
+   Rcpp::Rcout << "    zz = " << zz << std::endl;
+   Rcpp::Rcout << "   f11 = " << f11 << std::endl;
+   Rcpp::Rcout << "   f12 = " << f12 << std::endl;
+   Rcpp::Rcout << "   f22 = " << f22 << std::endl;
+   Rcpp::Rcout << " thet1 = " << thet1 << std::endl;
+   Rcpp::Rcout << "   rho = " << rho << std::endl;
+   Rcpp::Rcout << "  z(i) = " << z.at(index + i - 1) << std::endl;
+   Rcpp::Rcout << " pi(i) = " << pi.at(index + i - 1) << std::endl;
    Rcpp::Rcout << "f(2,3) = " << f.at(1,2) << std::endl;
    Rcpp::Rcout << "f(3,3) = " << f.at(2,2) << std::endl;
   
@@ -405,20 +405,18 @@ line75: VAR1 = fvrdes(a,perc,idist);
 line76: if(debug::kprint != 0){
   
            Rcpp::Rcout << "\nEND OF VAR1\n" << std::endl;
-           Rcpp::Rcout << "a = " << a << std::endl;
-           Rcpp::Rcout << "b1 = " << b1 << std::endl;
-           Rcpp::Rcout << "b2 = " << b2 << std::endl;
-           Rcpp::Rcout << "thet1 = " << thet1 << std::endl;
+           Rcpp::Rcout << "     a = " << a << std::endl;
+           Rcpp::Rcout << "    b1 = " << b1 << std::endl;
+           Rcpp::Rcout << "    b2 = " << b2 << std::endl;
+           Rcpp::Rcout << " thet1 = " << thet1 << std::endl;
            Rcpp::Rcout << "knownt = " << knownt << std::endl;
-           Rcpp::Rcout << "pi = " << pi << std::endl;
-           Rcpp::Rcout << "z = " << z << std::endl;
-           Rcpp::Rcout << "fp = " << fp << std::endl;
-           Rcpp::Rcout << "pq = " << pq << std::endl;
-           Rcpp::Rcout << "nlev = " << nlev << std::endl;
-           Rcpp::Rcout << "idist = " << idist << std::endl;
-           Rcpp::Rcout << "perc = " << perc << std::endl;
-           Rcpp::Rcout << "6.0e0 = " << 6.0e0 << std::endl;
-           //Rcpp::Rcout << "var2 = " << var2 << std::endl;
+           Rcpp::Rcout << "    pi = " << pi << std::endl;
+           Rcpp::Rcout << "     z = " << z << std::endl;
+           Rcpp::Rcout << "    fp = " << fp << std::endl;
+           Rcpp::Rcout << "    pq = " << pq << std::endl;
+           Rcpp::Rcout << "  nlev = " << nlev << std::endl;
+           Rcpp::Rcout << " idist = " << idist << std::endl;
+           Rcpp::Rcout << "  perc = " << perc << std::endl;
   
 } 
 
@@ -431,10 +429,9 @@ return VAR1;
 #include <base/base.hpp>
 #include <utility/wqm_quant.hpp>
 #include <slsinf/lsinf.hpp>
-//
+
 // compute the large sample variance for 
 // testing all units at the design stress
-//
 double fvrdes(double zz,
               double pval,
               int idist){
@@ -465,9 +462,8 @@ return (f22 - tup * f12 + upsq * f11) / det;
 
 
 #include <base/base.hpp>
-//
+
 // smallest extreme value distribution cdf
-//
 double zfcdf(double z,
              int idist){
 
