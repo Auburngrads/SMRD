@@ -37,7 +37,6 @@ double time_difference, xpower;
              
            }
               
-              
    }
    
 return;
