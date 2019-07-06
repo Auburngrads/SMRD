@@ -97,16 +97,16 @@ if(ioptmp == 4){
 if(debug::kprint > 5){
   
    Rcpp::Rcout << "\nVARA IOPTM\n"                 << std::endl;
-   Rcpp::Rcout << "iopta = "  << pass3::g_iopta    << std::endl;
-   Rcpp::Rcout << "ioptm = "  << pass3::g_ioptm    << std::endl;
+   Rcpp::Rcout << " iopta = " << pass3::g_iopta    << std::endl;
+   Rcpp::Rcout << " ioptm = " << pass3::g_ioptm    << std::endl;
    Rcpp::Rcout << "ioptmp = " << ioptmp            << std::endl;
-   Rcpp::Rcout << "z(1) = "   << pass1::g_z.at(0)  << std::endl;
-   Rcpp::Rcout << "z(2) = "   << pass1::g_z.at(1)  << std::endl;
-   Rcpp::Rcout << "z(3) = "   << pass1::g_z.at(2)  << std::endl;
-   Rcpp::Rcout << "fp(1) = "  << pass1::g_fp.at(0) << std::endl;
-   Rcpp::Rcout << "fp(2) = "  << pass1::g_fp.at(1) << std::endl;
-   Rcpp::Rcout << "fp(3) = "  << pass1::g_fp.at(2) << std::endl;
-   Rcpp::Rcout << "pmlim = "  << pass2::g_pmlim    << std::endl;
+   Rcpp::Rcout << "  z(1) = " << pass1::g_z.at(0)  << std::endl;
+   Rcpp::Rcout << "  z(2) = " << pass1::g_z.at(1)  << std::endl;
+   Rcpp::Rcout << "  z(3) = " << pass1::g_z.at(2)  << std::endl;
+   Rcpp::Rcout << " fp(1) = " << pass1::g_fp.at(0) << std::endl;
+   Rcpp::Rcout << " fp(2) = " << pass1::g_fp.at(1) << std::endl;
+   Rcpp::Rcout << " fp(3) = " << pass1::g_fp.at(2) << std::endl;
+   Rcpp::Rcout << " pmlim = " << pass2::g_pmlim    << std::endl;
    
 }
 
@@ -207,31 +207,40 @@ if(pass1::g_pi.at(2) < vsmall) goto line999;
 if(debug::kprint >= 10) debug::kprint = 1;
 k = 3;
 
-VARA = var2(pass2::g_a,pass2::g_b1,pass2::g_b2,pass2::g_thet1,pass1::g_z,
-            pass1::g_pi,0.0e0,k,pass2::g_pval,pass3::g_idist,pass3::g_knownt,
-            pass1::g_fp,pass1::g_pq);
+VARA = var2(pass2::g_a,
+            pass2::g_b1,
+            pass2::g_b2,
+            pass2::g_thet1,
+            pass1::g_z,
+            pass1::g_pi,
+            0.0e0,k,
+            pass2::g_pval,
+            pass3::g_idist,
+            pass3::g_knownt,
+            pass1::g_fp,
+            pass1::g_pq);
       
       iplan = 10 * (pass3::g_iopts - 1) + pass3::g_iopta;
       
 if(debug::kprint >= 4){
   
-   Rcpp::Rcout << "\nEND OF VARA\n" << std::endl;
-   Rcpp::Rcout << "a = " << pass2::g_a << std::endl;
-   Rcpp::Rcout << "b1 = " << pass2::g_b1 << std::endl;
-   Rcpp::Rcout << "pval = " << pass2::g_pval << std::endl;
+   Rcpp::Rcout << "\nEND OF VARA\n"            << std::endl;
+   Rcpp::Rcout << "    a = " << pass2::g_a     << std::endl;
+   Rcpp::Rcout << "   b1 = " << pass2::g_b1    << std::endl;
+   Rcpp::Rcout << " pval = " << pass2::g_pval  << std::endl;
    Rcpp::Rcout << "pmlim = " << pass2::g_pmlim << std::endl;
-   Rcpp::Rcout << "iplan = " << iplan << std::endl;
-   Rcpp::Rcout << "z = " << pass1::g_z << std::endl;
-   Rcpp::Rcout << "pi = " << pass1::g_pi << std::endl;
-   Rcpp::Rcout << "fp = " << pass1::g_fp << std::endl;
-   Rcpp::Rcout << "vara = " << VARA << std::endl;
+   Rcpp::Rcout << "iplan = " << iplan          << std::endl;
+   Rcpp::Rcout << "    z = " << pass1::g_z     << std::endl;
+   Rcpp::Rcout << "   pi = " << pass1::g_pi    << std::endl;
+   Rcpp::Rcout << "   fp = " << pass1::g_fp    << std::endl;
+   Rcpp::Rcout << " vara = " << VARA           << std::endl;
   
 }
   
 return VARA;
 
 line999:   VARA = 1.0e35;
-           pass1::g_z = Rcpp::NumericVector(3,zero);
+           pass1::g_z  = Rcpp::NumericVector(3,zero);
            pass1::g_pi = Rcpp::NumericVector(3,zero);
            pass1::g_pq = Rcpp::NumericVector(3,zero);
            pass1::g_fp = Rcpp::NumericVector(3,zero);
