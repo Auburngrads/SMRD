@@ -1,6 +1,5 @@
 #include <base/base.hpp>
 #include <genmax/proex1.hpp>
-//#include <genmax/stpexv.hpp>
 
 using namespace genx20;
 using namespace genx21;
