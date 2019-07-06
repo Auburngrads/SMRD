@@ -22,16 +22,16 @@ for(int i = 1; i <= n; i++){
   
     if(debug::kprint > 0) {
       
-       Rcpp::Rcout << "\nSBVN\n"           << std::endl;
-       Rcpp::Rcout << "i = "     << i - 1  << std::endl;
-       Rcpp::Rcout << "prob = "  << prob   << std::endl;
-       Rcpp::Rcout << "ah = "    << ah     << std::endl;
-       Rcpp::Rcout << "ak = "    << ak     << std::endl;
-       Rcpp::Rcout << "xmu1 = "  << xmu1   << std::endl;
-       Rcpp::Rcout << "xmu2 = "  << xmu2   << std::endl;
-       Rcpp::Rcout << "v1 = "    << v1     << std::endl;
-       Rcpp::Rcout << "v2 = "    << v2     << std::endl;
-       Rcpp::Rcout << "c12 = "   << c12    << std::endl;
+       Rcpp::Rcout << "\nSBVN\n"          << std::endl;
+       Rcpp::Rcout << "   i = " << i - 1  << std::endl;
+       Rcpp::Rcout << "prob = " << prob   << std::endl;
+       Rcpp::Rcout << "  ah = " << ah     << std::endl;
+       Rcpp::Rcout << "  ak = " << ak     << std::endl;
+       Rcpp::Rcout << "xmu1 = " << xmu1   << std::endl;
+       Rcpp::Rcout << "xmu2 = " << xmu2   << std::endl;
+       Rcpp::Rcout << "  v1 = " << v1     << std::endl;
+       Rcpp::Rcout << "  v2 = " << v2     << std::endl;
+       Rcpp::Rcout << " c12 = " << c12    << std::endl;
       
     }
 }
