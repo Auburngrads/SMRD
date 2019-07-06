@@ -66,11 +66,11 @@ for(iobs = 1; iobs <= nsamsz.at(igroup - 1); iobs++){
       
        uranod = smallp;
        Rcpp::Rcout << "\nZero uranod fixed in smldat\n" << std::endl;
-       Rcpp::Rcout << "iobs = " << iobs - 1 << std::endl;
+       Rcpp::Rcout << "          iobs = " << iobs - 1 << std::endl;
        Rcpp::Rcout << "nsamsz(igroup) = " << nsamsz.at(igroup - 1) << std::endl;
-       Rcpp::Rcout << "kdist = " << kdist << std::endl;
-       Rcpp::Rcout << "uhold = " << uhold << std::endl;
-       Rcpp::Rcout << "uranod = " << uranod << std::endl;
+       Rcpp::Rcout << "         kdist = " << kdist << std::endl;
+       Rcpp::Rcout << "         uhold = " << uhold << std::endl;
+       Rcpp::Rcout << "        uranod = " << uranod << std::endl;
     
     }
 
@@ -81,14 +81,14 @@ for(iobs = 1; iobs <= nsamsz.at(igroup - 1); iobs++){
     if(debug::kprint >= 5){
   
        Rcpp::Rcout << "\nSMLDAT**\n" << std::endl;
-       Rcpp::Rcout << "iobs = " << iobs  << std::endl;
+       Rcpp::Rcout << "          iobs = " << iobs  << std::endl;
        Rcpp::Rcout << "nsamsz(igroup) = " << nsamsz.at(igroup - 1)  << std::endl;
-       Rcpp::Rcout << "kdist = " <<  kdist << std::endl;
+       Rcpp::Rcout << "         kdist = " <<  kdist << std::endl;
        Rcpp::Rcout << "centim(igroup) = " << centim.at(igroup - 1)  << std::endl;
-       Rcpp::Rcout << "time = " << time  << std::endl;
-       Rcpp::Rcout << "uranod = " << uranod  << std::endl;
-       Rcpp::Rcout << "theta = " <<  theta << std::endl;
-       Rcpp::Rcout << "iref = "  << iref << std::endl; 
+       Rcpp::Rcout << "          time = " << time  << std::endl;
+       Rcpp::Rcout << "        uranod = " << uranod  << std::endl;
+       Rcpp::Rcout << "         theta = " <<  theta << std::endl;
+       Rcpp::Rcout << "          iref = "  << iref << std::endl; 
        Rcpp::Rcout << "krfail(igroup) = " << krfail.at(igroup - 1) << std::endl;
   
     }
@@ -130,8 +130,8 @@ iobs = nsamsz.at(igroup - 1) + 1;
       
       Rcpp::Rcout << "\nSMLDAT**3\n" << std::endl;
       Rcpp::Rcout << "krfail(igroup) = " << krfail.at(igroup - 1) << std::endl;
-      Rcpp::Rcout << "nrownw = "         << nrownw << std::endl;
-      Rcpp::Rcout << "iref = "           << iref   << std::endl;
+      Rcpp::Rcout << "        nrownw = " << nrownw << std::endl;
+      Rcpp::Rcout << "          iref = " << iref   << std::endl;
       
    }
 // Now record the censoring times, if any
@@ -148,7 +148,6 @@ iobs = nsamsz.at(igroup - 1) + 1;
       
    }
 
-   
 // If we need the number in the pred region, use rbino later
    kpred = 0;
 
