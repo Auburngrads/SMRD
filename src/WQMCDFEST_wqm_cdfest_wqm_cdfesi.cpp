@@ -106,21 +106,21 @@ Rcpp::NumericVector f = Rcpp::NumericVector(mnzs);
 if(debug::kprint >= 5){
    
    Rcpp::Rcout << "\nCDFESI BEFORE CDFCM\n" << std::endl;
-   Rcpp::Rcout << "mnzs = " << mnzs << std::endl;
-   Rcpp::Rcout << "nnzs = " << nnzs << std::endl;
-   Rcpp::Rcout << "ilcv = " << ilcv << std::endl;
-   Rcpp::Rcout << "iucv = " << iucv << std::endl;
-   Rcpp::Rcout << "iltv = " << iltv << std::endl;
-   Rcpp::Rcout << "iutv = " << iutv << std::endl;
-   Rcpp::Rcout << "probd = " << probd << std::endl;
-   Rcpp::Rcout << "f = " << f << std::endl;
+   Rcpp::Rcout << "  mnzs = " << mnzs << std::endl;
+   Rcpp::Rcout << "  nnzs = " << nnzs << std::endl;
+   Rcpp::Rcout << "  ilcv = " << ilcv << std::endl;
+   Rcpp::Rcout << "  iucv = " << iucv << std::endl;
+   Rcpp::Rcout << "  iltv = " << iltv << std::endl;
+   Rcpp::Rcout << "  iutv = " << iutv << std::endl;
+   Rcpp::Rcout << " probd = " << probd << std::endl;
+   Rcpp::Rcout << "     f = " << f << std::endl;
    Rcpp::Rcout << "weight = " << weight << std::endl;
-   Rcpp::Rcout << "m = " << m << std::endl;
-   Rcpp::Rcout << "n = " << n << std::endl;
-   Rcpp::Rcout << "nty = " << nty << std::endl;
-   Rcpp::Rcout << "m1 = " << m1 << std::endl;
-   Rcpp::Rcout << "mm1 = " << mm1 << std::endl;
-   Rcpp::Rcout << "small = " << small << std::endl;
+   Rcpp::Rcout << "     m = " << m << std::endl;
+   Rcpp::Rcout << "     n = " << n << std::endl;
+   Rcpp::Rcout << "   nty = " << nty << std::endl;
+   Rcpp::Rcout << "    m1 = " << m1 << std::endl;
+   Rcpp::Rcout << "   mm1 = " << mm1 << std::endl;
+   Rcpp::Rcout << " small = " << small << std::endl;
    
 }
 
