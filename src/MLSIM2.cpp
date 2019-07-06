@@ -204,11 +204,11 @@ while(isim < numsim){
        }
        
        // Simulate the data  with new weights
-          Rcpp::Rcout << "kount = " << kount << std::endl;
+          Rcpp::Rcout << " kount = " << kount << std::endl;
           Rcpp::Rcout << "method = " << method << std::endl;
           Rcpp::Rcout << "marray = " << marray << std::endl;
           Rcpp::Rcout << "iarray = " << iarray << std::endl;
-          Rcpp::Rcout << "kdist = " << kdist << std::endl;
+          Rcpp::Rcout << " kdist = " << kdist << std::endl;
 
     }
     
