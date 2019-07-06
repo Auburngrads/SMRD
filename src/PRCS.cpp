@@ -33,6 +33,3 @@ for(int id = 0; id < nd; id++){
                            Named("dvec")   = dvec);
 
 }
-
-/***R
-*/
