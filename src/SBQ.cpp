@@ -141,8 +141,8 @@ line201: bd2 = bd2 + 2.e00;
    if(debug::kprint > 0){
      
       Rcpp::Rcout << "\nEnd of beta2quan\n" << std::endl;
-      Rcpp::Rcout << "bd1 = "    << bd1     << std::endl;
-      Rcpp::Rcout << "bd2 = "    << bd2     << std::endl;
+      Rcpp::Rcout << "   bd1 = " << bd1     << std::endl;
+      Rcpp::Rcout << "   bd2 = " << bd2     << std::endl;
       Rcpp::Rcout << "check1 = " << check1  << std::endl;
       Rcpp::Rcout << "check2 = " << check2  << std::endl;
      
