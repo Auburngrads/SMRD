@@ -80,7 +80,6 @@ Rcpp::List APLAN(double ap,
   
 debug::kprint = iprinp;
   
-//implicit DOUBLE PRECISION (a-h,o-z);
 Rcpp::List l_pass1, l_pass2;
 Rcpp::List ints,doubs,numvec;
 Rcpp::NumericVector e(4), delta(4);
