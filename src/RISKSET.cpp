@@ -90,8 +90,8 @@ int icurrentl, icurrentu,deltaold;
    if(debug::kprint >= 2){
       
       Rcpp::Rcout << "\nWQM_RISKSET**1**\n" << std::endl;
-      Rcpp::Rcout << "iordl = " << iordl << std::endl;
-      Rcpp::Rcout << "iordu = " << iordu << std::endl;
+      Rcpp::Rcout << "    iordl = " << iordl << std::endl;
+      Rcpp::Rcout << "    iordu = " << iordu << std::endl;
       Rcpp::Rcout << "twindowsl = " << twindowsl << std::endl;
       Rcpp::Rcout << "twindowsu = " << twindowsu << std::endl;
 
@@ -118,7 +118,7 @@ for(int i = 1; i <= muniqrecurr; i++) {
 if(debug::kprint > 4){
   
    Rcpp::Rcout << "\nBefore Index,time,delta\n" << std::endl;
-   Rcpp::Rcout << "i = "        << i - 1 << std::endl;
+   Rcpp::Rcout << "       i = " << i - 1 << std::endl;
    Rcpp::Rcout << "tuniq(i) = " << tuniq.at(i - 1) << std::endl;
    Rcpp::Rcout << "delta(i) = " << delta.at(i - 1) << std::endl;
   
@@ -141,13 +141,13 @@ while((twinl <= tuniq.at(i - 1)) and (icurrentl <= nwindows)) {
        if(debug::kprint > 4){
   
           Rcpp::Rcout << "\nwqm_riskset Add**\n"        << std::endl;
-          Rcpp::Rcout << "i = "         << i - 1            << std::endl;
-          Rcpp::Rcout << "twinl = "     << twinl        << std::endl;
+          Rcpp::Rcout << "        i = " << i - 1            << std::endl;
+          Rcpp::Rcout << "    twinl = " << twinl        << std::endl;
           Rcpp::Rcout << "icurrentl = " << icurrentl    << std::endl;
-          Rcpp::Rcout << "nwindows = "  << nwindows     << std::endl;
-          Rcpp::Rcout << "deltaold = "  << deltaold     << std::endl;
+          Rcpp::Rcout << " nwindows = " << nwindows     << std::endl;
+          Rcpp::Rcout << " deltaold = " << deltaold     << std::endl;
           Rcpp::Rcout << "wcounts(iordl(icurrentl)) = " << wcounts.at(iordl.at(icurrentl - 1) - 1) << std::endl;
-          Rcpp::Rcout << "delta(i) = "  << delta.at(i - 1)  << std::endl;
+          Rcpp::Rcout << " delta(i) = " << delta.at(i - 1)  << std::endl;
   
        }
 
@@ -176,14 +176,14 @@ while((twinu <= tuniq.at(i - 1)) and (icurrentu <= nwindows)) {
 
        if(debug::kprint > 6){
   
-          Rcpp::Rcout << "\nwqm_riskset Subtract**\n"        << std::endl;
-          Rcpp::Rcout << "i = "         << i - 1            << std::endl;
-          Rcpp::Rcout << "twinu = "     << twinu        << std::endl;
+          Rcpp::Rcout << "\nwqm_riskset Subtract**\n"   << std::endl;
+          Rcpp::Rcout << "        i = " << i - 1        << std::endl;
+          Rcpp::Rcout << "    twinu = " << twinu        << std::endl;
           Rcpp::Rcout << "icurrentu = " << icurrentu    << std::endl;
-          Rcpp::Rcout << "nwindows = "  << nwindows     << std::endl;
-          Rcpp::Rcout << "deltaold = "  << deltaold     << std::endl;
+          Rcpp::Rcout << " nwindows = " << nwindows     << std::endl;
+          Rcpp::Rcout << " deltaold = " << deltaold     << std::endl;
           Rcpp::Rcout << "wcounts(iordu(icurrentu)) = " << wcounts.at(iordu.at(icurrentu - 1) - 1) << std::endl;
-          Rcpp::Rcout << "delta(i) = "  << delta.at(i - 1)  << std::endl;
+          Rcpp::Rcout << " delta(i) = " << delta.at(i - 1)  << std::endl;
   
        }
 
@@ -200,7 +200,7 @@ while((twinu <= tuniq.at(i - 1)) and (icurrentu <= nwindows)) {
 if(debug::kprint > 4){
   
    Rcpp::Rcout << "\nAfter Index,time,delta\n" << std::endl;
-   Rcpp::Rcout << "i = "        << i - 1 << std::endl;
+   Rcpp::Rcout << "       i = " << i - 1 << std::endl;
    Rcpp::Rcout << "tuniq(i) = " << tuniq.at(i - 1) << std::endl;
    Rcpp::Rcout << "delta(i) = " << delta.at(i - 1) << std::endl;
   
