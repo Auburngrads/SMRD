@@ -143,7 +143,7 @@ if(ier <= 0) {
   if(debug::kprint > 0) {
     
      Rcpp::Rcout << "\nAFTER CDFSTR**\n"  << std::endl;
-     Rcpp::Rcout << "m = "      << m      << std::endl;
+     Rcpp::Rcout << "     m = " << m      << std::endl;
      Rcpp::Rcout << "nstart = " << nstart << std::endl;
     
   }
@@ -160,16 +160,16 @@ if((nstart > 0) & (nstart != m)) { ier = 15; return; }
     
      for(int i = 1; i <= n; i++) {
        
-         Rcpp::Rcout << "\nWQM_CDFES1 DATA STRUCTURE\n" << std::endl;
-         Rcpp::Rcout << "i = "           << i - 1           << std::endl;
-         Rcpp::Rcout << "y(i,0) = "      << y.at(i - 1,0)      << std::endl;
+         Rcpp::Rcout << "\nWQM_CDFES1 DATA STRUCTURE\n"        << std::endl;
+         Rcpp::Rcout << "          i = " << i - 1              << std::endl;
+         Rcpp::Rcout << "     y(i,0) = " << y.at(i - 1,0)      << std::endl;
          Rcpp::Rcout << "y(i,ny - 1) = " << y.at(i - 1,ny - 1) << std::endl;
-         Rcpp::Rcout << "codes(i) = "    << codes.at(i - 1)    << std::endl;
-         Rcpp::Rcout << "weight(i) = "   << weight.at(i - 1)   << std::endl;
-         Rcpp::Rcout << "ilcv(i) = "     << ilcv.at(i - 1)     << std::endl;
-         Rcpp::Rcout << "iucv(i) = "     << iucv.at(i - 1)     << std::endl;
-         Rcpp::Rcout << "iltv(i) = "     << iltv.at(i - 1)     << std::endl;
-         Rcpp::Rcout << "iutv(i) = "     << iutv.at(i - 1)     << std::endl;
+         Rcpp::Rcout << "   codes(i) = " << codes.at(i - 1)    << std::endl;
+         Rcpp::Rcout << "  weight(i) = " << weight.at(i - 1)   << std::endl;
+         Rcpp::Rcout << "    ilcv(i) = " << ilcv.at(i - 1)     << std::endl;
+         Rcpp::Rcout << "    iucv(i) = " << iucv.at(i - 1)     << std::endl;
+         Rcpp::Rcout << "    iltv(i) = " << iltv.at(i - 1)     << std::endl;
+         Rcpp::Rcout << "    iutv(i) = " << iutv.at(i - 1)     << std::endl;
 
      }
   }
@@ -231,10 +231,10 @@ if(debug::kprint > 1) {
    for(int j = 1; j <= m; j++){
      
        Rcpp::Rcout << "\nWQM_CDFEGR iter = " << j - 1   << std::endl;
-       Rcpp::Rcout << "probd(j) = "  << probd.at(j - 1) << std::endl;
-       Rcpp::Rcout << "pgrad(j) = "  << pgrad.at(j - 1) << std::endl;
-       Rcpp::Rcout << "prob(j) = "   << prob.at(j - 1)  << std::endl;
-       Rcpp::Rcout << "sd(j) = "     << sd.at(j - 1)    << std::endl;
+       Rcpp::Rcout << "probd(j) = " << probd.at(j - 1) << std::endl;
+       Rcpp::Rcout << "pgrad(j) = " << pgrad.at(j - 1) << std::endl;
+       Rcpp::Rcout << " prob(j) = " << prob.at(j - 1)  << std::endl;
+       Rcpp::Rcout << "   sd(j) = " << sd.at(j - 1)    << std::endl;
 
     }
    
@@ -259,13 +259,13 @@ loop1: for(int j = 1; j <= m; j++) {
               if(debug::kprint >= 10){
         
                  Rcpp::Rcout << "\nWQM_CDFES1 loop 1\n"        << std::endl;
-                 Rcpp::Rcout << "iter j = "  << j - 1          << std::endl;
-                 Rcpp::Rcout << "m = "       << m              << std::endl;
-                 Rcpp::Rcout << "ipndx = "   << ipndx          << std::endl;
-                 Rcpp::Rcout << "iqndx = "   << iqndx          << std::endl;
-                 Rcpp::Rcout << "ippndx = "  << ippndx         << std::endl;
-                 Rcpp::Rcout << "p(j) = "    << p.at(j - 1)    << std::endl;
-                 Rcpp::Rcout << "q(j) = "    << q.at(j - 1)    << std::endl;
+                 Rcpp::Rcout << " iter j = " << j - 1          << std::endl;
+                 Rcpp::Rcout << "      m = " << m              << std::endl;
+                 Rcpp::Rcout << "  ipndx = " << ipndx          << std::endl;
+                 Rcpp::Rcout << "  iqndx = " << iqndx          << std::endl;
+                 Rcpp::Rcout << " ippndx = " << ippndx         << std::endl;
+                 Rcpp::Rcout << "   p(j) = " << p.at(j - 1)    << std::endl;
+                 Rcpp::Rcout << "   q(j) = " << q.at(j - 1)    << std::endl;
                  Rcpp::Rcout << "prob(j) = " << prob.at(j - 1) << std::endl;
 
               }
@@ -285,13 +285,13 @@ loop1: for(int j = 1; j <= m; j++) {
            if(debug::kprint >= 10){
              
               Rcpp::Rcout << "\nWQM_CDFES1 loop 2\n"      << std::endl;
-              Rcpp::Rcout << "iter j = "  << j          << std::endl;
-              Rcpp::Rcout << "m = "       << m          << std::endl;
-              Rcpp::Rcout << "ipndx = "   << ipndx      << std::endl;
-              Rcpp::Rcout << "iqndx = "   << iqndx      << std::endl;
-              Rcpp::Rcout << "ippndx = "  << ippndx     << std::endl;
-              Rcpp::Rcout << "p(j) = "    << p.at(j)    << std::endl;
-              Rcpp::Rcout << "q(j) = "    << q.at(j)    << std::endl;
+              Rcpp::Rcout << " iter j = " << j          << std::endl;
+              Rcpp::Rcout << "      m = " << m          << std::endl;
+              Rcpp::Rcout << "  ipndx = " << ipndx      << std::endl;
+              Rcpp::Rcout << "  iqndx = " << iqndx      << std::endl;
+              Rcpp::Rcout << " ippndx = " << ippndx     << std::endl;
+              Rcpp::Rcout << "   p(j) = " << p.at(j)    << std::endl;
+              Rcpp::Rcout << "   q(j) = " << q.at(j)    << std::endl;
               Rcpp::Rcout << "prob(j) = " << prob.at(j) << std::endl;
      
            }
