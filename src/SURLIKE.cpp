@@ -120,13 +120,13 @@ int limit,limit4,neval,last;
    
 if(debug::kprint > 0){
   
-   Rcpp::Rcout << "\nEnd of urlike\n"        << std::endl;
-   Rcpp::Rcout  << "r1lower = "  << r1lower  << std::endl;
-   Rcpp::Rcout  << "r1upper = "  << r1upper  << std::endl;
-   Rcpp::Rcout  << "answer1 = "  << answer1  << std::endl;
-   Rcpp::Rcout  << "answer2 = "  << answer2  << std::endl;
-   Rcpp::Rcout  << "urlike = "   << ur_like  << std::endl;
-   Rcpp::Rcout  << "ier = "      << ier      << std::endl;
+   Rcpp::Rcout << "\nEnd of urlike\n"       << std::endl;
+   Rcpp::Rcout  << "r1lower = " << r1lower  << std::endl;
+   Rcpp::Rcout  << "r1upper = " << r1upper  << std::endl;
+   Rcpp::Rcout  << "answer1 = " << answer1  << std::endl;
+   Rcpp::Rcout  << "answer2 = " << answer2  << std::endl;
+   Rcpp::Rcout  << " urlike = " << ur_like  << std::endl;
+   Rcpp::Rcout  << "    ier = " << ier      << std::endl;
 
 }
 
