@@ -83,20 +83,20 @@ Rcpp::NumericVector pgrad,s,probd,fscrat;
 
 if(debug::kprint >= 2) {
   
-   Rcpp::Rcout << "y =\n" << y << std::endl;
-   Rcpp::Rcout << "cen = " << cen << std::endl;
-   Rcpp::Rcout << "wt = " << wt << std::endl;
-   Rcpp::Rcout << "nrow = " << nrow << std::endl;
-   Rcpp::Rcout << "ny = " << ny << std::endl;
-   Rcpp::Rcout << "nty = " << nty << std::endl;
-   Rcpp::Rcout << "ty =\n" << ty << std::endl;
-   Rcpp::Rcout << "tcodes = " << tcodes << std::endl;
-   Rcpp::Rcout << "gamthr = " << gamthr << std::endl;
-   Rcpp::Rcout << "maxit = " << maxit << std::endl;
-   Rcpp::Rcout << "kprint = " << kprint << std::endl;
-   Rcpp::Rcout << "numsim = " << numsim << std::endl;
-   Rcpp::Rcout << "numret = " << numret << std::endl;
-   Rcpp::Rcout << "iersim = " << iersim << std::endl;
+   Rcpp::Rcout << "     y =\n" << y << std::endl;
+   Rcpp::Rcout << "   cen = "  << cen << std::endl;
+   Rcpp::Rcout << "    wt = "  << wt << std::endl;
+   Rcpp::Rcout << "  nrow = "  << nrow << std::endl;
+   Rcpp::Rcout << "    ny = "  << ny << std::endl;
+   Rcpp::Rcout << "   nty = "  << nty << std::endl;
+   Rcpp::Rcout << "    ty =\n" << ty << std::endl;
+   Rcpp::Rcout << "tcodes = "  << tcodes << std::endl;
+   Rcpp::Rcout << "gamthr = "  << gamthr << std::endl;
+   Rcpp::Rcout << " maxit = "  << maxit << std::endl;
+   Rcpp::Rcout << "kprint = "  << kprint << std::endl;
+   Rcpp::Rcout << "numsim = "  << numsim << std::endl;
+   Rcpp::Rcout << "numret = "  << numret << std::endl;
+   Rcpp::Rcout << "iersim = "  << iersim << std::endl;
 
 }
 
@@ -132,17 +132,17 @@ if(debug::kprint >= 11){
 
 if(debug::kprint >= 2) {
   
-   Rcpp::Rcout << "y =\n" << y << std::endl;
-   Rcpp::Rcout << "cen = " << cen << std::endl;
-   Rcpp::Rcout << "wt = " << wt << std::endl;
-   Rcpp::Rcout << "nrow = " << nrow << std::endl;
-   Rcpp::Rcout << "ny = " << ny << std::endl;
-   Rcpp::Rcout << "nty = " << nty << std::endl;
-   Rcpp::Rcout << "ty = " << ty << std::endl;
-   Rcpp::Rcout << "tcodes = " << tcodes << std::endl;
-   Rcpp::Rcout << "gamthr = " << gamthr << std::endl;
-   Rcpp::Rcout << "maxit = " << maxit << std::endl;
-   Rcpp::Rcout << "kprint = " << kprint << std::endl;
+   Rcpp::Rcout << "     y =\n"  << y << std::endl;
+   Rcpp::Rcout << "   cen = "   << cen << std::endl;
+   Rcpp::Rcout << "    wt = "   << wt << std::endl;
+   Rcpp::Rcout << "  nrow = "   << nrow << std::endl;
+   Rcpp::Rcout << "    ny = "   << ny << std::endl;
+   Rcpp::Rcout << "   nty = "   << nty << std::endl;
+   Rcpp::Rcout << "    ty = \n" << ty << std::endl;
+   Rcpp::Rcout << "tcodes = "   << tcodes << std::endl;
+   Rcpp::Rcout << "gamthr = "   << gamthr << std::endl;
+   Rcpp::Rcout << " maxit = "   << maxit << std::endl;
+   Rcpp::Rcout << "kprint = "   << kprint << std::endl;
 
 }
 
