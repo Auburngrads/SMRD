@@ -96,41 +96,41 @@ Rcpp::IntegerVector iir, ijc,krfail(1),nsamsz(1);
 
 if(debug::kprint > 2) {
   
-   Rcpp::Rcout << "x = "         << x << std::endl;
-   Rcpp::Rcout << "y = "         << y << std::endl;
-   Rcpp::Rcout << "cen ="        << cen <<  std::endl;
-   Rcpp::Rcout << "weights = "   << wt << std::endl;
-   Rcpp::Rcout << "nrow = "      << nrow << std::endl;
-   Rcpp::Rcout << "nter = "      << nter << std::endl;
-   Rcpp::Rcout << "ny = "        << ny << std::endl;
-   Rcpp::Rcout << "nty = "       << nty << std::endl;
-   Rcpp::Rcout << "ty = "        << ty << std::endl;
-   Rcpp::Rcout << "tcodes = "    << tcodes << std::endl;
-   Rcpp::Rcout << "kdist = "       << kdist << std::endl;
-   Rcpp::Rcout << "gamthr = "    << gamthr << std::endl;
-   Rcpp::Rcout << "lfix = "      << lfix << std::endl;
-   Rcpp::Rcout << "nparm = "     << nparm << std::endl;
-   Rcpp::Rcout << "intcpt = "    << intcpt << std::endl;
-   Rcpp::Rcout << "escale = "    << escale << std::endl;
-   Rcpp::Rcout << "e = "         << e << std::endl;
-   Rcpp::Rcout << "maxit = "     << maxit << std::endl;
-   Rcpp::Rcout << "kprint = "    << kprint << std::endl;
-   Rcpp::Rcout << "dscrat = "    << dscrat << std::endl;
-   Rcpp::Rcout << "iscrat = "    << iscrat << std::endl;
-   Rcpp::Rcout << "devian = "    << devian << std::endl;
-   Rcpp::Rcout << "thetahat = "  << thetah << std::endl;
-   Rcpp::Rcout << "fsder = "     << fsder << std::endl;
-   Rcpp::Rcout << "vcv = "       << vcv <<std::endl;
-   Rcpp::Rcout << "r = "         << r << std::endl;
-   Rcpp::Rcout << "res = "       << res << std::endl;
-   Rcpp::Rcout << "fv = "        << fv << std::endl;
-   Rcpp::Rcout << "thetareal = " << thetah << std::endl;
-   Rcpp::Rcout << "nsamsz = "    << nsamsz << std::endl;
-   Rcpp::Rcout << "centim = "    << centim << std::endl;
-   Rcpp::Rcout << "nsamsz = "    << nsamsz << std::endl;
-   Rcpp::Rcout << "numsim = "    << numsim << std::endl;
-   Rcpp::Rcout << "numret = "    << numret << std::endl;
-   Rcpp::Rcout << "iersim = "    << iersim << std::endl;
+   Rcpp::Rcout << "        x = \n" << x << std::endl;
+   Rcpp::Rcout << "        y = \n" << y << std::endl;
+   Rcpp::Rcout << "      cen ="    << cen <<  std::endl;
+   Rcpp::Rcout << "  weights = "   << wt << std::endl;
+   Rcpp::Rcout << "     nrow = "   << nrow << std::endl;
+   Rcpp::Rcout << "     nter = "   << nter << std::endl;
+   Rcpp::Rcout << "       ny = "   << ny << std::endl;
+   Rcpp::Rcout << "      nty = "   << nty << std::endl;
+   Rcpp::Rcout << "       ty = \n" << ty << std::endl;
+   Rcpp::Rcout << "   tcodes = "   << tcodes << std::endl;
+   Rcpp::Rcout << "    kdist = "   << kdist << std::endl;
+   Rcpp::Rcout << "   gamthr = "   << gamthr << std::endl;
+   Rcpp::Rcout << "     lfix = "   << lfix << std::endl;
+   Rcpp::Rcout << "    nparm = "   << nparm << std::endl;
+   Rcpp::Rcout << "   intcpt = "   << intcpt << std::endl;
+   Rcpp::Rcout << "   escale = "   << escale << std::endl;
+   Rcpp::Rcout << "        e = "   << e << std::endl;
+   Rcpp::Rcout << "    maxit = "   << maxit << std::endl;
+   Rcpp::Rcout << "   kprint = "   << kprint << std::endl;
+   Rcpp::Rcout << "   dscrat = "   << dscrat << std::endl;
+   Rcpp::Rcout << "   iscrat = "   << iscrat << std::endl;
+   Rcpp::Rcout << "   devian = "   << devian << std::endl;
+   Rcpp::Rcout << " thetahat = "   << thetah << std::endl;
+   Rcpp::Rcout << "    fsder = "   << fsder << std::endl;
+   Rcpp::Rcout << "      vcv = \n" << vcv <<std::endl;
+   Rcpp::Rcout << "        r = \n" << r << std::endl;
+   Rcpp::Rcout << "      res = \n" << res << std::endl;
+   Rcpp::Rcout << "       fv = "   << fv << std::endl;
+   Rcpp::Rcout << "thetareal = "   << thetah << std::endl;
+   Rcpp::Rcout << "   nsamsz = "   << nsamsz << std::endl;
+   Rcpp::Rcout << "   centim = "   << centim << std::endl;
+   Rcpp::Rcout << "   nsamsz = "   << nsamsz << std::endl;
+   Rcpp::Rcout << "   numsim = "   << numsim << std::endl;
+   Rcpp::Rcout << "   numret = "   << numret << std::endl;
+   Rcpp::Rcout << "   iersim = "   << iersim << std::endl;
 
 }
 
@@ -176,9 +176,9 @@ smldat(theta,nparm,nsamsz,kctype,centim,pretim,kdist,
        x,y,cen,wt,nrow,nter,ny,nty,ty,tcodes,nrownw,
        krfail,igroup,iobs,kpred,iersim);
 
-//xx call simpar(theta,nparm,nsamsz,centim,pretim,kdist,;
-//xx & x,y,cen,wt,nrow,nter,ny,nty,ty,tcodes,;
-//xx & nrownw,krfail,kpred,iersim);
+//xx simpar(theta,nparm,nsamsz,centim,pretim,kdist,
+//xx        x,y,cen,wt,nrow,nter,ny,nty,ty,tcodes,
+//xx        nrownw,krfail,kpred,iersim);
 
 // Copy over x and y (because they may have been destroyed)
 xnew = clone(x);
