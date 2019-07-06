@@ -138,11 +138,11 @@ int it,js;
        if(debug::kprint >= 3){
          
           Rcpp::Rcout << "\nNPSYS: xx\n" << std::endl;
-          Rcpp::Rcout << "it = "         << it - 1 << std::endl;
+          Rcpp::Rcout << "        it = " << it - 1 << std::endl;
           Rcpp::Rcout << "idlsum(it) = " << idlsum.at(it - 1) << std::endl;
-          Rcpp::Rcout << "dsum(it) = "   << dsum.at(it - 1) << std::endl;
-          Rcpp::Rcout << "dbar(it) = "   << dbar.at(it - 1) << std::endl;
-          Rcpp::Rcout << "smdbar = "     << smdbar << std::endl;
+          Rcpp::Rcout << "  dsum(it) = " << dsum.at(it - 1) << std::endl;
+          Rcpp::Rcout << "  dbar(it) = " << dbar.at(it - 1) << std::endl;
+          Rcpp::Rcout << "    smdbar = " << smdbar << std::endl;
          
        }
 
@@ -153,11 +153,11 @@ int it,js;
        if(debug::kprint >= 3){
          
           Rcpp::Rcout << "\nNPSYS: yy\n" << std::endl;
-          Rcpp::Rcout << "it = "         << it - 1 << std::endl;
+          Rcpp::Rcout << "        it = " << it - 1 << std::endl;
           Rcpp::Rcout << "idlsum(it) = " << idlsum.at(it - 1) << std::endl;
-          Rcpp::Rcout << "dsum(it) = "   << dsum.at(it - 1) << std::endl;
-          Rcpp::Rcout << "dbar(it) = "   << dbar.at(it - 1) << std::endl;
-          Rcpp::Rcout << "smdbar = "     << smdbar << std::endl;
+          Rcpp::Rcout << "  dsum(it) = " << dsum.at(it - 1) << std::endl;
+          Rcpp::Rcout << "  dbar(it) = " << dbar.at(it - 1) << std::endl;
+          Rcpp::Rcout << "    smdbar = " << smdbar << std::endl;
          
        }
        
