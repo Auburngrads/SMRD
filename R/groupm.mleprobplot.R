@@ -63,46 +63,44 @@
 #'                                                distribution = "Lognormal", 
 #'                                                relationship = "Arrhenius", 
 #'                                                ci.list = 6)
-
-#' 
 #' }
 groupm.mleprobplot <-
-function (data.ld, 
-          distribution, 
-          formula = NULL, 
+function (data.ld,
+          distribution,
+          formula = NULL,
           group.var = 1:ncol(xmat(data.ld)),
-          xlab = get.time.units(data.ld), 
+          xlab = get.time.units(data.ld),
           ylab = GetSMRDDefault("SMRD.LabelOnYaxis"),
-          conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, 
-          xlim = c(NA,NA), 
-          ylim = c(NA,NA), 
-          relationship = NULL, 
+          conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
+          xlim = c(NA,NA),
+          ylim = c(NA,NA),
+          relationship = NULL,
           power = NULL,
-          dump = 0, 
-          mle.intervals = F, 
+          dump = 0,
+          mle.intervals = F,
           cex = 1.2,
-          grids = F, 
-          slope.axis = F, 
-          linear.axes = F, 
-          lty = NULL, 
+          grids = F,
+          slope.axis = F,
+          linear.axes = F,
+          lty = NULL,
           plot.censored.ticks = F,
-          time.range = c(NA,NA), 
-          shape = NULL, 
-          ci.list = NULL, 
-          col.ci = 4, 
+          time.range = c(NA,NA),
+          shape = NULL,
+          ci.list = NULL,
+          col.ci = 4,
           printem = F,
-          trunc.correct = T, 
-          include.interaction = F, 
+          trunc.correct = T,
+          include.interaction = F,
           new.data = NULL,
-          plotem = T, 
-          do.legend = "On plot", 
-          stresses.limit = 18, 
+          plotem = T,
+          do.legend = "On plot",
+          stresses.limit = 18,
           number.points = 55,
-          plotted = rep(T, length(stresses.plus)), 
+          plotted = rep(T, length(stresses.plus)),
           from.six.plot = F,
-          debug1 = F, 
-          theta.start = NULL, 
-          parameter.fixed = NULL, 
+          debug1 = F,
+          theta.start = NULL,
+          parameter.fixed = NULL,
           compute.subsets = T,
           check.level = SMRDOptions("SMRD.DataCheck"),
           title.line.adj,...)
@@ -273,6 +271,7 @@ xlim.quant <- NULL
 stresses.plus <- c(stress.names)
 
 if (!is.null(new.data)) {
+  
     new.data <- as.data.frame(new.data)
     x.names <- colnames(the.orig.xmat)
     names(new.data) <- x.names[group.var]
@@ -282,6 +281,7 @@ if (!is.null(new.data)) {
                                     paste, 
                                     reduced.xmat.names, 
                                     collapse = ";")))
+    
 }
 
 plotted <- c(the.not.stripped, 
@@ -292,6 +292,7 @@ if (is.null(lty)) {
     `if`(GetSMRDDefault("SMRD.solid.lines"),
          lty <- rep(1, length(plotted)),
          lty <- (1:(length(plotted) + 1))[-2])
+  
 }
     
 pch          <- (1:(length(plotted) + 1))[-2]
@@ -315,7 +316,7 @@ data.name <- stresses.plus[i]
      conf.level.send <- conf.level,
      conf.level.send <- 0 )
           
-if (map.SMRDDebugLevel() >= 6)  cat("stress=", 
+if (map.SMRDDebugLevel() >= 6)  cat("stress = ", 
                                 stresses.plus[i], 
                                 "ci=", 
                                 conf.level.send,
@@ -323,9 +324,9 @@ if (map.SMRDDebugLevel() >= 6)  cat("stress=",
 
 if (i <= length(stresses)) {
               
-  if (map.SMRDDebugLevel() >= 6) cat("stress=", 
+  if (map.SMRDDebugLevel() >= 6) cat("stress = ", 
                                      stresses[i], 
-                                     "stress name=",
+                                     "stress name = ",
                                      stress.names[i], 
                                      "\n")
               
@@ -347,14 +348,14 @@ if (i <= length(stresses)) {
                 
   mlest.dummy <- list(distribution = distribution,
                       theta.hat = get.location.out$thetavec, 
-                      vcv = get.location.out$vcv,
+                      vcv.matrix = get.location.out$vcv,
                       y = Response(mlest.out$data.ld), 
                       ierfit = 0,
                       iervcv = 0)
   
   if (!good.data(data.subset.ld, 
-                        check.level = check.level,
-                        number.needed = 1)) {
+                 check.level = check.level,
+                 number.needed = 1)) {
     
     if (plotem) message(paste("Skipping", 
                               paste(stress.names[i],collapse = " "), 
@@ -365,8 +366,9 @@ if (i <= length(stresses)) {
     if (length(cdfest.out$q) > 0) {
       
         cdpoints.out <- cdpoints(cdfest.out)
-        trunc.correct <- (!is.null(cdfest.out$left.trun.cond) ||
-                      !is.null(cdfest.out$right.trun.cond)) && trunc.correct
+        trunc.correct <- (!is.null(cdfest.out$left.trun.cond)   ||
+                          !is.null(cdfest.out$right.trun.cond)) && 
+                          trunc.correct
         
     if (trunc.correct) {
       
