@@ -90,7 +90,6 @@
 #'                                                         new.data = c("150,260"))
 #' 
 #' }
-
 groupi.Dest.Degrad.indivplots <-
 function (data.ddd, 
           distribution,
@@ -265,10 +264,14 @@ function (data.ddd,
                              cex.tic.lab = cex.tic.lab,
                              grids = grids)
         
-        if (is.character(the.do.list[i])) mtext(text = the.do.list[i],
-                                                side = 3, 
-                                                cex = 1,
-                                                line = 1)
+        if (is.character(the.do.list[i])) {
+          
+            mtext(text = parse(text = switch.units(the.do.list[i])),
+                  side = 3, 
+                  cex = 1,
+                  line = 1)
+          
+        }
         
         the.ones <- the.do.list[i] == complete.list(data.ddd)
         rcensored <- the.ones & the.censor.codes == 2 & !dummy.obs
@@ -365,7 +368,7 @@ function (data.ddd,
         
     }
     
-    mtext(text = my.title, side = 3, cex = 1.2, line = -2, outer = T)
+    #mtext(text = my.title, side = 3, cex = 1.2, line = -2, outer = T)
     mtext(text = xlab, side = 1, cex = 1.2, line = -2, outer = T)
     mtext(text = ylab, side = 2, cex = 1.2, line = -2, outer = T)
     SMRDOptions(save.SMRD.options)
