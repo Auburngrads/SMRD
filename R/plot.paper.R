@@ -23,7 +23,8 @@ function (x,
           yaxis.labels = NULL, 
           at.yaxis.labels = 1:length(yaxis.labels),
           title.option = GetSMRDDefault("SMRD.TitleOption"), 
-          title.line.adj = 0, ...)
+          title.line.adj = 0,
+          bty = "o",...)
 {
     label.factor <- sqrt(prod(max(c(par("mfrow"), par("mfcol")))))
     
@@ -31,7 +32,7 @@ function (x,
          label.line <- 2,
          label.line <- 0.75)
     
-    par(mar = mar)
+    par(mar = mar, bty = bty)
     if (missing(x)) x <- c(1, 100)
     if (missing(y)) y <- c(1, 100)
     
