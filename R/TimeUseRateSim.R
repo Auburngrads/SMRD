@@ -28,7 +28,7 @@ function (muWearCycles, sigmaWearCycles, muCrackCycles, sigmaCrackCycles,
         format(exp(muWearTime)), "sigma=", format(sigmaCrackTime),
         format(sigmaWearTime), "rhoTT=", format(rhoTT))
 
-    plot.paper(xlim = exp(range(WearTime)), ylim = exp(range(CrackTime)),
+    plot.paper(x = exp(range(WearTime)), y = exp(range(CrackTime)),
         x.axis = "log", y.axis = "log", grids = F, my.title = "",
         ylab = "Crack Time", xlab = "Wear Time")
     if (!do.ps)

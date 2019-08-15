@@ -118,8 +118,8 @@ function (groupm.list,
         if (!all(xrna)) warning("No control of x-axis with class variable")
         xlim <- c(0, 1)
         
-        plot.paper(xlim = xlim, 
-                   ylim = ylim, 
+        plot.paper(x = xlim, 
+                   y = ylim, 
                    x.axis = "blank",
                    y.axis = y.axis, 
                    xlab = xnames[x.to.plot], 

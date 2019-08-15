@@ -16,7 +16,7 @@ function (x.axis, y.axis, ylim, xlim, my.title, title.option,
             cex = cex, my.title = "", grids = grids, title.option = title.option,
             hw.xaxis = hw.xaxis, hw.yaxis = hw.yaxis, ...)
   } else {
-        plot.paper(xlim = xlim, ylim = ylim, x.axis = "blank",
+        plot.paper(x = xlim, y = ylim, x.axis = "blank",
             y.axis = y.axis, xlab = xlab, ylab = ylab, response.on.yaxis = response.on.yaxis,
             cex = cex, my.title = "", grids = grids, hw.xaxis = hw.xaxis,
             hw.yaxis = hw.yaxis, ...)

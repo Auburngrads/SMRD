@@ -16,7 +16,7 @@ function (BVNData, censor.time, do.ps = F, colors = rep(0, 10))
     CrackFailed <- WearTime > CrackTime & CrackTime <= censor.time
     Censored <- WearTime > censor.time & CrackTime > censor.time
 
-    plot.paper(xlim = exp(range(WearTime)), ylim = exp(range(CrackTime)),
+    plot.paper(x = exp(range(WearTime)), y = exp(range(CrackTime)),
         x.axis = "log", y.axis = "log", grids = F, my.title = "",
         ylab = "Crack Time", xlab = "Wear Time")
     points(WearTime[WearFailed], CrackTime[WearFailed], col = 2)

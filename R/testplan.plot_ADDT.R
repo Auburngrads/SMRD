@@ -21,7 +21,7 @@ function (ADDT.test.plan)
         cat("No plot for multiple variable plans\n")
         invisible(NULL)
     }
-    plot.paper(xlim = range(the.times), ylim = range(the.levels[[1]]),
+    plot.paper(x = range(the.times), y = range(the.levels[[1]]),
         x.axis = "linear", y.axis = "linear", ylab = names(the.levels),
         xlab = dimnames(the.times)[2][1], cex = 1.5, cex.labs = 1.5,
         grids = F)

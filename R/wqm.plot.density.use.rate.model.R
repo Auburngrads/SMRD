@@ -26,7 +26,7 @@ function (use.rate.model.out, npoints = 200, xlab = NULL, my.title = NULL,
         quant(0.999, distribution.use.rate)) * sigma.use.rate))
     tvec <- logseq(time.range[1], time.range[2], length = npoints)
     the.density <- dlnorm(tvec, mu.use.rate, sigma.use.rate)
-    plot.paper(xlim = range(tvec), ylim = range(the.density *
+    plot.paper(x = range(tvec), y = range(the.density *
         tvec), x.axis = "log", ylab = "", xlab = xlab, grids = F,
         y.axis = "blank", ...)
     lines(logb(tvec), the.density * tvec)
