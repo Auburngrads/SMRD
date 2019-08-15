@@ -1,7 +1,9 @@
 switch.units <- 
-function(units,data.d) 
+function(units,data.d = NULL) 
 {
  
+if(!is.null(data.d)) {
+  
   `if`(is.onlist(class(data.d)[[1]], "multiple.life.data"),
        unit.names <- as.vector(attr(data.d[[1]],"x.columns")),
        unit.names <- as.vector(attr(data.d,"x.columns")))
@@ -18,16 +20,16 @@ function(units,data.d)
     
   }
   
+}
+  
   units <- tolower(units)
   
-  units <- gsub("degreesc", "C^o", units)
-  units <- gsub("celsius",  "C^o", units)
-  units <- gsub("volts", "V",      units)
-  units <- gsub("temp", "C^o",     units)
-  units <- gsub("degreesf", "F^o", units)
-  units <- gsub("farenheit","F^o", units)
-  units <- gsub("kelvin","K",      units)
-  units <- gsub("rankine","R",     units)
+  units <- gsub("(\\d*)([.]\\s*|\\s*)(celsius|degreesc|temp)", "\\1~degree*C", units)
+  units <- gsub("(\\d*)([.]\\s*|\\s*)(volts)", "\\1~V",      units)
+  units <- gsub("(\\d*)([.]\\s*|\\s*)(farenheit|degreesf)", "\\1~degree*F", units)
+  units <- gsub("(\\d*)([.]\\s*|\\s*)(kelvin)","\\1~K",      units)
+  units <- gsub("(\\d*)([.]\\s*|\\s*)(rankine)","\\1~R",     units)
+  units <- gsub("(\\d*)([.]\\s*|\\s*)(rh)","\\1~RH",     units)
   units <- gsub(";", "~~",         units)
   units <- gsub("([[:punct:]]|[[:space:]])per([[:punct:]]|[[:space:]])", "/",units)
   
