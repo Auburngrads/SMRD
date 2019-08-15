@@ -24,8 +24,8 @@ function (x,which = 1,...)
         invisible(NULL)
     }
     
-    plot.paper(xlim = range(the.times), 
-               ylim = range(the.levels[[which]]),
+    plot.paper(x = range(the.times), 
+               y = range(the.levels[[which]]),
                x.axis = "linear", 
                y.axis = "linear", 
                ylab = names(the.levels)[which],
