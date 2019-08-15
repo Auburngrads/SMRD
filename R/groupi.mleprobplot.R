@@ -84,7 +84,7 @@ function (data.ld,
           dump = 1, 
           grids = F, 
           my.title = NULL, 
-          cex = 1.2,
+          cex = 1,
           linear.axes = F, 
           title.option = GetSMRDDefault("SMRD.TitleOption"), 
           pch = (1:(length(stresses) + 1))[-2], 
@@ -100,7 +100,9 @@ function (data.ld,
           stresses.limit = 18, 
           plotem = rep(T, length(stresses)),
           check.level = SMRDOptions("SMRD.DataCheck"),
-          title.line.adj = -2,...)
+          title.line.adj = -2,
+          mar = c(4.5, 5.25, 3.5, 12.1),
+          bty = `if`(grids, "o","L"),...)
 {
   
     if (missing(title.line.adj)) {  title.line.adj = -3    }
@@ -152,6 +154,9 @@ function (data.ld,
         
     }
     
+      par(mar = mar, bty = bty)
+      on.exit(par(xpd = F, bty = "o", mar = c(5, 4, 4, 2) + 0.1,err = -1))
+    
 parametric.list <- 
   multiple.mleprobplot(multiple.ld, 
                        data.ld.name = deparse(substitute(data.ld)),
@@ -179,7 +184,9 @@ parametric.list <-
                        plot.frame = plot.frame, 
                        plotem = plotem,
                        title.line.adj = title.line.adj,
-                       check.level = check.level,...)
+                       check.level = check.level,
+                       mar = mar,
+                       bty = bty,...)
     
 log.of.data <- get.prob.scales(distribution, 
                                shape = NULL,
@@ -190,4 +197,5 @@ f.plot.censored.ticks(data.ld,
                       plot.censored.ticks)
   
 return(parametric.list)
+
 }

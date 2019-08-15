@@ -97,7 +97,7 @@ function (data.list,
           pch = (1:(length(do.list) + 1))[-2], 
           lty = rep(1, length(do.list)), 
           ci.list = NULL, 
-          lwd = rep(1, length(do.list)),
+          lwd = rep(2, length(do.list)),
           trunc.correct = T, 
           col.fhat.vec = (1:(length(do.list) + length(col.ci)))[-col.ci],
           col.ci = 4, 
@@ -110,7 +110,9 @@ function (data.list,
           ylim.data = NULL, 
           plot.np = T,
           plot.frame = T,
-          debug1 = F,...)
+          debug1 = F,
+          mar = c(5, 4, 4, 2) + 0.1,
+          bty = "o",...)
 {
 
     bands.list <- list()
@@ -132,6 +134,7 @@ function (data.list,
                       data.name, 
                       "because too few failures\n"))
             next
+            
         }
         
         cdfest.out <- cdfest(data.subset.ld)
@@ -251,6 +254,8 @@ function (data.list,
     
     if (plot.frame) {
       
+        on.exit(par(xpd = F, bty = "o", mar = c(5, 4, 4, 2) + 0.1,err = -1), add = T)
+      
         log.of.data <- probplot.setup(distribution, 
                                       xlim,
                                       ylim, 
@@ -259,7 +264,9 @@ function (data.list,
                                       grids = grids, 
                                       linear.axes = linear.axes, 
                                       slope.axis = slope.axis,
-                                      cex = cex)
+                                      cex = cex,
+                                      mar = mar,
+                                      bty = bty)
         
         for (i in 1:length(do.list)) {
           
@@ -311,15 +318,20 @@ function (data.list,
         
         if (do.legend == "On plot" && any(plotted)) {
           
-                legend(x.loc(0.003), 
-                       y.loc(0.994), 
-                       legend = parse(text = do.list[plotted]),
-                       cex = 1, 
-                       bty = "n", 
-                       col = col.fhat.vec[plotted],
-                       lty = lty[plotted], 
-                       pch = pch[plotted]%%19, 
-                       y.intersp = .65)
+            par(xpd = T)
+          
+            legend(x.loc(1.05), 
+                   y.loc(0.99), 
+                   legend = parse(text = do.list[plotted]),
+                   cex = 1, 
+                   bty = "n", 
+                   col = col.fhat.vec[plotted],
+                   lty = lty[plotted], 
+                   pch = pch[plotted]%%19,
+                   lwd = lwd,
+                   seg.len = 1.5,
+                   y.intersp = 1,
+                   adj = c(-0.1))
         }
         
       if (do.legend == "New page" && any(plotted)) {

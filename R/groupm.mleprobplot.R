@@ -78,7 +78,7 @@ function (data.ld,
           power = NULL,
           dump = 0,
           mle.intervals = F,
-          cex = 1.2,
+          cex = 1,
           grids = F,
           slope.axis = F,
           linear.axes = F,
@@ -103,7 +103,10 @@ function (data.ld,
           parameter.fixed = NULL,
           compute.subsets = T,
           check.level = SMRDOptions("SMRD.DataCheck"),
-          title.line.adj,...)
+          title.line.adj,
+          lwd = 2,
+          mar = c(4.5, 5.25, 3.5, 12.1),
+          bty = `if`(grids, "o","L"),...)
 {
 
 not.stripped <- function (data.d)
@@ -306,7 +309,11 @@ upper.quantile.max <- NULL
     
 if (compute.subsets) {
       
-if (plotem) old.par <- par(mar = c(5, 6, 4, 2) + 0.1, err = -1)
+if (plotem) {
+  
+  on.exit(par(xpd = F, bty = "o", mar = c(5, 4, 4, 2) + 0.1,err = -1))
+  
+}
       
 for (i in 1:length(stresses.plus)) {
   
@@ -493,7 +500,9 @@ log.of.data <- probplot.setup(distribution,
                               linear.axes = linear.axes, 
                               slope.axis = slope.axis,
                               cex = cex, 
-                              title.line.adj = title.line.adj,...)
+                              title.line.adj = title.line.adj,
+                              mar = mar,
+                              bty = bty,...)
 }
 
 bands.list.data.names <- names(bands.list)
@@ -528,7 +537,7 @@ lines(pp.data(times, log.of.data),
       pp.quant(bands$fhat, distribution, shape), 
       col = col.fhat.vec[i],
       lty = lty[i], 
-      lwd = 2)
+      lwd = lwd)
 
 if (!is.null(bands$lower)) {
   
@@ -536,12 +545,12 @@ if (!is.null(bands$lower)) {
           pp.quant(bands$lower, distribution, shape), 
           col = col.ci, 
           lty = 3,
-          lwd = 2)
+          lwd = lwd)
     lines(pp.data(times, log.of.data), 
           pp.quant(bands$upper, distribution, shape), 
           col = col.ci, 
           lty = 3,
-          lwd = 2)
+          lwd = lwd)
 }
 }
 }
@@ -553,15 +562,21 @@ pch.done <- -pch
 pch.done[1:length(stresses)] <- -pch.done[1:length(stresses)]
 
 if (do.legend == "On plot" && plotem) {
-    legend(x.loc(0.003), 
-           y.loc(0.994), 
+  
+    par(xpd = T)
+  
+    legend(x.loc(1.05), 
+           y.loc(0.99), 
            legend = parse(text = switch.units(stresses.plus, data.ld)),
            cex = 1, 
            bty = "n", 
            col = col.fhat.vec, 
            lty = lty,
+           lwd = lwd,
+           seg.len = 1.5,
            pch = pch.done%%19, 
-           y.intersp = 0.675)
+           y.intersp = 1,
+           adj = c(-0.1))
 }
 if (do.legend == "New page" && plotem) {
   

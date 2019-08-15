@@ -20,7 +20,9 @@ function (distribution,
           dump = T, 
           cex.points = 1,
           title.line.adj = 0, 
-          cex.axis = 1.05,...)
+          cex.axis = 1.05,
+          mar = c(5, 4, 4, 2) + 0.1,
+          bty = "o",...)
 {
     if (title.option != "blank" && (!is.logical(linear.axes) || (slope.axis))) {
       
@@ -97,6 +99,10 @@ function (distribution,
                            left.mar, 
                            probplot.setup.title.out$top.mar,
                            right.mar) + 0.1)
+    
+    par(mar = mar, bty = bty)
+    
+    on.exit(par(xpd = F, bty = "o", mar = c(5, 4, 4, 2) + 0.1,err = -1), add = T)
     
     ylim <- pp.quant(yp.range, distribution, shape)
     
