@@ -266,7 +266,9 @@ bulb.ld <- frame.to.ld(bulb,
 
 mlest(bulb.ld,"weibull")
 
-simple.contour(bulb.ld,"normal", quantile = .5)
+simple.contour(bulb.ld,
+               distribution = "normal", 
+               quantile = 0.5)
 ```
 
 
