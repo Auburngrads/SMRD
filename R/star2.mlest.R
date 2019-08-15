@@ -15,7 +15,6 @@ function (data.ld,
           ...)
 {
     the.xmat <- xmat(data.ld)
-    #if(!is.null(the.xmat)) explan.vars = seq(1:ncol(xmat(data.ld)))
     
     if (!is.null(the.xmat) && is.null(dimnames(the.xmat)[[2]])) {
       
