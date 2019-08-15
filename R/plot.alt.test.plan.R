@@ -48,7 +48,7 @@ function (x,
     accel.variable <- attr(x, "accelvar.names")
     
     if (length(accel.variable) > 1) {
-        warning("plot.x cannot plot mul accelerating variables test plans")
+        warning("Cannot plot mul accelerating variables test plans")
         return(NULL)
     }
     
@@ -69,13 +69,21 @@ function (x,
     assign(envir = .frame0,  inherits = TRUE,"relationship.vector", relationship)
     formula <- get.default.formula(the.xmat, relationship)
     Terms <- terms(formula)
-    dummy.groupm.out <- list(relationship = relationship, theta.hat = ALT.plan.values$theta.vec,
-        distribution = ALT.plan.values$distribution, group.var = explan.var,
-        focus.variable = names(the.xmat), data.ld = dummy.data.ld,
-        terms = Terms)
-    basic.plot.alt(groupm.out = dummy.groupm.out, data.ld = dummy.data.ld,
-        density.at = c(use.conditions, x[, accel.variable]),
-        censor.time = x$censor.times, quant.lines = quant.lines,
-        include.data = F, ...)
+    dummy.groupm.out <- list(relationship = relationship, 
+                             theta.hat = ALT.plan.values$theta.vec,
+                             distribution = ALT.plan.values$distribution, 
+                             group.var = explan.var,
+                             focus.variable = names(the.xmat),
+                             data.ld = dummy.data.ld,
+                             terms = Terms)
+    
+    basic.plot.alt(groupm.out = dummy.groupm.out,
+                   data.ld = dummy.data.ld,
+                   density.at = c(use.conditions, x[, accel.variable]),
+                   censor.time = x$censor.times, 
+                   quant.lines = quant.lines,
+                   include.data = F, ...)
+    
     invisible()
+    
 }
