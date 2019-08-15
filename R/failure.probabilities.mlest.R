@@ -27,16 +27,22 @@ function (x,
                             sep = "")
 
     if (!is.null(time.range)) {
+      
         time.vec <- get.time.vector(data.ld,
                                     distribution = distribution,
                                     number = number,
                                     time.range = time.range)
+        
     }
+    
     if (is.null(time.vec) || any(time.vec == Inf)) {
+      
         time.vec <- get.time.vector(data.ld,
                                     distribution = distribution,
                                     number = number)
+        
     }
+    
     log.of.data <- is.logdist(distribution)
 
 the.list <- get.parametric.bands.zhat(x,
