@@ -19,7 +19,7 @@ function (x,
     
     mlest.dummy <- list(distribution = groupm.out$distribution,
                         theta.hat = get.single.dist.out$thetavec, 
-                        vcv = get.single.dist.out$vcv,
+                        vcv.matrix = get.single.dist.out$vcv,
                         data.ld = groupm.out$data.ld)
     
     return(quantiles.mlest(mlest.dummy, 
