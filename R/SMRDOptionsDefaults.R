@@ -33,6 +33,7 @@ SMRDOptionsDefaults <-
                 SMRD.QuantileFocus = ".1", 
                 SMRD.solid.lines = TRUE,
                 SMRD.point.size = 100, 
+                SMRD.point.pch = rep(c(15:18,3,4),10),
                 SMRD.long.names = TRUE, 
                 SMRD.NumberTicks = 4,
                 SMRD.PrintSummary = TRUE, 
