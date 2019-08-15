@@ -118,7 +118,8 @@ function (data.ddd,
           lty = NULL,
           plot.lines = T,
           separate.plots = F,
-          lwd = 2,...)
+          lwd = 2,
+          bty = `if`(grids, "o", "L"),...)
 {
     relationship.sanity(times(data.ddd), 
                         transformation.time,
@@ -180,7 +181,8 @@ function (data.ddd,
                                        group.var = group.var,
                                        lty = lty,
                                        plot.lines = plot.lines,
-                                       lwd = lwd)
+                                       lwd = lwd,
+                                       bty = bty)
         
 }
     
