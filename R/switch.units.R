@@ -24,12 +24,12 @@ if(!is.null(data.d)) {
   
   units <- tolower(units)
   
-  units <- gsub("(\\d*)([.]\\s*|\\s*)(celsius|degreesc|temp)", "\\1~degree*C", units)
-  units <- gsub("(\\d*)([.]\\s*|\\s*)(volts)", "\\1~V",      units)
-  units <- gsub("(\\d*)([.]\\s*|\\s*)(farenheit|degreesf)", "\\1~degree*F", units)
-  units <- gsub("(\\d*)([.]\\s*|\\s*)(kelvin)","\\1~K",      units)
-  units <- gsub("(\\d*)([.]\\s*|\\s*)(rankine)","\\1~R",     units)
-  units <- gsub("(\\d*)([.]\\s*|\\s*)(rh)","\\1~RH",     units)
+  units <- gsub("(\\d*)([.]\\s*|\\s*)(celsius|degreesc|temp|^c$)", "\\1~degree*C", units)
+  units <- gsub("(\\d*)([.]\\s*|\\s*)(volts|^v$)", "\\1~V",      units)
+  units <- gsub("(\\d*)([.]\\s*|\\s*)(farenheit|degreesf|^f$)", "\\1~degree*F", units)
+  units <- gsub("(\\d*)([.]\\s*|\\s*)(kelvin|^k$)","\\1~K",      units)
+  units <- gsub("(\\d*)([.]\\s*|\\s*)(rankine|^r$)","\\1~R",     units)
+  units <- gsub("(\\d*)([.]\\s*|\\s*)(r\\s*([.](\\s*h)|h|el([.]\\s*h|ative\\s*hum)))","\\1~RH",     units)
   units <- gsub(";", "~~",         units)
   units <- gsub("([[:punct:]]|[[:space:]])per([[:punct:]]|[[:space:]])", "/",units)
   
