@@ -8,8 +8,8 @@ function (x,
           my.title = NULL,
           ylab = NULL, 
           xlab = NULL, 
-          cex = 1.2, 
-          cex.labs = 1.5, 
+          cex = 1.05, 
+          cex.labs = 1.05, 
           cex.points = 1,
           add = F, 
           grids = F, 
@@ -20,7 +20,8 @@ function (x,
           subset = T, 
           fail.level = NULL, 
           do.legend = "On plot", 
-          do.plot = T,...)
+          do.plot = T,
+          mar = par()$mar,...)
 {
 
 `do.list<-` <- function (data.ld, value) { 
@@ -82,11 +83,13 @@ function (x,
                                     group.var = group.var,
                                     long = T, 
                                     include.complete = T)
+        
         complete.list(x) <- complete.list(do.list(x))
         hold.warn <- options(warn = 0)
         tmp.orig.param <- two.stage.dest.degrad(x, distribution = "normal")
         options(hold.warn)
         slope <- attr(tmp.orig.param, "slope")
+        
         }
     
     the.do.list <- do.list(x)
@@ -114,20 +117,25 @@ function (x,
         my.title <- ""
     
     if (!do.plot) return(x)
-    if (!add)
-        plot.paper(xlim = xlim, ylim = ylim, x.axis = transformation.time,
-            y.axis = transformation.response, ylab = ylab, xlab = xlab,
-            response.on.yaxis = response.on.yaxis, cex = 1.5,
-            cex.labs = 1.5, grids = grids)
+    
+    if (!add) plot.paper(x = xlim, 
+                         y = ylim, 
+                         x.axis = transformation.time,
+                         y.axis = transformation.response, 
+                         ylab = ylab, 
+                         xlab = xlab,
+                         response.on.yaxis = response.on.yaxis, 
+                         cex = cex,
+                         cex.labs = cex.labs, 
+                         grids = grids,
+                         mar = mar,...)
 
     mtext(text = my.title, side = 3, cex = 1.2, line = 0.5)
     dummy.obs <- the.censor.codes == 0 | the.case.weights == 0
     
-    if (is.null(pch.point))
-        pch.point <- (1:(length(the.do.list) + 4))[-c(2, 6, 17, 19)]
+    if (is.null(pch.point)) pch.point <- (1:(length(the.do.list) + 4))[-c(2, 6, 17, 19)]
     
-    if (length(pch.point) == 1)
-        pch.point <- rep(pch.point, length(the.do.list))
+    if (length(pch.point) == 1) pch.point <- rep(pch.point, length(the.do.list))
     
     for (i in 1:length(the.do.list)) {
       
@@ -141,6 +149,7 @@ function (x,
         icensored <- the.ones & the.censor.codes == 4 & !dummy.obs
         
         if (response.on.yaxis) {
+          
             if (any(ncensored))
                 points.default(as.vector(the.times[ncensored]),
                                theResponse[ncensored, 1], 
@@ -152,14 +161,14 @@ function (x,
                 points.default(as.vector(the.times[rcensored]),
                                theResponse[rcensored, 1], 
                                pch = 17, 
-                               cex = (1.2 * cex.points * GetSMRDDefault("SMRD.point.size"))/100,
+                               cex = (cex.points * GetSMRDDefault("SMRD.point.size"))/100,
                                col = i)
           
             if (any(lcensored))
                 points.default(as.vector(the.times[lcensored]),
                                theResponse[lcensored, 1], 
                                pch = 19, 
-                               cex = (1.2 * cex.points * GetSMRDDefault("SMRD.point.size"))/100,
+                               cex = (cex.points * GetSMRDDefault("SMRD.point.size"))/100,
                                col = i)
           
             if (any(icensored))
@@ -180,6 +189,7 @@ function (x,
                                col = i)
             
             if (any(rcensored)) {
+              
                 rh.eps <- 0.001
                 rh.size <- 0.1
                 arrows(theResponse[rcensored, 1] - rh.eps, 
@@ -190,8 +200,11 @@ function (x,
                        open = F, 
                        rel = F, 
                        col = i)
+                
             }
+            
             if (any(lcensored)) {
+              
                 rh.eps <- 0.001
                 rh.size <- 0.1
                 arrows(theResponse[lcensored, 1] + rh.eps, 
@@ -202,7 +215,9 @@ function (x,
                        open = F, 
                        rel = F, 
                        col = i)
+                
             }
+            
             if (any(icensored))
                 points.default((theResponse[icensored, 1] + theResponse[icensored, 2])/2, 
                                as.vector(the.times[icensored]),
@@ -212,9 +227,9 @@ function (x,
         
             }
     }
-    if (!is.null(fail.level))
-        abline(h = f.relationship(fail.level, transformation.response),
-               lwd = 3)
+    
+    if (!is.null(fail.level)) abline(h = f.relationship(fail.level, transformation.response),
+                                     lwd = 3)
     
     if (any(is.na(group.var))) return(x)
     
@@ -254,6 +269,7 @@ function (x,
                      type = "n", 
                      xaxt = "n", 
                      yaxt = "n")
+                
                 legend(x.loc(0.003), 
                        y.loc(0.997), 
                        the.do.list,
@@ -264,6 +280,7 @@ function (x,
                        y.intersp = 0.675)
                 
                 if (do.legend == "New file") dev.off()
+                
             }
         }
 
