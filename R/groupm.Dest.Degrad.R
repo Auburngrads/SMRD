@@ -125,7 +125,9 @@ function (data.ddd,
           PlotFailDefLine = T,
           debug1 = map.SMRDDebugLevel(),
           lty = NULL,
-          lwd = 2,...)
+          lwd = 2,
+          mar = c(4.5, 5.25, 3.5, 12.1),
+          bty = `if`(grids, "o", "L"),...)
 {
 
   CheckString <- function (pat, str) { return(regexpr(pat, str) > 0) }
@@ -218,8 +220,6 @@ function (data.ddd,
 
     on.exit(par(xpd = F, bty = "o", mar = c(5, 4, 4, 2) + 0.1))
     
-    if(!grids) par(bty = "L")
-    
     trans.data.ddd <- plot.Dest.Degrad.data(x = data.ddd,
                                             transformation.response = transformation.response, 
                                             transformation.time = transformation.time,
@@ -237,7 +237,8 @@ function (data.ddd,
                                             response.on.yaxis = response.on.yaxis,
                                             do.legend = "suppress", 
                                             group.var = group.var,
-                                            mar = c(4.5, 5.25, 3.5, 12.1))
+                                            mar = mar,
+                                            bty = bty)
     
     gmle.out <- dest.degrad.mle(data.ddd, 
                                 group.var = group.var,
