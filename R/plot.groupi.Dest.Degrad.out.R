@@ -1,19 +1,22 @@
 #' @export
 plot.groupi.Dest.Degrad.out <-
-function (x, 
-          transformation.x, 
-          ylim = c(NA,NA), 
-          xlim = c(NA, NA), 
-          my.title = NULL, 
+function (x,
+          transformation.x,
+          ylim = c(NA, NA),
+          xlim = c(NA, NA),
+          my.title = NULL,
           title.option = GetSMRDDefault("SMRD.TitleOption"),
-          cex = 1, 
-          xlab = NULL, 
-          ylab = NULL, 
-          lwd = 2, 
-          pch.vec = (1:(length(unique.stress.clist) + 1))[-2], 
-          col.vec = (1:(length(unique.stress.clist) + 1)), 
-          grids = F, power, focus.variable = 1, 
-          do.legend = "On plot",...)
+          cex = 1,
+          xlab = NULL,
+          ylab = NULL,
+          lwd = 2,
+          pch.vec = (1:(length(unique.stress.clist) + 1))[-2],
+          col.vec = (1:(length(unique.stress.clist) + 1)),
+          grids = F,
+          power,
+          focus.variable = 1,
+          do.legend = "On plot",
+          bty = `if`(grids, "o","L"),...)
 {
   CheckString <- function (pat, str) { return(regexpr(pat, str) > 0) }
 
@@ -104,10 +107,12 @@ function (x,
     xrna <- is.na(xlim)
     if (any(xrna)) xlim[xrna] <- range(stress)[xrna]
     expand.factor <- 1.000001
-    xlim <- c(xlim[1]/expand.factor, xlim[2] * expand.factor)
+    xlim <- c(xlim[1] / expand.factor, xlim[2] * expand.factor)
     yrna <- is.na(ylim)
     if (any(yrna)) ylim[yrna] <- range(slope, slope.lower, slope.upper)[yrna]
     if (is.null(xlab)) xlab <- attr(data.ddd, "x.columns")
+    
+    on.exit(par(xpd = F, bty = "o", mar = c(5, 4, 4, 2) + 0.1))
     
     plot.paper(x = xlim, 
                y = ylim, 
@@ -118,9 +123,11 @@ function (x,
                cex = cex, 
                my.title = "",
                grids = grids, 
-               title.option = title.option, ...)
+               title.option = title.option,
+               mar = c(4.5, 5.25, 3.5, 12.1),
+               bty = bty,...)
     
-    delta.space <- (x.loc(1) - x.loc(0))/50
+    delta.space <- (x.loc(1) - x.loc(0)) / 50
     
     for (i in 1:length(unique.stress.clist)) {
       
@@ -153,12 +160,16 @@ function (x,
 
         if (do.legend == "On plot" && length(unique.stress.clist) > 1) {
           
-            legend(x.loc(0.01), 
-                   y.loc(0.98), 
-                   unique.stress.clist,
+            par(xpd = T)
+          
+            legend(x.loc(1.05), 
+                   y.loc(0.99), 
+                   parse(text = switch.units(unique.stress.clist, NULL)),
                    col = col.vec[1:length(unique.stress.clist)],
                    pch = pch.vec[1:length(unique.stress.clist)], 
-                   y.intersp = 0.675)
+                   y.intersp = 1,
+                   bty = "n",
+                   adj = c(-0.1))
           
         }
 
