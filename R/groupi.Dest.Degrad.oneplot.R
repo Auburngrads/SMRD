@@ -115,7 +115,8 @@ function (data.ddd,
           group.var = 1:ncol(xmat(data.ddd)), 
           plot.lines = T,
           lty = NULL,
-          lwd = 2,...)
+          lwd = 2,
+          bty = `if`(grids, "o","L"),...)
 {
   
 `do.list<-` <- function (data.ld, value) { 
@@ -133,8 +134,6 @@ CheckString <- function (pat, str) {
 
     on.exit(par(xpd = F, bty = "o", mar = c(5, 4, 4, 2) + 0.1))
     
-    if(!grids) par(bty = "L")
-
     tran.data.ddd <- plot.Dest.Degrad.data(x = data.ddd,
                                            transformation.response = transformation.response, 
                                            transformation.time = transformation.time,
@@ -153,7 +152,8 @@ CheckString <- function (pat, str) {
                                            subset = subset, 
                                            group.var = group.var, 
                                            do.legend = "Suppress",
-                                           mar = c(4.5, 5.25, 3.5, 12.1))
+                                           mar = c(4.5, 5.25, 3.5, 12.1),
+                                           bty = bty)
     
     do.list <- do.list(tran.data.ddd)
     
@@ -245,9 +245,9 @@ CheckString <- function (pat, str) {
                        pch = pch.point,
                        lty = lty, 
                        y.intersp = 1,
-                       seg.len = 1.25,
+                       seg.len = 1.5,
                        lwd = 1.5,
-                       adj = c(0.1))
+                       adj = c(-0.1))
                 
             }
           
