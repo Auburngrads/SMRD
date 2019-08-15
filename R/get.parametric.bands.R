@@ -1,51 +1,60 @@
 get.parametric.bands <-
-function (mlest.out, xlim = range(Response(mlest.out$data.ld)), 
-    conf.level, number.times = 50, mono.tran = T, shape = NULL, 
-    need.list = T) 
+function (mlest.out,
+          xlim = range(Response(mlest.out$data.ld)),
+          conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
+          number.times = 50,
+          mono.tran = T,
+          shape = NULL,
+          need.list = T) 
 {
     distribution <- mlest.out$distribution
     zvalue <- qnorm(1 - (1 - conf.level)/2)
     theta.hat <- mlest.out$theta.hat
     sigma <- theta.hat[2]
+    
     if (need.list) {
+        
         if (is.logdist(distribution)) {
-            ltimes <- seq(logb(xlim[1]), logb(xlim[2]), 
-                length = number.times)
+            
+            ltimes <- seq(logb(xlim[1]), logb(xlim[2]), length = number.times)
             times <- exp(ltimes)
-        }
-        else {
+            
+        } else {
+            
             ltimes <- seq(xlim[1], xlim[2], length = number.times)
             times <- ltimes
+            
         }
+        
+    } else {
+        
+        `if`(is.logdist(distribution),
+             { ltimes <- logb(xlim) ; times <- exp(ltimes) },
+             { ltimes <- xlim       ; times <- ltimes      })
+        
+        
     }
-    else {
-        if (is.logdist(distribution)) {
-            ltimes <- logb(xlim)
-            times <- exp(ltimes)
-        }
-        else {
-            ltimes <- xlim
-            times <- ltimes
-        }
-    }
-    if (generic.distribution(distribution) == "exponential") {
-        evdistribution <- "Weibull"
-    }
-    else {
-        evdistribution <- distribution
-    }
-    z <- (ltimes - theta.hat[1])/sigma
+    
+    `if`(generic.distribution(distribution) == "exponential",
+         evdistribution <- "Weibull",
+         evdistribution <- distribution)
+    
+    z <- (ltimes - theta.hat[1]) / sigma
     fhat.orig <- wqmf.phibf(z, evdistribution)
     zgood <- fhat.orig > 0 & fhat.orig < 1
     ltimes <- ltimes[zgood]
     times <- times[zgood]
     fhat <- fhat.orig[zgood]
     z <- z[zgood]
+    
     if (length(z) <= 0) {
+        
         cat("\nProbabilities out of bounds in get.parametric.bands\n", 
             fhat.orig, "\n\n")
         return(NULL)
+        
     }
+    
     dist.quantiles <- quant(fhat, distribution)
     zmat <- cbind(1, z)
     the.order <- order(times)
