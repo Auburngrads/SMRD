@@ -46,13 +46,13 @@ four.mleprobplot(ShockAbsorber.ld)
 ```{r}
 ShockAbsorber.mlest <- mlest(ShockAbsorber.ld, 
                              distribution = "Weibull")
-print(ShockAbsorber.mlest)$ll.text
-print(ShockAbsorber.mlest)$mttf.text
-print(ShockAbsorber.mlest)$mle.table
-print(ShockAbsorber.mlest)$vcv.matrix
-print(ShockAbsorber.mlest)$param.corr.matrix
-print(ShockAbsorber.mlest)$failure.probabilities
-print(ShockAbsorber.mlest)$quantiles
+ShockAbsorber.mlest$ll.text
+ShockAbsorber.mlest$mttf.text
+ShockAbsorber.mlest$mle.table
+ShockAbsorber.mlest$vcv.matrix
+ShockAbsorber.mlest$param.corr.matrix
+ShockAbsorber.mlest$failure.probabilities
+ShockAbsorber.mlest$quantiles
 ```
 
 # Create Contour Plots
@@ -286,6 +286,7 @@ plot.simple.contour(contour.indicators = c(.001,.01,.1,.5,.9),
 profile.plot(profile.grid(ShockAbsorber.likelihood.grid, which = "x"))
 
 profile.plot(profile.grid(ShockAbsorber.likelihood.grid, which = "y"))
+
 profile.plot(profile.grid(ShockAbsorber.likelihood.grid, which = "y"),
              log.axis = TRUE)
 

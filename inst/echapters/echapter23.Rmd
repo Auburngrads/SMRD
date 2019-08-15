@@ -12,6 +12,7 @@ output:
 ```{r, echo=FALSE}
 SMRD:::vinny()
 library(SMRD)
+library(DT)
 ```
 
 # In this echapter...
@@ -29,9 +30,8 @@ Insulation.ddd <- frame.to.ddd(insulation,
                                response.units = "Volts",
                                time.units = "Weeks")
 
-print(Insulation.ddd)
+DT::datatable(Insulation.ddd)
 ```
-
 
 Plot the data
 
@@ -48,7 +48,7 @@ tmp <- groupi.Dest.Degrad.indivplots(Insulation.ddd,
 groupi.Dest.Degrad.oneplot(Insulation.ddd,
                            transformation.response = "log", 
                            transformation.time = "linear",
-                           distribution="normal")
+                           distribution = "normal")
 ```
 
 Fit model using Nelson's parameterization and base 10 logs
@@ -337,10 +337,10 @@ plot(AdhesiveBondC.ddd,
 Plot both; multipleplot
 
 ```{r}
-tmp <-groupi.Dest.Degrad.indivplots(AdhesiveBondC.ddd,
-                                    transformation.response = "log",
-                                    transformation.time = "linear",
-                                    distribution = "normal")
+tmp <- groupi.Dest.Degrad.indivplots(AdhesiveBondC.ddd,
+                                     transformation.response = "log",
+                                     transformation.time = "linear",
+                                     distribution = "normal")
 ```
 
 Plot both; single plot
