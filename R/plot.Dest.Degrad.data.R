@@ -21,7 +21,8 @@ function (x,
           fail.level = NULL, 
           do.legend = "On plot", 
           do.plot = T,
-          mar = par()$mar,...)
+          mar = c(4.5, 5.25, 3.5, 12.1),
+          bty = `if`(grids, "o", "L"),...)
 {
 
 `do.list<-` <- function (data.ld, value) { 
@@ -64,11 +65,14 @@ function (x,
                           ",Time:",
                           transformation.time, sep = "")
     
-    if (is.null(my.title))
+    if (is.null(my.title)) {
+      
         my.title <- paste(get.data.title(x), 
                           "\nDestructive Degradation",
                           " Scatter Plot\n", 
                           model.string, sep = "")
+        
+    }
     
     if (any(is.na(group.var)) || is.null(xmat(x))) {
       
@@ -118,6 +122,8 @@ function (x,
     
     if (!do.plot) return(x)
     
+    on.exit(par(xpd = F, bty = "o", mar = c(5, 4, 4, 2) + 0.1), add = T)
+    
     if (!add) plot.paper(x = xlim, 
                          y = ylim, 
                          x.axis = transformation.time,
@@ -128,9 +134,10 @@ function (x,
                          cex = cex,
                          cex.labs = cex.labs, 
                          grids = grids,
-                         mar = mar,...)
+                         mar = mar,
+                         bty = bty,...)
 
-    mtext(text = my.title, side = 3, cex = 1.2, line = 0.5)
+    #mtext(text = my.title, side = 3, cex = 1.2, line = 0.5)
     dummy.obs <- the.censor.codes == 0 | the.case.weights == 0
     
     if (is.null(pch.point)) pch.point <- (1:(length(the.do.list) + 4))[-c(2, 6, 17, 19)]
@@ -233,29 +240,27 @@ function (x,
     
     if (any(is.na(group.var))) return(x)
     
-    if (mean(slope) > 0) {
-      
-        legend.x <- x.loc(0.6)
-        legend.y <- y.loc(0.99)
-        
-        } else {
-          
-        legend.x <- x.loc(0.01)
-        legend.y <- y.loc(0.3)
-    
-        }
+    `if`(mean(slope) > 0,
+         { legend.x <- x.loc(1.05) ; legend.y <- y.loc(0.99) },
+         { legend.x <- x.loc(1.05) ; legend.y <- y.loc(0.99) })
 
         if (length(the.do.list) > 1) {
           
-            if (do.legend == "On plot")
+            if (do.legend == "On plot") {
+              
+                par(xpd = T)
+              
                 legend(legend.x, 
                        legend.y, 
-                       the.do.list, 
-                       cex = 1.1,
+                       parse(text = switch.units(the.do.list, NULL)), 
+                       cex = cex,
                        bty = "n", 
                        col = 1:length(the.do.list), 
                        pch = pch.point,
-                       y.intersp = 0.675)
+                       y.intersp = 1,
+                       adj = c(-0.1))
+              
+            }
           
             if (do.legend == "New page" || do.legend == "New file") {
               
