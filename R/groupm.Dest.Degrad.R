@@ -399,9 +399,9 @@ function (data.ddd,
                    pch = the.pch.point[1:length(the.do.list)],
                    lty = lty,
                    y.intersp = 1,
-                   seg.len = 1.25,
+                   seg.len = 1.5,
                    lwd = 1.5,
-                   adj = c(0.1))
+                   adj = c(-0.1))
           
         }
     
