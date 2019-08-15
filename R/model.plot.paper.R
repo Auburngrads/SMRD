@@ -51,7 +51,7 @@ function (xlim = c(NA, NA), ylim = c(NA, NA), x.axis = "linear",
         my.title <- paste(y.axis, "vs", x.axis.name)
     if (is.null(my.title)) 
         my.title <- paste(x.axis.name, "vs", y.axis)
-    plot.paper(xlim = ylim, ylim = xlim, x.axis = y.axis, 
+    plot.paper(x = ylim, y = xlim, x.axis = y.axis, 
         y.axis = x.axis, , ylab = xlab, xlab = ylab, response.on.yaxis = response.on.yaxis, 
         grids = grids, title.option = title.option, my.title = my.title, 
         cex.title = 1)
