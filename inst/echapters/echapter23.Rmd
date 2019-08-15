@@ -195,7 +195,7 @@ Insulation.test.ddd <- frame.to.ddd(insulation,
                                     response.units = "Volts",
                                     time.units = "Weeks")
 
-print(Insulation.test.ddd)
+DT::datatable(Insulation.test.ddd)
 ```
 
 ```{r}
