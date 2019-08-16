@@ -1,5 +1,6 @@
 #' @importFrom lattice strip.default panel.grid panel.xyplot 
 #' @importFrom lattice trellis.par.get panel.superpose xyplot Rows
+#' @importFrom stats asOneSidedFormula
 #' @importFrom nlme getGroupsFormula
 wqm.plot.nfnGroupedData <-
 function (x, 
@@ -9,18 +10,20 @@ function (x,
           xlab = paste(attr(x, "labels")$x, attr(x, "units")$x), 
           ylab = paste(attr(x, "labels")$y, attr(x, "units")$y), 
           strip = function(...) lattice::strip.default(..., style = 1), 
-          aspect = "xy", 
+          aspect = "xy",
           panel = function(x, y) {
-                  if(Grid) lattice::panel.grid()
-                  lattice::panel.xyplot(x, y)
-        y.avg <- tapply(y, x, mean)
-        y.avg <- y.avg[!is.na(y.avg)]
-        if (length(y.avg) > 0) {
-            xvals <- as.numeric(names(y.avg))
-            ord <- order(xvals)
-            lattice::panel.xyplot(xvals[ord], y.avg[ord], type = "l")
-        }
-    }, subset = T, key = TRUE, Grid = TRUE, ...)
+                   if(Grid) lattice::panel.grid()
+                   lattice::panel.xyplot(x, y)
+                   y.avg <- tapply(y, x, mean)
+                   y.avg <- y.avg[!is.na(y.avg)]
+                   if (length(y.avg) > 0) {
+                       xvals <- as.numeric(names(y.avg))
+                       ord <- order(xvals)
+                       lattice::panel.xyplot(xvals[ord], y.avg[ord], type = "l")
+                   }}, 
+          subset = T,
+          key = TRUE,
+          Grid = TRUE,...)
 {
     labels <- list(xlab = xlab, ylab = ylab)
     
@@ -38,34 +41,32 @@ function (x,
       
        if(is.logical(outer) && outer) outer <- attr(x, "outer")
 
-       args[["formula"]][[3]][[3]] <- asOneSidedFormula(outer)[[2]]
+       args[["formula"]][[3]][[3]] <- stats::asOneSidedFormula(outer)[[2]]
         
-       if(length(innerGroups) == 0) {
-            innerGroups <- nlme::getGroupsFormula(x)
-        }
+       if(length(innerGroups) == 0) innerGroups <- nlme::getGroupsFormula(x)
+
     }
+    
     if ((length(innerGroups) > 0) && (length(inner) == 0)) {
         inner <- innerGroups
         innerGroups <- NULL
     }
     
-    if (length(inner) <= 0) {
+    Inner = NULL
+    
+    if (length(inner) > 0) {
       
-      Inner <- NULL
+        if (is.logical(inner) && inner) inner <- attr(x, "inner")
       
-    } else {
-      
-        if (is.logical(inner) && inner) {
-            inner <- attr(x, "inner")
-        }
-      
-    args[["subscripts"]] <- T
-    trll.set <- lattice::trellis.par.get("superpose.line")[c("lty", "col")]
+        args[["subscripts"]] <- T
+        trll.set <- lattice::trellis.par.get("superpose.line")[c("lty", "col")]
     
     if (length(innerGroups) == 0) {
       
-        #args[["groups"]] <- asOneSidedFormula(inner)[[2]]
+        args[["groups"]] <- stats::asOneSidedFormula(inner)[[2]]
+        
             if (missing(inner)) {
+              
                 Inner <- NULL
                 trll.lty <- trll.set[["lty"]][1]
                 trll.col <- trll.set[["col"]][1]
@@ -76,29 +77,36 @@ function (x,
                 
                   if (Grid) lattice::panel.grid()
                   lattice::panel.xyplot(x, y)
-                  lattice::panel.superpose(x, y, subscripts, groups, type = "l",
-                    col = trll.col, lty = trll.lty)
+                  lattice::panel.superpose(x, 
+                                           y, 
+                                           subscripts, 
+                                           groups, 
+                                           type = "l",
+                                           col = trll.col, 
+                                           lty = trll.lty)
                 }
                 
           } else {
             
-                Inner <- as.factor(eval(asOneSidedFormula(inner)[[2]], x))
+                Inner <- as.factor(eval(stats::asOneSidedFormula(inner)[[2]], x))
                 levInn <- levels(Inner)
+                
                 args[["panel"]] <- function(x, y, subscripts, groups) {
                   
-                  if (grid) lattice::panel.grid()
+                  if (Grid) lattice::panel.grid()
                   lattice::panel.xyplot(x, y)
                   lattice::panel.superpose(x, y, subscripts, groups, type = "l")
+                  
                 }
           }
       
       } else {
         
-            args[["groups"]] <- asOneSidedFormula(innerGroups)[[2]]
-            Inner <- as.factor(eval(asOneSidedFormula(inner)[[2]], x))
+            args[["groups"]] <- stats::asOneSidedFormula(innerGroups)[[2]]
+            Inner <- as.factor(eval(stats::asOneSidedFormula(inner)[[2]], x))
             levInn <- levels(Inner)
             Inner <- (as.integer(Inner) - 1)%%length(trll.set[["lty"]]) + 1
-            Grps <- as.factor(eval(asOneSidedFormula(innerGroups)[[2]], x))
+            Grps <- as.factor(eval(stats::asOneSidedFormula(innerGroups)[[2]], x))
             whichPars <- Inner[match(levels(Grps), Grps)]
             trll.lty <- trll.set[["lty"]][whichPars]
             trll.col <- trll.set[["col"]][whichPars]
@@ -107,13 +115,21 @@ function (x,
             
             args[["panel"]] <- function(x, y, subscripts, groups) {
               
-                if (grid) lattice::panel.grid()
+                if (Grid) lattice::panel.grid()
                 aux <- unique(sort(as.numeric(groups[subscripts])))
                 lattice::panel.xyplot(x, y)
-                lattice::panel.superpose(x, y, subscripts, groups, type = "l",
-                  col = trll.col[aux], lty = trll.lty[aux])
+                lattice::panel.superpose(x, 
+                                         y, 
+                                         subscripts, 
+                                         groups, 
+                                         type = "l",
+                                         col = trll.col[aux], 
+                                         lty = trll.lty[aux])
+                
             }
-    }
+            
+      }
+        
     } 
     
     if (is.logical(key)) {
@@ -121,11 +137,20 @@ function (x,
         if (key && (!is.null(Inner) && (lInn <- length(levInn)) > 1)) {
           
             lInn <- min(c(lInn, length(trll.set[["lty"]])))
-            args[["key"]] <- list(lines = lattice::Rows(trellis.par.get("superpose.line"),
-                1:lInn), text = list(levels = levInn), columns = lInn)
+            args[["key"]] <- 
+              list(lines = lattice::Rows(lattice::trellis.par.get("superpose.line"), 1:lInn), 
+                   text = list(levels = levInn), 
+                   columns = 1,#lInn,
+                   title = as.character(inner[[2]]),
+                   space = "right")
+            
         }
       
-    } else { args[["key"]] <- key }
+    } else {
+      
+      args[["key"]] <- key
+      
+    }
 
     dots <- list(...)
     args[names(dots)] <- dots

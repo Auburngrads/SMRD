@@ -18,8 +18,10 @@ function (x,
               data, 
               order.groups = TRUE,
               FUN = function(x) max(x, na.rm = TRUE), 
-              outer = NULL, inner = NULL,
-              labels = NULL, units = NULL)
+              outer = NULL, 
+              inner = NULL,
+              labels = NULL, 
+              units = NULL)
     {
       if(!(inherits(formula, "formula") && length(formula) == 3)) {
         stop("first argument to groupedData must be a two-sided formula")
@@ -75,15 +77,19 @@ function (x,
     
     if (missing(x.columns)) x.columns <- get.x.columns(x)
     
+    the.outer <- NULL
+    
     if (!is.null(x.columns)) {
       
         the.outer <- as.formula(paste("~", paste(x.columns, collapse = "*")))
         
         for (i in 1:length(x.columns)) {
+          
             the.frame[[x.columns[i]]] <- factor(the.frame[[x.columns[i]]])
+            
         }
 
-        } else { the.outer <- NULL }
+    }
     
     response.log.mark <- ""
     
@@ -94,6 +100,7 @@ function (x,
         the.frame[[response.column]] <- 
           f.relationship(as.matrix(the.frame[[response.column]]),
                          relationship.response)
+        
     }
     
     time.log.mark <- ""
@@ -101,8 +108,11 @@ function (x,
     if(tolower(relationship.time) != "linear") {
       
         time.log.mark <- relationship.time
-        the.frame[[time.column]] <- f.relationship(as.matrix(the.frame[[time.column]]),
-            relationship.time)
+        
+        the.frame[[time.column]] <- 
+          f.relationship(as.matrix(the.frame[[time.column]]),
+                         relationship.time)
+        
     }
     
     the.groupedData <- SMRDgroupedData(formula = the.formula,
@@ -128,12 +138,12 @@ function (x,
                      wqm.plot.nfnGroupedData(the.groupedData,
                                              xlab = xlab, 
                                              ylab = ylab, 
-                                             main = my.title),
+                                             main = my.title,...),
                      wqm.plot.nfnGroupedData(the.groupedData,
                                              outer = outer.plot, 
                                              xlab = xlab, 
                                              ylab = ylab, 
-                                             main = my.title))
+                                             main = my.title,...))
 
     print(the.plot)
     invisible(the.groupedData)
