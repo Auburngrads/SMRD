@@ -68,7 +68,8 @@ trellis.plot(Resistor.rmd,
 
 trellis.plot(Resistor.rmd,
              order.groups = F,
-             outer.plot = T)
+             outer.plot = T,
+             aspect = "fill")
 
 ## summarize the data
 
