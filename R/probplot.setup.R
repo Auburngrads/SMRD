@@ -102,7 +102,7 @@ function (distribution,
     
     par(mar = mar, bty = bty)
     
-    on.exit(par(xpd = F, bty = "o", mar = c(5, 4, 4, 2) + 0.1,err = -1), add = T)
+    on.exit(par(xpd = F, bty = "o", mar = c(5, 4, 4, 2) + 0.1, err = -1), add = T)
     
     ylim <- pp.quant(yp.range, distribution, shape)
     
