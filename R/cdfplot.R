@@ -66,11 +66,12 @@ function (data.ld,
                 })
     }
 
-    if (CheckString("full", title.option))
-        mtext(side = 3, 
-              line = 1, 
-              outer = F,
-              text = my.title,
-              cex = 1)
+    if (CheckString("full", title.option)) mtext(side = 3, 
+                                                 line = 1, 
+                                                 outer = F,
+                                                 text = my.title,
+                                                 cex = 1)
+    
     invisible(cdfest.out)
+    
 }
