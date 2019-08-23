@@ -93,7 +93,8 @@ function (data.ld,
           debug1 = F,
           col.points = 1,
           gamthr = NULL,
-          title.line.adj, ...)
+          title.line.adj,
+          grob,...)
 {
   
     if (missing(title.line.adj)) {  title.line.adj = -2.5 }
