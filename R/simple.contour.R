@@ -153,6 +153,7 @@ invisible(likelihood.grid.out)
                                           plot.em = F)
     
     profile.plot(transtruct(data.mlprofile.exp,"log"),log.axis = log.axis)
+    
 }
 
 }
