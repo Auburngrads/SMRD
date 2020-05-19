@@ -16,7 +16,8 @@ function (struct1,
           add = F, 
           lty = 1, 
           col = 1, 
-          lwd = 1,...)
+          lwd = 1,
+          static = static,...)
 {
   
     `if`(!is.null(struct1$number.parameters) && struct1$number.parameters == 2,
@@ -60,6 +61,8 @@ function (struct1,
     struct1$z <- matrix(100 * pchisq(-2 * logb(struct1$z), 2),
                         ncol = ncol(struct1$z))
     
+    if(static){
+      
     plot3D::image2D(z = struct1$z, 
                     x = struct1$x, 
                     y = struct1$y, 
@@ -100,8 +103,41 @@ function (struct1,
       
         #mtext(profile.title, side = 3, outer = F, line = 4 + line.adj, cex = 1.1)
     }
-    
+      
     if(!add) CheckPrintDataName()
+      
+    } else {
+      
+      p = plotly::plot_ly(z = struct1$z,
+                          x = struct1$x, 
+                          y = struct1$y, 
+                          width = 800, 
+                          height = 800)
+   
+   contours = list(z = list(show = TRUE,
+                            usecolormap = TRUE,
+                            highlightcolor = "#ff0000",
+                            project = list(z = TRUE)))
+   
+   p <- plotly::add_contour(p, contours = contours)
+   
+   axs_titlefont <- list(family = "Arial, sans-serif",
+                         size = 18,
+                         color = "black")
+   
+   xaxs <- list(title = parse(text = variable.namex),
+                titlefont = axs_titlefont,
+                showticklabels = TRUE)
+   
+   yaxs <- list(title = parse(text = variable.namey),
+                titlefont = axs_titlefont,
+                showticklabels = TRUE)
+   
+   p <- plotly::layout(p, xaxis = xaxs, yaxis = yaxs)
+        
+   print(p)
+      
+   }
     
     invisible()
     
