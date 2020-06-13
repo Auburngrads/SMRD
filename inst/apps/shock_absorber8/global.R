@@ -1,6 +1,5 @@
 par(family = "serif", font = 2)
 
-library(teachingApps)
 library(SMRD)
 
 ShockAbsorber.ld <- 
