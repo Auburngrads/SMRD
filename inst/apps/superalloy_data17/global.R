@@ -1,6 +1,5 @@
-library(teachingApps)
 library(SMRD)
-needs::needs(DT)
+pacman::p_load(DT)
 
 superalloy.ld <- frame.to.ld(superalloy,
                              response.column = 1, 
