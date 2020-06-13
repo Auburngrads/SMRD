@@ -1,3 +1,2 @@
-library(teachingApps)
 library(SMRD)
-needs::needs(metricsgraphics)
+pacman::p_load(metricsgraphics)

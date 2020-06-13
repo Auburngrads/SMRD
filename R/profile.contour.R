@@ -67,7 +67,8 @@ function (fitted,
           add = F, 
           lty = 1, 
           col = 1, 
-          lwd = 1,...)
+          lwd = 1,
+          static = static,...)
 {
   
     do.mixed.text <- is.postsctiptok() && substring(variable.namex, 1, 1) == "~"
@@ -92,14 +93,6 @@ function (fitted,
        
      }
  
-    if(!add) {
-      
-        par(new = F)
-        par(mar = c(4.5, 5, 3.5, 4) + 0.1)
-        old.par <- par(mar = c(4.5, 5, 3.5, 2) + 0.1, cex = 1.1)
-        if (original.par) on.exit(par(old.par))
-        
-    }
     cex.lab <- 1.1
     
     if(!add) {
@@ -112,6 +105,18 @@ function (fitted,
        
     }
     
+    if(static){
+      
+       if(!add) {
+       
+         par(new = F)
+         par(mar = c(4.5, 5, 3.5, 4) + 0.1)
+         old.par <- par(mar = c(4.5, 5, 3.5, 2) + 0.1, cex = 1.1)
+         if (original.par) on.exit(par(old.par))
+         
+       }
+
+      
     plot3D::image2D(z = fitted$z, 
                     x = fitted$x,
                     y = fitted$y, 
@@ -169,6 +174,40 @@ function (fitted,
   
     #mtext(profile.title, side = 3, outer = F, line = 4 + line.adj,  cex = 1.1)
     CheckPrintDataName()
+    
+    } else {
+      
+   p = plotly::plot_ly(z = fitted$z, 
+                       x = fitted$x,
+                       y = fitted$y, 
+                       width = 800, 
+                       height = 800)
+   
+   contours = list(z = list(show = TRUE,
+                            usecolormap = TRUE,
+                            highlightcolor = "#ff0000",
+                            project = list(z = TRUE)))
+   
+   p <- plotly::add_contour(p, contours = contours)
+   
+   axs_titlefont <- list(family = "Arial, sans-serif",
+                         size = 18,
+                         color = "black")
+   
+   xaxs <- list(title = parse(text = variable.namex),
+                titlefont = axs_titlefont,
+                showticklabels = TRUE)
+   
+   yaxs <- list(title = parse(text = variable.namey),
+                titlefont = axs_titlefont,
+                showticklabels = TRUE)
+   
+   p <- plotly::layout(p, xaxis = xaxs, yaxis = yaxs)
+   
+   print(p)
+      
+   }
+    
     invisible()
     
 }

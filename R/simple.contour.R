@@ -85,27 +85,28 @@
 #'                size = 75)
 #' }
 simple.contour <-
-function (data.ld, 
-          distribution, 
-          xlim = c(NA, NA), 
-          ylim = c(NA, NA), 
-          size = 100, 
-          quantile = NA, 
-          show.confidence = TRUE, 
-          contour.indicators = NULL, 
-          zoom.level = 3.5, 
-          show.mle = T, 
-          my.title = NULL, 
-          threeD = F, 
-          direction = NULL, 
-          profile = NULL, 
+function (data.ld,
+          distribution,
+          xlim = c(NA,NA),
+          ylim = c(NA,NA),
+          size = 100,
+          static = F,
+          quantile = NA,
+          show.confidence = TRUE,
+          contour.indicators = NULL,
+          zoom.level = 3.5,
+          show.mle = T,
+          my.title = NULL,
+          threeD = F,
+          direction = NULL,
+          profile = NULL,
           lwd = 1,
-          elevation = NULL, 
-          distance = NULL, 
-          original.par = T, 
+          elevation = NULL,
+          distance = NULL,
+          original.par = T,
           log.quantile = F,
           log.axis = T,
-          add = F,...) 
+          add = F,...)
 {
   
 if(tolower(distribution)!='exponential') {
@@ -135,7 +136,8 @@ if(tolower(distribution)!='exponential') {
                          distance = distance, 
                          original.par = original.par, 
                          add = add, 
-                         lwd = lwd),
+                         lwd = lwd,
+                         static = static),
      profile.plot(profile.grid(likelihood.grid.out, 
                                which = as.character(profile))))
 

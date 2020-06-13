@@ -14,7 +14,8 @@ function (x,
           distance = NULL,
           original.par = T,
           add = add,
-          lwd = 1,...)
+          lwd = 1,
+          static = static,...)
 {
     if (original.par) {
       
@@ -78,7 +79,8 @@ function (x,
                                transformationy = "linear", 
                                theta = theta, 
                                phi = phi,
-                               r = r)
+                               r = r,
+                               static = static)
         
   } else {
     
@@ -108,7 +110,8 @@ function (x,
                          lwd = lwd,
                          levels = contour.indicators, 
                          add = add, 
-                         original.par = F,...)
+                         original.par = F,
+                         static = static,...)
             
       } else {
         
@@ -131,11 +134,12 @@ function (x,
                             levels = contour.indicators,
                             add = add, 
                             original.par = F, 
-                            lwd = lwd)
+                            lwd = lwd,
+                            static = static)
             
       }
     
-        if (show.mle) {
+        if (show.mle & static) {
           
             quanthat <- attr(x, "quanthat")
             spread.hat <- attr(x, "spread.hat")
@@ -146,7 +150,7 @@ function (x,
     
   }
     
-    if (title.option == "full") title(my.title, cex = 0.8)
+    if (title.option == "full" & static) title(my.title, cex = 0.8)
     invisible(x)
     
 }
