@@ -1,4 +1,3 @@
-library(teachingApps)
 library(SMRD)
 
 HeatExchanger.ld <- frame.to.ld(SMRD::heatexchanger,
