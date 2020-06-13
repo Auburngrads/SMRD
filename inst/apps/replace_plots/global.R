@@ -1,4 +1,3 @@
-library(teachingApps)
 library(SMRD)
 
 ZelenCap.ld <- frame.to.ld(SMRD::zelencap, 
