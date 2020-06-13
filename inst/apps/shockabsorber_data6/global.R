@@ -1,4 +1,3 @@
-library(teachingApps)
 library(SMRD)
 
 ShockAbsorber.ld <- frame.to.ld(shockabsorber,

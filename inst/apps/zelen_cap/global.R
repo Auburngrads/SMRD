@@ -1,6 +1,5 @@
-library(teachingApps)
 library(SMRD)
-needs::needs(DT)
+pacman::p_load(DT)
 
 ZelenCap.ld <- frame.to.ld(zelencap, 
                            response.column = 1, 

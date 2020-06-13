@@ -1,6 +1,5 @@
-library(teachingApps)
 library(SMRD)
-needs::needs(DT)
+pacman::p_load(DT)
 
 Turbine.ld <- frame.to.ld(turbine,
                           response.column = 1,
