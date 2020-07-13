@@ -1,9 +1,9 @@
 ui = navbarPage(title = 'Shockabsorber Example6',
                 collapsible = T, 
                 position = 'fixed-top',
-                theme  = teachingApps::add_theme(getShinyOption('theme')),
-                header = teachingApps::add_css(),
-                footer = teachingApps::add_logo(),
+                theme  = SMRD::add_theme(getShinyOption('theme')),
+                header = SMRD::add_css(),
+                footer = SMRD::add_logo(),
 
                 
 tabPanel("Data Set",   DT::dataTableOutput("table.shock", height = "80%") ),    

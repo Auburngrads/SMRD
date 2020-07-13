@@ -1,9 +1,9 @@
 ui = navbarPage(title = 'Example 1.1',
                 position = 'fixed-top',
                 collapsible = T, 
-                theme  = teachingApps::add_theme(getShinyOption('theme')),
-                header = teachingApps::add_css(),
-                footer = teachingApps::add_logo(),
+                theme  = SMRD::add_theme(getShinyOption('theme')),
+                header = SMRD::add_css(),
+                footer = SMRD::add_logo(),
                 
 tabPanel('Background',
          mainPanel(uiOutput('example1.1'), class = 'shiny-text-output', width = 12)),

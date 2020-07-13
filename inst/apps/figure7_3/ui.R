@@ -1,5 +1,5 @@
-ui = fluidPage(theme = add_theme(getShinyOption('theme')),
-               add_css(),
+ui = fluidPage(theme = SMRD::add_theme(getShinyOption('theme')),
+               SMRD::add_css(),
              
 sidebarLayout(
   sidebarPanel(width = 3,
