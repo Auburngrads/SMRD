@@ -4,10 +4,12 @@
 \name{repairtimes}
 \alias{repairtimes}
 \title{#####}
-\format{A \code{data.frame} with 119 rows and 1 variable:
+\format{
+A \code{data.frame} with 119 rows and 1 variable:
 \tabular{rlll}{
   [, 1] \tab hours \tab Time required to complete a repair \tab \bold{Numeric}\
-   }}
+   }
+}
 \source{
 Meeker, W. Q., (1997) Recorded times to repair a particular kind of electronic system, without regard to failure	mode (unpublished)
 }
@@ -15,9 +17,12 @@ Meeker, W. Q., (1997) Recorded times to repair a particular kind of electronic s
 ####
 }
 \seealso{
-Other data-almost: \code{\link{r4490}},
-  \code{\link{rocketmotor}}, \code{\link{shockabsorber}},
-  \code{\link{snubber}}, \code{\link{tree25years}},
-  \code{\link{v805tube}}
+Other data-almost: 
+\code{\link{r4490}},
+\code{\link{rocketmotor}},
+\code{\link{shockabsorber}},
+\code{\link{snubber}},
+\code{\link{tree25years}},
+\code{\link{v805tube}}
 }
 \concept{data-almost}

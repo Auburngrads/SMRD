@@ -4,9 +4,19 @@
 \alias{resid.vs.explan}
 \title{Title}
 \usage{
-\method{resid}{vs.explan}(groupm.list, original.par = T, cex = 1,
-  my.title = NULL, grids = F, xlim = c(NA, NA), ylim = c(NA, NA),
-  x.axis = "linear", x.to.plot = NULL, cex.points = 1, ...)
+\method{resid}{vs.explan}(
+  groupm.list,
+  original.par = T,
+  cex = 1,
+  my.title = NULL,
+  grids = F,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  x.axis = "linear",
+  x.to.plot = NULL,
+  cex.points = 1,
+  ...
+)
 }
 \arguments{
 \item{groupm.list}{}

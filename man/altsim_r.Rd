@@ -4,10 +4,23 @@
 \alias{altsim}
 \title{Simulate Accelerated Life Test Data}
 \usage{
-altsim(accel.var.mat, nsamsz, centim, theta, distribution, number.sim,
-  kctype = 1, escale = 10000, e = rep(1e-04, number.parameters),
-  parameter.fixed = rep(F, number.parameters), intercept = T,
-  kprint = 0, maxit = 500, debug1 = F, randomize = T)
+altsim(
+  accel.var.mat,
+  nsamsz,
+  centim,
+  theta,
+  distribution,
+  number.sim,
+  kctype = 1,
+  escale = 10000,
+  e = rep(1e-04, number.parameters),
+  parameter.fixed = rep(F, number.parameters),
+  intercept = T,
+  kprint = 0,
+  maxit = 500,
+  debug1 = F,
+  randomize = T
+)
 }
 \arguments{
 \item{accel.var.mat}{}
