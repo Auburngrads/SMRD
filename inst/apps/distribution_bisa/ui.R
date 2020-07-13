@@ -1,4 +1,4 @@
-ui = navbarPage(title = 'IGAU Distribution',
+ui = navbarPage(title = 'BISA Distribution',
                 collapsible = T, 
                 position = 'fixed-top',
                 theme  = SMRD::add_theme(getShinyOption('theme')),
@@ -6,10 +6,10 @@ ui = navbarPage(title = 'IGAU Distribution',
                 footer = SMRD::add_logo(),
 
 tabPanel('Shiny App',
-         SMRD::add_ui('distribution_igau_functions')),
+         SMRD::add_ui('distribution_bisa_functions')),
 
 tabPanel('Distribution Functions',
-         uiOutput('igaufunc', class = 'ta-text')),
+         uiOutput('bisafunc', class = 'ta-text')),
 
 tabPanel('Distribution Properties',
-         uiOutput('igauprops', class = 'ta-text')))
+         uiOutput('bisaprops', class = 'ta-text')))

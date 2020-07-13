@@ -1,0 +1,32 @@
+---
+output: html_document
+---
+
+<h3>Properties of the Gamma Distribution</h3>
+
+- The gamma distribution is a member of the exponential family of the form
+
+$$
+\exp\bigg[\frac{-x}{\theta} + (\kappa-1)\log(x) - \log\Big(\Gamma[\kappa]\Big)-\log\Big(\theta^{\kappa}\Big)\bigg]
+$$
+
+- where
+
+    + $\kappa - 1$ and $-\theta^{-1}$ are the natural parameters 
+    
+    + $log[x]$ and $x$ are the sufficient statistics
+
+<h3>Relationships to Other Distributions</h3>
+
+- If $X \sim GAM(\kappa = 1,\theta = \lambda)$, then $X\sim EXP(\lambda)$ where $\lambda$ is a scale parameter
+
+- If $X \sim GAM(\kappa = \nu/2,\theta = 2)$, then $X\sim \chi^{2}(\nu)$ where $\nu$ is the number of degrees of freedom
+
+- If $X \sim GAM(\kappa \in \mathbb{Z},\theta \in \mathbb{R}^{+})$, then $X\sim ERLANG(\kappa,\theta)$ and represents the time of the  $\kappa^{th}$ arrival in a Poisson process with intensity $1/\theta$
+
+- If $X \sim GAM(\kappa,\theta)$, then $1/X\sim \mbox{INV-GAMMA}(\kappa,1/\theta)$
+
+- If $X \sim GAM(\kappa,\theta)$, then $X^{\beta}\sim GENG(\kappa,\beta,\theta)$
+
+- The gamma distribution approximates a normal distribution when $\kappa > 15$
+
