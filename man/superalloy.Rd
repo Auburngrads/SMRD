@@ -4,7 +4,8 @@
 \name{superalloy}
 \alias{superalloy}
 \title{Nickel-based Superalloy Fatigue Test}
-\format{A \code{data.frame} with 23 rows and 6 variables:
+\format{
+A \code{data.frame} with 23 rows and 6 variables:
 \tabular{rlll}{
   [, 1] \tab kilocycles \tab Accumulated cycles at \code{event} (in thousands) \tab \bold{Numeric}\cr
   [, 2] \tab event \tab Event observed at \code{kcycles} (failure/right-censored) \tab \bold{Categoric}\cr
@@ -12,7 +13,8 @@
   [, 4] \tab pstress \tab Pseudo-stress applied derated \tab \bold{Numeric}\cr
   [, 5] \tab lpstress \tab Log[pseudo-stress] (\code{ln[pstress]})The log base e transformation of the Pseudo-Stress \tab \bold{Numeric}\cr
   [, 6] \tab lpstress2 \tab Square of log[pseudo-stress] (\code{ln[pstress]^2}) \tab \bold{Numeric}
-  }}
+  }
+}
 \source{
 Nelson, W. (1990), 
         Accelerated Testing: Statistical Models, Test Plans, and Data Analyses, 

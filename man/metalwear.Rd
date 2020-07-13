@@ -4,13 +4,15 @@
 \name{metalwear}
 \alias{metalwear}
 \title{Metal alloy sliding wear resistance test}
-\format{A \code{data.frame} with 96 rows and 4 variables:
+\format{
+A \code{data.frame} with 96 rows and 4 variables:
 \tabular{rlll}{
   [, 1] \tab microns \tab Specimen thickness \tab \bold{Numeric}\cr
   [, 2] \tab unit \tab Unit designator \tab \bold{Categoric}\cr
   [, 3] \tab cycles \tab Accumulated cycles at an observation \tab \bold{Numeric}\cr
   [, 4] \tab grams \tab Weight applied to the test specimen \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Meeker, W. Q. and Escobar, L. A. (1998) Statistical Methods for Reliability Data, New York, NY; John Wiley & Sons.
 }

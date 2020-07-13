@@ -4,12 +4,14 @@
 \name{piccioto}
 \alias{piccioto}
 \title{Tensile Fatigue Test of Polyester/Viscose Yarn}
-\format{A \code{data.frame} with 797 rows and 3 variables:
+\format{
+A \code{data.frame} with 797 rows and 3 variables:
 \tabular{rlll}{
   [, 1] \tab inches \tab Length of the test specimen \tab \bold{Numeric}\cr
   [, 2] \tab kilocycles \tab Accumulated cycles at \code{event} (in thousands) \tab \bold{Numeric}\cr
   [, 3] \tab event \tab Event observed at \code{kilocycles} (failed/right-censored) \tab \bold{Categoric}
-   }}
+   }
+}
 \source{
 Picciotto R., (1970) 
         Tensile Fatigue Characteristics of a Sized Polyester/Viscose Yarn and Their Effect on Weaving Performance. 
@@ -22,35 +24,59 @@ Picciotto includes the \code{length} and \code{kcycles} columns.
              picciotto3 mirrors picciotto2 but assumes that the test conlcuded at 100 kilocycles
 }
 \seealso{
-Other data-notdone: \code{\link{adhesivebondc}},
-  \code{\link{adhesivestrength}},
-  \code{\link{amsaaexactfail}}, \code{\link{appliancea}},
-  \code{\link{applianceb}}, \code{\link{aprel72}},
-  \code{\link{atrazinejune}}, \code{\link{bearinga}},
-  \code{\link{censortruncationtest}},
-  \code{\link{chemicalprocess}}, \code{\link{cirpack4}},
-  \code{\link{cirpack5}}, \code{\link{componentd}},
-  \code{\link{concrete}}, \code{\link{connectionstrength}},
-  \code{\link{customerlife}},
-  \code{\link{devicedconnected}}, \code{\link{deviceh}},
-  \code{\link{devicen}}, \code{\link{diskber}},
-  \code{\link{doatrun}}, \code{\link{electromech}},
-  \code{\link{engineemissions}},
-  \code{\link{epoxyweathering}}, \code{\link{filament}},
-  \code{\link{hcfdata}}, \code{\link{heater}},
-  \code{\link{hpcrepairs}}, \code{\link{icdevice1}},
-  \code{\link{inconel}}, \code{\link{insulation}},
-  \code{\link{laminatepanel}}, \code{\link{largeball}},
-  \code{\link{locomotivecontrol}},
-  \code{\link{luminosity}}, \code{\link{machineh}},
-  \code{\link{mechanicalswitch}},
-  \code{\link{multiplefail}}, \code{\link{newspring}},
-  \code{\link{parta}}, \code{\link{pipelinethickness}},
-  \code{\link{pmax}}, \code{\link{prob3_5}},
-  \code{\link{riverchem}}, \code{\link{shelflifea}},
-  \code{\link{testdadtplan}}, \code{\link{titanium2}},
-  \code{\link{titanium}}, \code{\link{tractorbreaks}},
-  \code{\link{turbinedevice}}, \code{\link{vehiclemotor}},
-  \code{\link{voltageendurance}}, \code{\link{workstation}}
+Other data-notdone: 
+\code{\link{adhesivebondc}},
+\code{\link{adhesivestrength}},
+\code{\link{amsaaexactfail}},
+\code{\link{appliancea}},
+\code{\link{applianceb}},
+\code{\link{aprel72}},
+\code{\link{atrazinejune}},
+\code{\link{bearinga}},
+\code{\link{censortruncationtest}},
+\code{\link{chemicalprocess}},
+\code{\link{cirpack4}},
+\code{\link{cirpack5}},
+\code{\link{componentd}},
+\code{\link{concrete}},
+\code{\link{connectionstrength}},
+\code{\link{customerlife}},
+\code{\link{devicedconnected}},
+\code{\link{deviceh}},
+\code{\link{devicen}},
+\code{\link{diskber}},
+\code{\link{doatrun}},
+\code{\link{electromech}},
+\code{\link{engineemissions}},
+\code{\link{epoxyweathering}},
+\code{\link{filament}},
+\code{\link{hcfdata}},
+\code{\link{heater}},
+\code{\link{hpcrepairs}},
+\code{\link{icdevice1}},
+\code{\link{inconel}},
+\code{\link{insulation}},
+\code{\link{laminatepanel}},
+\code{\link{largeball}},
+\code{\link{locomotivecontrol}},
+\code{\link{luminosity}},
+\code{\link{machineh}},
+\code{\link{mechanicalswitch}},
+\code{\link{multiplefail}},
+\code{\link{newspring}},
+\code{\link{parta}},
+\code{\link{pipelinethickness}},
+\code{\link{pmax}()},
+\code{\link{prob3_5}},
+\code{\link{riverchem}},
+\code{\link{shelflifea}},
+\code{\link{testdadtplan}},
+\code{\link{titanium2}},
+\code{\link{titanium}},
+\code{\link{tractorbreaks}},
+\code{\link{turbinedevice}},
+\code{\link{vehiclemotor}},
+\code{\link{voltageendurance}},
+\code{\link{workstation}}
 }
 \concept{data-notdone}

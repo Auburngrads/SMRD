@@ -4,12 +4,14 @@
 \name{valveseat}
 \alias{valveseat}
 \title{Diesel engine valve seat data}
-\format{A \code{data.frame} with 89 rows and 3 variables:
+\format{
+A \code{data.frame} with 89 rows and 3 variables:
 \tabular{rlll}{
   [, 1] \tab engine \tab Designator code specifying each engine under test \tab \bold{Categoric}\cr
   [, 2] \tab days   \tab Accumulated time at \code{event} \tab \bold{Numeric}\cr
   [, 3] \tab event  \tab Event observed at \code{days} (replacement/end) \tab \bold{Categoric}\cr
-  }}
+  }
+}
 \source{
 Nelson, W. and Doganaksoy, N. (1989)  
         A computer program for an estimate and confidence limits for the mean cumulative function for cost or number of repairs of

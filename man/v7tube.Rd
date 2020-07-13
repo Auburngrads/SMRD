@@ -4,13 +4,15 @@
 \name{v7tube}
 \alias{v7tube}
 \title{Transmitter vacuum tube life test data}
-\format{A \code{data.frame} with 5 rows and 4 variables:
+\format{
+A \code{data.frame} with 5 rows and 4 variables:
 \tabular{rlll}{
   [, 1] \tab lower \tab Start of an inspection interval (in days) \tab \bold{Numeric}\cr
   [, 2] \tab upper \tab End of an inspection interval (in days) \tab \bold{Numeric}\cr
   [, 3] \tab event \tab Event observed in the interval (right-censored/left-censored/interval-censored)  \tab \bold{Categoric}\cr
   [, 4] \tab count \tab Number of events observed in the interval \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Davis, D. J. (1952) An analysis of some failure data, 
         Journal of the American Statistical Association, \bold{47}, 113-150.

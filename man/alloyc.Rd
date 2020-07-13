@@ -4,13 +4,15 @@
 \name{alloyc}
 \alias{alloyc}
 \title{Metal alloy tensile strength test}
-\format{A \code{data.frame} with 9 rows and 4 variables:
+\format{
+A \code{data.frame} with 9 rows and 4 variables:
 \tabular{rlll}{
   [, 1] \tab ksil   \tab Lower limit of the stress interval \tab \bold{Numeric}\cr
   [, 2] \tab ksiu   \tab Upper limit of the stress interval \tab \bold{Numeric}\cr
   [, 3] \tab event  \tab Event observed in the interval (interval-censored)\tab \bold{Categoric}\cr
   [, 4] \tab count  \tab Number of events observed in the interval\tab \bold{Numeric}
-  }}
+  }
+}
 \source{
 Meeker W.Q. and Escobar L.A., Statistical Methods for Reliability Data, New York, NY; John Wiley & Sons. \bold{276}
 }

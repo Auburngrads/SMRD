@@ -4,13 +4,15 @@
 \name{bleed}
 \alias{bleed}
 \title{Bleed system reliability data}
-\format{A \code{data.frame} with 60 rows and 4 variables:
+\format{
+A \code{data.frame} with 60 rows and 4 variables:
 \tabular{rlll}{
   [, 1] \tab hours \tab Accumulated time at \code{event} \tab \bold{Numeric}\cr
   [, 2] \tab event \tab Event observed at \code{hours} (failure/right-censored/left-censored/interval-censored)  \tab \bold{Categoric}\cr
   [, 3] \tab count \tab Number of events observed at \code{hours} \tab \bold{Numeric}\cr
   [, 4] \tab base  \tab Base where observation was made \tab \bold{Categoric}
-   }}
+   }
+}
 \source{
 Abernethy, R. B., Breneman, J. E., Medlin, C. H., and Reinman, G. L., (1983) 
         Weibull Analysis Handbook, Air Force Wright Aeronautical Laboratories Technical Report AFWAL-TR-83-2079

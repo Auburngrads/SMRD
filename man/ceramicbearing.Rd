@@ -4,14 +4,16 @@
 \name{ceramicbearing}
 \alias{ceramicbearing}
 \title{Rolling contact fatigue of ceramic ball bearings}
-\format{A \code{data.frame} with 69 rows and 5 variables:
+\format{
+A \code{data.frame} with 69 rows and 5 variables:
 \tabular{rlll}{
   [, 1] \tab kilocycles \tab Accumulated cycles at \code{event} (in thousands) \tab \bold{Numeric}\cr
   [, 2] \tab mode \tab Failure mode observed at \code{kilocycles} \tab \bold{Categoric}\cr
   [, 3] \tab event \tab Event observed at \code{kilocycles} (failure/right-censored/left-censored/interval-censored)  \tab \bold{Categoric}\cr
   [, 4] \tab count \tab Number of events observed at \code{kilocycles} \tab \bold{Numeric}\cr
   [, 5] \tab kilonewtons \tab Applied stress (in thousands) \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 McCool, J. I. (1980), 
         Confidence limits for Weibull regression with censored data, 

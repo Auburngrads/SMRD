@@ -4,7 +4,8 @@
 \name{cirpack6}
 \alias{cirpack6}
 \title{Circuit pack field tracking study}
-\format{A \code{data.frame} with 27 rows and 7 variables:
+\format{
+A \code{data.frame} with 27 rows and 7 variables:
 \tabular{rlll}{
   [, 1] \tab lower    \tab Start of an observation interval \tab \bold{Numeric}\cr
   [, 2] \tab upper    \tab End of an observation interval  \tab \bold{Numeric}\cr
@@ -13,7 +14,8 @@
   [, 5] \tab truntime \tab Truncation time \tab \bold{Numeric}\cr
   [, 6] \tab count    \tab Number of events observed in the interval \tab \bold{Numeric}\cr
   [, 7] \tab vendor   \tab Producing vendor \tab \bold{Categoric}
-  }}
+  }
+}
 \source{
 Meeker, W. Q. and Escobar, L. A. (1998), Statistical Methods for Reliability Data, New York, NY; Wiley-Interscience
 }

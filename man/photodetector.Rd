@@ -4,13 +4,15 @@
 \name{photodetector}
 \alias{photodetector}
 \title{#####}
-\format{A \code{data.frame} with 7 rows and 4 variables:
+\format{
+A \code{data.frame} with 7 rows and 4 variables:
 \tabular{rlll}{
   [, 1] \tab lower \tab Time (in hours) at which an inspection interval began \tab \bold{Numeric}\cr
   [, 2] \tab upper \tab Time (in hours) at which an inspection interval ended \tab \bold{Numeric}\cr
   [, 3] \tab event \tab Event observed in the interval (right-censored/interval-censored) \tab \bold{Categoric}\cr
   [, 4] \tab count \tab Number of events observed in the interval \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Weis	et al. (1986)
 }

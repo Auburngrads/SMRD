@@ -4,12 +4,14 @@
 \name{computerlab}
 \alias{computerlab}
 \title{Computer lab reliability data}
-\format{A \code{data.frame} with 101 rows and 3 variables:
+\format{
+A \code{data.frame} with 101 rows and 3 variables:
 \tabular{rlll}{
   [, 1] \tab computer \tab Designation code for the computer \tab \bold{Categoric}\cr
   [, 2] \tab days     \tab Accumulated time at \code{event} \tab \bold{Numeric}\cr
   [, 3] \tab event    \tab Event observed at \code{days} (Repair/End) \tab \bold{Categoric}
-   }}
+   }
+}
 \source{
 Meeker W.Q. and Escobar L.A. (1998) Statistical Methods for Reliability Data, New York, NY; John Wiley & Sons.
 }

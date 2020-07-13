@@ -4,10 +4,12 @@
 \name{bulb}
 \alias{bulb}
 \title{Light bulb failure test}
-\format{A \code{data.frame} with 417 rows and 1 variable:
+\format{
+A \code{data.frame} with 417 rows and 1 variable:
 \tabular{rlll}{
   [, 1] \tab hours \tab Accumulated time at failure \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Davis, D. J. (1952), An analysis of some failure data, Journal of the American Statistical Association, 47,113-150.
 }

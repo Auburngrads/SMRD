@@ -4,14 +4,16 @@
 \name{icdevice1}
 \alias{icdevice1}
 \title{#####}
-\format{A \code{data.frame} with 8 rows and 4 variables:
+\format{
+A \code{data.frame} with 8 rows and 4 variables:
 \tabular{rlll}{
   [, 1] \tab lower \tab Start of an inspection interval (in hours) \tab \bold{Numeric}\cr
   [, 2] \tab upper \tab End of an inspection interval (in hours) \tab \bold{Numeric}\cr
   [, 3] \tab event \tab Event observed in the interval (right-censored/interval-censored)  \tab \bold{Categoric}\cr
   [, 4] \tab count \tab Number of events observed in the interval \tab \bold{Numeric}\cr
   [, 4] \tab celsius \tab Temperature applied \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Meeker and Escobar (1998)
 }
@@ -19,35 +21,59 @@ Meeker and Escobar (1998)
 ####
 }
 \seealso{
-Other data-notdone: \code{\link{adhesivebondc}},
-  \code{\link{adhesivestrength}},
-  \code{\link{amsaaexactfail}}, \code{\link{appliancea}},
-  \code{\link{applianceb}}, \code{\link{aprel72}},
-  \code{\link{atrazinejune}}, \code{\link{bearinga}},
-  \code{\link{censortruncationtest}},
-  \code{\link{chemicalprocess}}, \code{\link{cirpack4}},
-  \code{\link{cirpack5}}, \code{\link{componentd}},
-  \code{\link{concrete}}, \code{\link{connectionstrength}},
-  \code{\link{customerlife}},
-  \code{\link{devicedconnected}}, \code{\link{deviceh}},
-  \code{\link{devicen}}, \code{\link{diskber}},
-  \code{\link{doatrun}}, \code{\link{electromech}},
-  \code{\link{engineemissions}},
-  \code{\link{epoxyweathering}}, \code{\link{filament}},
-  \code{\link{hcfdata}}, \code{\link{heater}},
-  \code{\link{hpcrepairs}}, \code{\link{inconel}},
-  \code{\link{insulation}}, \code{\link{laminatepanel}},
-  \code{\link{largeball}}, \code{\link{locomotivecontrol}},
-  \code{\link{luminosity}}, \code{\link{machineh}},
-  \code{\link{mechanicalswitch}},
-  \code{\link{multiplefail}}, \code{\link{newspring}},
-  \code{\link{parta}}, \code{\link{piccioto}},
-  \code{\link{pipelinethickness}}, \code{\link{pmax}},
-  \code{\link{prob3_5}}, \code{\link{riverchem}},
-  \code{\link{shelflifea}}, \code{\link{testdadtplan}},
-  \code{\link{titanium2}}, \code{\link{titanium}},
-  \code{\link{tractorbreaks}}, \code{\link{turbinedevice}},
-  \code{\link{vehiclemotor}},
-  \code{\link{voltageendurance}}, \code{\link{workstation}}
+Other data-notdone: 
+\code{\link{adhesivebondc}},
+\code{\link{adhesivestrength}},
+\code{\link{amsaaexactfail}},
+\code{\link{appliancea}},
+\code{\link{applianceb}},
+\code{\link{aprel72}},
+\code{\link{atrazinejune}},
+\code{\link{bearinga}},
+\code{\link{censortruncationtest}},
+\code{\link{chemicalprocess}},
+\code{\link{cirpack4}},
+\code{\link{cirpack5}},
+\code{\link{componentd}},
+\code{\link{concrete}},
+\code{\link{connectionstrength}},
+\code{\link{customerlife}},
+\code{\link{devicedconnected}},
+\code{\link{deviceh}},
+\code{\link{devicen}},
+\code{\link{diskber}},
+\code{\link{doatrun}},
+\code{\link{electromech}},
+\code{\link{engineemissions}},
+\code{\link{epoxyweathering}},
+\code{\link{filament}},
+\code{\link{hcfdata}},
+\code{\link{heater}},
+\code{\link{hpcrepairs}},
+\code{\link{inconel}},
+\code{\link{insulation}},
+\code{\link{laminatepanel}},
+\code{\link{largeball}},
+\code{\link{locomotivecontrol}},
+\code{\link{luminosity}},
+\code{\link{machineh}},
+\code{\link{mechanicalswitch}},
+\code{\link{multiplefail}},
+\code{\link{newspring}},
+\code{\link{parta}},
+\code{\link{piccioto}},
+\code{\link{pipelinethickness}},
+\code{\link{pmax}()},
+\code{\link{prob3_5}},
+\code{\link{riverchem}},
+\code{\link{shelflifea}},
+\code{\link{testdadtplan}},
+\code{\link{titanium2}},
+\code{\link{titanium}},
+\code{\link{tractorbreaks}},
+\code{\link{turbinedevice}},
+\code{\link{vehiclemotor}},
+\code{\link{voltageendurance}},
+\code{\link{workstation}}
 }
 \concept{data-notdone}

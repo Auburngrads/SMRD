@@ -4,13 +4,15 @@
 \name{adhesivebondc}
 \alias{adhesivebondc}
 \title{Adhesive bonded power element test}
-\format{A \code{data.frame} with 336 rows and 4 variables:
+\format{
+A \code{data.frame} with 336 rows and 4 variables:
 \tabular{rlll}{
  [, 1] \tab celsius  \tab Temperature applied to the bond \tab \bold{Numeric}\cr
  [, 2] \tab rh       \tab Relative humidity applied to the bond \tab \bold{Numeric}\cr
  [, 3] \tab days     \tab Time the bond was under load \tab \bold{Numeric}\cr
  [, 4] \tab pounds   \tab Load at which the bond failed \tab \bold{Numeric}
- }}
+ }
+}
 \source{
 ####
 }
@@ -18,35 +20,59 @@
 How do pounds and days work together? Two responses? Constant strain?
 }
 \seealso{
-Other data-notdone: \code{\link{adhesivestrength}},
-  \code{\link{amsaaexactfail}}, \code{\link{appliancea}},
-  \code{\link{applianceb}}, \code{\link{aprel72}},
-  \code{\link{atrazinejune}}, \code{\link{bearinga}},
-  \code{\link{censortruncationtest}},
-  \code{\link{chemicalprocess}}, \code{\link{cirpack4}},
-  \code{\link{cirpack5}}, \code{\link{componentd}},
-  \code{\link{concrete}}, \code{\link{connectionstrength}},
-  \code{\link{customerlife}},
-  \code{\link{devicedconnected}}, \code{\link{deviceh}},
-  \code{\link{devicen}}, \code{\link{diskber}},
-  \code{\link{doatrun}}, \code{\link{electromech}},
-  \code{\link{engineemissions}},
-  \code{\link{epoxyweathering}}, \code{\link{filament}},
-  \code{\link{hcfdata}}, \code{\link{heater}},
-  \code{\link{hpcrepairs}}, \code{\link{icdevice1}},
-  \code{\link{inconel}}, \code{\link{insulation}},
-  \code{\link{laminatepanel}}, \code{\link{largeball}},
-  \code{\link{locomotivecontrol}},
-  \code{\link{luminosity}}, \code{\link{machineh}},
-  \code{\link{mechanicalswitch}},
-  \code{\link{multiplefail}}, \code{\link{newspring}},
-  \code{\link{parta}}, \code{\link{piccioto}},
-  \code{\link{pipelinethickness}}, \code{\link{pmax}},
-  \code{\link{prob3_5}}, \code{\link{riverchem}},
-  \code{\link{shelflifea}}, \code{\link{testdadtplan}},
-  \code{\link{titanium2}}, \code{\link{titanium}},
-  \code{\link{tractorbreaks}}, \code{\link{turbinedevice}},
-  \code{\link{vehiclemotor}},
-  \code{\link{voltageendurance}}, \code{\link{workstation}}
+Other data-notdone: 
+\code{\link{adhesivestrength}},
+\code{\link{amsaaexactfail}},
+\code{\link{appliancea}},
+\code{\link{applianceb}},
+\code{\link{aprel72}},
+\code{\link{atrazinejune}},
+\code{\link{bearinga}},
+\code{\link{censortruncationtest}},
+\code{\link{chemicalprocess}},
+\code{\link{cirpack4}},
+\code{\link{cirpack5}},
+\code{\link{componentd}},
+\code{\link{concrete}},
+\code{\link{connectionstrength}},
+\code{\link{customerlife}},
+\code{\link{devicedconnected}},
+\code{\link{deviceh}},
+\code{\link{devicen}},
+\code{\link{diskber}},
+\code{\link{doatrun}},
+\code{\link{electromech}},
+\code{\link{engineemissions}},
+\code{\link{epoxyweathering}},
+\code{\link{filament}},
+\code{\link{hcfdata}},
+\code{\link{heater}},
+\code{\link{hpcrepairs}},
+\code{\link{icdevice1}},
+\code{\link{inconel}},
+\code{\link{insulation}},
+\code{\link{laminatepanel}},
+\code{\link{largeball}},
+\code{\link{locomotivecontrol}},
+\code{\link{luminosity}},
+\code{\link{machineh}},
+\code{\link{mechanicalswitch}},
+\code{\link{multiplefail}},
+\code{\link{newspring}},
+\code{\link{parta}},
+\code{\link{piccioto}},
+\code{\link{pipelinethickness}},
+\code{\link{pmax}()},
+\code{\link{prob3_5}},
+\code{\link{riverchem}},
+\code{\link{shelflifea}},
+\code{\link{testdadtplan}},
+\code{\link{titanium2}},
+\code{\link{titanium}},
+\code{\link{tractorbreaks}},
+\code{\link{turbinedevice}},
+\code{\link{vehiclemotor}},
+\code{\link{voltageendurance}},
+\code{\link{workstation}}
 }
 \concept{data-notdone}

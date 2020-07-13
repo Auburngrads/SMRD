@@ -5,8 +5,22 @@
 \alias{SFTEVAL}
 \title{Does good stuff}
 \usage{
-SFTEVAL(kdmod, xmu2, sig2, xmu3, sig3, rho, df, d0, sfact, tf, number,
-  answer, ier, kprint)
+SFTEVAL(
+  kdmod,
+  xmu2,
+  sig2,
+  xmu3,
+  sig3,
+  rho,
+  df,
+  d0,
+  sfact,
+  tf,
+  number,
+  answer,
+  ier,
+  kprint
+)
 }
 \description{
 Does good stuff

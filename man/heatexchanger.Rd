@@ -4,14 +4,16 @@
 \name{heatexchanger}
 \alias{heatexchanger}
 \title{Nuclear power plant heat exchanger tube crack data}
-\format{A \code{data.frame} with 9 rows and 5 variables:
+\format{
+A \code{data.frame} with 9 rows and 5 variables:
 \tabular{rlll}{
   [, 1] \tab lower \tab Start of an inspection interval (in years) \tab \bold{Numeric}\cr
   [, 2] \tab upper \tab End of an inspection interval (in years) \tab \bold{Numeric}\cr
   [, 3] \tab event \tab Event observed in the interval (left-censored/right-censored/interval-censored)\tab \bold{Categoric}\cr
   [, 4] \tab count \tab Number of events observed in the interval \tab \bold{Numeric}\cr
   [, 5] \tab plant  \tab Plant where the tube was installed \tab \bold{Categoric}
- }}
+ }
+}
 \source{
 Meeker, W. Q. and Escobar, L. A. (1996), Statistical Methods for Reliability Data, New York, NY; Wiley-Interscience
 }

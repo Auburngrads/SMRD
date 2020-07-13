@@ -4,13 +4,15 @@
 \name{resistor}
 \alias{resistor}
 \title{Carbon-Film Resistor Accelerated Degradation Test}
-\format{A \code{data.frame} with 116 rows and 4 variables:
+\format{
+A \code{data.frame} with 116 rows and 4 variables:
 \tabular{rlll}{
   [, 1] \tab percent \tab Observed increase in resistance \tab \bold{Numeric}\cr
   [, 2] \tab resistor \tab Resistor type \tab \bold{Categoric}\cr
   [, 3] \tab celsius \tab Temperature applied to \code{resistor} \tab \bold{Numeric}\cr
   [, 4] \tab hours \tab Accumulated hours (in thousands) when \code{percent} was measured\tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Shiomi, H., and Yanagisawa, T. (1979), 
         On distribution parameter during accelerated life test for a carbon film resistor, 

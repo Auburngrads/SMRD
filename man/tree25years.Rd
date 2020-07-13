@@ -4,10 +4,12 @@
 \name{tree25years}
 \alias{tree25years}
 \title{#####}
-\format{A \code{data.frame} with 29 rows and 1 variable:
+\format{
+A \code{data.frame} with 29 rows and 1 variable:
 \tabular{rlll}{
   [, 4] \tab meters \tab Annual growth in tree height \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Meeker W.Q. and Escobar L.A. (1998) Statistical Methods for Reliability Data, New York, NY; John Wiley & Sons.
 }
@@ -15,9 +17,12 @@ Meeker W.Q. and Escobar L.A. (1998) Statistical Methods for Reliability Data, Ne
 ####
 }
 \seealso{
-Other data-almost: \code{\link{r4490}},
-  \code{\link{repairtimes}}, \code{\link{rocketmotor}},
-  \code{\link{shockabsorber}}, \code{\link{snubber}},
-  \code{\link{v805tube}}
+Other data-almost: 
+\code{\link{r4490}},
+\code{\link{repairtimes}},
+\code{\link{rocketmotor}},
+\code{\link{shockabsorber}},
+\code{\link{snubber}},
+\code{\link{v805tube}}
 }
 \concept{data-almost}

@@ -4,13 +4,15 @@
 \name{cylinder}
 \alias{cylinder}
 \title{Diesel engine cylinder replacements}
-\format{A \code{data.frame} with 276 rows and 4 variables:
+\format{
+A \code{data.frame} with 276 rows and 4 variables:
 \tabular{rlll}{
   [, 1] \tab engine \tab Type of engine used \tab \bold{Categoric}\cr
   [, 2] \tab days   \tab Accumulated time at \code{event} \tab \bold{Numeric}\cr
   [, 3] \tab count  \tab Number of events observed at \code{days} \tab \bold{Numeric}\cr
   [, 4] \tab event  \tab Event observed at \code{days} (Replacement/End) \tab \bold{Categoric}
-  }}
+  }
+}
 \source{
 Nelson and Doganaksoy (1989),
         A computer program for an estimate and confidence limits for the mean cumulative function for cost or number of repairs of repairable products,

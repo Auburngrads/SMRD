@@ -4,12 +4,14 @@
 \name{halfbeak}
 \alias{halfbeak}
 \title{Unscheduled maintenance actions for the U.S.S. Halfbeak}
-\format{A \code{data.frame} with 73 rows and 3 variables:
+\format{
+A \code{data.frame} with 73 rows and 3 variables:
 \tabular{rlll}{
   [, 1] \tab unit \tab Unit designator code \tab \bold{Categoric}\cr
   [, 2] \tab hours \tab Accumulated time at \code{event} \tab \bold{Numeric}\cr
   [, 3] \tab event \tab Event observed at \code{hours} (Start/Report/End)  \tab \bold{Categoric}
-   }}
+   }
+}
 \source{
 Ascher, H. and Feingold, H. (1984), Repairable Systems Reliability, New York, NY; Marcel Dekker
 }

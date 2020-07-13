@@ -4,12 +4,14 @@
 \name{rocketmotor}
 \alias{rocketmotor}
 \title{#####}
-\format{A \code{data.frame} with 19 rows and 3 variables:
+\format{
+A \code{data.frame} with 19 rows and 3 variables:
 \tabular{rlll}{
   [, 1] \tab years \tab Accumulated time at \code{event} \tab \bold{Numeric}\cr
   [, 2] \tab event \tab Event observed at \code{years} (right-censored/left-censored)  \tab \bold{Categoric}\cr
   [, 3] \tab count \tab Number of events observed at \code{years} \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Olwell, D. H. and Sorell, A. A. (2001), Proceedings of the 2001 Annual Reliability and Maintanability Symposium.
 }
@@ -17,9 +19,12 @@ Olwell, D. H. and Sorell, A. A. (2001), Proceedings of the 2001 Annual Reliabili
 ####
 }
 \seealso{
-Other data-almost: \code{\link{r4490}},
-  \code{\link{repairtimes}}, \code{\link{shockabsorber}},
-  \code{\link{snubber}}, \code{\link{tree25years}},
-  \code{\link{v805tube}}
+Other data-almost: 
+\code{\link{r4490}},
+\code{\link{repairtimes}},
+\code{\link{shockabsorber}},
+\code{\link{snubber}},
+\code{\link{tree25years}},
+\code{\link{v805tube}}
 }
 \concept{data-almost}

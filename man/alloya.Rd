@@ -4,12 +4,14 @@
 \name{alloya}
 \alias{alloya}
 \title{Fatigue crack growth in an unknown metallic alloy.}
-\format{A \code{data.frame} with 262 rows and 3 variables
+\format{
+A \code{data.frame} with 262 rows and 3 variables
 \tabular{rlll}{
   [, 1] \tab inches \tab Crack length observed at \code{megacycles} \tab \bold{Numeric}\cr
   [, 2] \tab specimen \tab Test specimen designator \tab \bold{Categoric}\cr 
   [, 3] \tab megacycles \tab Number of fatigue cycles (in millions) when \code{length} was inspected  \tab \bold{Numeric}
-  }}
+  }
+}
 \source{
 Hudak, S.J., Saxena, A., Bucci, R. J., and Malcom, R .C. (1978), 
         Development of standard methods of testing and analyzing fatigure crack growth rate data, 

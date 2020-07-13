@@ -4,10 +4,18 @@
 \alias{smrd_app}
 \title{Render an SMRD App With Options}
 \usage{
-smrd_app(app_name = NULL, theme = "flatly", width = "100\%",
-  height = "800px", icon = "fa fa-github", img = NULL,
-  git_user = "Auburngrads", more_opts = list(NA),
-  launch.browser = TRUE, ...)
+smrd_app(
+  app_name = NULL,
+  theme = "flatly",
+  width = "100\%",
+  height = "800px",
+  icon = "fa fa-github",
+  img = NULL,
+  git_user = "Auburngrads",
+  more_opts = list(NA),
+  launch.browser = TRUE,
+  ...
+)
 }
 \arguments{
 \item{app_name}{\code{character} Name of the app to be rendered}
@@ -36,11 +44,6 @@ A printed shiny app
 \description{
 Renders an SMRD App as a stand-alone shiny app
     or as an element within an rmarkdown document.
-}
-\details{
-The \code{teachingApps} package provides an infrastructure 
-   that allows users to dynamically change the appearance and function of
-   shiny apps.
 }
 \examples{
 \dontrun{

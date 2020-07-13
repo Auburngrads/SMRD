@@ -4,13 +4,15 @@
 \name{berkson20}
 \alias{berkson20}
 \title{\eqn{\alpha}-particle emissions of Americurium-241}
-\format{A \code{data.frame} with 8 rows and 4 variables:
+\format{
+A \code{data.frame} with 8 rows and 4 variables:
 \tabular{rlll}{
   [, 1] \tab lower \tab Start of an observation interval (in 1/5000 seconds) \tab \bold{Numeric}\cr
   [, 2] \tab upper \tab End of an observation interval (in 1/5000 seconds) \tab \bold{Numeric}\cr
   [, 3] \tab event \tab Event observed in the interval (right-censored/left-censored/interval-censored)  \tab \bold{Categoric}\cr
   [, 4] \tab count \tab Number of events observed in the interval \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Berkson, J. (1966), Examination of randomness of alpha-particle emissions, 
         in Festschrift for J. Neyman, Research Papers in Statistics, F. N. David, Editor, 

@@ -4,13 +4,15 @@
 \name{snubber}
 \alias{snubber}
 \title{Life test comparing different snubber designs}
-\format{A \code{data.frame} with 51 rows and 4 variables:
+\format{
+A \code{data.frame} with 51 rows and 4 variables:
 \tabular{rlll}{
   [, 1] \tab cycles \tab Accumulated cycles at \code{event} \tab \bold{Numeric}\cr
   [, 2] \tab event \tab Event observed at \code{cycles} (failure/right-censored)  \tab \bold{Categoric}\cr
   [, 3] \tab count \tab Number of events observed at \code{cycles} \tab \bold{Numeric}\cr
   [, 4] \tab design \tab Design type (Old/New) \tab \bold{Categoric}
-  }}
+  }
+}
 \source{
 Nelson, W. (1982), Applied Life Data Analysis, pg. 529, New York, NY; John Wiley \& Sons.
 }
@@ -19,9 +21,12 @@ A snubber is a component in an electric toaster. Nelson presents data from a lif
              test comparing two different snubber designs.
 }
 \seealso{
-Other data-almost: \code{\link{r4490}},
-  \code{\link{repairtimes}}, \code{\link{rocketmotor}},
-  \code{\link{shockabsorber}}, \code{\link{tree25years}},
-  \code{\link{v805tube}}
+Other data-almost: 
+\code{\link{r4490}},
+\code{\link{repairtimes}},
+\code{\link{rocketmotor}},
+\code{\link{shockabsorber}},
+\code{\link{tree25years}},
+\code{\link{v805tube}}
 }
 \concept{data-almost}

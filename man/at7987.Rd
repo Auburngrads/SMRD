@@ -4,12 +4,14 @@
 \name{at7987}
 \alias{at7987}
 \title{Fatigue life test (alloy T7987)}
-\format{A \code{data.frame} with 68 rows and 3 variables:
+\format{
+A \code{data.frame} with 68 rows and 3 variables:
 \tabular{rlll}{
   [, 1] \tab kilocycles \tab Accumulated cycles at \code{event} (in thousands) \tab \bold{Numeric}\cr
   [, 2] \tab event \tab Event observed at \code{kilocycles} (failed/right-censored) \tab \bold{Categoric}\cr 
   [, 3] \tab count \tab Number of events observed at \code{kilocycles} \tab \bold{Numeric}
-  }}
+  }
+}
 \source{
 Meeker W.Q. and Escobar L.A. (1998) Statistical Methods for Reliability Data, New York, NY; John Wiley & Sons.
 }

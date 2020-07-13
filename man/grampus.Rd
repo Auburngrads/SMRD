@@ -4,12 +4,14 @@
 \name{grampus}
 \alias{grampus}
 \title{Unscheduled maintenance actions for the U.S.S. Grampus}
-\format{A \code{data.frame} with 57 rows and 3 variables:
+\format{
+A \code{data.frame} with 57 rows and 3 variables:
 \tabular{rlll}{
   [, 1] \tab unit   \tab Unit type \tab \bold{Categoric}\cr
   [, 2] \tab kilohours \tab Accumulated hours at \code{event} (in thousands) \tab \bold{Numeric}\cr
   [, 3] \tab event \tab Event observed at \code{khours} (Repair/End)  \tab \bold{Categoric}
-   }}
+   }
+}
 \source{
 Lee, L. (1980) 
         Testing adequacy of the Weibull and loglinear rate models for a Poisson Process,

@@ -4,14 +4,16 @@
 \name{printedcircuitboard}
 \alias{printedcircuitboard}
 \title{Printed circuit board accelerated life test}
-\format{A \code{data.frame} with 140 rows and 5 variables:
+\format{
+A \code{data.frame} with 140 rows and 5 variables:
 \tabular{rlll}{
   [, 1] \tab lower \tab Start of an inspection interval (in hours) \tab \bold{Numeric}\cr
   [, 2] \tab upper \tab End of an inspection interval (in hours) \tab \bold{Numeric}\cr
   [, 3] \tab count \tab Number of events observed in the interval \tab \bold{Numeric}\cr
   [, 4] \tab event \tab Event observed in the interval (right-censored/interval-censored) \tab \bold{Categoric}\cr
   [, 5] \tab rh    \tab Relative humidity applied \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Meeker, W. Q., and LuValle, M. J. (1995), 
         An accelerated life test model based on reliability kinetics, 

@@ -4,12 +4,14 @@
 \name{comptime}
 \alias{comptime}
 \title{Computer program execution time data}
-\format{A \code{data.frame} with 17 rows and 3 variables:
+\format{
+A \code{data.frame} with 17 rows and 3 variables:
 \tabular{rlll}{
   [, 1] \tab users \tab Number of users \tab \bold{Numeric}\cr
   [, 2] \tab load \tab System load \tab \bold{Numeric}\cr
   [, 3] \tab seconds \tab Execution time observed at \code{load} \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Meeker W.Q. and Escobar L.A. (1998) Statistical Methods for Reliability Data, New York, NY; John Wiley & Sons.
 }

@@ -4,11 +4,13 @@
 \name{deviceg}
 \alias{deviceg}
 \title{Field tracking study with multiple failure modes}
-\format{A \code{data.frame} with 30 rows and 2 variables:
+\format{
+A \code{data.frame} with 30 rows and 2 variables:
 \tabular{rlll}{
   [, 1] \tab kilocycles \tab Accumulated cycles at failure (in thousands) \tab \bold{Numeric}\cr
   [, 2] \tab mode \tab Failure mode observed at \code{kcycles} (Wearout/Surge/Suspension) \tab \bold{Categoric}
-   }}
+   }
+}
 \source{
 Meeker W.Q. and Escobar L.A. (1998) Statistical Methods for Reliability Data, New York, NY; John Wiley & Sons.
 }

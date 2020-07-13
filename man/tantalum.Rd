@@ -4,14 +4,16 @@
 \name{tantalum}
 \alias{tantalum}
 \title{Electrolytic capacitor accelerated life test data}
-\format{A \code{data.frame} with 48 rows and 5 variables:
+\format{
+A \code{data.frame} with 48 rows and 5 variables:
 \tabular{rlll}{
   [, 1] \tab hours \tab Accumulated time at \code{event} \tab \bold{Numeric}\cr
   [, 2] \tab event \tab Event observed at \code{hours} (failure/right-censored) \tab \bold{Categoric}\cr
   [, 3] \tab count \tab Number of events observed at \code{hours} \tab \bold{Numeric}\cr
   [, 4] \tab volts \tab Voltage applied to the unit \tab \bold{Numeric}\cr
   [, 5] \tab celsius \tab Temperature applied to the unit \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Singpurwalla, N. D., Castellino, V. C., and Goldschen, D. Y. (1975),
         Inference from accelerated life tests using Eyring type re-parameterizations,  

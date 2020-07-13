@@ -4,10 +4,12 @@
 \name{lzbearing}
 \alias{lzbearing}
 \title{Ball bearing fatigue test data}
-\format{A \code{data.frame} with 23 rows and 1 variable:
+\format{
+A \code{data.frame} with 23 rows and 1 variable:
 \tabular{rlll}{
   [, 1] \tab megacycles \tab Accumulated cycles at failure (in millions) \tab \bold{Numeric}
- }}
+ }
+}
 \source{
 Lawless, J. F. (1982), Statistical Models and Methods for Lifetime Data, New York, NY; Wiley & Sons
 }

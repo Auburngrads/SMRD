@@ -4,13 +4,15 @@
 \name{deviceb}
 \alias{deviceb}
 \title{Power output degradation in integrated circuit devices}
-\format{A \code{data.frame} with 570 rows and 4 variables:
+\format{
+A \code{data.frame} with 570 rows and 4 variables:
 \tabular{rlll}{
   [, 1] \tab powerdrop \tab Degradation (measured in decibels dB) of a device under test \tab \bold{Numeric}\cr
   [, 2] \tab device    \tab Label for the device under test \tab \bold{Categoric}\cr
   [, 3] \tab hours     \tab Time at which the degradation measure was observed \tab \bold{Numeric}\cr
   [, 4] \tab celsius   \tab Temperature applied \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Meeker W.Q. and Escobar L.A. (1998) Statistical Methods for Reliability Data, New York: John Wiley & Sons.
 }

@@ -4,12 +4,14 @@
 \name{shockabsorber}
 \alias{shockabsorber}
 \title{Vehicle shock absorber failure data}
-\format{A \code{data.frame} with 38 rows and 3 variables:
+\format{
+A \code{data.frame} with 38 rows and 3 variables:
 \tabular{rlll}{
   [, 1] \tab kilometers \tab Accumulated distance at \code{event} \tab \bold{Numeric}\cr
   [, 2] \tab mode       \tab Failure mode observed at \code{miles} \tab \bold{Categoric}\cr
   [, 3] \tab event      \tab Event observed at \code{miles} (failure/right-censored) \tab \bold{Categoric}
-   }}
+   }
+}
 \source{
 O'Connor, P. D. T. (1985), 
         Practical Reliability Engineering (Second Edition), New York, NY; John Wiley & Sons.
@@ -23,9 +25,12 @@ O'Connor gives the failure times (in number of kilometers of use) of vehicle sho
              for the shock absorbers.
 }
 \seealso{
-Other data-almost: \code{\link{r4490}},
-  \code{\link{repairtimes}}, \code{\link{rocketmotor}},
-  \code{\link{snubber}}, \code{\link{tree25years}},
-  \code{\link{v805tube}}
+Other data-almost: 
+\code{\link{r4490}},
+\code{\link{repairtimes}},
+\code{\link{rocketmotor}},
+\code{\link{snubber}},
+\code{\link{tree25years}},
+\code{\link{v805tube}}
 }
 \concept{data-almost}

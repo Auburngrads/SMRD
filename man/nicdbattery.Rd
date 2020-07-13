@@ -4,7 +4,8 @@
 \name{nicdbattery}
 \alias{nicdbattery}
 \title{Accelerated test of spacecraft battery cell data}
-\format{A \code{data.frame} with 87 rows and 10 variables:
+\format{
+A \code{data.frame} with 87 rows and 10 variables:
 \tabular{rlll}{
   [, 1] \tab celsius \tab Temperature applied to the battery \tab \bold{Numeric}\cr
   [, 2] \tab discharge_depth \tab Depth of discharge (as percent) \tab \bold{Numeric}\cr
@@ -16,7 +17,8 @@
   [, 8] \tab precharge \tab Precharge time (in hours) \tab \bold{Numeric}\cr
   [, 9] \tab cycles \tab Accumulated cycles at \code{event} \tab \bold{Numeric}\cr
   [,10] \tab event \tab Event observed at \code{cycles} (failure/right-censored)  \tab \bold{Categoric}
-   }}
+   }
+}
 \source{
 Brown, H. M., and Mains D. E (1979)
         Accelerated Test Program for Sealed Nickel--Cadmium Spacecraft Batteries/Cells,

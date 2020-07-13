@@ -4,12 +4,14 @@
 \name{fan}
 \alias{fan}
 \title{Diesel generator fan failures}
-\format{A \code{data.frame} with 37 rows and 3 variables:
+\format{
+A \code{data.frame} with 37 rows and 3 variables:
 \tabular{rlll}{
   [, 1] \tab hours \tab Accumulated time at \code{event} \tab \bold{Numeric}\cr
   [, 2] \tab event \tab Event observed at \code{hours} (failure/right-censored) \tab \bold{Categoric}\cr
   [, 3] \tab count \tab Number of events observed at \code{hours} \tab \bold{Numeric}
-  }}
+  }
+}
 \source{
 Nelson, W. (1982), Applied Life Data Analysis, pg 133, New York, John Wiley & Sons Inc.
 }

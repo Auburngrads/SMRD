@@ -4,10 +4,12 @@
 \name{bkfatigue10}
 \alias{bkfatigue10}
 \title{Yokobori fatigue-fracture test}
-\format{A \code{data.frame} with 63 rows and 1 variable:
+\format{
+A \code{data.frame} with 63 rows and 1 variable:
 \tabular{rlll}{
   [, 1] \tab kilocycles \tab Accumulated cycles at failure (in thousands) \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Bogdanoff, J.,L. and Kozin, F. (1985) Probablistic Models of Cumulative Damage, pp. 224-225, 
         New York, NY; John Wiley & Sons.

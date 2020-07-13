@@ -4,13 +4,15 @@
 \name{primarybattery}
 \alias{primarybattery}
 \title{#####}
-\format{A \code{data.frame} with 7 rows and 4 variables:
+\format{
+A \code{data.frame} with 7 rows and 4 variables:
 \tabular{rlll}{
   [, 1] \tab lower \tab Start of an inspection interval (in days) \tab \bold{Numeric}\cr
   [, 2] \tab upper \tab End of an inspection interval (in days) \tab \bold{Numeric}\cr
   [, 3] \tab event \tab Event observed in the interval (right-censored/interval-censored)  \tab \bold{Categoric}\cr
   [, 4] \tab count \tab Number of events observed in the interval \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 louis	hart	(1987),	IEEE	Rel	5-10
 }

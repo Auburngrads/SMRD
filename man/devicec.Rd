@@ -4,13 +4,15 @@
 \name{devicec}
 \alias{devicec}
 \title{Integrated circuit accelerated life test data}
-\format{A \code{data.frame} with 26 rows and 4 variables:
+\format{
+A \code{data.frame} with 26 rows and 4 variables:
 \tabular{rlll}{
   [, 1] \tab celsius   \tab Temperature to which a device was exposed during the test \tab \bold{Numeric}\cr
   [, 2] \tab kilohours \tab Accumulated time at \code{event} \tab \bold{Numeric}\cr
   [, 3] \tab event     \tab Event observed at \code{hours} (failure/right-censored)  \tab \bold{Categoric}\cr
   [, 4] \tab count     \tab Number of events observed at \code{hours} \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Meeker W.Q. and Escobar L.A. (1998) Statistical Methods for Reliability Data, New York, NY; John Wiley & Sons.
 }

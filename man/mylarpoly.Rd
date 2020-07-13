@@ -4,11 +4,13 @@
 \name{mylarsub}
 \alias{mylarsub}
 \title{Accelerated life test of a mylar-polyurethane insulating structure}
-\format{A \code{data.frame} with 46 rows and 2 variables:
+\format{
+A \code{data.frame} with 46 rows and 2 variables:
 \tabular{rlll}{
   [, 1] \tab minutes \tab Time to dielectric breakdown \tab \bold{Numeric}\cr
   [, 2] \tab ratio   \tab Electromagnetic field strength (in kV/mm) \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Kalkanis, G., and Rosso, E. (1989),
         The inverse power law model for the lifetime of a mylar-polyurethane laminated DC HV insulating structure, 

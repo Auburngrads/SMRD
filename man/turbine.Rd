@@ -4,12 +4,14 @@
 \name{turbine}
 \alias{turbine}
 \title{Turbine wheel crack initiation data}
-\format{A \code{data.frame} with 21 rows and 3 variables:
+\format{
+A \code{data.frame} with 21 rows and 3 variables:
 \tabular{rlll}{
   [, 1] \tab hours \tab Accumulated hours (in hundreds) at \code{event} \tab \bold{Numeric}\cr
   [, 2] \tab event \tab Event observed at \code{hours} (right-censored/left-censored) \tab \bold{Categoric}\cr
   [, 3] \tab count \tab Number of events observed at \code{hours} \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Nelson, W.	(1982) Applied Life Data Analysis, New York, NY: John Wiley \& Sons.
 }

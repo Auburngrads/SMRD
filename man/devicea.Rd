@@ -4,13 +4,15 @@
 \name{devicea}
 \alias{devicea}
 \title{Temperature-accelerated life test data}
-\format{A \code{data.frame} with 37 rows and 4 variables:
+\format{
+A \code{data.frame} with 37 rows and 4 variables:
 \tabular{rlll}{
   [, 1] \tab hours   \tab Accumulated time at \code{event} \tab \bold{Numeric}\cr
   [, 2] \tab event   \tab Event observed at \code{hours} (failure/right-censored) \tab \bold{Categoric}\cr
   [, 3] \tab count   \tab Number of events observed at \code{hours} \tab \bold{Numeric}\cr
   [, 4] \tab celsius \tab Temperature applied to the device during testing \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Hoopers J. H. and Amster, S. J. (1990) 
         Analysis and presentation of reliability data, in Handbook of Statistical Methods for Engineers and Scientists, 

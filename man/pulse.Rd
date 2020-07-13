@@ -4,11 +4,13 @@
 \name{pulse}
 \alias{pulse}
 \title{#####}
-\format{A \code{data.frame} with 20 rows and 2 variables:
+\format{
+A \code{data.frame} with 20 rows and 2 variables:
 \tabular{rlll}{
   [, 1] \tab count \tab Number of events observed at \code{pulse} \tab \bold{Numeric}\cr
   [, 2] \tab pulse \tab Pulse level observed \tab \bold{Numeric}\cr
-   }}
+   }
+}
 \source{
 ####
 }

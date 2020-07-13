@@ -4,14 +4,16 @@
 \name{zelencap}
 \alias{zelencap}
 \title{Glass capacitor accelerated life test data}
-\format{A \code{data.frame} with 40 rows and 5 variables:
+\format{
+A \code{data.frame} with 40 rows and 5 variables:
 \tabular{rlll}{
   [, 1] \tab hours \tab Accumulated time at \code{event} \tab \bold{Numeric}\cr
   [, 2] \tab event \tab Event observed at \code{hours} (failure/right-censored) \tab \bold{Categoric}\cr
   [, 3] \tab count \tab Number of events observed at \code{hours} \tab \bold{Numeric}\cr
   [, 4] \tab celsius \tab Temperature applied  \tab \bold{Numeric}\cr
   [, 5] \tab volts \tab Electrical power applied \tab \bold{Numeric}
-  }}
+  }
+}
 \source{
 Zelen, M. (1959) Factorial experiments in life testing, Technometrics, \bold{1}3, 269-288
 }
