@@ -2,7 +2,11 @@
 
 .onLoad <- function(libname, pkgname) {
 
-  .frame0 <<- new.env() 
+  .frame0 <<- new.env()
+   shiny::addResourcePath("smrd_apps", 
+                           system.file("smrd_apps", package = "SMRD"))  
+  
+   shiny::shinyOptions('theme' = 'flatly')
 
 }
 

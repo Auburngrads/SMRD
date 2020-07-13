@@ -15,13 +15,9 @@
 #' @param ... A \code{list} of additional options passed to \code{shiny::shinyAppDir()} 
 #' 
 #' @importFrom utils View
-#' @importFrom teachingApps add_options
 #' @importFrom shiny shinyAppDir
 #' @return A printed shiny app
 #' @export
-#' @details The \code{teachingApps} package provides an infrastructure 
-#'    that allows users to dynamically change the appearance and function of
-#'    shiny apps. 
 #'
 #' @seealso \code{link{create_logo}}
 #' @seealso \code{link{add_logo}}
@@ -63,7 +59,7 @@ function(app_name = NULL,
    
     dir <- system.file('apps', app_name, package = 'SMRD')
   
-    teachingApps::add_options(opts = more_opts,
+      add_options(opts = more_opts,
                               dir = dir,
                               theme = theme,
                               icon = icon,
