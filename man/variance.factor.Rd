@@ -4,9 +4,14 @@
 \alias{variance.factor}
 \title{Title}
 \usage{
-variance.factor(distribution = NULL, type = "quantile",
-  quantile.of.interest = NULL, proportion.failing = NULL,
-  number.points = 200, ...)
+variance.factor(
+  distribution = NULL,
+  type = "quantile",
+  quantile.of.interest = NULL,
+  proportion.failing = NULL,
+  number.points = 200,
+  ...
+)
 }
 \arguments{
 \item{distribution}{}

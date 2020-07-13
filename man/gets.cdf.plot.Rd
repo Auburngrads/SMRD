@@ -4,7 +4,17 @@
 \alias{gets.cdf.plot}
 \title{Title}
 \usage{
-gets.cdf.plot(...)
+gets.cdf.plot(
+  distvec = c("sev", "normal", "lev"),
+  sigmavec = c(-0.75, 0, 0.75),
+  zetavec = c(0.5, 1, 2),
+  alphavec = 0,
+  len = 200,
+  lwd = 1.5,
+  cex = 16,
+  plotem = T,
+  ...
+)
 }
 \arguments{
 \item{...}{}

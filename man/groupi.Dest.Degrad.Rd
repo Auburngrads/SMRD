@@ -4,14 +4,35 @@
 \alias{groupi.Dest.Degrad}
 \title{Title}
 \usage{
-groupi.Dest.Degrad(data.ddd, distribution, transformation.response,
-  transformation.time, ylim = c(NA, NA), xlim = c(NA, NA),
-  my.title = NULL, ylab = NULL, xlab = NULL, cex = 1.2,
-  cex.labs = 1.5, cex.points = 1, add = F, grids = F,
-  title.option = GetSMRDDefault("SMRD.TitleOption"), pch.point = NULL,
-  response.on.yaxis = T, subset = T, do.legend = "On plot",
-  fail.level = NULL, group.var = 1:ncol(xmat(data.ddd)), lty = NULL,
-  plot.lines = T, separate.plots = F)
+groupi.Dest.Degrad(
+  data.ddd,
+  distribution,
+  transformation.response,
+  transformation.time,
+  ylim = c(NA, NA),
+  xlim = c(NA, NA),
+  my.title = NULL,
+  ylab = NULL,
+  xlab = NULL,
+  cex = 1.05,
+  cex.labs = 1.05,
+  cex.points = 1,
+  add = F,
+  grids = F,
+  title.option = GetSMRDDefault("SMRD.TitleOption"),
+  pch.point = NULL,
+  response.on.yaxis = T,
+  subset = T,
+  do.legend = "On plot",
+  fail.level = NULL,
+  group.var = 1:ncol(xmat(data.ddd)),
+  lty = NULL,
+  plot.lines = T,
+  separate.plots = F,
+  lwd = 2,
+  bty = if (grids) "o" else "L",
+  ...
+)
 }
 \arguments{
 \item{data.ddd}{}

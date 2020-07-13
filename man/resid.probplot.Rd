@@ -4,11 +4,22 @@
 \alias{resid.probplot}
 \title{Title}
 \usage{
-\method{resid}{probplot}(groupm.list, xlim = c(NA, NA), ylim = c(NA,
-  NA), original.par = T, my.title = NULL, point.cex = 1.2,
-  shape = NULL, title.option = GetSMRDDefault("SMRD.TitleOption"),
-  grids = 0, conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
-  band.type = "Simultaneous", a.limit = 0.001, b.limit = 0.999, ...)
+\method{resid}{probplot}(
+  groupm.list,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  original.par = T,
+  my.title = NULL,
+  point.cex = 1.2,
+  shape = NULL,
+  title.option = GetSMRDDefault("SMRD.TitleOption"),
+  grids = 0,
+  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
+  band.type = "Simultaneous",
+  a.limit = 0.001,
+  b.limit = 0.999,
+  ...
+)
 }
 \arguments{
 \item{groupm.list}{}

@@ -4,9 +4,14 @@
 \alias{multiple.profile.plot}
 \title{Title}
 \usage{
-multiple.profile.plot(grid.list, which, lty = (1:(length(grid.list) +
-  1))[-2], col = 1:length(grid.list), do.legend = "On plot",
-  do.list = names(grid.list))
+multiple.profile.plot(
+  grid.list,
+  which,
+  lty = (1:(length(grid.list) + 1))[-2],
+  col = 1:length(grid.list),
+  do.legend = "On plot",
+  do.list = names(grid.list)
+)
 }
 \arguments{
 \item{grid.list}{}

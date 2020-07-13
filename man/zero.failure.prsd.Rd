@@ -4,8 +4,15 @@
 \alias{zero.failure.prsd}
 \title{Title}
 \usage{
-zero.failure.prsd(alpha.vec, quantile, pfactor = 3,
-  number.points = 100, grids = TRUE, bw = FALSE, my.title = NULL)
+zero.failure.prsd(
+  alpha.vec,
+  quantile,
+  pfactor = 3,
+  number.points = 100,
+  grids = TRUE,
+  bw = FALSE,
+  my.title = NULL
+)
 }
 \arguments{
 \item{alpha.vec}{}

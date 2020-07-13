@@ -4,9 +4,17 @@
 \alias{PlotCumulativePredictTable}
 \title{Title}
 \usage{
-PlotCumulativePredictTable(theCumulativePredictTable, lty = 1, lwd = 1,
-  add = FALSE, plot.what = "density", plot.points = FALSE,
-  my.title = NULL, xlim = c(NA, NA), ylim = c(NA, NA))
+PlotCumulativePredictTable(
+  theCumulativePredictTable,
+  lty = 1,
+  lwd = 1,
+  add = FALSE,
+  plot.what = "density",
+  plot.points = FALSE,
+  my.title = NULL,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA)
+)
 }
 \arguments{
 \item{theCumulativePredictTable}{}

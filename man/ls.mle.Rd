@@ -4,8 +4,7 @@
 \alias{ls.mle}
 \title{Title}
 \usage{
-ls.mle(data.ld, distribution = "weibull", debug1 = 0,
-  theta.start = NULL, ...)
+ls.mle(data.ld, distribution = "weibull", debug1 = 0, theta.start = NULL, ...)
 }
 \arguments{
 \item{data.ld}{}

@@ -4,12 +4,14 @@
 \name{gaaslaser}
 \alias{gaaslaser}
 \title{Gallium-Arsenic Laser Degradation Test}
-\format{A \code{data.frame} with 255 rows and 3 variables:
+\format{
+A \code{data.frame} with 255 rows and 3 variables:
 \tabular{rlll}{
   [, 1] \tab increase \tab Percent increase in observed operating current \tab \bold{Numeric}\cr
   [, 2] \tab unit \tab Unit designator code \tab \bold{Categoric}\cr
   [, 3] \tab hours \tab Accumulated time when \code{increase} was measured \tab \bold{Numeric}
-   }}
+   }
+}
 \source{
 Meeker W.Q. and Escobar L.A. (1998) Statistical Methods for Reliability Data, New York, NY; John Wiley & Sons.
 }

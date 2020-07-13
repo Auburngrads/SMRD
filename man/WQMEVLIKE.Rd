@@ -5,9 +5,37 @@
 \title{Wrap for wqm_flike to vectorize the 
 computation of the likelihood}
 \usage{
-WQMEVLIKE(xold, y, cen, wt, ty, tcodes, gamthr, nrow, ny, nty, nparm,
-  intcpt, nter, thetav, lfix, ntheta, fpfxxx, upcen, kdist, thetb, thetg,
-  xnew, diag, tmat, rv1, vcvg, kprinp, xlike, ier)
+WQMEVLIKE(
+  xold,
+  y,
+  cen,
+  wt,
+  ty,
+  tcodes,
+  gamthr,
+  nrow,
+  ny,
+  nty,
+  nparm,
+  intcpt,
+  nter,
+  thetav,
+  lfix,
+  ntheta,
+  fpfxxx,
+  upcen,
+  kdist,
+  thetb,
+  thetg,
+  xnew,
+  diag,
+  tmat,
+  rv1,
+  vcvg,
+  kprinp,
+  xlike,
+  ier
+)
 }
 \description{
 Wrap for wqm_flike to vectorize the 

@@ -4,20 +4,45 @@
 \alias{multiple.mleprobplot}
 \title{Title}
 \usage{
-multiple.mleprobplot(data.list, data.ld.name, distribution,
-  distribution.vec = rep(distribution, length = length(data.list)), xlab,
+multiple.mleprobplot(
+  data.list,
+  data.ld.name,
+  distribution,
+  distribution.vec = rep(distribution, length = length(data.list)),
+  xlab,
   ylab = GetSMRDDefault("SMRD.LabelOnYaxis"),
   conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
-  check.level = SMRDOptions("SMRD.DataCheck"), xlim = c(NA, NA),
-  ylim = c(NA, NA), time.range = c(NA, NA), dump = 1, grids = F,
-  my.title = NULL, cex = 1.2, linear.axes = F, slope.axis = F,
-  pch = (1:(length(do.list) + 1))[-2], lty = rep(1, length(do.list)),
-  ci.list = NULL, lwd = rep(1, length(do.list)), trunc.correct = T,
+  check.level = SMRDOptions("SMRD.DataCheck"),
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  time.range = c(NA, NA),
+  dump = 1,
+  grids = F,
+  my.title = NULL,
+  cex = 1.2,
+  linear.axes = F,
+  slope.axis = F,
+  pch = (1:(length(do.list) + 1))[-2],
+  lty = rep(1, length(do.list)),
+  ci.list = NULL,
+  lwd = rep(2, length(do.list)),
+  trunc.correct = T,
   col.fhat.vec = (1:(length(do.list) + length(col.ci)))[-col.ci],
-  col.ci = 4, shape = NULL, do.legend = NULL, add.title = NULL,
-  do.list = names(data.list), plotem = rep(T, length(do.list)),
-  plot.censored.ticks = F, ylim.data = NULL, plot.np = T,
-  plot.frame = T, debug1 = F, ...)
+  col.ci = 4,
+  shape = NULL,
+  do.legend = NULL,
+  add.title = NULL,
+  do.list = names(data.list),
+  plotem = rep(T, length(do.list)),
+  plot.censored.ticks = F,
+  ylim.data = NULL,
+  plot.np = T,
+  plot.frame = T,
+  debug1 = F,
+  mar = c(5, 4, 4, 2) + 0.1,
+  bty = "o",
+  ...
+)
 }
 \arguments{
 \item{data.list}{}

@@ -4,13 +4,24 @@
 \alias{censored.data.plot}
 \title{Plot failures and censored observations as a function of the response}
 \usage{
-censored.data.plot(data.ld, explan.var = 1, ylim = c(NA, NA),
-  xlim = c(NA, NA), x.axis = "linear", y.axis = "linear",
-  my.title = NULL, ylab = get.time.units(data.ld), xlab = NULL,
-  cex = par()$cex, cex.labs = par()$cex.lab, cex.points = 1.2,
-  add = F, grids = F,
+censored.data.plot(
+  data.ld,
+  explan.var = 1,
+  ylim = c(NA, NA),
+  xlim = c(NA, NA),
+  x.axis = "linear",
+  y.axis = "linear",
+  my.title = NULL,
+  ylab = get.time.units(data.ld),
+  xlab = NULL,
+  cex = par()$cex,
+  cex.labs = par()$cex.lab,
+  cex.points = 1.2,
+  add = F,
+  grids = F,
   title.option = GetSMRDDefault("SMRD.TitleOption"),
-  response.on.yaxis = T)
+  response.on.yaxis = T
+)
 }
 \arguments{
 \item{data.ld}{Name (as a character string) of a \code{life.data} object created using the function \code{frame.to.ld}}
@@ -77,7 +88,7 @@ censored.data.plot(data.ld, explan.var = 1, ylim = c(NA, NA),
 Plot failures and censored observations as a function of the response
 }
 \examples{
-# Create a \\code{life.data} object
+# Create a \code{life.data} object
 superalloy.ld <- frame.to.ld(superalloy,
                              response.column = 1, 
                              censor.column = 2,

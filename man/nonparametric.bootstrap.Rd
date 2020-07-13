@@ -4,9 +4,16 @@
 \alias{nonparametric.bootstrap}
 \title{Title}
 \usage{
-nonparametric.bootstrap(data.ld, number.sim = 10, kprint = 0,
-  maxit = 500, max.sim.scratch.space = 1000, maxmsd = 100,
-  debug1 = F, randomize = T)
+nonparametric.bootstrap(
+  data.ld,
+  number.sim = 10,
+  kprint = 0,
+  maxit = 500,
+  max.sim.scratch.space = 1000,
+  maxmsd = 100,
+  debug1 = F,
+  randomize = T
+)
 }
 \arguments{
 \item{data.ld}{}

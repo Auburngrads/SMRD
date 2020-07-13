@@ -8,20 +8,41 @@
 \usage{
 event.plot(x, ...)
 
-\method{event.plot}{life.data}(x, my.title = NULL,
+\method{event.plot}{life.data}(
+  x,
+  my.title = NULL,
   xlab = paste(get.time.units(x)),
   ylab = ifelse(is.null(case.weights(x)), "Unit", ""),
-  title.option = GetSMRDDefault("SMRD.TitleOption"), cex.labs = 1.1,
-  cex.tic.lab = 1.1, which.units.to.plot = 1:nrow(x),
-  original.par = T, print.row = T, count.on.right = T,
-  suppress.ones = T, failpch = 8, fail.cex = 0.9, fail.col = 1,
-  add = F, ...)
+  title.option = GetSMRDDefault("SMRD.TitleOption"),
+  cex.labs = 1.1,
+  cex.tic.lab = 1.1,
+  which.units.to.plot = 1:nrow(x),
+  original.par = T,
+  print.row = T,
+  count.on.right = T,
+  suppress.ones = T,
+  fail.pch = 15,
+  fail.cex = 1.3,
+  fail.col = 4,
+  add = F,
+  ...
+)
 
-\method{event.plot}{recurrence.data}(x, my.title = NULL,
-  xlab = paste("Time in", get.time.units(x)), ylab = "System ID",
-  title.option = GetSMRDDefault("SMRD.TitleOption"), cex.labs = 1.1,
-  cex.tic.lab = 1.1, which.system.to.plot = 1:nsys, cex.text = NULL,
-  xlim = c(NA, NA), sort.id = F, maxx = NA, ...)
+\method{event.plot}{recurrence.data}(
+  x,
+  my.title = NULL,
+  xlab = paste("Time in", get.time.units(x)),
+  ylab = "System ID",
+  title.option = GetSMRDDefault("SMRD.TitleOption"),
+  cex.labs = 1.1,
+  cex.tic.lab = 1.1,
+  which.system.to.plot = 1:nsys,
+  cex.text = NULL,
+  xlim = c(NA, NA),
+  sort.id = F,
+  maxx = NA,
+  ...
+)
 }
 \description{
 A description of event.plot

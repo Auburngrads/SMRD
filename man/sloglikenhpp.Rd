@@ -6,8 +6,20 @@
 \title{Compute a vector of NHPP log likelihood values 
 corresponding to a thetav matrix}
 \usage{
-SLOGLIKENHPP(time, ntimes, recurrcosts, timel, timeu, kwcount, nwindows,
-  kform, thetav, nparm, ntheta, answer)
+SLOGLIKENHPP(
+  time,
+  ntimes,
+  recurrcosts,
+  timel,
+  timeu,
+  kwcount,
+  nwindows,
+  kform,
+  thetav,
+  nparm,
+  ntheta,
+  answer
+)
 }
 \description{
 Compute a vector of NHPP log likelihood values 

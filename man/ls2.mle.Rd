@@ -4,8 +4,7 @@
 \alias{ls2.mle}
 \title{Title}
 \usage{
-ls2.mle(data.ld, distribution = "weibull", debug1 = F,
-  theta.start = NULL)
+ls2.mle(data.ld, distribution = "weibull", debug1 = F, theta.start = NULL)
 }
 \arguments{
 \item{data.ld}{}

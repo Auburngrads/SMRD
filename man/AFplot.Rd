@@ -4,8 +4,17 @@
 \alias{AFplot}
 \title{Title}
 \usage{
-AFplot(stress, stress0, coef, relationship, power, number.points = 100,
-  grid = T, my.title = NULL, title.option = "full")
+AFplot(
+  stress,
+  stress0,
+  coef,
+  relationship,
+  power,
+  number.points = 100,
+  grid = T,
+  my.title = NULL,
+  title.option = "full"
+)
 }
 \arguments{
 \item{stress}{}

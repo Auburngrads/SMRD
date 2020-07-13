@@ -4,8 +4,15 @@
 \alias{ADDTsim}
 \title{Title}
 \usage{
-ADDTsim(ADDT.test.plan, ADDT.plan.values, number.sim = 3, plotem = F,
-  xlim = c(NA, NA), ylim = c(NA, NA), sim.data.title = NULL)
+ADDTsim(
+  ADDT.test.plan,
+  ADDT.plan.values,
+  number.sim = 3,
+  plotem = F,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  sim.data.title = NULL
+)
 }
 \arguments{
 \item{ADDT.test.plan}{}

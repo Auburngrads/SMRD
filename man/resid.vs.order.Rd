@@ -4,9 +4,17 @@
 \alias{resid.vs.order}
 \title{Title}
 \usage{
-\method{resid}{vs.order}(groupm.list, original.par = T, cex = 1,
-  my.title = NULL, grids = F, xlim = c(NA, NA), ylim = c(NA, NA),
-  cex.points = 1, ...)
+\method{resid}{vs.order}(
+  groupm.list,
+  original.par = T,
+  cex = 1,
+  my.title = NULL,
+  grids = F,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  cex.points = 1,
+  ...
+)
 }
 \arguments{
 \item{groupm.list}{}

@@ -4,14 +4,28 @@
 \alias{profile.plot}
 \title{Title}
 \usage{
-\method{profile}{plot}(fitted, profile.title = paste(fitted$subtitle,
-  "\\n", lplot.type, "Likelihood and ", percent.conf.level(conf.level),
-  "Confidence Interval", "\\n for", variable.name, model.dist.str),
+\method{profile}{plot}(
+  fitted,
+  profile.title = paste(fitted$subtitle, "\\n", lplot.type, "Likelihood and ",
+    percent.conf.level(conf.level), "Confidence Interval", "\\n for", variable.name,
+    model.dist.str),
   confidence.interval = T,
-  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, xlim = NULL,
-  ylim = c(0, 1.05), log.axis = F, variable.name = fitted$xlab,
-  original.par = F, add = F, lty = 1, lwd = 2, print.ci = T,
-  col = 1, plotem = T, need.smooth = F, approx.plot = F, ...)
+  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
+  xlim = NULL,
+  ylim = c(0, 1.05),
+  log.axis = F,
+  variable.name = fitted$xlab,
+  original.par = F,
+  add = F,
+  lty = 1,
+  lwd = 2,
+  print.ci = T,
+  col = 1,
+  plotem = T,
+  need.smooth = F,
+  approx.plot = F,
+  ...
+)
 }
 \arguments{
 \item{fitted}{}

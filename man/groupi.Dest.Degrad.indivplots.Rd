@@ -4,14 +4,31 @@
 \alias{groupi.Dest.Degrad.indivplots}
 \title{Title}
 \usage{
-groupi.Dest.Degrad.indivplots(data.ddd, distribution,
-  transformation.response = "log", transformation.time = "linear",
-  ylim = c(NA, NA), xlim = c(NA, NA), my.title = NULL, ylab = NULL,
-  xlab = NULL, cex = 0.5, cex.labs = 1, cex.points = 1,
-  cex.tic.lab = 1, add = F, grids = F, title.option = NULL,
-  pch.point = NULL, response.on.yaxis = T,
-  group.var = 1:ncol(xmat(data.ddd)), subset = T, fail.level = NULL,
-  plot.lines = T, do.legend = "On plot")
+groupi.Dest.Degrad.indivplots(
+  data.ddd,
+  distribution,
+  transformation.response = "log",
+  transformation.time = "linear",
+  ylim = c(NA, NA),
+  xlim = c(NA, NA),
+  my.title = NULL,
+  ylab = NULL,
+  xlab = NULL,
+  cex = 0.5,
+  cex.labs = 1,
+  cex.points = 1,
+  cex.tic.lab = 1,
+  add = F,
+  grids = F,
+  title.option = NULL,
+  pch.point = NULL,
+  response.on.yaxis = T,
+  group.var = 1:ncol(xmat(data.ddd)),
+  subset = T,
+  fail.level = NULL,
+  plot.lines = T,
+  do.legend = "On plot"
+)
 }
 \arguments{
 \item{data.ddd}{}
@@ -89,12 +106,12 @@ groupi.Dest.Degrad.oneplot(InsulationBrkdwn.ddd,
                            transformation.Response = "log", 
                            transformation.time = "linear",
                            distribution="normal")
+                           
 groupm.Dest.Degrad(InsulationBrkdwn.ddd, 
                    distribution = "normal",
                    transformation.Response = "log10",
                    transformation.x = "invtemp",
                    transformation.time = "linear")
-
 
 groupm.Dest.Degrad(InsulationBrkdwn.ddd, 
                    distribution = "normal",
@@ -108,7 +125,6 @@ InsulationBrkdwn.groupi.Dest.Degrad <-groupi.Dest.Degrad(InsulationBrkdwn.ddd,
                                                          distribution = "normal",
                                                          transformation.Response = "log", 
                                                          transformation.time = "sqrt")
-
 
 plot(InsulationBrkdwn.groupi.Dest.Degrad,
      transformation.x = "Arrhenius")
@@ -125,7 +141,6 @@ InsulationBrkdwn.groupm.Dest.Degrad<-groupm.Dest.Degrad(InsulationBrkdwn.ddd,
                                                         transformation.x = "arrhenius",
                                                         transformation.time = "sqrt",
                                                         new.data = c("150,260"))
-
 
 }
 }

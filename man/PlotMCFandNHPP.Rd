@@ -4,11 +4,18 @@
 \alias{PlotMCFandNHPP}
 \title{Title}
 \usage{
-PlotMCFandNHPP(data.rdu, form, xlab = paste("Age in",
-  get.time.units(data.rdu)), ylab = "Mean Cumulative Failures",
-  plot.seg = T, number.points = 200,
-  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, band.type = "p",
-  theta.start = c(NA, NA), my.title = NULL)
+PlotMCFandNHPP(
+  data.rdu,
+  form,
+  xlab = paste("Age in", get.time.units(data.rdu)),
+  ylab = "Mean Cumulative Failures",
+  plot.seg = T,
+  number.points = 200,
+  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
+  band.type = "p",
+  theta.start = c(NA, NA),
+  my.title = NULL
+)
 }
 \arguments{
 \item{data.rdu}{}

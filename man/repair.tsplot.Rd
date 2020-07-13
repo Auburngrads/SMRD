@@ -4,8 +4,13 @@
 \alias{repair.tsplot}
 \title{Title}
 \usage{
-repair.tsplot(data.rdu, my.title = NULL, xlab = "Failure Number",
-  ylab = "Time Between Failure", ...)
+repair.tsplot(
+  data.rdu,
+  my.title = NULL,
+  xlab = "Failure Number",
+  ylab = "Time Between Failure",
+  ...
+)
 }
 \arguments{
 \item{data.rdu}{}

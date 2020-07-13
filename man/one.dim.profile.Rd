@@ -4,12 +4,22 @@
 \alias{one.dim.profile}
 \title{Title}
 \usage{
-one.dim.profile(gmle.out, profile.setup = NULL,
+one.dim.profile(
+  gmle.out,
+  profile.setup = NULL,
   profile.stable.parameters = NULL,
-  profile.on.list = 1:length(theta.hat), special.stuff.profile = NULL,
-  range.list = NULL, size = 40, interactive = F,
-  save.structures = T, addname = NULL, save.parameter.vectors = F,
-  debug1 = 0, plot.em = T, print.ci = TRUE)
+  profile.on.list = 1:length(theta.hat),
+  special.stuff.profile = NULL,
+  range.list = NULL,
+  size = 40,
+  interactive = F,
+  save.structures = T,
+  addname = NULL,
+  save.parameter.vectors = F,
+  debug1 = 0,
+  plot.em = T,
+  print.ci = TRUE
+)
 }
 \arguments{
 \item{gmle.out}{}

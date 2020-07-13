@@ -4,10 +4,20 @@
 \alias{SingleDistSim}
 \title{Title}
 \usage{
-SingleDistSim(number.sim, distribution, sample.size,
-  censor.type = "None", fail.number = NULL, fail.fraction = NULL,
-  theta = c(0, 1), debug1 = F, kprint = 0, randomize = T,
-  remove.bad = F, var = T)
+SingleDistSim(
+  number.sim,
+  distribution,
+  sample.size,
+  censor.type = "None",
+  fail.number = NULL,
+  fail.fraction = NULL,
+  theta = c(0, 1),
+  debug1 = F,
+  kprint = 0,
+  randomize = T,
+  remove.bad = F,
+  var = T
+)
 }
 \arguments{
 \item{number.sim}{}

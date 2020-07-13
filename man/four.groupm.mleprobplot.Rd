@@ -4,19 +4,39 @@
 \alias{four.groupm.mleprobplot}
 \title{Title}
 \usage{
-four.groupm.mleprobplot(data.ld, formula = NULL,
+four.groupm.mleprobplot(
+  data.ld,
+  formula = NULL,
   stresses = get.x.markers(data.ld, group.var = group.var),
-  group.var = 1, xlab = get.time.units(data.ld),
+  group.var = 1,
+  xlab = get.time.units(data.ld),
   ylab = GetSMRDDefault("SMRD.LabelOnYaxis"),
-  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, xlim = c(NA, NA),
-  ylim = c(NA, NA), relationship = NULL, power = NULL,
-  my.title = NULL, dump = 0, mle.intervals = F, cex = 1.1,
-  grids = F, linear.axes = F,
-  title.option = GetSMRDDefault("SMRD.TitleOption"), lwd = 2,
-  plot.censored.ticks = F, time.range = c(NA, NA), shape = NULL,
-  ci.list = NULL, col.ci = 6, printem = F, trunc.correct = T,
-  new.data = NULL, plotem = T, stresses.limit = 12, landscape = F,
-  ...)
+  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  relationship = NULL,
+  power = NULL,
+  my.title = NULL,
+  dump = 0,
+  mle.intervals = F,
+  cex = 1.1,
+  grids = F,
+  linear.axes = F,
+  title.option = GetSMRDDefault("SMRD.TitleOption"),
+  lwd = 2,
+  plot.censored.ticks = F,
+  time.range = c(NA, NA),
+  shape = NULL,
+  ci.list = NULL,
+  col.ci = 6,
+  printem = F,
+  trunc.correct = T,
+  new.data = NULL,
+  plotem = T,
+  stresses.limit = 12,
+  landscape = F,
+  ...
+)
 }
 \arguments{
 \item{data.ld}{}

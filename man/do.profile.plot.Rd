@@ -4,8 +4,13 @@
 \alias{do.profile.plot}
 \title{Title}
 \usage{
-do.profile.plot(gmle.out, parameter, original.parameter, quantile,
-  failure.probability.at)
+do.profile.plot(
+  gmle.out,
+  parameter,
+  original.parameter,
+  quantile,
+  failure.probability.at
+)
 }
 \arguments{
 \item{gmle.out}{}

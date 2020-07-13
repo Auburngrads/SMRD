@@ -4,14 +4,27 @@
 \alias{profile.contour}
 \title{Title}
 \usage{
-\method{profile}{contour}(fitted, xlim = c(NA, NA), ylim = c(NA, NA),
-  profile.title = paste(fitted$subtitle, "\\n", lplot.type,
-  "Likelihood for", variable.namex, "and", variable.namey, "\\n",
-  model.dist.str), variable.namex = fitted$xlab,
-  variable.namey = fitted$ylab, transformationx = "linear",
-  transformationy = "linear", original.par = F, levels = c(0.001,
-  0.01, 0.2, 0.4, 0.6, 0.8, 0.9), pretty.x = NULL, pretty.y = NULL,
-  add = F, lty = 1, col = 1, lwd = 1, ...)
+\method{profile}{contour}(
+  fitted,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  profile.title = paste(fitted$subtitle, "\\n", lplot.type, "Likelihood for",
+    variable.namex, "and", variable.namey, "\\n", model.dist.str),
+  variable.namex = fitted$xlab,
+  variable.namey = fitted$ylab,
+  transformationx = "linear",
+  transformationy = "linear",
+  original.par = F,
+  levels = c(0.001, 0.01, 0.2, 0.4, 0.6, 0.8, 0.9),
+  pretty.x = NULL,
+  pretty.y = NULL,
+  add = F,
+  lty = 1,
+  col = 1,
+  lwd = 1,
+  static = static,
+  ...
+)
 }
 \arguments{
 \item{fitted}{}

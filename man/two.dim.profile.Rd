@@ -4,12 +4,22 @@
 \alias{two.dim.profile}
 \title{Title}
 \usage{
-two.dim.profile(gmle.out, profile.setup = NULL,
-  profile.stable.parameters = NULL, range.list = NULL,
-  profile.on.list = NULL, which = seq(1:length(t.param.names)),
-  special.stuff.profile = NULL, size = c(10, 10), interactive = F,
-  save.structures = T, addname = NULL, monitor = 1, debug1 = 0,
-  alt.max = F)
+two.dim.profile(
+  gmle.out,
+  profile.setup = NULL,
+  profile.stable.parameters = NULL,
+  range.list = NULL,
+  profile.on.list = NULL,
+  which = seq(1:length(t.param.names)),
+  special.stuff.profile = NULL,
+  size = c(10, 10),
+  interactive = F,
+  save.structures = T,
+  addname = NULL,
+  monitor = 1,
+  debug1 = 0,
+  alt.max = F
+)
 }
 \arguments{
 \item{gmle.out}{}

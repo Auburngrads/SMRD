@@ -4,8 +4,13 @@
 \alias{series.dep.effect}
 \title{Title}
 \usage{
-series.dep.effect(xrange = c(0.8, 0.999), yrange = c(0.8, 0.999),
-  mu = logb(10), sd = 1, rho = c(0, 0.4, 0.7, 0.9, 1))
+series.dep.effect(
+  xrange = c(0.8, 0.999),
+  yrange = c(0.8, 0.999),
+  mu = logb(10),
+  sd = 1,
+  rho = c(0, 0.4, 0.7, 0.9, 1)
+)
 }
 \arguments{
 \item{xrange}{}

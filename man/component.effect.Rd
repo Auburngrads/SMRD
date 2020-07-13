@@ -4,9 +4,15 @@
 \alias{component.effect}
 \title{Title}
 \usage{
-component.effect(parallel = TRUE, dependent = FALSE, mu = logb(10),
-  xlim = c(0, 1), ylim = c(0, 1), sd = 1, rho = c(0, 0.4, 0.7, 0.9,
-  1))
+component.effect(
+  parallel = TRUE,
+  dependent = FALSE,
+  mu = logb(10),
+  xlim = c(0, 1),
+  ylim = c(0, 1),
+  sd = 1,
+  rho = c(0, 0.4, 0.7, 0.9, 1)
+)
 }
 \arguments{
 \item{parallel}{}

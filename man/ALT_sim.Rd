@@ -4,9 +4,16 @@
 \alias{ALTsim}
 \title{Title}
 \usage{
-ALTsim(ALT.test.plan, ALT.plan.values, number.sim, show.detail.on = 0,
-  xlim = c(NA, NA), ylim = c(NA, NA), sim.data.title = NULL,
-  use.conditions = NULL)
+ALTsim(
+  ALT.test.plan,
+  ALT.plan.values,
+  number.sim,
+  show.detail.on = 0,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  sim.data.title = NULL,
+  use.conditions = NULL
+)
 }
 \arguments{
 \item{ALT.test.plan}{}

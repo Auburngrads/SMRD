@@ -4,14 +4,31 @@
 \alias{varone.grid}
 \title{Title}
 \usage{
-varone.grid(pi.vec = seq(0.001, 0.999, length = 100),
+varone.grid(
+  pi.vec = seq(0.001, 0.999, length = 100),
   xi.vec = seq(xiL.lower, 0.999, length = 100),
-  distribution = "weibull", a = NULL, b1 = NULL, b2 = 0,
-  pd = NULL, ph = NULL, theta = 1, theta.known = T,
-  quad.model = F, perc = 0.01, zd = 0, kprint = 0,
-  levels = c(0.1, 0.2, 0.5, 1, 2), cex2 = 2, xlab = "X",
-  ylab = "Y", scale.var = T, old.a = NULL, old.b1 = NULL,
-  xiL.lower = 0.001, dump = F)
+  distribution = "weibull",
+  a = NULL,
+  b1 = NULL,
+  b2 = 0,
+  pd = NULL,
+  ph = NULL,
+  theta = 1,
+  theta.known = T,
+  quad.model = F,
+  perc = 0.01,
+  zd = 0,
+  kprint = 0,
+  levels = c(0.1, 0.2, 0.5, 1, 2),
+  cex2 = 2,
+  xlab = "X",
+  ylab = "Y",
+  scale.var = T,
+  old.a = NULL,
+  old.b1 = NULL,
+  xiL.lower = 0.001,
+  dump = F
+)
 }
 \arguments{
 \item{pi.vec}{}

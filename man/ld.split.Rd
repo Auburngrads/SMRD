@@ -4,9 +4,16 @@
 \alias{ld.split}
 \title{Title}
 \usage{
-ld.split(data.ld, stress.var.list = unique(xmat(data.ld)[, group.var]),
-  group.var = 1, the.ld.name = NULL, prefix = NULL,
-  allow.poor.data = F, number.needed = 2, printem = FALSE)
+ld.split(
+  data.ld,
+  stress.var.list = unique(xmat(data.ld)[, group.var]),
+  group.var = 1,
+  the.ld.name = NULL,
+  prefix = NULL,
+  allow.poor.data = F,
+  number.needed = 2,
+  printem = FALSE
+)
 }
 \arguments{
 \item{data.ld}{}
@@ -51,14 +58,14 @@ plot(Bleed.ld,my.title="All Bases")
 
 plot(Bleed.ld,
      distribution = "Weibull",
-     my.title = "Bleed System Failures\\nAll Bases")
+     my.title = "Bleed System Failures\nAll Bases")
 
 plot(Bleed.ld_D,
      distribution = "Weibull",
-     my.title = "Bleed System Failures\\nOnly Base D")
+     my.title = "Bleed System Failures\nOnly Base D")
 
 plot(Bleed.ld_Other,
      distribution = "Weibull",
-     my.title = "Bleed System Failures\\nOmitting Base D")
+     my.title = "Bleed System Failures\nOmitting Base D")
 }
 }

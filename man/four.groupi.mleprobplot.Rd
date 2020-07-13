@@ -4,18 +4,33 @@
 \alias{four.groupi.mleprobplot}
 \title{Title}
 \usage{
-four.groupi.mleprobplot(data.ld, stresses = get.x.markers(data.ld,
-  group.var = group.var), group.var = 1,
+four.groupi.mleprobplot(
+  data.ld,
+  stresses = get.x.markers(data.ld, group.var = group.var),
+  group.var = 1,
   xlab = get.time.units(data.ld),
-  ylab = GetSMRDDefault("SMRD.LabelOnYaxis"), xlim = c(NA, NA),
-  ylim = c(NA, NA), time.vector = c(NA, NA), dump = 1, grids = F,
-  my.title = NULL, cex = 1.1, linear.axes = F,
+  ylab = GetSMRDDefault("SMRD.LabelOnYaxis"),
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  time.vector = c(NA, NA),
+  dump = 1,
+  grids = F,
+  my.title = NULL,
+  cex = 1.1,
+  linear.axes = F,
   title.option = GetSMRDDefault("SMRD.TitleOption"),
-  pch = (1:(length(stresses) + 1))[-2], lty = 1:length(stresses),
-  ci.list = NULL, lwd = rep(1, length(stresses)),
-  plot.censored.ticks = F, trunc.correct = T,
-  col.fhat.vec = 1:length(stresses), col.ci = 6, shape = NULL,
-  landscape = F, ...)
+  pch = (1:(length(stresses) + 1))[-2],
+  lty = 1:length(stresses),
+  ci.list = NULL,
+  lwd = rep(1, length(stresses)),
+  plot.censored.ticks = F,
+  trunc.correct = T,
+  col.fhat.vec = 1:length(stresses),
+  col.ci = 6,
+  shape = NULL,
+  landscape = F,
+  ...
+)
 }
 \arguments{
 \item{data.ld}{}

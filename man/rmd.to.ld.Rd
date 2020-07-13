@@ -4,15 +4,26 @@
 \alias{rmd.to.ld}
 \title{Title}
 \usage{
-rmd.to.ld(data.rmd, fail.level, x.axis = "Linear", y.axis = "Linear",
-  xlim = c(NA, NA), ylim = c(NA, NA),
+rmd.to.ld(
+  data.rmd,
+  fail.level,
+  x.axis = "Linear",
+  y.axis = "Linear",
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
   title.option = GetSMRDDefault("SMRD.TitleOption"),
-  censor.time = NULL, xlab = get.time.units(data.rmd),
-  time.units = xlab, ylab = get.response.units(data.rmd), subset = T,
-  big.one = 1e+36, my.title = NULL,
+  censor.time = NULL,
+  xlab = get.time.units(data.rmd),
+  time.units = xlab,
+  ylab = get.response.units(data.rmd),
+  subset = T,
+  big.one = 1e+36,
+  my.title = NULL,
   group.var = 1:length(get.x.columns(data.rmd)),
   stresses = get.x.markers(data.rmd, group.var = group.var),
-  extrapolation.control = "infer", print.estimates = T)
+  extrapolation.control = "infer",
+  print.estimates = T
+)
 }
 \arguments{
 \item{data.rmd}{}
@@ -64,7 +75,7 @@ GaAsLaser.rmd <-
                time.column = 3, 
                response.units = "Increase in Operating Current (\%)")
 
-# Convert to a \\code{life.data} object
+# Convert to a \code{life.data} object
 
 GaAsLaser.ld <- rmd.to.ld(GaAsLaser.rmd, 
                           fail.level = 10, 

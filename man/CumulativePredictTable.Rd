@@ -4,8 +4,12 @@
 \alias{CumulativePredictTable}
 \title{Title}
 \usage{
-CumulativePredictTable(mlest.out, time.increment, number.time.units.ahead,
-  warranty.time)
+CumulativePredictTable(
+  mlest.out,
+  time.increment,
+  number.time.units.ahead,
+  warranty.time
+)
 }
 \arguments{
 \item{mlest.out}{}

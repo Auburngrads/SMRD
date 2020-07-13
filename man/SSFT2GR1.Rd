@@ -4,8 +4,21 @@
 \alias{SSFT2GR1}
 \title{Vector version of urlike for R calling}
 \usage{
-SSFT2GR1(t, nt, r1log, mut2, sigmat2, mur1, sigmar1, mur2, sigmar2, rho,
-  answer, kprint, ier)
+SSFT2GR1(
+  t,
+  nt,
+  r1log,
+  mut2,
+  sigmat2,
+  mur1,
+  sigmar1,
+  mur2,
+  sigmar2,
+  rho,
+  answer,
+  kprint,
+  ier
+)
 }
 \description{
 Vector version of urlike for R calling

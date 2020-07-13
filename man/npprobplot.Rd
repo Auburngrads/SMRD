@@ -4,17 +4,41 @@
 \alias{npprobplot}
 \title{Title}
 \usage{
-npprobplot(data.ld, distribution, shape = NULL, xlab = NULL,
-  ylab = GetSMRDDefault("SMRD.LabelOnYaxis"), xlim = c(NA, NA),
-  ylim = c(NA, NA), band.type = "Simultaneous",
-  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, a.limit = 0.001,
-  b.limit = 0.999, interactive = T, my.title = NULL,
-  sub.title = NULL, point.cex = 1.2, how.show.fhat = "points",
-  how.show.interval = "step.fun", grids = 0,
-  title.option = GetSMRDDefault("SMRD.TitleOption"), trunc.correct = T,
-  slope.axis = F, draw.line = F, linear.axes = F, add = F,
-  pch = 16, plot.censored.ticks = F, point.pch = 18, debug1 = F,
-  col.points = 1, gamthr = NULL, title.line.adj, ...)
+npprobplot(
+  data.ld,
+  distribution,
+  shape = NULL,
+  xlab = NULL,
+  ylab = GetSMRDDefault("SMRD.LabelOnYaxis"),
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  band.type = "Simultaneous",
+  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
+  a.limit = 0.001,
+  b.limit = 0.999,
+  interactive = T,
+  my.title = NULL,
+  sub.title = NULL,
+  point.cex = 1.2,
+  how.show.fhat = "points",
+  how.show.interval = "step.fun",
+  grids = 0,
+  title.option = GetSMRDDefault("SMRD.TitleOption"),
+  trunc.correct = T,
+  slope.axis = F,
+  draw.line = F,
+  linear.axes = F,
+  add = F,
+  pch = 16,
+  plot.censored.ticks = F,
+  point.pch = 18,
+  debug1 = F,
+  col.points = 1,
+  gamthr = NULL,
+  title.line.adj,
+  grob,
+  ...
+)
 }
 \arguments{
 \item{data.ld}{}

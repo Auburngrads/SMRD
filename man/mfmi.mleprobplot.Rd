@@ -4,20 +4,34 @@
 \alias{mfmi.mleprobplot}
 \title{Title}
 \usage{
-mfmi.mleprobplot(data.ld, distribution,
+mfmi.mleprobplot(
+  data.ld,
+  distribution,
   distribution.vec = rep(distribution, length = length(data.mfld)),
   the.failure.modes = names(data.mfld),
   ylab = GetSMRDDefault("SMRD.LabelOnYaxis"),
   conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
-  xlab = get.time.units(data.ld), xlim = c(NA, NA), ylim = c(NA, NA),
-  time.range = c(NA, NA), dump = 1, grids = F, cex = 1.2,
-  linear.axes = F, pch = (1:(length(the.failure.modes) + 1))[-2],
-  lty = rep(1, length(the.failure.modes)), ci.list = NULL,
-  lwd = rep(1, length(the.failure.modes)), slope.axis = F,
-  plot.censored.ticks = F, trunc.correct = T,
-  col.fhat.vec = (1:(length(the.failure.modes) +
-  length(col.ci)))[-col.ci], col.ci = 4, shape = NULL,
-  do.legend = NULL, ...)
+  xlab = get.time.units(data.ld),
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  time.range = c(NA, NA),
+  dump = 1,
+  grids = F,
+  cex = 1.2,
+  linear.axes = F,
+  pch = (1:(length(the.failure.modes) + 1))[-2],
+  lty = rep(1, length(the.failure.modes)),
+  ci.list = NULL,
+  lwd = rep(1, length(the.failure.modes)),
+  slope.axis = F,
+  plot.censored.ticks = F,
+  trunc.correct = T,
+  col.fhat.vec = (1:(length(the.failure.modes) + length(col.ci)))[-col.ci],
+  col.ci = 4,
+  shape = NULL,
+  do.legend = NULL,
+  ...
+)
 }
 \arguments{
 \item{data.ld}{}

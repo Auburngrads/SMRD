@@ -4,19 +4,43 @@
 \alias{mleprobplot}
 \title{Title}
 \usage{
-mleprobplot(data.ld, distribution, gamthr = 0, xlab = NULL,
-  xlim = c(NA, NA), ylim = c(NA, NA), time.range = c(NA, NA),
-  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, my.title = NULL,
-  cex = 1, cex.labs = 1.1, cex.axis = 1.1, sub.title = NULL,
-  grids = F, linear.axes = F, slope.axis = F,
+mleprobplot(
+  data.ld,
+  distribution,
+  gamthr = 0,
+  xlab = NULL,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  time.range = c(NA, NA),
+  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
+  my.title = NULL,
+  cex = 1,
+  cex.labs = 1.1,
+  cex.axis = 1.1,
+  sub.title = NULL,
+  grids = F,
+  linear.axes = F,
+  slope.axis = F,
   title.option = GetSMRDDefault("SMRD.TitleOption"),
-  ylab = GetSMRDDefault("SMRD.LabelOnYaxis"), trunc.correct = T,
-  add = F, cex.points = 1.2, theta.start = c(NA, NA),
-  parameter.fixed = NULL, plot.censored.ticks = F, pch = 16,
-  print.parameters = T, band.type = "p", debug1 = F, lwd.ci = 3,
+  ylab = GetSMRDDefault("SMRD.LabelOnYaxis"),
+  trunc.correct = T,
+  add = F,
+  cex.points = 1.2,
+  theta.start = c(NA, NA),
+  parameter.fixed = NULL,
+  plot.censored.ticks = F,
+  pch = 16,
+  print.parameters = T,
+  band.type = "p",
+  debug1 = F,
+  lwd.ci = 3,
   lwd.fhat = 2,
   band.method = GetSMRDDefault("SMRD.ConfidenceBandMethod"),
-  mono.tran = T, title.line.adj, param.loc = "bottomright", ...)
+  mono.tran = T,
+  title.line.adj,
+  param.loc = "bottomright",
+  ...
+)
 }
 \arguments{
 \item{data.ld}{}

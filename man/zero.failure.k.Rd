@@ -4,8 +4,7 @@
 \alias{zero.failure.k}
 \title{Determine test length for a zero-failure test as a multiple of spec}
 \usage{
-zero.failure.k(beta = 2, quantile = 0.01, conlev = 0.9, n = 10,
-  printem = T)
+zero.failure.k(beta = 2, quantile = 0.01, conlev = 0.9, n = 10, printem = T)
 }
 \arguments{
 \item{beta}{}

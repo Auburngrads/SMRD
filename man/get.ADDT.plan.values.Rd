@@ -4,13 +4,32 @@
 \alias{get.ADDT.plan.values}
 \title{Title}
 \usage{
-get.ADDT.plan.values(distribution, transformation.x,
-  transformation.response, transformation.time, beta0, beta1, beta2,
-  slope.at, sigma, beta, the.slope, time.units = "Time", response.units,
-  accelvar.units, beta0.cr = NULL, beta1.cr = NULL, beta2.cr = NULL,
-  slope.at.cr = NULL, sigma.cr = NULL, beta.cr = NULL,
-  the.slope.cr = NULL, power = NULL, FailLevel = NULL,
-  use.condition = NULL)
+get.ADDT.plan.values(
+  distribution,
+  transformation.x,
+  transformation.response,
+  transformation.time,
+  beta0,
+  beta1,
+  beta2,
+  slope.at,
+  sigma,
+  beta,
+  the.slope,
+  time.units = "Time",
+  response.units,
+  accelvar.units,
+  beta0.cr = NULL,
+  beta1.cr = NULL,
+  beta2.cr = NULL,
+  slope.at.cr = NULL,
+  sigma.cr = NULL,
+  beta.cr = NULL,
+  the.slope.cr = NULL,
+  power = NULL,
+  FailLevel = NULL,
+  use.condition = NULL
+)
 }
 \arguments{
 \item{distribution}{}

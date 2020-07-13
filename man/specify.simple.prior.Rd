@@ -4,8 +4,16 @@
 \alias{specify.simple.prior}
 \title{Title}
 \usage{
-specify.simple.prior(p, qdist, qlower, qupper, sigma.dist, sigma.lower,
-  sigma.upper, distribution)
+specify.simple.prior(
+  p,
+  qdist,
+  qlower,
+  qupper,
+  sigma.dist,
+  sigma.lower,
+  sigma.upper,
+  distribution
+)
 }
 \arguments{
 \item{p}{}
@@ -30,7 +38,7 @@ Title
 \examples{
 \dontrun{
 # Specify prior distribution characteristics for the 
-# \\code{bearingcage} data using a non-informative quantile 
+# \code{bearingcage} data using a non-informative quantile 
 # and a noninformative sigma
 
 prior.spec1 <-
@@ -44,7 +52,7 @@ prior.spec1 <-
                        distribution = "Weibull")
                        
 # Specify prior distribution characteristics for the 
-# \\code{bearingcage} data using a noninformative quantile 
+# \code{bearingcage} data using a noninformative quantile 
 # and an informative sigma
 
 prior.spec2 <-
@@ -58,7 +66,7 @@ prior.spec2 <-
                        distribution  = "Weibull")
                        
 # Specify prior distribution characteristics for the 
-# \\code{bearingcage} data using an informative quantile 
+# \code{bearingcage} data using an informative quantile 
 # and an informative sigma
 
 prior.spec3 <-

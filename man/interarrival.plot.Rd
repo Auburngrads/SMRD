@@ -4,8 +4,13 @@
 \alias{interarrival.plot}
 \title{Title}
 \usage{
-interarrival.plot(data.rdu, my.title = NULL, xlab = paste("Age in",
-  get.time.units(data.rdu)), ylab = "Time Between Failure", ...)
+interarrival.plot(
+  data.rdu,
+  my.title = NULL,
+  xlab = paste("Age in", get.time.units(data.rdu)),
+  ylab = "Time Between Failure",
+  ...
+)
 }
 \arguments{
 \item{data.rdu}{}

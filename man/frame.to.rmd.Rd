@@ -4,10 +4,21 @@
 \alias{frame.to.rmd}
 \title{Title}
 \usage{
-frame.to.rmd(frame, response.column, time.column, unit.column,
-  group.column, response.units = NULL, unit.name = NULL,
-  data.title = NULL, time.units = NULL, x.columns = NULL,
-  xlabel = NULL, data.note = "", skip = 0)
+frame.to.rmd(
+  frame,
+  response.column,
+  time.column,
+  unit.column,
+  group.column,
+  response.units = NULL,
+  unit.name = NULL,
+  data.title = NULL,
+  time.units = NULL,
+  x.columns = NULL,
+  xlabel = NULL,
+  data.note = "",
+  skip = 0
+)
 }
 \arguments{
 \item{frame}{}
@@ -55,7 +66,7 @@ trellis.plot(GaAsLaser.rmd, order.groups = T)
 
 trellis.plot(GaAsLaser.rmd, order.groups = F)
 
-# Convert to a \\code{life.data} object
+# Convert to a \code{life.data} object
 
 GaAsLaser.ld <- rmd.to.ld(GaAsLaser.rmd, 
                           fail.level = 10, 

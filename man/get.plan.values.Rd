@@ -4,8 +4,7 @@
 \alias{get.plan.values}
 \title{Get planning value for a reliability test}
 \usage{
-get.plan.values(distribution, beta, sigma, prob, time,
-  time.units = "Time")
+get.plan.values(distribution, beta, sigma, prob, time, time.units = "Time")
 }
 \arguments{
 \item{distribution}{}

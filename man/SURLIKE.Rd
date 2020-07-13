@@ -4,8 +4,21 @@
 \alias{SURLIKE}
 \title{Vector version of urlike for Splus calling}
 \usage{
-SURLIKE(t, nt, mut1, sigmat1, mut2, sigmat2, mur1, sigmar1, mur2, sigmar2,
-  rho, answer, kprint)
+SURLIKE(
+  t,
+  nt,
+  mut1,
+  sigmat1,
+  mut2,
+  sigmat2,
+  mur1,
+  sigmar1,
+  mur2,
+  sigmar2,
+  rho,
+  answer,
+  kprint
+)
 }
 \description{
 Vector version of urlike for Splus calling

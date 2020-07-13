@@ -4,10 +4,22 @@
 \alias{mlest}
 \title{Title}
 \usage{
-mlest(data.ld, distribution, relationship.parameters = 1,
-  explan.vars = NULL, gamthr = 0, theta.start = NULL,
-  parameter.fixed = NULL, intercept = T, kprint = 0, maxit = 500,
-  debug1 = F, genforce = F, embedded = F, ...)
+mlest(
+  data.ld,
+  distribution,
+  relationship.parameters = 1,
+  explan.vars = NULL,
+  gamthr = 0,
+  theta.start = NULL,
+  parameter.fixed = NULL,
+  intercept = T,
+  kprint = 0,
+  maxit = 500,
+  debug1 = F,
+  genforce = F,
+  embedded = F,
+  ...
+)
 }
 \arguments{
 \item{data.ld}{}

@@ -4,9 +4,36 @@
 \alias{GENSIZ}
 \title{Compute the sizes of parameter vectors}
 \usage{
-GENSIZ(kmod, kdist, kparv, nrvar, mrelat, nrelat, mnrvar, ncolx, kprint,
-  nparm, npard, ier, nxd, intd, ipxcd, irelad, ilabp, ilabd, nregr, kgtall,
-  llog, kmodp, npardm, nnum, kparm, iup, nterd, maxpd)
+GENSIZ(
+  kmod,
+  kdist,
+  kparv,
+  nrvar,
+  mrelat,
+  nrelat,
+  mnrvar,
+  ncolx,
+  kprint,
+  nparm,
+  npard,
+  ier,
+  nxd,
+  intd,
+  ipxcd,
+  irelad,
+  ilabp,
+  ilabd,
+  nregr,
+  kgtall,
+  llog,
+  kmodp,
+  npardm,
+  nnum,
+  kparm,
+  iup,
+  nterd,
+  maxpd
+)
 }
 \arguments{
 \item{kmod}{Integer model code (see Details)}

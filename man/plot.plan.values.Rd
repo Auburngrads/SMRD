@@ -4,12 +4,23 @@
 \alias{plot.plan.values}
 \title{Plot reliability life test}
 \usage{
-\method{plot}{plan.values}(x, censor.time = NULL, my.title, grids = 2,
-  quantile.mark = NULL, number.points = 20, perc.low = 0.01,
-  perc.high = 0.99, cex = 1, xlim = NULL, ylim = NULL,
+\method{plot}{plan.values}(
+  x,
+  censor.time = NULL,
+  my.title,
+  grids = 2,
+  quantile.mark = NULL,
+  number.points = 20,
+  perc.low = 0.01,
+  perc.high = 0.99,
+  cex = 1,
+  xlim = NULL,
+  ylim = NULL,
   title.option = GetSMRDDefault("SMRD.TitleOption"),
-  xlab = x$time.units, digits = GetSMRDDefault("SMRD.DigitsPrinted"),
-  ...)
+  xlab = x$time.units,
+  digits = GetSMRDDefault("SMRD.DigitsPrinted"),
+  ...
+)
 }
 \arguments{
 \item{x}{}

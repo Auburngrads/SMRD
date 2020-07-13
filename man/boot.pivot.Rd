@@ -4,8 +4,15 @@
 \alias{boot.pivot}
 \title{Bootstrap based prediction intervals}
 \usage{
-boot.pivot(B = 100, N = 20, mu = 5.13, sigma = 0.161, t_c = NULL,
-  fails = NULL, alpha = 0.05)
+boot.pivot(
+  B = 100,
+  N = 20,
+  mu = 5.13,
+  sigma = 0.161,
+  t_c = NULL,
+  fails = NULL,
+  alpha = 0.05
+)
 }
 \arguments{
 \item{B}{The number of bootstrap cycles}

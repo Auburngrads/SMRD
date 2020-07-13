@@ -4,16 +4,39 @@
 \alias{groupm.Dest.Degrad}
 \title{Title}
 \usage{
-groupm.Dest.Degrad(data.ddd, transformation.response, transformation.time,
-  transformation.x, distribution, group.var = 1:ncol(xmat(data.ddd)),
-  ylim = c(NA, NA), xlim = c(NA, NA), my.title = NULL, ylab = NULL,
-  xlab = NULL, cex = 1.2, cex.labs = 1.5, cex.points = 1,
-  add = F, grids = F,
+groupm.Dest.Degrad(
+  data.ddd,
+  transformation.response,
+  transformation.time,
+  transformation.x,
+  distribution,
+  group.var = 1:ncol(xmat(data.ddd)),
+  ylim = c(NA, NA),
+  xlim = c(NA, NA),
+  my.title = NULL,
+  ylab = NULL,
+  xlab = NULL,
+  cex = 1.05,
+  cex.labs = 1.05,
+  cex.points = 1,
+  add = F,
+  grids = F,
   title.option = GetSMRDDefault("SMRD.TitleOption"),
-  do.legend = "On plot", subset = T, pch.point = NULL,
-  response.on.yaxis = T, new.data = NULL, FailLevel = NULL,
-  power = NULL, PlotFailDefLine = T, debug1 = map.SMRDDebugLevel(),
-  lty = NULL, ...)
+  do.legend = "On plot",
+  subset = T,
+  pch.point = NULL,
+  response.on.yaxis = T,
+  new.data = NULL,
+  FailLevel = NULL,
+  power = NULL,
+  PlotFailDefLine = T,
+  debug1 = map.SMRDDebugLevel(),
+  lty = NULL,
+  lwd = 2,
+  mar = c(4.5, 5.25, 3.5, 12.1),
+  bty = if (grids) "o" else "L",
+  ...
+)
 }
 \arguments{
 \item{data.ddd}{}
@@ -101,12 +124,12 @@ groupi.Dest.Degrad.oneplot(InsulationBrkdwn.ddd,
                            transformation.Response = "log", 
                            transformation.time = "linear",
                            distribution="normal")
+                           
 groupm.Dest.Degrad(InsulationBrkdwn.ddd, 
                    distribution = "normal",
                    transformation.Response = "log10",
                    transformation.x = "invtemp",
                    transformation.time = "linear")
-
 
 groupm.Dest.Degrad(InsulationBrkdwn.ddd, 
                    distribution = "normal",

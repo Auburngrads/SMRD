@@ -8,8 +8,21 @@ zivar is the variable defining that level
 (usually set to zero for design stress)
 this a wrap for a call from splus}
 \usage{
-VVAR1(param, z, pi, zivar, npar, nplan, nlev, perc, idist, knownt, fret,
-  varret, iprint)
+VVAR1(
+  param,
+  z,
+  pi,
+  zivar,
+  npar,
+  nplan,
+  nlev,
+  perc,
+  idist,
+  knownt,
+  fret,
+  varret,
+  iprint
+)
 }
 \description{
 Vectorized version ov svar1

@@ -4,16 +4,28 @@
 \alias{frame.to.ddd}
 \title{Title}
 \usage{
-frame.to.ddd(frame, response.column, time.column, censor.column,
-  case.weight.column, failure.mode.column,
+frame.to.ddd(
+  frame,
+  response.column,
+  time.column,
+  censor.column,
+  case.weight.column,
+  failure.mode.column,
   right.censor.names = GetSMRDDefault("SMRD.RcName"),
   left.censor.names = GetSMRDDefault("SMRD.LcName"),
   interval.censor.names = GetSMRDDefault("SMRD.IcName"),
   sinterval.censor.names = GetSMRDDefault("SMRD.DefaultSintervalCensorNames"),
   failure.censor.names = GetSMRDDefault("SMRD.FailName"),
-  data.title = deparse(substitute(the.frame)), time.units = NULL,
-  response.units = NULL, x.columns = NULL, xlabel = NULL,
-  data.note = "", func.call = match.call(), file.name, skip = 0)
+  data.title = deparse(substitute(the.frame)),
+  time.units = NULL,
+  response.units = NULL,
+  x.columns = NULL,
+  xlabel = NULL,
+  data.note = "",
+  func.call = match.call(),
+  file.name,
+  skip = 0
+)
 }
 \arguments{
 \item{frame}{}

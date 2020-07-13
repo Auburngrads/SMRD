@@ -4,13 +4,24 @@
 \alias{ALT.plot.FracFail.v.Time}
 \title{Title}
 \usage{
-ALT.plot.FracFail.v.Time(results.object, x.of.interest = NULL,
-  plan.values.string = NULL, plan.string = NULL,
-  quantile.range = c(0.01, 0.99), ylim = c(NA, NA), xlim = c(NA, NA),
-  xlab = NULL, ylab = NULL, my.title = NULL,
-  title.option = GetSMRDDefault("SMRD.TitleOption"), grids = F,
-  numplotsim = 50, nxpoints = 50, cex = 1,
-  how.time.range = "modified test plan")
+ALT.plot.FracFail.v.Time(
+  results.object,
+  x.of.interest = NULL,
+  plan.values.string = NULL,
+  plan.string = NULL,
+  quantile.range = c(0.01, 0.99),
+  ylim = c(NA, NA),
+  xlim = c(NA, NA),
+  xlab = NULL,
+  ylab = NULL,
+  my.title = NULL,
+  title.option = GetSMRDDefault("SMRD.TitleOption"),
+  grids = F,
+  numplotsim = 50,
+  nxpoints = 50,
+  cex = 1,
+  how.time.range = "modified test plan"
+)
 }
 \arguments{
 \item{results.object}{}

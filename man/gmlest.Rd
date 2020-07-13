@@ -4,11 +4,25 @@
 \alias{gmlest}
 \title{Generalized maximum likelihood}
 \usage{
-gmlest(data.ld, distribution, theta.start = NULL, explan.vars = NULL,
-  mu.relat = NULL, sigma.relat = NULL, prob.relat = NULL,
-  gamthr = 0, escale = 10000, e = rep(1e-04, nparm),
-  parameter.fixed = rep(F, nparm), intercept = T, model = 0,
-  kprint = 0, conlev = 0.95, maxit = 500, debug1 = F)
+gmlest(
+  data.ld,
+  distribution,
+  theta.start = NULL,
+  explan.vars = NULL,
+  mu.relat = NULL,
+  sigma.relat = NULL,
+  prob.relat = NULL,
+  gamthr = 0,
+  escale = 10000,
+  e = rep(1e-04, nparm),
+  parameter.fixed = rep(F, nparm),
+  intercept = T,
+  model = 0,
+  kprint = 0,
+  conlev = 0.95,
+  maxit = 500,
+  debug1 = F
+)
 }
 \arguments{
 \item{data.ld}{}

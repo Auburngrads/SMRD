@@ -4,14 +4,24 @@
 \alias{summarize.posterior.or.prior}
 \title{Title}
 \usage{
-summarize.posterior.or.prior(posterior.object, task, marginal.on.pos,
-  marginal.on.sigma, type.position, newdata, include.likelihood,
-  post.or.prior, xlim = c(NA, NA), ylim = c(NA, NA),
+summarize.posterior.or.prior(
+  posterior.object,
+  task,
+  marginal.on.pos,
+  marginal.on.sigma,
+  type.position,
+  newdata,
+  include.likelihood,
+  post.or.prior,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
   xlab = parameter.contour.axes.labels.out$xlab,
   ylab = parameter.contour.axes.labels.out$ylab,
-  axes.range.default.post = T, factor = 4.5,
+  axes.range.default.post = T,
+  factor = 4.5,
   size = GetSMRDDefault("SMRD.DefaultGridPoints"),
-  number.points.plot = 500)
+  number.points.plot = 500
+)
 }
 \arguments{
 \item{posterior.object}{}
@@ -52,7 +62,7 @@ Title
 \examples{
 \dontrun{
 # Specify prior distribution characteristics for the 
-# \\code{bearingcage} data using a non-informative quantile 
+# \code{bearingcage} data using a non-informative quantile 
 # and a noninformative sigma
 
 prior.spec1 <-
@@ -66,7 +76,7 @@ prior.spec1 <-
                        distribution = "Weibull")
                        
 # Specify prior distribution characteristics for the 
-# \\code{bearingcage} data using a noninformative quantile 
+# \code{bearingcage} data using a noninformative quantile 
 # and an informative sigma
 
 prior.spec2 <-
@@ -80,7 +90,7 @@ prior.spec2 <-
                        distribution  = "Weibull")
                        
 # Specify prior distribution characteristics for the 
-# \\code{bearingcage} data using an informative quantile 
+# \code{bearingcage} data using an informative quantile 
 # and an informative sigma
 
 prior.spec3 <-

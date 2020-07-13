@@ -4,11 +4,22 @@
 \alias{frame.to.ld}
 \title{Generate a \code{life.data} object}
 \usage{
-frame.to.ld(frame, response.column, censor.column, case.weight.column,
-  failure.mode.column, truncation.type.column, truncation.response.column,
-  time.units = names.the.frame[response.column[1]], x.columns = NULL,
-  xlabel = NULL, data.title = deparse(substitute(frame)),
-  data.note = "", func.call = match.call(), residual.rmd = NULL)
+frame.to.ld(
+  frame,
+  response.column,
+  censor.column,
+  case.weight.column,
+  failure.mode.column,
+  truncation.type.column,
+  truncation.response.column,
+  time.units = names.the.frame[response.column[1]],
+  x.columns = NULL,
+  xlabel = NULL,
+  data.title = deparse(substitute(frame)),
+  data.note = "",
+  func.call = match.call(),
+  residual.rmd = NULL
+)
 }
 \arguments{
 \item{frame}{A \code{data.frame} class object.}

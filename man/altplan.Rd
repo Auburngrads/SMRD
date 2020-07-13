@@ -4,9 +4,20 @@
 \alias{altplan}
 \title{Title}
 \usage{
-altplan(alt.plan.values, plan.type, use.condition, highest.condition,
-  censor.time, quantile = 0.1, xihold = 0.5, pifix = 0.2,
-  pmlim = 0.2, kprint = 0, method = NULL, sample.size = 100)
+altplan(
+  alt.plan.values,
+  plan.type,
+  use.condition,
+  highest.condition,
+  censor.time,
+  quantile = 0.1,
+  xihold = 0.5,
+  pifix = 0.2,
+  pmlim = 0.2,
+  kprint = 0,
+  method = NULL,
+  sample.size = 100
+)
 }
 \arguments{
 \item{alt.plan.values}{}

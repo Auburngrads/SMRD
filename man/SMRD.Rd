@@ -3,11 +3,7 @@
 \docType{package}
 \name{SMRD}
 \alias{SMRD}
-\alias{SMRD-package}
 \title{SMRD: Comprehensive Life-Data Analysis in R}
-\description{
-SMRD: Comprehensive Life-Data Analysis in R
-}
 \details{
 Since its publication, the text Statistical Methods for Reliability Data 
 has been recognized as a foundational resource in analyzing time to event data.  

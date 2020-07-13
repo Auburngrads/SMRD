@@ -4,8 +4,12 @@
 \alias{egeng.mle}
 \title{Title}
 \usage{
-egeng.mle(data.ld, start.distribution = "Weibull", theta.start = NULL,
-  debug1 = F)
+egeng.mle(
+  data.ld,
+  start.distribution = "Weibull",
+  theta.start = NULL,
+  debug1 = F
+)
 }
 \arguments{
 \item{data.ld}{}

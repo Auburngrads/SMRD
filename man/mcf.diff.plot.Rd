@@ -4,12 +4,21 @@
 \alias{mcf.diff.plot}
 \title{Title}
 \usage{
-mcf.diff.plot(data1.rdu, data2.rdu,
-  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, plot.data = F,
-  title.option = GetSMRDDefault("SMRD.TitleOption"), my.title = NULL,
+mcf.diff.plot(
+  data1.rdu,
+  data2.rdu,
+  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
+  plot.data = F,
+  title.option = GetSMRDDefault("SMRD.TitleOption"),
+  my.title = NULL,
   xlab = paste("Time in", get.time.units(data1.rdu)),
-  ylab = "Difference in Mean Cumulative Failures", plot.seg = T,
-  lty = 1, xlim = c(NA, NA), ylim = c(NA, NA), band.type = "p")
+  ylab = "Difference in Mean Cumulative Failures",
+  plot.seg = T,
+  lty = 1,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  band.type = "p"
+)
 }
 \arguments{
 \item{data1.rdu}{}

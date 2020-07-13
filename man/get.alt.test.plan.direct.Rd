@@ -4,9 +4,13 @@
 \alias{get.alt.test.plan.direct}
 \title{Title}
 \usage{
-get.alt.test.plan.direct(accel.variable.levels, number.of.units,
-  censor.times = NULL, accelvar.names = "accel.variable",
-  describe.string = "")
+get.alt.test.plan.direct(
+  accel.variable.levels,
+  number.of.units,
+  censor.times = NULL,
+  accelvar.names = "accel.variable",
+  describe.string = ""
+)
 }
 \arguments{
 \item{accel.variable.levels}{}

@@ -4,14 +4,28 @@
 \alias{compare.mleprobplot}
 \title{Title}
 \usage{
-compare.mleprobplot(data.ld, main.distribution, compare.distribution,
-  gamthr = 0, xlim = c(NA, NA), ylim = c(NA, NA),
-  time.range = c(NA, NA), my.title = NULL, sub.title = NULL,
-  grids = F, linear.axes = F, slope.axis = F, band.type = "none",
+compare.mleprobplot(
+  data.ld,
+  main.distribution,
+  compare.distribution,
+  gamthr = 0,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  time.range = c(NA, NA),
+  my.title = NULL,
+  sub.title = NULL,
+  grids = F,
+  linear.axes = F,
+  slope.axis = F,
+  band.type = "none",
   xlab = get.time.units(data.ld),
-  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, cex = 1.2,
-  title.option = GetSMRDDefault("SMRD.TitleOption"), trunc.correct = T,
-  do.legend = T, plot.censored.ticks = F)
+  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
+  cex = 1.2,
+  title.option = GetSMRDDefault("SMRD.TitleOption"),
+  trunc.correct = T,
+  do.legend = T,
+  plot.censored.ticks = F
+)
 }
 \arguments{
 \item{data.ld}{}

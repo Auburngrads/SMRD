@@ -4,15 +4,33 @@
 \alias{mlehazplot}
 \title{Title}
 \usage{
-mlehazplot(data.ld, distribution, gamthr = 0,
-  xlab = get.time.units(data.ld), xlim = c(NA, NA), ylim = c(NA, NA),
-  time.vec = NULL, conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
-  my.title = NULL, cex = 1, sub.title = NULL, yaxis.line = 8,
-  x.axis = "linear", y.axis = "linear", ylab = NULL, fits = F,
-  grids = F, theta.start = c(NA, NA), parameter.fixed = NULL,
+mlehazplot(
+  data.ld,
+  distribution,
+  gamthr = 0,
+  xlab = get.time.units(data.ld),
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  time.vec = NULL,
+  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
+  my.title = NULL,
+  cex = 1,
+  sub.title = NULL,
+  yaxis.line = 8,
+  x.axis = "linear",
+  y.axis = "linear",
+  ylab = NULL,
+  fits = F,
+  grids = F,
+  theta.start = c(NA, NA),
+  parameter.fixed = NULL,
   title.option = GetSMRDDefault("SMRD.TitleOption"),
-  print.parameters = T, band.type = "p", plotem = T,
-  param.loc = "bottomright", ...)
+  print.parameters = T,
+  band.type = "p",
+  plotem = T,
+  param.loc = "bottomright",
+  ...
+)
 }
 \arguments{
 \item{data.ld}{}

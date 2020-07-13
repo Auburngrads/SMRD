@@ -4,8 +4,15 @@
 \alias{ar1.plot}
 \title{Title}
 \usage{
-ar1.plot(data.rdu, my.title = NULL, xlab = "Interarrival Times",
-  ylab = "Lagged Interarrival Times", nacf = 5, plot.acf = F, ...)
+ar1.plot(
+  data.rdu,
+  my.title = NULL,
+  xlab = "Interarrival Times",
+  ylab = "Lagged Interarrival Times",
+  nacf = 5,
+  plot.acf = F,
+  ...
+)
 }
 \arguments{
 \item{data.rdu}{}

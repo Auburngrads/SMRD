@@ -4,10 +4,49 @@
 \alias{MLSIM2}
 \title{method 2}
 \usage{
-MLSIM2(x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix,
-  nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah,
-  fsder, vcv, r, res, fv, theta, iarray, marray, wtnew, xnew, ynew, iret,
-  retmat, numsim, numret, tspass, lrand, iersim)
+MLSIM2(
+  x,
+  y,
+  cen,
+  wt,
+  nrow,
+  nter,
+  ny,
+  nty,
+  ty,
+  tcodes,
+  kdist,
+  gamthr,
+  lfix,
+  nparm,
+  intcpt,
+  escale,
+  e,
+  maxit,
+  kprint,
+  dscrat,
+  iscrat,
+  devian,
+  thetah,
+  fsder,
+  vcv,
+  r,
+  res,
+  fv,
+  theta,
+  iarray,
+  marray,
+  wtnew,
+  xnew,
+  ynew,
+  iret,
+  retmat,
+  numsim,
+  numret,
+  tspass,
+  lrand,
+  iersim
+)
 }
 \description{
 nonparametric          parametric
@@ -17,9 +56,9 @@ method 2 simulation---nonparametric sampling/parametric inference
 
 must send down a complete data set
 
-parameter meanings same as in wqm_mlboth except the following:
+   parameter meanings same as in wqm_mlboth except the following:
 
-can get rid of scalars like iervcv,ierfit,xlike,nobs
+   can get rid of scalars like iervcv,ierfit,xlike,nobs
 
 theta(nparm)   true value of theta
 
@@ -50,7 +89,8 @@ tspass(33)  should be able to eliminate
 
 lrand     should be able to eliminate
 
+
 iersim  data space too small
 
-need to send down data space big enough to cover all data situations
+  need to send down data space big enough to cover all data situations
 }

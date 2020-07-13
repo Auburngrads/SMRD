@@ -4,8 +4,11 @@
 \alias{parallel.effect}
 \title{Title}
 \usage{
-parallel.effect(xrange = c(0.5, 1), yrange = c(0.8, 1), ncomp = c(1,
-  2, 3, 4, 5))
+parallel.effect(
+  xrange = c(0.5, 1),
+  yrange = c(0.8, 1),
+  ncomp = c(1, 2, 3, 4, 5)
+)
 }
 \arguments{
 \item{xrange}{}

@@ -4,10 +4,23 @@
 \alias{plot.nonparametric.estimate}
 \title{Title}
 \usage{
-\method{plot}{nonparametric.estimate}(x, cdpoints.out, distribution,
-  log.of.data, how.show.fhat, shape, point.cex, pch, point.pch, xlim,
-  col.points = 1, plot.vert.line = T, cex.axis = 1.1,
-  cex.lab = 1.1, ...)
+\method{plot}{nonparametric.estimate}(
+  x,
+  cdpoints.out,
+  distribution,
+  log.of.data,
+  how.show.fhat,
+  shape,
+  point.cex,
+  pch,
+  point.pch,
+  xlim,
+  col.points = 1,
+  plot.vert.line = T,
+  cex.axis = 1.1,
+  cex.lab = 1.1,
+  ...
+)
 }
 \arguments{
 \item{x}{}

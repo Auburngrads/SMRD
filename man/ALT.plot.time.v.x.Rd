@@ -4,13 +4,25 @@
 \alias{ALT.plot.time.v.x}
 \title{Title}
 \usage{
-ALT.plot.time.v.x(results.object, x.of.interest = NULL,
-  plan.values.string = NULL, plan.string = NULL,
-  quantile.list = c(0.5), ylim = c(NA, NA), xlim = c(NA, NA),
-  xlab = NULL, ylab = NULL, my.title = NULL,
-  title.option = GetSMRDDefault("SMRD.TitleOption"), grids = F,
-  numplotsim = 50, nxpoints = 60, response.on.yaxis = T, cex = 1,
-  focus.variable = 1)
+ALT.plot.time.v.x(
+  results.object,
+  x.of.interest = NULL,
+  plan.values.string = NULL,
+  plan.string = NULL,
+  quantile.list = c(0.5),
+  ylim = c(NA, NA),
+  xlim = c(NA, NA),
+  xlab = NULL,
+  ylab = NULL,
+  my.title = NULL,
+  title.option = GetSMRDDefault("SMRD.TitleOption"),
+  grids = F,
+  numplotsim = 50,
+  nxpoints = 60,
+  response.on.yaxis = T,
+  cex = 1,
+  focus.variable = 1
+)
 }
 \arguments{
 \item{results.object}{}

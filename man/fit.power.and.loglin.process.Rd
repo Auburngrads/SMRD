@@ -4,9 +4,13 @@
 \alias{fit.power.and.loglin.process}
 \title{Title}
 \usage{
-fit.power.and.loglin.process(data.rdu, start.gamma1 = 0.001,
+fit.power.and.loglin.process(
+  data.rdu,
+  start.gamma1 = 0.001,
   xlab = paste("Age in", get.time.units(data.rdu)),
-  ylab = "Mean Cumulative Failures", plot.seg = T)
+  ylab = "Mean Cumulative Failures",
+  plot.seg = T
+)
 }
 \arguments{
 \item{data.rdu}{}

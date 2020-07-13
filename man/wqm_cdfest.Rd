@@ -5,8 +5,32 @@
 \alias{WQMCDFEST}
 \title{Compute Nonparametric CDF Estimates}
 \usage{
-WQMCDFEST(y, ny, codes, weight, ty, nty, tcodes, n, nstart, dscrat, scrat,
-  iscrat, kprint, maxit, tol, maxmsd, p, q, prob, sd, m, pchmax, lsd, ier)
+WQMCDFEST(
+  y,
+  ny,
+  codes,
+  weight,
+  ty,
+  nty,
+  tcodes,
+  n,
+  nstart,
+  dscrat,
+  scrat,
+  iscrat,
+  kprint,
+  maxit,
+  tol,
+  maxmsd,
+  p,
+  q,
+  prob,
+  sd,
+  m,
+  pchmax,
+  lsd,
+  ier
+)
 }
 \arguments{
 \item{y}{Numeric matrix \code{[n x ny]} containing the lower and upper limits for group

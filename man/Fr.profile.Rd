@@ -4,9 +4,16 @@
 \alias{Fr.profile}
 \title{Title}
 \usage{
-Fr.profile(fcn, gmle.out, nlevels = 10, lowest.conf.level = 0.1,
+Fr.profile(
+  fcn,
+  gmle.out,
+  nlevels = 10,
+  lowest.conf.level = 0.1,
   xlab = as.character(substitute(fcn)),
-  distribution = gmle.out$model$distribution, subtitle = " ", ...)
+  distribution = gmle.out$model$distribution,
+  subtitle = " ",
+  ...
+)
 }
 \arguments{
 \item{fcn}{}

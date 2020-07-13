@@ -4,9 +4,15 @@
 \alias{plotRiskSet}
 \title{Title}
 \usage{
-plotRiskSet(data.rdu, xlab = paste("Time in", get.time.units(data.rdu)),
+plotRiskSet(
+  data.rdu,
+  xlab = paste("Time in", get.time.units(data.rdu)),
   ylab = ifelse(proportion, "Proportion at Risk", "Number in Risk Set"),
-  proportion = F, plot.average = T, my.title = NULL, JustEvent = F)
+  proportion = F,
+  plot.average = T,
+  my.title = NULL,
+  JustEvent = F
+)
 }
 \arguments{
 \item{data.rdu}{}

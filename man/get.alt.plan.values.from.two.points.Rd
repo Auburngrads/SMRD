@@ -4,9 +4,18 @@
 \alias{get.alt.plan.values.from.two.points}
 \title{Title}
 \usage{
-get.alt.plan.values.from.two.points(distribution, relationship, probs,
-  accelvar, censor.time, beta, sigma, time.units = "Time",
-  accelvar.units, power = NULL)
+get.alt.plan.values.from.two.points(
+  distribution,
+  relationship,
+  probs,
+  accelvar,
+  censor.time,
+  beta,
+  sigma,
+  time.units = "Time",
+  accelvar.units,
+  power = NULL
+)
 }
 \arguments{
 \item{distribution}{}

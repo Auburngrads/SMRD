@@ -4,12 +4,31 @@
 \alias{simple.contour}
 \title{Create a contour plots of a likelihood function}
 \usage{
-simple.contour(data.ld, distribution, xlim = c(NA, NA), ylim = c(NA,
-  NA), size = 100, quantile = NA, show.confidence = TRUE,
-  contour.indicators = NULL, zoom.level = 3.5, show.mle = T,
-  my.title = NULL, threeD = F, direction = NULL, profile = NULL,
-  lwd = 1, elevation = NULL, distance = NULL, original.par = T,
-  log.quantile = F, log.axis = T, add = F, ...)
+simple.contour(
+  data.ld,
+  distribution,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  size = 100,
+  static = F,
+  quantile = NA,
+  show.confidence = TRUE,
+  contour.indicators = NULL,
+  zoom.level = 3.5,
+  show.mle = T,
+  my.title = NULL,
+  threeD = F,
+  direction = NULL,
+  profile = NULL,
+  lwd = 1,
+  elevation = NULL,
+  distance = NULL,
+  original.par = T,
+  log.quantile = F,
+  log.axis = T,
+  add = F,
+  ...
+)
 }
 \arguments{
 \item{data.ld}{}

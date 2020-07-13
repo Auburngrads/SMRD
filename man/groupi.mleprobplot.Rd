@@ -4,21 +4,42 @@
 \alias{groupi.mleprobplot}
 \title{Title}
 \usage{
-groupi.mleprobplot(data.ld, distribution, gamthr = 0,
+groupi.mleprobplot(
+  data.ld,
+  distribution,
+  gamthr = 0,
   stresses = get.x.markers(data.ld, group.var = group.var, do.order = T),
-  group.var = 1, xlab = get.time.units(data.ld),
+  group.var = 1,
+  xlab = get.time.units(data.ld),
   ylab = GetSMRDDefault("SMRD.LabelOnYaxis"),
-  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, xlim = c(NA, NA),
-  ylim = c(NA, NA), time.range = c(NA, NA), dump = 1, grids = F,
-  my.title = NULL, cex = 1.2, linear.axes = F,
+  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  time.range = c(NA, NA),
+  dump = 1,
+  grids = F,
+  my.title = NULL,
+  cex = 1,
+  linear.axes = F,
   title.option = GetSMRDDefault("SMRD.TitleOption"),
-  pch = (1:(length(stresses) + 1))[-2], lty = NULL, ci.list = NULL,
-  lwd = rep(2, length(stresses)), plot.censored.ticks = F,
-  trunc.correct = T, col.fhat.vec = (1:(length(stresses) +
-  length(col.ci)))[-col.ci], col.ci = 4, shape = NULL,
-  do.legend = "On plot", stresses.limit = 18, plotem = rep(T,
-  length(stresses)), check.level = SMRDOptions("SMRD.DataCheck"),
-  title.line.adj = -2, ...)
+  pch = (1:(length(stresses) + 1))[-2],
+  lty = NULL,
+  ci.list = NULL,
+  lwd = rep(2, length(stresses)),
+  plot.censored.ticks = F,
+  trunc.correct = T,
+  col.fhat.vec = (1:(length(stresses) + length(col.ci)))[-col.ci],
+  col.ci = 4,
+  shape = NULL,
+  do.legend = "On plot",
+  stresses.limit = 18,
+  plotem = rep(T, length(stresses)),
+  check.level = SMRDOptions("SMRD.DataCheck"),
+  title.line.adj = -2,
+  mar = c(4.5, 5.25, 3.5, 12.1),
+  bty = if (grids) "o" else "L",
+  ...
+)
 }
 \arguments{
 \item{data.ld}{}

@@ -4,10 +4,48 @@
 \alias{WQMCPOINTS}
 \title{Wrapper for wqm_cpoints}
 \usage{
-WQMCPOINTS(y, ny, codes, codes2, weight, weight2, ty, nty, tcodes, n,
-  nstart, dscrat, scrat, iscrat, iprint, maxit, tol, maxmsd, p, q, prob,
-  sd, m, pchmax, lsd, ier, ilcv, iucv, iltv, iutv, iorder, xlcen, xrcen,
-  fail, xltru, xrtru, ys, pgrad, s, probd)
+WQMCPOINTS(
+  y,
+  ny,
+  codes,
+  codes2,
+  weight,
+  weight2,
+  ty,
+  nty,
+  tcodes,
+  n,
+  nstart,
+  dscrat,
+  scrat,
+  iscrat,
+  iprint,
+  maxit,
+  tol,
+  maxmsd,
+  p,
+  q,
+  prob,
+  sd,
+  m,
+  pchmax,
+  lsd,
+  ier,
+  ilcv,
+  iucv,
+  iltv,
+  iutv,
+  iorder,
+  xlcen,
+  xrcen,
+  fail,
+  xltru,
+  xrtru,
+  ys,
+  pgrad,
+  s,
+  probd
+)
 }
 \description{
 Wrapper for wqm_cpoints

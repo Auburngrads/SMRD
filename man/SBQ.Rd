@@ -4,8 +4,21 @@
 \alias{SBQ}
 \title{Wrapper for mapping beta to a quantile??? not clear why needed}
 \usage{
-SBQ(ndist1, ndist2, stress, alpha, beta0, beta1, sigma, ugamma, sdgamma,
-  bd1, bd2, quan, kprint)
+SBQ(
+  ndist1,
+  ndist2,
+  stress,
+  alpha,
+  beta0,
+  beta1,
+  sigma,
+  ugamma,
+  sdgamma,
+  bd1,
+  bd2,
+  quan,
+  kprint
+)
 }
 \description{
 Wrapper for mapping beta to a quantile??? not clear why needed

@@ -4,11 +4,16 @@
 \alias{print.gmle.out}
 \title{Title}
 \usage{
-\method{print}{gmle.out}(x,
+\method{print}{gmle.out}(
+  x,
   conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
   digits = GetSMRDDefault("SMRD.DigitsPrinted"),
-  print.vcv = GetSMRDDefault("SMRD.LongPrint"), add.title = NULL,
-  quote = T, prefix = "", ...)
+  print.vcv = GetSMRDDefault("SMRD.LongPrint"),
+  add.title = NULL,
+  quote = T,
+  prefix = "",
+  ...
+)
 }
 \arguments{
 \item{x}{}

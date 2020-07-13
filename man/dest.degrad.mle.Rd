@@ -4,10 +4,17 @@
 \alias{dest.degrad.mle}
 \title{Title}
 \usage{
-dest.degrad.mle(data.ddd, distribution, transformation.response,
-  transformation.x, transformation.time,
-  group.var = 1:ncol(xmat(data.ddd)), debug1 = map.SMRDDebugLevel() >=
-  4, theta.start = NULL, power = NULL)
+dest.degrad.mle(
+  data.ddd,
+  distribution,
+  transformation.response,
+  transformation.x,
+  transformation.time,
+  group.var = 1:ncol(xmat(data.ddd)),
+  debug1 = map.SMRDDebugLevel() >= 4,
+  theta.start = NULL,
+  power = NULL
+)
 }
 \arguments{
 \item{data.ddd}{}

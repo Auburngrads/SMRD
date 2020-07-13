@@ -4,9 +4,14 @@
 \alias{design.plot}
 \title{Title}
 \usage{
-design.plot(data.ld, x.cols = c(1, 2),
+design.plot(
+  data.ld,
+  x.cols = c(1, 2),
   xlab = get.x.columns(data.ld)[x.cols[1]],
-  ylab = get.x.columns(data.ld)[x.cols[2]], pch = 16, cex = 1.5)
+  ylab = get.x.columns(data.ld)[x.cols[2]],
+  pch = 16,
+  cex = 1.5
+)
 }
 \arguments{
 \item{data.ld}{}

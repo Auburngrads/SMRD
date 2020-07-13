@@ -4,18 +4,33 @@
 \alias{life.test.simulation}
 \title{Perform a life test simulation using planning values}
 \usage{
-life.test.simulation(plan.values, n, censor.time = NULL,
-  censor.number = NULL, my.title, number.sim = 2000,
-  quantile.mark = NULL, number.points = 20, perc.low = 0.005,
-  perc.high = 0.995, cex = 1, xlim = c(NA, NA), ylim = NULL,
+life.test.simulation(
+  plan.values,
+  n,
+  censor.time = NULL,
+  censor.number = NULL,
+  my.title,
+  number.sim = 2000,
+  quantile.mark = NULL,
+  number.points = 20,
+  perc.low = 0.005,
+  perc.high = 0.995,
+  cex = 1,
+  xlim = c(NA, NA),
+  ylim = NULL,
   title.option = GetSMRDDefault("SMRD.TitleOption"),
-  xlab = plan.values$time.units, print.bad.count = T,
-  max.lines.to.plot = min(50, number.sim), save.data.list = NULL,
-  number.detail = 5, force.from.gui = F,
+  xlab = plan.values$time.units,
+  print.bad.count = T,
+  max.lines.to.plot = min(50, number.sim),
+  save.data.list = NULL,
+  number.detail = 5,
+  force.from.gui = F,
   conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
   show.histogram = TRUE,
   band.method = GetSMRDDefault("SMRD.ConfidenceBandMethod"),
-  mono.tran = FALSE, ...)
+  mono.tran = FALSE,
+  ...
+)
 }
 \arguments{
 \item{plan.values}{}

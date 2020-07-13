@@ -4,10 +4,19 @@
 \alias{distribution.plot}
 \title{Create a four-panel distribution plot}
 \usage{
-distribution.plot(distribution, shape, prob.range = c(0.01, 0.99),
-  number.points = 1000, scale = rep(1, length(shape)),
-  location = rep(0, length(shape)), shape2 = 1, exponential2 = T,
-  cex = 16, lwd = 1.5, ...)
+distribution.plot(
+  distribution,
+  shape,
+  prob.range = c(0.01, 0.99),
+  number.points = 1000,
+  scale = rep(1, length(shape)),
+  location = rep(0, length(shape)),
+  shape2 = 1,
+  exponential2 = T,
+  cex = 16,
+  lwd = 1.5,
+  ...
+)
 }
 \arguments{
 \item{distribution}{Generates an array of ggplot2 grobs showing

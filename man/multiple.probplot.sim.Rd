@@ -4,9 +4,13 @@
 \alias{multiple.probplot.sim}
 \title{Title}
 \usage{
-multiple.probplot.sim(distribution = "normal", parameter = 1,
-  sample.size.vec = c(10, 20, 40), number.simulations = 5,
-  my.title = NULL)
+multiple.probplot.sim(
+  distribution = "normal",
+  parameter = 1,
+  sample.size.vec = c(10, 20, 40),
+  number.simulations = 5,
+  my.title = NULL
+)
 }
 \arguments{
 \item{distribution}{}

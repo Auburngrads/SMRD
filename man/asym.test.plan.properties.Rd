@@ -4,8 +4,12 @@
 \alias{asym.test.plan.properties}
 \title{Title}
 \usage{
-asym.test.plan.properties(plan.values, n, proportion.failing,
-  quantiles = c(0.1, 0.3, 0.5, 0.632))
+asym.test.plan.properties(
+  plan.values,
+  n,
+  proportion.failing,
+  quantiles = c(0.1, 0.3, 0.5, 0.632)
+)
 }
 \arguments{
 \item{plan.values}{}

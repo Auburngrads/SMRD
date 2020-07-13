@@ -4,8 +4,13 @@
 \alias{parallel.dep.effect}
 \title{Title}
 \usage{
-parallel.dep.effect(xrange = c(0.5, 0.999), yrange = c(0.8, 1),
-  mu = logb(10), sd = 1, rho = c(0, 0.4, 0.7, 0.9, 1))
+parallel.dep.effect(
+  xrange = c(0.5, 0.999),
+  yrange = c(0.8, 1),
+  mu = logb(10),
+  sd = 1,
+  rho = c(0, 0.4, 0.7, 0.9, 1)
+)
 }
 \arguments{
 \item{xrange}{}

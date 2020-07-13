@@ -6,10 +6,32 @@
 variance. Created by Huaiqing Wu & William Q. 
 Meeker, Iowa State University}
 \usage{
-XXMCF(numrecurr, timeofrecurr, krecurrid, dcost, muniqrecurr, tuniq,
-  apoint, lnumrecurr, delta, nunitsgroups, wpoint, nwindows, twindowsl,
-  twindowsu, wcounts, inwindowj, muhat, varhat, dbar, iordl, iordu, iorder,
-  iscrat, kdebug)
+XXMCF(
+  numrecurr,
+  timeofrecurr,
+  krecurrid,
+  dcost,
+  muniqrecurr,
+  tuniq,
+  apoint,
+  lnumrecurr,
+  delta,
+  nunitsgroups,
+  wpoint,
+  nwindows,
+  twindowsl,
+  twindowsu,
+  wcounts,
+  inwindowj,
+  muhat,
+  varhat,
+  dbar,
+  iordl,
+  iordu,
+  iorder,
+  iscrat,
+  kdebug
+)
 }
 \description{
 Computes the sample MCF and its robust sample 

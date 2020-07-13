@@ -4,15 +4,33 @@
 \alias{mfmc.mleprobplot}
 \title{Title}
 \usage{
-mfmc.mleprobplot(data.ld, distribution, xlab = get.time.units(data.ld),
-  ylab = GetSMRDDefault("SMRD.LabelOnYaxis"), xlim = c(NA, NA),
-  ylim = c(NA, NA), time.range = c(NA, NA), time.vector.length = 20,
-  dump = 1, grids = F, cex = 1.2, linear.axes = F,
-  plot.censored.ticks = F, ci.list = NULL, cex.points = 1.2,
-  shape = NULL, do.legend = "On plot",
+mfmc.mleprobplot(
+  data.ld,
+  distribution,
+  xlab = get.time.units(data.ld),
+  ylab = GetSMRDDefault("SMRD.LabelOnYaxis"),
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  time.range = c(NA, NA),
+  time.vector.length = 20,
+  dump = 1,
+  grids = F,
+  cex = 1.2,
+  linear.axes = F,
+  plot.censored.ticks = F,
+  ci.list = NULL,
+  cex.points = 1.2,
+  shape = NULL,
+  do.legend = "On plot",
   conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
-  band.type = "pointwise", col.ci = 4, lwd.ci = 2,
-  show.individual = T, slope.axis = F, cexlab = 1.5, ...)
+  band.type = "pointwise",
+  col.ci = 4,
+  lwd.ci = 2,
+  show.individual = T,
+  slope.axis = F,
+  cexlab = 1.5,
+  ...
+)
 }
 \arguments{
 \item{data.ld}{}

@@ -5,8 +5,28 @@
 \alias{APLAN}
 \title{Generate accelerated life test plans with specified characteristics.}
 \usage{
-APLAN(ap, b1p, b2p, thet1p, pvalp, knownp, idistp, ioptsp, ioptap, ioptmp,
-  pifixp, zholdp, pmlimp, zp, pip, fpp, pqp, var, iprinp, ier)
+APLAN(
+  ap,
+  b1p,
+  b2p,
+  thet1p,
+  pvalp,
+  knownp,
+  idistp,
+  ioptsp,
+  ioptap,
+  ioptmp,
+  pifixp,
+  zholdp,
+  pmlimp,
+  zp,
+  pip,
+  fpp,
+  pqp,
+  var,
+  iprinp,
+  ier
+)
 }
 \arguments{
 \item{ap}{Standardized intercept}

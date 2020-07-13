@@ -4,8 +4,13 @@
 \alias{get.alt.test.plan.frame}
 \title{Title}
 \usage{
-get.alt.test.plan.frame(frame, levels.columns, censor.column,
-  allocation.column, describe.string = "")
+get.alt.test.plan.frame(
+  frame,
+  levels.columns,
+  censor.column,
+  allocation.column,
+  describe.string = ""
+)
 }
 \arguments{
 \item{frame}{}

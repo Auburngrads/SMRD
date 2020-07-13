@@ -4,9 +4,20 @@
 \alias{get.alt.plan.values.from.slope.and.point}
 \title{Title}
 \usage{
-get.alt.plan.values.from.slope.and.point(distribution, relationship, slope,
-  probs, accelvar, censor.time, beta, sigma, time.units = "Time",
-  accelvar.units, power = NULL, use.conditions = NULL)
+get.alt.plan.values.from.slope.and.point(
+  distribution,
+  relationship,
+  slope,
+  probs,
+  accelvar,
+  censor.time,
+  beta,
+  sigma,
+  time.units = "Time",
+  accelvar.units,
+  power = NULL,
+  use.conditions = NULL
+)
 }
 \arguments{
 \item{distribution}{}

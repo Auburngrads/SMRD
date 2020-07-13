@@ -4,8 +4,11 @@
 \alias{series.effect}
 \title{Title}
 \usage{
-series.effect(xrange = c(0.98, 1), yrange = c(0, 1), ncomp = c(1, 10,
-  25, 50, 100, 200, 400))
+series.effect(
+  xrange = c(0.98, 1),
+  yrange = c(0, 1),
+  ncomp = c(1, 10, 25, 50, 100, 200, 400)
+)
 }
 \arguments{
 \item{xrange}{}

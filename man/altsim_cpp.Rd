@@ -4,10 +4,50 @@
 \alias{ALTSIM}
 \title{Parametric accelerated life test simulation}
 \usage{
-ALTSIM(x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes, kdist, gamthr, lfix,
-  nparm, intcpt, escale, e, maxit, kprint, dscrat, iscrat, devian, thetah,
-  fsder, vcv, r, res, fv, theta, xnew, ynew, centim, acvar, nsubex, nacvar,
-  nsamsz, krfail, kctype, retmat, numret, numsim, iersim)
+ALTSIM(
+  x,
+  y,
+  cen,
+  wt,
+  nrow,
+  nter,
+  ny,
+  nty,
+  ty,
+  tcodes,
+  kdist,
+  gamthr,
+  lfix,
+  nparm,
+  intcpt,
+  escale,
+  e,
+  maxit,
+  kprint,
+  dscrat,
+  iscrat,
+  devian,
+  thetah,
+  fsder,
+  vcv,
+  r,
+  res,
+  fv,
+  theta,
+  xnew,
+  ynew,
+  centim,
+  acvar,
+  nsubex,
+  nacvar,
+  nsamsz,
+  krfail,
+  kctype,
+  retmat,
+  numret,
+  numsim,
+  iersim
+)
 }
 \arguments{
 \item{thetah}{(nparm) space for thetahat}

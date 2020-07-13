@@ -4,8 +4,15 @@
 \alias{Fr.conf}
 \title{Title}
 \usage{
-Fr.conf(fcn, fcn.arg2, gmle.out, extrapolate = F, ptwise.if.simult = F,
-  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, ...)
+Fr.conf(
+  fcn,
+  fcn.arg2,
+  gmle.out,
+  extrapolate = F,
+  ptwise.if.simult = F,
+  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
+  ...
+)
 }
 \arguments{
 \item{fcn}{}

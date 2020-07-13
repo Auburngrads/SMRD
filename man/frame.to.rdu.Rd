@@ -4,13 +4,21 @@
 \alias{frame.to.rdu}
 \title{Title}
 \usage{
-frame.to.rdu(frame, time.column, ID.column, cost.count.column,
-  event.column, time.units = names.the.frame[time.column[1]],
+frame.to.rdu(
+  frame,
+  time.column,
+  ID.column,
+  cost.count.column,
+  event.column,
+  time.units = names.the.frame[time.column[1]],
   failure.censor.names = GetSMRDDefault("SMRD.FailName"),
   right.censor.names = GetSMRDDefault("SMRD.RcName"),
   left.censor.names = GetSMRDDefault("SMRD.LcName"),
-  interval.censor.names = GetSMRDDefault("SMRD.IcName"), data.title,
-  data.note = "", skip = 0)
+  interval.censor.names = GetSMRDDefault("SMRD.IcName"),
+  data.title,
+  data.note = "",
+  skip = 0
+)
 }
 \arguments{
 \item{frame}{}

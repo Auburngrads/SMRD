@@ -4,12 +4,24 @@
 \alias{ADDT.plot.Deg.v.Time}
 \title{Title}
 \usage{
-ADDT.plot.Deg.v.Time(results.object, x.of.interest = NULL,
-  FailLevel = NULL, plan.values.string = NULL, plan.string = NULL,
-  quantile = 0.5, ylim = c(NA, NA), xlim = c(NA, NA), xlab = NULL,
-  ylab = NULL, my.title = NULL,
-  title.option = GetSMRDDefault("SMRD.TitleOption"), grids = F,
-  numplotsim = 50, nxpoints = 50, cex = 1)
+ADDT.plot.Deg.v.Time(
+  results.object,
+  x.of.interest = NULL,
+  FailLevel = NULL,
+  plan.values.string = NULL,
+  plan.string = NULL,
+  quantile = 0.5,
+  ylim = c(NA, NA),
+  xlim = c(NA, NA),
+  xlab = NULL,
+  ylab = NULL,
+  my.title = NULL,
+  title.option = GetSMRDDefault("SMRD.TitleOption"),
+  grids = F,
+  numplotsim = 50,
+  nxpoints = 50,
+  cex = 1
+)
 }
 \arguments{
 \item{results.object}{}

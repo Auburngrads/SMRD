@@ -4,9 +4,17 @@
 \alias{zero.failure.plan}
 \title{Number of test time units needed for minimum-sized demonstration}
 \usage{
-zero.failure.plan(betavec = c(0.8, 1, 1.5, 2, 3), quantile = 0.1,
-  conlev = 0.99, krange = c(1.5, 4), xlim = NULL, ylim = NULL,
-  grid = F, bw = FALSE, my.title = NULL)
+zero.failure.plan(
+  betavec = c(0.8, 1, 1.5, 2, 3),
+  quantile = 0.1,
+  conlev = 0.99,
+  krange = c(1.5, 4),
+  xlim = NULL,
+  ylim = NULL,
+  grid = F,
+  bw = FALSE,
+  my.title = NULL
+)
 }
 \arguments{
 \item{betavec}{}

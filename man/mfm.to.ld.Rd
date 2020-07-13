@@ -4,8 +4,13 @@
 \alias{mfm.to.ld}
 \title{Title}
 \usage{
-mfm.to.ld(data.ld, modes = NULL, prefix = NULL, allow.poor.data = T,
-  do.assign = T)
+mfm.to.ld(
+  data.ld,
+  modes = NULL,
+  prefix = NULL,
+  allow.poor.data = T,
+  do.assign = T
+)
 }
 \arguments{
 \item{data.ld}{}

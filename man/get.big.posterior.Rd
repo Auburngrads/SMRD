@@ -4,9 +4,13 @@
 \alias{get.big.posterior}
 \title{Title}
 \usage{
-get.big.posterior(specifications.for.prior, data.ld = NULL,
-  explan.vars = NULL, number.in.init.prior = number.needed,
-  number.needed = 4000)
+get.big.posterior(
+  specifications.for.prior,
+  data.ld = NULL,
+  explan.vars = NULL,
+  number.in.init.prior = number.needed,
+  number.needed = 4000
+)
 }
 \arguments{
 \item{specifications.for.prior}{}
@@ -25,7 +29,7 @@ Title
 \examples{
 \dontrun{
 # Specify prior distribution characteristics for the 
-# \\code{bearingcage} data using a non-informative quantile 
+# \code{bearingcage} data using a non-informative quantile 
 # and a noninformative sigma
 
 prior.spec1 <-
@@ -39,7 +43,7 @@ prior.spec1 <-
                        distribution = "Weibull")
                        
 # Specify prior distribution characteristics for the 
-# \\code{bearingcage} data using a noninformative quantile 
+# \code{bearingcage} data using a noninformative quantile 
 # and an informative sigma
 
 prior.spec2 <-
@@ -53,7 +57,7 @@ prior.spec2 <-
                        distribution  = "Weibull")
                        
 # Specify prior distribution characteristics for the 
-# \\code{bearingcage} data using an informative quantile 
+# \code{bearingcage} data using an informative quantile 
 # and an informative sigma
 
 prior.spec3 <-

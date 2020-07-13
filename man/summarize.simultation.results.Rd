@@ -4,13 +4,27 @@
 \alias{summarize.simultation.results}
 \title{Title}
 \usage{
-summarize.simultation.results(results.object, task, marginal.on.fq1 = T,
-  marginal.on.fq2 = T, focus.quantity1, focus.quantity.detail1,
-  x.of.interest1 = NA, focus.quantity2, focus.quantity.detail2,
-  x.of.interest2 = NA, plot.type = "histogram",
-  number.points.plot = 500, xlim = c(NA, NA), ylim = c(NA, NA),
-  my.title = NULL, xlab = NULL, ylab = NULL, filter.bad = TRUE,
-  ...)
+summarize.simultation.results(
+  results.object,
+  task,
+  marginal.on.fq1 = T,
+  marginal.on.fq2 = T,
+  focus.quantity1,
+  focus.quantity.detail1,
+  x.of.interest1 = NA,
+  focus.quantity2,
+  focus.quantity.detail2,
+  x.of.interest2 = NA,
+  plot.type = "histogram",
+  number.points.plot = 500,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  my.title = NULL,
+  xlab = NULL,
+  ylab = NULL,
+  filter.bad = TRUE,
+  ...
+)
 }
 \arguments{
 \item{results.object}{}

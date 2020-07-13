@@ -4,11 +4,25 @@
 \alias{altsimReturnFrame}
 \title{Title}
 \usage{
-altsimReturnFrame(accel.var.mat, nsamsz, centim, theta, distribution,
-  relationship, time.units = "Time", kctype = 1, escale = 10000,
-  e = rep(1e-04, number.parameters), parameter.fixed = rep(F,
-  number.parameters), intercept = T, kprint = 0, maxit = 500,
-  debug1 = F, randomize = T, my.title = NULL)
+altsimReturnFrame(
+  accel.var.mat,
+  nsamsz,
+  centim,
+  theta,
+  distribution,
+  relationship,
+  time.units = "Time",
+  kctype = 1,
+  escale = 10000,
+  e = rep(1e-04, number.parameters),
+  parameter.fixed = rep(F, number.parameters),
+  intercept = T,
+  kprint = 0,
+  maxit = 500,
+  debug1 = F,
+  randomize = T,
+  my.title = NULL
+)
 }
 \arguments{
 \item{accel.var.mat}{}

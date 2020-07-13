@@ -4,10 +4,20 @@
 \alias{parametric.bootstrap}
 \title{Title}
 \usage{
-parametric.bootstrap(data.ld, distribution, number.sim, escale = 10000,
-  e = rep(1e-04, number.parameters), parameter.fixed = rep(F,
-  number.parameters), intercept = T, kprint = 0, maxit = 500,
-  max.sim.scratch.space = 1000, debug1 = F, randomize = T)
+parametric.bootstrap(
+  data.ld,
+  distribution,
+  number.sim,
+  escale = 10000,
+  e = rep(1e-04, number.parameters),
+  parameter.fixed = rep(F, number.parameters),
+  intercept = T,
+  kprint = 0,
+  maxit = 500,
+  max.sim.scratch.space = 1000,
+  debug1 = F,
+  randomize = T
+)
 }
 \arguments{
 \item{data.ld}{}

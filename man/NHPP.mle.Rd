@@ -4,8 +4,14 @@
 \alias{NHPP.mle}
 \title{Title}
 \usage{
-NHPP.mle(data.rdu, form = "power rule", debug1 = 0,
-  theta.start = c(NA, NA), kprint = 0, ...)
+NHPP.mle(
+  data.rdu,
+  form = "power rule",
+  debug1 = 0,
+  theta.start = c(NA, NA),
+  kprint = 0,
+  ...
+)
 }
 \arguments{
 \item{data.rdu}{}

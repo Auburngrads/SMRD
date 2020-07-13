@@ -4,9 +4,15 @@
 \alias{residual.plots}
 \title{Title}
 \usage{
-residual.plots(results.out, which.plot = "All", x.to.plot = NULL,
-  my.title = NULL, xlim = c(NA, NA), ylim = c(NA, NA),
-  fvquant = 0.5)
+residual.plots(
+  results.out,
+  which.plot = "All",
+  x.to.plot = NULL,
+  my.title = NULL,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  fvquant = 0.5
+)
 }
 \arguments{
 \item{results.out}{}

@@ -5,8 +5,19 @@
 \title{Compute the risk set for a recurrence process within 
 observation windows.}
 \usage{
-RISKSET(muniqrecurr, tuniq, nwindows, twindowsl, twindowsu, wcounts, iordl,
-  iordu, delta, kdebug, iscrat)
+RISKSET(
+  muniqrecurr,
+  tuniq,
+  nwindows,
+  twindowsl,
+  twindowsu,
+  wcounts,
+  iordl,
+  iordu,
+  delta,
+  kdebug,
+  iscrat
+)
 }
 \arguments{
 \item{muniqrecurr}{number of unique recurrence times}

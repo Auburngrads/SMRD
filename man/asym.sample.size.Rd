@@ -4,8 +4,15 @@
 \alias{asym.sample.size}
 \title{Title}
 \usage{
-asym.sample.size(plan.values, quantile.of.interest, Rvalue = NULL,
-  HalfWidth = NULL, censor.time, fraction.failing, conf.level = 0.95)
+asym.sample.size(
+  plan.values,
+  quantile.of.interest,
+  Rvalue = NULL,
+  HalfWidth = NULL,
+  censor.time,
+  fraction.failing,
+  conf.level = 0.95
+)
 }
 \arguments{
 \item{plan.values}{}

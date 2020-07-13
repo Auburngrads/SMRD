@@ -4,8 +4,13 @@
 \alias{PredictTable}
 \title{Title}
 \usage{
-PredictTable(mlest.out, FtimeStart, FtimeEnd, warranty.time = Inf,
-  print.total = TRUE)
+PredictTable(
+  mlest.out,
+  FtimeStart,
+  FtimeEnd,
+  warranty.time = Inf,
+  print.total = TRUE
+)
 }
 \arguments{
 \item{mlest.out}{}

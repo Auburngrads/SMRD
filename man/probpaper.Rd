@@ -4,12 +4,26 @@
 \alias{probpaper}
 \title{Title}
 \usage{
-probpaper(distribution, xlab = "Time", xlim = c(1, 10),
-  ylim = c(0.011, 0.99), original.par = F, my.title = NULL,
-  cex = 1, cex.labs = 1.1, cex.tic.lab = 1, cex.title = cex.labs,
-  sub.title = NULL, grids = FALSE, linear.axes = F, slope.axis = F,
-  title.option = "blank", shape = NULL, draw.line = F,
-  ylab = GetSMRDDefault("SMRD.LabelOnYaxis"))
+probpaper(
+  distribution,
+  xlab = "Time",
+  xlim = c(1, 10),
+  ylim = c(0.011, 0.99),
+  original.par = F,
+  my.title = NULL,
+  cex = 1,
+  cex.labs = 1.1,
+  cex.tic.lab = 1,
+  cex.title = cex.labs,
+  sub.title = NULL,
+  grids = FALSE,
+  linear.axes = F,
+  slope.axis = F,
+  title.option = "blank",
+  shape = NULL,
+  draw.line = F,
+  ylab = GetSMRDDefault("SMRD.LabelOnYaxis")
+)
 }
 \arguments{
 \item{distribution}{}

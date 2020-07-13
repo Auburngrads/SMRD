@@ -4,20 +4,51 @@
 \alias{groupm.mleprobplot}
 \title{Title}
 \usage{
-groupm.mleprobplot(data.ld, distribution, formula = NULL,
-  group.var = 1:ncol(xmat(data.ld)), xlab = get.time.units(data.ld),
+groupm.mleprobplot(
+  data.ld,
+  distribution,
+  formula = NULL,
+  group.var = 1:ncol(xmat(data.ld)),
+  xlab = get.time.units(data.ld),
   ylab = GetSMRDDefault("SMRD.LabelOnYaxis"),
-  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100, xlim = c(NA, NA),
-  ylim = c(NA, NA), relationship = NULL, power = NULL, dump = 0,
-  mle.intervals = F, cex = 1.2, grids = F, slope.axis = F,
-  linear.axes = F, lty = NULL, plot.censored.ticks = F,
-  time.range = c(NA, NA), shape = NULL, ci.list = NULL, col.ci = 4,
-  printem = F, trunc.correct = T, include.interaction = F,
-  new.data = NULL, plotem = T, do.legend = "On plot",
-  stresses.limit = 18, number.points = 55, plotted = rep(T,
-  length(stresses.plus)), from.six.plot = F, debug1 = F,
-  theta.start = NULL, parameter.fixed = NULL, compute.subsets = T,
-  check.level = SMRDOptions("SMRD.DataCheck"), title.line.adj, ...)
+  conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  relationship = NULL,
+  power = NULL,
+  dump = 0,
+  mle.intervals = F,
+  cex = 1,
+  grids = F,
+  slope.axis = F,
+  linear.axes = F,
+  lty = NULL,
+  plot.censored.ticks = F,
+  time.range = c(NA, NA),
+  shape = NULL,
+  ci.list = NULL,
+  col.ci = 4,
+  printem = F,
+  trunc.correct = T,
+  include.interaction = F,
+  new.data = NULL,
+  plotem = T,
+  do.legend = "On plot",
+  stresses.limit = 18,
+  number.points = 55,
+  plotted = rep(T, length(stresses.plus)),
+  from.six.plot = F,
+  debug1 = F,
+  theta.start = NULL,
+  parameter.fixed = NULL,
+  compute.subsets = T,
+  check.level = SMRDOptions("SMRD.DataCheck"),
+  title.line.adj,
+  lwd = 2,
+  mar = c(4.5, 5.25, 3.5, 12.1),
+  bty = if (grids) "o" else "L",
+  ...
+)
 }
 \arguments{
 \item{data.ld}{}
@@ -122,6 +153,5 @@ ICDevice02.groupm.lognor <- groupm.mleprobplot(ICDevice2.ld,
                                                distribution = "Lognormal", 
                                                relationship = "Arrhenius", 
                                                ci.list = 6)
-
 }
 }

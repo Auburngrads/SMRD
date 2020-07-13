@@ -4,9 +4,32 @@
 \alias{wqm_simalt}
 \title{Simulate the alt data}
 \usage{
-wqm_simalt(theta, nparm, intcpt, nsamsz, krfail, kctype, centim, acvar,
-  nsubex, nacvar, kdist, x, y, cen, wt, nrow, nter, ny, nty, ty, tcodes,
-  nrownw, iersim, kprint)
+wqm_simalt(
+  theta,
+  nparm,
+  intcpt,
+  nsamsz,
+  krfail,
+  kctype,
+  centim,
+  acvar,
+  nsubex,
+  nacvar,
+  kdist,
+  x,
+  y,
+  cen,
+  wt,
+  nrow,
+  nter,
+  ny,
+  nty,
+  ty,
+  tcodes,
+  nrownw,
+  iersim,
+  kprint
+)
 }
 \description{
 Simulate the alt data

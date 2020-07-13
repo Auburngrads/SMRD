@@ -4,10 +4,18 @@
 \alias{FillRegion}
 \title{Title}
 \usage{
-FillRegion(gmle.out, iter = 2000,
-  conf.level = (GetSMRDDefault("SMRD.ConfLevel") + 1)/100, prt = T,
-  lower = NULL, upper = NULL, cull = 1, nbound = 5, simult = F,
-  debug1 = F)
+FillRegion(
+  gmle.out,
+  iter = 2000,
+  conf.level = (GetSMRDDefault("SMRD.ConfLevel") + 1)/100,
+  prt = T,
+  lower = NULL,
+  upper = NULL,
+  cull = 1,
+  nbound = 5,
+  simult = F,
+  debug1 = F
+)
 }
 \arguments{
 \item{gmle.out}{}

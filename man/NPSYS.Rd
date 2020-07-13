@@ -6,8 +6,27 @@
  mean cumulative occurence rate of failures
  and corresponding estimate of the var if the estimator}
 \usage{
-NPSYS(itime, isys, icodes, weight, nobs, nfailt, nsys, utime, iusys, ctime,
-  dead, idelta, dsum, idlsum, dbar, varsum, xmuhat, varxmu, kprint)
+NPSYS(
+  itime,
+  isys,
+  icodes,
+  weight,
+  nobs,
+  nfailt,
+  nsys,
+  utime,
+  iusys,
+  ctime,
+  dead,
+  idelta,
+  dsum,
+  idlsum,
+  dbar,
+  varsum,
+  xmuhat,
+  varxmu,
+  kprint
+)
 }
 \description{
 inputs:
@@ -28,7 +47,8 @@ ctime(nsys),varsum(nsys) scratch arrays
         dead(nfailt,nsys),idelta(nfailt,nsys) scratch arrays
         dsum(nfailt),idlsum(nfailt),dbar(nfailt)   scratch arrays
 
-outputs:
+
+  outputs:
         xmuhat(nfailt)   estimate of mu at each failure time
         varxmu(nfailt)   estimate of var(muhat) at each failure time
 }

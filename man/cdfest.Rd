@@ -4,11 +4,23 @@
 \alias{cdfest}
 \title{Generate a CDF estimate}
 \usage{
-cdfest(data.ld, gamthr = 0, kprint = 0, maxit = 5e+05, tol = 0.001,
-  maxmsd = 200, start.values = NULL, debug1 = F,
+cdfest(
+  data.ld,
+  gamthr = 0,
+  kprint = 0,
+  maxit = 5e+05,
+  tol = 0.001,
+  maxmsd = 200,
+  start.values = NULL,
+  debug1 = F,
   conf.level = GetSMRDDefault("SMRD.ConfLevel")/100,
-  band.type = "pointwise", a.limit = 0.001, b.limit = 0.999,
-  digits = GetSMRDDefault("SMRD.DigitsPrinted"), quote = T, ...)
+  band.type = "pointwise",
+  a.limit = 0.001,
+  b.limit = 0.999,
+  digits = GetSMRDDefault("SMRD.DigitsPrinted"),
+  quote = T,
+  ...
+)
 }
 \arguments{
 \item{data.ld}{}

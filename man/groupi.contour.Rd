@@ -4,16 +4,30 @@
 \alias{groupi.contour}
 \title{Title}
 \usage{
-groupi.contour(data.ld, distribution, stresses = get.x.markers(data.ld,
-  group.var = group.var), group.var = 1, contour.indicators = NULL,
-  xlim = c(NA, NA), ylim = c(NA, NA), loc.or.quant = "Quantile",
-  the.quantile = 0.1, rel.or.conf = "Joint confidence region",
-  my.title = NULL, cex = 1.5,
+groupi.contour(
+  data.ld,
+  distribution,
+  stresses = get.x.markers(data.ld, group.var = group.var),
+  group.var = 1,
+  contour.indicators = NULL,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  loc.or.quant = "Quantile",
+  the.quantile = 0.1,
+  rel.or.conf = "Joint confidence region",
+  my.title = NULL,
+  cex = 1.5,
   title.option = GetSMRDDefault("SMRD.TitleOption"),
-  do.legend = "On plot", stresses.limit = 15, size = 50,
-  the.factor = 3.5, show.mle = F, original.par = T,
-  col.fhat.vec = 1:length(stresses), lty = (1:(length(stresses) +
-  1))[-2], ...)
+  do.legend = "On plot",
+  stresses.limit = 15,
+  size = 50,
+  the.factor = 3.5,
+  show.mle = F,
+  original.par = T,
+  col.fhat.vec = 1:length(stresses),
+  lty = (1:(length(stresses) + 1))[-2],
+  ...
+)
 }
 \arguments{
 \item{data.ld}{}

@@ -4,8 +4,15 @@
 \alias{rflm.mle}
 \title{Title}
 \usage{
-rflm.mle(data.ld, cond.dist, fl.dist, theta.start = NULL,
-  tran.theta.start = T, debug1 = F, ...)
+rflm.mle(
+  data.ld,
+  cond.dist,
+  fl.dist,
+  theta.start = NULL,
+  tran.theta.start = T,
+  debug1 = F,
+  ...
+)
 }
 \arguments{
 \item{data.ld}{}
