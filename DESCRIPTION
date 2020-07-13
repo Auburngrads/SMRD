@@ -26,6 +26,8 @@ Imports:
     stats,
     nlme,
     lattice,
+    rprojroot,
+    markdown,
     grid,
     survival,
     plot3D,
@@ -37,6 +39,8 @@ Imports:
     DT,
     pacman,
     shiny,
+    shinythemes,
+    yaml,
     utils
 LinkingTo: Rcpp,
            BH
@@ -45,7 +49,7 @@ Archs: i386, x64
 Suggests:
     testthat (>= 2.1.0),
     knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Encoding: UTF-8
 VignetteBuilder: knitr
 URL: https://github.com/Auburngrads/SMRD
