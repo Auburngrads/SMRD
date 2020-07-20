@@ -1,7 +1,7 @@
 :package: SMRD: Statistical Methods for Reliability Data
 ================
 Jason K. Freels, William Q. Meeker, and Luis A. Escobar
-<br/>10 June 2019
+<br/>20 July 2020
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
@@ -29,15 +29,16 @@ Today, R has supplanted S and S-Plus as the most popular statistical
 computing language in the world. In response to this shift, Meeker began
 an effort to translate **SPLIDA** into R under the name **RSplida**.
 However, RSplida couldn’t be installed as a traditional R package and
-was difficult to use with modern IDE’s. In 2015, Freels partnered with
-Meeker to restructure and modernize RSplida into this R package
-**SMRD**, with the aim of publishing to the
+was difficult to use with modern IDE’s. Freels partnered with Meeker to
+restructure and modernize `RSplida` into this R package **SMRD**, with
+the aim of publishing to the
 <a target="" href="https://cran.r-project.org">**CRAN**</a>.
 
 ## Installation
 
 As this package has not yet been published, you can install the latest
-development version from GitHub:
+development version from GitHub: Note that `RBuildtools` will also need
+to be installed on your machine.
 
 ``` r
 if (packageVersion("devtools") < 1.6) {
@@ -53,13 +54,13 @@ Please note that this package is currently experimental and is under
 very active development. If you encounter any problems or unexpected
 behaviours, please create a
 <a target="" href="https://github.com/Auburngrads/SMRD/issues">**new
-issue**</a> and include a reporducible example.
+issue**</a> and include a reproducible example.
 
 ## Getting started
 
 Once installed, the easiest way get started using `SMRD` is by checking
-out the echapters. These are documents that present example code and
-results that correspond to what is shown in the each chapter of the 1st
+out the echapters. These are vignettes presenting example code and
+results corresponding to what is shown in the each chapter of the 1st
 edition of the SMRD text.
 
 ``` r
