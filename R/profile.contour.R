@@ -15,7 +15,8 @@
 #' @param add 
 #' @param lty 
 #' @param col 
-#' @param lwd 
+#' @param lwd
+#' @param static
 #' @param ... 
 #'
 #' @return NULL
