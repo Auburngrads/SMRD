@@ -77,7 +77,37 @@ NULL
 #' @docType data
 #' @family data-notdone
 #' @name amsaaexactfail
+#' @format A \code{data.frame} with 725 rows and 3 variables:
+#' \tabular{rlll}{
+#'   [, 1] \tab vehicle \tab Vehicle type \tab \bold{Categoric}\cr
+#'   [, 2] \tab miles   \tab Accumulated distance at \code{event} \tab \bold{Numeric}\cr 
+#'   [, 3] \tab event   \tab Event observed at \code{miles} (Start/Fail/End) \tab \bold{Categoric}
+#'   }
+#' @source Lieblein J., and Zelen, M. (1956), Statistical investigation of the fatigue life of deep-groove ball bearings, Journal of Research,  National Bureau of Standards, 57, 273--316.
+#' @description ####
+NULL
+
+#' AMSAA reliability growth test
+#' 
+#' @rdname AMSAA
+#' @docType data
+#' @family data-notdone
 #' @name amsaawindow1
+#' @format A \code{data.frame} with 725 rows and 3 variables:
+#' \tabular{rlll}{
+#'   [, 1] \tab vehicle \tab Vehicle type \tab \bold{Categoric}\cr
+#'   [, 2] \tab miles   \tab Accumulated distance at \code{event} \tab \bold{Numeric}\cr 
+#'   [, 3] \tab event   \tab Event observed at \code{miles} (Start/Fail/End) \tab \bold{Categoric}
+#'   }
+#' @source Lieblein J., and Zelen, M. (1956), Statistical investigation of the fatigue life of deep-groove ball bearings, Journal of Research,  National Bureau of Standards, 57, 273--316.
+#' @description ####
+NULL
+
+#' AMSAA reliability growth test
+#' 
+#' @rdname AMSAA
+#' @docType data
+#' @family data-notdone
 #' @name amsaawindow2  
 #' @format A \code{data.frame} with 725 rows and 3 variables:
 #' \tabular{rlll}{
@@ -85,10 +115,10 @@ NULL
 #'   [, 2] \tab miles   \tab Accumulated distance at \code{event} \tab \bold{Numeric}\cr 
 #'   [, 3] \tab event   \tab Event observed at \code{miles} (Start/Fail/End) \tab \bold{Categoric}
 #'   }
-#' @rdname AMSAA
 #' @source Lieblein J., and Zelen, M. (1956), Statistical investigation of the fatigue life of deep-groove ball bearings, Journal of Research,  National Bureau of Standards, 57, 273--316.
 #' @description ####
 NULL
+
 
 #' Appliance cord failures
 #'
@@ -176,8 +206,98 @@ NULL
 #'
 #' @docType data
 #' @name berkson20
+#' @rdname berkson    
+#' @format A \code{data.frame} with 8 rows and 4 variables:
+#' \tabular{rlll}{
+#'   [, 1] \tab lower \tab Start of an observation interval (in 1/5000 seconds) \tab \bold{Numeric}\cr
+#'   [, 2] \tab upper \tab End of an observation interval (in 1/5000 seconds) \tab \bold{Numeric}\cr
+#'   [, 3] \tab event \tab Event observed in the interval (right-censored/left-censored/interval-censored)  \tab \bold{Categoric}\cr
+#'   [, 4] \tab count \tab Number of events observed in the interval \tab \bold{Numeric}
+#'    }
+#' @source Berkson, J. (1966), Examination of randomness of alpha-particle emissions, 
+#'         in Festschrift for J. Neyman, Research Papers in Statistics, F. N. David, Editor, 
+#'         New York, NY; John Wiley & Sons
+#' @description Berkson investigated the randomness of alpha-particle 
+#'              emissions of Americium-241 (which has a half-life of about 458 years). 
+#'              Physical theory suggests that, over a short period of time, the 
+#'              interarrival times of observed particles would be independent and come 
+#'              from an exponential distribution where the rate parameter is the mean 
+#'              time between arrivals. The corresponding homogeneous Poisson process that 
+#'              counts the number of emissions on the real-time line has arrival rate or 
+#'              the intensity lambda=1/theta. The data consist of 10,220 observed interarrival 
+#'              times of alpha particles (time unit equal to 1/5,000 second). The observed 
+#'              interarrival times were put into intervals (or bins) running from 0 to 4,000 
+#'              time units with interval lengths ranging from 25 to 100 time units, with one 
+#'              additional interval for observed times exceeding 4,000 time units.  To save space, 
+#'              this example uses a smaller number of larger bins; reducing the number of bins in 
+#'              this way will not seriously affect the precision of ML estimates.
+NULL
+
+#' \eqn{\alpha}-particle emissions of Americurium-241
+#'
+#' @docType data
 #' @name berkson200
+#' @rdname berkson    
+#' @format A \code{data.frame} with 8 rows and 4 variables:
+#' \tabular{rlll}{
+#'   [, 1] \tab lower \tab Start of an observation interval (in 1/5000 seconds) \tab \bold{Numeric}\cr
+#'   [, 2] \tab upper \tab End of an observation interval (in 1/5000 seconds) \tab \bold{Numeric}\cr
+#'   [, 3] \tab event \tab Event observed in the interval (right-censored/left-censored/interval-censored)  \tab \bold{Categoric}\cr
+#'   [, 4] \tab count \tab Number of events observed in the interval \tab \bold{Numeric}
+#'    }
+#' @source Berkson, J. (1966), Examination of randomness of alpha-particle emissions, 
+#'         in Festschrift for J. Neyman, Research Papers in Statistics, F. N. David, Editor, 
+#'         New York, NY; John Wiley & Sons
+#' @description Berkson investigated the randomness of alpha-particle 
+#'              emissions of Americium-241 (which has a half-life of about 458 years). 
+#'              Physical theory suggests that, over a short period of time, the 
+#'              interarrival times of observed particles would be independent and come 
+#'              from an exponential distribution where the rate parameter is the mean 
+#'              time between arrivals. The corresponding homogeneous Poisson process that 
+#'              counts the number of emissions on the real-time line has arrival rate or 
+#'              the intensity lambda=1/theta. The data consist of 10,220 observed interarrival 
+#'              times of alpha particles (time unit equal to 1/5,000 second). The observed 
+#'              interarrival times were put into intervals (or bins) running from 0 to 4,000 
+#'              time units with interval lengths ranging from 25 to 100 time units, with one 
+#'              additional interval for observed times exceeding 4,000 time units.  To save space, 
+#'              this example uses a smaller number of larger bins; reducing the number of bins in 
+#'              this way will not seriously affect the precision of ML estimates.
+NULL
+
+#' \eqn{\alpha}-particle emissions of Americurium-241
+#'
+#' @docType data
 #' @name berkson2000
+#' @rdname berkson    
+#' @format A \code{data.frame} with 8 rows and 4 variables:
+#' \tabular{rlll}{
+#'   [, 1] \tab lower \tab Start of an observation interval (in 1/5000 seconds) \tab \bold{Numeric}\cr
+#'   [, 2] \tab upper \tab End of an observation interval (in 1/5000 seconds) \tab \bold{Numeric}\cr
+#'   [, 3] \tab event \tab Event observed in the interval (right-censored/left-censored/interval-censored)  \tab \bold{Categoric}\cr
+#'   [, 4] \tab count \tab Number of events observed in the interval \tab \bold{Numeric}
+#'    }
+#' @source Berkson, J. (1966), Examination of randomness of alpha-particle emissions, 
+#'         in Festschrift for J. Neyman, Research Papers in Statistics, F. N. David, Editor, 
+#'         New York, NY; John Wiley & Sons
+#' @description Berkson investigated the randomness of alpha-particle 
+#'              emissions of Americium-241 (which has a half-life of about 458 years). 
+#'              Physical theory suggests that, over a short period of time, the 
+#'              interarrival times of observed particles would be independent and come 
+#'              from an exponential distribution where the rate parameter is the mean 
+#'              time between arrivals. The corresponding homogeneous Poisson process that 
+#'              counts the number of emissions on the real-time line has arrival rate or 
+#'              the intensity lambda=1/theta. The data consist of 10,220 observed interarrival 
+#'              times of alpha particles (time unit equal to 1/5,000 second). The observed 
+#'              interarrival times were put into intervals (or bins) running from 0 to 4,000 
+#'              time units with interval lengths ranging from 25 to 100 time units, with one 
+#'              additional interval for observed times exceeding 4,000 time units.  To save space, 
+#'              this example uses a smaller number of larger bins; reducing the number of bins in 
+#'              this way will not seriously affect the precision of ML estimates.
+NULL
+
+#' \eqn{\alpha}-particle emissions of Americurium-241
+#'
+#' @docType data
 #' @name berkson10220
 #' @rdname berkson    
 #' @format A \code{data.frame} with 8 rows and 4 variables:
@@ -205,6 +325,7 @@ NULL
 #'              this example uses a smaller number of larger bins; reducing the number of bins in 
 #'              this way will not seriously affect the precision of ML estimates.
 NULL
+
 
 #' Yokobori fatigue-fracture test
 #' 
@@ -617,6 +738,27 @@ NULL
 #' @family data-notdone
 #' @rdname deviced
 #' @name devicedconnected   
+#' @format A \code{data.frame} with 986 rows and 9 variables:
+#' \tabular{rlll}{
+#'   [, 1] \tab weeks \tab Failure time \tab \bold{Numeric}\cr
+#'   [, 2] \tab cycles \tab Total accumulated cycles at failure \tab \bold{Numeric}\cr
+#'   [, 3] \tab causeoffailure.fm1 \tab Type of event observed (failure, right-censored, left-censored, or interval-censored)  \tab \bold{Categoric}\cr
+#'   [, 4] \tab causeoffailure.fm2 \tab Start time (in hours) of an inspection interval \tab \bold{Numeric}\cr
+#'   [, 5] \tab causeoffailure.fm3 \tab Time (in hours) at which an interval ends \tab \bold{Numeric}\cr
+#'   [, 6] \tab causeoffailure.fmother \tab Type of event observed (failure, right-censored, left-censored, or interval-censored)  \tab \bold{Categoric}\cr
+#'   [, 7] \tab perweek \tab Average number of cycles (across all users) \tab \bold{Numeric}\cr
+#'   [, 8] \tab weeksinserted \tab Time inserted into service \tab \bold{Numeric}\cr
+#'   [, 9] \tab weeksreturned \tab Time return to manufacturer \tab \bold{Numeric}
+#'    }
+#' @source ####
+#' @description ####
+NULL
+
+#' ##### 
+#'
+#' @docType data
+#' @family data-notdone
+#' @rdname deviced
 #' @name devicednotconnected
 #' @format A \code{data.frame} with 986 rows and 9 variables:
 #' \tabular{rlll}{
@@ -848,6 +990,23 @@ NULL
 #' @family data-done
 #' @rdname grids
 #' @name grids1
+#' @format A \code{data.frame} with 39 rows and 3 variables:
+#' \tabular{rlll}{
+#'   [, 1] \tab unit \tab Unit designator code \tab \bold{Categoric}\cr
+#'   [, 2] \tab days \tab Accumulated time at \code{event} \tab \bold{Numeric}\cr
+#'   [, 3] \tab event \tab Event observed at \code{days} (Replacement/End)  \tab \bold{Categoric}
+#'    }
+#' @source Doganaksoy, N., and Nelson, W. (1991) A method and computer program MCFDIFF to compare two samples of repair data,
+#'         TIS Report 91CRD172, General Electric Company Research and Development, Schenectady, NY.
+#' @description Age of locomotives when either their braking grids were replaced or the largest age observed for each locomotive
+#' @details Two batches \code{grids1} & \code{grids2}
+NULL
+
+#' Locomotive braking grid replacements 
+#'
+#' @docType data
+#' @family data-done
+#' @rdname grids
 #' @name grids2
 #' @format A \code{data.frame} with 39 rows and 3 variables:
 #' \tabular{rlll}{
@@ -860,6 +1019,7 @@ NULL
 #' @description Age of locomotives when either their braking grids were replaced or the largest age observed for each locomotive
 #' @details Two batches \code{grids1} & \code{grids2}
 NULL
+
 
 #' Unscheduled maintenance actions for the U.S.S. Halfbeak 
 #'
@@ -966,7 +1126,41 @@ NULL
 #' @docType data
 #' @family data-notdone
 #' @name icdevice1
+#' @rdname icdevice   
+#' @format A \code{data.frame} with 8 rows and 4 variables:
+#' \tabular{rlll}{
+#'   [, 1] \tab lower \tab Start of an inspection interval (in hours) \tab \bold{Numeric}\cr
+#'   [, 2] \tab upper \tab End of an inspection interval (in hours) \tab \bold{Numeric}\cr
+#'   [, 3] \tab event \tab Event observed in the interval (right-censored/interval-censored)  \tab \bold{Categoric}\cr
+#'   [, 4] \tab count \tab Number of events observed in the interval \tab \bold{Numeric}\cr
+#'   [, 4] \tab celsius \tab Temperature applied \tab \bold{Numeric}
+#'    }
+#' @source Meeker and Escobar (1998)
+#' @description ####
+NULL
+
+#' ##### 
+#'
+#' @docType data
+#' @family data-notdone
 #' @name icdevice2
+#' @rdname icdevice   
+#' @format A \code{data.frame} with 8 rows and 4 variables:
+#' \tabular{rlll}{
+#'   [, 1] \tab lower \tab Start of an inspection interval (in hours) \tab \bold{Numeric}\cr
+#'   [, 2] \tab upper \tab End of an inspection interval (in hours) \tab \bold{Numeric}\cr
+#'   [, 3] \tab event \tab Event observed in the interval (right-censored/interval-censored)  \tab \bold{Categoric}\cr
+#'   [, 4] \tab count \tab Number of events observed in the interval \tab \bold{Numeric}\cr
+#'   [, 4] \tab celsius \tab Temperature applied \tab \bold{Numeric}
+#'    }
+#' @source Meeker and Escobar (1998)
+#' @description ####
+NULL
+
+#' ##### 
+#'
+#' @docType data
+#' @family data-notdone
 #' @name icdevice2_w300
 #' @rdname icdevice   
 #' @format A \code{data.frame} with 8 rows and 4 variables:
@@ -986,6 +1180,22 @@ NULL
 #' @docType data
 #' @family data-notdone
 #' @name insulation
+#' @rdname insulation   
+#' @format A \code{data.frame} with 128 rows and 4 variables:
+#' \tabular{rlll}{
+#'   [, 1] \tab weeks \tab Event time \tab \bold{Numeric}\cr
+#'   [, 2] \tab celsius \tab Temperature applied \tab \bold{Numeric}\cr
+#'   [, 3] \tab volts \tab Electrical power applied  \tab \bold{Numeric}\cr
+#'   [, 4] \tab units \tab Number of events observed at \code{weeks} \tab \bold{Numeric}
+#'    }
+#' @source ####
+#' @description ####
+NULL
+
+#' ##### 
+#'
+#' @docType data
+#' @family data-notdone
 #' @name insulation_dadtplan
 #' @rdname insulation   
 #' @format A \code{data.frame} with 128 rows and 4 variables:
@@ -998,6 +1208,7 @@ NULL
 #' @source ####
 #' @description ####
 NULL
+
 
 #' #####
 #' 
@@ -1217,6 +1428,25 @@ NULL
 #' @rdname mylarpoly
 #' @docType data
 #' @name mylarsub
+#' @format A \code{data.frame} with 46 rows and 2 variables:
+#' \tabular{rlll}{
+#'   [, 1] \tab minutes \tab Time to dielectric breakdown \tab \bold{Numeric}\cr
+#'   [, 2] \tab ratio   \tab Electromagnetic field strength (in kV/mm) \tab \bold{Numeric}
+#'    }
+#' @source Kalkanis, G., and Rosso, E. (1989),
+#'         The inverse power law model for the lifetime of a mylar-polyurethane laminated DC HV insulating structure, 
+#'         Nuclear Instruments and Methods in Physics Research, \bold{A281}, 489-496.
+#' @description Kalkanis and Rosso (1989) present data generated from an accelerated life test performed on a 
+#'              special type of mylar-polyurethane insulation used in high-performance electro-magnets.
+#'              The data give the time to dielectric breakdown of units tested at 100.3, 122.4, 157.1, 
+#'              219.0, and 361.4 kV/mm.  The purpose of the experiment was to evaluate the reliability 
+#'              of the insulating structure and to estimate the life distribution at system design voltages.
+NULL
+
+#' Accelerated life test of a mylar-polyurethane insulating structure 
+#' 
+#' @rdname mylarpoly
+#' @docType data
 #' @name mylarpoly   
 #' @format A \code{data.frame} with 46 rows and 2 variables:
 #' \tabular{rlll}{
@@ -1232,6 +1462,7 @@ NULL
 #'              219.0, and 361.4 kV/mm.  The purpose of the experiment was to evaluate the reliability 
 #'              of the insulating structure and to estimate the life distribution at system design voltages.
 NULL
+
 
 #' High-temp gas spring accelerated test
 #' 
@@ -1319,7 +1550,47 @@ NULL
 #' @family data-notdone
 #' @rdname piccioto
 #' @name piccioto
+#' @format A \code{data.frame} with 797 rows and 3 variables:
+#' \tabular{rlll}{
+#'   [, 1] \tab inches \tab Length of the test specimen \tab \bold{Numeric}\cr
+#'   [, 2] \tab kilocycles \tab Accumulated cycles at \code{event} (in thousands) \tab \bold{Numeric}\cr
+#'   [, 3] \tab event \tab Event observed at \code{kilocycles} (failed/right-censored) \tab \bold{Categoric}
+#'    }
+#' @source Picciotto R., (1970) 
+#'         Tensile Fatigue Characteristics of a Sized Polyester/Viscose Yarn and Their Effect on Weaving Performance. 
+#'         A thesis submitted to the Graduate Faculty of North Carolina State University at Raleigh in partial fulfillment of the requirements for the Degree of Master of Science. 
+#'         Department of Textile Technology.
+#' @description Picciotto includes the \code{length} and \code{kcycles} columns.  
+#'              picciotto2 is a subset of the picciotto data set, including only the units for which \code{length = 30,60, or 90}.  
+#'              picciotto3 mirrors picciotto2 but assumes that the test conlcuded at 100 kilocycles
+NULL
+
+#' Tensile Fatigue Test of Polyester/Viscose Yarn 
+#'
+#' @docType data
+#' @family data-notdone
+#' @rdname piccioto
 #' @name piccioto2
+#' @format A \code{data.frame} with 797 rows and 3 variables:
+#' \tabular{rlll}{
+#'   [, 1] \tab inches \tab Length of the test specimen \tab \bold{Numeric}\cr
+#'   [, 2] \tab kilocycles \tab Accumulated cycles at \code{event} (in thousands) \tab \bold{Numeric}\cr
+#'   [, 3] \tab event \tab Event observed at \code{kilocycles} (failed/right-censored) \tab \bold{Categoric}
+#'    }
+#' @source Picciotto R., (1970) 
+#'         Tensile Fatigue Characteristics of a Sized Polyester/Viscose Yarn and Their Effect on Weaving Performance. 
+#'         A thesis submitted to the Graduate Faculty of North Carolina State University at Raleigh in partial fulfillment of the requirements for the Degree of Master of Science. 
+#'         Department of Textile Technology.
+#' @description Picciotto includes the \code{length} and \code{kcycles} columns.  
+#'              picciotto2 is a subset of the picciotto data set, including only the units for which \code{length = 30,60, or 90}.  
+#'              picciotto3 mirrors picciotto2 but assumes that the test conlcuded at 100 kilocycles
+NULL
+
+#' Tensile Fatigue Test of Polyester/Viscose Yarn 
+#'
+#' @docType data
+#' @family data-notdone
+#' @rdname piccioto
 #' @name piccioto3   
 #' @format A \code{data.frame} with 797 rows and 3 variables:
 #' \tabular{rlll}{

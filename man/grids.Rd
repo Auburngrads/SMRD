@@ -3,8 +3,16 @@
 \docType{data}
 \name{grids1}
 \alias{grids1}
+\alias{grids2}
 \title{Locomotive braking grid replacements}
 \format{
+A \code{data.frame} with 39 rows and 3 variables:
+\tabular{rlll}{
+  [, 1] \tab unit \tab Unit designator code \tab \bold{Categoric}\cr
+  [, 2] \tab days \tab Accumulated time at \code{event} \tab \bold{Numeric}\cr
+  [, 3] \tab event \tab Event observed at \code{days} (Replacement/End)  \tab \bold{Categoric}
+   }
+
 A \code{data.frame} with 39 rows and 3 variables:
 \tabular{rlll}{
   [, 1] \tab unit \tab Unit designator code \tab \bold{Categoric}\cr
@@ -15,11 +23,18 @@ A \code{data.frame} with 39 rows and 3 variables:
 \source{
 Doganaksoy, N., and Nelson, W. (1991) A method and computer program MCFDIFF to compare two samples of repair data,
         TIS Report 91CRD172, General Electric Company Research and Development, Schenectady, NY.
+
+Doganaksoy, N., and Nelson, W. (1991) A method and computer program MCFDIFF to compare two samples of repair data,
+        TIS Report 91CRD172, General Electric Company Research and Development, Schenectady, NY.
 }
 \description{
 Age of locomotives when either their braking grids were replaced or the largest age observed for each locomotive
+
+Age of locomotives when either their braking grids were replaced or the largest age observed for each locomotive
 }
 \details{
+Two batches \code{grids1} & \code{grids2}
+
 Two batches \code{grids1} & \code{grids2}
 }
 \concept{data-done}

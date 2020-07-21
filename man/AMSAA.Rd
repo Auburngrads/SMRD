@@ -3,8 +3,24 @@
 \docType{data}
 \name{amsaaexactfail}
 \alias{amsaaexactfail}
+\alias{amsaawindow1}
+\alias{amsaawindow2}
 \title{AMSAA reliability growth test}
 \format{
+A \code{data.frame} with 725 rows and 3 variables:
+\tabular{rlll}{
+  [, 1] \tab vehicle \tab Vehicle type \tab \bold{Categoric}\cr
+  [, 2] \tab miles   \tab Accumulated distance at \code{event} \tab \bold{Numeric}\cr 
+  [, 3] \tab event   \tab Event observed at \code{miles} (Start/Fail/End) \tab \bold{Categoric}
+  }
+
+A \code{data.frame} with 725 rows and 3 variables:
+\tabular{rlll}{
+  [, 1] \tab vehicle \tab Vehicle type \tab \bold{Categoric}\cr
+  [, 2] \tab miles   \tab Accumulated distance at \code{event} \tab \bold{Numeric}\cr 
+  [, 3] \tab event   \tab Event observed at \code{miles} (Start/Fail/End) \tab \bold{Categoric}
+  }
+
 A \code{data.frame} with 725 rows and 3 variables:
 \tabular{rlll}{
   [, 1] \tab vehicle \tab Vehicle type \tab \bold{Categoric}\cr
@@ -14,11 +30,129 @@ A \code{data.frame} with 725 rows and 3 variables:
 }
 \source{
 Lieblein J., and Zelen, M. (1956), Statistical investigation of the fatigue life of deep-groove ball bearings, Journal of Research,  National Bureau of Standards, 57, 273--316.
+
+Lieblein J., and Zelen, M. (1956), Statistical investigation of the fatigue life of deep-groove ball bearings, Journal of Research,  National Bureau of Standards, 57, 273--316.
+
+Lieblein J., and Zelen, M. (1956), Statistical investigation of the fatigue life of deep-groove ball bearings, Journal of Research,  National Bureau of Standards, 57, 273--316.
 }
 \description{
 ####
+
+####
+
+####
 }
 \seealso{
+Other data-notdone: 
+\code{\link{adhesivebondc}},
+\code{\link{adhesivestrength}},
+\code{\link{appliancea}},
+\code{\link{applianceb}},
+\code{\link{aprel72}},
+\code{\link{atrazinejune}},
+\code{\link{bearinga}},
+\code{\link{censortruncationtest}},
+\code{\link{chemicalprocess}},
+\code{\link{cirpack4}},
+\code{\link{cirpack5}},
+\code{\link{componentd}},
+\code{\link{concrete}},
+\code{\link{connectionstrength}},
+\code{\link{customerlife}},
+\code{\link{devicedconnected}},
+\code{\link{deviceh}},
+\code{\link{devicen}},
+\code{\link{diskber}},
+\code{\link{doatrun}},
+\code{\link{electromech}},
+\code{\link{engineemissions}},
+\code{\link{epoxyweathering}},
+\code{\link{filament}},
+\code{\link{hcfdata}},
+\code{\link{heater}},
+\code{\link{hpcrepairs}},
+\code{\link{icdevice1}},
+\code{\link{inconel}},
+\code{\link{insulation}},
+\code{\link{laminatepanel}},
+\code{\link{largeball}},
+\code{\link{locomotivecontrol}},
+\code{\link{luminosity}},
+\code{\link{machineh}},
+\code{\link{mechanicalswitch}},
+\code{\link{multiplefail}},
+\code{\link{newspring}},
+\code{\link{parta}},
+\code{\link{piccioto}},
+\code{\link{pipelinethickness}},
+\code{\link{pmax}()},
+\code{\link{prob3_5}},
+\code{\link{riverchem}},
+\code{\link{shelflifea}},
+\code{\link{testdadtplan}},
+\code{\link{titanium2}},
+\code{\link{titanium}},
+\code{\link{tractorbreaks}},
+\code{\link{turbinedevice}},
+\code{\link{vehiclemotor}},
+\code{\link{voltageendurance}},
+\code{\link{workstation}}
+
+Other data-notdone: 
+\code{\link{adhesivebondc}},
+\code{\link{adhesivestrength}},
+\code{\link{appliancea}},
+\code{\link{applianceb}},
+\code{\link{aprel72}},
+\code{\link{atrazinejune}},
+\code{\link{bearinga}},
+\code{\link{censortruncationtest}},
+\code{\link{chemicalprocess}},
+\code{\link{cirpack4}},
+\code{\link{cirpack5}},
+\code{\link{componentd}},
+\code{\link{concrete}},
+\code{\link{connectionstrength}},
+\code{\link{customerlife}},
+\code{\link{devicedconnected}},
+\code{\link{deviceh}},
+\code{\link{devicen}},
+\code{\link{diskber}},
+\code{\link{doatrun}},
+\code{\link{electromech}},
+\code{\link{engineemissions}},
+\code{\link{epoxyweathering}},
+\code{\link{filament}},
+\code{\link{hcfdata}},
+\code{\link{heater}},
+\code{\link{hpcrepairs}},
+\code{\link{icdevice1}},
+\code{\link{inconel}},
+\code{\link{insulation}},
+\code{\link{laminatepanel}},
+\code{\link{largeball}},
+\code{\link{locomotivecontrol}},
+\code{\link{luminosity}},
+\code{\link{machineh}},
+\code{\link{mechanicalswitch}},
+\code{\link{multiplefail}},
+\code{\link{newspring}},
+\code{\link{parta}},
+\code{\link{piccioto}},
+\code{\link{pipelinethickness}},
+\code{\link{pmax}()},
+\code{\link{prob3_5}},
+\code{\link{riverchem}},
+\code{\link{shelflifea}},
+\code{\link{testdadtplan}},
+\code{\link{titanium2}},
+\code{\link{titanium}},
+\code{\link{tractorbreaks}},
+\code{\link{turbinedevice}},
+\code{\link{vehiclemotor}},
+\code{\link{voltageendurance}},
+\code{\link{workstation}}
+
 Other data-notdone: 
 \code{\link{adhesivebondc}},
 \code{\link{adhesivestrength}},

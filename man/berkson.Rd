@@ -3,8 +3,35 @@
 \docType{data}
 \name{berkson20}
 \alias{berkson20}
+\alias{berkson200}
+\alias{berkson2000}
+\alias{berkson10220}
 \title{\eqn{\alpha}-particle emissions of Americurium-241}
 \format{
+A \code{data.frame} with 8 rows and 4 variables:
+\tabular{rlll}{
+  [, 1] \tab lower \tab Start of an observation interval (in 1/5000 seconds) \tab \bold{Numeric}\cr
+  [, 2] \tab upper \tab End of an observation interval (in 1/5000 seconds) \tab \bold{Numeric}\cr
+  [, 3] \tab event \tab Event observed in the interval (right-censored/left-censored/interval-censored)  \tab \bold{Categoric}\cr
+  [, 4] \tab count \tab Number of events observed in the interval \tab \bold{Numeric}
+   }
+
+A \code{data.frame} with 8 rows and 4 variables:
+\tabular{rlll}{
+  [, 1] \tab lower \tab Start of an observation interval (in 1/5000 seconds) \tab \bold{Numeric}\cr
+  [, 2] \tab upper \tab End of an observation interval (in 1/5000 seconds) \tab \bold{Numeric}\cr
+  [, 3] \tab event \tab Event observed in the interval (right-censored/left-censored/interval-censored)  \tab \bold{Categoric}\cr
+  [, 4] \tab count \tab Number of events observed in the interval \tab \bold{Numeric}
+   }
+
+A \code{data.frame} with 8 rows and 4 variables:
+\tabular{rlll}{
+  [, 1] \tab lower \tab Start of an observation interval (in 1/5000 seconds) \tab \bold{Numeric}\cr
+  [, 2] \tab upper \tab End of an observation interval (in 1/5000 seconds) \tab \bold{Numeric}\cr
+  [, 3] \tab event \tab Event observed in the interval (right-censored/left-censored/interval-censored)  \tab \bold{Categoric}\cr
+  [, 4] \tab count \tab Number of events observed in the interval \tab \bold{Numeric}
+   }
+
 A \code{data.frame} with 8 rows and 4 variables:
 \tabular{rlll}{
   [, 1] \tab lower \tab Start of an observation interval (in 1/5000 seconds) \tab \bold{Numeric}\cr
@@ -17,8 +44,65 @@ A \code{data.frame} with 8 rows and 4 variables:
 Berkson, J. (1966), Examination of randomness of alpha-particle emissions, 
         in Festschrift for J. Neyman, Research Papers in Statistics, F. N. David, Editor, 
         New York, NY; John Wiley & Sons
+
+Berkson, J. (1966), Examination of randomness of alpha-particle emissions, 
+        in Festschrift for J. Neyman, Research Papers in Statistics, F. N. David, Editor, 
+        New York, NY; John Wiley & Sons
+
+Berkson, J. (1966), Examination of randomness of alpha-particle emissions, 
+        in Festschrift for J. Neyman, Research Papers in Statistics, F. N. David, Editor, 
+        New York, NY; John Wiley & Sons
+
+Berkson, J. (1966), Examination of randomness of alpha-particle emissions, 
+        in Festschrift for J. Neyman, Research Papers in Statistics, F. N. David, Editor, 
+        New York, NY; John Wiley & Sons
 }
 \description{
+Berkson investigated the randomness of alpha-particle 
+             emissions of Americium-241 (which has a half-life of about 458 years). 
+             Physical theory suggests that, over a short period of time, the 
+             interarrival times of observed particles would be independent and come 
+             from an exponential distribution where the rate parameter is the mean 
+             time between arrivals. The corresponding homogeneous Poisson process that 
+             counts the number of emissions on the real-time line has arrival rate or 
+             the intensity lambda=1/theta. The data consist of 10,220 observed interarrival 
+             times of alpha particles (time unit equal to 1/5,000 second). The observed 
+             interarrival times were put into intervals (or bins) running from 0 to 4,000 
+             time units with interval lengths ranging from 25 to 100 time units, with one 
+             additional interval for observed times exceeding 4,000 time units.  To save space, 
+             this example uses a smaller number of larger bins; reducing the number of bins in 
+             this way will not seriously affect the precision of ML estimates.
+
+Berkson investigated the randomness of alpha-particle 
+             emissions of Americium-241 (which has a half-life of about 458 years). 
+             Physical theory suggests that, over a short period of time, the 
+             interarrival times of observed particles would be independent and come 
+             from an exponential distribution where the rate parameter is the mean 
+             time between arrivals. The corresponding homogeneous Poisson process that 
+             counts the number of emissions on the real-time line has arrival rate or 
+             the intensity lambda=1/theta. The data consist of 10,220 observed interarrival 
+             times of alpha particles (time unit equal to 1/5,000 second). The observed 
+             interarrival times were put into intervals (or bins) running from 0 to 4,000 
+             time units with interval lengths ranging from 25 to 100 time units, with one 
+             additional interval for observed times exceeding 4,000 time units.  To save space, 
+             this example uses a smaller number of larger bins; reducing the number of bins in 
+             this way will not seriously affect the precision of ML estimates.
+
+Berkson investigated the randomness of alpha-particle 
+             emissions of Americium-241 (which has a half-life of about 458 years). 
+             Physical theory suggests that, over a short period of time, the 
+             interarrival times of observed particles would be independent and come 
+             from an exponential distribution where the rate parameter is the mean 
+             time between arrivals. The corresponding homogeneous Poisson process that 
+             counts the number of emissions on the real-time line has arrival rate or 
+             the intensity lambda=1/theta. The data consist of 10,220 observed interarrival 
+             times of alpha particles (time unit equal to 1/5,000 second). The observed 
+             interarrival times were put into intervals (or bins) running from 0 to 4,000 
+             time units with interval lengths ranging from 25 to 100 time units, with one 
+             additional interval for observed times exceeding 4,000 time units.  To save space, 
+             this example uses a smaller number of larger bins; reducing the number of bins in 
+             this way will not seriously affect the precision of ML estimates.
+
 Berkson investigated the randomness of alpha-particle 
              emissions of Americium-241 (which has a half-life of about 458 years). 
              Physical theory suggests that, over a short period of time, the 
