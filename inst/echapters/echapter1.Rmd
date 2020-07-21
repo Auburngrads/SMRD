@@ -183,10 +183,21 @@ mleprobplot(shock.ld, distribution = 'weibull', param.loc = 'topleft')
 - Relative likelihood surface plots
 
 ```{r, echo=-1, fig.width=10, fig.align='center'}
-par(mfrow = c(1,2), bg = NA, las = 1)
-simple.contour(shock.ld, distribution = 'sev', threeD = T, original.par = F)
-simple.contour(shock.ld, distribution = 'sev', show.confidence = F, zoom = 1.75)
+simple.contour(shock.ld, 
+               distribution = 'sev', 
+               threeD = T, 
+               original.par = F,
+               static = T)
 ```
+
+```{r}
+simple.contour(shock.ld, 
+               distribution = 'sev',
+               show.confidence = F, 
+               zoom = 1.75,
+               static = T)
+```
+
 
 - Maximum likelihood estimate results
 
