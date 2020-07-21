@@ -38,7 +38,7 @@ wqm.persp <-
                     r = r, d = d, scale = scale, expand = expand,
                     border = border, ltheta = ltheta, lphi = lphi, shade = shade,
                     box = box, axes = axes, nticks = nticks, ticktype = ticktype,
-                    col = gg.col(100), colkey = colkey,bty = "g",...)
+                    col = plot3D::gg.col(100), colkey = colkey,bty = "g",...)
       
     } else {
       
