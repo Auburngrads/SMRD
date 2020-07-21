@@ -13,7 +13,8 @@ likelihood.perspective <-
             pretty.y = NULL, 
             theta = 40, 
             phi = 20, 
-            r = sqrt(3))
+            r = sqrt(3),
+            static = static)
   {
     do.mixed.text <- is.postsctiptok() && substring(variable.namex,
                                                     1, 1) == "~"
@@ -80,7 +81,8 @@ likelihood.perspective <-
                 zlab = "Relative Likelihood",
                 theta = theta, 
                 phi = phi, 
-                r = r)
+                r = r,
+                static = static)
       
     }
     
