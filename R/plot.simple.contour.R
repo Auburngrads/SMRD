@@ -111,7 +111,8 @@ function (x,
                          levels = contour.indicators, 
                          add = add, 
                          original.par = F,
-                         static = static,...)
+                         static = static,
+                         ...)
             
       } else {
         
@@ -135,7 +136,8 @@ function (x,
                             add = add, 
                             original.par = F, 
                             lwd = lwd,
-                            static = static)
+                            static = static,
+                            ...)
             
       }
     
