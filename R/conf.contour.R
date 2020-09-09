@@ -17,7 +17,7 @@ function (struct1,
           lty = 1, 
           col = 1, 
           lwd = 1,
-          static = static,...)
+          static = TRUE,...)
 {
   
     `if`(!is.null(struct1$number.parameters) && struct1$number.parameters == 2,

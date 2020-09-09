@@ -70,7 +70,8 @@ function (data.ld,
           show.mle = F,
           original.par = T,
           col.fhat.vec = 1:length(stresses),
-          lty = (1:(length(stresses) + 1))[-2], ...)
+          lty = (1:(length(stresses) + 1))[-2],
+          static = TRUE,...)
 {
     dist.name <- distribution.name(distribution)
     number.group.var <- length(group.var)
@@ -241,7 +242,8 @@ function (data.ld,
                          add = my.add,
                          original.par = F,
                          lty = lty[i], 
-                         col = col.fhat.vec[i])
+                         col = col.fhat.vec[i],
+                         static = static)
             
        } else {
     
