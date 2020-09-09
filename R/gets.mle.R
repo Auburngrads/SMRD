@@ -65,7 +65,7 @@ function (data.ld,
         names(thetainterp) <- c("gamma", "mu", "sigma")
         return(thetainterp)
     }
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", 0 )
+    assign(envir = .frame0, inherits = !TRUE,"iter.count", 0 )
     probs <- cdfest(data.ld)$prob
     p1 <- min(probs[probs > 0])/2
     p2 <- 0.9 * max(probs)

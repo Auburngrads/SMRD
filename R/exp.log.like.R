@@ -2,7 +2,7 @@ exp.log.like <-
 function (x)
 {
     iter.count <- get(envir = .frame0,  "iter.count") + 1
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", iter.count )
+    assign(envir = .frame0, inherits = !TRUE,"iter.count", iter.count )
     mu <- x[1]
     data.ld <- get(envir = .frame0,  "data.ld")
     yresp <- logb(Response(data.ld))

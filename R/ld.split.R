@@ -71,7 +71,7 @@ function (data.ld, stress.var.list = unique(xmat(data.ld)[, group.var]),
       
     if (printem) cat("\nSaving subset data object", the.ld.name, "\n")
       
-        assign(envir = .frame0,  inherits = TRUE,the.ld.name, data.subset)
+        assign(envir = .frame0, inherits = !TRUE,the.ld.name, data.subset)
     }
     if (poor.data) {
         warning(paste("Fewer than", number.needed, "failures in subset",
@@ -79,7 +79,7 @@ function (data.ld, stress.var.list = unique(xmat(data.ld)[, group.var]),
       
     if (printem) message("Saving subset data object ", the.ld.name)
       
-        #assign(envir = .frame0, inherits = TRUE, the.ld.name, data.subset)
+        #assign(envir = .frame0, inherits = !TRUE, the.ld.name, data.subset)
     }
     return(data.subset)
 }

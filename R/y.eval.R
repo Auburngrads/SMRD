@@ -3,10 +3,10 @@ function (gmle.out, profile.setup.out, xlim = NULL, profile.on,
     size = 10,debug1= 1, save.parameter.vectors = F)
 {
     profile.on.pos <- profile.setup.out$profile.on.pos
-    assign(envir = .frame0,  inherits = TRUE,"profile.on.pos", value = profile.on.pos)
-    assign(envir = .frame0,  inherits = TRUE,"profile.on", value = profile.on)
+    assign(envir = .frame0, inherits = !TRUE,"profile.on.pos", value = profile.on.pos)
+    assign(envir = .frame0, inherits = !TRUE,"profile.on", value = profile.on)
     h.theta.hat <- profile.setup.out$h.theta.hat
-    assign(envir = .frame0,  inherits = TRUE,"h.theta.hat", value = h.theta.hat)
+    assign(envir = .frame0, inherits = !TRUE,"h.theta.hat", value = h.theta.hat)
     log.scale <- gmle.out$max.log.like
     xvec <- seq(xlim[1], xlim[2], length = 2 * size + 1)
     y <- rep(0, length(xvec))
@@ -25,7 +25,7 @@ function (gmle.out, profile.setup.out, xlim = NULL, profile.on,
     for (j in index.list) {
         kount <- kount + 1
         if (j == jmid.start)
-            assign(envir = .frame0,  inherits = TRUE,"theta.start", h.theta.hat)
+            assign(envir = .frame0, inherits = !TRUE,"theta.start", h.theta.hat)
         y[j] <- Uminus(func.eval(xvec[j]))
         if (save.parameter.vectors) {
             parameter.matrix[j, ] <- get(envir = .frame0,  "theta.start")

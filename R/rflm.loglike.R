@@ -101,7 +101,7 @@ function (thetatran, kprint = 0)
     model <- get(envir = .frame0, "model")
     f.origparam <- model$f.origparam
     iter.count <- get(envir = .frame0, "iter.count") + 1
-    assign(envir = .frame0,  inherits = TRUE, "iter.count", iter.count)
+    assign(envir = .frame0, inherits = !TRUE, "iter.count", iter.count)
     cond.dist <- model$cond.dist
     fl.dist <- model$fl.dist
     theta <- f.origparam(thetatran, model)

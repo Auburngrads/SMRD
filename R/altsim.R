@@ -355,7 +355,7 @@ ALTsim <-
         print(groupm.results,0)
       }
     if (as.numeric(show.detail.on) > 0) {
-      assign(envir = .frame0,  inherits = TRUE,"last.sim.ALT.ld", data.ld)
+      assign(envir = .frame0, inherits = !TRUE,"last.sim.ALT.ld", data.ld)
       cat("The last simulated ALT data set has been saved in last.sim.ALT.ld\n")
     }
     number.sim.remaining <- number.sim - as.numeric(show.detail.on)

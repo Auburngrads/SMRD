@@ -7,7 +7,7 @@ function (groupm.out, new.data)
     relationship <- multiple.generic.relationship.name(groupm.out$relationship)
     if (is.null(names(relationship)))
         names(relationship) <- names(new.data)
-    assign(envir = .frame0,  inherits = TRUE,"relationship.vector", relationship)
+    assign(envir = .frame0, inherits = !TRUE,"relationship.vector", relationship)
     group.var <- groupm.out$group.var
     the.xmat <- xmat(groupm.out$data.ld)[, group.var, drop = F]
     if (ncol(the.xmat) != ncol(new.data))

@@ -56,7 +56,7 @@ function (data.ld,
           debug1 = F, ...) 
 {
     options(digits = 9)
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", 0 )
+    assign(envir = .frame0, inherits = !TRUE,"iter.count", 0 )
     
     rfl.dist.map <- function(distname) {
         
@@ -74,7 +74,7 @@ function (data.ld,
     xmat(data.ld) <- as.matrix(xmat(data.ld))
     the.xvec <- xmat(data.ld)[, 1]
     ccodes <- censor.codes(data.ld)
-    assign(envir = .frame0, inherits = TRUE,"debug1", debug1)
+    assign(envir = .frame0, inherits = !TRUE,"debug1", debug1)
     
     f.tranparam <- function(thetaorig, model) {
         

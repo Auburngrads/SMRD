@@ -14,7 +14,7 @@ function (RMD.pv, RMD.plan, number.sim, plot.stuff = F, print.stuff = F,
             cat("Error in simulation", i, "\n")
             bad.data.name <- paste("Bad.", i, ".RMD.data.grouped",
                 sep = "")
-            assign(envir = .frame0,  inherits = TRUE,bad.data.name, get(envir = .frame0,  "RMD.data.grouped"))
+            assign(envir = .frame0, inherits = !TRUE,bad.data.name, get(envir = .frame0,  "RMD.data.grouped"))
        } else {
             ii <- ii + 1
             summary.results <- DegSummary(results)

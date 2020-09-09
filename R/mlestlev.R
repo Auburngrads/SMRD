@@ -68,7 +68,7 @@ function (data.ld,
             }
     }
     
-    assign(envir = .frame0,  inherits = TRUE,"tmpdoadummy.ld", data.ld)
+    assign(envir = .frame0, inherits = !TRUE,"tmpdoadummy.ld", data.ld)
     
     if (!is.null(theta.start))
         theta.start[-length(theta.start)] <- -theta.start[-length(theta.start)]

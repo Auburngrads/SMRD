@@ -260,7 +260,7 @@ function (plan.values,
                 4) {
                 data.file.name <- paste("tmpsim", i, ".ld", sep = "")
                 cat(paste("Saving", data.file.name, " \n "))
-                assign(envir = .frame0,  inherits = TRUE,data.file.name, sim.ld)
+                assign(envir = .frame0, inherits = !TRUE,data.file.name, sim.ld)
             }
             if (length(case.weights(sim.ld)) > 1) {
                 if (is.R())

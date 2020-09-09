@@ -57,9 +57,9 @@ function (gmle.out, profile.setup = NULL, profile.stable.parameters = NULL,
     old.options <- options()
     options(keep = NULL, digits = GetSMRDDefault("SMRD.DigitsPrinted"))
     on.exit(options(old.options))
-    assign(envir = .frame0,  inherits = TRUE,"special.stuff.profile", value = special.stuff.profile)
+    assign(envir = .frame0, inherits = !TRUE,"special.stuff.profile", value = special.stuff.profile)
     assign.gmle(gmle.out, debug1, monitor)
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", 0 )
+    assign(envir = .frame0, inherits = !TRUE,"iter.count", 0 )
     theta.hat <- gmle.out$est.out$x
     if (is.null(profile.stable.parameters)) {
         if (!is.null(profile.on.list) && any(unlist(profile.on.list) >
@@ -81,7 +81,7 @@ function (gmle.out, profile.setup = NULL, profile.stable.parameters = NULL,
                 ktran = rep(1, length(profile.on))))
         }
     }
-    assign(envir = .frame0,  inherits = TRUE,"profile.stable.parameters", value = profile.stable.parameters)
+    assign(envir = .frame0, inherits = !TRUE,"profile.stable.parameters", value = profile.stable.parameters)
     t.param.names <- gmle.out$model$t.param.names
     if (is.null(profile.on.list)) {
         profile.on.list <- my.subsets(length(which), 2)
@@ -122,7 +122,7 @@ function (gmle.out, profile.setup = NULL, profile.stable.parameters = NULL,
                   sep = "")
                 cat("Saving output structure in:", structure.name,
                   "\n")
-                assign(envir = .frame0,  inherits = TRUE,structure.name, struct)
+                assign(envir = .frame0, inherits = !TRUE,structure.name, struct)
             }
         }
     }

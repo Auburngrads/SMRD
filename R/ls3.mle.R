@@ -60,7 +60,7 @@ function (data.ld, distribution, relationship,debug1= 0, theta.start = NULL,
         names(thetaorig) <- model$orig.param.names
         return(thetaorig)
     }
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", 0 )
+    assign(envir = .frame0, inherits = !TRUE,"iter.count", 0 )
     if (!is.null(the.xmat)) {
         orig.param.names <- c("intercept", "slope", "scale")
         t.param.names <- c(paste("logt", format(signif(pcensor,

@@ -2,7 +2,7 @@ ls3.log.like <-
 function (thetain)
 {
     iter.count <- get(envir = .frame0,  "iter.count") + 1
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", iter.count )
+    assign(envir = .frame0, inherits = !TRUE,"iter.count", iter.count )
     data.ld <- get(envir = .frame0,  "data.ld")
     model <- get(envir = .frame0,  "model")
     distribution <- model$distribution

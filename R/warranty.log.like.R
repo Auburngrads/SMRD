@@ -1,7 +1,7 @@
 warranty.log.like <-
 function (thetain)
 {
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", value = 0)
+    assign(envir = .frame0, inherits = !TRUE,"iter.count", value = 0)
     data.ld <- get(envir = .frame0,  "data.ld")
    debug1<- get(envir = .frame0,  "debug1")
     model <- get(envir = .frame0,  "model")

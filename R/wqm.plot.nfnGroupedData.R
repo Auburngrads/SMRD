@@ -70,8 +70,8 @@ function (x,
                 Inner <- NULL
                 trll.lty <- trll.set[["lty"]][1]
                 trll.col <- trll.set[["col"]][1]
-                assign(envir = .frame0,  inherits = TRUE,"trll.lty", trll.lty)
-                assign(envir = .frame0,  inherits = TRUE,"trll.col", trll.col)
+                assign(envir = .frame0, inherits = !TRUE,"trll.lty", trll.lty)
+                assign(envir = .frame0, inherits = !TRUE,"trll.col", trll.col)
                 
                 args[["panel"]] <- function(x, y, subscripts, groups) {
                 
@@ -110,8 +110,8 @@ function (x,
             whichPars <- Inner[match(levels(Grps), Grps)]
             trll.lty <- trll.set[["lty"]][whichPars]
             trll.col <- trll.set[["col"]][whichPars]
-            assign(envir = .frame0,  inherits = TRUE,"trll.lty", trll.lty)
-            assign(envir = .frame0,  inherits = TRUE,"trll.col", trll.col)
+            assign(envir = .frame0, inherits = !TRUE,"trll.lty", trll.lty)
+            assign(envir = .frame0, inherits = !TRUE,"trll.col", trll.col)
             
             args[["panel"]] <- function(x, y, subscripts, groups) {
               
@@ -154,7 +154,7 @@ function (x,
 
     dots <- list(...)
     args[names(dots)] <- dots
-    assign(envir = .frame0, inherits = TRUE, "Grid", Grid)
+    assign(envir = .frame0, inherits = !TRUE, "Grid", Grid)
 
         args["x"] <- args["formula"]
         args["formula"] <- NULL

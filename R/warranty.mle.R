@@ -2,7 +2,7 @@ warranty.mle <-
 function (data.ld, distribution = "lognormal",debug1= F, theta.start = NULL)
 {
     options(digits = 5)
-    assign(envir = .frame0,  inherits = TRUE,"debug1", debug1)
+    assign(envir = .frame0, inherits = !TRUE,"debug1", debug1)
     f.origparam <- function(thetatran, model) {
         mu.time <- thetatran[1]
         sigma.time <- exp(thetatran[2])

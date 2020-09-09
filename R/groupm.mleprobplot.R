@@ -266,7 +266,7 @@ mlest.out$title <- paste(get.data.title(data.ld),
 mlest.out$the.orig.data.ld <- the.orig.data.ld
 return.list <- list(groupm.out = mlest.out)
 
-assign(envir = .frame0,  inherits = TRUE,"test.groupm.out", return.list)
+assign(envir = .frame0, inherits = !TRUE,"test.groupm.out", return.list)
 bands.list <- list()
 nonparametric.list <- list()
 ylim.data <- NULL

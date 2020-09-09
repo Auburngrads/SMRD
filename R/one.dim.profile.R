@@ -67,8 +67,8 @@ function (gmle.out,
     options(keep = NULL, digits = 5)
     on.exit(options(old.options))
     assign.gmle(gmle.out, debug1)
-    assign(envir = .frame0,  inherits = TRUE,"special.stuff.profile", value = special.stuff.profile)
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", 0 )
+    assign(envir = .frame0, inherits = !TRUE,"special.stuff.profile", value = special.stuff.profile)
+    assign(envir = .frame0, inherits = !TRUE,"iter.count", 0 )
     theta.hat <- gmle.out$est.out$x
     
     if (is.null(profile.stable.parameters)) {
@@ -94,7 +94,7 @@ function (gmle.out,
                         ktran = rep(1, length(profile.on))))
         }
     }
-    assign(envir = .frame0,  inherits = TRUE,"profile.stable.parameters", value = profile.stable.parameters)
+    assign(envir = .frame0, inherits = !TRUE,"profile.stable.parameters", value = profile.stable.parameters)
     t.param.names <- gmle.out$model$t.param.names
     
     for (profile.index in 1:length(profile.on.list)) {
@@ -128,7 +128,7 @@ function (gmle.out,
                 structure.name <- paste(data.set.name, "struct",
                   profile.on, addname, sep = "", collapse = "")
                 #cat("Saving", structure.name, "\n")
-                assign(envir = .frame0,  inherits = TRUE,structure.name, structx1)
+                assign(envir = .frame0, inherits = !TRUE,structure.name, structx1)
             }
             if (names(dev.cur()) != "null device" && plot.em) profile.plot(structx1, print.ci = print.ci)
         }

@@ -31,7 +31,7 @@ function (data.ld,debug1= F, theta.start = NULL)
     the.case.weights <- case.weights(data.ld)
     the.censor.codes <- censor.codes(data.ld)
     options(digits = 5)
-    assign(envir = .frame0,  inherits = TRUE,"debug1", debug1)
+    assign(envir = .frame0, inherits = !TRUE,"debug1", debug1)
     f.origparam <- function(thetatran, model) {
         scale <- exp(thetatran[1])
         thetaorig <- c(scale)

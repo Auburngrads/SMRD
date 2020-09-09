@@ -69,7 +69,7 @@ function (fitted,
           lty = 1, 
           col = 1, 
           lwd = 1,
-          static = static,...)
+          static = T,...)
 {
   
     do.mixed.text <- is.postsctiptok() && substring(variable.namex, 1, 1) == "~"

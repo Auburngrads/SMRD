@@ -11,7 +11,7 @@ function (focus.variable, fixed.other.values, groupm.out)
   } else focus.variable.index <- match(focus.variable, variable.names)
     focus.variable.relationship <- subscript.relationship(groupm.out$relationship,
         focus.variable.index)
-    assign(envir = .frame0,  inherits = TRUE,"relationship.vector", groupm.out$relationship)
+    assign(envir = .frame0, inherits = !TRUE,"relationship.vector", groupm.out$relationship)
     the.terms <- groupm.out$terms
     term.labels <- attr(the.terms, "term.labels")
     class.focus <- focus.variable.relationship == "Class" ||

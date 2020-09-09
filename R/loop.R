@@ -9,7 +9,7 @@ function (p.fail, m, e.of.r = c(2, 5, 10, 20, 50, 100), beta = c(0.8,
             cat("\ne.of.r=", e.of.r[i], "beta=", beta[j], "\nCensor Scheme:\n")
             censor.scheme <- get.censor.scheme.all(m = m, p.fail = p.fail,
                 beta[j], e.of.r[i])
-            assign(envir = .frame0,  inherits = TRUE,"tmp2.censor.scheme", censor.scheme)
+            assign(envir = .frame0, inherits = !TRUE,"tmp2.censor.scheme", censor.scheme)
             tmp.censor.scheme <- censor.scheme
             efail <- censor.scheme$number.units * pweibull(censor.scheme$censor.times,
                 beta[j], scale = 1)

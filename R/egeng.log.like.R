@@ -3,7 +3,7 @@ function (thetain)
 {
     logcheck <- function (x) { ifelse(x > 0, logb(x), -1e+21) }
     iter.count <- get(envir = .frame0,  "iter.count") + 1
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", iter.count )
+    assign(envir = .frame0, inherits = !TRUE,"iter.count", iter.count )
     model <- get(envir = .frame0,  "model")
     f.origparam <- model$f.origparam
     if (any(thetain == Inf) || (iter.count < 4 && map.SMRDDebugLevel() >=

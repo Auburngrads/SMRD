@@ -5,7 +5,7 @@ function (object, ProbLessThan = NA, new.data,...)
     relationship <- multiple.generic.relationship.name(object$relationship)
     if (is.null(names(relationship)))
         names(relationship) <- names(new.data)
-    assign(envir = .frame0,  inherits = TRUE,"relationship.vector", relationship)
+    assign(envir = .frame0, inherits = !TRUE,"relationship.vector", relationship)
     group.var <- object$group.var
     data.ld <- object$data.ld
     the.xmat <- xmat(data.ld)[, group.var, drop = F]

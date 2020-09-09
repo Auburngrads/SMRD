@@ -14,7 +14,7 @@ function (field.data.ld, lab.data.list, key.time,debug1= 0,
     }
     func.call <- match.call()
     list.data.ld <- list(field = field.data.ld, lab = lab.data.list)
-    assign(envir = .frame0,  inherits = TRUE,"list.data.ld", list.data.ld)
+    assign(envir = .frame0, inherits = !TRUE,"list.data.ld", list.data.ld)
     cat("Finding lab ML estimates\n")
     Crack.lab.theta.hat <- mlest(lab.data.list[["Crack"]], Crack.distribution.cycles)$theta.hat
     Wear.lab.theta.hat <- mlest(lab.data.list[["Wear"]], Wear.distribution.cycles)$theta.hat
@@ -78,7 +78,7 @@ function (field.data.ld, lab.data.list, key.time,debug1= 0,
         names(thetaorig) <- model$orig.param.names
         return(thetaorig)
     }
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", 0 )
+    assign(envir = .frame0, inherits = !TRUE,"iter.count", 0 )
     model$lab.param.names <- c("Crack.mu.cycles", "Crack.sigma.cycles",
         "Wear.mu.cycles", "Wear.sigma.cycles")
     model$orig.param.names <- c("Crack.mu.use.rate", "Crack.sigma.use.rate",
@@ -160,7 +160,7 @@ function (field.data.ld, lab.data.list, key.time,debug1= 0,
         lab.parameters = lab.parameters, lab.time.units = lab.time.units,
         field.time.units = field.time.units, distributions = distributions,
         correlation.model = correlation.model)
-    assign(envir = .frame0,  inherits = TRUE,"test.use.rate.model", test.use.rate.model)
+    assign(envir = .frame0, inherits = !TRUE,"test.use.rate.model", test.use.rate.model)
     gmle.out <- gmle(log.like = use.rate.log.like, data.ld = field.data.ld,
         theta.start = theta.start, model = model, f.tranparam = f.tranparam,
         f.origparam = f.origparam, special.stuff = special.stuff,

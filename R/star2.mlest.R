@@ -235,7 +235,7 @@ function (data.ld,
             
             if (map.SMRDDebugLevel() >= 4) {
               
-                assign(envir = .frame0,  inherits = TRUE,file.name, data.ld)
+                assign(envir = .frame0, inherits = !TRUE,file.name, data.ld)
                 cat("\nCheck stored data in", file.name, "\n")
                 
             }

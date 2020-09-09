@@ -12,7 +12,7 @@ function (groupm.out, new.data, do.vcv = T)
     Terms <- groupm.out$terms
     the.formula <- attr(Terms, "formula")
     relationship <- multiple.generic.relationship.name(groupm.out$relationship)
-    assign(envir = .frame0,  inherits = TRUE,"relationship.vector", relationship)
+    assign(envir = .frame0, inherits = !TRUE,"relationship.vector", relationship)
     new.data.x <- model.matrix(delete.response(Terms), data = new.data,
         contrasts = Terms$contrasts, xlevels = get.class.xlevels(the.xmat,
             Terms))

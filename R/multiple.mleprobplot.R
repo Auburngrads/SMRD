@@ -173,7 +173,7 @@ function (data.list,
             if (is.DebugOn()) {
                 file.name <- paste("ProblemData", floor(runif(1) *
                   1e+07), ".ld", sep = "")
-                assign(envir = .frame0,  inherits = TRUE,file.name, data.subset.ld)
+                assign(envir = .frame0, inherits = !TRUE,file.name, data.subset.ld)
                 cat("\nCheck stored data in", file.name, "\n")
                 warning(paste("Problem with convergence with",
                               data.name, 

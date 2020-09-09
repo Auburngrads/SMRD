@@ -25,7 +25,7 @@ function (data.ld, distribution = "weibull",debug1= 0, theta.start = NULL,
     ...)
 {
     options(digits = 5)
-    assign(envir = .frame0,  inherits = TRUE,"debug1", debug1)
+    assign(envir = .frame0, inherits = !TRUE,"debug1", debug1)
     func.call <- match.call()
     the.case.weights <- case.weights(data.ld)
     the.censor.codes <- censor.codes(data.ld)
@@ -51,7 +51,7 @@ function (data.ld, distribution = "weibull",debug1= 0, theta.start = NULL,
         names(thetaorig) <- model$orig.param.names
         return(thetaorig)
     }
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", 0)
+    assign(envir = .frame0, inherits = !TRUE,"iter.count", 0)
     orig.param.names <- c("location", "scale")
     t.param.names <- c(paste("logt", format(signif(pcensor, 2)),
         sep = ""), "log(scale)")

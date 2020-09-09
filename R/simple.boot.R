@@ -16,7 +16,7 @@ function (character.input.object, simple.boot.action, simple.boot.do.probplot.su
         the.boot.results <- boot.npar.par(data.ld, distribution = mlest.out$distribution,
             number.sim = number.sim)
         attr(mlest.out, "the.boot.results") <- the.boot.results
-        assign(envir = .frame0,  inherits = TRUE,character.input.object, mlest.out)
+        assign(envir = .frame0, inherits = !TRUE,character.input.object, mlest.out)
     }
     the.boot.results <- boot.filter(the.boot.results)
     switch(simple.boot.action, `Summary graphics` = {

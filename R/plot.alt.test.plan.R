@@ -66,7 +66,7 @@ function (x,
     explan.var <- 1:ncol(xmat(dummy.data.ld))
     relationship <- ALT.plan.values$relationship
     names(relationship) <- names(the.xmat)
-    assign(envir = .frame0,  inherits = TRUE,"relationship.vector", relationship)
+    assign(envir = .frame0, inherits = !TRUE,"relationship.vector", relationship)
     formula <- get.default.formula(the.xmat, relationship)
     Terms <- terms(formula)
     dummy.groupm.out <- list(relationship = relationship, 

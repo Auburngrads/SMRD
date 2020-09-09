@@ -31,7 +31,7 @@ function (warranty, miles.limit = 36, time.limit = 36, max.number = NULL,
         warranty.gmle.out.list[[period.list[i]]]$Lcode <- as.character(warranty$Lcode[1])
         warranty.gmle.out.list[[period.list[i]]]$Lcode <- as.character(warranty$Lcode[1])
     }
-    assign(envir = .frame0,  inherits = TRUE,"tmp.warranty.gmle.out.list", warranty.gmle.out.list)
+    assign(envir = .frame0, inherits = !TRUE,"tmp.warranty.gmle.out.list", warranty.gmle.out.list)
     the.array <- array(unlist(lapply(warranty.gmle.out.list,
         range.bvn.gmle.out, sigma.factor = sigma.factor)), dim = c(2,
         2, 6))

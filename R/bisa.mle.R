@@ -24,7 +24,7 @@ bisa.mle <-
 function (data.ld,debug1= F, theta.start = NULL) 
 {
     options(digits = 5)
-    assign(envir = .frame0,  inherits = TRUE,"debug1", debug1)
+    assign(envir = .frame0, inherits = !TRUE,"debug1", debug1)
     f.origparam <- function(thetatran, model) {
         tp1 <- exp(thetatran[1])
         beta <- exp(thetatran[2])
@@ -48,7 +48,7 @@ function (data.ld,debug1= F, theta.start = NULL)
         names(thetaorig) <- model$orig.param.names
         return(thetaorig)
     }
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", 0 )
+    assign(envir = .frame0, inherits = !TRUE,"iter.count", 0 )
     probs <- cdfest(data.ld)$prob
     p1 <- min(probs[probs > 0])/2
     p2 <- 0.9 * max(probs)

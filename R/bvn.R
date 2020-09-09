@@ -117,7 +117,7 @@ bvn.log.like <-
   function (thetain)
   {
     iter.count <- get(envir = .frame0,  "iter.count") + 1
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", iter.count )
+    assign(envir = .frame0, inherits = !TRUE,"iter.count", iter.count )
     debug1<- get(envir = .frame0,  "debug1")
     data.ld <- get(envir = .frame0,  "data.ld")
     model <- get(envir = .frame0,  "model")
@@ -177,7 +177,7 @@ bvn.mle <-
     the.case.weights <- case.weights(data.ld)
     options(digits = 5)
     the.censor.codes <- censor.codes(data.ld)
-    assign(envir = .frame0,  inherits = TRUE,"debug1", debug1)
+    assign(envir = .frame0, inherits = !TRUE,"debug1", debug1)
     f.tranparam <- function(thetaorig, model) {
       mu.x <- thetaorig[1]
       mu.y <- thetaorig[2]

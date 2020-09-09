@@ -2,7 +2,7 @@ dest.degrad.log.like <-
 function (thetain) 
 {
     iter.count <- get(envir = .frame0,  "iter.count") + 1
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", iter.count )
+    assign(envir = .frame0, inherits = !TRUE,"iter.count", iter.count )
    debug1<- get(envir = .frame0,  "debug1")
     model <- get(envir = .frame0,  "model")
     trans.data.ddd <- get(envir = .frame0,  "data.ld")

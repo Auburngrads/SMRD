@@ -2,7 +2,7 @@ lfp.mle2 <-
 function (data.ld, distribution, dump = F)
 {
     options(digits = 5)
-    assign(envir = .frame0,  inherits = TRUE,"dump", dump)
+    assign(envir = .frame0, inherits = !TRUE,"dump", dump)
     theResponse <-Response(data.ld)
     the.censor.codes <- censor.codes(data.ld)
     the.case.weights <- case.weights(data.ld)

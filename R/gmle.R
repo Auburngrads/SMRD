@@ -22,7 +22,7 @@ function (data.ld,
     data.ld <- data.ld
     log.like <- log.like
     func.call <- match.call()
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", 0 )
+    assign(envir = .frame0, inherits = !TRUE,"iter.count", 0 )
     options(digits = digits)
     number.parameters <- length(theta.start)
     fixed.parameters <- fixed.param.list$fixed.parameters
@@ -34,18 +34,18 @@ function (data.ld,
     if (is.null(orig.param.names)) orig.param.names <- paste("thetaorig", 1:number.parameters, sep = "")
     if (is.null(model$orig.param.names)) model$orig.param.names <- orig.param.names
     if (is.null(model$f.tranparam)) model$f.tranparam <- f.tranparam
-    assign(envir = .frame0,  inherits = TRUE,"log.like", log.like)
-    assign(envir = .frame0,  inherits = TRUE,"model", model)
-    if (!exists("debug1", envir = .frame0)) assign(envir = .frame0, inherits = TRUE,"debug1", debug1)
+    assign(envir = .frame0, inherits = !TRUE,"log.like", log.like)
+    assign(envir = .frame0, inherits = !TRUE,"model", model)
+    if (!exists("debug1", envir = .frame0)) assign(envir = .frame0, inherits = !TRUE,"debug1", debug1)
     
     if (map.SMRDDebugLevel() >= 4) {
       
        debug1<- get(envir = .frame0, "debug1")
-        if (debug1 < 3) assign(envir = .frame0,  inherits = TRUE,"debug1", 3)
+        if (debug1 < 3) assign(envir = .frame0, inherits = !TRUE,"debug1", 3)
     }
     
-    assign(envir = .frame0,  inherits = TRUE,"data.ld", value = unfold(data.ld))
-    assign(envir = .frame0,  inherits = TRUE,"special.stuff", special.stuff)
+    assign(envir = .frame0, inherits = !TRUE,"data.ld", value = unfold(data.ld))
+    assign(envir = .frame0, inherits = !TRUE,"special.stuff", special.stuff)
     if (!is.null(attr(data.ld, "sim.parameters"))) theta.start <- attr(data.ld, "sim.parameters")
     
     if (is.null(em.alg)) {
@@ -54,17 +54,17 @@ function (data.ld,
           
             fixed.parameter.values <- fixed.param.list$fixed.parameter.values
             theta.start[fixed.parameters] <- fixed.parameter.values
-            assign(envir = .frame0,  inherits = TRUE,"profile.on", value = fixed.parameters)
-            assign(envir = .frame0,  inherits = TRUE,"profile.on.pos", value = fixed.parameters)
+            assign(envir = .frame0, inherits = !TRUE,"profile.on", value = fixed.parameters)
+            assign(envir = .frame0, inherits = !TRUE,"profile.on.pos", value = fixed.parameters)
             
             profile.stable.parameters <- function(x.theta.hat, profile.on) {
                 theta.hat <- x.theta.hat
                 return(theta.hat)
             }
             
-            assign(envir = .frame0,  inherits = TRUE,"profile.stable.parameters", value = profile.stable.parameters)
+            assign(envir = .frame0, inherits = !TRUE,"profile.stable.parameters", value = profile.stable.parameters)
             theta.start <- f.tranparam(theta.start, model)
-            assign(envir = .frame0,  inherits = TRUE,"theta.hold", value = theta.start)
+            assign(envir = .frame0, inherits = !TRUE,"theta.hold", value = theta.start)
             theta.opt <- theta.start[Uminus(fixed.parameters)]
             est.out <- wqm.nlmin(const.log.like, 
                                  theta.opt, 

@@ -55,8 +55,8 @@ function (data.ld, start.distribution = "Weibull", theta.start = NULL, debug1 = 
             browser()
         return(thetaorig)
     }
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", 0 )
-    assign(envir = .frame0,  inherits = TRUE,"debug1", debug1)
+    assign(envir = .frame0, inherits = !TRUE,"iter.count", 0 )
+    assign(envir = .frame0, inherits = !TRUE,"debug1", debug1)
     probs <- cdfest(data.ld)$prob
     p1 <- min(probs[probs > 0])/2
     the.last <- length(probs)

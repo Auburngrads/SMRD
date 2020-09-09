@@ -25,7 +25,7 @@ function (f.fun, theta, delta = 0.001 * theta)
                 cat("i=", i, "j=", j, "theta=", theta[i], theta[j],
                   "\ndelta=", delta[i], delta[j], "hess=", hessian[i,
                     j], "\n")
-                assign(envir = .frame0,  inherits = TRUE,"xdebug", T)
+                assign(envir = .frame0, inherits = !TRUE,"xdebug", T)
                 thetapp <- theta + deltai + deltaj
                 xnames[1] <- "thetapp"
                 thetapm <- theta + deltaj - deltai
@@ -40,11 +40,11 @@ function (f.fun, theta, delta = 0.001 * theta)
                           f.fun(thetamm))
                 names(fvec) <- xnames
                 print(fvec, digits = 9)
-                assign(envir = .frame0,  inherits = TRUE,"xdebug", F)
+                assign(envir = .frame0, inherits = !TRUE,"xdebug", F)
                 
             } else {
                 
-                assign(envir = .frame0,  inherits = TRUE,"xdebug", F)
+                assign(envir = .frame0, inherits = !TRUE,"xdebug", F)
             }
         }
     }

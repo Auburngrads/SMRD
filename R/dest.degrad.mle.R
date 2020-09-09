@@ -109,10 +109,10 @@ function (data.ddd, distribution, transformation.response, transformation.x,
     do.list(trans.data.ddd) <- get.x.markers(data.ddd, group.var = group.var,
         long = T, include.complete = T)
     complete.list(trans.data.ddd) <- complete.list(do.list(trans.data.ddd))
-    assign(envir = .frame0,  inherits = TRUE,"tmp.trans.data.ddd", trans.data.ddd)
+    assign(envir = .frame0, inherits = !TRUE,"tmp.trans.data.ddd", trans.data.ddd)
     f.origparam <- f.ADDT.origparam
     f.stableparam <- f.ADDT.stableparam
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", 0 )
+    assign(envir = .frame0, inherits = !TRUE,"iter.count", 0 )
     orig.param.names <- c("beta0", "beta1", paste("beta", seq(2,
         length(transformation.x) + 1), sep = ""), "sigma")
     t.param.names <- c("gamma0", "gamma1", paste("gamma", seq(2,

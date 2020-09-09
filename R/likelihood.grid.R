@@ -38,6 +38,6 @@ function (gmle.out, range.list, log.quantile = F, the.quantile = NA,
     grid.name <- paste(deparse(substitute(gmle.out)), ".grid",
         sep = "")
     if (save.it)
-        assign(envir = .frame0,  inherits = TRUE,grid.name, the.list)
+        assign(envir = .frame0, inherits = !TRUE,grid.name, the.list)
     invisible(the.list)
 }

@@ -6,8 +6,8 @@ function (gmle.out, profile.setup.out, xlim, ylim, profile.on,
     is.maxele <- function (x) { seq(1:length(x))[is.min(Uminus(x))][1] }
     profile.on.pos <- profile.setup.out$profile.on.pos
     h.theta.hat <- profile.setup.out$h.theta.hat
-    assign(envir = .frame0,  inherits = TRUE,"profile.on.pos", value = profile.on.pos)
-    assign(envir = .frame0,  inherits = TRUE,"profile.on", value = profile.on)
+    assign(envir = .frame0, inherits = !TRUE,"profile.on.pos", value = profile.on.pos)
+    assign(envir = .frame0, inherits = !TRUE,"profile.on", value = profile.on)
     log.scale <- gmle.out$max.log.like
     xvec <- seq(xlim[1], xlim[2], length = 2 * size[1] +
         1)
@@ -26,7 +26,7 @@ function (gmle.out, profile.setup.out, xlim, ylim, profile.on,
     for (j in index.list) {
         kount <- kount + 1
         if (j == jmid.start) {
-            assign(envir = .frame0,  inherits = TRUE,"theta.mid.last", h.theta.hat)
+            assign(envir = .frame0, inherits = !TRUE,"theta.mid.last", h.theta.hat)
             imid <- imid.start
         }
         z[j, ] <- inner.profile(j, xvec, yvec, imid, jmid.start)

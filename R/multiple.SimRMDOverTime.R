@@ -25,7 +25,7 @@ function (RMD.pv, RMD.plan.vec, EvaluateEndTimes, begin.time = 1,
             MysetOldClass(attr(plan.results, "class"))
             cat("Saving simulations results", results.object.name,
                 "\n")
-            assign(envir = .frame0,  inherits = TRUE,results.object.name, plan.results)
+            assign(envir = .frame0, inherits = !TRUE,results.object.name, plan.results)
         }
     }
 }
