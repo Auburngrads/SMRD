@@ -21,6 +21,6 @@ function (Classes, where = 1)
     
     allOldClasses <- sort(unique(c(Classes[[1]], allOldClasses)))
     
-    assign(envir = .frame0,  inherits = TRUE, "oldClasses", allOldClasses)
+    assign(envir = .frame0, inherits = !TRUE, "oldClasses", allOldClasses)
     invisible()
 }

@@ -112,7 +112,7 @@ function (gmle.out,
       dir.vector <- x/sqrt(sum(x^2))
       return(dir.vector)
     }
-    assign(envir = .frame0,  inherits = TRUE,"iter.count", 0 )
+    assign(envir = .frame0, inherits = !TRUE,"iter.count", 0 )
     start.date <- date()
     theta.hat <- gmle.out$est.out$x
     dim <- length(theta.hat)
@@ -144,10 +144,10 @@ function (gmle.out,
     debug1 <- 1
     log.like <- gmle.out$log.like
     std.error <- gmle.out$t.standard.error
-    assign(envir = .frame0,  inherits = TRUE,"model", value = gmle.out$model)
-    assign(envir = .frame0,  inherits = TRUE,"debug1", value = debug1)
-    assign(envir = .frame0,  inherits = TRUE,"log.like", value = gmle.out$log.like)
-    assign(envir = .frame0,  inherits = TRUE,"data.ld", value = gmle.out$data.ld)
+    assign(envir = .frame0, inherits = !TRUE,"model", value = gmle.out$model)
+    assign(envir = .frame0, inherits = !TRUE,"debug1", value = debug1)
+    assign(envir = .frame0, inherits = !TRUE,"log.like", value = gmle.out$log.like)
+    assign(envir = .frame0, inherits = !TRUE,"data.ld", value = gmle.out$data.ld)
     sim.bound <- log.like(theta.hat) + 0.5 * qchisq(conf.level,dim)
     pt.bound <- log.like(theta.hat) + 0.5 * qchisq(conf.level,1)
     size <- trunc(iter/cull)
@@ -290,6 +290,6 @@ function (gmle.out,
         upper.2close = upper.2close, lower.2close = lower.2close,
         conf.level = conf.level, gmle.out = gmle.out, date = gmle.out$date)
     oldClass(return.list) <- "FillRegion.out"
-    assign(envir = .frame0,  inherits = TRUE,jcrname, value = return.list)
+    assign(envir = .frame0, inherits = !TRUE,jcrname, value = return.list)
     return(gmle.out)
 }

@@ -14,7 +14,7 @@ function (PassedData, print.stuff = T, plot.stuff = T, observation.time.range = 
         if (plot.stuff)
             PlotData.rmd(PassedGroupedData)
     }
-    assign(envir = .frame0,  inherits = TRUE,"RMD.data.grouped", PassedGroupedData)
+    assign(envir = .frame0, inherits = !TRUE,"RMD.data.grouped", PassedGroupedData)
     control.list <- lmeControl(maxIter = maxIter, msMaxIter = msMaxIter,
         msVerbose = msVerbose, niterEM = niterEM)
     rmd.fit <- lme(RMD.data.grouped, random = ~Time, control = control.list)

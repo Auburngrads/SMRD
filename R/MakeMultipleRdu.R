@@ -8,6 +8,6 @@ function (frame.names, ID.column, time.column, event.column)
                 "Data"))
         file.name <- paste(frame.names[i], "rdu", sep = ".")
         cat("Saving subset", file.name, "\n")
-        assign(envir = .frame0,  inherits = TRUE,file.name, value = frame.rdu)
+        assign(envir = .frame0, inherits = !TRUE,file.name, value = frame.rdu)
     }
 }

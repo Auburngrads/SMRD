@@ -18,6 +18,6 @@ function (type, x.axis, xlim, xlab, y.axis, ylim, ylab)
         sep = ""))
     the.list[[the.axes.name]] <- list(xlim = xlim, x.axis = x.axis, 
         xlab = xlab, ylim = ylim, y.axis = y.axis, ylab = ylab)
-    assign(envir = .frame0,  inherits = TRUE,file.name, the.list)
+    assign(envir = .frame0, inherits = !TRUE,file.name, the.list)
     invisible()
 }

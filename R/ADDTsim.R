@@ -147,7 +147,7 @@ function (ADDT.test.plan, ADDT.plan.values, number.sim = 3, plotem = F,
         }
         data.ddd[, response.column] <- the.response
         cat("\nStart simulation", i, "of", number.sim, "\n")
-        assign(envir = .frame0,  inherits = TRUE,"last.sim.ADDT.ddd", data.ddd)
+        assign(envir = .frame0, inherits = !TRUE,"last.sim.ADDT.ddd", data.ddd)
         if (i <= as.numeric(plotem)) {
             dest.degrad.mle.out <- groupm.Dest.Degrad(data.ddd,
                 distribution = distribution, transformation.response = transformation.response,
@@ -173,7 +173,7 @@ function (ADDT.test.plan, ADDT.plan.values, number.sim = 3, plotem = F,
                   collapse = ",")))
             file.name <- paste("ProblemData", floor(runif(1) *
                 1e+07), ".ddd", sep = "")
-            assign(envir = .frame0,  inherits = TRUE,file.name, data.ddd)
+            assign(envir = .frame0, inherits = !TRUE,file.name, data.ddd)
             cat("\nCheck stored data in", file.name, "\n")
         }
         else {

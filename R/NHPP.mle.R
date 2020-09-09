@@ -31,7 +31,7 @@ function (data.rdu,
           theta.start = c(NA,NA),
           kprint = 0,...)
 {
-    assign(envir = .frame0,  inherits = TRUE,"debug1", debug1)
+    assign(envir = .frame0, inherits = !TRUE,"debug1", debug1)
   
     options(digits = 5)
     func.call <- match.call()
