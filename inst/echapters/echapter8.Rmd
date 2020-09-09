@@ -62,13 +62,13 @@ ShockAbsorber.mlest$quantiles
 ```{r, echo=1:9}
 simple.contour(ShockAbsorber.ld,
                distribution = "lognormal",
-               show.confidence = T)
+               show.confidence = T, 
+               static = T)
 
-
-simple.contour(ShockAbsorber.ld,
-               distribution = "lognormal",
-               show.confidence = T,
-               threeD = T)
+# simple.contour(ShockAbsorber.ld,
+#                distribution = "lognormal",
+#                show.confidence = T,
+#                threeD = T)
 ```
 </div>
 
