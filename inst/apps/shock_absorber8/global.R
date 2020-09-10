@@ -1,4 +1,6 @@
 par(family = "serif", font = 2)
+pacman::p_load(DT)
+pacman::p_load_gh("timelyportfolio/codemirrorR")
 
 library(SMRD)
 
